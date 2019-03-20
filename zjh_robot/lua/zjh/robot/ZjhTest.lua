@@ -15,7 +15,8 @@ local msg_dispatcher = require(cwd .."ZjhMsgDispatcher")
 local robot_cls = require(cwd .. "ZjhRobot")
 
 local uptcpd = require("network.luasocket_uptcp")
-local packet_cls = require("network.byte_stream_packet")
+--local packet_cls = require("network.byte_stream_packet")
+local packet_cls = require("network.byte_stream_packet_ffi")
 
 --
 function _M.onUpconnAdd(upconn)

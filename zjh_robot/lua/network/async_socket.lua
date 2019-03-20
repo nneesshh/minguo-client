@@ -141,6 +141,7 @@ local TCP_TRANSPORT =
         is_connected = false,
         connect_timer = false,
         send_timer = false,
+        read_idle_timer = false,
     },
     BASE_TRANSPORT
 )
@@ -185,19 +186,19 @@ do
 
     function TCP_TRANSPORT:settimeouts(connect_timeout_in_ms, send_timeout_in_ms, read_idle_timeout_in_ms)
         -- connect timer
-        connect_timeout_in_ms = connect_timeout_in_ms or 1000 * 1000
+        connect_timeout_in_ms = connect_timeout_in_ms or 3600 * 1000
         self.connect_timer = timer:new()
         self.connect_timer:set_interval(connect_timeout_in_ms)
         self.connect_timer:start()
 
         -- send timer
-        send_timeout_in_ms = send_timeout_in_ms or 1000 * 1000
+        send_timeout_in_ms = send_timeout_in_ms or 3600 * 1000
         self.send_timer = timer:new()
         self.send_timer:set_interval(send_timeout_in_ms)
         self.send_timer:start()
 
         -- read idle timer
-        read_idle_timeout_in_ms = read_idle_timeout_in_ms or 1000 * 1000
+        read_idle_timeout_in_ms = read_idle_timeout_in_ms or 3600 * 1000
         self.read_idle_timer = timer:new()
         self.read_idle_timer:set_interval(read_idle_timeout_in_ms)
         self.read_idle_timer:start()

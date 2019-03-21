@@ -444,7 +444,7 @@ function _M.onGameOver(conn, sessionid, msgid)
 
         local timer_manager = require("network.socket_timer_manager")
         timer_manager.set_expired(
-            301 * 1000,
+            61 * 1000,
             function()
                 -- ready again
                 robot:sendPlayerReady()

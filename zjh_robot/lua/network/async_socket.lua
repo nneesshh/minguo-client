@@ -1,5 +1,6 @@
 local tbl_insert = table.insert
 local tbl_concat = table.concat
+local tostring = tostring
 
 --
 local socket = require("socket")
@@ -141,7 +142,7 @@ local TCP_TRANSPORT =
         is_connected = false,
         connect_timer = false,
         send_timer = false,
-        read_idle_timer = false,
+        read_idle_timer = false
     },
     BASE_TRANSPORT
 )
@@ -210,8 +211,13 @@ do
         if not sock then
             return nil, err
         end
+
+        -- backup
+        self.host = tostring(host)
+        self.port = tostring(port)
+
         --
-        local ok, err = sock:connect(host, port)
+        local ok, err = sock:connect(self.host, self.port)
         if ok then
             return 1
         elseif err == "timeout" then
@@ -223,19 +229,24 @@ do
 
     --
     function TCP_TRANSPORT:check_connecting()
+        -- check by select
         local sock = self.private_.sock
         local rfds = {sock}
         local wrds = {sock}
         -- check once
         local r, w, err = socket.select(rfds, wrds, 0)
         if w[1] or r[1] then
-            return true
+            -- check by connect again
+            local ok, err2 = sock:connect(self.host, self.port)
+            if not ok and err2 == "already connected" then
+                return true
+            end
         end
         if err == "timeout" then
             local rest = self.connect_timer:rest()
             if 0 == rest then
                 self:close()
-                return nil, "timeout"
+                return nil, "TIMEOUT"
             end
             local opterr = sock:getoption("error")
             if opterr then
@@ -257,7 +268,7 @@ do
         --
         i, j = i or 1, j or #msg
 
-        -- start new send 
+        -- start new send
         self.send_timer:restart()
 
         -- just do sync send for convenience
@@ -276,7 +287,7 @@ do
                 if 0 == rest then
                     -- send timeout
                     self:close()
-                    return nil, "timeout", last_i
+                    return nil, "TIMEOUT", last_i
                 end
                 -- go on to send
                 i = last_i + 1
@@ -296,28 +307,31 @@ do
         --
         spec = spec or "*a"
         local sock = self.private_.sock
-        -- loop until no more data
         local data, err, partial
-        local has_more_data = true
         local pieces = {}
+
+        -- loop until no more data
+        local has_more_data = true
         while has_more_data do
             -- receive
             data, err, partial = sock:receive(spec)
             if data then
                 tbl_insert(pieces, data)
                 has_more_data = false
-            elseif err == "timeout" then
-                -- check partial 
-                if partial and #partial > 0 then
-                    tbl_insert(pieces, partial)
-                else
-                    has_more_data = false
-                end
             else
-                if err == "closed" then
-                    self:on_closed()
+                if err == "timeout" then
+                    -- check partial
+                    if partial and #partial > 0 then
+                        tbl_insert(pieces, partial)
+                    else
+                        has_more_data = false
+                    end
+                else
+                    if err == "closed" then
+                        self:on_closed()
+                    end
+                    return nil, err
                 end
-                return nil, err
             end
         end
 
@@ -325,7 +339,7 @@ do
         local rest = self.read_idle_timer:rest()
         if 0 == rest then
             self:close()
-            return nil, "timeout"
+            return nil, "TIMEOUT"
         end
 
         if #pieces > 0 then

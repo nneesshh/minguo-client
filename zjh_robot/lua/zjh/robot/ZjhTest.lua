@@ -15,7 +15,8 @@ local msg_dispatcher = require(cwd .."ZjhMsgDispatcher")
 local robot_cls = require(cwd .. "ZjhRobot")
 
 local uptcpd = require("network.luasocket_uptcp")
-local packet_cls = require("network.byte_stream_packet")
+--local packet_cls = require("network.byte_stream_packet")
+local packet_cls = require("network.byte_stream_packet_ffi")
 
 --
 function _M.onUpconnAdd(upconn)
@@ -63,11 +64,15 @@ end
 --
 function _M.simUpdate()
     local timer = require("network.socket_timer")
+    local timer_manager = require("network.socket_timer_manager")
     while true do 
         -- update 
         for k, v in pairs(_M.upconnMap) do
             v.upconn:update()
         end
+
+        --
+        timer_manager.update()
 
         --
         timer.sleep(10)
@@ -77,7 +82,7 @@ end
 --
 function _M.start()
     --local TEST_NUM_MAX = #cfg_game_zjh.robots
-    local TEST_NUM_MAX = 1
+    local TEST_NUM_MAX = 2
 
     --
     if not _M.running then

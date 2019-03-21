@@ -22,7 +22,7 @@ function _P:decode(data, packet_cb, arg)
     local framedata_szie = #data
     local free_size = self.pkt_r_cache_stream:get_free_size()
     if free_size >= framedata_szie then
-        self.pkt_r_cache_stream:write_raw(data, framedata_szie)
+        self.pkt_r_cache_stream:write_raw(data)
     else
         error("reader cache stream overflow!!!")
     end
@@ -31,7 +31,7 @@ function _P:decode(data, packet_cb, arg)
     while true do
         if PARSE_HEADER == self.pkt_r_parser_state then
             -- header
-            local content_size = self.pkt_r_cache_stream:get_content_size()
+            local content_size = self.pkt_r_cache_stream:get_used_size()
             if content_size < SIZE_OF_FRAME_PAGE_LEADING then
                 break
             end
@@ -40,10 +40,11 @@ function _P:decode(data, packet_cb, arg)
             local header = self.pkt_r_cache_stream:read_raw(SIZE_OF_FRAME_PAGE_LEADING)
             self.pkt_r_cache_stream:rewind()
 
-            -- parse header
+            -- write header to stream
             self.pkt_r_stream:reset()
             self.pkt_r_stream:write_raw(header)
 
+            -- parse header
             local key = self.pkt_r_stream:read_raw(8)
             local size = self.pkt_r_stream:read_int32()
             local sessionId = self.pkt_r_stream:read_int32()
@@ -60,7 +61,7 @@ function _P:decode(data, packet_cb, arg)
 
         elseif PARSE_BODY == self.pkt_r_parser_state then
             -- body
-            local content_size = self.pkt_r_cache_stream:get_content_size()
+            local content_size = self.pkt_r_cache_stream:get_used_size()
             if content_size < self.pkt_r.msgsize then
                 break
             end
@@ -69,7 +70,7 @@ function _P:decode(data, packet_cb, arg)
             local body = self.pkt_r_cache_stream:read_raw(self.pkt_r.msgsize)
             self.pkt_r_cache_stream:rewind()
 
-            -- parse body
+            -- write body to stream
             self.pkt_r_stream:reset()
             self.pkt_r_stream:write_raw(body)
 
@@ -101,7 +102,7 @@ function _P:write(s, sessionid, msgid, msgdata)
         error("packet size overflow!!!")
     else
         -- frame leading init
-        local key = "\0\0\0\0\0\0\0\0" -- 8 bytes
+        local key = "\0\1\2\3\4\5\6\7" -- 8 bytes
         local size = send_size
         local sessionId = sessionid
         local msgId = msgid
@@ -133,16 +134,8 @@ end
 -- byte stream packet
 _P.new = function()
     -- reader stream
-    local function _reader_stream_reset(self)
-        return self.pkt_r_stream:reset()
-    end
-
     local function _reader_stream_rewind(self)
         return self.pkt_r_stream:rewind()
-    end
-
-    local function _reader_stream_seek(self, pos)
-        return self.pkt_r_stream:seek(pos)
     end
 
     local function _reader_stream_skip(self, len)
@@ -150,7 +143,8 @@ _P.new = function()
     end
 
     local function _reader_stream_get_content_size(self)
-        return self.pkt_r_stream:get_content_size()
+        self.pkt_r_stream:rewind()
+        return self.pkt_r_stream:get_used_size()
     end
 
     local function _reader_stream_get_free_size(self)
@@ -183,7 +177,8 @@ _P.new = function()
     end
 
     local function _writer_stream_get_content_size(self)
-        return self.pkt_w_stream:get_content_size()
+        self.pkt_r_stream:rewind()
+        return self.pkt_w_stream:get_used_size()
     end
 
     local function _writer_stream_get_free_size(self)
@@ -231,9 +226,7 @@ _P.new = function()
             msgsize = 0
         },
         --
-        reader_reset = _reader_stream_reset,
         reader_rewind = _reader_stream_rewind,
-        reader_seek = _reader_stream_seek,
         reader_skip = _reader_stream_skip,
         reader_get_content_size = _reader_stream_get_content_size,
         reader_get_free_size = _reader_stream_get_free_size,

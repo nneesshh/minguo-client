@@ -52,8 +52,6 @@ function _M.onRegister(conn, sessionid, msgid)
         robot.rooms = {}
  
         local po = conn:get_packet_obj()
-        po:reader_reset()
-        
         resp.errorCode = po:read_int32()
         resp.errorMsg = po:read_string()
         resp.version = po:read_string()

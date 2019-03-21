@@ -1,6 +1,7 @@
 local tbl_insert = table.insert
 local tostring, pairs, ipairs = tostring, pairs, ipairs
 local randseed, rand = math.randomseed, math.random
+local b = require("bootstrap")
 
 local _M = {}
 
@@ -8,7 +9,7 @@ local mt = {__index = _M}
 
 local cwd = (...):gsub("%.[^%.]+$", "") .. "."
 local zjh_defs = require(cwd .. "ZjhDefs")
-local msg_dispatcher = require(cwd .."ZjhMsgDispatcher")
+local msg_dispatcher = require(cwd .. "ZjhMsgDispatcher")
 
 -- ENUM GAMETYPE
 local GAMETYPE_ZJH = 1
@@ -50,18 +51,21 @@ end
 local function _readTableInfo(po)
     local info = {}
     info.tableId = po:read_int32()
-    info.status = po:read_byte()  
+    info.status = po:read_byte()
     info.round = po:read_byte()
-    info.baseBet = po:read_int32()    
+    info.baseBet = po:read_int32()
     info.jackpot = po:read_int32()
     info.bankerSeat = po:read_byte()
     info.currentSeat = po:read_byte()
-    info.playCount = po:read_int32()
+    info.playerCount = po:read_int32()
     info.playerSeat = {}
-    for i=1, info.playCount do
+    for i = 1, info.playerCount do
         local seat = po:read_byte()
         tbl_insert(info.playerSeat, seat)
     end
+
+    print("TableInfo: ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    print(b.pa(info))
     return info
 end
 
@@ -75,6 +79,9 @@ local function _readSeatPlayerInfo(po)
     info.status = po:read_byte()
     info.seat = po:read_byte()
     info.bet = po:read_int32()
+
+    print("PlayerInfo: ----------------------------------------------------------------")
+    print(b.pa(info))
     return info
 end
 
@@ -85,7 +92,7 @@ local function _readPlayerAnteUp(po)
     info.playerBalance = po:read_int64()
     --
     info.round = po:read_byte()
-    info.baseBet = po:read_int32()    
+    info.baseBet = po:read_int32()
     info.jackpot = po:read_int32()
     info.currentSeat = po:read_byte()
 
@@ -111,9 +118,32 @@ local function _readPlayerCompareCard(po)
     info.loserSeat = po:read_byte()
     --
     info.round = po:read_byte()
-    info.baseBet = po:read_int32()    
+    info.baseBet = po:read_int32()
     info.jackpot = po:read_int32()
     info.currentSeat = po:read_byte()
+    return info
+end
+
+local function _readGameStart(po)
+    local info = {}
+    info.baseCoin = po:read_int32()
+    info.tabInfo = _readTableInfo(po)
+    return info
+end
+
+local function _readGameOver(po)
+    local info = {}
+    info.winnerSeat = po:read_byte()
+    info.tax = po:read_int32()
+    info.playerCount = po:read_int32()
+    info.playerSeat = {}
+    for i = 1, info.playerCount do
+        local seatinfo = {}
+        seatinfo.seat = po:read_byte()
+        seatinfo.score = po:read_int32()
+        seatinfo.cards = po:read_string()
+        tbl_insert(info.playerSeat, seatinfo)
+    end
     return info
 end
 
@@ -131,7 +161,7 @@ end
 function _M.onRegister(conn, sessionid, msgid)
     local resp = {}
     conn.user = conn.user or {}
-    
+
     local robot = conn.user.robot
     if robot then
         -- save sessionId
@@ -139,8 +169,6 @@ function _M.onRegister(conn, sessionid, msgid)
         robot.rooms = {}
 
         local po = conn:get_packet_obj()
-        po:reader_reset()
-        
         resp.errorCode = po:read_int32()
         resp.errorMsg = po:read_string()
         resp.version = po:read_string()
@@ -149,7 +177,7 @@ function _M.onRegister(conn, sessionid, msgid)
         resp.roomCount = po:read_byte()
 
         -- room info
-        for i=1, resp.roomCount do
+        for i = 1, resp.roomCount do
             local info = _readRoomInfo(po)
             tbl_insert(robot.rooms, info)
         end
@@ -163,23 +191,29 @@ function _M.onRegister(conn, sessionid, msgid)
 
             --
             print("register ok -- robot=" .. tostring(robot.userInfo.userTicketId) .. ", " .. robot.userInfo.userName)
-
         elseif robot.userinfo then
             --
-            print("register failed -- robot=" .. tostring(robot.userInfo.userTicketId) .. ", errcode=" .. tostring(resp.errorCode) .. ", " .. resp.errorMsg)
+            print(
+                "register failed -- robot=" ..
+                    tostring(robot.userInfo.userTicketId) ..
+                        "!!!!, errcode=" .. tostring(resp.errorCode) .. ", " .. resp.errorMsg
+            )
         else
             --
-            print("register failed -- errcode=" .. tostring(resp.errorCode) .. ", " .. resp.errorMsg)
+            print("register failed -- !!!!, errcode=" .. tostring(resp.errorCode) .. ", " .. resp.errorMsg)
         end
     else
-        print("[onRegister()], connid=" .. ", " .. tostring(conn.id).. ", " .. tostring(sessionid).. ", " .. tostring(msgid))
+        print(
+            "[onRegister()], connid=" ..
+                ", " .. tostring(conn.id) .. ", " .. tostring(sessionid) .. ", " .. tostring(msgid)
+        )
     end
 end
 
 function _M.onLogin(conn, sessionid, msgid)
     local resp = {}
     conn.user = conn.user or {}
-    
+
     local robot = conn.user.robot
     if robot then
         -- save sessionId
@@ -187,8 +221,6 @@ function _M.onLogin(conn, sessionid, msgid)
         robot.rooms = {}
 
         local po = conn:get_packet_obj()
-        po:reader_reset()
-        
         resp.errorCode = po:read_int32()
         resp.errorMsg = po:read_string()
         resp.version = po:read_string()
@@ -197,7 +229,7 @@ function _M.onLogin(conn, sessionid, msgid)
         resp.roomCount = po:read_byte()
 
         -- room info
-        for i=1, resp.roomCount do
+        for i = 1, resp.roomCount do
             local info = _readRoomInfo(po)
             tbl_insert(robot.rooms, info)
         end
@@ -211,7 +243,7 @@ function _M.onLogin(conn, sessionid, msgid)
 
             -- recover flag
             resp.isGaming = po:read_byte()
-            if 0 == resp.isGaming  then
+            if 0 == resp.isGaming then
                 -- enter room
                 robot:sendEnterRoom()
             else
@@ -219,49 +251,51 @@ function _M.onLogin(conn, sessionid, msgid)
                 robot.tabInfo = _readTableInfo(po)
 
                 -- seat player info
-                local players = {}
-                local playCount = po:read_int32()
-                for i=1, playCount do
+                robot.seatPlayerInfo = robot.seatPlayerInfo or {}
+                local playerCount = po:read_int32()
+                for i = 1, playerCount do
                     -- seat player info
                     local player = _readSeatPlayerInfo(po)
-                    players[player.seat] = player
+                    robot.seatPlayerInfo[player.seat] = player
                 end
-                robot.seatPlayerInfo = players
-            
+
                 --
                 robot.state = ROBOT_STATE_GAME
 
                 -- check turn
                 local turnSeat = robot.tabInfo.currentSeat
                 local turnPlayer = robot.seatPlayerInfo[turnSeat]
-                if robot.userInfo.userTicketId == turnPlayer.userTicketId then
+                if turnPlayer and robot.userInfo.userTicketId == turnPlayer.userTicketId then
                     -- self is in turn, do bet
-                    print("login and is in game, continue anteup -- robot=" .. tostring(robot.userInfo.userTicketId) .. ", " .. robot.userInfo.userName)
+                    print(
+                        "login and is in game, continue anteup -- robot=" ..
+                            tostring(robot.userInfo.userTicketId) .. ", " .. robot.userInfo.userName
+                    )
 
                     --
                     robot:sendPlayerAnteUp()
                 else
-
                 end
             end
         else
             --
-            print("login failed -- errcode=" .. tostring(resp.errorCode) .. ", " .. resp.errorMsg)
+            print("login failed -- !!!!, errcode=" .. tostring(resp.errorCode) .. ", " .. resp.errorMsg)
         end
     else
-        print("[onLogin()], connid=" .. ", " .. tostring(conn.id).. ", " .. tostring(sessionid).. ", " .. tostring(msgid))
+        print(
+            "[onLogin()], connid=" ..
+                ", " .. tostring(conn.id) .. ", " .. tostring(sessionid) .. ", " .. tostring(msgid)
+        )
     end
 end
 
 function _M.onEnterRoom(conn, sessionid, msgid)
     local resp = {}
     conn.user = conn.user or {}
-    
+
     local robot = conn.user.robot
     if robot then
         local po = conn:get_packet_obj()
-        po:reader_reset()
-
         resp.errorCode = po:read_int32()
         resp.errorMsg = po:read_string()
 
@@ -270,41 +304,53 @@ function _M.onEnterRoom(conn, sessionid, msgid)
             -- table info
             robot.tabInfo = _readTableInfo(po)
 
-            -- seat player info
-            local players = {}
-            local playCount = po:read_int32()
-            for i=1, playCount do
+            -- seat in-gaming player info
+            robot.seatPlayerInfo = robot.seatPlayerInfo or {}
+            local playerCount = po:read_int32()
+            for i = 1, playerCount do
                 -- seat player info
                 local player = _readSeatPlayerInfo(po)
-                players[player.seat] = player
+                robot.seatPlayerInfo[player.seat] = player
             end
-            robot.seatPlayerInfo = players
-           
+
             --
             robot.state = ROBOT_STATE_GAME
 
             --
-            print("enter room ok -- robot=" .. tostring(robot.userInfo.userTicketId) .. ", " .. robot.userInfo.userName)
+            print(
+                "enter room ok -- req_roomid=" ..
+                    tostring(robot.roomInfo.reqRoomId) ..
+                        ", tableid=" ..
+                            tostring(robot.tabInfo.tableId) ..
+                                ", robot=" .. tostring(robot.userInfo.userTicketId) .. ", " .. robot.userInfo.userName
+            )
         else
             --
-            print("enter room failed -- robot=" .. tostring(robot.userInfo.userTicketId) .. ", " .. ", errcode=" .. tostring(resp.errorCode) .. ", " .. resp.errorMsg)
+            print(
+                "enter room failed -- req_roomid=" ..
+                    tostring(robot.roomInfo.reqRoomId) ..
+                        ", robot=" ..
+                            tostring(robot.userInfo.userTicketId) ..
+                                "!!!!, errcode=" .. tostring(resp.errorCode) .. ", " .. resp.errorMsg
+            )
             -- enter room again
             robot:sendEnterRoom()
-         end
+        end
     else
-        print("[onEnterRoom()], connid=" .. ", " .. tostring(conn.id).. ", " .. tostring(sessionid).. ", " .. tostring(msgid))
+        print(
+            "[onEnterRoom()], connid=" ..
+                ", " .. tostring(conn.id) .. ", " .. tostring(sessionid) .. ", " .. tostring(msgid)
+        )
     end
 end
 
 function _M.onLeaveRoom(conn, sessionid, msgid)
     local resp = {}
     conn.user = conn.user or {}
-    
+
     local robot = conn.user.robot
     if robot then
         local po = conn:get_packet_obj()
-        po:reader_reset()
-
         resp.errorCode = po:read_int32()
         resp.errorMsg = po:read_string()
 
@@ -312,19 +358,20 @@ function _M.onLeaveRoom(conn, sessionid, msgid)
         if resp.errorCode == zjh_defs.ErrorCode.ERR_SUCCESS then
         end
     else
-        print("[onLeaveRoom()], connid=" .. ", " .. tostring(conn.id).. ", " .. tostring(sessionid).. ", " .. tostring(msgid))
+        print(
+            "[onLeaveRoom()], connid=" ..
+                ", " .. tostring(conn.id) .. ", " .. tostring(sessionid) .. ", " .. tostring(msgid)
+        )
     end
 end
 
 function _M.onChangeTable(conn, sessionid, msgid)
     local resp = {}
     conn.user = conn.user or {}
-    
+
     local robot = conn.user.robot
     if robot then
         local po = conn:get_packet_obj()
-        po:reader_reset()
-
         resp.errorCode = po:read_int32()
         resp.errorMsg = po:read_string()
 
@@ -332,7 +379,10 @@ function _M.onChangeTable(conn, sessionid, msgid)
         if resp.errorCode == zjh_defs.ErrorCode.ERR_SUCCESS then
         end
     else
-        print("[onChangeTable()], connid=" .. ", " .. tostring(conn.id).. ", " .. tostring(sessionid).. ", " .. tostring(msgid))
+        print(
+            "[onChangeTable()], connid=" ..
+                ", " .. tostring(conn.id) .. ", " .. tostring(sessionid) .. ", " .. tostring(msgid)
+        )
     end
 end
 
@@ -342,16 +392,15 @@ end
 function _M.onGameStart(conn, sessionid, msgid)
     local resp = {}
     conn.user = conn.user or {}
-    
+
     local robot = conn.user.robot
     if robot then
         local po = conn:get_packet_obj()
-        po:reader_reset()
+        local info = _readGameStart(po)
+        local baseCoin = info.baseCoin
+        local tabInfo = info.tabInfo
 
-        local baseCoin = po:read_int32()
-        local tabInfo = _readTableInfo(po)
-
-        -- 
+        --
         print("game start -- robot=" .. tostring(robot.userInfo.userTicketId) .. ", " .. robot.userInfo.userName)
 
         -- base bet
@@ -359,17 +408,24 @@ function _M.onGameStart(conn, sessionid, msgid)
 
         local bankerSeat = tabInfo.bankerSeat
         local banker = robot.seatPlayerInfo[bankerSeat]
-        if robot.userInfo.userTicketId == banker.userTicketId then
-            -- self is banker, do ante up
-            print("game start, do bet -- robot=" .. tostring(robot.userInfo.userTicketId) .. ", " .. robot.userInfo.userName)
+        if banker then
+            if robot.userInfo.userTicketId == banker.userTicketId then
+                -- self is banker, do ante up
+                print(
+                    "game start, do bet -- robot=" ..
+                        tostring(robot.userInfo.userTicketId) .. ", " .. robot.userInfo.userName
+                )
 
-            --
-            robot:sendPlayerAnteUp()
-        else
-
+                --
+                robot:sendPlayerAnteUp()
+            else
+            end
         end
     else
-        print("[onGameStart()], connid=" .. ", " .. tostring(conn.id).. ", " .. tostring(sessionid).. ", " .. tostring(msgid))
+        print(
+            "[onGameStart()], connid=" ..
+                ", " .. tostring(conn.id) .. ", " .. tostring(sessionid) .. ", " .. tostring(msgid)
+        )
     end
 end
 
@@ -377,20 +433,28 @@ end
 function _M.onGameOver(conn, sessionid, msgid)
     local resp = {}
     conn.user = conn.user or {}
-    
+
     local robot = conn.user.robot
     if robot then
         local po = conn:get_packet_obj()
-        po:reader_reset()
-
-        resp.errorCode = po:read_int32()
-        resp.errorMsg = po:read_string()
+        local info = _readGameOver(po)
 
         --
-        if resp.errorCode == zjh_defs.ErrorCode.ERR_SUCCESS then
-        end
+        print("game over -- robot=" .. tostring(robot.userInfo.userTicketId) .. ", " .. robot.userInfo.userName)
+
+        local timer_manager = require("network.socket_timer_manager")
+        timer_manager.set_expired(
+            301 * 1000,
+            function()
+                -- ready again
+                robot:sendPlayerReady()
+            end
+        )
     else
-        print("[onGameOver()], connid=" .. ", " .. tostring(conn.id).. ", " .. tostring(sessionid).. ", " .. tostring(msgid))
+        print(
+            "[onGameOver()], connid=" ..
+                ", " .. tostring(conn.id) .. ", " .. tostring(sessionid) .. ", " .. tostring(msgid)
+        )
     end
 end
 
@@ -398,12 +462,10 @@ end
 function _M.onPlayerSitDown(conn, sessionid, msgid)
     local resp = {}
     conn.user = conn.user or {}
-    
+
     local robot = conn.user.robot
     if robot then
         local po = conn:get_packet_obj()
-        po:reader_reset()
-
         local player = _readSeatPlayerInfo(po)
 
         --
@@ -411,8 +473,12 @@ function _M.onPlayerSitDown(conn, sessionid, msgid)
         robot.seatPlayerInfo[player.seat] = player
 
         --
-        print("player sit down -- robot=" .. tostring(robot.userInfo.userTicketId) .. ", " .. robot.userInfo.userName)
-    
+        print(
+            "player sit down -- req_roomid=" ..
+                tostring(robot.roomInfo.reqRoomId) ..
+                    ", robot=" .. tostring(robot.userInfo.userTicketId) .. ", " .. robot.userInfo.userName
+        )
+
         --
         if robot.userInfo.userTicketId == player.userTicketId then
             -- it is self sit down confirm
@@ -421,7 +487,10 @@ function _M.onPlayerSitDown(conn, sessionid, msgid)
             robot:sendPlayerReady()
         end
     else
-        print("[onPlayerSitDown()], connid=" .. ", " .. tostring(conn.id).. ", " .. tostring(sessionid).. ", " .. tostring(msgid))
+        print(
+            "[onPlayerSitDown()], connid=" ..
+                ", " .. tostring(conn.id) .. ", " .. tostring(sessionid) .. ", " .. tostring(msgid)
+        )
     end
 end
 
@@ -429,12 +498,10 @@ end
 function _M.onPlayerReady(conn, sessionid, msgid)
     local resp = {}
     conn.user = conn.user or {}
-    
+
     local robot = conn.user.robot
     if robot then
         local po = conn:get_packet_obj()
-        po:reader_reset()
-
         local seat_pos = po:read_byte()
 
         local players = robot.seatPlayerInfo or {}
@@ -444,14 +511,15 @@ function _M.onPlayerReady(conn, sessionid, msgid)
         if robot.userInfo.userTicketId == player.userTicketId then
             -- it is self ready
         else
-
         end
 
         --
         print("player ready -- robot=" .. tostring(robot.userInfo.userTicketId) .. ", " .. robot.userInfo.userName)
-
     else
-        print("[onPlayerReady()], connid=" .. ", " .. tostring(conn.id).. ", " .. tostring(sessionid).. ", " .. tostring(msgid))
+        print(
+            "[onPlayerReady()], connid=" ..
+                ", " .. tostring(conn.id) .. ", " .. tostring(sessionid) .. ", " .. tostring(msgid)
+        )
     end
 end
 
@@ -459,12 +527,10 @@ end
 function _M.onPlayerAnteUp(conn, sessionid, msgid)
     local resp = {}
     conn.user = conn.user or {}
-    
+
     local robot = conn.user.robot
     if robot then
         local po = conn:get_packet_obj()
-        po:reader_reset()
-
         local anteUpInfo = _readPlayerAnteUp(po)
         robot.round = anteUpInfo.round
 
@@ -476,21 +542,25 @@ function _M.onPlayerAnteUp(conn, sessionid, msgid)
         -- check turn
         local turnSeat = anteUpInfo.currentSeat
         local turnPlayer = robot.seatPlayerInfo[turnSeat]
-        if robot.userInfo.userTicketId == turnPlayer.userTicketId then
+        if turnPlayer and robot.userInfo.userTicketId == turnPlayer.userTicketId then
             -- self is in turn, do bet
-            print("game start, do bet -- robot=" .. tostring(robot.userInfo.userTicketId) .. ", " .. robot.userInfo.userName)
+            print(
+                "player's turn to ante up, do bet -- robot=" ..
+                    tostring(robot.userInfo.userTicketId) .. ", " .. robot.userInfo.userName
+            )
 
             --
             robot:sendPlayerAnteUp()
         else
-
         end
 
         --
         print("player ante up -- robot=" .. tostring(robot.userInfo.userTicketId) .. ", " .. robot.userInfo.userName)
-       
     else
-        print("[onPlayerAnteUp()], connid=" .. ", " .. tostring(conn.id).. ", " .. tostring(sessionid).. ", " .. tostring(msgid))
+        print(
+            "[onPlayerAnteUp()], connid=" ..
+                ", " .. tostring(conn.id) .. ", " .. tostring(sessionid) .. ", " .. tostring(msgid)
+        )
     end
 end
 
@@ -498,21 +568,20 @@ end
 function _M.onPlayerShowCard(conn, sessionid, msgid)
     local resp = {}
     conn.user = conn.user or {}
-    
+
     local robot = conn.user.robot
     if robot then
         local po = conn:get_packet_obj()
-        po:reader_reset()
-
-        --
         resp.seat = po:read_byte()
         resp.cards = po:read_string()
 
         --
         print("player show card -- robot=" .. tostring(robot.userInfo.userTicketId) .. ", " .. robot.userInfo.userName)
-
     else
-        print("[onPlayerShowCard()], connid=" .. ", " .. tostring(conn.id).. ", " .. tostring(sessionid).. ", " .. tostring(msgid))
+        print(
+            "[onPlayerShowCard()], connid=" ..
+                ", " .. tostring(conn.id) .. ", " .. tostring(sessionid) .. ", " .. tostring(msgid)
+        )
     end
 end
 
@@ -520,20 +589,22 @@ end
 function _M.onPlayerCompareCard(conn, sessionid, msgid)
     local resp = {}
     conn.user = conn.user or {}
-    
+
     local robot = conn.user.robot
     if robot then
         local po = conn:get_packet_obj()
-        po:reader_reset()
-
         local compareCardInfo = _readPlayerCompareCard(po)
         robot.round = compareCardInfo.round
 
         --
-        print("player compare card -- robot=" .. tostring(robot.userInfo.userTicketId) .. ", " .. robot.userInfo.userName)
-
+        print(
+            "player compare card -- robot=" .. tostring(robot.userInfo.userTicketId) .. ", " .. robot.userInfo.userName
+        )
     else
-        print("[onPlayerCompareCard()], connid=" .. ", " .. tostring(conn.id).. ", " .. tostring(sessionid).. ", " .. tostring(msgid))
+        print(
+            "[onPlayerCompareCard()], connid=" ..
+                ", " .. tostring(conn.id) .. ", " .. tostring(sessionid) .. ", " .. tostring(msgid)
+        )
     end
 end
 
@@ -541,17 +612,18 @@ end
 function _M.onPlayerGiveUp(conn, sessionid, msgid)
     local resp = {}
     conn.user = conn.user or {}
-    
+
     local robot = conn.user.robot
     if robot then
         local po = conn:get_packet_obj()
-        po:reader_reset()
 
         --
         print("player give up -- robot=" .. tostring(robot.userInfo.userTicketId) .. ", " .. robot.userInfo.userName)
-
     else
-        print("[onPlayerGiveUp()], connid=" .. ", " .. tostring(conn.id).. ", " .. tostring(sessionid).. ", " .. tostring(msgid))
+        print(
+            "[onPlayerGiveUp()], connid=" ..
+                ", " .. tostring(conn.id) .. ", " .. tostring(sessionid) .. ", " .. tostring(msgid)
+        )
     end
 end
 
@@ -586,7 +658,7 @@ function _M.sendRegister(self)
 
     -- 222 is just a faked sessionid for test
     local sessionId = self.sessionId or 222
-    self.upconn:send_packet(sessionId, zjh_defs.MsgId.MSGID_REGISTER_REQ) 
+    self.upconn:send_packet(sessionId, zjh_defs.MsgId.MSGID_REGISTER_REQ)
 end
 
 function _M.sendLogin(self)
@@ -604,7 +676,7 @@ function _M.sendLogin(self)
 
     -- 222 is just a faked sessionid for test
     local sessionId = self.sessionId or 222
-    self.upconn:send_packet(sessionId, zjh_defs.MsgId.MSGID_LOGIN_REQ) 
+    self.upconn:send_packet(sessionId, zjh_defs.MsgId.MSGID_LOGIN_REQ)
 end
 
 function _M.sendLoginAsGuest(self)
@@ -621,7 +693,7 @@ function _M.sendLoginAsGuest(self)
 
     -- 222 is just a faked sessionid for test
     local sessionId = self.sessionId or 222
-    self.upconn:send_packet(sessionId, zjh_defs.MsgId.MSGID_LOGIN_REQ) 
+    self.upconn:send_packet(sessionId, zjh_defs.MsgId.MSGID_LOGIN_REQ)
 end
 
 function _M.sendEnterRoom(self)
@@ -646,7 +718,6 @@ function _M.sendEnterRoom(self)
 end
 
 function _M.sendPlayerReady(self)
-    
     local po = self.upconn:get_packet_obj()
     po:writer_reset()
     po:write_int64(123456789012) -- test token
@@ -660,7 +731,7 @@ function _M.sendPlayerReady(self)
 end
 
 function _M.sendPlayerAnteUp(self)
-    local round = robot.round or 1
+    local round = self.tabInfo and self.tabInfo.round or 1
 
     local po = self.upconn:get_packet_obj()
     po:writer_reset()

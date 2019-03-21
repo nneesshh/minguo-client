@@ -93,14 +93,14 @@ function timer:rest()
     return rest > 0 and rest or 0
 end
 
-local M = {}
+local _M = {}
 
-M.sleep = s_sleep
-M.gettime = s_gettime
-M.getelapsed = __getelapsed
+_M.sleep = s_sleep
+_M.gettime = s_gettime
+_M.getelapsed = __getelapsed
 
-M.new = function(...)
+_M.new = function(...)
     return timer:new(...)
 end
 
-return M
+return _M

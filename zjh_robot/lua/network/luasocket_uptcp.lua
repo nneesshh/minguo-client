@@ -216,7 +216,7 @@ function _M.read_packet(self)
 end
 
 --
-local last_reconnect_cd = 0
+local last_reconnect_countdown = {}
 
 --
 function _M.update(self)
@@ -232,12 +232,15 @@ function _M.update(self)
     elseif self.state == STATE_RECONNECTING then
         local rest = self.reconnect_timer:rest()
         if 0 == rest then
+            last_reconnect_countdown[self.id] = nil
             return self:connect()
         else
             local cd = math_ceil(rest/1000)
-            if cd ~= last_reconnect_cd then
-                print("reconnect countdown(s):" .. tostring(cd))
-                last_reconnect_cd = cd
+
+            last_reconnect_countdown[self.id] = last_reconnect_countdown[self.id] or { _cd = 0 }
+            if cd ~= last_reconnect_countdown[self.id]._cd then
+                print("connid=" .. tostring(self.id) ..",  reconnect countdown(s):" .. tostring(cd))
+                last_reconnect_countdown[self.id]._cd  = cd
             end
         end
     elseif self.state == STATE_CONNECTED then

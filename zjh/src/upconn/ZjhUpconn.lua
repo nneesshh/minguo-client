@@ -22,7 +22,7 @@ function _M.createUpconn()
     local nextConnId = _M.nextConnId
     _M.nextConnId = _M.nextConnId + 1
     _M.upconn = uptcpd:new(nextConnId)
-    return upconn
+    return _M.upconn
 end
 
 --
@@ -75,6 +75,8 @@ function _M.start()
         msg_dispatcher.dispatch(self, pkt.sessionid, pkt.msgid)
     end
 
+    local server = cfg_game_zjh.servers[1]
+
     --
     local opts = {
         server = server,
@@ -85,9 +87,7 @@ function _M.start()
         got_packet_cb = got_packet_cb
     }
     _M.upconn = _M.createUpconn()
-
-    --
-    upconn:run(opts)
+    _M.upconn:run(opts)
 
     --
     _M.running = true

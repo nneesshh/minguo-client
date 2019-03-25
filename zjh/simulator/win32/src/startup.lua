@@ -29,13 +29,12 @@ function startup:start()
         director:runWithScene(scene)
     end
     
-    -- 加载假进度条
+    -- 假进度条
     self:openSchedulerProgress()
 end
 
 function startup:exit()
     if self._rootNode then
-        print("strtup exit")
         self._rootNode:removeFromParent(true)
         display.removeUnusedSpriteFrames()
     
@@ -45,14 +44,34 @@ function startup:exit()
     end
 end
 
+function startup:seekNodeByName(root, name)
+    if ( nil == root) then
+        return nil
+    end
+
+    if (root:getName() == name) then
+        return  root
+    end
+
+    local arrayRootChildren = root:getChildren()
+    for i,v in pairs(arrayRootChildren) do
+        if (nil ~= v) then
+            local res = self:seekNodeByName(v,name)
+            if (res ~= nil ) then
+                return res
+            end
+        end
+    end
+end
+
 function startup:showProgress(nPercent)
---    if not nPercent or nPercent < 0 then return end
---    local lbProcess = ccui.Helper:seekNodeByName(self._rootNode,"loadbar")
---    local lbHint = ccui.Helper:seekNodeByName(self._rootNode,"txt_hint")
---    if (not lbProcess) or (not lbHint) then return end 
---    lbProcess:setPercent(nPercent)
---    local strProcess = tostring(math.ceil(nPercent))
---    lbHint:setString(strProcess .. "%")
+    if not nPercent or nPercent < 0 then return end
+    local lbProcess = self:seekNodeByName(self._rootNode,"loadbar")
+    local lbHint = self:seekNodeByName(self._rootNode,"txt_hint")
+    if (not lbProcess) or (not lbHint) then return end 
+    lbProcess:setPercent(nPercent)
+    local strProcess = tostring(math.ceil(nPercent))
+    lbHint:setString(strProcess .. "%")
 end
 
 function startup:startGame()
@@ -62,11 +81,8 @@ end
 
 function startup:flipIt(dt)
     local allTime = 2
-    print("2222222")
     self._time = self._time + dt
     local percent = self._time / allTime * 100
-    
-    print("percent is",percent)
     
     if self._time >= allTime or percent >= 100 then
         self:closeSchedulerProgress()

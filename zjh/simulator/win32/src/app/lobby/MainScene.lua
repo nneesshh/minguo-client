@@ -33,7 +33,7 @@ MainScene.touchs = {
 function MainScene:onClick(sender)
     MainScene.super.onClick(self, sender)
     local name = sender:getName()
-    self:showExpand(false)
+    
 end
 
 function MainScene:onTouch(sender, eventType)

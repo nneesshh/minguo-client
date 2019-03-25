@@ -207,14 +207,35 @@ function BaseLayer:isCurrentUI()
     return false
 end
 
+function BaseLayer:seekNodeByName(root, name)
+    if ( nil == root) then
+        return nil
+    end
+
+    if (root:getName() == name) then
+        return  root
+    end
+
+    local arrayRootChildren = root:getChildren()
+    for i,v in pairs(arrayRootChildren) do
+        if (nil ~= v) then
+            local res = self:seekNodeByName(v,name)
+            if (res ~= nil ) then
+                return res
+            end
+        end
+    end
+end
+
 -- 通过名称查找子节点
 function BaseLayer:seekChildByName(name)
     if not name or not self._rootNode then
         print("BaseLayer:seekChildByName, name or rootNode is nil")
         return nil
     end
+
     if not self._children[name] then
-        self._children[name] = ccui.Helper:seekNodeByName(self._rootNode, name)
+        self._children[name] = self:seekNodeByName(self._rootNode, name)
     end
     return self._children[name]
 end

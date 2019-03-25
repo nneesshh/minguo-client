@@ -13,13 +13,6 @@ LoginLayer.touchs = {
     "btn_account",
 }
 
-function LoginLayer:initData()
-end
-
-function LoginLayer:initUI()
-   
-end
-
 function LoginLayer:onTouch(sender, eventType)
     LoginLayer.super.onTouch(self, sender, eventType)
     local name = sender:getName()

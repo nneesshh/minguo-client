@@ -10,6 +10,7 @@ local _M = {
 -- Localize
 local cwd = (...):gsub("%.[^%.]+$", "") .. "."
 local cfg_game_zjh = require(cwd .. "config.game_zjh")
+local zjh_defs = require(cwd .. "ZjhDefs")
 local msg_dispatcher = require(cwd .."ZjhMsgDispatcher")
 
 local uptcpd = require("network.luasocket_uptcp")

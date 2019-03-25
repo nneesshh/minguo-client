@@ -153,7 +153,7 @@ do
         if self.private_.sock then
             return self.private_.sock
         end
-        local sock, err = socket.tcp4()
+        local sock, err = socket.tcp()
         if not sock then
             return nil, err
         end

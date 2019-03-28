@@ -48,3 +48,9 @@
 \.sconsign\.dblite
 zjh/simulator/win32/zjh\.exe
 zjh/frameworks/runtime-src/proj\.win32/Debug\.win32/
+cocosstudio/
+zjh/zjh\.ccs
+
+zjh/zjh\.cfg
+
+zjh/zjh\.udf

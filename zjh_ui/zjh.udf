@@ -27,20 +27,7 @@
     </Item>
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
-        <OpenedDocuments>
-          <FilePathData Path="csb/verifylogin.csd" />
-          <FilePathData Path="csb/usercenter.csd" />
-          <FilePathData Path="csb/shop.csd" />
-          <FilePathData Path="csb/set.csd" />
-          <FilePathData Path="csb/register.csd" />
-          <FilePathData Path="csb/password.csd" />
-          <FilePathData Path="csb/login.csd" />
-          <FilePathData Path="csb/lobby.csd" />
-          <FilePathData Path="csb/loading.csd" />
-          <FilePathData Path="csb/head.csd" />
-          <FilePathData Path="csb/account.csd" />
-        </OpenedDocuments>
-        <ActiveDocument Path="csb/account.csd" />
+        <ActiveDocument />
       </Value>
     </Item>
   </Properties>

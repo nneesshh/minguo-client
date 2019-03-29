@@ -1,5 +1,5 @@
 --[[
-@brief  Ë«Ïò¶ÓÁÐ
+@brief  åŒå‘é˜Ÿåˆ—
 ]]
 
 local Queue = class("Queue")
@@ -8,14 +8,14 @@ Queue._first = 0
 Queue._last = -1
 Queue._list = {}
 
--- ³õÊ¼»¯
+-- åˆå§‹åŒ–
 function Queue:ctor()
     self._first = 0
     self._last = -1
     self._list = {}
 end
 
--- ²åÈëÊý¾ÝÖÁÍ·²¿
+-- æ’å…¥æ•°æ®è‡³å¤´éƒ¨
 function Queue:addFirst(value)
     if(value == nil) then
         print("Queue addFirst args is nil.")
@@ -25,7 +25,7 @@ function Queue:addFirst(value)
     self._list[self._first] = value
 end
 
--- ²åÈëÊý¾ÝÖÁÎ²²¿
+-- æ’å…¥æ•°æ®è‡³å°¾éƒ¨
 function Queue:addLast(value)
     if(value == nil) then
         print("Queue addLast args is nil.")
@@ -35,7 +35,7 @@ function Queue:addLast(value)
     self._list[self._last] = value
 end
 
--- »ñÈ¡²¢ÒÆ³ýÍ·²¿ÔªËØ
+-- èŽ·å–å¹¶ç§»é™¤å¤´éƒ¨å…ƒç´ 
 function Queue:popFirst()
     if(self._first > self._last) then
         return nil 
@@ -46,7 +46,7 @@ function Queue:popFirst()
     return value
 end
 
--- »ñÈ¡²¢ÒÆ³ýÎ²²¿ÔªËØ
+-- èŽ·å–å¹¶ç§»é™¤å°¾éƒ¨å…ƒç´ 
 function Queue:popLast()
     if(self._first > self._last) then
         return nil 
@@ -57,7 +57,7 @@ function Queue:popLast()
     return value
 end
 
--- »ñÈ¡²»ÒÆ³ýÍ·²¿ÔªËØ
+-- èŽ·å–ä¸ç§»é™¤å¤´éƒ¨å…ƒç´ 
 function Queue:getFirst()
     if(self._first > self._last) then
         return nil 
@@ -65,7 +65,7 @@ function Queue:getFirst()
     return self._list[self._first]
 end
 
--- »ñÈ¡²»ÒÆ³ýÎ²²¿ÔªËØ
+-- èŽ·å–ä¸ç§»é™¤å°¾éƒ¨å…ƒç´ 
 function Queue:getLast()
     if(self._first > self._last) then
         return nil 
@@ -73,12 +73,12 @@ function Queue:getLast()
     return self._list[self._last]
 end
 
--- »ñÈ¡¶ÓÁÐ³¤¶È
+-- èŽ·å–é˜Ÿåˆ—é•¿åº¦
 function Queue:getCount()
     return self._last - self._first + 1
 end
 
--- ÒÆ³ýÍ·²¿ÔªËØ
+-- ç§»é™¤å¤´éƒ¨å…ƒç´ 
 function Queue:deleteFirst()
     if(self._first > self._last) then
         return  
@@ -87,7 +87,7 @@ function Queue:deleteFirst()
     self._first = self._first + 1
 end
 
--- Çå¿Õ
+-- æ¸…ç©º
 function Queue:clear()
     self:ctor()
 end

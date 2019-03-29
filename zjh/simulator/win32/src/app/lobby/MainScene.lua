@@ -1,12 +1,12 @@
 --[[
-@brief  ´óÌüÖ÷³¡¾°
+@brief  ä¸»åœºæ™¯
 ]]
 
 local scheduler = cc.Director:getInstance():getScheduler()
 
 local MainScene = class("MainScene", app.base.BaseScene)
 
--- csbÂ·¾¶
+-- csbÂ·ï¿½ï¿½
 MainScene.csbPath = "csb/lobby.csb"
 
 MainScene.clicks = {

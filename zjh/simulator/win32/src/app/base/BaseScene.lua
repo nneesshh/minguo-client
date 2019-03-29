@@ -1,33 +1,33 @@
 --[[
-@brief  ³¡¾°»ùÀà
+@brief  åœºæ™¯åŸºç±»
 ]]
 local app       = app
 
 local BaseScene = class("BaseScene")
 
----------------- ×ÓÀàĞèÅäÖÃÏîÄ¿ ---------------
--- csbÂ·¾¶
+---------------- å­ç±»éœ€é…ç½®é¡¹ç›® ---------------
+-- csbè·¯å¾„
 BaseScene.csbPath   = nil
--- Ğè×¢²á°´Å¥touchÊÂ¼şµÄÁĞ±í
+-- éœ€æ³¨å†ŒæŒ‰é’®touchäº‹ä»¶çš„åˆ—è¡¨
 BaseScene.touchs    = nil
 BaseScene.clicks    = nil
 BaseScene.events    = nil
 -----------------------------------------------
 
--- µ¥Àı
+-- å•ä¾‹
 BaseScene._instance = nil
 
--- ³¡¾°¸ù½Úµã
+-- åœºæ™¯æ ¹èŠ‚ç‚¹
 BaseScene._rootNode = nil 
 
--- ×Ó½ÚµãÊı¾İ
+-- å­èŠ‚ç‚¹æ•°æ®
 BaseScene._children = {}  
 
--- ¿ØÖÆÎÄ¼şµÄÊµÀı
+-- æ§åˆ¶æ–‡ä»¶çš„å®ä¾‹
 BaseScene._presenter = nil
 
 --------------------------------
--- ÉùÃ÷¾²Ì¬µ¥Àı 
+-- å£°æ˜é™æ€å•ä¾‹ 
 -- @param self
 -- @return _instance
 function BaseScene:getInstance()
@@ -37,19 +37,19 @@ function BaseScene:getInstance()
     return self._instance
 end
 
--- ¹¹Ôìº¯Êı
+-- æ„é€ å‡½æ•°
 function BaseScene:ctor()
     self._rootNode = nil 
     self._children = {}
     self._presenter = nil
 end
--- ´ò¿ª½çÃæ
+-- æ‰“å¼€ç•Œé¢
 function BaseScene:start( presenter, ... )
     self:startScene(presenter)
     self:init( ... )
 end
 
--- ³õÊ¼»¯³¡¾°
+-- åˆå§‹åŒ–åœºæ™¯
 function BaseScene:startScene(presenter)
     if self._rootNode then
         return
@@ -59,11 +59,11 @@ function BaseScene:startScene(presenter)
     local layer = cc.Layer:create()
     scene:addChild(layer)
 
-    -- ³õÊ¼»¯LayerÕ»
+    -- åˆå§‹åŒ–Layeræ ˆ
     app.util.UIUtils.initLayerStack()
     app.util.UIUtils.initLayerZOrder()
 
-    -- °²×¿ÊÊÅä
+    -- å®‰å“é€‚é…
     if device.platform == "android" then
         layer:setKeypadEnabled(true)
         local function onKeyReleased(keyCode, event)
@@ -83,7 +83,7 @@ function BaseScene:startScene(presenter)
         eventDispatcher:addEventListenerWithSceneGraphPriority(listener, layer)  
     end
 
-    -- ¼ÓÔØcsbÎÄ¼ş
+    -- åŠ è½½csbæ–‡ä»¶
     if not self.csbPath then
         print(" csbPath are not configured. ")
     end
@@ -91,19 +91,19 @@ function BaseScene:startScene(presenter)
     self._rootNode = cc.CSLoader:createNodeWithVisibleSize(self.csbPath)
     layer:addChild(self._rootNode)
 
-    -- ×¢²á³¡¾°»ù´¡ÊÂ¼ş
+    -- æ³¨å†Œåœºæ™¯åŸºç¡€äº‹ä»¶
     scene:registerScriptHandler(handler(self, self.nodeEvent))
-    -- ÇĞ»»³¡¾°
+    -- åˆ‡æ¢åœºæ™¯
     display.runScene(scene)
 
-    -- ×¢²á°´Å¥µÈÊÂ¼ş
+    -- æ³¨å†ŒæŒ‰é’®ç­‰äº‹ä»¶
     self:registerEvent()
 
-    -- ¼ÓÔØ¿ØÖÆÀà
+    -- åŠ è½½æ§åˆ¶ç±»
     self._presenter = presenter
 end
 
--- ³¡¾°»ù´¡ÊÂ¼ş
+-- åœºæ™¯åŸºç¡€äº‹ä»¶
 function BaseScene:nodeEvent(event)
     if event == "enter" and self.onEnter ~= nil then
         self:onEnter()
@@ -118,7 +118,7 @@ function BaseScene:nodeEvent(event)
     end
 end
 
--- ÍË³ö³¡¾°
+-- é€€å‡ºåœºæ™¯
 function BaseScene:exit()
     if self._rootNode then
         self._rootNode:removeFromParent(true)
@@ -129,26 +129,26 @@ function BaseScene:exit()
     end
 end
 
--- ³õÊ¼»¯
+-- åˆå§‹åŒ–
 function BaseScene:init( ... )
     self:initData( ... )
     self:initUI( ... )
 end
 
--- ³õÊ¼»¯Êı¾İ(ÓÉ×ÓÀàµ¥¶ÀÊµÏÖ)
+-- åˆå§‹åŒ–æ•°æ®(ç”±å­ç±»å•ç‹¬å®ç°)
 function BaseScene:initData( ... )
 end
 
--- ³õÊ¼»¯UI(ÓÉ×ÓÀàµ¥¶ÀÊµÏÖ)
+-- åˆå§‹åŒ–UI(ç”±å­ç±»å•ç‹¬å®ç°)
 function BaseScene:initUI( ... )
 end
 
--- °²×¿·µ»Ø°´Å¥
+-- å®‰å“è¿”å›æŒ‰é’®
 function BaseScene:clickBack()
     self:exit()
 end
 
--- ×¢²áÊÂ¼ş
+-- æ³¨å†Œäº‹ä»¶
 function BaseScene:registerEvent()
     if self.touchs ~= nil then
         for k,v in pairs(self.touchs) do
@@ -178,7 +178,7 @@ function BaseScene:registerEvent()
     end
 end
 
--- onTouchÊÂ¼ş
+-- onTouchäº‹ä»¶
 function BaseScene:onTouch(sender, eventType)
     local originalScale = sender:getScale()
     local scaleMult = 0.95
@@ -199,10 +199,10 @@ function BaseScene:onEvent(sender, eventType)
 end
 
 -----------------------------------------
---  ¸¨Öúº¯Êı
+--  è¾…åŠ©å‡½æ•°
 -----------------------------------------
 
--- ÊÇ·ñµ±Ç°³¡¾°
+-- æ˜¯å¦å½“å‰åœºæ™¯
 function BaseScene:isCurrentUI()
     if self._rootNode and not tolua.isnull(self._rootNode) then
         return true
@@ -219,7 +219,7 @@ function BaseScene:seekNodeByName(root, name)
     if (root:getName() == name) then
         return  root
     end
-    
+
     local arrayRootChildren = root:getChildren()
     for i,v in pairs(arrayRootChildren) do
         if (nil ~= v) then
@@ -231,7 +231,7 @@ function BaseScene:seekNodeByName(root, name)
     end
 end
 
--- Í¨¹ıÃû³Æ²éÕÒ×Ó½Úµã
+-- é€šè¿‡åç§°æŸ¥æ‰¾å­èŠ‚ç‚¹
 function BaseScene:seekChildByName(name)
     if not name or not self._rootNode then
         print("BaseScene:seekChildByName, name or rootNode is nil")
@@ -244,7 +244,7 @@ function BaseScene:seekChildByName(name)
     return self._children[name]
 end
 
--- Í¨¹ıtag²éÕÒ×Ó½Úµã
+-- é€šè¿‡tagæŸ¥æ‰¾å­èŠ‚ç‚¹
 function BaseScene:seekChildByTag(tag)
     if not tag or not self._rootNode then
         print("BaseScene:seekChildByTag, tag or rootNode is nil")
@@ -256,8 +256,8 @@ function BaseScene:seekChildByTag(tag)
     return self._children[tag]
 end
 
--- Ìá¹©Ò»¸öÒÆ³ı½ÚµãµÄ·½·¨
--- ÈôĞèÒªÒÆ³ıÒ»¸öÔÚcocosstudioÖĞ´´½¨µÄ½ÚµãÇÒ²»È·¶¨Ö®ºóÊÇ·ñ»¹»áÔÙµ÷ÓÃµ½¸Ã½ÚµãÊ±£¬½¨ÒéÊ¹ÓÃ¸Ã·½·¨
+-- æä¾›ä¸€ä¸ªç§»é™¤èŠ‚ç‚¹çš„æ–¹æ³•
+-- è‹¥éœ€è¦ç§»é™¤ä¸€ä¸ªåœ¨cocosstudioä¸­åˆ›å»ºçš„èŠ‚ç‚¹ä¸”ä¸ç¡®å®šä¹‹åæ˜¯å¦è¿˜ä¼šå†è°ƒç”¨åˆ°è¯¥èŠ‚ç‚¹æ—¶ï¼Œå»ºè®®ä½¿ç”¨è¯¥æ–¹æ³•
 function BaseScene:removeChildByName(name)
     if not name then
         print("BaseScene:removeChildByName, name is nil")

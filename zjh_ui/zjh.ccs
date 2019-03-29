@@ -3,103 +3,236 @@
   <SolutionFolder>
     <Group ctype="ResourceGroup">
       <RootFolder Name=".">
-        <Folder Name="csb">
-          <Project Name="account.csd" Type="Layer" />
-          <Project Name="head.csd" Type="Layer" />
-          <Project Name="loading.csd" Type="Scene" />
-          <Project Name="lobby.csd" Type="Scene" />
-          <Project Name="login.csd" Type="Layer" />
-          <Project Name="password.csd" Type="Layer" />
-          <Project Name="register.csd" Type="Layer" />
-          <Project Name="set.csd" Type="Layer" />
-          <Project Name="shop.csd" Type="Layer" />
-          <Project Name="usercenter.csd" Type="Layer" />
-          <Project Name="verifylogin.csd" Type="Layer" />
+        <Folder Name="game">
+          <Folder Name="zjh">
+            <Folder Name="csb">
+              <Project Name="button.csd" Type="Node" />
+              <Project Name="card.csd" Type="Node" />
+              <Project Name="gamescene.csd" Type="Scene" />
+              <Project Name="menu.csd" Type="Node" />
+            </Folder>
+            <Folder Name="image">
+              <Folder Name="card">
+                <Image Name="img_0_10.png" />
+                <Image Name="img_0_11.png" />
+                <Image Name="img_0_12.png" />
+                <Image Name="img_0_13.png" />
+                <Image Name="img_0_14.png" />
+                <Image Name="img_0_2.png" />
+                <Image Name="img_0_3.png" />
+                <Image Name="img_0_4.png" />
+                <Image Name="img_0_5.png" />
+                <Image Name="img_0_6.png" />
+                <Image Name="img_0_7.png" />
+                <Image Name="img_0_8.png" />
+                <Image Name="img_0_9.png" />
+                <Image Name="img_1_10.png" />
+                <Image Name="img_1_11.png" />
+                <Image Name="img_1_12.png" />
+                <Image Name="img_1_13.png" />
+                <Image Name="img_1_14.png" />
+                <Image Name="img_1_2.png" />
+                <Image Name="img_1_3.png" />
+                <Image Name="img_1_4.png" />
+                <Image Name="img_1_5.png" />
+                <Image Name="img_1_6.png" />
+                <Image Name="img_1_7.png" />
+                <Image Name="img_1_8.png" />
+                <Image Name="img_1_9.png" />
+                <Image Name="img_card_back.png" />
+                <Image Name="img_card_front.png" />
+                <Image Name="img_color_0.png" />
+                <Image Name="img_color_1.png" />
+                <Image Name="img_color_2.png" />
+                <Image Name="img_color_3.png" />
+                <Image Name="img_color_big_king.png" />
+                <Image Name="img_color_small_king.png" />
+                <Image Name="img_face_0_11.png" />
+                <Image Name="img_face_0_12.png" />
+                <Image Name="img_face_0_13.png" />
+                <Image Name="img_face_1_11.png" />
+                <Image Name="img_face_1_12.png" />
+                <Image Name="img_face_1_13.png" />
+              </Folder>
+              <Folder Name="fnt">
+                <Fnt Name="numfnt.fnt" />
+                <Fnt Name="startfnt.fnt" />
+              </Folder>
+              <Image Name="btn_back.png" />
+              <Image Name="btn_bp.png" />
+              <Image Name="btn_change.png" />
+              <Image Name="btn_gdd.png" />
+              <Image Name="btn_gz.png" />
+              <Image Name="btn_help.png" />
+              <Image Name="btn_jz.png" />
+              <Image Name="btn_kp.png" />
+              <Image Name="btn_menu1.png" />
+              <Image Name="btn_menu2.png" />
+              <Image Name="btn_qp.png" />
+              <Image Name="btn_set.png" />
+              <Image Name="img_background.jpg" />
+              <Image Name="img_banker.png" />
+              <Image Name="img_bet_back.png" />
+              <Image Name="img_bottom.png" />
+              <Image Name="img_card_type_6.png" />
+              <Image Name="img_card_type_2.png" />
+              <Image Name="img_card_type_4.png" />
+              <Image Name="img_card_type_1.png" />
+              <Image Name="img_card_type_5.png" />
+              <Image Name="img_card_type_3.png" />
+              <Image Name="img_check.png" />
+              <Image Name="img_chip_0.png" />
+              <Image Name="img_chip_1.png" />
+              <Image Name="img_chip_2.png" />
+              <Image Name="img_chip_3.png" />
+              <Image Name="img_chip_4.png" />
+              <Image Name="img_chip_5.png" />
+              <Image Name="img_chip_6.png" />
+              <Image Name="img_desk.png" />
+              <Image Name="img_dz.png" />
+              <Image Name="img_fold.png" />
+              <Image Name="img_gold.png" />
+              <Image Name="img_head_0_0.png" />
+              <Image Name="img_head_back.png" />
+              <Image Name="img_hint_start.png" />
+              <Image Name="img_jz_back.png" />
+              <Image Name="img_light.png" />
+              <Image Name="img_menu_back.png" />
+              <Image Name="img_speak_1.png" />
+              <Image Name="img_speak_2.png" />
+              <Image Name="img_speak_3.png" />
+              <Image Name="img_sure.png" />
+              <Image Name="img_turn.png" />
+              <Image Name="img_zz.png" />
+            </Folder>
+          </Folder>
         </Folder>
-        <Folder Name="image">
-          <Folder Name="head">
-            <Image Name="img_light.png" />
-            <Image Name="imt_title.png" />
+        <Folder Name="lobby">
+          <Folder Name="csb">
+            <Project Name="account.csd" Type="Layer" />
+            <Project Name="head.csd" Type="Layer" />
+            <Project Name="help.csd" Type="Layer" />
+            <Project Name="loading.csd" Type="Scene" />
+            <Project Name="lobby.csd" Type="Scene" />
+            <Project Name="login.csd" Type="Layer" />
+            <Project Name="password.csd" Type="Layer" />
+            <Project Name="register.csd" Type="Layer" />
+            <Project Name="set.csd" Type="Layer" />
+            <Project Name="shop.csd" Type="Layer" />
+            <Project Name="usercenter.csd" Type="Layer" />
+            <Project Name="verifylogin.csd" Type="Layer" />
           </Folder>
-          <Folder Name="loading">
-            <Image Name="account.png" />
-            <Image Name="loadback.jpg" />
-            <Image Name="loadbar1.png" />
-            <Image Name="loadbar2.png" />
-            <Image Name="loadbar3.png" />
-            <Image Name="tourist.png" />
-          </Folder>
-          <Folder Name="lobby">
-            <Image Name="btn_brnn.png" />
-            <Image Name="btn_ddz.png" />
-            <Image Name="btn_jdnn.png" />
-            <Image Name="btn_lhd.png" />
-            <Image Name="btn_mail.png" />
-            <Image Name="btn_notice.png" />
-            <Image Name="btn_psz.png" />
-            <Image Name="btn_qznn.png" />
-            <Image Name="btn_rank.png" />
-            <Image Name="btn_safe.png" />
-            <Image Name="btn_set.png" />
-            <Image Name="btn_shop.png" />
-            <Image Name="img_background.jpg" />
-            <Image Name="img_gold.png" />
-            <Image Name="img_gold_add.png" />
-            <Image Name="img_gold_back.png" />
-            <Image Name="img_head_0_0.png" />
-            <Image Name="img_head_back.png" />
-            <Image Name="img_info_back.png" />
-            <Image Name="img_notice_back.png" />
-            <Image Name="img_point.png" />
-          </Folder>
-          <Folder Name="login">
-            <Image Name="b1.jpg" />
-            <Image Name="btn_login.png" />
-            <Image Name="btn_phone.png" />
-            <Image Name="btn_sign_up.png" />
-            <Image Name="btn_verify.png" />
-            <Image Name="btn_x.png" />
-            <Image Name="img__title_login.png" />
-            <Image Name="img_back.png" />
-            <Image Name="img_back1.png" />
-            <Image Name="img_back2.png" />
-            <Image Name="img_login.png" />
-            <Image Name="img_password.png" />
-            <Image Name="img_register.png" />
-            <Image Name="img_sure.png" />
-            <Image Name="img_title.png" />
-            <Image Name="img_verify_login.png" />
-          </Folder>
-          <Folder Name="set">
-            <Image Name="btn_green.png" />
-            <Image Name="btn_switch_account.png" />
-            <Image Name="img_effect.png" />
-            <Image Name="img_music.png" />
-            <Image Name="img_mute.png" />
-            <Image Name="img_slider.png" />
-            <Image Name="img_slider_1.png" />
-            <Image Name="img_slider2.png" />
-          </Folder>
-          <Folder Name="shop">
-            <Image Name="btn_green.png" />
-            <Image Name="img_title.png" />
-            <Image Name="rmb10.png" />
-            <Image Name="rmb100.png" />
-            <Image Name="rmb3.png" />
-            <Image Name="rmb30.png" />
-            <Image Name="rmb50.png" />
-            <Image Name="rmb500.png" />
-            <Image Name="wx_1.png" />
-            <Image Name="wx_2.png" />
-            <Image Name="zfb1.png" />
-            <Image Name="zfb2.png" />
-          </Folder>
-          <Folder Name="usercenter">
-            <Image Name="img_back_normal.png" />
-            <Image Name="img_change_pass.png" />
-            <Image Name="img_head_back.png" />
-            <Image Name="img_line.png" />
-            <Image Name="img_title.png" />
+          <Folder Name="image">
+            <Folder Name="fnt">
+              <Fnt Name="plazafnt.fnt" />
+            </Folder>
+            <Folder Name="head">
+              <Image Name="img_light.png" />
+              <Image Name="imt_title.png" />
+            </Folder>
+            <Folder Name="help">
+              <Image Name="img_psz_rule.png" />
+              <Image Name="img_title.png" />
+            </Folder>
+            <Folder Name="loading">
+              <Image Name="account.png" />
+              <Image Name="loadback.jpg" />
+              <Image Name="loadbar1.png" />
+              <Image Name="loadbar2.png" />
+              <Image Name="loadbar3.png" />
+              <Image Name="tourist.png" />
+            </Folder>
+            <Folder Name="lobby">
+              <Image Name="btn_brnn.png" />
+              <Image Name="btn_ddz.png" />
+              <Image Name="btn_jdnn.png" />
+              <Image Name="btn_lhd.png" />
+              <Image Name="btn_mail.png" />
+              <Image Name="btn_notice.png" />
+              <Image Name="btn_psz.png" />
+              <Image Name="btn_qznn.png" />
+              <Image Name="btn_rank.png" />
+              <Image Name="btn_safe.png" />
+              <Image Name="btn_set.png" />
+              <Image Name="btn_shop.png" />
+              <Image Name="img_background.jpg" />
+              <Image Name="img_gold.png" />
+              <Image Name="img_gold_add.png" />
+              <Image Name="img_gold_back.png" />
+              <Image Name="img_head_0_0.png" />
+              <Image Name="img_head_back.png" />
+              <Image Name="img_info_back.png" />
+              <Image Name="img_notice_back.png" />
+              <Image Name="img_point.png" />
+            </Folder>
+            <Folder Name="login">
+              <Image Name="btn_phone.png" />
+              <Image Name="btn_sign_up.png" />
+              <Image Name="img_back.png" />
+              <Image Name="img_hint.png" />
+              <Image Name="img_login.png" />
+              <Image Name="img_password.png" />
+              <Image Name="img_register.png" />
+              <Image Name="img_sure.png" />
+              <Image Name="img_title_login.png" />
+              <Image Name="img_verify_login.png" />
+            </Folder>
+            <Folder Name="plaza">
+              <Image Name="btn_back.png" />
+              <Image Name="btn_help.png" />
+              <Image Name="img_game_4000.png" />
+              <Image Name="plaza_4000_1.png" />
+              <Image Name="plaza_4000_2.png" />
+              <Image Name="plaza_4000_3.png" />
+              <Image Name="plaza_4000_4.png" />
+            </Folder>
+            <Folder Name="public">
+              <Image Name="btn_blue1.png" />
+              <Image Name="btn_blue2.png" />
+              <Image Name="btn_close.png" />
+              <Image Name="btn_gray.png" />
+              <Image Name="btn_green_circle.png" />
+              <Image Name="btn_green_rect.png" />
+              <Image Name="btn_yellow.png" />
+              <Image Name="img_back1.png" />
+              <Image Name="img_back2.png" />
+              <Image Name="img_hint.png" />
+              <Image Name="img_hint_back.png" />
+              <Image Name="img_hint_gray.png" />
+              <Image Name="img_hint_left.png" />
+              <Image Name="img_title.png" />
+            </Folder>
+            <Folder Name="set">
+              <Image Name="btn_off.png" />
+              <Image Name="btn_on.png" />
+              <Image Name="btn_switch_account.png" />
+              <Image Name="img_effect.png" />
+              <Image Name="img_music.png" />
+              <Image Name="img_mute.png" />
+              <Image Name="img_set.png" />
+              <Image Name="img_slider.png" />
+              <Image Name="img_slider_1.png" />
+              <Image Name="img_slider_2.png" />
+            </Folder>
+            <Folder Name="shop">
+              <Image Name="btn_wx_1.png" />
+              <Image Name="btn_wx_2.png" />
+              <Image Name="btn_zfb_1.png" />
+              <Image Name="btn_zfb_2.png" />
+              <Image Name="img_title.png" />
+              <Image Name="rmb10.png" />
+              <Image Name="rmb100.png" />
+              <Image Name="rmb3.png" />
+              <Image Name="rmb30.png" />
+              <Image Name="rmb50.png" />
+              <Image Name="rmb500.png" />
+            </Folder>
+            <Folder Name="usercenter">
+              <Image Name="img_change_pass.png" />
+              <Image Name="img_head_back.png" />
+              <Image Name="img_line.png" />
+              <Image Name="img_title.png" />
+            </Folder>
           </Folder>
         </Folder>
       </RootFolder>

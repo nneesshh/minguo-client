@@ -1,48 +1,49 @@
 
 --[[
-@brief  ’À∫≈µ«¬ºπ‹¿Ì¿‡
+@brief  Ë¥¶Âè∑ÁÆ°ÁêÜÁ±ª
 ]]
 
-local AccountData = app.data.AccountData
-local LoginCenterLogic = app.logic.login.LoginCenterLogic
 
 local AccountLoginPresenter   = class("AccountLoginPresenter", app.base.BasePresenter)
 
 -- UI
 AccountLoginPresenter._ui  = require("app.lobby.login.AccountLoginLayer")
 
-function AccountLoginPresenter:dealAccountLogin(userid, password, type)
+local function checkPhoneNum(sphoneNum)
+    return string.match(sphoneNum,"[1][3,4,5,7,8]%d%d%d%d%d%d%d%d%d") == sphoneNum
+end
+
+local function checkPwdLength(pwd)
+    local shortestLength = 6
+    local longestLength = 16
+    if(#pwd < shortestLength or #pwd > longestLength) then
+        return false
+    else
+        return true
+    end               
+end
+
+local function checkPwd(pwd)
+    return app.util.VaildUtils.isAlNum(pwd)
+end
+
+function AccountLoginPresenter:dealAccountLogin(userid, password)
     if userid == "" or password == "" then
-        self:dealHintStart("µ«¬º ß∞‹,’À∫≈ªÚ√‹¬Î≤ªƒ‹Œ™ø’")
+        
         return
     end
-    self:dealLoadingHintStart("’˝‘⁄µ«¬º÷–")
-    LoginCenterLogic:getInstance():start(handler(self, self.onCallback), type, userid, password)
+    print("userid",userid)
+    print("password",password)
 end
 
-function AccountLoginPresenter:onCallback(bFlag, errMsg)
-    self:dealLoadingHintExit()
-    if bFlag then
-        -- µ«¬º≥…π¶
-        app.lobby.login.LoginPresenter:getInstance():exit()
-    else
-        -- µ«¬º ß∞‹
-        self:dealHintStart(errMsg)
-        --  ˝æ›≤…ºØ
-        -- app.util.DataCollectUtils.exceptionEventCollect(105)
-    end
+function AccountLoginPresenter:showRegister()
+    print("register")
+    app.lobby.login.RegisterPresenter:getInstance():start()
 end
 
-function AccountLoginPresenter:showRetrievePwd()
-    app.lobby.login.RetrievePwdPresenter:getInstance():start()
-end
-
-function AccountLoginPresenter:setAgreement(flag)
-    AccountData.setAgreement(bFlag)
-end
-
-function AccountLoginPresenter:getAgreement()
-    return AccountData.getAgreement()
+function AccountLoginPresenter:showPhone()
+    print("phone")
+    app.lobby.login.VerifyLoginPresenter:getInstance():start()
 end
 
 return AccountLoginPresenter

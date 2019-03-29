@@ -1,12 +1,12 @@
 
 --[[
-@brief:¹¤¾ßÀà
+@brief:å·¥å…·ç±»
 ]]
 
 local ToolUtils = {}
 
 --[[
-@brief ÐòÁÐ»¯×Ö·û´®
+@brief åºåˆ—åŒ–å­—ç¬¦ä¸²
 ]]--
 function ToolUtils.serialize(obj)  
     local lua = ""  
@@ -38,7 +38,7 @@ function ToolUtils.serialize(obj)
 end
 
 --[[
-@brief ·´ÐòÁÐ»¯×Ö·û´®
+@brief ååºåˆ—åŒ–å­—ç¬¦ä¸²
 ]]--
 function ToolUtils.unserialize(lua)  
     local t = type(lua)  
@@ -58,7 +58,7 @@ function ToolUtils.unserialize(lua)
 end
 
 --[[
-@brief½«ÎÄ×Ö¿ØÖÆÔÚ¿ÉÊÓ·¶Î§ÇøÓò
+@briefå°†æ–‡å­—æŽ§åˆ¶åœ¨å¯è§†èŒƒå›´åŒºåŸŸ
 ]]--
 function ToolUtils.nameToShort(nickName, maxLen)
     local tmpName = bf.SysFunc:UTF_8ToGB_18030_2000(nickName)
@@ -71,10 +71,10 @@ function ToolUtils.nameToShort(nickName, maxLen)
     local i = 1
     while true do
         local tmpChar = string.sub(tmpName,i,i)
-        --ÖÐÎÄºÍWÊÓ¾õ¿í¶ÈÊÇÆäËûµÄ2±¶
+        --ä¸­æ–‡å’ŒWè§†è§‰å®½åº¦æ˜¯å…¶ä»–çš„2å€
         if VaildUtils.isChinese(tmpChar) or tmpChar=="W" then
             tmpLen = tmpLen + 2
-            --´óÐ´×ÖÄ¸¿í¶ÈÊÇÆäËûµÄ1.5±¶
+            --å¤§å†™å­—æ¯å®½åº¦æ˜¯å…¶ä»–çš„1.5å€
         elseif VaildUtils.isUpper(tmpChar) then
             tmpLen = tmpLen + 1.5
         else
@@ -107,7 +107,7 @@ function ToolUtils.nameToShort(nickName, maxLen)
 end
 
 -- --[[
--- @brief ¿ØÖÆÎÄ×Ö»»ÐÐ,text±íÊ¾Ðè»»ÐÐµÄÎÄ×Ö,maxLen±íÊ¾Ò»ÐÐ×î´ó³¤¶È
+-- @brief æŽ§åˆ¶æ–‡å­—æ¢è¡Œ,textè¡¨ç¤ºéœ€æ¢è¡Œçš„æ–‡å­—,maxLenè¡¨ç¤ºä¸€è¡Œæœ€å¤§é•¿åº¦
 -- ]]--
 function ToolUtils.getLineBreakText(text,maxLen)
     local tmpName = bf.SysFunc:UTF_8ToGB_18030_2000(text)
@@ -146,10 +146,10 @@ function ToolUtils.getLineBreakText(text,maxLen)
 end
 
 --[[
-½«Êý×ÖÊ¹ÓÃÍò¡¢ÒÚ×÷Îªºó×º
--- num Ô­Ê¼Êý×Ö
--- decimal ×î¶à±£Áô¼¸Î»Ð¡Êý
--- max ×î¶à±£Áô¶àÉÙ¸öÊý×Ö
+å°†æ•°å­—ä½¿ç”¨ä¸‡ã€äº¿ä½œä¸ºåŽç¼€
+-- num åŽŸå§‹æ•°å­—
+-- decimal æœ€å¤šä¿ç•™å‡ ä½å°æ•°
+-- max æœ€å¤šä¿ç•™å¤šå°‘ä¸ªæ•°å­—
 ]]--
 function ToolUtils.numConversionByDecimal(num, decimal, max)
     local numType = type(num)
@@ -162,10 +162,10 @@ function ToolUtils.numConversionByDecimal(num, decimal, max)
     local suffix = ""
     local f = "%."..decimal.."f"
     if num >= 10000 and num < 100000000 then
-        suffix = "Íò"
+        suffix = "ä¸‡"
         num = tonumber(string.format(f, num/10000))
     elseif num >= 100000000 then
-        suffix = "ÒÚ"
+        suffix = "äº¿"
         num = tonumber(string.format(f, num/100000000))
     end
 

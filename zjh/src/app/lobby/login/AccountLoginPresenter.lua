@@ -1,48 +1,89 @@
 
 --[[
-@brief  ÕËºÅµÇÂ¼¹ÜÀíÀà
+@brief  è´¦å·ç®¡ç†ç±»
 ]]
-
-local AccountData = app.data.AccountData
-local LoginCenterLogic = app.logic.login.LoginCenterLogic
 
 local AccountLoginPresenter   = class("AccountLoginPresenter", app.base.BasePresenter)
 
 -- UI
 AccountLoginPresenter._ui  = require("app.lobby.login.AccountLoginLayer")
 
-function AccountLoginPresenter:dealAccountLogin(userid, password, type)
-    if userid == "" or password == "" then
-        self:dealHintStart("µÇÂ¼Ê§°Ü,ÕËºÅ»òÃÜÂë²»ÄÜÎª¿Õ")
+local function checkPhoneNum(sphoneNum)
+    return string.match(sphoneNum,"[1][3,4,5,7,8]%d%d%d%d%d%d%d%d%d") == sphoneNum
+end
+
+local function checkPwdLength(pwd)
+    local shortestLength = 6
+    local longestLength = 16
+    if(#pwd < shortestLength or #pwd > longestLength) then
+        return false
+    else
+        return true
+    end               
+end
+
+local function checkPwd(pwd)
+    return app.util.VaildUtils.isAlNum(pwd)
+end
+
+
+function AccountLoginPresenter:init()
+    self:createDispatcher()
+end
+
+function AccountLoginPresenter:createDispatcher()
+    app.util.DispatcherUtils.addEventListenerSafe(app.Event.EVENT_LOGIN_SUCCESS, handler(self, self.onLoginSuccess))    
+end
+
+function AccountLoginPresenter:onLoginSuccess()
+    if not self:isCurrentUI() then
         return
     end
-    self:dealLoadingHintStart("ÕıÔÚµÇÂ¼ÖĞ")
-    LoginCenterLogic:getInstance():start(handler(self, self.onCallback), type, userid, password)
+    self._ui:getInstance():exit()    
+    app.lobby.login.LoginPresenter:getInstance():exit()  
 end
 
-function AccountLoginPresenter:onCallback(bFlag, errMsg)
-    self:dealLoadingHintExit()
-    if bFlag then
-        -- µÇÂ¼³É¹¦
-        app.lobby.login.LoginPresenter:getInstance():exit()
-    else
-        -- µÇÂ¼Ê§°Ü
-        self:dealHintStart(errMsg)
-        -- Êı¾İ²É¼¯
-        -- app.util.DataCollectUtils.exceptionEventCollect(105)
+function AccountLoginPresenter:dealAccountLogin(account, password)    
+    local hint = ""
+    if account == "" then
+        hint = "è¯·è¾“å…¥æ‰‹æœºè´¦å·ï¼"
+    elseif account ~= "" and password == "" then
+        hint = "è¯·è¾“å…¥ç™»é™†å¯†ç ï¼"
+    elseif not checkPwdLength(password) then
+        hint = "å¯†ç é•¿åº¦åº”ä¸º6-16ä½ï¼"
+    elseif checkPwd(password) then
+        hint = "å¯†ç æ ¼å¼ä¸æ­£ç¡®ï¼"            
+    end
+
+    if hint == "" then        
+        self._ui:getInstance():scrollHint(hint)
+        return
+    else             
+        local po = upconn.upconn:get_packet_obj()
+        if po == nil then
+            self._ui:getInstance():scrollHint("ç½‘ç»œè¿æ¥å¤±è´¥ï¼Œè¯·æ£€æŸ¥ç½‘ç»œä¿¡å·ï¼")
+        else
+            po:writer_reset()
+            po:write_int32(0)                      -- userTicketId
+            po:write_string(tostring(12345678901)) -- phoneNumber as userName
+            po:write_string("a123123")             -- pwd
+            po:write_string("imei00001")           -- imei
+            po:write_string("imsi00001")           -- imsi
+            po:write_string("ch001")               -- channel
+            po:write_string("sch001")              -- subChannel
+
+            local sessionId = self.sessionId or 222
+            upconn.upconn:send_packet(sessionId, zjh_defs.MsgId.MSGID_LOGIN_REQ)
+        end              
     end
 end
 
-function AccountLoginPresenter:showRetrievePwd()
-    app.lobby.login.RetrievePwdPresenter:getInstance():start()
+function AccountLoginPresenter:showRegister()
+    app.lobby.login.RegisterPresenter:getInstance():start()
 end
 
-function AccountLoginPresenter:setAgreement(flag)
-    AccountData.setAgreement(bFlag)
-end
-
-function AccountLoginPresenter:getAgreement()
-    return AccountData.getAgreement()
+function AccountLoginPresenter:showPhone()
+    app.lobby.login.VerifyLoginPresenter:getInstance():start()
 end
 
 return AccountLoginPresenter

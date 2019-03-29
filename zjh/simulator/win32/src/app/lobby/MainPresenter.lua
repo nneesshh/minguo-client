@@ -1,6 +1,5 @@
 --[[
-@brief  大厅管理类
-@by     斯雪峰
+@brief  涓诲満鏅鐞嗙被
 ]]
 
 local MainPresenter   = class("MainPresenter", app.base.BasePresenter)
@@ -23,7 +22,6 @@ function MainPresenter:createDispatcher()
    
 end
 
--- 处理进入场景
 function MainPresenter:onEnter()
     if true then
         app.lobby.login.LoginPresenter:getInstance():start()

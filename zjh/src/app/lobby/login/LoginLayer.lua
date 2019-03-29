@@ -1,12 +1,12 @@
 
 --[[
-@brief  登录layer
+@brief  鐧诲綍鐣岄潰
 ]]
 
 local LoginLayer = class("LoginLayer", app.base.BaseLayer)
 
--- csb路径
-LoginLayer.csbPath = "csb/login.csb"
+-- csbPath
+LoginLayer.csbPath = "lobby/csb/login.csb"
 
 LoginLayer.touchs = {
     "btn_tourist",
@@ -25,7 +25,9 @@ function LoginLayer:onTouch(sender, eventType)
     end
 end
 
----------------------------- 点击事件 --------------------------------
+function LoginLayer:initUI()
+end
+
 function LoginLayer:onClickBtnGuest()
     self._presenter:dealGuestLogin()
 end

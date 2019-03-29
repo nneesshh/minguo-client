@@ -1,9 +1,9 @@
 --[[
-@brief ∆Ù∂Ø“≥
+@brief ÂêØÂä®È°µ
 ]]
 local startup   = class("startup")
 
-startup.csbPath = "csb/loading.csb"
+startup.csbPath = "lobby/csb/loading.csb"
 startup._schedulerProgress = nil
 startup._time = 0
 
@@ -14,7 +14,6 @@ function startup:start()
     local layer = cc.Layer:create()
     scene:addChild(layer)
 
-    -- º”‘ÿcsbŒƒº˛
     if not self.csbPath then
         print(" csbPath are not configured. ")
     end
@@ -29,7 +28,6 @@ function startup:start()
         director:runWithScene(scene)
     end
     
-    -- ºŸΩ¯∂»Ãı
     self:openSchedulerProgress()
 end
 
@@ -76,11 +74,14 @@ end
 
 function startup:startGame()
     self:exit()
-    require("start")
+  
+    local start = require "app.start"
+    start.init()
+    start.start()
 end
 
 function startup:flipIt(dt)
-    local allTime = 2
+    local allTime = 0.5
     self._time = self._time + dt
     local percent = self._time / allTime * 100
     
@@ -94,7 +95,7 @@ end
 
 function startup:openSchedulerProgress()
     self:closeSchedulerProgress()
-    self._schedulerProgress = scheduler:scheduleScriptFunc(handler(self,self.flipIt), 0.05, false)
+    self._schedulerProgress = scheduler:scheduleScriptFunc(handler(self,self.flipIt), 0.1, false)
 end
 
 function startup:closeSchedulerProgress()

@@ -1,42 +1,42 @@
 --[[
-@brief  ²ã»ùÀà
+@brief  å±‚åŸºç±»
 ]]
 local app       = app
 
 local BaseLayer = class("BaseLayer")
 
----------------- ×ÓÀàĞèÅäÖÃÏîÄ¿ ---------------
--- csbÂ·¾¶
+---------------- å­ç±»éœ€é…ç½®é¡¹ç›® ---------------
+-- csbè·¯å¾„
 BaseLayer.csbPath   = nil
--- Ğè×¢²á°´Å¥touchÊÂ¼şµÄÁĞ±í
+-- éœ€æ³¨å†ŒæŒ‰é’®touchäº‹ä»¶çš„åˆ—è¡¨
 BaseLayer.touchs    = nil
 BaseLayer.clicks    = nil
 BaseLayer.events    = nil
 -----------------------------------------------
 
--- µ¥Àı
+-- å•ä¾‹
 BaseLayer._instance = nil
 
--- ¸ù½Úµã
+-- æ ¹èŠ‚ç‚¹
 BaseLayer._rootNode = nil
 
--- zOrderÖµ
+-- zOrderå€¼
 BaseLayer._zOrder = 0
 
--- °²×¿Éè±¸Ä¬ÈÏ¿ÉÏìÓ¦·µ»Ø¼ü£¬ÉèÖÃ³ÉfalseÊ±·µ»Ø°´Å¥²Ù×÷ÎŞĞ§
+-- å®‰å“è®¾å¤‡é»˜è®¤å¯å“åº”è¿”å›é”®ï¼Œè®¾ç½®æˆfalseæ—¶è¿”å›æŒ‰é’®æ“ä½œæ— æ•ˆ
 BaseLayer._canBack = true
 
--- ¸¸½ÚµãÊı¾İ
+-- çˆ¶èŠ‚ç‚¹æ•°æ®
 BaseLayer._parent = nil
 
--- ×Ó½ÚµãÊı¾İ
+-- å­èŠ‚ç‚¹æ•°æ®
 BaseLayer._children = {}
 
--- ¿ØÖÆÎÄ¼şµÄÊµÀı
+-- æ§åˆ¶æ–‡ä»¶çš„å®ä¾‹
 BaseLayer._presenter = nil
 
 --------------------------------
--- ÉùÃ÷¾²Ì¬µ¥Àı 
+-- å£°æ˜é™æ€å•ä¾‹ 
 -- @param self
 -- @return _instance
 function BaseLayer:getInstance()
@@ -46,7 +46,7 @@ function BaseLayer:getInstance()
     return self._instance
 end
 
--- ¹¹Ôìº¯Êı
+-- æ„é€ å‡½æ•°
 function BaseLayer:ctor()
     self._rootNode = nil
     self._parent = nil
@@ -54,10 +54,10 @@ function BaseLayer:ctor()
     self._presenter = nil
 end
 
--- ´ò¿ª½çÃæ
+-- æ‰“å¼€ç•Œé¢
 function BaseLayer:start( presenter, ... )
     self:startLayer(presenter)
-    -- ÉèÖÃzOrder
+    -- è®¾ç½®zOrder
     self._zOrder = app.util.UIUtils.resetZOrder(self._rootNode)
     if device.platform == "android" and self._canBack and not self._rootNode:isVisible() then
         app.util.UIUtils.pushLayer(self)
@@ -66,7 +66,7 @@ function BaseLayer:start( presenter, ... )
     self._rootNode:setVisible(true)
 end
 
--- ³õÊ¼»¯³¡¾°£¬½ö×ö³õÊ¼»¯¹¤×÷£¬¾ßÌå²Ù×÷¼°ÏÔÊ¾ÔÚshow(...)ÖĞ´¦Àí
+-- åˆå§‹åŒ–åœºæ™¯ï¼Œä»…åšåˆå§‹åŒ–å·¥ä½œï¼Œå…·ä½“æ“ä½œåŠæ˜¾ç¤ºåœ¨show(...)ä¸­å¤„ç†
 function BaseLayer:startLayer(presenter)
     local scene = cc.Director:getInstance():getRunningScene()
     if not scene then
@@ -74,12 +74,12 @@ function BaseLayer:startLayer(presenter)
         return
     end
 
-    -- ·ÀÖ¹ÇĞ»»³¡¾°ºó»ñÈ¡µ½Ô­Êı¾İ
+    -- é˜²æ­¢åˆ‡æ¢åœºæ™¯åè·å–åˆ°åŸæ•°æ®
     if self._rootNode and self._parent == scene then
         return
     end
 
-    -- ¼ÓÔØcsbÎÄ¼ş
+    -- åŠ è½½csbæ–‡ä»¶
     if not self.csbPath then
         print(" csbPath are not configured. ")
     end
@@ -90,17 +90,17 @@ function BaseLayer:startLayer(presenter)
     self._parent = scene
     self._children = {}
 
-    -- ×¢²á°´Å¥µÈÊÂ¼ş
+    -- æ³¨å†ŒæŒ‰é’®ç­‰äº‹ä»¶
     self:registerEvent()
 
-    -- ¼ÓÔØ¿ØÖÆÀà
+    -- åŠ è½½æ§åˆ¶ç±»
     self._presenter = presenter
 
-    -- ½çÃæ¼ÓÔØÍê±Ï
+    -- ç•Œé¢åŠ è½½å®Œæ¯•
     self:onCreate()
 end
 
--- ÍË³ö
+-- é€€å‡º
 function BaseLayer:exitAndCleanup()
     if device.platform == "android" and self._canBack and self._rootNode and self._rootNode:isVisible() then
         app.util.UIUtils.popLayer()
@@ -113,7 +113,7 @@ function BaseLayer:exitAndCleanup()
     end
 end
 
--- ¹Ø±Õ½çÃæ
+-- å…³é—­ç•Œé¢
 function BaseLayer:exit()
     if device.platform == "android" and self._canBack and self._rootNode and self._rootNode:isVisible() then
         app.util.UIUtils.popLayer()
@@ -124,26 +124,26 @@ function BaseLayer:exit()
     end
 end
 
--- ½çÃæ¼ÓÔØÍê³ÉºóÖ»¼ÓÔØÒ»´ÎµÄ·½·¨
--- (eg. layerÉÏnode½öĞè´´½¨Ò»´Î)
+-- ç•Œé¢åŠ è½½å®ŒæˆååªåŠ è½½ä¸€æ¬¡çš„æ–¹æ³•
+-- (eg. layerä¸Šnodeä»…éœ€åˆ›å»ºä¸€æ¬¡)
 function BaseLayer:onCreate()
 end
 
--- ³õÊ¼»¯
+-- åˆå§‹åŒ–
 function BaseLayer:init( ... )
     self:initData( ... )
     self:initUI( ... )
 end
 
--- ³õÊ¼»¯Êı¾İ(ÓÉ×ÓÀàµ¥¶ÀÊµÏÖ)
+-- åˆå§‹åŒ–æ•°æ®(ç”±å­ç±»å•ç‹¬å®ç°)
 function BaseLayer:initData( ... )
 end
 
--- ³õÊ¼»¯UI(ÓÉ×ÓÀàµ¥¶ÀÊµÏÖ)
+-- åˆå§‹åŒ–UI(ç”±å­ç±»å•ç‹¬å®ç°)
 function BaseLayer:initUI( ... )
 end
 
--- ×¢²áÊÂ¼ş
+-- æ³¨å†Œäº‹ä»¶
 function BaseLayer:registerEvent()
     if self.touchs ~= nil then
         for k,v in pairs(self.touchs) do
@@ -173,7 +173,7 @@ function BaseLayer:registerEvent()
     end
 end
 
--- onTouchÊÂ¼ş
+-- onTouchäº‹ä»¶
 function BaseLayer:onTouch(sender, eventType)
     local originalScale = sender:getScale()
     local scaleMult = 0.95
@@ -188,17 +188,17 @@ function BaseLayer:onTouch(sender, eventType)
 end
 
 function BaseLayer:onClick(sender)
-    
+
 end
 
 function BaseLayer:onEvent(sender, eventType)
 end
 
 -----------------------------------------
---  ¸¨Öúº¯Êı
+--  è¾…åŠ©å‡½æ•°
 -----------------------------------------
 
--- ÊÇ·ñµ±Ç°layer
+-- æ˜¯å¦å½“å‰layer
 function BaseLayer:isCurrentUI()
     if self._rootNode and not tolua.isnull(self._rootNode) and self._rootNode:isVisible() then
         return true
@@ -227,7 +227,7 @@ function BaseLayer:seekNodeByName(root, name)
     end
 end
 
--- Í¨¹ıÃû³Æ²éÕÒ×Ó½Úµã
+-- é€šè¿‡åç§°æŸ¥æ‰¾å­èŠ‚ç‚¹
 function BaseLayer:seekChildByName(name)
     if not name or not self._rootNode then
         print("BaseLayer:seekChildByName, name or rootNode is nil")
@@ -240,7 +240,7 @@ function BaseLayer:seekChildByName(name)
     return self._children[name]
 end
 
--- Í¨¹ıtag²éÕÒ×Ó½Úµã
+-- é€šè¿‡tagæŸ¥æ‰¾å­èŠ‚ç‚¹
 function BaseLayer:seekChildByTag(tag)
     if not tag or not self._rootNode then
         print("BaseLayer:seekChildByTag, tag or rootNode is nil")
@@ -252,8 +252,8 @@ function BaseLayer:seekChildByTag(tag)
     return self._children[tag]
 end
 
--- Ìá¹©Ò»¸öÒÆ³ı½ÚµãµÄ·½·¨
--- ÈôĞèÒªÒÆ³ıÒ»¸öÔÚcocosstudioÖĞ´´½¨µÄ½ÚµãÇÒ²»È·¶¨Ö®ºóÊÇ·ñ»¹»áÔÙµ÷ÓÃµ½¸Ã½ÚµãÊ±£¬½¨ÒéÊ¹ÓÃ¸Ã·½·¨
+-- æä¾›ä¸€ä¸ªç§»é™¤èŠ‚ç‚¹çš„æ–¹æ³•
+-- è‹¥éœ€è¦ç§»é™¤ä¸€ä¸ªåœ¨cocosstudioä¸­åˆ›å»ºçš„èŠ‚ç‚¹ä¸”ä¸ç¡®å®šä¹‹åæ˜¯å¦è¿˜ä¼šå†è°ƒç”¨åˆ°è¯¥èŠ‚ç‚¹æ—¶ï¼Œå»ºè®®ä½¿ç”¨è¯¥æ–¹æ³•
 function BaseLayer:removeChildByName(name)
     if not name then
         print("BaseLayer:removeChildByName, name is nil")
@@ -268,14 +268,14 @@ function BaseLayer:removeChildByName(name)
     self._children[name] = nil
 end
 
--- listÖĞ½öÄ¿±ê²»¿Éµã»÷
+-- listä¸­ä»…ç›®æ ‡ä¸å¯ç‚¹å‡»
 function BaseLayer:setRedioShow(keyList, showKey)
     for _,v in pairs(keyList) do
         self:seekChildByName(v):setEnabled(not (v == showKey))
     end
 end
 
--- listÖĞ½öÄ¿±ê¿É¼û
+-- listä¸­ä»…ç›®æ ‡å¯è§
 function BaseLayer:setOnlyVisible(keyList, showKey)
     for _,v in pairs(keyList) do
         self:seekChildByName(v):setVisible(v == showKey)

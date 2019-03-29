@@ -1,30 +1,28 @@
 --[[
-@brief  ¹¤³Ì³õÊ¼»¯
+@brief  å·¥ç¨‹åˆå§‹åŒ–
 ]]--
 
 app = app or {}
 
------------------------------------ ¹¤¾ßÀà ------------------------------------
+----------------------------------- å·¥å…·ç±» ------------------------------------
 app.util = app.util or {}
 app.util.Queue                          = require("app.util.Queue")
 app.util.ToolUtils                      = require("app.util.ToolUtils")
 app.util.UIUtils                        = require("app.util.UIUtils")
--------------------------------------------------------------------------------
------------------------------------- »ùÀà -------------------------------------
+app.util.VaildUtils                     = require("app.util.VaildUtils")
+
+------------------------------------ åŸºç±» -------------------------------------
 app.base = app.base or {}
 app.base.BaseLayer                      = require("app.base.BaseLayer")
 app.base.BasePresenter                  = require("app.base.BasePresenter")
 app.base.BaseScene                      = require("app.base.BaseScene")
 
--------------------------------------------------------------------------------
------------------------------------- Êı¾İ -------------------------------------
--------------------------------------------------------------------------------
----------------------------------- ÒµÎñÂß¼­ -----------------------------------
-
------------------------------------- ´óÌü -------------------------------------
+------------------------------------ å¤§å… -------------------------------------
 app.lobby = app.lobby or {}
 app.lobby.MainPresenter                 = require("app.lobby.MainPresenter")
 
 app.lobby.login = app.lobby.login or {}
 app.lobby.login.LoginPresenter          = require("app.lobby.login.LoginPresenter")
-
+app.lobby.login.AccountLoginPresenter   = require("app.lobby.login.AccountLoginPresenter")
+app.lobby.login.RegisterPresenter       = require("app.lobby.login.RegisterPresenter")
+app.lobby.login.VerifyLoginPresenter    = require("app.lobby.login.VerifyLoginPresenter")

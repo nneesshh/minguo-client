@@ -1,12 +1,12 @@
 
 --[[
-@brief  �˺ŵ�¼layer
+@brief  账号登录layer
 ]]
 
 local AccountLoginLayer = class("AccountLoginLayer", app.base.BaseLayer)
 
--- csb·��
-AccountLoginLayer.csbPath = "csb/account.csb"
+-- csb路径
+AccountLoginLayer.csbPath = "lobby/csb/account.csb"
 
 AccountLoginLayer.clicks = {
     "background",
@@ -20,8 +20,10 @@ AccountLoginLayer.touchs = {
 }
 
 function AccountLoginLayer:onCreate()
-    self:seekChildByName("tf_account"):setInputMode(cc.EDITBOX_INPUT_MODE_SINGLELINE)
-    self:seekChildByName("tf_password"):setInputMode(cc.EDITBOX_INPUT_MODE_SINGLELINE)
+    local account = self:seekChildByName("tf_account")
+    local password = self:seekChildByName("tf_password")
+    account:setPlaceHolderColor(cc.c3b(255,255,255))
+    password:setPlaceHolderColor(cc.c3b(255,255,255))
 end
 
 function AccountLoginLayer:initUI()
@@ -33,7 +35,7 @@ function AccountLoginLayer:onClick(sender)
     AccountLoginLayer.super.onClick(self, sender)
     local name = sender:getName()
     if name == "background" then
-        self:exit()
+        -- self:exit()
     end
 end
 
@@ -56,8 +58,8 @@ end
 function AccountLoginLayer:onTouchLogin()
     local userid = self:seekChildByName("tf_account")
     local pwd = self:seekChildByName("tf_password")
-    self._presenter:dealAccountLogin(userid:getText(), pwd:getText())
-    self:exit()
+
+    self._presenter:dealAccountLogin(userid:getString(), pwd:getString())
 end
 
 function AccountLoginLayer:onTouchRegister()
@@ -66,8 +68,26 @@ function AccountLoginLayer:onTouchRegister()
 end
 
 function AccountLoginLayer:onTouchPhone()
-    self._presenter:showRetrievePwd()
+    self._presenter:showPhone()
     self:exit()
+end
+
+function AccountLoginLayer:scrollHint(msg)
+    local hint = self:seekChildByName("img_hint_back")
+    local father = hint:getParent()
+    local node = hint:clone()
+    local text = node:getChildByName("text_hint")
+    text:setText(msg)
+    node:setPosition(cc.p(331, 240))
+    node:setVisible(true)
+    father:addChild(node)
+    node:runAction(cc.Sequence:create(
+        cc.FadeIn:create(0.5),                       
+        cc.FadeOut:create(0.5),
+        cc.CallFunc:create(function()
+            node:removeFromParent(true)
+        end)
+    ))
 end
 
 return AccountLoginLayer

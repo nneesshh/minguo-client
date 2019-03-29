@@ -31,6 +31,10 @@ local function main()
     require "cocos.init"
     
     require("startup"):start()
+    
+    package.cpath = package.cpath .. ";./?.dll;./clibs/?.dll"
+    local upconn = require "upconn.ZjhUpconn"
+    upconn.start()
 end
 
 local status, msg = xpcall(main, __G__TRACKBACK__)

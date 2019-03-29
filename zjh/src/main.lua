@@ -19,7 +19,7 @@ end
 print = release_print
 
 package.cpath = package.cpath .. ";./?.dll;./clibs/?.dll"
-local upconn = require "upconn.ZjhUpconn"
+upconn = require "upconn.ZjhUpconn"
 upconn.start()
 
 local function main()

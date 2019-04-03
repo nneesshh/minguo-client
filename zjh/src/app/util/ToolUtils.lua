@@ -157,7 +157,7 @@ function ToolUtils.numConversionByDecimal(num, decimal, max)
         return nil
     end
     num = tonumber(num)
-    decimal = decimal or 2
+    decimal = decimal or 1
     max = max or 6
     local suffix = ""
     local f = "%."..decimal.."f"

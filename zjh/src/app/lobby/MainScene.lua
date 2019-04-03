@@ -67,15 +67,8 @@ function MainScene:onTouch(sender, eventType)
 end
 
 function MainScene:initUI(gameID, roomMode)
-    local t = 0x3e
-    local th = bit._and(t, 0xf0)
-    local tx = bit._rshift(th, 4)
-    
-    local td = bit._and(t, 0x0f)
-    
-    
-    
-    print("wq-----------",tx, th, td)
+    local t = self:seekChildByName("txt_id_lobby"):getLocalZOrder()
+    print("zordersssssssssss",t)
 end
 
 function MainScene:onEnter()
@@ -155,14 +148,17 @@ function MainScene:loadPlazaList(gameid, plazainfos)
     if plazainfos == nil then
     	return
     end
+    
     local pnlPlaza = self:seekChildByName("plaza")    
     local child = pnlPlaza:getChildren()        
     for i,btn in ipairs(child) do
         local base = btn:getChildByName("fnt_base")
-        local lower = btn:getChildByName("txt_lower")        
-        base:setString(plazainfos[i].base .. "底分")
-        lower:setString(plazainfos[i].lower)
-        btn:setTag(gameid)
+        local lower = btn:getChildByName("txt_lower")
+        if plazainfos[i] then
+            base:setString(plazainfos[i].base .. "底分")
+            lower:setString(plazainfos[i].lower)
+            btn:setTag(gameid)
+        end                
     end
 end
 

@@ -33,10 +33,7 @@ end
 
 function AccountLoginLayer:onClick(sender)
     AccountLoginLayer.super.onClick(self, sender)
-    local name = sender:getName()
-    if name == "background" then
-        -- self:exit()
-    end
+    local name = sender:getName()    
 end
 
 function AccountLoginLayer:onTouch(sender, eventType)

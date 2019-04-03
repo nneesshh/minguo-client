@@ -28,7 +28,8 @@ app.base = app.base or {}
 app.base.BaseLayer                          = require("app.base.BaseLayer")
 app.base.BasePresenter                      = require("app.base.BasePresenter")
 app.base.BaseScene                          = require("app.base.BaseScene")
-
+app.base.BaseNode                           = require("app.base.BaseNode")
+app.base.BaseNodeEx                         = require("app.base.BaseNodeEx")
 ------------------------------------ 数据 -------------------------------------
 app.data = app.data or {}
 app.data.PlazaData                          = require("app.data.PlazaData")

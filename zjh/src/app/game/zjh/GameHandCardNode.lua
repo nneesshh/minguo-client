@@ -8,8 +8,8 @@ local GameHandCardNode        = class("GameHandCardNode", app.base.BaseNodeEx)
 local HAND_CARD_TYPE          = 0
 local HAND_CARD_TYPE_NO_SELF  = 1
 
-local HAND_CARD_SCALE         = 0.8
-local HAND_CARD_SCALE_NO_SELF = 0.6
+local HAND_CARD_SCALE         = 0.6
+local HAND_CARD_SCALE_NO_SELF = 0.4
 
 local HERO_LOCAL_SEAT         = 1
 

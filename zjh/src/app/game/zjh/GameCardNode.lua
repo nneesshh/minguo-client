@@ -13,9 +13,11 @@ local HAND_CARD_TYPE_NO_SELF = 1
 local OUT_CARD_TYPE          = 2
 local BANKER_CARD_TYPE       = 3
 
-local TAKE_FIRST_DELAY       = 0.1
+local TAKE_FIRST_DELAY       = 0.2
 local MOVE_ACTION_DELAY      = 0.15
-local CV_BACK                = 999
+local CV_BACK                = 0
+local CV_GRAY                = 888
+local HERO_LOCAL_SEAT        = 1
 
 local COLOR = {
     C_FANG      = 0,
@@ -46,13 +48,25 @@ function GameCardNode:setCardID(id)
     
     local front = self:seekChildByName("img_card_front")
     local back = self:seekChildByName("img_card_back")
+    local gary = self:seekChildByName("img_card_small_king")
     
-    front:setVisible(not(id == CV_BACK))
-    back:setVisible(id == CV_BACK)
+    if id == CV_BACK then
+        front:setVisible(false)
+        back:setVisible(true)
+        gary:setVisible(false)
+    elseif id == CV_GRAY then
+        front:setVisible(false)
+        back:setVisible(false)
+        gary:setVisible(true)
+    else
+        front:setVisible(true)
+        back:setVisible(false)
+        gary:setVisible(false)
+    end
     
-    if id ~= CV_BACK then    
+    if id ~= CV_BACK and id ~= CV_GRAY then    
         local bking = self:seekChildByName("img_card_big_king")
-        local sking = self:seekChildByName("img_card_small_king")
+        local sking = self:seekChildByName("img_card_small_king")        
         local normal = self:seekChildByName("panl_card_normal")
         
         if self._color == COLOR.C_BIGKING then
@@ -119,8 +133,13 @@ function GameCardNode:setCardIndex(index)
 end
 
 function GameCardNode:setCardPosition()
-    local posX = (self._index - 1) * 156 * self._scale
-    local posY = 0
+    local posX, posY = 0,0
+    if self._localSeat == HERO_LOCAL_SEAT then
+        posX = (self._index-1)*156*self._scale
+    else 
+        posX = (self._index-1)*156*self._scale*0.5
+    end
+      
     self._rootNode:setPosition(cc.p(posX, posY))
 end
 
@@ -158,51 +177,41 @@ function GameCardNode:getPosition()
     return self._rootNode:getPosition()
 end
 
+function GameCardNode:getCardSize()
+    local pnlCard = self:seekChildByName("panl_card")
+    local cardSize = pnlCard:getContentSize()
+
+    cardSize.width = cardSize.width * self._scale
+    cardSize.height = cardSize.height * self._scale
+
+    return cardSize
+end
+
+-- 发牌动画
 function GameCardNode:playTakeFirstAction()
     local parent = self._rootNode:getParent()
-    if parent ~= nil then
-        local visibleRect = cc.Director:getInstance():getOpenGLView():getVisibleRect()
-        local center = cc.p(visibleRect.x + visibleRect.width/2,visibleRect.y + visibleRect.height/2)
-        local children = parent:getChildren()
+    local szScreen = cc.Director:getInstance():getWinSize()
+    local pCenter = parent:convertToNodeSpace(cc.p(szScreen.width*0.5, szScreen.height*0.5))
+    self._rootNode:setPosition(pCenter)
+    
+    local pos = self:calHandCardPosition(self._index, self._localSeat)
+    
+    local actMoveTo = cc.MoveTo:create(TAKE_FIRST_DELAY, pos)
+   
+    self._rootNode:runAction(actMoveTo) 
+end
 
-        self._rootNode:setColor(cc.c3b(255,255,255))
-        local positionX = parent:getPositionX();
-        local positionY = parent:getPositionY()
-        local tempx = nil
-        local tempy = nil
-        if self._localSeat == 0 then
-            self._rootNode:setPosition(cc.p(center["x"]/2,0))
-            tempx = center["x"]/3
-            tempy = 100
-        elseif self._localSeat == 2 then
-            self._rootNode:setPosition(cc.p(-center["x"]/2,0))
-            tempx = -center["x"]/4
-            tempy = 30
-        elseif self._localSeat == 3 then 
-            self._rootNode:setPosition(cc.p(-center["x"]/4,-center["y"]/4))
-            tempx = -center["x"]/5
-            tempy = -center["y"]/5
-        elseif self._localSeat == 4 then 
-            self._rootNode:setPosition(cc.p(center["x"]/4,-center["y"]/4))
-            tempx = -center["x"]/8
-            tempy = -center["y"]/6
-        end
-
-        local pointEnd = cc.p((#children-1)*10, 0)
-        local pointFirst = cc.p(tempx, tempy)
-        local pointSecond = cc.p(tempx, tempy)
-        local tPoint = {pointFirst, pointSecond, pointEnd}
-
-        local actionFadeIn = cc.FadeIn:create(0.05)
-        local actionBezier = cc.BezierTo:create(0.3,tPoint)
-        local actionEaseIn = cc.EaseInOut:create(actionBezier,2)
-        local actionExpend = cc.MoveTo:create(0.1,cc.p((#children-1)*40,0))
-        local delay = cc.DelayTime:create(#children*0.07)
-        local actionSpaw = cc.Spawn:create(actionEaseIn,actionFadeIn)
-
-        local action = cc.Sequence:create(delay,actionSpaw,cc.DelayTime:create((3-#children)*0.1),actionExpend)
-        self._rootNode:runAction(action)
+function GameCardNode:calHandCardPosition(index, localSeat)    
+    local x,y = 0,0
+    local size = self:getCardSize()
+    index = index - 1
+    if localSeat == HERO_LOCAL_SEAT then
+        x = x + index * size.width   
+    else 
+        x = x + index * size.width*0.5    
     end
+
+    return cc.p(x, y)
 end
 
 return GameCardNode

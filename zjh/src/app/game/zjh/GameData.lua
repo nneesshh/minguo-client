@@ -12,10 +12,11 @@ local _selfData = {
     banker        = -1,        -- 庄家
     currseat      = -1,        -- 当前押注玩家
     playercount   = 0,         -- 玩家数
-    playerseat    = {}         -- 座位号  
+    playerseat    = {},        -- 座位号  
+    basecoin      = 0,
 }
 
-function GameData.setGameData(info)
+function GameData.setTableInfo(info)
     _selfData.tableid     = info.tableid
     _selfData.status      = info.status
     _selfData.round       = info.round
@@ -24,14 +25,22 @@ function GameData.setGameData(info)
     _selfData.banker      = info.banker
     _selfData.currseat    = info.currseat
     _selfData.playercount = info.playercount
-    _selfData.playerseat  = info.playerseat    
+    _selfData.playerseat  = info.playerseat   
+    _selfData.basecoin    = info.basecoin or 0
+end
+
+function GameData.setGameInfo(info)
+    _selfData.round       = info.round
+    _selfData.basebet     = info.basebet
+    _selfData.jackpot     = info.jackpot
+    _selfData.currseat    = info.currseat
 end
 
 function GameData.getGameData()
     return _selfData
 end
 
-function GameData.restGameData()
+function GameData.restData()
     _selfData.tableid     = -1
     _selfData.status      = 0
     _selfData.round       = 0
@@ -41,6 +50,7 @@ function GameData.restGameData()
     _selfData.currseat    = -1
     _selfData.playercount = 0
     _selfData.playerseat  = {}
+    _selfData.basecoin    = 0
 end
 
 function GameData.setStatus(status)
@@ -105,6 +115,14 @@ end
 
 function GameData.getPlayerseat()
     return _selfData.playerseat
+end
+
+function GameData.setBasecoin(basecoin)
+    _selfData.basecoin = basecoin
+end
+
+function GameData.getBasecoin()
+    return _selfData.basecoin or 0
 end
 
 return GameData

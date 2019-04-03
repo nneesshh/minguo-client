@@ -121,20 +121,18 @@ function MainPresenter:reqJoinRoom(gameid, index)
     local sessionid = app.data.UserData.getSession() or 222
     local plazainfo = app.data.PlazaData.getPlazaList(gameid)
     local roomid = plazainfo[index].roomid
-    
+    local base = plazainfo[index].base
     local po = upconn.upconn:get_packet_obj()
-    if po == nil then
-        print("po is nil")
-    else
-    
+    if po ~= nil then        
         app.game.GameEngine:getInstance():start(gameid)
     
-        print("req",sessionid,roomid)
         po:writer_reset()
         po:write_int32(sessionid)  
         po:write_int32(roomid)       
         upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_ENTER_ROOM_REQ)
     end 
+
+    app.game.GameEngine:getInstance():start(4001, base)
 end
 
 return MainPresenter

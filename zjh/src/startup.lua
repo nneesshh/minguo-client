@@ -5,7 +5,6 @@ local startup   = class("startup")
 
 startup.csbPath = "lobby/csb/loading.csb"
 startup._schedulerProgress = nil
-startup._time = 0
 
 local scheduler = cc.Director:getInstance():getScheduler()
 
@@ -80,26 +79,25 @@ function startup:startGame()
     start.start()
 end
 
-function startup:flipIt(dt)
-    local allTime = 0.5
-    self._time = self._time + dt
-    local percent = self._time / allTime * 100
-    
-    if self._time >= allTime or percent >= 100 then
-        self:closeSchedulerProgress()
-        self:startGame()
-    end
-    
-    self:showProgress(percent)
-end
-
 function startup:openSchedulerProgress()
+    local alltime = 0.7
+    local time = 0
+    local function flipIt(dt)
+        time = time + dt
+        local percent = time / alltime * 100
+
+        if time >= alltime or percent >= 100 then
+            self:closeSchedulerProgress()
+            self:startGame()
+        end
+
+        self:showProgress(percent)
+    end
     self:closeSchedulerProgress()
-    self._schedulerProgress = scheduler:scheduleScriptFunc(handler(self,self.flipIt), 0.1, false)
+    self._schedulerProgress = scheduler:scheduleScriptFunc(flipIt, 0.1, false)
 end
 
 function startup:closeSchedulerProgress()
-    self._time = 0
     if self._schedulerProgress ~= nil then
         scheduler:unscheduleScriptEntry(self._schedulerProgress)
         self._schedulerProgress = nil

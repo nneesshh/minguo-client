@@ -1,10 +1,10 @@
 --[[
-@brief  UI²Ù×÷¹¤¾ßÀà
+@brief  UIæ“ä½œå·¥å…·ç±»
 ]]
 local UIUtils = {}
 
 -----------------------------------------
---  ³¡¾°ÉÏµÄLayerÕ»  
+--  åœºæ™¯ä¸Šçš„Layeræ ˆ  
 -----------------------------------------
 UIUtils._stack = {}
 
@@ -13,15 +13,15 @@ function UIUtils.initLayerStack()
 end
 
 --[[
---½«Ò»¸ö¶Ô»°¿ò¼ÓÈëÕ»ÖĞ
---@param uiobject ¶Ô»°¿ò
+--å°†ä¸€ä¸ªå¯¹è¯æ¡†åŠ å…¥æ ˆä¸­
+--@param uiobject å¯¹è¯æ¡†
 ]]
 function UIUtils.pushLayer(uiObject)
     UIUtils._stack[#UIUtils._stack+1] = uiObject
 end
 
 --[[
---½«Õ»¶¥¶Ô»°¿òµ¯³öÕ»ÖĞ,²¢É¾³ı¡£ÈôÕ»¶¥ÎŞÔªËØ·µ»Ønil
+--å°†æ ˆé¡¶å¯¹è¯æ¡†å¼¹å‡ºæ ˆä¸­,å¹¶åˆ é™¤ã€‚è‹¥æ ˆé¡¶æ— å…ƒç´ è¿”å›nil
 --return uiobject
 ]]
 function UIUtils.popLayer()
@@ -31,7 +31,7 @@ function UIUtils.popLayer()
 end
 
 --[[
---½«Õ»¶¥»ñÈ¡Õ»¶¥ÔªËØ£¬²»ÒÆ³ı,ÈôÕ»¶¥ÎŞÔªËØ·µ»Ønil
+--å°†æ ˆé¡¶è·å–æ ˆé¡¶å…ƒç´ ï¼Œä¸ç§»é™¤,è‹¥æ ˆé¡¶æ— å…ƒç´ è¿”å›nil
 --return uiobject
 ]]
 function UIUtils.topLayer()
@@ -40,7 +40,7 @@ function UIUtils.topLayer()
 end
 
 -----------------------------------------
---  ³¡¾°ÉÏµÄLayer²ã¼¶
+--  åœºæ™¯ä¸Šçš„Layerå±‚çº§
 -----------------------------------------
 UIUtils._maxZOrder = 0
 
@@ -49,8 +49,8 @@ function UIUtils.initLayerZOrder()
 end
 
 --[[
---ÖØÖÃ½ÚµãµÄzÖá×ø±ê
---return ÖØÖÃºóµÄzÖá×ø±ê
+--é‡ç½®èŠ‚ç‚¹çš„zè½´åæ ‡
+--return é‡ç½®åçš„zè½´åæ ‡
 ]]
 function UIUtils.resetZOrder(node)
     UIUtils._maxZOrder = UIUtils._maxZOrder + 1
@@ -58,11 +58,11 @@ function UIUtils.resetZOrder(node)
     return UIUtils._maxZOrder
 end
 
--- --------------------------------------´Ë´¦´¦ÀíUIµÄÆäËû°ïÖúº¯Êı---------------------------------------
--- ²¥·Å¶¯»­¼°Á£×ÓĞ§¹û
+-- --------------------------------------æ­¤å¤„å¤„ç†UIçš„å…¶ä»–å¸®åŠ©å‡½æ•°---------------------------------------
+-- æ’­æ”¾åŠ¨ç”»åŠç²’å­æ•ˆæœ
 function UIUtils.runEffect(dir, name, posX, posY, flag)
     flag = flag or true
-    ccs.ArmatureDataManager:getInstance():addArmatureFileInfo(dir.."/Effect/"..name.."/"..name..".ExportJson")
+    ccs.ArmatureDataManager:getInstance():addArmatureFileInfo(dir.."/"..name.."/"..name..".ExportJson")
     local effect = ccs.Armature:create(name)
     effect:setPosition(cc.p(posX, posY))
     if flag then
@@ -71,26 +71,14 @@ function UIUtils.runEffect(dir, name, posX, posY, flag)
     return effect
 end
 
--- ²¥·Å¶¯»­¼°Á£×ÓĞ§¹û
-function UIUtils.runEffectEx(type, name, posX, posY, flag)
-    flag = flag or true
-    ccs.ArmatureDataManager:getInstance():addArmatureFileInfo("Game/Public/Effect/"..type.."/"..name.."/"..name..".ExportJson")
-    local effect = ccs.Armature:create(name)
-    effect:setPosition(cc.p(posX, posY))
-    if flag then
-        effect:getAnimation():playWithIndex(0)
-    end
-    return effect
-end
-
--- ¶¯»­Ö»²¥·Åtime´Î,²¥·ÅÍê³Éºó»á×Ô¶¯É¾³ı½Úµã,Ã»ÓĞtimeÄ¬ÈÏ²¥·Å1´Î
-function UIUtils.runEffectOne(type, name, posX, posY, flag, callback, time)
+-- åŠ¨ç”»åªæ’­æ”¾timeæ¬¡,æ’­æ”¾å®Œæˆåä¼šè‡ªåŠ¨åˆ é™¤èŠ‚ç‚¹,æ²¡æœ‰timeé»˜è®¤æ’­æ”¾1æ¬¡
+function UIUtils.runEffectOne(dir, name, posX, posY, flag, callback, time)
     time = time or 1
     flag = flag or true
 
     local count = 0
 
-    ccs.ArmatureDataManager:getInstance():addArmatureFileInfo("Game/Public/Effect/"..type.."/"..name.."/"..name..".ExportJson")
+    ccs.ArmatureDataManager:getInstance():addArmatureFileInfo(dir.."/"..name.."/"..name..".ExportJson")
 
     local effect = ccs.Armature:create(name)
     effect:setPosition(cc.p(posX, posY))
@@ -115,19 +103,6 @@ function UIUtils.runEffectOne(type, name, posX, posY, flag, callback, time)
     effect:getAnimation():setMovementEventCallFunc(onFrameEvent)
 
     return effect
-end
-
--- Í·Ïñ²ÃÇĞ
-function UIUtils.runHeadClipper(head, posX, posY, scale)
-    local spriteClipper = cc.Sprite:createWithSpriteFrameName("Lobby/Images/Public/Img/Head/img_head_bg2.png")
-    spriteClipper:setPosition(posX, posY)
-    spriteClipper:setScale(scale)
-
-    local clipper = cc.ClippingNode:create(spriteClipper)
-    clipper:setAlphaThreshold(0.1)
-    clipper:addChild(head)
-
-    return clipper
 end
 
 return UIUtils

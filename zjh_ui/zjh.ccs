@@ -41,6 +41,7 @@
                 <Image Name="img_1_9.png" />
                 <Image Name="img_card_back.png" />
                 <Image Name="img_card_front.png" />
+                <Image Name="img_card_gary.png" />
                 <Image Name="img_color_0.png" />
                 <Image Name="img_color_1.png" />
                 <Image Name="img_color_2.png" />
@@ -55,8 +56,10 @@
                 <Image Name="img_face_1_13.png" />
               </Folder>
               <Folder Name="fnt">
+                <Fnt Name="losefnt.fnt" />
                 <Fnt Name="numfnt.fnt" />
                 <Fnt Name="startfnt.fnt" />
+                <Fnt Name="winfnt.fnt" />
               </Folder>
               <Image Name="btn_back.png" />
               <Image Name="btn_bp.png" />
@@ -74,12 +77,12 @@
               <Image Name="img_banker.png" />
               <Image Name="img_bet_back.png" />
               <Image Name="img_bottom.png" />
-              <Image Name="img_card_type_6.png" />
-              <Image Name="img_card_type_2.png" />
-              <Image Name="img_card_type_4.png" />
               <Image Name="img_card_type_1.png" />
-              <Image Name="img_card_type_5.png" />
+              <Image Name="img_card_type_2.png" />
               <Image Name="img_card_type_3.png" />
+              <Image Name="img_card_type_4.png" />
+              <Image Name="img_card_type_5.png" />
+              <Image Name="img_card_type_6.png" />
               <Image Name="img_check.png" />
               <Image Name="img_chip_0.png" />
               <Image Name="img_chip_1.png" />
@@ -88,6 +91,11 @@
               <Image Name="img_chip_4.png" />
               <Image Name="img_chip_5.png" />
               <Image Name="img_chip_6.png" />
+              <Image Name="img_chip_small_0.png" />
+              <Image Name="img_chip_small_1.png" />
+              <Image Name="img_chip_small_2.png" />
+              <Image Name="img_chip_small_3.png" />
+              <Image Name="img_chip_small_4.png" />
               <Image Name="img_desk.png" />
               <Image Name="img_dz.png" />
               <Image Name="img_fold.png" />
@@ -104,6 +112,8 @@
               <Image Name="img_sure.png" />
               <Image Name="img_turn.png" />
               <Image Name="img_zz.png" />
+              <PlistInfo Name="plistcard.csi" Type="Plist" />
+              <PlistInfo Name="plistscene.csi" Type="Plist" />
             </Folder>
           </Folder>
         </Folder>

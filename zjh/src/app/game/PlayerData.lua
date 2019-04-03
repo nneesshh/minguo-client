@@ -39,10 +39,6 @@ function PlayerData.onPlayerInfo(playerInfo)
     PlayerData.addPlayer(playerInfo)
 end
 
---function PlayerData.onPlayerStateInfo(playerState)
---    PlayerData.updatePlayerState(playerState)
---end
---
 function PlayerData.onPlayerLeave(numID)
     if PlayerData.isHero(numID) then
         PlayerData.delOtherPlayers()
@@ -64,14 +60,20 @@ function PlayerData.addPlayer(playerInfo)
     table.insert(_players, app.game.Player.new(playerInfo))
 end
 
+-- 更新玩家财富
+function PlayerData.updatePlayerRiches(playerSeat, playerBet, playerBalance)
+    local player = PlayerData.getPlayerByServerSeat(playerSeat)
+    if player then
+        player:setBet(playerBet)
+        player:setBalance(playerBalance)       
+    end
+end
+
 -- 更新玩家状态
-function PlayerData.updatePlayerState(playerState)
-    for index, player in pairs(_players) do
-        if player:getTicketID() == playerState.ticketid then                
---            player:setState(playerState.state)
---            player:setSeat(playerState.sitorder)
---            player:setTableID(playerState.tableid)
-        end
+function PlayerData.updatePlayerStatus(playerSeat, status)
+    local player = PlayerData.getPlayerByServerSeat(playerSeat)
+    if player then
+        player:setStatus(status)       
     end
 end
 
@@ -127,7 +129,9 @@ function PlayerData.isHero(numID)
 end
 
 function PlayerData.getHeroSeat()
-    if not _players then return nil end
+    if not _players then 
+        return nil 
+    end
     for index, player in pairs(_players) do
         if PlayerData.isHero(player:getTicketID()) then
             return player:getSeat()
@@ -168,6 +172,7 @@ function PlayerData.serverSeatToLocalSeat(serverSeat)
 
     local heroSeat = PlayerData.getHeroSeat()
     if heroSeat == nil then
+        print("heroseat is nil")
         return -1 
     end
     

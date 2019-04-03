@@ -36,17 +36,34 @@ function Player:getGender()
 end
 
 -- 玩家金币
+function Player:setBalance(balance)
+    self._playerInfo.balance = balance or 0
+end
+
 function Player:getBalance()
     return self._playerInfo.balance or 0
 end
 
 -- 玩家状态
+-- 0 默认 1坐下 2准备 3游戏中 4等待 5弃牌 6失败 
 function Player:getStatus()
     return self._playerInfo.status or 0
 end
 
 function Player:setStatus(status)
     self._playerInfo.status = status
+end
+
+function Player:isReady()
+    return self._playerInfo.status == 2
+end
+
+function Player:isPlaying()
+    return self._playerInfo.status == 3
+end
+
+function Player:isGiveup()
+    return self._playerInfo.status == 5
 end
 
 -- 玩家服务端座号

@@ -41,7 +41,7 @@ function RegisterPresenter:dealAccountRegister(userid, verify, password)
 
     -- 222 is just a faked sessionid for test
     local sessionId = self.sessionId or 222
-    self.upconn:send_packet(sessionId, zjh_defs.MsgId.MSGID_REGISTER_REQ)
+    upconn.upconn:send_packet(sessionId, zjh_defs.MsgId.MSGID_REGISTER_REQ)
             
 end
 

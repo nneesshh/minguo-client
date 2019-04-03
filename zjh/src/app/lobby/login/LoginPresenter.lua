@@ -9,11 +9,27 @@ local LoginPresenter   = class("LoginPresenter", app.base.BasePresenter)
 LoginPresenter._ui  = require("app.lobby.login.LoginLayer")
 
 function LoginPresenter:dealGuestLogin()    
-    app.lobby.login.LoginPresenter:getInstance():exit()
+    
+end
+
+function LoginPresenter:init()
+    self:createDispatcher()
+end
+
+function LoginPresenter:createDispatcher()
+    app.util.DispatcherUtils.addEventListenerSafe(app.Event.EVENT_LOGIN_SUCCESS, handler(self, self.onLoginSuccess))    
+end
+
+function LoginPresenter:onLoginSuccess()
+    if not self:isCurrentUI() then
+        return
+    end
+    self._ui:getInstance():exit()    
+    app.lobby.login.LoginPresenter:getInstance():exit()  
 end
 
 function LoginPresenter:dealAccountLogin()
-    app.lobby.login.AccountLoginPresenter:getInstance():start()
+    app.lobby.login.LoginPresenter:getInstance():start()
 end
 
 return LoginPresenter

@@ -14,15 +14,15 @@ function GameEngine:getInstance()
     return self._instance
 end
 
-function GameEngine:start( gameID)
-    app.game.GameConfig.init(gameID)
+function GameEngine:start(gameID, base)
+    app.game.GameConfig.init(gameID, base)
     app.game.GameLoader.loader(gameID)
     app.game.PlayerData.init(app.Game.MaxPlayCnt[gameID])
 end
 
 function GameEngine:exit()    
     app.game.PlayerData.exit()
-    app.game.GameData.restGameData()
+    app.game.GameData.restData()
     self:onExitGame()
 
     app.game.GameLoader.unloader()

@@ -39,8 +39,7 @@ function BaseNode:createNode(presenter)
     if not self.csbPath then
         print(" csbPath are not configured. ")
     end
-    if not self._rootNode then
-        print("BaseNode:createNode, node name : ", self.__cname)
+    if not self._rootNode then        
         self._rootNode = cc.CSLoader:createNode(self.csbPath)
         self._rootNode:setVisible(false)
     end

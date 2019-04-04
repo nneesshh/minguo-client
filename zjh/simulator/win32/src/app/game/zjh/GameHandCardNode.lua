@@ -114,13 +114,7 @@ end
 function GameHandCardNode:setCardScale(scale)
     if self._gameCards then
         for i = 1, #self._gameCards do            
-            self._gameCards[i]:setCardScale(scale)  
-            
-            if scale == HAND_CARD_SCALE then
-                self._gameCards[i]:setCardPosition()
-            elseif scale == HAND_CARD_SCALE_NO_SELF then
-                self._gameCards[i]:setCardPositionEx()
-            end         
+            self._gameCards[i]:setCardScale(scale)                     
         end
     end    
 end

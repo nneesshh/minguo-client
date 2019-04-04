@@ -193,7 +193,7 @@ end
 function GamePlayerNode:showImgCardType(visible, index)
     local imgType = self:seekChildByName("img_card_type")
     imgType:setVisible(visible)
-    print("index is",index)
+    
     if index then
         local resPath = "game/zjh/image/img_card_type_" .. index .. ".png"
             

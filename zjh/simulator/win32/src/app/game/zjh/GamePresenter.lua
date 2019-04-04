@@ -75,6 +75,7 @@ function GamePresenter:performWithDelayGlobal(listener, time)
     return handle
 end
 
+-- 处理玩家状态
 function GamePresenter:onPlayerStatus(data)
     if data.status == 7 then    -- 退出
         local numID = data.ticketid
@@ -91,7 +92,10 @@ end
 
 -- 处理玩家进入
 function GamePresenter:onPlayerEnter(player)
+    
     local localSeat = app.game.PlayerData.serverSeatToLocalSeat(player:getSeat()) 
+    print("getSeat is",player:getSeat())
+    
     if self._gamePlayerNodes then
         self._gamePlayerNodes[localSeat]:onPlayerEnter() 
     end 
@@ -133,13 +137,16 @@ function GamePresenter:onPlayerReady(seat)
 	
 end
 
+-- 游戏准备
+function GamePresenter:onGamePrepare()
+    
+end
 -- 开始
 function GamePresenter:onGameStart()
     for i = 0, self._maxPlayerCnt - 1 do
-        local localSeat = app.game.PlayerData.serverSeatToLocalSeat(i)
-        if self._gamePlayerNodes[localSeat] then
-            app.game.PlayerData.updatePlayerStatus(i, 3)
-        end
+        app.game.PlayerData.updatePlayerStatus(i, 3)
+        app.game.PlayerData.updatePlayerIsshow(i, 0)
+        app.game.PlayerData.resetPlayerBet(0)
     end
     
     -- 隐藏比牌
@@ -217,7 +224,6 @@ end
 
 -- 玩家押注
 function GamePresenter:onPlayerBet(seat)
-    print("onPlayerBet open schedule!!!")
     if seat == -1 then
     	return
     end
@@ -258,20 +264,32 @@ end
 -- 比牌
 function GamePresenter:onPlayerCompareCard(data) 
     print("onPlayerCompareCard")  
-    dump(data)
     app.game.PlayerData.updatePlayerRiches(data.playerSeat, data.playerBet, data.playerBalance)
     
     local localSeat = app.game.PlayerData.serverSeatToLocalSeat(data.playerSeat)
     local otherSeat = app.game.PlayerData.serverSeatToLocalSeat(data.acceptorSeat)
     local loserSeat = app.game.PlayerData.serverSeatToLocalSeat(data.loserSeat)    
-    local mult = self:getMult(data.playerBet)
-      
+    local base = app.game.GameConfig.getBase()
+    local player = app.game.PlayerData.getPlayerByServerSeat(data.playerSeat)   
+    local isshow = player:getIsshow() 
+   
     self:refreshUI()
-    self._ui:getInstance():showChipAction(mult, localSeat)
+    
+    local trueBet = data.playerBet
+    local count = 1
+    if isshow == 1 then
+        trueBet = trueBet / 2
+        count = 2 
+    end
+
+    local mult = trueBet / base
+    local index = math.ceil(mult/2) - 1 
+    self._ui:getInstance():showChipAction(index, count, localSeat)
+    
     self:playCompareAction(localSeat, otherSeat, loserSeat)
     
-    self._gamePlayerNodes[localSeat]:showTxtBalance(true, data.playerBalance)
-    self._gamePlayerNodes[localSeat]:showImgBet(true, data.playerBet)
+    self._gamePlayerNodes[localSeat]:showTxtBalance(true, data.playerBalance)    
+    self._gamePlayerNodes[localSeat]:showImgBet(true,  player:getBet())
     self._gamePlayerNodes[localSeat]:showPnlClockCircle(false)
     
     self:onPlayerBet(app.game.GameData.getCurrseat())    
@@ -279,7 +297,9 @@ end
 
 -- 看牌
 function GamePresenter:onPlayerShowCard(seat, cards)
+    app.game.PlayerData.updatePlayerIsshow(seat, 1) 
     local localSeat = app.game.PlayerData.serverSeatToLocalSeat(seat)
+           
     if localSeat ~= 1 then
         self._gamePlayerNodes[localSeat]:showImgCheck(true, 0)
     end
@@ -290,27 +310,39 @@ function GamePresenter:onPlayerShowCard(seat, cards)
 end
 
 -- 押注
-function GamePresenter:onPlayerAnteUp(data)
+function GamePresenter:onPlayerAnteUp(data)       
     app.game.PlayerData.updatePlayerRiches(data.playerSeat, data.playerBet, data.playerBalance)
-    local localSeat = app.game.PlayerData.serverSeatToLocalSeat(data.playerSeat)
-    local mult = self:getMult(data.playerBet)  
-    
+    local localSeat = app.game.PlayerData.serverSeatToLocalSeat(data.playerSeat) 
+    local base = app.game.GameConfig.getBase()
+    local basebet = app.game.GameData.getBasebet()
+    local player = app.game.PlayerData.getPlayerByServerSeat(data.playerSeat)   
+    local isshow = player:getIsshow()  
+        
     self:refreshUI()
-    self._ui:getInstance():showChipAction(mult, localSeat)
-       
-    self._gamePlayerNodes[localSeat]:showTxtBalance(true, data.playerBalance)
-    self._gamePlayerNodes[localSeat]:showImgBet(true, data.playerBet)
-    if mult == 1 then
-        self._gamePlayerNodes[localSeat]:playSpeakAction(1)
-    else
-        self._gamePlayerNodes[localSeat]:playSpeakAction(2)
+    local trueBet = data.playerBet
+    local count = 1
+    if isshow == 1 then
+        trueBet = trueBet / 2
+        count = 2 
     end
     
-    self:onPlayerBet(app.game.GameData.getCurrseat())    
+    local mult = trueBet / base
+    local index = math.ceil(mult/2) - 1 
+    self._ui:getInstance():showChipAction(index, count, localSeat)
+    
+    self._gamePlayerNodes[localSeat]:showTxtBalance(true, data.playerBalance)    
+    self._gamePlayerNodes[localSeat]:showImgBet(true,  player:getBet())
+    
+    if trueBet / basebet > 1 then
+        self._gamePlayerNodes[localSeat]:playSpeakAction(2)    
+    else
+        self._gamePlayerNodes[localSeat]:playSpeakAction(1)        
+    end  
+    
+    self:onPlayerBet(app.game.GameData.getCurrseat()) 
 end
 
 function GamePresenter:onGameOver(data, players)
-    dump(players)
     local winseat = data.winnerSeat
     local localSeat = app.game.PlayerData.serverSeatToLocalSeat(winseat)    
     self:playChipBackAction({winseat})
@@ -330,16 +362,53 @@ function GamePresenter:onGameOver(data, players)
             self._gamePlayerNodes[localSeat]:showTxtBalance(true, players[seat].balance)            
             self._gamePlayerNodes[localSeat]:showImgCheck(false) 
             self._gamePlayerNodes[localSeat]:showPnlClockCircle(false)          
-        end
+        end 
 	end
 	
     self._gameBtnNode:showBetBtns(false)
-    
+    app.game.GameData.setCurrseat(-1)
     
     self:performWithDelayGlobal(
         function()
             self:sendPlayerReady()
         end, 10) 
+end
+
+function GamePresenter:onRelinkEnter(cards)   
+    -- 是否轮到自己
+    local seat = app.game.GameData.setCurrseat()
+    local heroseat = app.game.PlayerData.getHeroSeat()
+    if seat == heroseat then
+    	self:onPlayerBet()
+    end
+    
+    -- 庄家
+    local banker = app.game.GameData.getBanker()
+    local localSeat = app.game.PlayerData.serverSeatToLocalSeat(banker) 
+    if self._gamePlayerNodes[localSeat] then
+        self._gamePlayerNodes[localSeat]:showImgBanker()                     
+    end
+    
+    local handcards = {
+        [0] = {0,0,0},
+        [1] = cards,
+        [2] = {0,0,0},
+        [3] = {0,0,0},
+        [4] = {0,0,0},
+    }
+    for i = 0, self._maxPlayerCnt - 1 do
+        local player = app.game.PlayerData.getPlayerByServerSeat(i)
+        if player then
+            local localSeat = app.game.PlayerData.serverSeatToLocalSeat(i)
+            local gameHandCardNode = self._gamePlayerNodes[localSeat]:getGameHandCardNode()
+            gameHandCardNode:resetHandCards()
+            gameHandCardNode:createCards(handcards[localSeat])
+             
+            local bet = player:getBet()                          
+            self._gamePlayerNodes[localSeat]:showImgBet(true, bet)
+        end            
+    end
+    
 end
 
 --------------------------------------------
@@ -371,7 +440,7 @@ function GamePresenter:playChipAction()
         local player = app.game.PlayerData.getPlayerByServerSeat(i)
         if player then
             local localSeat = app.game.PlayerData.serverSeatToLocalSeat(i) 
-            self._ui:getInstance():showChipAction(0, localSeat) 
+            self._ui:getInstance():showChipAction(0, 1, localSeat) 
         end            
     end
 end
@@ -540,8 +609,8 @@ function GamePresenter:onTouchBtnKanpai()
     self:sendKanpai()
 end
 
-function GamePresenter:onTouchBtnGenzhu()
-    self:sendBetmult(1) 
+function GamePresenter:onTouchBtnGenzhu()    
+    self:sendBetmult(1)
 end
 
 function GamePresenter:onTouchBtnBetmult(index)
@@ -637,23 +706,6 @@ function GamePresenter:getCardNum(id)
     if id ~= nil then
         return bit._and(id, 0x0f)
     end    
-end
-
-function GamePresenter:getMult(bet)   
-    local base = app.game.GameConfig.getBase()    
-    local mult = bet / base       
-    print("bet is",bet,mult)
-    if mult < 5 then
-        mult = 0 
-    elseif mult < 10 then
-        mult = 1 
-    elseif mult <15 then
-        mult = 2
-    elseif mult <20 then
-        mult = 3
-    else
-        mult = 4
-    end
 end
 
 return GamePresenter

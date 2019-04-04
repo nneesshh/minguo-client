@@ -17,8 +17,7 @@ local _selfData = {
     avatar   = "0",             -- 头像
     gender   = 1,               -- 性别
     balance  = 100,             -- 标签
-    session  = "0",             -- 用户session
-    gaming   = 1,               -- 是否在游戏       
+    session  = "0",             -- 用户session  
     state    = _state.nologin   -- 登录状态
 }
 
@@ -30,7 +29,6 @@ function UserData.setUserData(tPlayerData)
     UserData.setGender(tPlayerData.gender)
     UserData.setBalance(tPlayerData.balance)   
     UserData.setSession(tPlayerData.session)
-    UserData.setGaming(tPlayerData.gaming)
 end
 
 function UserData.getUserData()
@@ -96,14 +94,6 @@ end
 
 function UserData.getSession()
     return _selfData.session
-end
-
-function UserData.setGaming(gaming)
-    _selfData.gaming = gaming
-end
-
-function UserData.getGaming()
-    return _selfData.gaming
 end
 
 function UserData.setLoginState(state)

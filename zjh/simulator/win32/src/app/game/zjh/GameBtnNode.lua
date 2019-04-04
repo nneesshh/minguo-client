@@ -69,7 +69,7 @@ function GameBtnNode:initUI(...)
 
         txt:setString(index*2*base)
     end
-    self:setBtnChipEnable(6, true)
+    --self:setBtnChipEnable(6, true)
 end
 
 function GameBtnNode:showExpand(flag)

@@ -34,17 +34,19 @@ local MsgId = {
     MSGID_COMPARE_CARD_REQ		= 0x2005,		--//比牌 8197
     MSGID_GIVE_UP_REQ			= 0x2006,		--//弃牌 8198
 
-    MSGID_USER_STATUS_NOTIFY	= 0x2021,		--//用户状态改变通知 8225
-    MSGID_GAME_START_NOTIFY		= 0x2022,		--//游戏开始通知 8226
-    MSGID_GAME_OVER_NOTIFY		= 0x2023,		--//游戏结束通知 8227
-    MSGID_SIT_DOWN_NOTIFY		= 0x2024,		--//坐下通知 8228
-    MSGID_READY_NOTIFY			= 0x2025,		--//准备通知 8229
-    MSGID_ANTE_UP_NOTIFY		= 0x2026,		--//押注通知（含孤注一掷通知）8230
-    --// MSGID_LAST_BET_NOTIFY		= 0x2027,		--//孤注一掷通知 8231
-    MSGID_SHOW_CARD_NOTIFY		= 0x2028,		--//看牌 8232
-    MSGID_COMPARE_CARD_NOTIFY	= 0x2029,		--//比牌 8233
-    MSGID_GIVE_UP_NOTIFY		= 0x202A,		--//弃牌 8234
-    MSGID_RELOGIN_NOTIFY		= 0x202B,		--//其他用户登录 8235
+    MSGID_GAME_PREPARE_NOTIFY   = 0x2021,       --//游戏准备通知 8225
+    MSGID_GAME_START_NOTIFY     = 0x2022,       --//游戏开始通知 8226
+    MSGID_GAME_OVER_NOTIFY      = 0x2023,       --//游戏结束通知 8227
+    MSGID_USER_STATUS_NOTIFY    = 0x2024,       --//用户状态改变通知 8228
+    MSGID_SIT_DOWN_NOTIFY       = 0x2025,       --//坐下通知 8229
+    MSGID_READY_NOTIFY          = 0x2026,       --//准备通知 8230
+    MSGID_ANTE_UP_NOTIFY        = 0x2027,       --//押注通知（含孤注一掷通知）8231
+    --//#define MSGID_LAST_BET_NOTIFY       = 0x2028,       --//孤注一掷通知 8232
+    MSGID_SHOW_CARD_NOTIFY      = 0x2029,       --//看牌 8233
+    MSGID_COMPARE_CARD_NOTIFY   = 0x202A,       --//比牌 8234
+    MSGID_GIVE_UP_NOTIFY        = 0x202B,       --//弃牌 8235
+    MSGID_RELOGIN_NOTIFY        = 0x202C,       --//其他用户登录 8236
+
 
     MSGID_CLOSE_CONNECTION		= 0x03,		--//
     MSGID_CREATE_HANDLER		= 0x04,		--//

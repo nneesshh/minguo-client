@@ -77,6 +77,20 @@ function PlayerData.updatePlayerStatus(playerSeat, status)
     end
 end
 
+function PlayerData.updatePlayerIsshow(playerSeat, isshow)
+    local player = PlayerData.getPlayerByServerSeat(playerSeat)
+    if player then
+        player:setIsshow(isshow)       
+    end
+end
+
+function PlayerData.resetPlayerBet(playerSeat)
+    local player = PlayerData.getPlayerByServerSeat(playerSeat)
+    if player then
+        player:setBet(0)       
+    end
+end
+
 -- 删除Player
 function PlayerData.delPlayerByNumID(numID)
     for index, player in pairs(_players) do

@@ -75,22 +75,22 @@ function GameScene:showZongzhu(num)
     fntZZ:setString(num)
 end
 
-function GameScene:showChipAction(mult, localseat)        
+function GameScene:showChipAction(index, count, localseat)        
     local pnlarea = self:seekChildByName("pnl_chip_area")
     local size = pnlarea:getContentSize()
         
     local nodechip = self:seekChildByName("node_chip_"..localseat)
     local fx,fy = nodechip:getPosition()    
     local cx, cy = pnlarea:convertToNodeSpace(cc.p(fx, fy))
-    mult = mult or 0
     
-    local imgChip = ccui.ImageView:create()
-    imgChip:loadTexture(string.format("game/zjh/image/img_chip_small_%d.png", mult), ccui.TextureResType.plistType)    
-    imgChip:setPosition(cc.p(cx, cy))    
-    pnlarea:addChild(imgChip)
-                  
-    local tx,ty = math.random(1, size.width) , math.random(1, size.height)    	
-    imgChip:runAction(cc.MoveTo:create(0.5, cc.p(tx,ty)))    
+    for i=1,count do
+        local tx,ty = math.random(1, size.width) , math.random(1, size.height) 
+        local imgChip = ccui.ImageView:create()
+        imgChip:loadTexture(string.format("game/zjh/image/img_chip_small_%d.png", index), ccui.TextureResType.plistType)    
+        imgChip:setPosition(cc.p(cx, cy))    
+        pnlarea:addChild(imgChip)            
+        imgChip:runAction(cc.MoveTo:create(0.5, cc.p(tx,ty)))    
+    end                
 end
 
 function GameScene:showChipBackAction(localseats)

@@ -134,18 +134,8 @@ end
 
 function GameCardNode:setCardPosition()
     local posX, posY = 0,0
-    if self._localSeat == HERO_LOCAL_SEAT then
-        posX = (self._index-1)*156*self._scale
-    else 
-        posX = (self._index-1)*156*self._scale*0.5
-    end
-      
-    self._rootNode:setPosition(cc.p(posX, posY))
-end
-
-function GameCardNode:setCardPositionEx()
-    local posX, posY = 0,0
     posX = (self._index-1)*156*self._scale*0.5
+    
     self._rootNode:setPosition(cc.p(posX, posY))
 end
 

@@ -4,6 +4,8 @@
 #include "cocos2d.h"
 #include "lua_module_register.h"
 
+#include "lcu.h"
+
 #if (CC_TARGET_PLATFORM != CC_PLATFORM_LINUX)
 #include "ide-support/CodeIDESupport.h"
 #endif
@@ -61,6 +63,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     ScriptEngineManager::getInstance()->setScriptEngine(engine);
     lua_State* L = engine->getLuaStack()->getLuaState();
     lua_module_register(L);
+	luaopen_lcu(L);
 
     register_all_packages();
 

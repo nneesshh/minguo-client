@@ -13,6 +13,7 @@ function Player:ctor(playerInfo)
     self._playerInfo.status       = playerInfo.status       -- 状态
     self._playerInfo.seat         = playerInfo.seat         -- 座位号(服务端)
     self._playerInfo.bet          = playerInfo.bet          -- 下注
+    self._playerInfo.isshow       = playerInfo.isshow       -- 是否已经看牌 
 end
 
 -- 获取数字账号
@@ -81,7 +82,16 @@ function Player:getBet()
 end
 
 function Player:setBet(bet)
-    self._playerInfo.bet = bet
+    self._playerInfo.bet = self._playerInfo.bet + bet
+end
+
+-- 玩家是否已经看牌
+function Player:getIsshow()
+    return self._playerInfo.isshow or 0
+end
+
+function Player:setIsshow(isshow)
+    self._playerInfo.isshow = isshow
 end
 
 return Player

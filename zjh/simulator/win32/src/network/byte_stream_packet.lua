@@ -4,7 +4,6 @@ local tonumber = tonumber
 
 -- Localize
 local cwd = (...):gsub("%.[^%.]+$", "") .. "."
---local lcu = require("lcu")
 local lcu = lcu
 
 local PER_FRAME_PAGE_SIZE_MAX = 4096

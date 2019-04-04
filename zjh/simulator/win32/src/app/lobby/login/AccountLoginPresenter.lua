@@ -40,9 +40,7 @@ function AccountLoginPresenter:onLoginSuccess()
         return
     end
     self._ui:getInstance():exit()    
-    app.lobby.login.LoginPresenter:getInstance():exit() 
-    
---     checkGameNotOver
+    app.lobby.login.LoginPresenter:getInstance():exit()  
 end
 
 function AccountLoginPresenter:dealAccountLogin(account, password)    

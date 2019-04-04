@@ -66,7 +66,7 @@ function GameData.setRound(round)
 end
 
 function GameData.getRound()
-    return _selfData.round
+    return _selfData.round or 0
 end
 
 function GameData.setBasebet(basebet)

@@ -2,7 +2,7 @@
 @brief  游戏主场景UI基类
 ]]
 local GameScene   = class("GameScene", app.base.BaseScene)
-local ALLTURN     = 10
+local ALLTURN     = 20
 -- csb路径
 GameScene.csbPath = "game/zjh/csb/gamescene.csb"
 
@@ -49,6 +49,10 @@ function GameScene:initData()
     math.randomseed(tostring(os.time()):reverse():sub(1, 7))
 end 
 
+function GameScene:initUI()
+    self:showBase()    
+end
+
 function GameScene:showStartEffect()
     local effect = app.util.UIUtils.runEffectOne("game/zjh/effect","jiubei_dh", 0, 0)
     self:seekChildByName("node_start_effect"):addChild(effect)
@@ -57,6 +61,12 @@ end
 function GameScene:showBiPaiEffect()
     local effect = app.util.UIUtils.runEffectOne("game/zjh/effect","vs_dh2", 0, 0)
     self:seekChildByName("node_bipai_effect"):addChild(effect)
+end
+
+function GameScene:showBase()
+    local base = app.game.GameConfig.getBase()
+    local fntbase = self:seekChildByName("fnt_base")
+    fntbase:setString(base)
 end
 
 function GameScene:showDanZhu(num)
@@ -75,7 +85,30 @@ function GameScene:showZongzhu(num)
     fntZZ:setString(num)
 end
 
-function GameScene:showChipAction(index, count, localseat)        
+function GameScene:showBaseChipAction(localseat)        
+    local pnlarea = self:seekChildByName("pnl_chip_area")
+    local size = pnlarea:getContentSize()
+
+    local nodechip = self:seekChildByName("node_chip_"..localseat)
+    local fx,fy = nodechip:getPosition()    
+    local cx, cy = pnlarea:convertToNodeSpace(cc.p(fx, fy))
+
+    local chipParent = self:seekChildByName("imgchip")    
+    
+    local tx,ty = math.random(1, size.width) , math.random(1, size.height) 
+    local imgChip = chipParent:clone()
+    local txt = imgChip:getChildByName("txt_chip_value")
+    local base = app.game.GameConfig.getBase()
+    txt:setString(base)
+
+    imgChip:loadTexture("game/zjh/image/img_chip_small_0.png", ccui.TextureResType.plistType)    
+    imgChip:setPosition(cc.p(cx, cy))    
+    pnlarea:addChild(imgChip)            
+    imgChip:runAction(cc.MoveTo:create(0.5, cc.p(tx,ty)))                      
+end
+
+function GameScene:showChipAction(index, count, localseat) 
+    local base = app.game.GameConfig.getBase()       
     local pnlarea = self:seekChildByName("pnl_chip_area")
     local size = pnlarea:getContentSize()
         
@@ -83,9 +116,12 @@ function GameScene:showChipAction(index, count, localseat)
     local fx,fy = nodechip:getPosition()    
     local cx, cy = pnlarea:convertToNodeSpace(cc.p(fx, fy))
     
+    local chipParent = self:seekChildByName("imgchip")    
     for i=1,count do
         local tx,ty = math.random(1, size.width) , math.random(1, size.height) 
-        local imgChip = ccui.ImageView:create()
+        local imgChip = chipParent:clone()
+        local txt = imgChip:getChildByName("txt_chip_value")
+        txt:setString(index*2*base)
         imgChip:loadTexture(string.format("game/zjh/image/img_chip_small_%d.png", index), ccui.TextureResType.plistType)    
         imgChip:setPosition(cc.p(cx, cy))    
         pnlarea:addChild(imgChip)            
@@ -159,6 +195,37 @@ function GameScene:getToPosition()
     local rx,ry = self:seekChildByName("node_right"):getPosition()
     
     return cc.p(lx,ly), cc.p(lmx,lmy), cc.p(rmx,rmy), cc.p(rx,ry) 
+end
+
+function GameScene:showPnlHint(type)
+    print("type is",type)
+    local nodeHint1 = self:seekChildByName("node_hint_1")
+    local nodeHint2 = self:seekChildByName("node_hint_2")
+    if nodeHint1 then
+        -- 倒计时
+        if type == 1 then
+            nodeHint1:setVisible(true)
+            nodeHint2:setVisible(false)
+            self._presenter:openSchedulerPrepareClock(3)
+            -- 等待
+        elseif type == 2 then
+            nodeHint1:setVisible(false)
+            nodeHint2:setVisible(true)
+
+            -- 隐藏   
+        elseif type == 3 then
+            nodeHint1:setVisible(false)
+            nodeHint2:setVisible(false)
+        end
+    end   
+    
+end
+
+function GameScene:showClockPrepare(time)
+    local fntClock = self:seekChildByName("fnt_hint_clock")
+    if fntClock then
+        fntClock:setString(time)
+    end    
 end
 
 return GameScene

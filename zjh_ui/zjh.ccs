@@ -79,6 +79,7 @@
               <Image Name="btn_set.png" />
               <Image Name="img_background.jpg" />
               <Image Name="img_banker.png" />
+              <Image Name="img_base.png" />
               <Image Name="img_bet_back.png" />
               <Image Name="img_bottom.png" />
               <Image Name="img_card_type_1.png" />
@@ -95,17 +96,18 @@
               <Image Name="img_chip_4.png" />
               <Image Name="img_chip_5.png" />
               <Image Name="img_chip_6.png" />
-              <Image Name="img_chip_small_0.png" />
               <Image Name="img_chip_small_1.png" />
               <Image Name="img_chip_small_2.png" />
               <Image Name="img_chip_small_3.png" />
               <Image Name="img_chip_small_4.png" />
+              <Image Name="img_chip_small_5.png" />
               <Image Name="img_desk.png" />
               <Image Name="img_dz.png" />
               <Image Name="img_fold.png" />
               <Image Name="img_gold.png" />
               <Image Name="img_head_0_0.png" />
               <Image Name="img_head_back.png" />
+              <Image Name="img_hint.png" />
               <Image Name="img_hint_start.png" />
               <Image Name="img_jz_back.png" />
               <Image Name="img_light.png" />

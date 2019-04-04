@@ -217,7 +217,9 @@ function _M.onLogin(conn, sessionid, msgid)
         userInfo = _readUserInfo(po)
         userInfo.session = sessionid
         -- recover flag
-        local gaming = po:read_byte()       
+        local gaming = po:read_byte()  
+        
+        print("onenter is gaming",gaming)     
         -- 保存个人数据
         app.data.UserData.setUserData(userInfo)
         -- 分发登录成功消息
@@ -226,12 +228,13 @@ function _M.onLogin(conn, sessionid, msgid)
         app.data.UserData.setLoginState(1)      
         
         if gaming ~= 0 then
-            app.game.GameEngine:getInstance():onStartGame()
-            
             local roomid =  po:read_int32()
             local tabInfo = _readTableInfo(po)
             tabInfo.basecoin = 0
             app.game.GameData.setTableInfo(tabInfo)
+            local base = app.data.PlazaData.getBaseByRoomid(app.Game.GameID.ZJH, roomid)
+            app.game.GameEngine:getInstance():start(app.Game.GameID.ZJH,base)
+            app.game.GameEngine:getInstance():onStartGame()
             
             local playerCount = po:read_int32()
             local ids = {}
@@ -347,7 +350,10 @@ function _M.onGamePrepare(conn, sessionid, msgid)
     local resp = {}
     local po = upconn.upconn:get_packet_obj()   
    
-    app.game.GamePresenter:getInstance():onGamePrepare() 
+    if app.game.GamePresenter then
+    	app.game.GamePresenter:getInstance():onGamePrepare() 
+    end
+    
 end
 
 function _M.onGameStart(conn, sessionid, msgid)
@@ -371,7 +377,9 @@ function _M.onPlayerGiveUp(conn, sessionid, msgid)
     local next  = po:read_byte()
     local round = po:read_int32()
     
-    app.game.GamePresenter:getInstance():onPlayerGiveUp(now, next, round) 
+    if app.game.GamePresenter then
+        app.game.GamePresenter:getInstance():onPlayerGiveUp(now, next, round) 
+    end    
 end
 
 function _M.onPlayerCompareCard(conn, sessionid, msgid)
@@ -390,13 +398,14 @@ function _M.onPlayerShowCard(conn, sessionid, msgid)
     local po = upconn.upconn:get_packet_obj()
     resp.seat = po:read_byte()
     resp.cards = po:read_string()
+    resp.cardtype = po:read_byte()
     local cards = {}
     for i=1, string.len(resp.cards) do
         local item = string.byte(resp.cards, i, i)
         table.insert(cards, item)
     end
     
-    app.game.GamePresenter:getInstance():onPlayerShowCard(resp.seat, cards)
+    app.game.GamePresenter:getInstance():onPlayerShowCard(resp.seat, cards, resp.cardtype)
 end
 
 function _M.onPlayerAnteUp(conn, sessionid, msgid)
@@ -424,7 +433,12 @@ function _M.onPlayerStatus(conn, sessionid, msgid)
     resp.ticketid = po:read_int32()
     resp.status = po:read_byte()
     
-    app.game.GamePresenter:getInstance():onPlayerStatus(resp)
+    if app.game.GamePresenter then
+        app.game.GamePresenter:getInstance():onPlayerStatus(resp)
+    else
+        print("onPlayerStatus is nil")    
+    end
+    
 end
 
 -- request

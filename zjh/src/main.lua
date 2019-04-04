@@ -51,8 +51,6 @@ package.cpath = package.cpath .. ";./?.dll;./clibs/?.dll"
 upconn = require "upconn.ZjhUpconn"
 upconn.start()
 
-
-
 local function main()
     collectgarbage("collect")
     collectgarbage("setpause", 100)

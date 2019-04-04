@@ -53,6 +53,7 @@ end
 function GamePresenter:initScheduler()    
     self._schedulerClocks      = {}      -- 时钟    
     self._schedulerTakeFirst   = nil     -- 发牌    
+    self._schedulerPrepareClock = nil    -- 倒计时
 end
 
 -- 退出界面
@@ -61,6 +62,7 @@ function GamePresenter:exit()
     
     self:closeSchedulerTakeFirst()
     self:closeSchedulerClocks()
+    self:closeSchedulerPrepareClock()
     
     GamePresenter._instance = nil
 end
@@ -101,6 +103,10 @@ function GamePresenter:onPlayerEnter(player)
     end 
     
     self._ui:getInstance():showBiPaiPanel(false)  
+    
+    if app.game.PlayerData.getPlayerCount() <= 1 then
+        self._ui:getInstance():showPnlHint(2)
+    end
 end
 
 function GamePresenter:onLeaveRoom()
@@ -139,10 +145,11 @@ end
 
 -- 游戏准备
 function GamePresenter:onGamePrepare()
-    
+    self._ui:getInstance():showPnlHint(1)
 end
 -- 开始
 function GamePresenter:onGameStart()
+    self._ui:getInstance():showPnlHint(3)
     for i = 0, self._maxPlayerCnt - 1 do
         app.game.PlayerData.updatePlayerStatus(i, 3)
         app.game.PlayerData.updatePlayerIsshow(i, 0)
@@ -177,7 +184,7 @@ function GamePresenter:onGameStart()
     -- 扔筹码
     self:performWithDelayGlobal(
         function()
-            self:playChipAction()
+            self:playBaseChipAction()
         end, TIME_THROW_CHIP)
    
     -- 发牌
@@ -214,7 +221,8 @@ end
 function GamePresenter:onBankerBet()
     local banker = app.game.GameData.getBanker()
     if app.game.PlayerData.getHeroSeat() == banker then
-        self._gameBtnNode:showBetBtnEnable(true)
+        local round = app.game.GameData.getRound() 
+        self._gameBtnNode:showBetBtnEnable(true, round)
     else
         self._gameBtnNode:showBetBtnEnable(false)    
     end
@@ -223,25 +231,21 @@ function GamePresenter:onBankerBet()
 end
 
 -- 玩家押注
-function GamePresenter:onPlayerBet(seat)
+function GamePresenter:onPlayerBet(seat, index)
     if seat == -1 then
+        print("next is -1")
     	return
     end
     if app.game.PlayerData.getHeroSeat() == seat then
-        self._gameBtnNode:showBetBtnEnable(true)
+        local round = app.game.GameData.getRound() 
+        self._gameBtnNode:showBetBtnEnable(true, round)
+        -- index之后的按钮可点击
+        self._gameBtnNode:setDisableByIndex(index)
     else
         self._gameBtnNode:showBetBtnEnable(false)    
     end
 
     self:onClock(seat)
-    
---    local flag = self._gameBtnNode:getCbxSelected()
---    if flag then
---        self:performWithDelayGlobal(
---            function()
---                self:sendBetmult(1) 
---            end, 3) 
---    end
 end
 
 -- 弃牌
@@ -258,7 +262,7 @@ function GamePresenter:onPlayerGiveUp(now, next, round)
         self._gameBtnNode:showBetBtnEnable(false)
     end
 
-    self:onPlayerBet(next)
+    self:onPlayerBet(next, 1)
 end
 
 -- 比牌
@@ -270,21 +274,25 @@ function GamePresenter:onPlayerCompareCard(data)
     local otherSeat = app.game.PlayerData.serverSeatToLocalSeat(data.acceptorSeat)
     local loserSeat = app.game.PlayerData.serverSeatToLocalSeat(data.loserSeat)    
     local base = app.game.GameConfig.getBase()
+    local basebet = app.game.GameData.getBasebet()
     local player = app.game.PlayerData.getPlayerByServerSeat(data.playerSeat)   
+    local playerbet = data.playerBet
+    if player == nil then
+        print("player compare is nil")
+        return
+    end
     local isshow = player:getIsshow() 
+    local count = 1
+    if isshow then
+        playerbet = playerbet / 2
+        count = 2
+    end             
+    local ia = basebet / base / 2    -- 该index之后按钮可点击
+    local ib = playerbet / base / 2  -- 玩家跟注的筹码index
    
     self:refreshUI()
     
-    local trueBet = data.playerBet
-    local count = 1
-    if isshow == 1 then
-        trueBet = trueBet / 2
-        count = 2 
-    end
-
-    local mult = trueBet / base
-    local index = math.ceil(mult/2) - 1 
-    self._ui:getInstance():showChipAction(index, count, localSeat)
+    self._ui:getInstance():showChipAction(ib, count, localSeat)
     
     self:playCompareAction(localSeat, otherSeat, loserSeat)
     
@@ -292,17 +300,19 @@ function GamePresenter:onPlayerCompareCard(data)
     self._gamePlayerNodes[localSeat]:showImgBet(true,  player:getBet())
     self._gamePlayerNodes[localSeat]:showPnlClockCircle(false)
     
-    self:onPlayerBet(app.game.GameData.getCurrseat())    
+    self:onPlayerBet(app.game.GameData.getCurrseat(), ib)   
 end 
 
 -- 看牌
-function GamePresenter:onPlayerShowCard(seat, cards)
+function GamePresenter:onPlayerShowCard(seat, cards, cardtype)
     app.game.PlayerData.updatePlayerIsshow(seat, 1) 
     local localSeat = app.game.PlayerData.serverSeatToLocalSeat(seat)
            
     if localSeat ~= 1 then
         self._gamePlayerNodes[localSeat]:showImgCheck(true, 0)
     end
+    
+    self._gamePlayerNodes[localSeat]:showImgCardType(true, cardtype)
     
     local gameHandCardNode = self._gamePlayerNodes[localSeat]:getGameHandCardNode()
     gameHandCardNode:resetHandCards()
@@ -315,31 +325,33 @@ function GamePresenter:onPlayerAnteUp(data)
     local localSeat = app.game.PlayerData.serverSeatToLocalSeat(data.playerSeat) 
     local base = app.game.GameConfig.getBase()
     local basebet = app.game.GameData.getBasebet()
+    local playerbet = data.playerBet
     local player = app.game.PlayerData.getPlayerByServerSeat(data.playerSeat)   
-    local isshow = player:getIsshow()  
-        
-    self:refreshUI()
-    local trueBet = data.playerBet
-    local count = 1
-    if isshow == 1 then
-        trueBet = trueBet / 2
-        count = 2 
+    if player == nil then
+    	print("player anteup is nil")
+    	return
     end
+    local isshow = player:getIsshow()
+    local count = 1
+    if isshow then
+        playerbet = playerbet / 2
+        count = 2
+    end             
+    local ia = basebet / base / 2    -- 该index之后按钮可点击
+    local ib = playerbet / base / 2  -- 玩家跟注的筹码index
     
-    local mult = trueBet / base
-    local index = math.ceil(mult/2) - 1 
-    self._ui:getInstance():showChipAction(index, count, localSeat)
-    
+    self:refreshUI()
+    self._ui:getInstance():showChipAction(ib, count, localSeat)
     self._gamePlayerNodes[localSeat]:showTxtBalance(true, data.playerBalance)    
     self._gamePlayerNodes[localSeat]:showImgBet(true,  player:getBet())
     
-    if trueBet / basebet > 1 then
+    if playerbet / basebet > 1 then
         self._gamePlayerNodes[localSeat]:playSpeakAction(2)    
     else
         self._gamePlayerNodes[localSeat]:playSpeakAction(1)        
     end  
     
-    self:onPlayerBet(app.game.GameData.getCurrseat()) 
+    self:onPlayerBet(app.game.GameData.getCurrseat(), ib) 
 end
 
 function GamePresenter:onGameOver(data, players)
@@ -368,10 +380,12 @@ function GamePresenter:onGameOver(data, players)
     self._gameBtnNode:showBetBtns(false)
     app.game.GameData.setCurrseat(-1)
     
+    self._ui:getInstance():showPnlHint(1)
+    
     self:performWithDelayGlobal(
         function()
             self:sendPlayerReady()
-        end, 10) 
+        end, 5) 
 end
 
 function GamePresenter:onRelinkEnter(cards)   
@@ -379,7 +393,7 @@ function GamePresenter:onRelinkEnter(cards)
     local seat = app.game.GameData.setCurrseat()
     local heroseat = app.game.PlayerData.getHeroSeat()
     if seat == heroseat then
-    	self:onPlayerBet()
+        self:onPlayerBet(seat, 1)
     end
     
     -- 庄家
@@ -434,13 +448,12 @@ function GamePresenter:playBankerAction()
     end
 end
 
-function GamePresenter:playChipAction()
-    local basecoin = app.game.GameData.getBasecoin()
+function GamePresenter:playBaseChipAction()
     for i = 0, self._maxPlayerCnt - 1 do
         local player = app.game.PlayerData.getPlayerByServerSeat(i)
         if player then
             local localSeat = app.game.PlayerData.serverSeatToLocalSeat(i) 
-            self._ui:getInstance():showChipAction(0, 1, localSeat) 
+            self._ui:getInstance():showBaseChipAction(localSeat) 
         end            
     end
 end
@@ -514,7 +527,8 @@ function GamePresenter:setCardScale(scale, localSeat)
     end
 end
 
--------------------------------schedule------------------------------
+-- -----------------------------schedule------------------------------
+-- 发牌
 function GamePresenter:openSchedulerTakeFirst(callback)
     local cardbacks = {}             
     for i = 0, self._maxPlayerCnt - 1 do
@@ -555,6 +569,7 @@ function GamePresenter:closeSchedulerTakeFirst()
     end
 end
 
+-- 时钟
 function GamePresenter:openSchedulerClock(localSeat, time)
     local allTime = time
     
@@ -584,6 +599,32 @@ function GamePresenter:closeSchedulerClocks()
         if self._schedulerClocks[i] then
             self:closeSchedulerClock(i)
         end
+    end
+end
+
+-- 准备
+function GamePresenter:openSchedulerPrepareClock(time)
+    local allTime = time
+
+    local function flipIt(dt)
+        time = time - dt
+
+        if time <= 0 then
+            self._ui:getInstance():showPnlHint(3)
+            self:closeSchedulerPrepareClock()
+        end
+        local strTime = string.format("%d", math.ceil(time))
+        self._ui:getInstance():showClockPrepare(strTime)
+    end
+
+    self:closeSchedulerPrepareClock()
+    self._schedulerPrepareClock = scheduler:scheduleScriptFunc(flipIt, 0.1, false)
+end 
+
+function GamePresenter:closeSchedulerPrepareClock()
+    if self._schedulerPrepareClock then
+        scheduler:unscheduleScriptEntry(self._schedulerPrepareClock)
+        self._schedulerPrepareClock = nil
     end
 end
 

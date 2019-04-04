@@ -69,7 +69,7 @@ function GameBtnNode:initUI(...)
 
         txt:setString(index*2*base)
     end
-    --self:setBtnChipEnable(6, true)
+    self:setDisableByIndex(1)
 end
 
 function GameBtnNode:showExpand(flag)
@@ -100,7 +100,7 @@ function GameBtnNode:showBetBtns(visible)
     end
 end
 
-function GameBtnNode:showBetBtnEnable(enable)
+function GameBtnNode:showBetBtnEnable(enable,round)
     local btn_qp = self:seekChildByName("btn_qp")
     local btnbp = self:seekChildByName("btn_bp")
     local btnon = self:seekChildByName("btn_jz_on")
@@ -117,6 +117,10 @@ function GameBtnNode:showBetBtnEnable(enable)
     btnon:setVisible(true)
     btnoff:setVisible(false)
     expand:setScale(0)
+    
+    if enable and round <= 1 then
+        btnbp:setEnabled(false)
+    end    
 end
 
 function GameBtnNode:setCbxSelected(flag)
@@ -129,14 +133,21 @@ function GameBtnNode:getCbxSelected()
     return checkboxGdd:getSelected()
 end
 
--- index之前的按钮均不可点击
-function GameBtnNode:setBtnChipEnable(index, enable)
-    for i=1,index do
+-- index之后的按钮可点击
+function GameBtnNode:setDisableByIndex(index)
+    for i=1,6 do
+        local btn = self:seekChildByName("btn_bet_" .. i)
+        local img = btn:getChildByName("img_disable")
+        btn:setEnabled(true)
+        img:setVisible(false)
+    end 
+    
+    for i=1,index-1 do
     	local btn = self:seekChildByName("btn_bet_" .. i)
-        local img = self:seekChildByName("img_disable")
-    	btn:setEnabled(enable)
-        img:setVisible(not enable)
-    end   
+        local img = btn:getChildByName("img_disable")
+    	btn:setEnabled(false)
+        img:setVisible(true)
+    end  
 end
 
 return GameBtnNode

@@ -44,7 +44,7 @@ function GamePlayerNode:onPlayerEnter()
     -- 显示用户节点    
     self:showPnlPlayer(true)
     -- 设置姓名
-    self:showTxtPlayerName(true, player:getNickname())
+    self:showTxtPlayerName(true, player:getTicketID())
     -- 设置金币
     self:showTxtBalance(true, player:getBalance())
     -- 显示头像
@@ -125,7 +125,7 @@ function GamePlayerNode:showTxtPlayerName(visible, nickName)
     local txtPlayerName = self:seekChildByName("txt_name")
 
     if visible then
-        nickName = app.util.ToolUtils.nameToShort(nickName, 10)
+        --nickName = app.util.ToolUtils.nameToShort(nickName, 10)
         txtPlayerName:setString(nickName)
     end
 
@@ -350,7 +350,8 @@ function GamePlayerNode:playSpeakAction(index)
     local resPath = "game/zjh/image/" .. SPEAKE[index]
     imgSpeak:loadTexture(resPath, ccui.TextureResType.plistType)
     
-    imgSpeak:stopAllActions()      
+    imgSpeak:stopAllActions()   
+    imgSpeak:setVisible(true)   
     imgSpeak:setOpacity(255)
     imgSpeak:setScale(0)
 

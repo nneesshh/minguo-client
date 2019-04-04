@@ -55,7 +55,7 @@ function PlayerData.addPlayer(playerInfo)
         end
     end
     if PlayerData.isHero(playerInfo.ticketid) then
-        app.data.UserData.setBalance(playerInfo.balance)
+        app.data.UserData.setBalance(playerInfo.balance)        
     end
     table.insert(_players, app.game.Player.new(playerInfo))
 end
@@ -65,7 +65,11 @@ function PlayerData.updatePlayerRiches(playerSeat, playerBet, playerBalance)
     local player = PlayerData.getPlayerByServerSeat(playerSeat)
     if player then
         player:setBet(playerBet)
-        player:setBalance(playerBalance)       
+        player:setBalance(playerBalance)  
+        
+        if PlayerData.getHeroSeat() == playerSeat then
+            app.data.UserData.setBalance(playerBalance)        
+        end     
     end
 end
 
@@ -87,7 +91,7 @@ end
 function PlayerData.resetPlayerBet(playerSeat)
     local player = PlayerData.getPlayerByServerSeat(playerSeat)
     if player then
-        player:setBet(0)       
+        player:resetBet(0)       
     end
 end
 

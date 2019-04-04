@@ -85,9 +85,13 @@ function Player:setBet(bet)
     self._playerInfo.bet = self._playerInfo.bet + bet
 end
 
+function Player:resetBet(bet)
+    self._playerInfo.bet = 0
+end
+
 -- 玩家是否已经看牌
 function Player:getIsshow()
-    return self._playerInfo.isshow or 0
+    return self._playerInfo.isshow == 1
 end
 
 function Player:setIsshow(isshow)

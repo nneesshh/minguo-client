@@ -44,4 +44,14 @@ function PlazaData.getSuitPlazaInfo(gameid, balance)
     return suitPlazaInfo
 end
 
+function PlazaData.getBaseByRoomid(gameid, roomid)
+    local plazaInfo = PlazaData.getPlazaList(gameid)
+    for key, var in pairs(plazaInfo) do
+        if var.roomid == roomid then
+			return var.base
+		end
+	end
+	return 1
+end
+
 return PlazaData

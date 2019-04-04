@@ -68,7 +68,16 @@ end
 
 function MainScene:initUI(gameID, roomMode)
     local t = self:seekChildByName("txt_id_lobby"):getLocalZOrder()
+    
+    t = 100 /2/5
+    
+    for i=1,1 do
+    	print("sssssssswwqeqwe",i)
+    end
+    
     print("zordersssssssssss",t)
+    
+    
 end
 
 function MainScene:onEnter()

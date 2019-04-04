@@ -7,7 +7,7 @@ local _selfData = {
     tableid       = -1,            
     status        = 0,         -- 状态
     round         = 0,         -- 当前回合
-    basebet       = 0,         -- 最少押注
+    basebet       = 1,         -- 最少押注
     jackpot       = 0,         -- 总注
     banker        = -1,        -- 庄家
     currseat      = -1,        -- 当前押注玩家
@@ -44,7 +44,7 @@ function GameData.restData()
     _selfData.tableid     = -1
     _selfData.status      = 0
     _selfData.round       = 0
-    _selfData.basebet     = 0
+    _selfData.basebet     = 1
     _selfData.jackpot     = 0
     _selfData.banker      = -1
     _selfData.currseat    = -1
@@ -66,7 +66,7 @@ function GameData.setRound(round)
 end
 
 function GameData.getRound()
-    return _selfData.round
+    return _selfData.round or 0
 end
 
 function GameData.setBasebet(basebet)

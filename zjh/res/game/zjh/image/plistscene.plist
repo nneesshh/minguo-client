@@ -7,7 +7,7 @@
 			<key>game/zjh/image/btn_back.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{855,474},{60,60}}</string>
+				<string>{{300,893},{60,60}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -18,7 +18,7 @@
 			<key>game/zjh/image/btn_bp.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{921,145},{156,75}}</string>
+				<string>{{0,841},{156,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -29,29 +29,29 @@
 			<key>game/zjh/image/btn_change.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{980,344},{53,41}}</string>
+				<string>{{280,650},{53,41}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{53,51}</string>
 			</dict>
 			<key>game/zjh/image/btn_gdd.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{589,66},{156,75}}</string>
+				<string>{{75,841},{156,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{156,75}</string>
 			</dict>
 			<key>game/zjh/image/btn_gz.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{745,66},{156,75}}</string>
+				<string>{{93,684},{156,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -62,40 +62,40 @@
 			<key>game/zjh/image/btn_help.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{699,291},{30,47}}</string>
+				<string>{{107,650},{30,47}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{53,51}</string>
 			</dict>
 			<key>game/zjh/image/btn_jz.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,108},{156,75}}</string>
+				<string>{{150,840},{156,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{156,75}</string>
 			</dict>
 			<key>game/zjh/image/btn_kp.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{156,108},{156,75}}</string>
+				<string>{{205,650},{156,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{156,75}</string>
 			</dict>
 			<key>game/zjh/image/btn_menu1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{468,264},{66,66}}</string>
+				<string>{{191,75},{66,66}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -106,7 +106,7 @@
 			<key>game/zjh/image/btn_menu2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{648,397},{66,66}}</string>
+				<string>{{191,141},{66,66}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -117,18 +117,18 @@
 			<key>game/zjh/image/btn_qp.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{312,108},{156,75}}</string>
+				<string>{{225,806},{156,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{156,75}</string>
 			</dict>
 			<key>game/zjh/image/btn_set.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{417,237},{51,51}}</string>
+				<string>{{245,302},{51,51}}</string>
 				<key>offset</key>
 				<string>{-1,0}</string>
 				<key>rotated</key>
@@ -139,7 +139,7 @@
 			<key>game/zjh/image/img_banker.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{648,350},{49,47}}</string>
+				<string>{{191,309},{49,47}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -150,29 +150,29 @@
 			<key>game/zjh/image/img_bet_back.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{996,145},{98,25}}</string>
+				<string>{{0,997},{98,25}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{98,25}</string>
 			</dict>
 			<key>game/zjh/image/img_card_type_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{733,222},{123,68}}</string>
+				<string>{{388,521},{123,68}}</string>
 				<key>offset</key>
 				<string>{-5,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{133,68}</string>
 			</dict>
 			<key>game/zjh/image/img_card_type_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{921,301},{122,59}}</string>
+				<string>{{363,893},{122,59}}</string>
 				<key>offset</key>
 				<string>{-5,5}</string>
 				<key>rotated</key>
@@ -183,18 +183,18 @@
 			<key>game/zjh/image/img_card_type_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{801,232},{122,60}}</string>
+				<string>{{241,962},{122,60}}</string>
 				<key>offset</key>
 				<string>{-5,4}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{133,68}</string>
 			</dict>
 			<key>game/zjh/image/img_card_type_4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{861,272},{122,60}}</string>
+				<string>{{363,771},{122,60}}</string>
 				<key>offset</key>
 				<string>{-5,4}</string>
 				<key>rotated</key>
@@ -205,29 +205,29 @@
 			<key>game/zjh/image/img_card_type_5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{577,291},{122,59}}</string>
+				<string>{{300,771},{122,59}}</string>
 				<key>offset</key>
 				<string>{-5,5}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{133,68}</string>
 			</dict>
 			<key>game/zjh/image/img_card_type_6.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{720,345},{121,59}}</string>
+				<string>{{264,0},{121,59}}</string>
 				<key>offset</key>
 				<string>{-6,5}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{133,68}</string>
 			</dict>
 			<key>game/zjh/image/img_check.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{543,108},{107,34}}</string>
+				<string>{{459,589},{107,34}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -238,7 +238,7 @@
 			<key>game/zjh/image/img_chip_0.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,183},{84,84}}</string>
+				<string>{{264,59},{84,84}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -249,7 +249,7 @@
 			<key>game/zjh/image/img_chip_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{168,183},{83,83}}</string>
+				<string>{{108,75},{83,83}}</string>
 				<key>offset</key>
 				<string>{-1,1}</string>
 				<key>rotated</key>
@@ -260,7 +260,7 @@
 			<key>game/zjh/image/img_chip_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{251,183},{83,83}}</string>
+				<string>{{108,158},{83,83}}</string>
 				<key>offset</key>
 				<string>{-1,1}</string>
 				<key>rotated</key>
@@ -271,7 +271,7 @@
 			<key>game/zjh/image/img_chip_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{84,183},{84,84}}</string>
+				<string>{{348,80},{84,84}}</string>
 				<key>offset</key>
 				<string>{0,-1}</string>
 				<key>rotated</key>
@@ -282,7 +282,7 @@
 			<key>game/zjh/image/img_chip_4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{334,183},{83,83}}</string>
+				<string>{{257,143},{83,83}}</string>
 				<key>offset</key>
 				<string>{-1,1}</string>
 				<key>rotated</key>
@@ -293,7 +293,7 @@
 			<key>game/zjh/image/img_chip_5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{565,350},{83,83}}</string>
+				<string>{{108,241},{83,83}}</string>
 				<key>offset</key>
 				<string>{-1,1}</string>
 				<key>rotated</key>
@@ -304,7 +304,7 @@
 			<key>game/zjh/image/img_chip_6.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{779,434},{76,76}}</string>
+				<string>{{246,226},{76,76}}</string>
 				<key>offset</key>
 				<string>{0,4}</string>
 				<key>rotated</key>
@@ -315,29 +315,29 @@
 			<key>game/zjh/image/img_dz.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{996,294},{50,21}}</string>
+				<string>{{98,997},{93,21}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
-				<string>{50,21}</string>
+				<string>{93,21}</string>
 			</dict>
 			<key>game/zjh/image/img_fold.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{543,215},{107,34}}</string>
+				<string>{{0,650},{107,34}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{107,34}</string>
 			</dict>
 			<key>game/zjh/image/img_gold.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{980,397},{45,41}}</string>
+				<string>{{333,650},{45,41}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -348,7 +348,7 @@
 			<key>game/zjh/image/img_head_0_0.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{779,354},{80,80}}</string>
+				<string>{{340,164},{80,80}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -359,7 +359,7 @@
 			<key>game/zjh/image/img_head_back.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{859,394},{80,59}}</string>
+				<string>{{385,0},{80,59}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -370,7 +370,7 @@
 			<key>game/zjh/image/img_hint_start.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{869,0},{272,52}}</string>
+				<string>{{459,0},{272,52}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -385,14 +385,14 @@
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{589,108}</string>
 			</dict>
 			<key>game/zjh/image/img_light.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{921,0},{93,145}}</string>
+				<string>{{0,696},{93,145}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -403,7 +403,7 @@
 			<key>game/zjh/image/img_menu_back.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{589,0},{66,280}}</string>
+				<string>{{108,521},{66,280}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -414,7 +414,7 @@
 			<key>game/zjh/image/img_speak_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{820,66},{83,48}}</string>
+				<string>{{459,272},{83,48}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -425,7 +425,7 @@
 			<key>game/zjh/image/img_speak_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{820,149},{83,48}}</string>
+				<string>{{459,355},{83,48}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -436,7 +436,7 @@
 			<key>game/zjh/image/img_speak_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{918,423},{83,48}}</string>
+				<string>{{459,438},{83,48}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -447,7 +447,7 @@
 			<key>game/zjh/image/img_sure.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{534,322},{31,30}}</string>
+				<string>{{168,671},{31,30}}</string>
 				<key>offset</key>
 				<string>{-52,11}</string>
 				<key>rotated</key>
@@ -458,40 +458,29 @@
 			<key>game/zjh/image/img_turn.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{699,338},{50,21}}</string>
+				<string>{{191,996},{50,21}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{50,21}</string>
 			</dict>
 			<key>game/zjh/image/img_zz.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{996,243},{51,21}}</string>
+				<string>{{154,650},{51,21}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{51,21}</string>
-			</dict>
-			<key>game/zjh/image/img_chip_small_0.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{915,506},{50,54}}</string>
-				<key>offset</key>
-				<string>{1,0}</string>
-				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
-				<string>{51,55}</string>
+				<string>{51,21}</string>
 			</dict>
 			<key>game/zjh/image/img_chip_small_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{965,544},{50,54}}</string>
+				<string>{{322,244},{50,54}}</string>
 				<key>offset</key>
 				<string>{1,0}</string>
 				<key>rotated</key>
@@ -502,20 +491,20 @@
 			<key>game/zjh/image/img_chip_small_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{417,183},{50,54}}</string>
+				<string>{{376,244},{50,54}}</string>
 				<key>offset</key>
 				<string>{1,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{51,55}</string>
 			</dict>
 			<key>game/zjh/image/img_chip_small_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{966,442},{51,55}}</string>
+				<string>{{322,294},{50,54}}</string>
 				<key>offset</key>
-				<string>{0,0}</string>
+				<string>{1,0}</string>
 				<key>rotated</key>
 				<true />
 				<key>sourceSize</key>
@@ -524,7 +513,18 @@
 			<key>game/zjh/image/img_chip_small_4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{966,493},{51,54}}</string>
+				<string>{{191,207},{51,55}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{51,55}</string>
+			</dict>
+			<key>game/zjh/image/img_chip_small_5.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{191,258},{51,54}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -535,7 +535,18 @@
 			<key>game/zjh/image/btn_bp_gray.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{468,108},{156,75}}</string>
+				<string>{{280,696},{156,75}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{156,75}</string>
+			</dict>
+			<key>game/zjh/image/btn_gz_gray.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{436,696},{156,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -543,10 +554,21 @@
 				<key>sourceSize</key>
 				<string>{156,75}</string>
 			</dict>
-			<key>game/zjh/image/btn_gz_gray.png</key>
+			<key>game/zjh/image/btn_jz_gray.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{577,141},{156,75}}</string>
+				<string>{{423,852},{156,75}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{156,75}</string>
+			</dict>
+			<key>game/zjh/image/btn_qp_gray.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{108,0},{156,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -554,16 +576,16 @@
 				<key>sourceSize</key>
 				<string>{156,75}</string>
 			</dict>
-			<key>game/zjh/image/btn_jz_gray.png</key>
+			<key>game/zjh/image/img_hint.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{577,216},{156,75}}</string>
+				<string>{{0,589},{459,61}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
-				<string>{156,75}</string>
+				<string>{459,61}</string>
 			</dict>
 		</dict>
 		<key>metadata</key>
@@ -575,14 +597,14 @@
 			<key>realTextureFileName</key>
 			<string>plistscene.png</string>
 			<key>size</key>
-			<string>{1021,594}</string>
+			<string>{511,1022}</string>
 		</dict>
 		<key>texture</key>
 		<dict>
 			<key>width</key>
-			<integer>1021</integer>
+			<integer>511</integer>
 			<key>height</key>
-			<integer>594</integer>
+			<integer>1022</integer>
 		</dict>
 	</dict>
 </plist>

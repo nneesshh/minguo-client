@@ -190,8 +190,7 @@ function GameCardNode:playTakeFirstAction()
     local pCenter = parent:convertToNodeSpace(cc.p(szScreen.width*0.5, szScreen.height*0.5))
     self._rootNode:setPosition(pCenter)
     
-    local pos = self:calHandCardPosition(self._index, self._localSeat)
-    
+    local pos = self:calHandCardPosition(self._index, self._localSeat)    
     local actMoveTo = cc.MoveTo:create(TAKE_FIRST_DELAY, pos)
    
     self._rootNode:runAction(actMoveTo) 
@@ -201,12 +200,8 @@ function GameCardNode:calHandCardPosition(index, localSeat)
     local x,y = 0,0
     local size = self:getCardSize()
     index = index - 1
-    if localSeat == HERO_LOCAL_SEAT then
-        x = x + index * size.width   
-    else 
-        x = x + index * size.width*0.5    
-    end
-
+    x = x + index*size.width*0.5    
+        
     return cc.p(x, y)
 end
 

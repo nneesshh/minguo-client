@@ -39,19 +39,17 @@ function __G__TRACKBACK__(msg)
     cclog("----------------------------------------")
     cclog("LUA ERROR: " .. tostring(msg) .. "\n")
     cclog(trac)
-    --writeDump("dump.txt",msg)
-    --writeDump("dump.txt",trac)
+    writeDump("dump.txt",msg)
+    writeDump("dump.txt",trac)
     
     return msg
 end
 
 print = release_print
 
---package.cpath = package.cpath .. ";./?.dll;./clibs/?.dll"
---upconn = require "upconn.ZjhUpconn"
---upconn.start()
-
-
+package.cpath = package.cpath .. ";./?.dll;./clibs/?.dll"
+upconn = require "upconn.ZjhUpconn"
+upconn.start()
 
 local function main()
     collectgarbage("collect")

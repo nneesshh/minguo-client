@@ -63,15 +63,19 @@
               </Folder>
               <Image Name="btn_back.png" />
               <Image Name="btn_bp.png" />
+              <Image Name="btn_bp_gray.png" />
               <Image Name="btn_change.png" />
               <Image Name="btn_gdd.png" />
               <Image Name="btn_gz.png" />
+              <Image Name="btn_gz_gray.png" />
               <Image Name="btn_help.png" />
               <Image Name="btn_jz.png" />
+              <Image Name="btn_jz_gray.png" />
               <Image Name="btn_kp.png" />
               <Image Name="btn_menu1.png" />
               <Image Name="btn_menu2.png" />
               <Image Name="btn_qp.png" />
+              <Image Name="btn_qp_gray.png" />
               <Image Name="btn_set.png" />
               <Image Name="img_background.jpg" />
               <Image Name="img_banker.png" />
@@ -243,6 +247,7 @@
               <Image Name="img_line.png" />
               <Image Name="img_title.png" />
             </Folder>
+            <PlistInfo Name="Plist.csi" Type="Plist" />
           </Folder>
         </Folder>
       </RootFolder>

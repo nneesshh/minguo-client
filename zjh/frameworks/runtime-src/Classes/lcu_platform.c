@@ -23,7 +23,7 @@ get_platform_name()
 #if defined(LCU_PLATFORM_WIN32) || defined(LCU_PLATFORM_WINRT)
 	return "windows";
 #elif defined(LCU_PLATFORM_ANDROID)
-	return "android"
+	return "android";
 #elif defined(LCU_PLATFORM_LINUX)
 	return "linux";
 #elif defined(LCU_PLATFORM_DARWIN)

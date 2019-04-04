@@ -111,7 +111,7 @@ get_netinfo(int *out_num)
 
 	int sock = socket(AF_INET, SOCK_DGRAM, 0);
 	if (sock < 0) {
-		return -10;
+		return NULL;
 	}
 
 	struct ifconf ifc;
@@ -122,20 +122,20 @@ get_netinfo(int *out_num)
 	int iRet = ioctl(sock, SIOCGIFCONF, &ifc);
 	if (iRet != 0) {
 		close(sock);
-		return iRet;
+		return NULL;
 	}
 
 	int count = ifc.ifc_len / sizeof(struct ifreq);
 	//printf("ifc.size=%d\n", count);
 	if (count == 0) {
 		close(sock);
-		return -20;
+		return NULL;
 	}
 
 	netinfo_t *pNetinfo;
-
 	struct ifreq ifr;
-	for (int i = 0; i < count; ++i) {
+	int i;
+	for (i = 0; i < count; ++i) {
 		memset(pNetinfo, 0, sizeof(netinfo_t));
 
 		// name

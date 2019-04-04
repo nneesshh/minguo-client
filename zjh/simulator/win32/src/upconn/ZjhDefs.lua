@@ -1,12 +1,12 @@
 local ErrorCode = {
-    ERR_SUCCESS = 0x00, --
-    ERR_UNKNOWN = 0x01, --
-    ERR_USERNAME_INVALID = 0x02, --
-    ERR_USER_NOT_FOUND = 0x03, --
-    ERR_WRONG_PASSWORD = 0x04, --
-    ERR_ACCOUNT_RESTRICTION = 0x05, --
-    ERR_OUT_OF_LIMIT = 0x06, --
-    ERR_NO_FREE_TABLE = 0x07 --
+    ERR_SUCCESS                 = 0x00, --
+    ERR_UNKNOWN                 = 0x01, --
+    ERR_USERNAME_INVALID        = 0x02, --
+    ERR_USER_NOT_FOUND          = 0x03, --
+    ERR_WRONG_PASSWORD          = 0x04, --
+    ERR_ACCOUNT_RESTRICTION     = 0x05, --
+    ERR_OUT_OF_LIMIT            = 0x06, --
+    ERR_NO_FREE_TABLE           = 0x07  --
 }
 
 local MsgId = {

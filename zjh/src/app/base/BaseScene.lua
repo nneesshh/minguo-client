@@ -234,7 +234,7 @@ end
 -- 通过名称查找子节点
 function BaseScene:seekChildByName(name)
     if not name or not self._rootNode then
-        print("BaseScene:seekChildByName, name or rootNode is nil")
+        print("BaseScene:seekChildByName, name or rootNode is nil", name)
         return nil
     end
 

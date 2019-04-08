@@ -87,22 +87,24 @@ function GameCardNode:setCardID(id)
             local ibig = normal:getChildByName("img_color_big") 
             local iface = normal:getChildByName("img_card_face") 
             
-            local npath = self.imgCardPath .. self._color % 2 .. "_" .. self._num .. ".png"
-            local spath = self.imgCardPath .. "color_" .. self._color .. ".png"
-            inum:loadTexture(npath, ccui.TextureResType.plistType)
-            ismall:loadTexture(spath, ccui.TextureResType.plistType)
-            
-            if self._num <= 10 then
-                iface:setVisible(false)
-                ibig:setVisible(true)
-                local bpath = self.imgCardPath .. "color_" .. self._color .. ".png"         
-                ibig:loadTexture(bpath, ccui.TextureResType.plistType)
-            else
-                ibig:setVisible(false)
-                iface:setVisible(true)
-                local fpath = self.imgCardPath .. "face_" .. self._color % 2 .. "_" .. self._num .. ".png"
-                iface:loadTexture(fpath, ccui.TextureResType.plistType)
-            end 
+            if self._num and self._color then
+                local npath = self.imgCardPath .. self._color % 2 .. "_" .. self._num .. ".png"
+                local spath = self.imgCardPath .. "color_" .. self._color .. ".png"
+                inum:loadTexture(npath, ccui.TextureResType.plistType)
+                ismall:loadTexture(spath, ccui.TextureResType.plistType)
+
+                if self._num <= 10 then
+                    iface:setVisible(false)
+                    ibig:setVisible(true)
+                    local bpath = self.imgCardPath .. "color_" .. self._color .. ".png"         
+                    ibig:loadTexture(bpath, ccui.TextureResType.plistType)
+                else
+                    ibig:setVisible(false)
+                    iface:setVisible(true)
+                    local fpath = self.imgCardPath .. "face_" .. self._color % 2 .. "_" .. self._num .. ".png"
+                    iface:loadTexture(fpath, ccui.TextureResType.plistType)
+                end 
+            end
         end
     end
 end

@@ -138,7 +138,7 @@ function GamePlayerNode:showTxtBalance(visible, balance)
 
     if txtBalance then
         if balance ~= nil then
-            txtBalance:setString(app.util.ToolUtils.numConversionByDecimal(tostring(balance)))
+            txtBalance:setString(balance)--app.util.ToolUtils.numConversionByDecimal(tostring(balance)))
         end
         txtBalance:setVisible(visible)
     end
@@ -194,7 +194,7 @@ function GamePlayerNode:showImgCardType(visible, index)
     local imgType = self:seekChildByName("img_card_type")
     imgType:setVisible(visible)
     
-    if index then
+    if index and index >= 1 and index <= 6 then
         local resPath = "game/zjh/image/img_card_type_" .. index .. ".png"
             
         imgType:loadTexture(resPath, ccui.TextureResType.plistType)

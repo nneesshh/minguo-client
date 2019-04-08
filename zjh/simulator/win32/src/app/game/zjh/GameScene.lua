@@ -101,7 +101,7 @@ function GameScene:showBaseChipAction(localseat)
     local base = app.game.GameConfig.getBase()
     txt:setString(base)
 
-    imgChip:loadTexture("game/zjh/image/img_chip_small_0.png", ccui.TextureResType.plistType)    
+    imgChip:loadTexture("game/zjh/image/img_chip_small_1.png", ccui.TextureResType.plistType)    
     imgChip:setPosition(cc.p(cx, cy))    
     pnlarea:addChild(imgChip)            
     imgChip:runAction(cc.MoveTo:create(0.5, cc.p(tx,ty)))                      
@@ -116,13 +116,18 @@ function GameScene:showChipAction(index, count, localseat)
     local fx,fy = nodechip:getPosition()    
     local cx, cy = pnlarea:convertToNodeSpace(cc.p(fx, fy))
     
-    local chipParent = self:seekChildByName("imgchip")    
+    local chipParent = self:seekChildByName("imgchip")  
+    
     for i=1,count do
         local tx,ty = math.random(1, size.width) , math.random(1, size.height) 
         local imgChip = chipParent:clone()
         local txt = imgChip:getChildByName("txt_chip_value")
-        txt:setString(index*2*base)
-        imgChip:loadTexture(string.format("game/zjh/image/img_chip_small_%d.png", index), ccui.TextureResType.plistType)    
+        txt:setString(index*2*base)  
+        local temp = math.ceil(index)      
+        if temp < 1 or temp > 5 then
+            temp = 1
+        end          
+        imgChip:loadTexture(string.format("game/zjh/image/img_chip_small_%d.png", temp), ccui.TextureResType.plistType)    
         imgChip:setPosition(cc.p(cx, cy))    
         pnlarea:addChild(imgChip)            
         imgChip:runAction(cc.MoveTo:create(0.5, cc.p(tx,ty)))    
@@ -185,7 +190,9 @@ end
 
 function GameScene:isBiPaiPanelVisible()
     local pnl = self:seekChildByName("pnl_bipai")
-	return pnl:isVisible()
+    if pnl then
+        return pnl:isVisible()
+    end	
 end
 
 function GameScene:getToPosition()

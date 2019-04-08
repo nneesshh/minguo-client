@@ -31,7 +31,6 @@ end
 
 function GameData.setGameInfo(info)
     _selfData.round       = info.round
-    _selfData.basebet     = info.basebet
     _selfData.jackpot     = info.jackpot
     _selfData.currseat    = info.currseat
 end

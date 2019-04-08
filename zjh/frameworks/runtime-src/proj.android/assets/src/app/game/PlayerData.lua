@@ -73,6 +73,16 @@ function PlayerData.updatePlayerRiches(playerSeat, playerBet, playerBalance)
     end
 end
 
+-- 更新玩家财富
+function PlayerData.reducePlayerRiches(playerSeat, playerBalance)
+    local player = PlayerData.getPlayerByServerSeat(playerSeat)
+    if player then
+        local balance = player:getBalance() or 0  
+        player:setBalance(balance - playerBalance)
+        return balance - playerBalance   
+    end
+end
+
 -- 更新玩家状态
 function PlayerData.updatePlayerStatus(playerSeat, status)
     local player = PlayerData.getPlayerByServerSeat(playerSeat)
@@ -91,7 +101,10 @@ end
 function PlayerData.resetPlayerBet(playerSeat)
     local player = PlayerData.getPlayerByServerSeat(playerSeat)
     if player then
-        player:resetBet(0)       
+        print("reset bet seat is ", playerSeat)
+        player:resetBet(0)
+    else
+        print("reset player is nil",playerSeat)           
     end
 end
 

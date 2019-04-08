@@ -41,10 +41,12 @@ function GameMenuNode:onTouchBtnGameMenu()
     self:showMenu()
 end
 
-function GameMenuNode:onTouchBtnGameSet()      
+function GameMenuNode:onTouchBtnGameSet()   
+   
 end
 
-function GameMenuNode:onTouchBtnChange()    
+function GameMenuNode:onTouchBtnChange() 
+   
 end
 
 function GameMenuNode:onTouchBtnHelp()

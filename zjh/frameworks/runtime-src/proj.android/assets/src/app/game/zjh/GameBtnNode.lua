@@ -140,14 +140,20 @@ function GameBtnNode:setDisableByIndex(index)
         local img = btn:getChildByName("img_disable")
         btn:setEnabled(true)
         img:setVisible(false)
-    end 
+    end
     
-    for i=1,index-1 do
-    	local btn = self:seekChildByName("btn_bet_" .. i)
-        local img = btn:getChildByName("img_disable")
-    	btn:setEnabled(false)
-        img:setVisible(true)
-    end  
+    if index then
+        index = math.ceil(index)
+        if index < 1 or index > 6 then
+            index = 1
+        end      	
+        for i=1,index-1 do
+            local btn = self:seekChildByName("btn_bet_" .. i)
+            local img = btn:getChildByName("img_disable")
+            btn:setEnabled(false)
+            img:setVisible(true)
+        end  
+    end 
 end
 
 return GameBtnNode

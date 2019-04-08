@@ -85,7 +85,7 @@ function Player:setBet(bet)
     self._playerInfo.bet = self._playerInfo.bet + bet
 end
 
-function Player:resetBet(bet)
+function Player:resetBet()
     self._playerInfo.bet = 0
 end
 

@@ -51,12 +51,12 @@ end
 function GameBtnNode:onEvent(sender, eventType)
     local name = sender:getName()
     if name == "cbx_gdd" then
-        if eventType == ccui.CheckBoxEventType.selected then
-            self:setCbxSelected(true)
-            self._presenter:onEventCbxGendaodi(true)
-        elseif eventType == ccui.CheckBoxEventType.unselected then
-            self:setCbxSelected(false)
-            self._presenter:onEventCbxGendaodi(false)
+        if eventType == ccui.CheckBoxEventType.selected then  
+            self:setSelected(true)          
+            self._presenter:onEventCbxGendaodi(true)            
+        elseif eventType == ccui.CheckBoxEventType.unselected then            
+            self:setSelected(false)
+            self._presenter:onEventCbxGendaodi(false)            
         end
     end
 end
@@ -123,14 +123,14 @@ function GameBtnNode:showBetBtnEnable(enable,round)
     end    
 end
 
-function GameBtnNode:setCbxSelected(flag)
+function GameBtnNode:setSelected(flag)
     local checkboxGdd = self:seekChildByName("cbx_gdd")
     checkboxGdd:setSelected(flag)
 end
 
-function GameBtnNode:getCbxSelected()
+function GameBtnNode:isSelected()
     local checkboxGdd = self:seekChildByName("cbx_gdd")
-    return checkboxGdd:getSelected()
+    return checkboxGdd:isSelected()
 end
 
 -- index之后的按钮可点击
@@ -140,14 +140,20 @@ function GameBtnNode:setDisableByIndex(index)
         local img = btn:getChildByName("img_disable")
         btn:setEnabled(true)
         img:setVisible(false)
-    end 
+    end
     
-    for i=1,index-1 do
-    	local btn = self:seekChildByName("btn_bet_" .. i)
-        local img = btn:getChildByName("img_disable")
-    	btn:setEnabled(false)
-        img:setVisible(true)
-    end  
+    if index then
+        index = math.ceil(index)
+        if index < 1 or index > 6 then
+            index = 1
+        end      	
+        for i=1,index-1 do
+            local btn = self:seekChildByName("btn_bet_" .. i)
+            local img = btn:getChildByName("img_disable")
+            btn:setEnabled(false)
+            img:setVisible(true)
+        end  
+    end 
 end
 
 return GameBtnNode

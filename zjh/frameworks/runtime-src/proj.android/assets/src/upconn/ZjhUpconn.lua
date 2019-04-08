@@ -135,7 +135,7 @@ local function _readPlayerAnteUp(po)
     info.playerBalance = po:read_int64()
     --
     gameinfo.round     = po:read_byte()
-    gameinfo.basebet   = po:read_int32()
+    info.basebet       = po:read_int32()
     gameinfo.jackpot   = po:read_int32()
     gameinfo.currseat  = po:read_byte()
 
@@ -156,7 +156,7 @@ local function _readPlayerCompareCard(po)
     info.loserSeat     = po:read_byte()
     --
     gameinfo.round     = po:read_byte()
-    gameinfo.basebet   = po:read_int32()
+    info.basebet       = po:read_int32()
     gameinfo.jackpot   = po:read_int32()
     gameinfo.currseat  = po:read_byte()
     return info ,gameinfo
@@ -190,7 +190,7 @@ local function _readGameOver(po)
         
         players[seat].type  = po:read_byte()
         players[seat].balance = po:read_int64()
-        players[seat].isp  = po:read_byte()
+        players[seat].isp = po:read_byte()
     end
     return info, players
 end
@@ -231,11 +231,12 @@ function _M.onLogin(conn, sessionid, msgid)
             local roomid =  po:read_int32()
             local tabInfo = _readTableInfo(po)
             tabInfo.basecoin = 0
-            app.game.GameData.setTableInfo(tabInfo)
             local base = app.data.PlazaData.getBaseByRoomid(app.Game.GameID.ZJH, roomid)
             app.game.GameEngine:getInstance():start(app.Game.GameID.ZJH,base)
-            app.game.GameEngine:getInstance():onStartGame()
             
+            app.game.GameEngine:getInstance():onStartGame()            
+            app.game.GameData.setTableInfo(tabInfo)
+                                   
             local playerCount = po:read_int32()
             local ids = {}
             for i = 1, playerCount do

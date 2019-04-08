@@ -25,7 +25,7 @@ function GameScene:onTouch(sender, eventType)
     local name = sender:getName()
     if eventType == ccui.TouchEventType.ended then        
         if name == "btn_exit" then
-            self._presenter:sendLeaveRoom()       
+            self._presenter:sendLeaveRoom()              
         end
     end
 end

@@ -46,6 +46,8 @@ function GameCardNode:setCardID(id)
     self._num          = self._presenter:getCardNum(id)
     self._color        = self._presenter:getCardColor(id)
     
+    print("wq--card--is", id, self._num, self._color)
+    
     local front = self:seekChildByName("img_card_front")
     local back = self:seekChildByName("img_card_back")
     local gary = self:seekChildByName("img_card_small_king")
@@ -93,7 +95,7 @@ function GameCardNode:setCardID(id)
                 inum:loadTexture(npath, ccui.TextureResType.plistType)
                 ismall:loadTexture(spath, ccui.TextureResType.plistType)
 
-                if self._num <= 10 then
+                if self._num <= 10 or self._num == 14 then
                     iface:setVisible(false)
                     ibig:setVisible(true)
                     local bpath = self.imgCardPath .. "color_" .. self._color .. ".png"         

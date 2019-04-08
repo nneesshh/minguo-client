@@ -201,6 +201,7 @@ end
 function GamePresenter:onTakeFirst()
     local function callback()
         self._gameBtnNode:showBetBtns(true)
+        self._gameBtnNode:setSelected(false)
         self:onBankerBet()
     end
     
@@ -233,6 +234,13 @@ function GamePresenter:onBankerBet()
     end
     
     self:onClock(banker)
+    
+    local heroseat = app.game.PlayerData.getHeroSeat()
+    if banker == heroseat and self._gameBtnNode:isSelected() then
+        self:performWithDelayGlobal(function()
+            self:sendBetmult(1) 
+        end, 1)
+    end
 end
 
 -- 玩家押注
@@ -251,6 +259,13 @@ function GamePresenter:onPlayerBet(seat, index)
     end
 
     self:onClock(seat)
+    
+    local heroseat = app.game.PlayerData.getHeroSeat()
+    if seat == heroseat and self._gameBtnNode:isSelected() then
+        self:performWithDelayGlobal(function()
+            self:sendBetmult(1) 
+        end, 1)
+    end
 end
 
 -- 弃牌
@@ -372,10 +387,15 @@ function GamePresenter:onGameOver(data, players)
         local localSeat = app.game.PlayerData.serverSeatToLocalSeat(winseat)    
         local gameHandCardNode = self._gamePlayerNodes[localSeat]:getGameHandCardNode()            
         gameHandCardNode:resetHandCards()
+        
+        print("gameover cards is")
+        dump(players[winseat].cards)
+      
         gameHandCardNode:createCards(players[winseat].cards)  
 
         self._gamePlayerNodes[localSeat]:showImgCardType(true, players[winseat].type)          
-
+        self._gamePlayerNodes[localSeat]:showImgCheck(false)
+        
         self._ui:getInstance():showChipBackAction({localSeat})
 
         for seat = 0, self._maxPlayerCnt - 1 do
@@ -384,9 +404,7 @@ function GamePresenter:onGameOver(data, players)
 
                 local localSeat = app.game.PlayerData.serverSeatToLocalSeat(seat)            
                 self._gamePlayerNodes[localSeat]:showWinloseScore(players[seat].score)            
-                self._gamePlayerNodes[localSeat]:showTxtBalance(true, players[seat].balance)            
-                self._gamePlayerNodes[localSeat]:showImgCheck(false) 
-                self._gamePlayerNodes[localSeat]:showPnlClockCircle(false)          
+                self._gamePlayerNodes[localSeat]:showTxtBalance(true, players[seat].balance)                                         
             end 
         end
 
@@ -397,7 +415,14 @@ function GamePresenter:onGameOver(data, players)
 
         self:performWithDelayGlobal(function()
             self:sendPlayerReady()
-        end, 5) 
+        end, 4) 
+    end
+    
+    for seat = 0, self._maxPlayerCnt - 1 do
+        if players[seat] then                      
+            local localSeat = app.game.PlayerData.serverSeatToLocalSeat(seat)                        
+            self._gamePlayerNodes[localSeat]:showPnlClockCircle(false)          
+        end 
     end
     
     -- 延时结算
@@ -405,6 +430,13 @@ function GamePresenter:onGameOver(data, players)
         delay()
     end, 3) 
     
+end
+
+function GamePresenter:test()
+    local gameHandCardNode = self._gamePlayerNodes[1]:getGameHandCardNode()            
+    gameHandCardNode:resetHandCards()
+
+    gameHandCardNode:createCards({30,43,18}) 
 end
 
 function GamePresenter:onRelinkEnter(cards)   

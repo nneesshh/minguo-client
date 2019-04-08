@@ -77,7 +77,16 @@ function MainScene:initUI(gameID, roomMode)
     
     print("zordersssssssssss",t)
     
+    local a1 = bit._rshift(bit._and(30, 0xf0), 4) 
+    local a2 = bit._and(30, 0x0f)
     
+    local a3 = bit._rshift(bit._and(43, 0xf0), 4) 
+    local a4 = bit._and(43, 0x0f)
+    
+    local a5 = bit._rshift(bit._and(18, 0xf0), 4) 
+    local a6 = bit._and(18, 0x0f)
+    
+    print("sss",a1,a2,a3,a4,a5,a6)
 end
 
 function MainScene:onEnter()

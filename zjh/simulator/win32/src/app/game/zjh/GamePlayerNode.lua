@@ -138,7 +138,7 @@ function GamePlayerNode:showTxtBalance(visible, balance)
 
     if txtBalance then
         if balance ~= nil then
-            txtBalance:setString(app.util.ToolUtils.numConversionByDecimal(tostring(balance)))
+            txtBalance:setString(balance)--app.util.ToolUtils.numConversionByDecimal(tostring(balance)))
         end
         txtBalance:setVisible(visible)
     end

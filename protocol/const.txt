@@ -31,7 +31,9 @@ typedef enum
 typedef enum 
 {
 	TS_IDLE = 0,
-	TS_DEALING, // 发牌
-	TS_PLAYING, // 游戏中
-	TS_ENDING, // 游戏结束
+	TS_PREPARE, // 1 = 准备
+	TS_BANKER, // 2 = 抢庄
+	TS_DEALING, // 3 = 发牌
+	TS_PLAYING, // 4 = 游戏中
+	TS_ENDING, // 5 = 游戏结束
 }TABLE_STATUS;

@@ -106,7 +106,7 @@ end
 
 -- 显示设置
 function MainPresenter:showSet()
-    app.lobby.set.SetPresenter:getInstance():start()
+    app.lobby.set.SetPresenter:getInstance():start("lobby")
 end
 
 -- 显示商城

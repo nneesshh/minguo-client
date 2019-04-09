@@ -104,7 +104,27 @@ function GameScene:showBaseChipAction(localseat)
     imgChip:loadTexture("game/zjh/image/img_chip_small_1.png", ccui.TextureResType.plistType)    
     imgChip:setPosition(cc.p(cx, cy))    
     pnlarea:addChild(imgChip)            
-    imgChip:runAction(cc.MoveTo:create(0.5, cc.p(tx,ty)))                      
+    imgChip:runAction(cc.MoveTo:create(0.3, cc.p(tx,ty)))                      
+end
+
+function GameScene:showAllInChipAction(localseat)        
+    local pnlarea = self:seekChildByName("pnl_chip_area")
+    local size = pnlarea:getContentSize()
+
+    local nodechip = self:seekChildByName("node_chip_"..localseat)
+    local fx,fy = nodechip:getPosition()    
+    local cx, cy = pnlarea:convertToNodeSpace(cc.p(fx, fy))
+
+    local chipParent = self:seekChildByName("imgchip")    
+
+    local tx,ty = math.random(1, size.width) , math.random(1, size.height) 
+    local imgChip = chipParent:clone()
+    local txt = imgChip:getChildByName("txt_chip_value")    
+    txt:setString("全压")
+    imgChip:loadTexture("game/zjh/image/img_chip_small_6.png", ccui.TextureResType.plistType)    
+    imgChip:setPosition(cc.p(cx, cy))    
+    pnlarea:addChild(imgChip)            
+    imgChip:runAction(cc.MoveTo:create(0.3, cc.p(tx,ty)))                      
 end
 
 function GameScene:showChipAction(index, count, localseat) 
@@ -130,7 +150,7 @@ function GameScene:showChipAction(index, count, localseat)
         imgChip:loadTexture(string.format("game/zjh/image/img_chip_small_%d.png", temp), ccui.TextureResType.plistType)    
         imgChip:setPosition(cc.p(cx, cy))    
         pnlarea:addChild(imgChip)            
-        imgChip:runAction(cc.MoveTo:create(0.5, cc.p(tx,ty)))    
+        imgChip:runAction(cc.MoveTo:create(0.3, cc.p(tx,ty)))    
     end                
 end
 

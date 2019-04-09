@@ -48,4 +48,10 @@ function SetLayer:onEvent(sender, eventType)
     print("name is", name)
 end
 
+function SetLayer:initSet(bflag)
+    local btn =  self:seekChildByName("btn_switch_account")
+	
+    btn:setVisible(bflag)
+end
+
 return SetLayer

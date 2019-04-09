@@ -9,9 +9,7 @@
               <Project Name="button.csd" Type="Node" />
               <Project Name="card.csd" Type="Node" />
               <Project Name="gamescene.csd" Type="Scene" />
-              <Project Name="help.csd" Type="Layer" />
               <Project Name="menu.csd" Type="Node" />
-              <Project Name="set.csd" Type="Layer" />
             </Folder>
             <Folder Name="image">
               <Folder Name="card">
@@ -74,6 +72,7 @@
               <Image Name="btn_jz.png" />
               <Image Name="btn_jz_gray.png" />
               <Image Name="btn_kp.png" />
+              <Image Name="btn_kp_gray.png" />
               <Image Name="btn_menu1.png" />
               <Image Name="btn_menu2.png" />
               <Image Name="btn_qp.png" />
@@ -103,6 +102,7 @@
               <Image Name="img_chip_small_3.png" />
               <Image Name="img_chip_small_4.png" />
               <Image Name="img_chip_small_5.png" />
+              <Image Name="img_chip_small_6.png" />
               <Image Name="img_desk.png" />
               <Image Name="img_dz.png" />
               <Image Name="img_fold.png" />
@@ -122,25 +122,6 @@
               <Image Name="img_zz.png" />
               <PlistInfo Name="plistcard.csi" Type="Plist" />
               <PlistInfo Name="plistscene.csi" Type="Plist" />
-              <Folder Name="public">
-                <Image Name="btn_close.png" />
-                <Image Name="btn_off.png" />
-                <Image Name="btn_on.png" />
-                <Image Name="img_back1.png" />
-                <Image Name="img_back2.png" />
-                <Image Name="img_effect.png" />
-                <Image Name="img_hint_back.png" />
-                <Image Name="img_hint_gray.png" />
-                <Image Name="img_music.png" />
-                <Image Name="img_mute.png" />
-                <Image Name="img_psz_rule.png" />
-                <Image Name="img_set.png" />
-                <Image Name="img_slider.png" />
-                <Image Name="img_slider_1.png" />
-                <Image Name="img_slider_2.png" />
-                <Image Name="img_title.png" />
-                <Image Name="img_title_sm.png" />
-              </Folder>
             </Folder>
           </Folder>
         </Folder>
@@ -177,7 +158,7 @@
               <Image Name="loadbar1.png" />
               <Image Name="loadbar2.png" />
               <Image Name="loadbar3.png" />
-              <Image Name="tourist.png" />
+              <Image Name="tourist1.png" />
             </Folder>
             <Folder Name="lobby">
               <Image Name="btn_brnn.png" />
@@ -270,7 +251,6 @@
               <Image Name="img_line.png" />
               <Image Name="img_title.png" />
             </Folder>
-            <PlistInfo Name="Plist.csi" Type="Plist" />
           </Folder>
         </Folder>
       </RootFolder>

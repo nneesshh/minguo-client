@@ -18,8 +18,8 @@ function GameLoader.unloader()
 end
 
 function GameLoader.loadZJH(roomMode)
-    app.game.GamePresenter = require("app.game.zjh.GamePresenter")
-    app.game.GameData = require("app.game.zjh.GameData")
+    app.game.GamePresenter      = require("app.game.zjh.GamePresenter")
+    app.game.GameData           = require("app.game.zjh.GameData")
 end
 
 return GameLoader

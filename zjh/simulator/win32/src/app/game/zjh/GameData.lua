@@ -56,7 +56,7 @@ function GameData.setStatus(status)
     _selfData.status = status 
 end
 
-function GameData.getStatus()
+function GameData.getTableStatus()
     return _selfData.status
 end
 

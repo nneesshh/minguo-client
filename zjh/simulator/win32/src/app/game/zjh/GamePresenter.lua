@@ -52,9 +52,10 @@ function GamePresenter:initMenuNode()
 end
 
 function GamePresenter:initScheduler()    
-    self._schedulerClocks      = {}      -- 时钟    
-    self._schedulerTakeFirst   = nil     -- 发牌    
-    self._schedulerPrepareClock = nil    -- 倒计时
+    self._schedulerClocks       = {}      -- 时钟    
+    self._schedulerTakeFirst    = nil     -- 发牌    
+    self._schedulerPrepareClock = nil     -- 倒计时
+    self._schedulerAutoReady    = nil     -- 自动准备  
 end
 
 -- 退出界面
@@ -64,6 +65,7 @@ function GamePresenter:exit()
     self:closeSchedulerTakeFirst()
     self:closeSchedulerClocks()
     self:closeSchedulerPrepareClock()
+    self:closeSchedulerAutoReady()
     
     GamePresenter._instance = nil
 end
@@ -85,6 +87,19 @@ function GamePresenter:onPlayerStatus(data)
         local player = app.game.PlayerData.getPlayerByNumID(numID)        
 
         if not player then
+            return
+        end
+
+        app.game.PlayerData.onPlayerLeave(numID)
+        self:onPlayerLeave(player)
+    elseif data.status == 8 then -- 服务踢出房间
+        self:closeSchedulerAutoReady()
+        print("status is 8 close")
+        local numID = data.ticketid
+        local player = app.game.PlayerData.getPlayerByNumID(numID)        
+    
+        if not player then
+            print("status is 888 player is nil")
             return
         end
 
@@ -124,6 +139,7 @@ function GamePresenter:onPlayerLeave(player)
                 self._gamePlayerNodes[i]:onResetTable()
             end
         end
+        self:closeSchedulerAutoReady()
     -- 某个玩家离开将该节点隐藏
     else 
         local localSeat = app.game.PlayerData.serverSeatToLocalSeat(player:getSeat())
@@ -200,7 +216,7 @@ end
 -- 发牌
 function GamePresenter:onTakeFirst()
     local function callback()
-        self._gameBtnNode:showBetBtns(true)
+        self._gameBtnNode:showBetNode(true)
         self._gameBtnNode:setSelected(false)
         self:onBankerBet()
     end
@@ -224,13 +240,23 @@ end
 -- 开始押注(庄家)
 function GamePresenter:onBankerBet()
     local banker = app.game.GameData.getBanker()
+    local normal = {}
+    local disable = {}
     if app.game.PlayerData.getHeroSeat() == banker then
-        local round = app.game.GameData.getRound() 
-        self._gameBtnNode:showBetBtnEnable(true, round)
-        
+        local round = app.game.GameData.getRound()        
+        if round <= 1 then
+            normal = {"qp","kp","jz","gz"}
+            disable = {"bp"}
+        else
+            normal = {"qp","bp","kp","jz","gz"}
+            disable = {}
+        end 
+        self._gameBtnNode:setEnableByName(normal, disable)        
         self._gameBtnNode:setDisableByIndex(1)
     else
-        self._gameBtnNode:showBetBtnEnable(false)    
+        normal = {"kp"}
+        disable = {"qp","bp","jz","gz"}
+        self._gameBtnNode:setEnableByName(normal, disable)          
     end
     
     self:onClock(banker)
@@ -249,13 +275,37 @@ function GamePresenter:onPlayerBet(seat, index)
         print("next is -1")
     	return
     end
+    local normal = {}
+    local disable = {}
+    local player = app.game.PlayerData.getPlayerByServerSeat(seat)    
+    local isshow = player:getIsshow()
     if app.game.PlayerData.getHeroSeat() == seat then
-        local round = app.game.GameData.getRound() 
-        self._gameBtnNode:showBetBtnEnable(true, round)
+        local round = app.game.GameData.getRound()                
+        if round <= 1 then
+            normal = {"qp","kp","jz","gz"}
+            disable = {"bp"}
+        else
+            if isshow then
+                normal = {"qp","bp","jz","gz"}
+                disable = {"kp"}
+            else
+                normal = {"qp","bp","kp","jz","gz"}
+                disable = {}
+            end
+        end
+        
+        self._gameBtnNode:setEnableByName(normal, disable)  
         -- index之后的按钮可点击
         self._gameBtnNode:setDisableByIndex(index)
     else
-        self._gameBtnNode:showBetBtnEnable(false)    
+        if isshow then
+            normal = {}
+            disable = {"qp","bp","kp","jz","gz"}
+        else
+            normal = {"kp"}
+            disable = {"qp","bp","jz","gz"}
+        end
+        self._gameBtnNode:setEnableByName(normal, disable)     
     end
 
     self:onClock(seat)
@@ -278,8 +328,12 @@ function GamePresenter:onPlayerGiveUp(now, next, round)
     self._gamePlayerNodes[localSeat]:playSpeakAction(3) 
     self:showGaryCard(localSeat)
     
+    local normal = {}
+    local disable = {}
     if app.game.PlayerData.getHeroSeat() == now then
-        self._gameBtnNode:showBetBtnEnable(false)
+        normal = {}
+        disable = {"qp","bp","kp","jz","gz"}
+        self._gameBtnNode:setEnableByName(normal, disable)  
     end
 
     local basebet = app.game.GameData.getBasebet()
@@ -291,8 +345,7 @@ end
 -- 比牌
 function GamePresenter:onPlayerCompareCard(data) 
     print("onPlayerCompareCard")  
-    app.game.PlayerData.updatePlayerRiches(data.playerSeat, data.playerBet, data.playerBalance)
-    
+    app.game.PlayerData.updatePlayerRiches(data.playerSeat, data.playerBet, data.playerBalance)    
     local localSeat = app.game.PlayerData.serverSeatToLocalSeat(data.playerSeat)
     local otherSeat = app.game.PlayerData.serverSeatToLocalSeat(data.acceptorSeat)
     local loserSeat = app.game.PlayerData.serverSeatToLocalSeat(data.loserSeat)    
@@ -320,6 +373,7 @@ function GamePresenter:onPlayerCompareCard(data)
     self._gamePlayerNodes[localSeat]:showPnlClockCircle(false)
     
     app.game.GameData.setBasebet(data.basebet)
+    app.game.PlayerData.updatePlayerStatus(data.loserSeat, 6)
     
     self:onPlayerBet(app.game.GameData.getCurrseat(), ib)   
 end 
@@ -337,6 +391,18 @@ function GamePresenter:onPlayerShowCard(seat, cards, cardtype)
         self._gamePlayerNodes[localSeat]:showImgCardType(true, cardtype)
     end
     
+    local round = app.game.GameData.getRound()  
+    local normal = {}
+    local disable = {}     
+    if round <= 1 then
+        normal = {"qp","jz","gz"}
+        disable = {"bp","kp"}
+    else
+        normal = {"qp","bp","jz","gz"}
+        disable = {"kp"}
+    end 
+    self._gameBtnNode:setEnableByName(normal, disable) 
+    
     if cards then
         local gameHandCardNode = self._gamePlayerNodes[localSeat]:getGameHandCardNode()
         gameHandCardNode:resetHandCards()
@@ -345,8 +411,86 @@ function GamePresenter:onPlayerShowCard(seat, cards, cardtype)
 end
 
 -- 押注
-function GamePresenter:onPlayerAnteUp(data)  
-    print("wwwwssssa", data.playerSeat, data.playerBet)     
+function GamePresenter:onPlayerAnteUp(data)    
+    if data.isAllIn == 1 then
+        self:onPlayerAnteUpAllIn(data)    	
+    else
+        self:onPlayerAnteUpNormal(data)	
+    end
+end
+
+-- 全压(其他玩家判断是否要进行跟注)
+function GamePresenter:onPlayerAnteUpAllIn(data)
+    app.game.PlayerData.updatePlayerRiches(data.playerSeat, data.playerBet, data.playerBalance)
+    local localSeat = app.game.PlayerData.serverSeatToLocalSeat(data.playerSeat) 
+    local player = app.game.PlayerData.getPlayerByServerSeat(data.playerSeat)   
+    if player == nil then
+        print("player anteup is nil")
+        return
+    end
+
+    self:refreshUI()
+    self._ui:getInstance():showAllInChipAction(localSeat)
+    self._gamePlayerNodes[localSeat]:showTxtBalance(true, data.playerBalance)    
+    self._gamePlayerNodes[localSeat]:showImgBet(true,  player:getBet())
+    
+    -- 全压
+    -- self._gamePlayerNodes[localSeat]:playSpeakAction(1)    
+    
+    app.game.GameData.setBasebet(data.basebet)
+
+    self:onPlayerAllIn(app.game.GameData.getCurrseat())
+end
+
+-- 按钮显示
+function GamePresenter:onPlayerAllIn(seat)
+    if seat == -1 then
+        print("next is -1")
+        return
+    end
+    local normal = {}
+    local disable = {}
+    local player = app.game.PlayerData.getPlayerByServerSeat(seat)    
+    local isshow = player:getIsshow()
+    if app.game.PlayerData.getHeroSeat() == seat then
+        local round = app.game.GameData.getRound()                
+        if round <= 1 then
+            normal = {"qp","kp","gz"}
+            disable = {"bp","jz"}
+        else
+            if isshow then
+                normal = {"qp","gz"}
+                disable = {"kp","bp","jz"}
+            else
+                normal = {"qp","kp","gz"}
+                disable = {"bp","jz"}
+            end
+        end
+
+        self._gameBtnNode:setEnableByName(normal, disable)  
+    else
+        if isshow then
+            normal = {}
+            disable = {"qp","bp","kp","jz","gz"}
+        else
+            normal = {"kp"}
+            disable = {"qp","bp","jz","gz"}
+        end
+        self._gameBtnNode:setEnableByName(normal, disable)     
+    end
+
+    self:onClock(seat)
+
+    local heroseat = app.game.PlayerData.getHeroSeat()
+    if seat == heroseat and self._gameBtnNode:isSelected() then
+        self:performWithDelayGlobal(function()
+            self:sendBetmult(0) 
+        end, 1)
+    end
+end
+
+-- 正常押注
+function GamePresenter:onPlayerAnteUpNormal(data)
     app.game.PlayerData.updatePlayerRiches(data.playerSeat, data.playerBet, data.playerBalance)
     local localSeat = app.game.PlayerData.serverSeatToLocalSeat(data.playerSeat) 
     local base = app.game.GameConfig.getBase()
@@ -354,8 +498,8 @@ function GamePresenter:onPlayerAnteUp(data)
     local playerbet = data.playerBet
     local player = app.game.PlayerData.getPlayerByServerSeat(data.playerSeat)   
     if player == nil then
-    	print("player anteup is nil")
-    	return
+        print("player anteup is nil")
+        return
     end
     local isshow = player:getIsshow()
     local count = 1
@@ -364,33 +508,62 @@ function GamePresenter:onPlayerAnteUp(data)
         count = 2
     end             
     local ib = playerbet / base / 2  -- 玩家跟注的筹码index
-    
+
     self:refreshUI()
     self._ui:getInstance():showChipAction(ib, count, localSeat)
     self._gamePlayerNodes[localSeat]:showTxtBalance(true, data.playerBalance)    
     self._gamePlayerNodes[localSeat]:showImgBet(true,  player:getBet())
-        
+
     if playerbet / basebet == 1 then
         self._gamePlayerNodes[localSeat]:playSpeakAction(1)    
     else
         self._gamePlayerNodes[localSeat]:playSpeakAction(2)        
     end
-      
+
     app.game.GameData.setBasebet(data.basebet)
-    
+
     self:onPlayerBet(app.game.GameData.getCurrseat(), ib) 
 end
 
+-- 孤注一掷(当前玩家与其他玩家进行比牌)
+function GamePresenter:onPlayerLastBet(data)
+    print("onPlayerLastBet")      
+    app.game.GameData.setCurrseat(data.nextseat)
+    dump(data)
+    local localSeat = app.game.PlayerData.serverSeatToLocalSeat(data.playerSeat)
+    self._ui:getInstance():showAllInChipAction(localSeat)
+    print("LastBet count is",#data.otherSeat, localSeat)
+    for i, seat in ipairs(data.otherSeat) do
+        local otherSeat = app.game.PlayerData.serverSeatToLocalSeat(seat)
+        self:performWithDelayGlobal(function()
+            if i < #data.otherSeat then
+                self:playCompareAction(localSeat, otherSeat, otherSeat)
+            else
+                if data.win == 0 then
+                    self:playCompareAction(localSeat, otherSeat, localSeat) 
+                else
+                    self:playCompareAction(localSeat, otherSeat, otherSeat)     
+                end               
+            end   
+        end, (i-1)*3)            
+    end
+        
+    self._gamePlayerNodes[localSeat]:showPnlClockCircle(false)
+        
+    local basebet = app.game.GameData.getBasebet()
+    local base = app.game.GameConfig.getBase()
+    local index = basebet / base 
+
+    self:onPlayerBet(app.game.GameData.getCurrseat(), index) 
+end
+
+-- 游戏结束
 function GamePresenter:onGameOver(data, players)
     local function delay()
         local winseat = data.winnerSeat
         local localSeat = app.game.PlayerData.serverSeatToLocalSeat(winseat)    
         local gameHandCardNode = self._gamePlayerNodes[localSeat]:getGameHandCardNode()            
         gameHandCardNode:resetHandCards()
-        
-        print("gameover cards is")
-        dump(players[winseat].cards)
-      
         gameHandCardNode:createCards(players[winseat].cards)  
 
         self._gamePlayerNodes[localSeat]:showImgCardType(true, players[winseat].type)          
@@ -408,14 +581,13 @@ function GamePresenter:onGameOver(data, players)
             end 
         end
 
-        self._gameBtnNode:showBetBtns(false)
+        self._gameBtnNode:showBetNode(false)
         app.game.GameData.setCurrseat(-1)
 
         self._ui:getInstance():showPnlHint(1)
-
-        self:performWithDelayGlobal(function()
-            self:sendPlayerReady()
-        end, 4) 
+        
+        -- 自动准备
+        self:openSchedulerAutoReady(4)
     end
     
     for seat = 0, self._maxPlayerCnt - 1 do
@@ -428,15 +600,7 @@ function GamePresenter:onGameOver(data, players)
     -- 延时结算
     self:performWithDelayGlobal(function()
         delay()
-    end, 3) 
-    
-end
-
-function GamePresenter:test()
-    local gameHandCardNode = self._gamePlayerNodes[1]:getGameHandCardNode()            
-    gameHandCardNode:resetHandCards()
-
-    gameHandCardNode:createCards({30,43,18}) 
+    end, 3)     
 end
 
 function GamePresenter:onRelinkEnter(cards)   
@@ -655,7 +819,7 @@ function GamePresenter:closeSchedulerClocks()
     end
 end
 
--- 准备
+-- 准备倒计时
 function GamePresenter:openSchedulerPrepareClock(time)
     local allTime = time
 
@@ -678,6 +842,30 @@ function GamePresenter:closeSchedulerPrepareClock()
     if self._schedulerPrepareClock then
         scheduler:unscheduleScriptEntry(self._schedulerPrepareClock)
         self._schedulerPrepareClock = nil
+    end
+end
+
+-- 自动准备
+function GamePresenter:openSchedulerAutoReady(time)
+    local allTime = time
+
+    local function flipIt(dt)
+        time = time - dt
+
+        if time <= 0 then
+            self:sendPlayerReady()
+            self:closeSchedulerAutoReady()
+        end        
+    end
+
+    self:closeSchedulerAutoReady()
+    self._schedulerAutoReady = scheduler:scheduleScriptFunc(flipIt, 0.5, false)
+end 
+
+function GamePresenter:closeSchedulerAutoReady()
+    if self._schedulerAutoReady then
+        scheduler:unscheduleScriptEntry(self._schedulerAutoReady)
+        self._schedulerAutoReady = nil
     end
 end
 
@@ -710,7 +898,9 @@ end
 function GamePresenter:onTouchBtnBetmult(index)
     local mult = 1
     if index < 6 then
-        mult = index*2        
+        mult = index*2 
+    elseif index == 6 then
+        mult = 0           
     end    
     self:sendBetmult(mult) 
 end
@@ -780,6 +970,7 @@ function GamePresenter:sendBetmult(mult)
     end 
 end
 
+-- 准备
 function GamePresenter:sendPlayerReady()
 	print("auto ready!!!!!")
 	local sessionid = app.data.UserData.getSession() or 222
@@ -787,6 +978,16 @@ function GamePresenter:sendPlayerReady()
     po:writer_reset()
     po:write_int64(sessionid)
     upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_READY_REQ)
+end
+
+-- 换桌
+function GamePresenter:sendChangeTable()
+    print("sendChangeTable")
+    local sessionid = app.data.UserData.getSession() or 222
+    local po = upconn.upconn:get_packet_obj()
+    po:writer_reset()
+    po:write_int64(sessionid)
+    upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_CHANGE_TABLE_REQ)
 end
 
 -------------------------------rule-------------------------------

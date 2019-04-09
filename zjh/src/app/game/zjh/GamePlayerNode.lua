@@ -311,6 +311,7 @@ function GamePlayerNode:playPanleAction(dir, posf, post, flag)
                 cc.DelayTime:create(1),      
                 cc.ScaleTo:create(0.2, 1),
                 cc.MoveTo:create(0.5, cc.p(posf)),
+                cc.DelayTime:create(0.5), 
                 cc.CallFunc:create(function() cfunc() end)
         ))
 end

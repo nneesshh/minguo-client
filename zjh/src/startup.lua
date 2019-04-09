@@ -80,7 +80,7 @@ function startup:startGame()
 end
 
 function startup:openSchedulerProgress()
-    local alltime = 0.7
+    local alltime = 0.5
     local time = 0
     local function flipIt(dt)
         time = time + dt

@@ -64,12 +64,15 @@ end
 function PlayerData.updatePlayerRiches(playerSeat, playerBet, playerBalance)
     local player = PlayerData.getPlayerByServerSeat(playerSeat)
     if player then
-        player:setBet(playerBet)
-        player:setBalance(playerBalance)  
-        
-        if PlayerData.getHeroSeat() == playerSeat then
-            app.data.UserData.setBalance(playerBalance)        
-        end     
+        if playerBet then
+            player:setBet(playerBet)
+        end
+        if playerBalance then
+            player:setBalance(playerBalance)  
+            if PlayerData.getHeroSeat() == playerSeat then
+                app.data.UserData.setBalance(playerBalance)        
+            end  
+        end           
     end
 end
 
@@ -196,7 +199,7 @@ function PlayerData.localSeatToServerSeat(localSeat)
 end
 
 function PlayerData.serverSeatToLocalSeat(serverSeat)
-    if serverSeat == nil or serverSeat < 0 or serverSeat >= _maxPlayerCnt then
+    if serverSeat == nil or _maxPlayerCnt == nil or serverSeat < 0 or serverSeat >= _maxPlayerCnt then
         print("server seat error") 
         return -1
     end

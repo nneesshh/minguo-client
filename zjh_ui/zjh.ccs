@@ -130,6 +130,7 @@
             <Project Name="account.csd" Type="Layer" />
             <Project Name="head.csd" Type="Layer" />
             <Project Name="help.csd" Type="Layer" />
+            <Project Name="hint.csd" Type="Layer" />
             <Project Name="loading.csd" Type="Scene" />
             <Project Name="lobby.csd" Type="Scene" />
             <Project Name="login.csd" Type="Layer" />
@@ -219,6 +220,7 @@
               <Image Name="img_hint_gray.png" />
               <Image Name="img_hint_left.png" />
               <Image Name="img_title.png" />
+              <Image Name="img_ts.png" />
             </Folder>
             <Folder Name="set">
               <Image Name="btn_off.png" />

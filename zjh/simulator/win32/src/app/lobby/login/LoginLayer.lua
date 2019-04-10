@@ -44,6 +44,11 @@ function LoginLayer:onTouch(sender, eventType)
 end
 
 function LoginLayer:initUI()
+    local txtip = self:seekChildByName("txt_ip")
+    local txtport = self:seekChildByName("txt_port")
+    
+    txtip:setString("ip:" .. cfg_game_zjh.servers[1].host)
+    txtport:setString("port:" .. cfg_game_zjh.servers[1].port)
 end
 
 function LoginLayer:onClickBtnGuest()

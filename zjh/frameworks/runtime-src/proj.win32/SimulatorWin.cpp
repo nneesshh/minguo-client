@@ -270,7 +270,7 @@ int SimulatorWin::run()
     // create console window
     if (_project.isShowConsole())
     {
-        AllocConsole();
+        //AllocConsole();
         _hwndConsole = GetConsoleWindow();
         if (_hwndConsole != NULL)
         {

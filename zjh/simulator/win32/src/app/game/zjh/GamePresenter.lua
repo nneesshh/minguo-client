@@ -92,8 +92,7 @@ function GamePresenter:onPlayerStatus(data)
 
         app.game.PlayerData.onPlayerLeave(numID)
         self:onPlayerLeave(player)
-    elseif data.status == 8 then -- 服务踢出房间
-        self:closeSchedulerAutoReady()
+    elseif data.status == 8 then -- 服务踢出房间        
         print("status is 8 close")
         local numID = data.ticketid
         local player = app.game.PlayerData.getPlayerByNumID(numID)        
@@ -104,7 +103,7 @@ function GamePresenter:onPlayerStatus(data)
         end
 
         app.game.PlayerData.onPlayerLeave(numID)
-        self:onPlayerLeave(player)
+        self:onPlayerLeave(player)        
     end
 end
 
@@ -140,6 +139,7 @@ function GamePresenter:onPlayerLeave(player)
             end
         end
         self:closeSchedulerAutoReady()
+        self:onLeaveRoom()
     -- 某个玩家离开将该节点隐藏
     else 
         local localSeat = app.game.PlayerData.serverSeatToLocalSeat(player:getSeat())
@@ -243,19 +243,39 @@ function GamePresenter:onBankerBet()
     local normal = {}
     local disable = {}
     if app.game.PlayerData.getHeroSeat() == banker then
-        local round = app.game.GameData.getRound()        
+        local round = app.game.GameData.getRound()
+        local player = app.game.PlayerData.getPlayerByServerSeat(banker)    
+        local isshow = player:getIsshow()        
         if round <= 1 then
-            normal = {"qp","kp","jz","gz"}
-            disable = {"bp"}
+            if isshow then
+                normal = {"qp","jz","gz"}
+                disable = {"bp","kp"}
+            else
+                normal = {"qp","kp","jz","gz"}
+                disable = {"bp"}
+            end
         else
-            normal = {"qp","bp","kp","jz","gz"}
-            disable = {}
+            if isshow then
+                normal = {"qp","bp","jz","gz"}
+                disable = {"kp"}
+            else
+                normal = {"qp","bp","kp","jz","gz"}
+                disable = {}
+            end
         end 
         self._gameBtnNode:setEnableByName(normal, disable)        
         self._gameBtnNode:setDisableByIndex(1)
     else
-        normal = {"kp"}
-        disable = {"qp","bp","jz","gz"}
+        local heroseat = app.game.PlayerData.getHeroSeat()
+        local player = app.game.PlayerData.getPlayerByServerSeat(heroseat)    
+        local isshow = player:getIsshow()  
+        if isshow then
+            normal = {}
+            disable = {"qp","bp","kp","jz","gz"}
+        else
+            normal = {"kp"}
+            disable = {"qp","bp","jz","gz"}
+        end
         self._gameBtnNode:setEnableByName(normal, disable)          
     end
     
@@ -264,7 +284,7 @@ function GamePresenter:onBankerBet()
     local heroseat = app.game.PlayerData.getHeroSeat()
     if banker == heroseat and self._gameBtnNode:isSelected() then
         self:performWithDelayGlobal(function()
-            self:sendBetmult(1) 
+            self:sendBetmult(-1) 
         end, 1)
     end
 end
@@ -277,13 +297,19 @@ function GamePresenter:onPlayerBet(seat, index)
     end
     local normal = {}
     local disable = {}
-    local player = app.game.PlayerData.getPlayerByServerSeat(seat)    
-    local isshow = player:getIsshow()
+    
     if app.game.PlayerData.getHeroSeat() == seat then
-        local round = app.game.GameData.getRound()                
+        local round = app.game.GameData.getRound()     
+        local player = app.game.PlayerData.getPlayerByServerSeat(seat)    
+        local isshow = player:getIsshow()           
         if round <= 1 then
-            normal = {"qp","kp","jz","gz"}
-            disable = {"bp"}
+            if isshow then
+                normal = {"qp","jz","gz"}
+                disable = {"bp","kp"}
+            else
+                normal = {"qp","kp","jz","gz"}
+                disable = {"bp"}
+            end
         else
             if isshow then
                 normal = {"qp","bp","jz","gz"}
@@ -298,6 +324,9 @@ function GamePresenter:onPlayerBet(seat, index)
         -- index之后的按钮可点击
         self._gameBtnNode:setDisableByIndex(index)
     else
+        local heroseat = app.game.PlayerData.getHeroSeat()
+        local player = app.game.PlayerData.getPlayerByServerSeat(heroseat)    
+        local isshow = player:getIsshow()  
         if isshow then
             normal = {}
             disable = {"qp","bp","kp","jz","gz"}
@@ -313,7 +342,7 @@ function GamePresenter:onPlayerBet(seat, index)
     local heroseat = app.game.PlayerData.getHeroSeat()
     if seat == heroseat and self._gameBtnNode:isSelected() then
         self:performWithDelayGlobal(function()
-            self:sendBetmult(1) 
+            self:sendBetmult(-1) 
         end, 1)
     end
 end
@@ -389,19 +418,26 @@ function GamePresenter:onPlayerShowCard(seat, cards, cardtype)
     
     if localSeat == 1 then
         self._gamePlayerNodes[localSeat]:showImgCardType(true, cardtype)
+        
+        local round = app.game.GameData.getRound()  
+        local curseat = app.game.GameData.getCurrseat()
+        local normal = {}
+        local disable = {}     
+        if curseat == app.game.PlayerData.getHeroSeat() then
+            if round <= 1 then
+                normal = {"qp","jz","gz"}
+                disable = {"bp","kp"}
+            else
+                normal = {"qp","bp","jz","gz"}
+                disable = {"kp"}
+            end 
+        else           
+            normal = {}
+            disable = {"bp","qp","kp","jz","gz"}  
+        end
+
+        self._gameBtnNode:setEnableByName(normal, disable) 
     end
-    
-    local round = app.game.GameData.getRound()  
-    local normal = {}
-    local disable = {}     
-    if round <= 1 then
-        normal = {"qp","jz","gz"}
-        disable = {"bp","kp"}
-    else
-        normal = {"qp","bp","jz","gz"}
-        disable = {"kp"}
-    end 
-    self._gameBtnNode:setEnableByName(normal, disable) 
     
     if cards then
         local gameHandCardNode = self._gamePlayerNodes[localSeat]:getGameHandCardNode()
@@ -484,7 +520,7 @@ function GamePresenter:onPlayerAllIn(seat)
     local heroseat = app.game.PlayerData.getHeroSeat()
     if seat == heroseat and self._gameBtnNode:isSelected() then
         self:performWithDelayGlobal(function()
-            self:sendBetmult(0) 
+            self:sendBetmult(-1) 
         end, 1)
     end
 end
@@ -561,33 +597,30 @@ end
 function GamePresenter:onGameOver(data, players)
     local function delay()
         local winseat = data.winnerSeat
-        local localSeat = app.game.PlayerData.serverSeatToLocalSeat(winseat)    
-        local gameHandCardNode = self._gamePlayerNodes[localSeat]:getGameHandCardNode()            
-        gameHandCardNode:resetHandCards()
-        gameHandCardNode:createCards(players[winseat].cards)  
+        local localSeat = app.game.PlayerData.serverSeatToLocalSeat(winseat)   
+        if localSeat >= 0 and localSeat <= self._maxPlayerCnt-1 then
+            local gameHandCardNode = self._gamePlayerNodes[localSeat]:getGameHandCardNode()            
+            gameHandCardNode:resetHandCards()
+            gameHandCardNode:createCards(players[winseat].cards)  
 
-        self._gamePlayerNodes[localSeat]:showImgCardType(true, players[winseat].type)          
-        self._gamePlayerNodes[localSeat]:showImgCheck(false)
-        
-        self._ui:getInstance():showChipBackAction({localSeat})
+            self._gamePlayerNodes[localSeat]:showImgCardType(true, players[winseat].type)          
+            self._gamePlayerNodes[localSeat]:showImgCheck(false)
 
-        for seat = 0, self._maxPlayerCnt - 1 do
-            if players[seat] then          
-                app.game.PlayerData.updatePlayerRiches(seat, 0, players[seat].balance) 
+            self._ui:getInstance():showChipBackAction({localSeat})
 
-                local localSeat = app.game.PlayerData.serverSeatToLocalSeat(seat)            
-                self._gamePlayerNodes[localSeat]:showWinloseScore(players[seat].score)            
-                self._gamePlayerNodes[localSeat]:showTxtBalance(true, players[seat].balance)                                         
-            end 
-        end
+            for seat = 0, self._maxPlayerCnt - 1 do
+                if players[seat] then          
+                    app.game.PlayerData.updatePlayerRiches(seat, 0, players[seat].balance) 
 
-        self._gameBtnNode:showBetNode(false)
-        app.game.GameData.setCurrseat(-1)
-
-        self._ui:getInstance():showPnlHint(1)
-        
-        -- 自动准备
-        self:openSchedulerAutoReady(4)
+                    local localSeat = app.game.PlayerData.serverSeatToLocalSeat(seat)            
+                    self._gamePlayerNodes[localSeat]:showWinloseScore(players[seat].score)            
+                    self._gamePlayerNodes[localSeat]:showTxtBalance(true, players[seat].balance)                                         
+                end 
+            end
+            
+            self._gameBtnNode:showBetNode(false)
+            app.game.GameData.setCurrseat(-1)
+        end         
     end
     
     for seat = 0, self._maxPlayerCnt - 1 do
@@ -600,7 +633,10 @@ function GamePresenter:onGameOver(data, players)
     -- 延时结算
     self:performWithDelayGlobal(function()
         delay()
-    end, 3)     
+    end, 3)   
+    
+    -- 自动准备
+    self:openSchedulerAutoReady(8)  
 end
 
 function GamePresenter:onRelinkEnter(cards)   
@@ -673,10 +709,13 @@ function GamePresenter:playBaseChipAction()
             self._ui:getInstance():showBaseChipAction(localSeat) 
             
             local base = app.game.GameConfig.getBase()
-            local balance = app.game.PlayerData.reducePlayerRiches(i, base)            
+            local balance = app.game.PlayerData.reducePlayerRiches(i, base) 
+            app.game.PlayerData.updatePlayerRiches(i, base)            
             self._gamePlayerNodes[localSeat]:showTxtBalance(true, balance)
+            self._gamePlayerNodes[localSeat]:showImgBet(true,  player:getBet())            
         end            
     end
+    
 end
 
 function GamePresenter:playBiPaiPanel(flag)
@@ -851,19 +890,20 @@ function GamePresenter:openSchedulerAutoReady(time)
 
     local function flipIt(dt)
         time = time - dt
-
-        if time <= 0 then
-            self:sendPlayerReady()
+        if time <= 0 then            
             self:closeSchedulerAutoReady()
-        end        
+            print("ready timeout")
+            self:sendPlayerReady()
+        end               
     end
 
     self:closeSchedulerAutoReady()
-    self._schedulerAutoReady = scheduler:scheduleScriptFunc(flipIt, 0.5, false)
+    self._schedulerAutoReady = scheduler:scheduleScriptFunc(flipIt, 1, false)
 end 
 
 function GamePresenter:closeSchedulerAutoReady()
     if self._schedulerAutoReady then
+        print("close AutoReady",app.game.PlayerData.getHeroSeat())
         scheduler:unscheduleScriptEntry(self._schedulerAutoReady)
         self._schedulerAutoReady = nil
     end
@@ -892,7 +932,7 @@ function GamePresenter:onTouchBtnKanpai()
 end
 
 function GamePresenter:onTouchBtnGenzhu()    
-    self:sendBetmult(1)
+    self:sendBetmult(-1)
 end
 
 function GamePresenter:onTouchBtnBetmult(index)
@@ -910,7 +950,7 @@ function GamePresenter:onEventCbxGendaodi(flag)
         local curseat = app.game.GameData.getCurrseat()
         local heroseat = app.game.PlayerData.getHeroSeat()
         if curseat == heroseat then
-            self:sendBetmult(1) 
+            self:sendBetmult(-1) 
         end
 	end	
 end
@@ -972,7 +1012,7 @@ end
 
 -- 准备
 function GamePresenter:sendPlayerReady()
-	print("auto ready!!!!!")
+    print("auto ready!!!!!",app.game.PlayerData.getHeroSeat())
 	local sessionid = app.data.UserData.getSession() or 222
     local po = upconn.upconn:get_packet_obj()
     po:writer_reset()

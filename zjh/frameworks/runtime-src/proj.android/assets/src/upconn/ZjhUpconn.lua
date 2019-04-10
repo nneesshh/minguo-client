@@ -138,9 +138,8 @@ local function _readPlayerAnteUp(po)
     info.basebet       = po:read_int32()
     gameinfo.jackpot   = po:read_int32()
     gameinfo.currseat  = po:read_byte()
-
-    info.isLastBet     = po:read_byte()
-    info.lastBetWin    = po:read_byte()
+    
+    info.isAllIn       = po:read_byte()
     return info, gameinfo
 end
 
@@ -298,7 +297,12 @@ function _M.onEnterRoom(conn, sessionid, msgid)
                 print("player is nil")
                 return
             end            
-            app.game.GamePresenter:getInstance():onPlayerEnter(player)       
+            app.game.GamePresenter:getInstance():onPlayerEnter(player) 
+            
+            if app.data.UserData.getTicketID() == id then
+                print("self send ready!!!!")
+                _M.sendPlayerReady()
+            end                    
         end
     else
         app.game.GameEngine:getInstance():exit()  
@@ -320,12 +324,7 @@ function _M.onPlayerSitDown(conn, sessionid, msgid)
     
     if app.game.GamePresenter then
     	app.game.GamePresenter:getInstance():onPlayerEnter(player)    
-    end          
-         
-    if app.data.UserData.getTicketID() == info.ticketid then
-        print("send ready!!!!")
-        _M.sendPlayerReady()
-    end      
+    end            
 end
 
 function _M.onPlayerReady(conn, sessionid, msgid)
@@ -342,7 +341,10 @@ function _M.onLeaveRoom(conn, sessionid, msgid)
     resp.errorCode = po:read_int32()
     resp.errorMsg  = po:read_string()
     if resp.errorCode == zjh_defs.ErrorCode.ERR_SUCCESS then
-        app.game.GamePresenter:getInstance():onLeaveRoom()
+        if app.game.GamePresenter then
+            app.game.GamePresenter:getInstance():onLeaveRoom()
+        end
+        
     end
 end
 
@@ -419,6 +421,21 @@ function _M.onPlayerAnteUp(conn, sessionid, msgid)
     app.game.GamePresenter:getInstance():onPlayerAnteUp(anteupinfo) 
 end
 
+function _M.onPlayerLastBet(conn, sessionid, msgid)
+    print("onPlayerLastBet")
+    local resp = {}
+    local po = upconn.upconn:get_packet_obj()    
+    resp.playerSeat = po:read_byte()
+    resp.count = po:read_byte()
+    resp.otherSeat = {} 
+    for i=1, resp.count do
+        resp.otherSeat[i] = po:read_byte()
+    end
+    resp.win = po:read_byte()   
+    resp.nextseat = po:read_byte()  
+    
+    app.game.GamePresenter:getInstance():onPlayerLastBet(resp) 
+end
 -- notify
 function _M.onGameOver(conn, sessionid, msgid)
     print("onGameOver")
@@ -434,12 +451,63 @@ function _M.onPlayerStatus(conn, sessionid, msgid)
     resp.ticketid = po:read_int32()
     resp.status = po:read_byte()
     
+    -- 7 离开
+    -- 8 踢出房间
+    print("playerstatus",resp.status)
+        
     if app.game.GamePresenter then
         app.game.GamePresenter:getInstance():onPlayerStatus(resp)
     else
         print("onPlayerStatus is nil")    
     end
     
+end
+
+function _M.onChangeTable(conn, sessionid, msgid)
+    local resp = {}
+    local po = upconn.upconn:get_packet_obj()
+    resp.errorCode = po:read_int32()
+    resp.errorMsg  = po:read_string()
+    print("chang table",resp.errorCode)
+    if resp.errorCode == zjh_defs.ErrorCode.ERR_SUCCESS then
+        -- enter gamescene
+        app.game.GameEngine:getInstance():onStartGame()
+
+        -- table info
+        local tabInfo = _readTableInfo(po)
+        
+        tabInfo.basecoin = 0
+        app.game.GameData.setTableInfo(tabInfo)
+
+        -- seat in-gaming player info     
+        local playerCount = po:read_int32()
+        local ids = {}
+        for i = 1, playerCount do
+            -- seat player info
+            local info = _readSeatPlayerInfo(po)
+
+            table.insert(ids,info.ticketid)
+            app.game.PlayerData.onPlayerInfo(info)
+        end
+
+        -- enter room
+        for k, id in ipairs(ids) do
+            local player = app.game.PlayerData.getPlayerByNumID(id)
+            if not player then
+                print("player is nil")
+                return
+            end            
+            app.game.GamePresenter:getInstance():onPlayerEnter(player)
+            
+            if app.data.UserData.getTicketID() == id then
+                print("changtable send ready!!!!")
+                _M.sendPlayerReady()
+            end         
+        end
+    else
+        print("change error")
+        --app.game.GameEngine:getInstance():exit()  
+    end
 end
 
 -- request
@@ -467,6 +535,7 @@ function _M.doRegisterMsgCallbacks()
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_SIT_DOWN_NOTIFY, _M.onPlayerSitDown)
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_READY_NOTIFY, _M.onPlayerReady)
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_ANTE_UP_NOTIFY, _M.onPlayerAnteUp)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_LAST_BET_NOTIFY, _M.onPlayerLastBet)
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_SHOW_CARD_NOTIFY, _M.onPlayerShowCard)
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_COMPARE_CARD_NOTIFY, _M.onPlayerCompareCard)
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_GIVE_UP_NOTIFY, _M.onPlayerGiveUp) 

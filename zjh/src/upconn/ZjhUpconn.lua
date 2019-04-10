@@ -341,7 +341,10 @@ function _M.onLeaveRoom(conn, sessionid, msgid)
     resp.errorCode = po:read_int32()
     resp.errorMsg  = po:read_string()
     if resp.errorCode == zjh_defs.ErrorCode.ERR_SUCCESS then
-        app.game.GamePresenter:getInstance():onLeaveRoom()
+        if app.game.GamePresenter then
+            app.game.GamePresenter:getInstance():onLeaveRoom()
+        end
+        
     end
 end
 

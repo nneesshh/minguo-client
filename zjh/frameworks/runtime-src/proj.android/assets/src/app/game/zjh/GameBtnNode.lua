@@ -51,12 +51,12 @@ end
 function GameBtnNode:onEvent(sender, eventType)
     local name = sender:getName()
     if name == "cbx_gdd" then
-        if eventType == ccui.CheckBoxEventType.selected then
-            self:setCbxSelected(true)
-            self._presenter:onEventCbxGendaodi(true)
-        elseif eventType == ccui.CheckBoxEventType.unselected then
-            self:setCbxSelected(false)
-            self._presenter:onEventCbxGendaodi(false)
+        if eventType == ccui.CheckBoxEventType.selected then  
+            self:setSelected(true)          
+            self._presenter:onEventCbxGendaodi(true)            
+        elseif eventType == ccui.CheckBoxEventType.unselected then            
+            self:setSelected(false)
+            self._presenter:onEventCbxGendaodi(false)            
         end
     end
 end
@@ -70,6 +70,14 @@ function GameBtnNode:initUI(...)
         txt:setString(index*2*base)
     end
     self:setDisableByIndex(1)
+end
+
+function GameBtnNode:setSelected(flag)
+    self:seekChildByName("cbx_gdd"):setSelected(flag)
+end
+
+function GameBtnNode:isSelected()
+    return self:seekChildByName("cbx_gdd"):isSelected()
 end
 
 function GameBtnNode:showExpand(flag)
@@ -91,49 +99,61 @@ function GameBtnNode:showExpand(flag)
     end
 end
 
-function GameBtnNode:showBetBtns(visible)
+function GameBtnNode:showBetNode(visible)
     local nodeTableBtn = self:seekChildByName("node_game_btn")
     nodeTableBtn:setVisible(visible)
-    
-    if visible then
-    	self:showBetBtnEnable(false)
-    end
 end
+--[[
+    自己回合
+    1.全部可点击
+    2.比牌不可
+    3.看牌不可
+    4.比牌看牌不可
+]]--
 
-function GameBtnNode:showBetBtnEnable(enable,round)
-    local btn_qp = self:seekChildByName("btn_qp")
+-- name1:可点击  name2:不可点击
+function GameBtnNode:setEnableByName(name1, name2)
+    local btnqp = self:seekChildByName("btn_qp")
     local btnbp = self:seekChildByName("btn_bp")
+    local btnkp = self:seekChildByName("btn_kp")
     local btnon = self:seekChildByName("btn_jz_on")
     local btnoff = self:seekChildByName("btn_jz_off")
     local btngz = self:seekChildByName("btn_gz")
-    
-    btn_qp:setEnabled(enable)
-    btnbp:setEnabled(enable)
-    btnon:setEnabled(enable)
-    btnon:setEnabled(enable)
-    btngz:setEnabled(enable)
-    
     local expand = self:seekChildByName("img_bet_back")
     btnon:setVisible(true)
     btnoff:setVisible(false)
     expand:setScale(0)
     
-    if enable and round <= 1 then
-        btnbp:setEnabled(false)
-    end    
+    for i, name in ipairs(name1) do
+        if name == "qp" then
+            btnqp:setEnabled(true)
+    	elseif name == "bp" then
+            btnbp:setEnabled(true)
+    	elseif name == "kp" then
+            btnkp:setEnabled(true)
+        elseif name == "jz" then
+            btnon:setEnabled(true)
+        elseif name == "gz" then 
+            btngz:setEnabled(true)       
+    	end
+    end
+    
+    for i, name in ipairs(name2) do
+        if name == "qp" then
+            btnqp:setEnabled(false)
+        elseif name == "bp" then
+            btnbp:setEnabled(false)
+        elseif name == "kp" then
+            btnkp:setEnabled(false)
+        elseif name == "jz" then
+            btnon:setEnabled(false)
+        elseif name == "gz" then 
+            btngz:setEnabled(false)       
+        end
+    end 
 end
 
-function GameBtnNode:setCbxSelected(flag)
-    local checkboxGdd = self:seekChildByName("cbx_gdd")
-    checkboxGdd:setSelected(flag)
-end
-
-function GameBtnNode:getCbxSelected()
-    local checkboxGdd = self:seekChildByName("cbx_gdd")
-    return checkboxGdd:getSelected()
-end
-
--- index之后的按钮可点击
+-- index之后的筹码可点击
 function GameBtnNode:setDisableByIndex(index)
     for i=1,6 do
         local btn = self:seekChildByName("btn_bet_" .. i)

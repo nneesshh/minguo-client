@@ -41,14 +41,16 @@ function GameMenuNode:onTouchBtnGameMenu()
     self:showMenu()
 end
 
-function GameMenuNode:onTouchBtnGameSet()      
+function GameMenuNode:onTouchBtnGameSet()   
+    app.lobby.set.SetPresenter:getInstance():start("game")
 end
 
-function GameMenuNode:onTouchBtnChange()    
+function GameMenuNode:onTouchBtnChange() 
+    self._presenter:sendChangeTable()
 end
 
 function GameMenuNode:onTouchBtnHelp()
-    
+    app.lobby.help.HelpPresenter:getInstance():start()
 end
 
 -- 旋转菜单

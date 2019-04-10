@@ -311,6 +311,7 @@ function GamePlayerNode:playPanleAction(dir, posf, post, flag)
                 cc.DelayTime:create(1),      
                 cc.ScaleTo:create(0.2, 1),
                 cc.MoveTo:create(0.5, cc.p(posf)),
+                cc.DelayTime:create(0.5), 
                 cc.CallFunc:create(function() cfunc() end)
         ))
 end
@@ -378,5 +379,14 @@ end
 function GamePlayerNode:visible()
     return self._rootNode:isVisible(), self._rootNode:getLocalZOrder()
 end
+
+-- 音效相关
+function GamePlayerNode:playEffectByName()
+	
+end
+
+
+
+
 
 return GamePlayerNode

@@ -380,4 +380,13 @@ function GamePlayerNode:visible()
     return self._rootNode:isVisible(), self._rootNode:getLocalZOrder()
 end
 
+-- 音效相关
+function GamePlayerNode:playEffectByName()
+	
+end
+
+
+
+
+
 return GamePlayerNode

@@ -46,8 +46,6 @@ function GameCardNode:setCardID(id)
     self._num          = self._presenter:getCardNum(id)
     self._color        = self._presenter:getCardColor(id)
     
-    print("wq--card--is", id, self._num, self._color)
-    
     local front = self:seekChildByName("img_card_front")
     local back = self:seekChildByName("img_card_back")
     local gary = self:seekChildByName("img_card_small_king")

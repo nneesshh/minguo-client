@@ -59,3 +59,5 @@ bin/
 *.class
 
 *.dex
+
+zjh/simulator/win32/zjh\.exe

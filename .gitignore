@@ -27,7 +27,7 @@
 #*.lib
 
 # Executables
-#*.exe
+*.exe
 *.out
 *.app
 *.tlog
@@ -41,6 +41,12 @@
 *.opendb
 *.exp
 *.idb
+*.class
+*.dex
+*.apk
+*.ccs
+*.cfg
+*.udf
 
 \.svn/
 \.vscode/
@@ -48,16 +54,12 @@
 \.sconsign\.dblite
 \.metadata/
 cocosstudio/
-zjh/frameworks/runtime-src/proj\.win32/Debug\.win32/
-zjh/zjh\.ccs
-zjh/zjh\.cfg
-zjh/zjh\.udf
 bin/
+zjh/frameworks/runtime-src/proj\.win32/Debug\.win32/
+zjh/frameworks/runtime-src/proj\.android/assets/
+zjh/frameworks/runtime-src/proj\.android/bin/
+zjh/frameworks/runtime-src/proj\.android/gen/
+zjh/frameworks/runtime-src/proj\.android/libs/
+zjh/frameworks/runtime-src/proj\.android/obj/
 
 
-
-*.class
-
-*.dex
-
-zjh/simulator/win32/zjh\.exe

@@ -198,7 +198,7 @@ function _M.onHeartBeat(conn, sessionid, msgid)
     local resp = {}   
     local po = upconn.upconn:get_packet_obj()
     
-    app.lobby.MainPresenter:getInstance():heartBeatResponse()
+    app.lobby.MainPresenter:getInstance():respHeartbeat()
 end
 
 function _M.onLogin(conn, sessionid, msgid)    
@@ -592,8 +592,7 @@ function _M.doRegisterMsgCallbacks()
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_COMPARE_CARD_NOTIFY, _M.onPlayerCompareCard)
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_GIVE_UP_NOTIFY, _M.onPlayerGiveUp) 
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_PLAYER_STATUS_NOTIFY_NEW, _M.onPlayerStatus)
-    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_CHANGE_USER_INFO_RESP, _M.onPlayerUserInfo)         
-   
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_CHANGE_USER_INFO_RESP, _M.onPlayerUserInfo)            
 end
 
 return _M

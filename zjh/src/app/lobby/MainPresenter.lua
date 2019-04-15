@@ -8,7 +8,8 @@ local scheduler     = cc.Director:getInstance():getScheduler()
 local socket        = require("socket")
 -- UI
 MainPresenter._ui   = require("app.lobby.MainScene")
-local HEART_BEAT_TIMEOUT     = 10
+local HEART_BEAT_TIMEOUT = 10
+local receiveTime        = 0
 
 function MainPresenter:ctor()
     MainPresenter.super.ctor(self)    
@@ -22,21 +23,12 @@ end
 
 function MainPresenter:onEnter()
     scheduler:scheduleScriptFunc(handler(self,self.updateConn), 0.1, false)
-    --scheduler:scheduleScriptFunc(handler(self,self.sendheartBeat), 10, false)
-
+    scheduler:scheduleScriptFunc(handler(self,self.reqHeartbeat), 10, false)
+    scheduler:scheduleScriptFunc(handler(self,self.checkTimeout), 15, false)
+       
     if app.data.UserData.getLoginState() ~= 1 then
         app.lobby.login.LoginPresenter:getInstance():start()
     end
-end
-
-function MainPresenter:performWithDelayGlobal(listener, time)
-    local handle
-    handle = scheduler:scheduleScriptFunc(
-        function()
-            scheduler:unscheduleScriptEntry(handle)
-            listener()
-        end, time, false)
-    return handle
 end
 
 function MainPresenter:createDispatcher()
@@ -49,20 +41,6 @@ end
 
 function MainPresenter:updateConn(dt)
 	upconn.update()	
-end
-
-function MainPresenter:sendheartBeat()
-    local po = upconn.upconn:get_packet_obj()
-    local sessionid = app.data.UserData.getSession() or 222
-    if po ~= nil then        
-        po:writer_reset()
-        po:write_int32(sessionid)                                     
-        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_HEART_BEAT_REQ)            
-    end
-end
-
-function MainPresenter:heartBeatResponse()
-	
 end
 
 function MainPresenter:initScene(gameid)
@@ -179,6 +157,15 @@ function MainPresenter:showSuccessMsg()
     self:dealLoadingHintExit()
 end
 
+function MainPresenter:checkTimeout()
+	local nowTime = os.time()
+    if nowTime - receiveTime > HEART_BEAT_TIMEOUT then
+		print("die")
+	else
+	   print("beat ")	
+	end
+end
+
 ------------------------ request ------------------------
 -- 请求加入房间
 function MainPresenter:reqJoinRoom(gameid, index)
@@ -196,6 +183,20 @@ function MainPresenter:reqJoinRoom(gameid, index)
         po:write_int32(roomid)       
         upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_ENTER_ROOM_REQ)
     end 
+end
+
+function MainPresenter:reqHeartbeat()
+    local po = upconn.upconn:get_packet_obj()
+    local sessionid = app.data.UserData.getSession() or 222
+    if po ~= nil then        
+        po:writer_reset()
+        po:write_int32(sessionid)                                     
+        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_HEART_BEAT_REQ)            
+    end
+end
+
+function MainPresenter:respHeartbeat()    
+    receiveTime = os.time()    
 end
 
 return MainPresenter

@@ -27,7 +27,7 @@
 #*.lib
 
 # Executables
-#*.exe
+*.exe
 *.out
 *.app
 *.tlog
@@ -41,6 +41,13 @@
 *.opendb
 *.exp
 *.idb
+*.class
+*.dex
+*.apk
+*.ccs
+*.cfg
+*.udf
+*.prop
 
 \.svn/
 \.vscode/
@@ -48,16 +55,9 @@
 \.sconsign\.dblite
 \.metadata/
 cocosstudio/
-zjh/frameworks/runtime-src/proj\.win32/Debug\.win32/
-zjh/zjh\.ccs
-zjh/zjh\.cfg
-zjh/zjh\.udf
+Debug\.win32/
 bin/
-
-
-
-*.class
-
-*.dex
-
-zjh/simulator/win32/zjh\.exe
+assets/
+gen/
+libs/
+obj/

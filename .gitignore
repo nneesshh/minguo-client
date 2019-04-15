@@ -27,7 +27,7 @@
 #*.lib
 
 # Executables
-*.exe
+#*.exe
 *.out
 *.app
 *.tlog
@@ -55,12 +55,8 @@
 \.sconsign\.dblite
 \.metadata/
 cocosstudio/
-bin/
-assets/
 gen/
-libs/
 obj/
-win32/
 proj\.android/
 proj\.win32/
-*zjh/simulator/*
+simulator/

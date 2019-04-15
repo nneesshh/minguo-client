@@ -142,7 +142,7 @@ function ToolUtils.getLineBreakText(text,maxLen)
         end
     end
     returnTxt = returnTxt .. string.sub(tmpName,firstIndex,len)
-    return bf.SysFunc:GB_18030_2000ToUTF_8(returnTxt)
+    return returnTxt
 end
 
 --[[
@@ -179,6 +179,36 @@ function ToolUtils.numConversionByDecimal(num, decimal, max)
         end
     end
     return num..suffix
+end
+
+function ToolUtils.IMEI()
+    local uuid = app.util.uuid()
+    local imei = app.data.AccountData.getAccountData("imei")
+    if #imei > 0 then
+        return imei
+    end
+    app.data.AccountData.setIMEI(uuid)
+    local targetPlatform = cc.Application:getInstance():getTargetPlatform()
+    if 3 == targetPlatform or 4 == targetPlatform or 5 == targetPlatform then
+        return uuid
+    else
+        return uuid
+    end
+end
+
+function ToolUtils.IMSI()
+    local uuid = app.util.uuid()
+    local imsi = app.data.AccountData.getAccountData("imsi")
+    if #imsi > 0 then
+        return imsi
+    end
+    app.data.AccountData.setIMSI(uuid)
+    local targetPlatform = cc.Application:getInstance():getTargetPlatform()
+    if 3 == targetPlatform or 4 == targetPlatform or 5 == targetPlatform then
+        return uuid
+    else
+        return uuid
+    end
 end
 
 return ToolUtils

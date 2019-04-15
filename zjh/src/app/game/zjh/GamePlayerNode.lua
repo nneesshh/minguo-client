@@ -6,10 +6,13 @@ local GameHandCardNode = require("app.game.zjh.GameHandCardNode")
 local GamePlayerNode   = class("GamePlayerNode", app.base.BaseNodeEx)
 
 local HERO_LOCAL_SEAT  = 1 
+local ST = app.game.GameEnum.soundType
 
 function GamePlayerNode:initData(localSeat)
     self._localSeat         = localSeat
     self._clockProgress     = nil
+    
+    math.randomseed(tostring(os.time()):reverse():sub(1, 7))
 end
 
 function GamePlayerNode:initUI(localSeat)
@@ -146,7 +149,9 @@ end
 
 -- 头像
 function GamePlayerNode:showImgFace(gender, avatar)
-    
+    local imgHead = self:seekChildByName("img_face")
+    local resPath = string.format("lobby/image/head/img_head_%d_%d.png", gender, avatar)
+    imgHead:loadTexture(resPath, ccui.TextureResType.plistType)
 end
 
 -- 庄家
@@ -198,6 +203,8 @@ function GamePlayerNode:showImgCardType(visible, index)
         local resPath = "game/zjh/image/img_card_type_" .. index .. ".png"
             
         imgType:loadTexture(resPath, ccui.TextureResType.plistType)
+    else
+        imgType:setVisible(false)   
     end
 end
 
@@ -215,6 +222,9 @@ end
 
 function GamePlayerNode:showClockProgress(percentage)
     self._clockProgress:setPercentage(percentage)
+    if percentage <= 20 then
+    	self:playEffectByName("didi")
+    end
 end
 
 function GamePlayerNode:showPnlBlack(visible)
@@ -278,11 +288,13 @@ function GamePlayerNode:playLoseEffect()
     node:addChild(effect)
 end
     
-function GamePlayerNode:playPanleAction(dir, posf, post, flag)    
+function GamePlayerNode:playPanleAction(posf, post, flag)    
     local function afunc()
+        self._rootNode:setLocalZOrder(1)
         self._presenter:setCardScale(0.4, self._localSeat)        
         self:showPnlBlack(false)
         self:showImgBet(false)
+        self:playEffectByName("pk")
     end
     
     local function bfunc()
@@ -293,7 +305,8 @@ function GamePlayerNode:playPanleAction(dir, posf, post, flag)
             self:showPnlBlack(true)
             self._presenter:showGaryCard(self._localSeat)
             self:playLoseEffect()    
-        end            
+        end
+        self:playEffectByName("pk_lose")       
     end
     
     local function cfunc()
@@ -311,8 +324,34 @@ function GamePlayerNode:playPanleAction(dir, posf, post, flag)
                 cc.DelayTime:create(1),      
                 cc.ScaleTo:create(0.2, 1),
                 cc.MoveTo:create(0.5, cc.p(posf)),
-                cc.DelayTime:create(0.5), 
+                cc.DelayTime:create(0.4), 
                 cc.CallFunc:create(function() cfunc() end)
+        ))
+end
+
+function GamePlayerNode:playQMLWAction(flag)    
+    local function func1()
+        if flag then
+            self:playWinEffect()
+            self:showPnlBlack(false)
+        else           
+            self:playLoseEffect()    
+            self:showPnlBlack(true)
+        end                  
+    end
+    
+    local function func2()
+       self._presenter:playQMLWeffect()
+    end
+    
+    self._rootNode:runAction(
+        cc.Sequence:create(            
+            cc.ScaleTo:create(0.2, 1.1),  
+            cc.CallFunc:create(function() func2() end),
+            cc.DelayTime:create(1),       
+            cc.CallFunc:create(function() func1() end),
+            cc.DelayTime:create(1), 
+            cc.ScaleTo:create(0.2, 1)            
         ))
 end
 
@@ -330,10 +369,10 @@ function GamePlayerNode:showWinloseScore(score)
     fntScore:setOpacity(255)
 
     local action = cc.Sequence:create(
-        cc.MoveBy:create(0.8, cc.p(0, 50)),
+        cc.MoveBy:create(0.8, cc.p(0, 30)),
         cc.Spawn:create(
-            cc.MoveBy:create(0.8, cc.p(0, 50)), 
-            cc.FadeOut:create(1.5)
+            cc.MoveBy:create(0.8, cc.p(0, 30)), 
+            cc.FadeOut:create(3)
         ),
         cc.MoveTo:create(0.01, cc.p(fntScore:getPosition()))
     )
@@ -381,12 +420,25 @@ function GamePlayerNode:visible()
 end
 
 -- 音效相关
-function GamePlayerNode:playEffectByName()
-	
+function GamePlayerNode:playEffectByName(name)
+    local soundPath = "game/zjh/sound/"
+    local strRes = ""
+    for alias, path in pairs(ST) do
+        if alias == name then
+            if type(path) == "table" then
+                local index = math.random(1, 3)
+                strRes = path[index]
+            else
+                strRes = path
+            end
+        end
+    end
+    local path = cc.FileUtils:getInstance():fullPathForFilename(soundPath .. strRes)
+    if not io.exists(path) then 
+        return
+    end
+    
+    app.util.SoundUtils.playEffect(soundPath..strRes)   
 end
-
-
-
-
 
 return GamePlayerNode

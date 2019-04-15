@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/app/base/BasePresenter.lua=UTF-8
 encoding//src/app/start.lua=UTF-8
 encoding//src/startup.lua=UTF-8
 encoding/<project>=UTF-8

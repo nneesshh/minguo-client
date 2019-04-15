@@ -41,7 +41,7 @@ function MainScene:onTouch(sender, eventType)
         if name == "btn_back" then
             self:showPlazaPnl(false)           
         elseif name == "btn_psz" then
-            self._presenter:showPlazaLists(4001)             
+            self._presenter:showPlazaLists(1)             
         elseif name == "btn_head_info" then
             self._presenter:showUserCenter()             
         elseif name == "btn_gold_add_lobby" then
@@ -51,9 +51,10 @@ function MainScene:onTouch(sender, eventType)
         elseif name == "btn_notice" then        
         elseif name == "btn_mail" then         
         elseif name == "btn_set" then      
-            self._presenter:showSet()                     
+            self._presenter:onAvatarUpdate()                     
         elseif name == "btn_rank" then              
-        elseif name == "btn_safe" then              
+        elseif name == "btn_safe" then 
+            self._presenter:dealLoadingHintStart("正在加载中")                   
         elseif name == "btn_shop" then      
             self._presenter:showShop()             
         elseif name == "btn_help" then      
@@ -67,26 +68,10 @@ function MainScene:onTouch(sender, eventType)
 end
 
 function MainScene:initUI(gameID, roomMode)
-    local t = self:seekChildByName("txt_id_lobby"):getLocalZOrder()
-    
-    t = 100 /2/5
-    
-    for i=1,1 do
-    	print("sssssssswwqeqwe",i)
-    end
-    
-    print("zordersssssssssss",t)
-    
-    local a1 = bit._rshift(bit._and(30, 0xf0), 4) 
-    local a2 = bit._and(30, 0x0f)
-    
-    local a3 = bit._rshift(bit._and(43, 0xf0), 4) 
-    local a4 = bit._and(43, 0x0f)
-    
-    local a5 = bit._rshift(bit._and(18, 0xf0), 4) 
-    local a6 = bit._and(18, 0x0f)
-    
-    print("sss",a1,a2,a3,a4,a5,a6)
+    local t = app.data.UserData.getAvatar()
+    local g = app.data.UserData.getGender()
+    print("tss is",tonumber(""))
+     
 end
 
 function MainScene:onEnter()
@@ -102,6 +87,12 @@ function MainScene:setID(name)
     
     txtID1:setString("ID:" .. name)
     txtID2:setString("ID:" .. name)
+end
+
+function MainScene:setAvatar(avator, gender)
+    local btnHead = self:seekChildByName("btn_head_info")
+    local resPath = string.format("lobby/image/head/img_head_%d_%d.png", gender, avator)
+    btnHead:loadTextures(resPath, resPath, resPath, ccui.TextureResType.plistType)
 end
 
 -- 更新昵称
@@ -166,17 +157,26 @@ function MainScene:loadPlazaList(gameid, plazainfos)
     if plazainfos == nil then
     	return
     end
+    local pnlPlaza = self:seekChildByName("plaza")  
+    local childs = pnlPlaza:getChildren()  
+    for i,btn in ipairs(childs) do
+        btn:setVisible(false)
+    end
     
-    local pnlPlaza = self:seekChildByName("plaza")    
-    local child = pnlPlaza:getChildren()        
-    for i,btn in ipairs(child) do
-        local base = btn:getChildByName("fnt_base")
-        local lower = btn:getChildByName("txt_lower")
-        if plazainfos[i] then
-            base:setString(plazainfos[i].base .. "底分")
-            lower:setString(plazainfos[i].lower)
-            btn:setTag(gameid)
-        end                
+    local psize = pnlPlaza:getContentSize()
+    local isize = childs[1]:getContentSize()
+    local border = (psize.width - isize.width*#plazainfos) / (#plazainfos+1)
+          
+    for i, info in ipairs(plazainfos) do
+        if i <= 4 then
+            childs[i]:setVisible(true)
+            childs[i]:setPositionX((border+isize.width/2)*i + (i-1)*isize.width/2)
+            local base = childs[i]:getChildByName("fnt_base")
+            local lower = childs[i]:getChildByName("txt_lower")
+            base:setString(info.base .. "底分")
+            lower:setString(info.lower)
+            childs[i]:setTag(gameid)
+        end        
     end
 end
 

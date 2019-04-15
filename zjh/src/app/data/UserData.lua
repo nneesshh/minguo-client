@@ -12,13 +12,13 @@ local _state = {
 
 local _selfData = {
     ticketid = 0,
-    username = "0",             -- 帐号
-    nickname = "0",             -- 昵称
-    avatar   = "0",             -- 头像
-    gender   = 1,               -- 性别
-    balance  = 100,             -- 标签
-    session  = "0",             -- 用户session  
-    state    = _state.nologin   -- 登录状态
+    username = "",             -- 帐号
+    nickname = "",             -- 昵称
+    avatar   = "avatar",       -- 头像
+    gender   = 0,              -- 性别
+    balance  = 0,              -- 财富
+    session  = "0",            -- 用户session  
+    state    = _state.nologin  -- 登录状态
 }
 
 function UserData.setUserData(tPlayerData)
@@ -50,6 +50,9 @@ function UserData.setUsername(username)
 end
 
 function UserData.getUsername()
+    if _selfData.username == "" then
+        return "无"
+    end
     return _selfData.username
 end
 
@@ -59,24 +62,48 @@ function UserData.setNickname(nickname)
 end
 
 function UserData.getNickname()
+    if _selfData.nickname == "" then
+        if _selfData.username ~= "" then
+            return "用户" .. _selfData.ticketid
+        else
+            return "用户" .. _selfData.ticketid
+        end       
+    end
     return _selfData.nickname
 end
 
 function UserData.setAvatar(avatar)
+    local avatar = tonumber(avatar)
+    if avatar == nil or avatar < 0 or avatar > 5 then
+    	return
+    end   
     _selfData.avatar = avatar
+    
     app.util.DispatcherUtils.dispatchEvent(app.Event.EVENT_AVATAR)
 end
 
 function UserData.getAvatar()
-    return _selfData.avatar or 1
+    local avatar = tonumber(_selfData.avatar)    
+    if avatar == nil or avatar < 0 or avatar > 5 then
+    	return 0
+    end
+    return avatar
 end
 
+-- 0:女 1:男 
 function UserData.setGender(gender)
+    print("sssssss",gender)
     _selfData.gender = gender
+    app.util.DispatcherUtils.dispatchEvent(app.Event.EVENT_AVATAR)    
 end
 
 function UserData.getGender()
-    return _selfData.gender or 1
+    local gender = tonumber(_selfData.gender)    
+    if gender == nil or gender < 0 or gender > 1 then
+        return 0
+    end
+   
+    return gender
 end
 
 function UserData.setBalance(balance)

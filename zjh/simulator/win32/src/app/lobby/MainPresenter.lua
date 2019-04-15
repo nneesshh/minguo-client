@@ -10,9 +10,9 @@ local scheduler     = cc.Director:getInstance():getScheduler()
 MainPresenter._ui   = require("app.lobby.MainScene")
 
 function MainPresenter:ctor()
-    MainPresenter.super.ctor(self)
-
+    MainPresenter.super.ctor(self)    
     self:createDispatcher()
+    app.util.uuid.randomseed(socket.gettime()*10000)
 end
 
 function MainPresenter:init(gameid)
@@ -114,8 +114,37 @@ function MainPresenter:showShop()
     app.lobby.shop.ShopPresenter:getInstance():start()
 end
 
------------------------- request ------------------------
+-- 安卓返回键
+-- 在主场景时提示退出游戏
+function MainPresenter:clickBack()
+    self:dealHintStart("客官,您确定要离开吗？",
+        function(bFlag)
+            if bFlag then
+                cc.Director:getInstance():endToLua()
+            end
+        end
+        , 0)
+end
 
+function MainPresenter:showErrorMsg(code)
+    local hintTxt = ""
+    if code == zjh_defs.ErrorCode.ERR_OUT_OF_LIMIT then
+	   hintTxt = "金币不足,请换个房间或者再补充点金币吧!"
+    elseif code == zjh_defs.ErrorCode.ERR_NO_FREE_TABLE then
+        hintTxt = "房间不足,请联系客服处理!"
+    elseif code == zjh_defs.ErrorCode.ERR_ROOM_OR_TABLE_INVALID then
+        hintTxt = "房间或桌子无效,请联系客服处理!"   
+	end
+    self:dealHintStart(hintTxt,
+        function(bFlag)
+            if bFlag then
+                app.lobby.shop.ShopPresenter:getInstance():start()  
+            end
+        end
+        , 1)
+end
+
+------------------------ request ------------------------
 -- 请求加入房间
 function MainPresenter:reqJoinRoom(gameid, index)
     local sessionid = app.data.UserData.getSession() or 222
@@ -124,7 +153,7 @@ function MainPresenter:reqJoinRoom(gameid, index)
     local base = plazainfo[index].base
     local po = upconn.upconn:get_packet_obj()
     if po ~= nil then        
-        app.game.GameEngine:getInstance():start(4001, base)
+        app.game.GameEngine:getInstance():start(app.Game.GameID.ZJH, base)
     
         po:writer_reset()
         po:write_int32(sessionid)  

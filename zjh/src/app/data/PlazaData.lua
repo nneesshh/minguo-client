@@ -54,4 +54,13 @@ function PlazaData.getBaseByRoomid(gameid, roomid)
 	return 1
 end
 
+function PlazaData.getLimitByBase(gameid, base)
+    local plazaInfo = PlazaData.getPlazaList(gameid)
+    for key, var in pairs(plazaInfo) do
+        if var.base == base then
+            return var.lower
+        end
+    end
+end
+
 return PlazaData

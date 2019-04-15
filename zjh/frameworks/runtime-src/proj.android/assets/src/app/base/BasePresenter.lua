@@ -1,19 +1,19 @@
 --[[
-@brief  ¹ÜÀí»ùÀà
+@brief  ç®¡ç†åŸºç±»
 ]]
 local app           = app
 
 local BasePresenter = class("BasePresenter")
 
----------------- ×ÓÀàĞèÅäÖÃÏîÄ¿ ---------------
--- UIµ¥Àı
+---------------- å­ç±»éœ€é…ç½®é¡¹ç›® ---------------
+-- UIå•ä¾‹
 BasePresenter._ui   = nil
 ----------------------------------------------
 
--- µ¥Àı
+-- å•ä¾‹
 BasePresenter._instance      = nil
 
--- ÉùÃ÷¾²Ì¬µ¥Àı 
+-- å£°æ˜é™æ€å•ä¾‹ 
 -- @param self
 -- @return _instance
 function BasePresenter:getInstance()
@@ -24,33 +24,53 @@ function BasePresenter:getInstance()
     return self._instance
 end
 
--- ³õÊ¼»¯ 
+-- åˆå§‹åŒ– 
 function BasePresenter:ctor()
 end
 
--- Æô¶¯UI
+-- å¯åŠ¨UI
 function BasePresenter:start( ... )
     self:startUI( ... )
     self:init( ... )
 end
 
--- ´ò¿ª½çÃæ
+-- æ‰“å¼€ç•Œé¢
 function BasePresenter:startUI( ... )
     self._ui:getInstance():start( self, ... )
 end
 
--- ³õÊ¼»¯(ÓÉ×ÓÀàµ¥¶ÀÊµÏÖ)
+-- åˆå§‹åŒ–(ç”±å­ç±»å•ç‹¬å®ç°)
 function BasePresenter:init( ... )
 end
 
--- ÍË³ö½çÃæ
+-- é€€å‡ºç•Œé¢
 function BasePresenter:exit()
     self._ui:getInstance():exit()
 end
 
--- ÅĞ¶ÏÊÇ·ñµ±Ç°½çÃæ
+-- åˆ¤æ–­æ˜¯å¦å½“å‰ç•Œé¢
 function BasePresenter:isCurrentUI()
     return self._ui:getInstance():isCurrentUI()
+end
+
+-- æ‰“å¼€æç¤ºæ¡†
+function BasePresenter:dealHintStart(...)
+    app.lobby.public.HintPresenter:getInstance():start(...)
+end
+
+-- å…³é—­æç¤ºæ¡†
+function BasePresenter:dealHintExit()
+    app.lobby.public.HintPresenter:getInstance():exit()
+end
+
+-- æ‰“å¼€loadingæç¤ºæ¡†
+function BasePresenter:dealLoadingHintStart(...)
+    app.lobby.public.LoadingHintPresenter:getInstance():start(...)
+end
+
+-- å…³é—­loadingæç¤ºæ¡†
+function BasePresenter:dealLoadingHintExit()
+    app.lobby.public.LoadingHintPresenter:getInstance():exit()
 end
 
 return BasePresenter

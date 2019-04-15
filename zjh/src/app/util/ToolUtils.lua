@@ -142,7 +142,7 @@ function ToolUtils.getLineBreakText(text,maxLen)
         end
     end
     returnTxt = returnTxt .. string.sub(tmpName,firstIndex,len)
-    return bf.SysFunc:GB_18030_2000ToUTF_8(returnTxt)
+    return returnTxt
 end
 
 --[[

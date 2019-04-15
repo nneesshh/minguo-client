@@ -23,17 +23,29 @@ end
 
 -- 玩家昵称
 function Player:getNickname()
-    return self._playerInfo.nickname or ""
+    if self._playerInfo.nickname == "" then
+        return "用户" .. self._playerInfo.ticketid           
+    end
+    
+    return self._playerInfo.nickname
 end
 
 -- 玩家头像
 function Player:getAvatar()
-    return self._playerInfo.avatar or "0"
+    local avatar = tonumber(self._playerInfo.avatar)    
+    if avatar == nil or avatar < 0 or avatar > 5 then
+        return 0
+    end
+    return avatar
 end
 
 -- 玩家性别
 function Player:getGender()
-    return self._playerInfo.gender or 1
+    local gender = tonumber(self._playerInfo.gender)    
+    if gender == nil or gender < 0 or gender > 1 then
+        return 0
+    end
+    return gender
 end
 
 -- 玩家金币

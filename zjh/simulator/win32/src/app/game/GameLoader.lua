@@ -13,13 +13,16 @@ end
 
 function GameLoader.unloader()
 	app.game.GamePresenter = nil
+	app.game.GameData = nil
+    app.game.GameEnum = nil
 	
 	collectgarbage("collect")
 end
 
 function GameLoader.loadZJH(roomMode)
+    app.game.GameData           = require("app.game.zjh.GameData")    
+    app.game.GameEnum           = require("app.game.zjh.GameEnum")    
     app.game.GamePresenter      = require("app.game.zjh.GamePresenter")
-    app.game.GameData           = require("app.game.zjh.GameData")
 end
 
 return GameLoader

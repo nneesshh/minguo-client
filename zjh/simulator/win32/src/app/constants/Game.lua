@@ -4,7 +4,8 @@
 local Game = {}
 
 Game.GameID = {   
-    ZJH   = 4001,
+    ZJH   = 1,
+    JDNN  = 2,
 }
 
 Game.GameName = {

@@ -22,9 +22,14 @@ function RegisterLayer:onCreate()
     local account = self:seekChildByName("tf_account")
     local verify = self:seekChildByName("tf_verify")
     local password = self:seekChildByName("tf_new_password")
+    
     account:setPlaceHolderColor(cc.c3b(255,255,255))
     verify:setPlaceHolderColor(cc.c3b(255,255,255))
     password:setPlaceHolderColor(cc.c3b(255,255,255))
+    
+    account:setTextHorizontalAlignment(cc.TEXT_ALIGNMENT_CENTER)
+    verify:setTextHorizontalAlignment(cc.TEXT_ALIGNMENT_CENTER)
+    password:setTextHorizontalAlignment(cc.TEXT_ALIGNMENT_CENTER)
 end
 
 function RegisterLayer:initUI()
@@ -47,6 +52,7 @@ function RegisterLayer:onTouch(sender, eventType)
     if eventType == ccui.TouchEventType.ended then
         if name == "btn_close" then
             self:exit()
+            app.lobby.login.AccountLoginPresenter:getInstance():start()
         elseif name == "btn_verify" then
             self:onTouchGetVerify()
         elseif name == "btn_sure" then
@@ -57,7 +63,6 @@ end
 
 function RegisterLayer:onTouchGetVerify()
     self._presenter:getVerify()
-    self:exit()
 end
 
 function RegisterLayer:onTouchRegister()
@@ -66,8 +71,24 @@ function RegisterLayer:onTouchRegister()
     local pwd = self:seekChildByName("tf_new_password")
 
     self._presenter:dealAccountRegister(userid:getString(), verify:getString(), pwd:getString())
+end
 
-    self:exit()
+function RegisterLayer:scrollHint(msg)
+    local hint = self:seekChildByName("img_hint_back")
+    local father = hint:getParent()
+    local node = hint:clone()
+    local text = node:getChildByName("text_hint")
+    text:setText(msg)
+    node:setPosition(cc.p(331, 240))
+    node:setVisible(true)
+    father:addChild(node)
+    node:runAction(cc.Sequence:create(
+        cc.FadeIn:create(0.5),                       
+        cc.FadeOut:create(0.5),
+        cc.CallFunc:create(function()
+            node:removeFromParent(true)
+        end)
+    ))
 end
 
 return RegisterLayer

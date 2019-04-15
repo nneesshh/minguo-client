@@ -69,7 +69,7 @@ function GameBtnNode:initUI(...)
 
         txt:setString(index*2*base)
     end
-    self:setDisableByIndex(1)
+    self:setDisableByIndex(0)
 end
 
 function GameBtnNode:setSelected(flag)
@@ -102,6 +102,7 @@ end
 function GameBtnNode:showBetNode(visible)
     local nodeTableBtn = self:seekChildByName("node_game_btn")
     nodeTableBtn:setVisible(visible)
+    self:setSelected(false)
 end
 --[[
     自己回合
@@ -154,7 +155,7 @@ function GameBtnNode:setEnableByName(name1, name2)
 end
 
 -- index之后的筹码可点击
-function GameBtnNode:setDisableByIndex(index)
+function GameBtnNode:setDisableByIndex(index, flag)
     for i=1,6 do
         local btn = self:seekChildByName("btn_bet_" .. i)
         local img = btn:getChildByName("img_disable")
@@ -162,18 +163,26 @@ function GameBtnNode:setDisableByIndex(index)
         img:setVisible(false)
     end
     
+    -- 全压
+    if flag then
+        local btn = self:seekChildByName("btn_bet_" .. 6)
+        local img = btn:getChildByName("img_disable")
+        btn:setEnabled(false)
+        img:setVisible(true)
+    end 
+    
     if index then
         index = math.ceil(index)
         if index < 1 or index > 6 then
-            index = 1
+            return
         end      	
-        for i=1,index-1 do
+        for i=1,index do
             local btn = self:seekChildByName("btn_bet_" .. i)
             local img = btn:getChildByName("img_disable")
             btn:setEnabled(false)
             img:setVisible(true)
         end  
-    end 
+    end
 end
 
 return GameBtnNode

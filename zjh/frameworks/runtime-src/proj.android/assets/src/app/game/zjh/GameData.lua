@@ -14,6 +14,7 @@ local _selfData = {
     playercount   = 0,         -- 玩家数
     playerseat    = {},        -- 座位号  
     basecoin      = 0,
+    isallIn       = false      -- 是否全压
 }
 
 function GameData.setTableInfo(info)
@@ -50,6 +51,7 @@ function GameData.restData()
     _selfData.playercount = 0
     _selfData.playerseat  = {}
     _selfData.basecoin    = 0
+    _selfData.isallIn     = false
 end
 
 function GameData.setStatus(status)
@@ -122,6 +124,14 @@ end
 
 function GameData.getBasecoin()
     return _selfData.basecoin or 0
+end
+
+function GameData.setAllIn(status)
+    _selfData.isallIn = status
+end
+
+function GameData.getAllIn()
+    return _selfData.isallIn
 end
 
 return GameData

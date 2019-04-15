@@ -5,18 +5,38 @@
 local MainPresenter = class("MainPresenter", app.base.BasePresenter)
 local ToolUtils     = app.util.ToolUtils
 local scheduler     = cc.Director:getInstance():getScheduler()
-
+local socket        = require("socket")
 -- UI
 MainPresenter._ui   = require("app.lobby.MainScene")
+local HEART_BEAT_TIMEOUT     = 10
 
 function MainPresenter:ctor()
-    MainPresenter.super.ctor(self)
-
+    MainPresenter.super.ctor(self)    
     self:createDispatcher()
+    app.util.uuid.randomseed(socket.gettime()*10000)
 end
 
 function MainPresenter:init(gameid)
     self:initScene(gameid)
+end
+
+function MainPresenter:onEnter()
+    scheduler:scheduleScriptFunc(handler(self,self.updateConn), 0.1, false)
+    --scheduler:scheduleScriptFunc(handler(self,self.sendheartBeat), 10, false)
+
+    if app.data.UserData.getLoginState() ~= 1 then
+        app.lobby.login.LoginPresenter:getInstance():start()
+    end
+end
+
+function MainPresenter:performWithDelayGlobal(listener, time)
+    local handle
+    handle = scheduler:scheduleScriptFunc(
+        function()
+            scheduler:unscheduleScriptEntry(handle)
+            listener()
+        end, time, false)
+    return handle
 end
 
 function MainPresenter:createDispatcher()
@@ -28,15 +48,21 @@ function MainPresenter:createDispatcher()
 end
 
 function MainPresenter:updateConn(dt)
-	upconn.update()
+	upconn.update()	
 end
 
-function MainPresenter:onEnter()
-    scheduler:scheduleScriptFunc(handler(self,self.updateConn), 0.1, false)
-
-    if app.data.UserData.getLoginState() ~= 1 then
-        app.lobby.login.LoginPresenter:getInstance():start()
+function MainPresenter:sendheartBeat()
+    local po = upconn.upconn:get_packet_obj()
+    local sessionid = app.data.UserData.getSession() or 222
+    if po ~= nil then        
+        po:writer_reset()
+        po:write_int32(sessionid)                                     
+        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_HEART_BEAT_REQ)            
     end
+end
+
+function MainPresenter:heartBeatResponse()
+	
 end
 
 function MainPresenter:initScene(gameid)
@@ -76,6 +102,10 @@ function MainPresenter:onAvatarUpdate()
     if not self:isCurrentUI() then
         return
     end
+
+    local avator = app.data.UserData.getAvatar()
+    local gender = app.data.UserData.getGender()
+    self._ui:getInstance():setAvatar(avator, gender)    
 end
 
 function MainPresenter:onBalanceUpdate()
@@ -114,8 +144,42 @@ function MainPresenter:showShop()
     app.lobby.shop.ShopPresenter:getInstance():start()
 end
 
------------------------- request ------------------------
+-- 安卓返回键
+-- 在主场景时提示退出游戏
+function MainPresenter:clickBack()
+    self:dealHintStart("客官,您确定要离开吗？",
+        function(bFlag)
+            if bFlag then
+                cc.Director:getInstance():endToLua()
+            end
+        end
+        , 0)
+end
 
+function MainPresenter:showErrorMsg(code)
+    self:dealLoadingHintExit()
+    local hintTxt = ""
+    if code == zjh_defs.ErrorCode.ERR_OUT_OF_LIMIT then
+	   hintTxt = "金币不足,请换个房间或者再补充点金币吧!"
+    elseif code == zjh_defs.ErrorCode.ERR_NO_FREE_TABLE then
+        hintTxt = "房间不足,请联系客服处理!"
+    elseif code == zjh_defs.ErrorCode.ERR_ROOM_OR_TABLE_INVALID then
+        hintTxt = "房间或桌子无效,请联系客服处理!"   
+	end
+    self:dealHintStart(hintTxt,
+        function(bFlag)
+            if bFlag then
+                app.lobby.shop.ShopPresenter:getInstance():start()  
+            end
+        end
+        , 1)
+end
+
+function MainPresenter:showSuccessMsg()
+    self:dealLoadingHintExit()
+end
+
+------------------------ request ------------------------
 -- 请求加入房间
 function MainPresenter:reqJoinRoom(gameid, index)
     local sessionid = app.data.UserData.getSession() or 222
@@ -123,8 +187,9 @@ function MainPresenter:reqJoinRoom(gameid, index)
     local roomid = plazainfo[index].roomid
     local base = plazainfo[index].base
     local po = upconn.upconn:get_packet_obj()
-    if po ~= nil then        
-        app.game.GameEngine:getInstance():start(4001, base)
+    if po ~= nil then   
+        self:dealLoadingHintStart("正在加入房间")      
+        app.game.GameEngine:getInstance():start(app.Game.GameID.ZJH, base)
     
         po:writer_reset()
         po:write_int32(sessionid)  

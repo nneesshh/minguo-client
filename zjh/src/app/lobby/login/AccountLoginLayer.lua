@@ -27,8 +27,15 @@ function AccountLoginLayer:onCreate()
 end
 
 function AccountLoginLayer:initUI()
-    self:seekChildByName("tf_account"):setText("")
-    self:seekChildByName("tf_password"):setText("")
+    local username, password = self._presenter:getAccountData() 
+    local tf_account = self:seekChildByName("tf_account")
+    local tf_password = self:seekChildByName("tf_password")
+    
+    tf_account:setText(username)
+    tf_account:setTextHorizontalAlignment(cc.TEXT_ALIGNMENT_CENTER)
+    
+    tf_password:setText(password)
+    tf_password:setTextHorizontalAlignment(cc.TEXT_ALIGNMENT_CENTER)
 end
 
 function AccountLoginLayer:onClick(sender)

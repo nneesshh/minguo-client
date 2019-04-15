@@ -22,6 +22,8 @@ app.util.Queue                              = require("app.util.Queue")
 app.util.ToolUtils                          = require("app.util.ToolUtils")
 app.util.UIUtils                            = require("app.util.UIUtils")
 app.util.VaildUtils                         = require("app.util.VaildUtils")
+app.util.SoundUtils                         = require("app.util.SoundUtils")
+app.util.uuid                               = require("app.util.uuid")
 
 ------------------------------------ 基类 -------------------------------------
 app.base = app.base or {}
@@ -30,10 +32,13 @@ app.base.BasePresenter                      = require("app.base.BasePresenter")
 app.base.BaseScene                          = require("app.base.BaseScene")
 app.base.BaseNode                           = require("app.base.BaseNode")
 app.base.BaseNodeEx                         = require("app.base.BaseNodeEx")
+
 ------------------------------------ 数据 -------------------------------------
 app.data = app.data or {}
 app.data.PlazaData                          = require("app.data.PlazaData")
 app.data.UserData                           = require("app.data.UserData")
+app.data.SetData                            = require("app.data.SetData")
+app.data.AccountData                        = require("app.data.AccountData")
 
 ------------------------------------ 大厅 -------------------------------------
 app.lobby = app.lobby or {}
@@ -47,6 +52,7 @@ app.lobby.login.VerifyLoginPresenter        = require("app.lobby.login.VerifyLog
 
 app.lobby.usercenter = app.lobby.usercenter or {}
 app.lobby.usercenter.UserCenterPresenter    = require("app.lobby.usercenter.UserCenterPresenter")
+app.lobby.usercenter.ChangeHeadPresenter    = require("app.lobby.usercenter.ChangeHeadPresenter")
 
 app.lobby.help = app.lobby.help or {}
 app.lobby.help.HelpPresenter                = require("app.lobby.help.HelpPresenter")
@@ -57,11 +63,14 @@ app.lobby.shop.ShopPresenter                = require("app.lobby.shop.ShopPresen
 app.lobby.set = app.lobby.set or {}
 app.lobby.set.SetPresenter                  = require("app.lobby.set.SetPresenter")
 
--- 游戏文件
-app.game = app.game or {}
-app.game.GameConfig                               = require("app.game.GameConfig")
-app.game.GameEngine                               = require("app.game.GameEngine")
-app.game.GameLoader                               = require("app.game.GameLoader")
-app.game.Player                                   = require("app.game.Player")
-app.game.PlayerData                               = require("app.game.PlayerData")
+app.lobby.public = app.lobby.public or {}
+app.lobby.public.HintPresenter              = require("app.lobby.public.HintPresenter")
+app.lobby.public.LoadingHintPresenter       = require("app.lobby.public.LoadingHintPresenter")
 
+------------------------------------ 游戏文件  -------------------------------------
+app.game = app.game or {}
+app.game.GameConfig                         = require("app.game.GameConfig")
+app.game.GameEngine                         = require("app.game.GameEngine")
+app.game.GameLoader                         = require("app.game.GameLoader")
+app.game.Player                             = require("app.game.Player")
+app.game.PlayerData                         = require("app.game.PlayerData")

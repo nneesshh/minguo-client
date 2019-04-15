@@ -8,6 +8,8 @@ local AccountLoginPresenter   = class("AccountLoginPresenter", app.base.BasePres
 -- UI
 AccountLoginPresenter._ui  = require("app.lobby.login.AccountLoginLayer")
 
+local AccountData = app.data.AccountData
+
 local function checkPhoneNum(sphoneNum)
     return string.match(sphoneNum,"[1][3,4,5,7,8]%d%d%d%d%d%d%d%d%d") == sphoneNum
 end
@@ -25,7 +27,6 @@ end
 local function checkPwd(pwd)
     return app.util.VaildUtils.isAlNum(pwd)
 end
-
 
 function AccountLoginPresenter:init()
     self:createDispatcher()
@@ -46,16 +47,18 @@ end
 function AccountLoginPresenter:dealAccountLogin(account, password)    
     local hint = ""
     if account == "" then
-        hint = "请输入手机账号！"
+        hint = "请输入手机账号！" 
     elseif account ~= "" and password == "" then
         hint = "请输入登陆密码！"
     elseif not checkPwdLength(password) then
         hint = "密码长度应为6-16位！"
-    elseif checkPwd(password) then
-        hint = "密码格式不正确！"            
+--    elseif not checkPhoneNum(account) then  
+--        hint = "手机号格式不正确！" 
+--    elseif checkPwd(password) then
+--        hint = "密码格式不正确！"            
     end
 
-    if hint == "" then        
+    if hint ~= "" then        
         self._ui:getInstance():scrollHint(hint)
         return
     else             
@@ -65,13 +68,13 @@ function AccountLoginPresenter:dealAccountLogin(account, password)
         else
             po:writer_reset()
             po:write_int32(0)                      -- userTicketId
-            po:write_string(tostring(12345678901)) -- phoneNumber as userName
-            po:write_string("a123123")             -- pwd
-            po:write_string("imei00001")           -- imei
-            po:write_string("imsi00001")           -- imsi
-            po:write_string("ch001")               -- channel
-            po:write_string("sch001")              -- subChannel
-
+            po:write_string(tostring(account))     -- phoneNumber as userName
+            po:write_string(password)              -- pwd
+            po:write_string(AccountData.IMEI())      -- imei
+            po:write_string(AccountData.IMSI())      -- imsi
+            po:write_string("")                    -- channel
+            po:write_string("")                    -- subChannel
+        
             local sessionId = self.sessionId or 222
             upconn.upconn:send_packet(sessionId, zjh_defs.MsgId.MSGID_LOGIN_REQ)
         end              

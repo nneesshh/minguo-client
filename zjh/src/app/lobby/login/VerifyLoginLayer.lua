@@ -23,6 +23,9 @@ function VerifyLoginLayer:onCreate()
     local verify = self:seekChildByName("tf_verify")
     account:setPlaceHolderColor(cc.c3b(255,255,255))
     verify:setPlaceHolderColor(cc.c3b(255,255,255))
+    
+    account:setTextHorizontalAlignment(cc.TEXT_ALIGNMENT_CENTER)
+    verify:setTextHorizontalAlignment(cc.TEXT_ALIGNMENT_CENTER)
 end
 
 function VerifyLoginLayer:initUI()
@@ -44,6 +47,7 @@ function VerifyLoginLayer:onTouch(sender, eventType)
     if eventType == ccui.TouchEventType.ended then
         if name == "btn_close" then
             self:exit()
+            app.lobby.login.AccountLoginPresenter:getInstance():start()
         elseif name == "btn_verify" then
             self:onTouchGetVerify()
         elseif name == "btn_login" then
@@ -54,7 +58,6 @@ end
 
 function VerifyLoginLayer:onTouchGetVerify()
     self._presenter:getVerify()
-    self:exit()
 end
 
 function VerifyLoginLayer:onTouchLogin()
@@ -62,8 +65,6 @@ function VerifyLoginLayer:onTouchLogin()
     local verify = self:seekChildByName("tf_verify")
 
     self._presenter:dealAccountLogin(account:getString(), verify:getString())
-
-    self:exit()
 end
 
 return VerifyLoginLayer

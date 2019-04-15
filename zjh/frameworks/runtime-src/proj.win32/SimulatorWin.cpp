@@ -334,6 +334,7 @@ int SimulatorWin::run()
 
     // check scale
     Size frameSize = _project.getFrameSize();
+	frameSize = Size(800, 480);
     float frameScale = 1.0f;
     if (_project.isRetinaDisplay())
     {

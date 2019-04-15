@@ -6,7 +6,10 @@ local ErrorCode = {
     ERR_WRONG_PASSWORD          = 0x04, --
     ERR_ACCOUNT_RESTRICTION     = 0x05, --
     ERR_OUT_OF_LIMIT            = 0x06, --
-    ERR_NO_FREE_TABLE           = 0x07  --
+    ERR_NO_FREE_TABLE           = 0x07,  --
+    ERR_ROOM_OR_TABLE_INVALID   = 0x08, 
+    ERR_LEAVE_LOCK              = 0x09, 
+    ERR_RELOGIN                 = 0x0A,
 }
 
 local MsgId = {
@@ -17,6 +20,9 @@ local MsgId = {
     MSGID_LOGIN_RESP			= 0x1004,		--//登录回应 4100
     MSGID_REGISTER_REQ			= 0x1005,		--//登录请求 4101
     MSGID_REGISTER_RESP			= 0x1006,		--//登录回应 4102
+        
+    MSGID_CHANGE_USER_INFO_REQ  = 0x1101,       --//修改用户信息请求 4353 
+    MSGID_CHANGE_USER_INFO_RESP = 0x1102,       --//修改用户信息回应 4354 
 
     --// room
     MSGID_ENTER_ROOM_REQ		= 0x1007,		--//进入房间请求 4103
@@ -25,7 +31,11 @@ local MsgId = {
     MSGID_LEAVE_ROOM_RESP		= 0x100A,		--//离开房间回应 4106
     MSGID_CHANGE_TABLE_REQ		= 0x100B,		--//换桌请求 4107
     MSGID_CHANGE_TABLE_RESP		= 0x100C,		--//换桌回应 4108
-
+    
+    MSGID_RELOGIN_NOTIFY_NEW    = 0x888,         --//其他用户登录通知 2184 
+    MSGID_PLAYER_STATUS_NOTIFY_NEW = 0x889,      --//玩家状态改变通知 2185 
+    MSGID_SIT_DOWN_NOTIFY_NEW   = 0x88A,         --//坐下通知 2186
+    
     --// game
     MSGID_READY_REQ				= 0x2001,		--//准备请求 8193
     MSGID_CHANGE_TABLE			= 0x2002,		--//换桌 8194
@@ -46,7 +56,6 @@ local MsgId = {
     MSGID_COMPARE_CARD_NOTIFY   = 0x202A,       --//比牌 8234
     MSGID_GIVE_UP_NOTIFY        = 0x202B,       --//弃牌 8235
     MSGID_RELOGIN_NOTIFY        = 0x202C,       --//其他用户登录 8236
-
 
     MSGID_CLOSE_CONNECTION		= 0x03,		--//
     MSGID_CREATE_HANDLER		= 0x04,		--//

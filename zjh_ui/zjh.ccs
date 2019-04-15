@@ -132,6 +132,7 @@
             <Project Name="help.csd" Type="Layer" />
             <Project Name="hint.csd" Type="Layer" />
             <Project Name="loading.csd" Type="Scene" />
+            <Project Name="hintload.csd" Type="Layer" />
             <Project Name="lobby.csd" Type="Scene" />
             <Project Name="login.csd" Type="Layer" />
             <Project Name="password.csd" Type="Layer" />
@@ -146,6 +147,16 @@
               <Fnt Name="plazafnt.fnt" />
             </Folder>
             <Folder Name="head">
+              <Image Name="img_head_0_1.png" />
+              <Image Name="img_head_0_2.png" />
+              <Image Name="img_head_0_3.png" />
+              <Image Name="img_head_0_4.png" />
+              <Image Name="img_head_0_0.png" />
+              <Image Name="img_head_1_1.png" />
+              <Image Name="img_head_1_2.png" />
+              <Image Name="img_head_1_3.png" />
+              <Image Name="img_head_1_4.png" />
+              <Image Name="img_head_1_0.png" />
               <Image Name="img_light.png" />
               <Image Name="imt_title.png" />
             </Folder>
@@ -220,7 +231,6 @@
               <Image Name="img_hint_gray.png" />
               <Image Name="img_hint_left.png" />
               <Image Name="img_title.png" />
-              <Image Name="img_ts.png" />
             </Folder>
             <Folder Name="set">
               <Image Name="btn_off.png" />
@@ -253,6 +263,12 @@
               <Image Name="img_line.png" />
               <Image Name="img_title.png" />
             </Folder>
+            <Folder Name="hint">
+              <Image Name="img_bank.png" />
+              <Image Name="img_charge.png" />
+              <Image Name="img_ts.png" />
+            </Folder>
+            <PlistInfo Name="plisthead.csi" Type="Plist" />
           </Folder>
         </Folder>
       </RootFolder>

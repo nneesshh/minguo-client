@@ -2,13 +2,14 @@
 @brief  游戏主场景UI基类
 ]]
 local GameScene   = class("GameScene", app.base.BaseScene)
-local ALLTURN     = 20
+
 -- csb路径
 GameScene.csbPath = "game/zjh/csb/gamescene.csb"
 
+local GE   = app.game.GameEnum
+
 GameScene.touchs = {
-    "btn_exit",
-    
+    "btn_exit",   
 }
 
 GameScene.clicks = {
@@ -25,7 +26,7 @@ function GameScene:onTouch(sender, eventType)
     local name = sender:getName()
     if eventType == ccui.TouchEventType.ended then        
         if name == "btn_exit" then
-            self._presenter:sendLeaveRoom()              
+           self._presenter:sendLeaveRoom()
         end
     end
 end
@@ -35,7 +36,7 @@ function GameScene:onClick(sender)
     local name = sender:getName()
     if string.find(name, "pnl_player_") then 
         local localseat = string.split(name, "pnl_player_")[2]
-        self._presenter:onTouchPanelBiPai(tonumber(localseat))
+        self._presenter:onTouchPanelBiPai(tonumber(localseat)) 
     end    
 end
 
@@ -50,7 +51,8 @@ function GameScene:initData()
 end 
 
 function GameScene:initUI()
-    self:showBase()    
+    self:showBase()  
+    self:showLunShu(0, GE.ALLROUND)
 end
 
 function GameScene:showStartEffect()
@@ -61,6 +63,35 @@ end
 function GameScene:showBiPaiEffect()
     local effect = app.util.UIUtils.runEffectOne("game/zjh/effect","vs_dh2", 0, 0)
     self:seekChildByName("node_bipai_effect"):addChild(effect)
+end
+
+function GameScene:showFireEffect()
+    for i=0,3 do
+        local node = self:seekChildByName("node_fire_" .. i)
+    	if node then
+            app.util.UIUtils.runEffectLoop(node, "fire"..i, "game/zjh/effect","huo_2", 0, 0, true)
+    	end
+    end   
+end
+
+function GameScene:stopFireEffectLoop()
+    for i=0,3 do
+        local node = self:seekChildByName("node_fire_" .. i)
+        if node then
+            node:stopAllActions()
+            node:setVisible(false)
+        end
+    end 
+end
+
+function GameScene:playQMLWeffect()
+    local effect = app.util.UIUtils.runEffectOne("game/zjh/effect","vs_qmlw", 0, 0)
+    self:seekChildByName("node_start_effect"):addChild(effect)
+end
+
+function GameScene:playGZYZeffect()
+    local effect = app.util.UIUtils.runEffectOne("game/zjh/effect","vs_gzyz", 0, 0)
+    self:seekChildByName("node_gzyz_effect"):addChild(effect)
 end
 
 function GameScene:showBase()
@@ -74,8 +105,8 @@ function GameScene:showDanZhu(num)
     fntDZ:setString(num)
 end
 
-function GameScene:showLunShu(num)
-    local strNum = string.format("%d/%d", num, ALLTURN)
+function GameScene:showLunShu(num, allround)
+    local strNum = string.format("%d/%d", num, allround)
     local fntLS = self:seekChildByName("fnt_turn")
     fntLS:setString(strNum)
 end
@@ -225,7 +256,6 @@ function GameScene:getToPosition()
 end
 
 function GameScene:showPnlHint(type)
-    print("type is",type)
     local nodeHint1 = self:seekChildByName("node_hint_1")
     local nodeHint2 = self:seekChildByName("node_hint_2")
     if nodeHint1 then
@@ -234,18 +264,26 @@ function GameScene:showPnlHint(type)
             nodeHint1:setVisible(true)
             nodeHint2:setVisible(false)
             self._presenter:openSchedulerPrepareClock(3)
+            self._presenter:closeSchedulerRunLoading()
             -- 等待
         elseif type == 2 then
             nodeHint1:setVisible(false)
-            nodeHint2:setVisible(true)
-
+            nodeHint2:setVisible(true)            
+            self._presenter:openSchedulerRunLoading()
             -- 隐藏   
         elseif type == 3 then
             nodeHint1:setVisible(false)
             nodeHint2:setVisible(false)
+            self._presenter:closeSchedulerRunLoading()
         end
-    end   
-    
+    end       
+end
+
+function GameScene:setTxtwait(txt)
+    local txtNode = self:seekChildByName("txt_wait")
+    if txtNode then
+        txtNode:setString(txt)
+    end    
 end
 
 function GameScene:showClockPrepare(time)

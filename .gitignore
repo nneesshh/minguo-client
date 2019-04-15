@@ -55,9 +55,12 @@
 \.sconsign\.dblite
 \.metadata/
 cocosstudio/
-Debug\.win32/
 bin/
 assets/
 gen/
 libs/
 obj/
+win32/
+proj\.android/
+proj\.win32/
+*zjh/simulator/*

@@ -18,6 +18,7 @@ end
 function LoginPresenter:createDispatcher()
     app.util.DispatcherUtils.addEventListenerSafe(app.Event.EVENT_LOGIN_SUCCESS, handler(self, self.onLoginSuccess))    
     app.util.DispatcherUtils.addEventListenerSafe(app.Event.EVENT_LOGIN_FAIL, handler(self, self.onLoginFail))       
+    app.util.DispatcherUtils.addEventListenerSafe(app.Event.EVENT_CONNECT_STATE, handler(self, self.onState))
 end
 
 function LoginPresenter:onLoginSuccess()
@@ -26,10 +27,18 @@ function LoginPresenter:onLoginSuccess()
     app.lobby.login.LoginPresenter:getInstance():exit()  
 end
 
-
 function LoginPresenter:onLoginFail()
     self:dealLoadingHintExit()
      self:dealHintStart("登录失败")
+end
+
+function LoginPresenter:onState()       
+    if not self:isCurrentUI() then
+        return
+    end
+    
+    local state = app.Connect:getInstance():getState()
+    self._ui:getInstance():updateState(state)
 end
 
 function LoginPresenter:testLogin(data)
@@ -70,7 +79,7 @@ function LoginPresenter:dealGuestLogin()
     end
 end
 
---账号登录
+-- 账号登录
 function LoginPresenter:dealAccountLogin()
     app.lobby.login.AccountLoginPresenter:getInstance():start()
 end
@@ -94,6 +103,18 @@ function LoginPresenter:sendLogin(username, password)
         print("send login",username, password)
         upconn.upconn:send_packet(sessionId, zjh_defs.MsgId.MSGID_LOGIN_REQ)            
     end     
+end
+
+-- 
+function LoginPresenter:reLogin()
+    if not self:isCurrentUI() then
+        self:dealHintStart("连接异常,将返回登录界面重新登录！",
+            function(bFlag)            
+                app.lobby.login.LoginPresenter:getInstance():start()
+                self:start()            
+            end
+            ,0)        
+    end
 end
 
 return LoginPresenter

@@ -42,6 +42,7 @@ end
 function GameEngine:onExitGame()
     if not app.lobby.MainPresenter:getInstance():isCurrentUI() then
         app.game.GamePresenter:getInstance():exit()
+        print("app.game.GameConfig.getGameID()",app.game.GameConfig.getGameID())    
         app.lobby.MainPresenter:getInstance():start(app.game.GameConfig.getGameID())
     end
 end

@@ -9,7 +9,6 @@ local GameBtnNode  = class("GameBtnNode", app.base.BaseNodeEx)
 GameBtnNode.touchs = {
     "btn_qp",
     "btn_bp",
-    "btn_kp",
     "btn_jz_on",
     "btn_jz_off",
     "btn_gz",
@@ -32,12 +31,12 @@ function GameBtnNode:onTouch(sender, eventType)
         if name == "btn_qp" then
             self._presenter:onTouchBtnQipai()
         elseif name == "btn_bp" then
-            self._presenter:onTouchBtnBipai()
-        elseif name == "btn_kp" then 
-            self._presenter:onTouchBtnKanpai()
-        elseif name == "btn_jz_on" then 
+            self._presenter:onTouchBtnBipai()        
+        elseif name == "btn_jz_on" then
+            self._presenter:playBiPaiPanel(false) 
             self:showExpand(true)
        elseif name == "btn_jz_off" then
+            self._presenter:playBiPaiPanel(false) 
             self:showExpand(false)
         elseif name == "btn_gz" then 
             self._presenter:onTouchBtnGenzhu()
@@ -50,12 +49,12 @@ end
 
 function GameBtnNode:onEvent(sender, eventType)
     local name = sender:getName()
-    if name == "cbx_gdd" then
+    if name == "cbx_gdd" or name == "cbx_gdd_test" then
         if eventType == ccui.CheckBoxEventType.selected then  
-            self:setSelected(true)          
+            self:setSelected(true, name)          
             self._presenter:onEventCbxGendaodi(true)            
         elseif eventType == ccui.CheckBoxEventType.unselected then            
-            self:setSelected(false)
+            self:setSelected(false, name)
             self._presenter:onEventCbxGendaodi(false)            
         end
     end
@@ -66,18 +65,24 @@ function GameBtnNode:initUI(...)
     for index=1, 5 do
         local btn = self:seekChildByName("btn_bet_" .. index)
         local txt = btn:getChildByName("txt_num")
-
         txt:setString(index*2*base)
     end
     self:setDisableByIndex(0)
 end
 
-function GameBtnNode:setSelected(flag)
-    self:seekChildByName("cbx_gdd"):setSelected(flag)
+function GameBtnNode:setSelected(flag, name)
+    local cbx = self:seekChildByName(name)
+    if cbx then
+        cbx:setSelected(flag)
+    end
 end
 
-function GameBtnNode:isSelected()
-    return self:seekChildByName("cbx_gdd"):isSelected()
+function GameBtnNode:isSelected(name)
+    local cbx = self:seekChildByName(name)
+    if cbx then
+        return cbx:isSelected()
+    end
+    return false
 end
 
 function GameBtnNode:showExpand(flag)
@@ -102,21 +107,13 @@ end
 function GameBtnNode:showBetNode(visible)
     local nodeTableBtn = self:seekChildByName("node_game_btn")
     nodeTableBtn:setVisible(visible)
-    self:setSelected(false)
+    self:setSelected(false, "cbx_gdd")    
 end
---[[
-    自己回合
-    1.全部可点击
-    2.比牌不可
-    3.看牌不可
-    4.比牌看牌不可
-]]--
 
 -- name1:可点击  name2:不可点击
 function GameBtnNode:setEnableByName(name1, name2)
     local btnqp = self:seekChildByName("btn_qp")
-    local btnbp = self:seekChildByName("btn_bp")
-    local btnkp = self:seekChildByName("btn_kp")
+    local btnbp = self:seekChildByName("btn_bp")    
     local btnon = self:seekChildByName("btn_jz_on")
     local btnoff = self:seekChildByName("btn_jz_off")
     local btngz = self:seekChildByName("btn_gz")
@@ -130,8 +127,6 @@ function GameBtnNode:setEnableByName(name1, name2)
             btnqp:setEnabled(true)
     	elseif name == "bp" then
             btnbp:setEnabled(true)
-    	elseif name == "kp" then
-            btnkp:setEnabled(true)
         elseif name == "jz" then
             btnon:setEnabled(true)
         elseif name == "gz" then 
@@ -144,8 +139,6 @@ function GameBtnNode:setEnableByName(name1, name2)
             btnqp:setEnabled(false)
         elseif name == "bp" then
             btnbp:setEnabled(false)
-        elseif name == "kp" then
-            btnkp:setEnabled(false)
         elseif name == "jz" then
             btnon:setEnabled(false)
         elseif name == "gz" then 

@@ -49,7 +49,6 @@ function GameHandCardNode:createCard(id, scale, type)
     self._gameCards[index]:setCardScale(scale)
     self._gameCards[index]:setCardIndex(index)
     self._gameCards[index]:setVisible(true)
-
     return self._gameCards[index]
 end
 
@@ -81,7 +80,7 @@ function GameHandCardNode:onTakeFirst(id)
 end
 
 -- 创建手牌
-function GameHandCardNode:createCards(cards)
+function GameHandCardNode:createCards(cards, scale)    
     self:resetCards()    
     for i = 1, #cards do
         self._handCardCount = self._handCardCount + 1
@@ -89,7 +88,8 @@ function GameHandCardNode:createCards(cards)
 
     for i = 1, #cards do
         if self._localSeat == HERO_LOCAL_SEAT then
-            self:createCard(cards[i], HAND_CARD_SCALE, HAND_CARD_TYPE)
+            scale = scale or HAND_CARD_SCALE
+            self:createCard(cards[i], scale, HAND_CARD_TYPE)
         else
             self:createCard(cards[i], HAND_CARD_SCALE_NO_SELF, HAND_CARD_TYPE_NO_SELF)
         end
@@ -115,6 +115,14 @@ function GameHandCardNode:setCardScale(scale)
     if self._gameCards then
         for i = 1, #self._gameCards do            
             self._gameCards[i]:setCardScale(scale)                     
+        end
+    end    
+end
+
+function GameHandCardNode:setCardPosition()
+    if self._gameCards then
+        for i = 1, #self._gameCards do            
+            self._gameCards[i]:setCardPosition()                     
         end
     end    
 end

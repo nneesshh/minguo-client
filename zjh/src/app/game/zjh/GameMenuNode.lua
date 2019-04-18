@@ -24,7 +24,9 @@ function GameMenuNode:onTouch(sender, eventType)
             self:onTouchBtnChange()
         elseif name == "btn_help" then
             self:onTouchBtnHelp()
-        end    
+        end
+        
+        print("name is", name)    
     end
 end
 
@@ -42,7 +44,7 @@ function GameMenuNode:onTouchBtnGameMenu()
 end
 
 function GameMenuNode:onTouchBtnGameSet()   
-    app.lobby.set.SetPresenter:getInstance():start("game")
+    app.lobby.set.SetPresenter:getInstance():start(false)
 end
 
 function GameMenuNode:onTouchBtnChange() 
@@ -72,18 +74,10 @@ function GameMenuNode:showMenu()
     local angle = btnMenu:getRotation()
     local x,y = math.modf(angle/360) 
 
-    if y == 0 then
-        
-        local action = cc.MoveTo:create(0.13, cc.p(33, 280))
-        imgExpand:setVisible(true)
-        imgExpand:runAction(action)
+    if y == 0 then        
+        imgExpand:runAction(cc.FadeIn:create(0.13))
     else
-        imgExpand:runAction(cc.Sequence:create(
-            cc.MoveTo:create(0.13, cc.p(33, 494)),
-            cc.CallFunc:create(function()                 
-                imgExpand:setVisible(false)
-            end)
-        ))
+        imgExpand:runAction(cc.FadeOut:create(0.13))
     end
 end
 

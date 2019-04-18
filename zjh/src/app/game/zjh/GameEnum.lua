@@ -5,7 +5,7 @@
 local GameEnum = {}
 
 GameEnum.HERO_LOCAL_SEAT           = 1
-GameEnum.ALLROUND                  = 10
+GameEnum.ALLROUND                  = 20
 GameEnum.CARDBACK                  = 0
 GameEnum.CARDGRAY                  = 888
 

@@ -92,7 +92,6 @@ end
 
 -- 0:女 1:男 
 function UserData.setGender(gender)
-    print("sssssss",gender)
     _selfData.gender = gender
     app.util.DispatcherUtils.dispatchEvent(app.Event.EVENT_AVATAR)    
 end

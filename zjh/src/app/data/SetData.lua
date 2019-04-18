@@ -22,7 +22,7 @@ function SetData.setOpenEffect(flag)
 end
 
 function SetData.isOpenEffect()
-    SetData._isOpenEffect = SetData._isOpenEffect or cc.UserDefault:getInstance():getBoolForKey("KW_BOOL_SET_EFFECT", true)
+    SetData._isOpenEffect = SetData._isOpenEffect or cc.UserDefault:getInstance():getBoolForKey("BOOL_SET_EFFECT", true)
     return SetData._isOpenEffect
 end
 

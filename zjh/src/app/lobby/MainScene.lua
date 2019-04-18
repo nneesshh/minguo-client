@@ -41,7 +41,7 @@ function MainScene:onTouch(sender, eventType)
         if name == "btn_back" then
             self:showPlazaPnl(false)           
         elseif name == "btn_psz" then
-            self._presenter:showPlazaLists(1)             
+            self._presenter:showPlazaLists(app.Game.GameID.ZJH)             
         elseif name == "btn_head_info" then
             self._presenter:showUserCenter()             
         elseif name == "btn_gold_add_lobby" then
@@ -51,10 +51,9 @@ function MainScene:onTouch(sender, eventType)
         elseif name == "btn_notice" then        
         elseif name == "btn_mail" then         
         elseif name == "btn_set" then      
-            self._presenter:onAvatarUpdate()                     
-        elseif name == "btn_rank" then              
-        elseif name == "btn_safe" then 
-            self._presenter:dealLoadingHintStart("正在加载中")                   
+            self._presenter:showSet()                     
+        elseif name == "btn_rank" then                     
+        elseif name == "btn_safe" then                               
         elseif name == "btn_shop" then      
             self._presenter:showShop()             
         elseif name == "btn_help" then      
@@ -68,10 +67,7 @@ function MainScene:onTouch(sender, eventType)
 end
 
 function MainScene:initUI(gameID, roomMode)
-    local t = app.data.UserData.getAvatar()
-    local g = app.data.UserData.getGender()
-    print("tss is",tonumber(""))
-     
+    self._isRunAction = false   
 end
 
 function MainScene:onEnter()
@@ -114,6 +110,7 @@ end
 -- 显示隐藏场
 function MainScene:showPlazaPnl(bFlag)
     if self._isRunAction then
+        print("self is run ????")
         return
     end
     self._isRunAction = true
@@ -155,6 +152,7 @@ end
 -- 加载场列表
 function MainScene:loadPlazaList(gameid, plazainfos)
     if plazainfos == nil then
+        print("plazainfos is nil")
     	return
     end
     local pnlPlaza = self:seekChildByName("plaza")  
@@ -176,6 +174,7 @@ function MainScene:loadPlazaList(gameid, plazainfos)
             base:setString(info.base .. "底分")
             lower:setString(info.lower)
             childs[i]:setTag(gameid)
+            print("load plaza")
         end        
     end
 end

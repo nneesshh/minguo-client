@@ -38,9 +38,8 @@ function ChangeHeadPresenter:onReqChangeUserinfo(flag)
 	if flag then
         app.data.UserData.setGender(_gender)
         app.data.UserData.setAvatar(_avatar)
-        
-        self:dealHintStart("头像修改成功！")
         self._ui:getInstance():onTouchClose()
+        self:dealHintStart("头像修改成功！")        
     else
         self:dealHintStart("头像修改失败")
 	end

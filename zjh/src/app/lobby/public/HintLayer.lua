@@ -33,7 +33,7 @@ function HintLayer:initUI(text, type)
         end
     end
     local content = self:seekChildByName("txt_hint")
-    content:setString(ToolUtils.getLineBreakText(text, 42))
+    content:setString(ToolUtils.getLineBreakText(text, 46))
 end
 
 function HintLayer:onClick(sender)

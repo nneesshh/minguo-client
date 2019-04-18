@@ -137,7 +137,6 @@ end
 function GameCardNode:setCardPosition()
     local posX, posY = 0,0
     posX = (self._index-1)*156*self._scale*0.5
-    
     self._rootNode:setPosition(cc.p(posX, posY))
 end
 

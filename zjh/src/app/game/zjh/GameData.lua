@@ -54,7 +54,7 @@ function GameData.restData()
     _selfData.isallIn     = false
 end
 
-function GameData.setStatus(status)
+function GameData.setTableStatus(status)
     _selfData.status = status 
 end
 
@@ -116,6 +116,16 @@ end
 
 function GameData.getPlayerseat()
     return _selfData.playerseat
+end
+
+function GameData.removePlayerseat(seat)
+    local tempseat = {}
+    for k, v in ipairs(_selfData.playerseat) do
+    	if v ~= seat then
+            table.insert(tempseat, v)
+    	end
+    end
+    _selfData.playerseat = tempseat
 end
 
 function GameData.setBasecoin(basecoin)

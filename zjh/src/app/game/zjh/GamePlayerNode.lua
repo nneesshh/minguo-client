@@ -178,20 +178,9 @@ function GamePlayerNode:showImgBet(visible, num)
 end
 
 -- 是否看牌
-function GamePlayerNode:showImgCheck(visible, index)
+function GamePlayerNode:showImgCheck(visible)
     local imgCheck = self:seekChildByName("img_check")
     imgCheck:setVisible(visible)
-    
-    local res
-    if index == 0 then
-        res = "game/zjh/image/img_check.png"
-    else
-        res = "game/zjh/image/img_fold.png"
-    end
-    
-    if visible then
-        imgCheck:loadTexture(res, ccui.TextureResType.plistType) 
-    end
 end
 
 -- 牌型
@@ -227,10 +216,21 @@ function GamePlayerNode:showClockProgress(percentage)
     end
 end
 
-function GamePlayerNode:showPnlBlack(visible)
+function GamePlayerNode:showPnlBlack(visible, flag)
     local imgType = self:seekChildByName("panl_black")
     imgType:setVisible(visible)
+    
+    local imgfold = imgType:getChildByName("img_fold")
+    imgfold:setVisible(flag)
 end
+
+function GamePlayerNode:adjustCardTypePos(x,y)
+    if self._localSeat == HERO_LOCAL_SEAT then
+        local imgType = self:seekChildByName("img_card_type")
+        imgType:setPosition(x, y)
+    end
+end
+    
 
 -- 庄家动画    
 function GamePlayerNode:playBankAction()
@@ -290,11 +290,12 @@ end
     
 function GamePlayerNode:playPanleAction(posf, post, flag)    
     local function afunc()
-        self._rootNode:setLocalZOrder(1)
-        self._presenter:setCardScale(0.4, self._localSeat)        
+        self._presenter:setCardScale(0.4, self._localSeat)
+        self:adjustCardTypePos(152,-12)        
         self:showPnlBlack(false)
         self:showImgBet(false)
         self:playEffectByName("pk")
+        self._presenter:checkBtnShowCard(false)
     end
     
     local function bfunc()
@@ -303,29 +304,41 @@ function GamePlayerNode:playPanleAction(posf, post, flag)
             self:playWinEffect()
         else
             self:showPnlBlack(true)
-            self._presenter:showGaryCard(self._localSeat)
-            self:playLoseEffect()    
-        end
-        self:playEffectByName("pk_lose")       
+            self._presenter:showGaryCard(self._localSeat, 0.4)
+            self:playLoseEffect() 
+            self:playEffectByName("pk_lose")    
+        end              
     end
     
     local function cfunc()
-        self._presenter:setCardScale(0.6, self._localSeat)                 
+        self._presenter:setCardScale(0.6, self._localSeat)  
+        self:adjustCardTypePos(183,-12)               
         self:showImgBet(true)        
     end
     
+    local function dfunc()
+        print("dfunc is in")
+        self._presenter:showOtherPlayer() 
+        self._presenter:checkBtnShowCard(true)   
+    end
+    local action1 = cc.CallFunc:create(function() afunc() end)
+    local action2 = cc.MoveTo:create(0.5, cc.p(post))    
+    local sp1 = cc.Spawn:create(action1, action2)
+        
+    local action3 = cc.CallFunc:create(function() cfunc() end)
+    local action4 = cc.MoveTo:create(0.5, cc.p(posf))
+    local sp2 = cc.Spawn:create(action3, action4)
+    
     self._rootNode:runAction(
         cc.Sequence:create(
-                cc.CallFunc:create(function() afunc() end),
                 cc.ScaleTo:create(0.2, 1.1),
-                cc.MoveTo:create(0.5, cc.p(post)),                
-                cc.DelayTime:create(1),        
+                sp1,             
+                cc.DelayTime:create(1),       
                 cc.CallFunc:create(function() bfunc() end),  
                 cc.DelayTime:create(1),      
                 cc.ScaleTo:create(0.2, 1),
-                cc.MoveTo:create(0.5, cc.p(posf)),
-                cc.DelayTime:create(0.4), 
-                cc.CallFunc:create(function() cfunc() end)
+                sp2,
+                cc.CallFunc:create(function() dfunc() end)                                
         ))
 end
 
@@ -408,6 +421,7 @@ end
     
 -- 获取手牌
 function GamePlayerNode:getGameHandCardNode()
+    print("gethandcardnode",self._localSeat,self._gameHandCardNode)
     return self._gameHandCardNode
 end
 

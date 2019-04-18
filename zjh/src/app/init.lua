@@ -5,10 +5,12 @@
 app = app or {}
 
 ----------------------------------- network ----------------------------------
-upconn                                      = upconn or {}
+upconn                                      = require "upconn.ZjhUpconn"
 cfg_game_zjh                                = cfg_game_zjh or {}
 zjh_defs                                    = zjh_defs or {}
 msg_dispatcher                              = msg_dispatcher or {}
+
+app.Connect                                 = require("app.connect.Connect")
 
 ------------------------------------ 常量 -------------------------------------
 app.Event                                   = require("app.constants.Event")

@@ -91,4 +91,20 @@ function SoundUtils.resetEffectVolume()
     cc.SimpleAudioEngine:getInstance():setEffectsVolume(cc.SimpleAudioEngine:getInstance():getEffectsVolume())
 end
 
+function SoundUtils.musicOn()
+    cc.SimpleAudioEngine:getInstance():setMusicVolume(1)
+end
+
+function SoundUtils.musicOff()
+    cc.SimpleAudioEngine:getInstance():setMusicVolume(0)
+end
+
+function SoundUtils.effectOn()
+    cc.SimpleAudioEngine:getInstance():setEffectsVolume(1)
+end
+
+function SoundUtils.effectOff()
+    cc.SimpleAudioEngine:getInstance():setEffectsVolume(0)
+end
+
 return SoundUtils

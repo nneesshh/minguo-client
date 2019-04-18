@@ -42,8 +42,8 @@ function ChangeHeadLayer:init()
 end
 
 function ChangeHeadLayer:onTouchClose()
-    self:exit()         
-    app.lobby.usercenter.UserCenterPresenter:getInstance():start()
+    self:exit()
+    app.lobby.usercenter.UserCenterPresenter:getInstance():start()              
 end
 
 function ChangeHeadLayer:onTouchBtnOK()

@@ -103,11 +103,8 @@ end
 
 function PlayerData.resetPlayerBet(playerSeat)
     local player = PlayerData.getPlayerByServerSeat(playerSeat)
-    if player then
-        print("reset bet seat is ", playerSeat)
-        player:resetBet(0)
-    else
-        print("reset player is nil",playerSeat)           
+    if player then       
+        player:resetBet(0)   
     end
 end
 
@@ -185,7 +182,7 @@ function PlayerData.getHero()
 end
 
 function PlayerData.localSeatToServerSeat(localSeat)
-    if localSeat == nil or localSeat < 0 or localSeat >= _maxPlayerCnt then
+    if localSeat == nil or _maxPlayerCnt == nil  or localSeat < 0 or localSeat >= _maxPlayerCnt then
         print("local seat 非法") 
         return -1
     end

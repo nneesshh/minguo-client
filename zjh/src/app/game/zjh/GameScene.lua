@@ -9,7 +9,8 @@ GameScene.csbPath = "game/zjh/csb/gamescene.csb"
 local GE   = app.game.GameEnum
 
 GameScene.touchs = {
-    "btn_exit",   
+    "btn_exit", 
+    "btn_show_card"  
 }
 
 GameScene.clicks = {
@@ -19,6 +20,11 @@ GameScene.clicks = {
     "pnl_player_2",
     "pnl_player_3",
     "pnl_player_4",
+    
+}
+
+GameScene.events = {
+    "cbx_gdd_test"
 }
 
 function GameScene:onTouch(sender, eventType)
@@ -26,7 +32,9 @@ function GameScene:onTouch(sender, eventType)
     local name = sender:getName()
     if eventType == ccui.TouchEventType.ended then        
         if name == "btn_exit" then
-           self._presenter:sendLeaveRoom()
+            self._presenter:sendLeaveRoom()
+        elseif name == "btn_show_card" then
+            self._presenter:onTouchBtnKanpai()
         end
     end
 end
@@ -39,6 +47,35 @@ function GameScene:onClick(sender)
         self._presenter:onTouchPanelBiPai(tonumber(localseat)) 
     end    
 end
+
+function GameScene:onEvent(sender, eventType)
+    local name = sender:getName()
+    if name == "cbx_gdd_test" then
+        if eventType == ccui.CheckBoxEventType.selected then  
+            self:setSelected(true, name)          
+            self._presenter:onEventCbxGendaodi(true)            
+        elseif eventType == ccui.CheckBoxEventType.unselected then            
+            self:setSelected(false, name)
+            self._presenter:onEventCbxGendaodi(false)            
+        end
+    end
+end
+
+function GameScene:setSelected(flag, name)
+    local cbx = self:seekChildByName(name)
+    if cbx then
+        cbx:setSelected(flag)
+    end
+end
+
+function GameScene:isSelected(name)
+    local cbx = self:seekChildByName(name)
+    if cbx then
+        return cbx:isSelected()
+    end
+    return false
+end
+
 
 function GameScene:exit()
     GameScene.super.exit(self)
@@ -53,10 +90,11 @@ end
 function GameScene:initUI()
     self:showBase()  
     self:showLunShu(0, GE.ALLROUND)
+    self:setSelected(true, "cbx_gdd_test")
 end
 
 function GameScene:showStartEffect()
-    local effect = app.util.UIUtils.runEffectOne("game/zjh/effect","jiubei_dh", 0, 0)
+    local effect = app.util.UIUtils.runEffectOne("game/zjh/effect","jiubei_dh", 0, 85)
     self:seekChildByName("node_start_effect"):addChild(effect)
 end
 
@@ -85,7 +123,7 @@ function GameScene:stopFireEffectLoop()
 end
 
 function GameScene:playQMLWeffect()
-    local effect = app.util.UIUtils.runEffectOne("game/zjh/effect","vs_qmlw", 0, 0)
+    local effect = app.util.UIUtils.runEffectOne("game/zjh/effect","vs_qmlw", 0, -50)
     self:seekChildByName("node_start_effect"):addChild(effect)
 end
 
@@ -112,65 +150,55 @@ function GameScene:showLunShu(num, allround)
 end
 
 function GameScene:showZongzhu(num)
+    print("zongzhu is", num)
     local fntZZ = self:seekChildByName("fnt_zz")
     fntZZ:setString(num)
 end
 
 function GameScene:showBaseChipAction(localseat)        
-    local pnlarea = self:seekChildByName("pnl_chip_area")
-    local size = pnlarea:getContentSize()
-
-    local nodechip = self:seekChildByName("node_chip_"..localseat)
-    local fx,fy = nodechip:getPosition()    
-    local cx, cy = pnlarea:convertToNodeSpace(cc.p(fx, fy))
-
+    local pnlarea = self:seekChildByName("pnl_chip_area")    
+    local pnlplayer = self:seekChildByName("pnl_player_"..localseat)
+    local fx,fy = pnlplayer:getPosition()  
+        
     local chipParent = self:seekChildByName("imgchip")    
-    
-    local tx,ty = math.random(1, size.width) , math.random(1, size.height) 
     local imgChip = chipParent:clone()
     local txt = imgChip:getChildByName("txt_chip_value")
     local base = app.game.GameConfig.getBase()
     txt:setString(base)
-
     imgChip:loadTexture("game/zjh/image/img_chip_small_1.png", ccui.TextureResType.plistType)    
-    imgChip:setPosition(cc.p(cx, cy))    
-    pnlarea:addChild(imgChip)            
+    imgChip:setPosition(cc.p(fx, fy+32))    
+    pnlarea:addChild(imgChip)  
+
+    local tx,ty = math.random(457, 457+420) , math.random(280, 280+180)        
     imgChip:runAction(cc.MoveTo:create(0.3, cc.p(tx,ty)))                      
 end
 
-function GameScene:showAllInChipAction(localseat)        
-    local pnlarea = self:seekChildByName("pnl_chip_area")
-    local size = pnlarea:getContentSize()
-
-    local nodechip = self:seekChildByName("node_chip_"..localseat)
-    local fx,fy = nodechip:getPosition()    
-    local cx, cy = pnlarea:convertToNodeSpace(cc.p(fx, fy))
+function GameScene:showAllInChipAction(localseat)         
+    local pnlarea = self:seekChildByName("pnl_chip_area")    
+    local pnlplayer = self:seekChildByName("pnl_player_"..localseat)
+    local fx,fy = pnlplayer:getPosition()  
 
     local chipParent = self:seekChildByName("imgchip")    
-
-    local tx,ty = math.random(1, size.width) , math.random(1, size.height) 
     local imgChip = chipParent:clone()
-    local txt = imgChip:getChildByName("txt_chip_value")    
+    local txt = imgChip:getChildByName("txt_chip_value")
+    local base = app.game.GameConfig.getBase()
     txt:setString("全压")
     imgChip:loadTexture("game/zjh/image/img_chip_small_6.png", ccui.TextureResType.plistType)    
-    imgChip:setPosition(cc.p(cx, cy))    
-    pnlarea:addChild(imgChip)            
-    imgChip:runAction(cc.MoveTo:create(0.3, cc.p(tx,ty)))                      
+    imgChip:setPosition(cc.p(fx, fy+32))    
+    pnlarea:addChild(imgChip)  
+
+    local tx,ty = math.random(457, 457+420) , math.random(280, 280+180)        
+    imgChip:runAction(cc.MoveTo:create(0.3, cc.p(tx,ty)))                       
 end
 
 function GameScene:showChipAction(index, count, localseat) 
     local base = app.game.GameConfig.getBase()       
     local pnlarea = self:seekChildByName("pnl_chip_area")
-    local size = pnlarea:getContentSize()
-        
-    local nodechip = self:seekChildByName("node_chip_"..localseat)
-    local fx,fy = nodechip:getPosition()    
-    local cx, cy = pnlarea:convertToNodeSpace(cc.p(fx, fy))
-    
+    local pnlplayer = self:seekChildByName("pnl_player_"..localseat)
+    local fx,fy = pnlplayer:getPosition()  
     local chipParent = self:seekChildByName("imgchip")  
     
     for i=1,count do
-        local tx,ty = math.random(1, size.width) , math.random(1, size.height) 
         local imgChip = chipParent:clone()
         local txt = imgChip:getChildByName("txt_chip_value")
         txt:setString(index*2*base)  
@@ -179,8 +207,9 @@ function GameScene:showChipAction(index, count, localseat)
             temp = 1
         end          
         imgChip:loadTexture(string.format("game/zjh/image/img_chip_small_%d.png", temp), ccui.TextureResType.plistType)    
-        imgChip:setPosition(cc.p(cx, cy))    
-        pnlarea:addChild(imgChip)            
+        imgChip:setPosition(cc.p(fx, fy+32))    
+        pnlarea:addChild(imgChip) 
+        local tx,ty = math.random(457, 457+420), math.random(280, 280+180)            
         imgChip:runAction(cc.MoveTo:create(0.3, cc.p(tx,ty)))    
     end                
 end
@@ -194,38 +223,33 @@ function GameScene:showChipBackAction(localseats)
         local per = math.floor(#childrens / total)
 
         for i = 1, total do
-            local nodechip = self:seekChildByName("node_chip_"..localseats[i])
-            local fx,fy = nodechip:getPosition()    
-            local cx, cy = pnlarea:convertToNodeSpace(cc.p(fx, fy))
+            local pnlplayer = self:seekChildByName("pnl_player_"..localseats[i])
+            local fx,fy = pnlplayer:getPosition()    
             
             if i == total then
                 for j = per*(i-1)+1, #childrens do                    
                     childrens[j]:runAction(cc.Sequence:create(
-                        cc.MoveTo:create(0.5, cc.p(cx, cy)),
-                        cc.CallFunc:create(
-                            function() 
-                                childrens[j]:removeFromParent()
-                            end)
-                        )) 
+                        cc.MoveTo:create(0.5, cc.p(fx,fy+32)),
+                        cc.CallFunc:create(function() 
+                            childrens[j]:removeFromParent()
+                        end))) 
                 end
             else
                 for j = 1+per*(i-1), per*i do                   
                     childrens[j]:runAction(cc.Sequence:create(
-                        cc.MoveTo:create(0.5, cc.p(cx, cy)),
+                        cc.MoveTo:create(0.5, cc.p(fx,fy+32)),
                         cc.CallFunc:create(function() 
                             childrens[j]:removeFromParent() 
-                            end)
-                        )) 
+                        end))) 
                 end
             end            
         end
     else
-        local nodechip = self:seekChildByName("node_chip_"..localseats[1])
-        local fx,fy = nodechip:getPosition()    
-        local cx, cy = pnlarea:convertToNodeSpace(cc.p(fx, fy))
+        local pnlplayer = self:seekChildByName("pnl_player_"..localseats[1])
+        local fx,fy = pnlplayer:getPosition()    
         for k, child in ipairs(childrens) do
             child:runAction(cc.Sequence:create(
-                cc.MoveTo:create(0.5, cc.p(cx, cy)),
+                cc.MoveTo:create(0.5, cc.p(fx,fy+32)),
                 cc.CallFunc:create(function() child:removeFromParent() end)
             ))  
     	end
@@ -258,23 +282,43 @@ end
 function GameScene:showPnlHint(type)
     local nodeHint1 = self:seekChildByName("node_hint_1")
     local nodeHint2 = self:seekChildByName("node_hint_2")
+    local nodeHint3 = self:seekChildByName("node_hint_3")
     if nodeHint1 then
-        -- 倒计时
-        if type == 1 then
-            nodeHint1:setVisible(true)
+        -- 开始倒计时
+        if type == 1 then            
             nodeHint2:setVisible(false)
-            self._presenter:openSchedulerPrepareClock(3)
+            nodeHint3:setVisible(false)
             self._presenter:closeSchedulerRunLoading()
-            -- 等待
+            self._presenter:openSchedulerPrepareClock(3)   
+            nodeHint1:setVisible(true)         
+        -- 等待
         elseif type == 2 then
-            nodeHint1:setVisible(false)
-            nodeHint2:setVisible(true)            
-            self._presenter:openSchedulerRunLoading()
-            -- 隐藏   
+            nodeHint1:setVisible(false)            
+            nodeHint3:setVisible(false)      
+            self._presenter:closeSchedulerPrepareClock()     
+            self._presenter:openSchedulerRunLoading("请耐心等待其他玩家") 
+            nodeHint2:setVisible(true)           
+        -- 换桌成功   
         elseif type == 3 then
             nodeHint1:setVisible(false)
-            nodeHint2:setVisible(false)
+            nodeHint2:setVisible(false)            
+            local txt = nodeHint3:getChildByName("txt_wait")
+            txt:setString("换桌成功!")
+            nodeHint3:setVisible(true)
             self._presenter:closeSchedulerRunLoading()
+            self._presenter:closeSchedulerPrepareClock()
+        elseif type == 4 then
+            nodeHint1:setVisible(false)            
+            nodeHint3:setVisible(false)
+            self._presenter:closeSchedulerPrepareClock()   
+            self._presenter:openSchedulerRunLoading("您正在旁观，请等待下一局开始")  
+            nodeHint2:setVisible(true)          
+        else
+            nodeHint1:setVisible(false)
+            nodeHint2:setVisible(false)
+            nodeHint3:setVisible(false)
+            self._presenter:closeSchedulerRunLoading()
+            self._presenter:closeSchedulerPrepareClock()
         end
     end       
 end
@@ -291,6 +335,15 @@ function GameScene:showClockPrepare(time)
     if fntClock then
         fntClock:setString(time)
     end    
+end
+
+function GameScene:showBtnShowCard(visible)
+    local btn = self:seekChildByName("btn_show_card")
+    btn:setVisible(visible)
+end
+
+function GameScene:getShowCardVisible()
+	return self:seekChildByName("btn_show_card"):isVisible()    
 end
 
 return GameScene

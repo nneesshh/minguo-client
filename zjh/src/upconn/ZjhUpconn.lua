@@ -35,21 +35,32 @@ function _M.update()
     _M.upconn:update()
 end
 
+function _M.close()
+    _M.upconn:close()
+end
+
+local STATE_IDLE         = 0
+local STATE_CONNECTING   = 1
+local STATE_RECONNECTING = 2
+local STATE_CONNECTED    = 3
+local STATE_CLEANUP      = 4
+local STATE_CLOSED       = 5
+
 --
 function _M.start()
     --
     _M.doRegisterMsgCallbacks()
 
     local connected_cb = function(self)
-        print("connected_cb, connid=" .. tostring(self.id))
+        print("connected_cb, connid=" .. tostring(self.id))               
     end
 
     local disconnected_cb = function(self)
-        print("disconnected_cb, connid=" .. tostring(self.id))
+        print("disconnected_cb, connid=" .. tostring(self.id))        
     end
 
     local error_cb = function(self, errstr)
-        print("error_cb, connid=" .. tostring(self.id) .. ", err:" .. errstr)
+        print("error_cb, connid=" .. tostring(self.id) .. ", err:" .. errstr)        
     end
 
     local got_packet_cb = function(self, pkt)
@@ -198,10 +209,11 @@ function _M.onHeartBeat(conn, sessionid, msgid)
     local resp = {}   
     local po = upconn.upconn:get_packet_obj()
     
-    app.lobby.MainPresenter:getInstance():respHeartbeat()
+    app.Connect:getInstance():respHeartbeat()
 end
 
-function _M.onLogin(conn, sessionid, msgid)    
+function _M.onLogin(conn, sessionid, msgid) 
+    print("onlogin!!")   
     local resp = {}   
     local po = upconn.upconn:get_packet_obj()
     resp.errorCode = po:read_int32()
@@ -209,12 +221,16 @@ function _M.onLogin(conn, sessionid, msgid)
     resp.version   = po:read_string()
     resp.host      = po:read_string()
     resp.onlineCnt = po:read_int32()
-    resp.roomCount = po:read_byte()
-
-    -- room info
-    for i = 1, resp.roomCount do
-        local info = _readRoomInfo(po)
-        app.data.PlazaData.setPlazaList(info, app.Game.GameID.ZJH, i)
+    
+    resp.gameCount = po:read_byte()   
+    for i = 1, resp.gameCount do
+        local gametype = po:read_int32()  
+        resp.roomCount = po:read_byte()
+        -- room info
+        for j = 1, resp.roomCount do
+            local info = _readRoomInfo(po)
+            app.data.PlazaData.setPlazaList(info, gametype, j)
+        end
     end
 
     if resp.errorCode == zjh_defs.ErrorCode.ERR_SUCCESS then
@@ -224,7 +240,6 @@ function _M.onLogin(conn, sessionid, msgid)
         userInfo.session = sessionid
         -- recover flag
         local gaming = po:read_byte()  
-        dump(userInfo)
         print("onenter is gaming",gaming)     
         -- 保存个人数据
         app.data.UserData.setUserData(userInfo)
@@ -239,7 +254,8 @@ function _M.onLogin(conn, sessionid, msgid)
             local gametype = po:read_int32()
             local roomid =  po:read_int32()
             local base = app.data.PlazaData.getBaseByRoomid(app.Game.GameID.ZJH, roomid)
-            app.game.GameEngine:getInstance():start(app.Game.GameID.ZJH,base)            
+            local limit = app.data.PlazaData.getLimitByBase(app.Game.GameID.ZJH, base)
+            app.game.GameEngine:getInstance():start(app.Game.GameID.ZJH, base, limit)            
             app.game.GameEngine:getInstance():onStartGame()   
                      
             local tabInfo = _readTableInfo(po)
@@ -507,12 +523,11 @@ function _M.onChangeTable(conn, sessionid, msgid)
         local gametype = po:read_int32()
         local roomid =  po:read_int32()
         local base = app.data.PlazaData.getBaseByRoomid(app.Game.GameID.ZJH, roomid)
-        
-        print("change base is",base,roomid)
-        
-        
-        app.game.GameEngine:getInstance():start(app.Game.GameID.ZJH,base)            
+        local limit = app.data.PlazaData.getLimitByBase(app.Game.GameID.ZJH, base)
+        app.game.GameEngine:getInstance():start(app.Game.GameID.ZJH, base, limit)            
         app.game.GameEngine:getInstance():onStartGame()
+        
+        app.game.GamePresenter:getInstance():onChangeTable()        
         
         -- table info
         local tabInfo = _readTableInfo(po)

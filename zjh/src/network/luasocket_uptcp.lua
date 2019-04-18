@@ -21,7 +21,6 @@ local STATE_RECONNECTING = 2
 local STATE_CONNECTED = 3
 local STATE_CLEANUP = 4
 local STATE_CLOSED = 5
-
 --
 local mt = {__index = _M}
 
@@ -220,6 +219,8 @@ local last_reconnect_countdown = {}
 
 --
 function _M.update(self)
+    app.Connect:getInstance():updateState(self.state)
+    
     if self.state == STATE_CONNECTING then
         --
         local ok, err = self.upstream:check_connecting()
@@ -227,7 +228,7 @@ function _M.update(self)
             self.state = STATE_CONNECTED
             __on_connect(self)
         elseif err ~= "EAGAIN" then
-            __on_connect_failed(self, err)
+            __on_connect_failed(self, err)         
         end
     elseif self.state == STATE_RECONNECTING then
         local rest = self.reconnect_timer:rest()
@@ -240,7 +241,7 @@ function _M.update(self)
             last_reconnect_countdown[self.id] = last_reconnect_countdown[self.id] or { _cd = 0 }
             if cd ~= last_reconnect_countdown[self.id]._cd then
                 print("connid=" .. tostring(self.id) ..",  reconnect countdown(s):" .. tostring(cd))
-                last_reconnect_countdown[self.id]._cd  = cd
+                last_reconnect_countdown[self.id]._cd  = cd                
             end
         end
     elseif self.state == STATE_CONNECTED then
@@ -253,7 +254,7 @@ function _M.update(self)
         end
     else
        --
-       print("idle")
+       print("idle")       
     end
 end
 

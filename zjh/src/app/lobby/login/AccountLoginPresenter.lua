@@ -57,17 +57,17 @@ end
 function AccountLoginPresenter:onLoginFail()   
     self:dealLoadingHintExit()
     _username, _password = "", ""      
-    self:dealHintStart("登录失败")
+    self:dealHintStart("登录失败！")
 end
 
 function AccountLoginPresenter:dealAccountLogin(account, password)    
     local hint = ""
     if account == "" then
-        hint = "请输入手机账号!" 
+        hint = "请输入手机账号！" 
     elseif account ~= "" and password == "" then
-        hint = "请输入登陆密码!"
+        hint = "请输入登陆密码！"
     elseif not checkPwdLength(password) then
-        hint = "密码长度应为6-16位!"
+        hint = "密码长度应为6-16位！"
 --    elseif not checkPhoneNum(account) then  
 --        hint = "手机号格式不正确" 
 --    elseif checkPwd(password) then

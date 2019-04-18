@@ -75,6 +75,10 @@ function Player:isPlaying()
     return self._playerInfo.status == 3
 end
 
+function Player:isWaiting()
+    return self._playerInfo.status == 4
+end
+
 function Player:isGiveup()
     return self._playerInfo.status == 5
 end

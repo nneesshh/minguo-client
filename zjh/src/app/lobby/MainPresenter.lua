@@ -3,8 +3,7 @@
 ]]
 
 local MainPresenter = class("MainPresenter", app.base.BasePresenter)
-local ToolUtils     = app.util.ToolUtils
-local scheduler     = cc.Director:getInstance():getScheduler()
+
 local socket        = require("socket")
 -- UI
 MainPresenter._ui   = require("app.lobby.MainScene")
@@ -12,9 +11,10 @@ local HEART_BEAT_TIMEOUT = 10
 local receiveTime        = 0
 
 function MainPresenter:ctor()
-    MainPresenter.super.ctor(self)    
-    self:createDispatcher()
+    MainPresenter.super.ctor(self)
+        
     app.util.uuid.randomseed(socket.gettime()*10000)
+    self:createDispatcher()
 end
 
 function MainPresenter:init(gameid)
@@ -22,10 +22,6 @@ function MainPresenter:init(gameid)
 end
 
 function MainPresenter:onEnter()
-    scheduler:scheduleScriptFunc(handler(self,self.updateConn), 0.1, false)
-    scheduler:scheduleScriptFunc(handler(self,self.reqHeartbeat), 10, false)
-    scheduler:scheduleScriptFunc(handler(self,self.checkTimeout), 15, false)
-       
     if app.data.UserData.getLoginState() ~= 1 then
         app.lobby.login.LoginPresenter:getInstance():start()
     end
@@ -37,10 +33,6 @@ function MainPresenter:createDispatcher()
     app.util.DispatcherUtils.addEventListenerSafe(app.Event.EVENT_TICKETID, handler(self, self.onIDUpdate))
     app.util.DispatcherUtils.addEventListenerSafe(app.Event.EVENT_AVATAR, handler(self, self.onAvatarUpdate))
     app.util.DispatcherUtils.addEventListenerSafe(app.Event.EVENT_BALANCE, handler(self, self.onBalanceUpdate))
-end
-
-function MainPresenter:updateConn(dt)
-	upconn.update()	
 end
 
 function MainPresenter:initScene(gameid)
@@ -96,7 +88,8 @@ function MainPresenter:onBalanceUpdate()
 end
 
 -- 显示场列表
-function MainPresenter:showPlazaLists(gameid)    
+function MainPresenter:showPlazaLists(gameid)
+    print("show gameid",gameid)    
     local plazainfo = app.data.PlazaData.getPlazaList(gameid)
     self._ui:getInstance():showPlazaPnl(true)
     self._ui:getInstance():loadPlazaList(gameid , plazainfo)    
@@ -114,7 +107,7 @@ end
 
 -- 显示设置
 function MainPresenter:showSet()
-    app.lobby.set.SetPresenter:getInstance():start("lobby")
+    app.lobby.set.SetPresenter:getInstance():start(true)
 end
 
 -- 显示商城
@@ -138,11 +131,11 @@ function MainPresenter:showErrorMsg(code)
     self:dealLoadingHintExit()
     local hintTxt = ""
     if code == zjh_defs.ErrorCode.ERR_OUT_OF_LIMIT then
-	   hintTxt = "金币不足,请换个房间或者再补充点金币吧!"
+        hintTxt = "亲，你身上的金币不太多了噢~ 请换个房间或者再补充点金币吧！"
     elseif code == zjh_defs.ErrorCode.ERR_NO_FREE_TABLE then
-        hintTxt = "房间不足,请联系客服处理!"
+        hintTxt = "未知错误，请联系客服处理！"
     elseif code == zjh_defs.ErrorCode.ERR_ROOM_OR_TABLE_INVALID then
-        hintTxt = "房间或桌子无效,请联系客服处理!"   
+        hintTxt = "未知错误，请联系客服处理！"   
 	end
     self:dealHintStart(hintTxt,
         function(bFlag)
@@ -157,15 +150,6 @@ function MainPresenter:showSuccessMsg()
     self:dealLoadingHintExit()
 end
 
-function MainPresenter:checkTimeout()
-	local nowTime = os.time()
-    if nowTime - receiveTime > HEART_BEAT_TIMEOUT then
-		print("die")
-	else
-	   print("beat ")	
-	end
-end
-
 ------------------------ request ------------------------
 -- 请求加入房间
 function MainPresenter:reqJoinRoom(gameid, index)
@@ -173,30 +157,17 @@ function MainPresenter:reqJoinRoom(gameid, index)
     local plazainfo = app.data.PlazaData.getPlazaList(gameid)
     local roomid = plazainfo[index].roomid
     local base = plazainfo[index].base
+    local limit = plazainfo[index].lower
     local po = upconn.upconn:get_packet_obj()
-    if po ~= nil then   
+    if po ~= nil and roomid then   
         self:dealLoadingHintStart("正在加入房间")      
-        app.game.GameEngine:getInstance():start(app.Game.GameID.ZJH, base)
+        app.game.GameEngine:getInstance():start(app.Game.GameID.ZJH, base, limit)
     
         po:writer_reset()
         po:write_int32(sessionid)  
         po:write_int32(roomid)       
         upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_ENTER_ROOM_REQ)
     end 
-end
-
-function MainPresenter:reqHeartbeat()
-    local po = upconn.upconn:get_packet_obj()
-    local sessionid = app.data.UserData.getSession() or 222
-    if po ~= nil then        
-        po:writer_reset()
-        po:write_int32(sessionid)                                     
-        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_HEART_BEAT_REQ)            
-    end
-end
-
-function MainPresenter:respHeartbeat()    
-    receiveTime = os.time()    
 end
 
 return MainPresenter

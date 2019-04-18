@@ -62,7 +62,7 @@ proguard-project\.txt
 local\.properties
 #proj\.android/
 \.metadata/
-\.settings/
+#\.settings/
 zjh/frameworks/runtime-src/proj\.android/assets/
 zjh/frameworks/runtime-src/proj\.android/bin/
 zjh/frameworks/runtime-src/proj\.android/gen/

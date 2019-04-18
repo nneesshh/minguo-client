@@ -44,8 +44,6 @@
 *.class
 *.dex
 *.apk
-*.ccs
-*.cfg
 *.udf
 *.prop
 *.jar
@@ -55,7 +53,6 @@
 \.vscode/
 \.vs/
 \.sconsign\.dblite
-cocosstudio/
 simulator/
 \.classpath
 \.project

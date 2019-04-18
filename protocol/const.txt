@@ -9,7 +9,8 @@ typedef enum
 	ZJH_S_GIVEUP,  // 5 弃牌
 	ZJH_S_LOST,    // 6 失败
 	PLAYER_S_QUIT, // 7 主动退出房间
-	PLAYER_S_KICK, // 8 踢出房间（金币不足，连续挂机。。。）
+	PLAYER_S_KICK_FOR_COIN, // 8 踢出房间 -- 金币不足
+	PLAYER_S_KICK_FOR_AFK, // 9 踢出房间 -- 连续挂机
 }ZJH_STATUS;
 
 // 桌子状态
@@ -21,6 +22,7 @@ typedef enum
 	TS_DEALING, // 3 = 发牌
 	TS_PLAYING, // 4 = 游戏中
 	TS_ENDING, // 5 = 游戏结束
+	TS_CLOSED, // 6 = 游戏停服，桌子已经关闭
 
 }TABLE_STATUS;
 

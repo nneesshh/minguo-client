@@ -114,6 +114,7 @@
               <Image Name="img_jz_back.png" />
               <Image Name="img_light.png" />
               <Image Name="img_menu_back.png" />
+              <Image Name="img_show_card.png" />
               <Image Name="img_speak_1.png" />
               <Image Name="img_speak_2.png" />
               <Image Name="img_speak_3.png" />
@@ -131,8 +132,8 @@
             <Project Name="head.csd" Type="Layer" />
             <Project Name="help.csd" Type="Layer" />
             <Project Name="hint.csd" Type="Layer" />
-            <Project Name="loading.csd" Type="Scene" />
             <Project Name="hintload.csd" Type="Layer" />
+            <Project Name="loading.csd" Type="Scene" />
             <Project Name="lobby.csd" Type="Scene" />
             <Project Name="login.csd" Type="Layer" />
             <Project Name="password.csd" Type="Layer" />
@@ -147,22 +148,27 @@
               <Fnt Name="plazafnt.fnt" />
             </Folder>
             <Folder Name="head">
+              <Image Name="img_head_0_0.png" />
               <Image Name="img_head_0_1.png" />
               <Image Name="img_head_0_2.png" />
               <Image Name="img_head_0_3.png" />
               <Image Name="img_head_0_4.png" />
-              <Image Name="img_head_0_0.png" />
+              <Image Name="img_head_1_0.png" />
               <Image Name="img_head_1_1.png" />
               <Image Name="img_head_1_2.png" />
               <Image Name="img_head_1_3.png" />
               <Image Name="img_head_1_4.png" />
-              <Image Name="img_head_1_0.png" />
               <Image Name="img_light.png" />
               <Image Name="imt_title.png" />
             </Folder>
             <Folder Name="help">
               <Image Name="img_psz_rule.png" />
               <Image Name="img_title.png" />
+            </Folder>
+            <Folder Name="hint">
+              <Image Name="img_bank.png" />
+              <Image Name="img_charge.png" />
+              <Image Name="img_ts.png" />
             </Folder>
             <Folder Name="loading">
               <Image Name="account.png" />
@@ -262,11 +268,6 @@
               <Image Name="img_head_back.png" />
               <Image Name="img_line.png" />
               <Image Name="img_title.png" />
-            </Folder>
-            <Folder Name="hint">
-              <Image Name="img_bank.png" />
-              <Image Name="img_charge.png" />
-              <Image Name="img_ts.png" />
             </Folder>
             <PlistInfo Name="plisthead.csi" Type="Plist" />
           </Folder>

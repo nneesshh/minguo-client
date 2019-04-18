@@ -1,0 +1,18 @@
+<PlistInfoProjectFile>
+  <PropertyGroup Name="plisthead" Type="Plist" ID="6402515c-bb95-41b9-bb0f-f4f091a7e2fb" Version="3.10.0.0" />
+  <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="2" AllowRotation="True" AllowAnySize="True" AllowTrim="True" ctype="PlistInfoData">
+    <ImageFiles>
+      <FilePathData Path="lobby/image/head/img_head_0_1.png" />
+      <FilePathData Path="lobby/image/head/img_head_0_2.png" />
+      <FilePathData Path="lobby/image/head/img_head_0_3.png" />
+      <FilePathData Path="lobby/image/head/img_head_0_4.png" />
+      <FilePathData Path="lobby/image/head/img_head_0_0.png" />
+      <FilePathData Path="lobby/image/head/img_head_1_1.png" />
+      <FilePathData Path="lobby/image/head/img_head_1_2.png" />
+      <FilePathData Path="lobby/image/head/img_head_1_3.png" />
+      <FilePathData Path="lobby/image/head/img_head_1_4.png" />
+      <FilePathData Path="lobby/image/head/img_head_1_0.png" />
+    </ImageFiles>
+    <MaxSize Width="512" Height="1024" />
+  </Content>
+</PlistInfoProjectFile>

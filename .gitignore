@@ -55,11 +55,8 @@
 \.sconsign\.dblite
 simulator/
 \.classpath
-\.project
 AndroidManifest\.xml
 ant\.properties
-build-cfg\.json
-build\.xml
 project\.properties
 proguard-project\.txt
 local\.properties

@@ -55,11 +55,7 @@
 \.sconsign\.dblite
 simulator/
 \.classpath
-AndroidManifest\.xml
-ant\.properties
-project\.properties
 proguard-project\.txt
-local\.properties
 #proj\.android/
 \.metadata/
 #\.settings/
@@ -67,8 +63,6 @@ zjh/frameworks/runtime-src/proj\.android/assets/
 zjh/frameworks/runtime-src/proj\.android/bin/
 zjh/frameworks/runtime-src/proj\.android/gen/
 zjh/frameworks/runtime-src/proj\.android/obj/
-zjh/frameworks/runtime-src/proj\.android/libs/
-zjh/frameworks/runtime-src/proj\.android/src/
 #proj\.win32/
 zjh/frameworks/runtime-src/proj\.win32/Debug\.win32/
 zjh/frameworks/runtime-src/proj\.win32/Release\.win32/

@@ -61,7 +61,6 @@ proguard-project\.txt
 #\.settings/
 zjh/frameworks/runtime-src/proj\.android/assets/
 zjh/frameworks/runtime-src/proj\.android/bin/
-zjh/frameworks/runtime-src/proj\.android/gen/
 zjh/frameworks/runtime-src/proj\.android/obj/
 #proj\.win32/
 zjh/frameworks/runtime-src/proj\.win32/Debug\.win32/

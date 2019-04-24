@@ -440,7 +440,7 @@ function GamePlayerNode:playEffectByName(name)
     for alias, path in pairs(ST) do
         if alias == name then
             if type(path) == "table" then
-                local index = math.random(1, 3)
+                local index = math.random(1, #path)
                 strRes = path[index]
             else
                 strRes = path
@@ -449,10 +449,13 @@ function GamePlayerNode:playEffectByName(name)
     end
     local path = cc.FileUtils:getInstance():fullPathForFilename(soundPath .. strRes)
     if not io.exists(path) then 
+        print("!!!sound effect missing!!!: ", path)
         return
     end
     
-    app.util.SoundUtils.playEffect(soundPath..strRes)   
+    print("play sound effect: ", path)
+    app.util.SoundUtils.playEffect(soundPath..strRes)
+    print("play sound effect over ", path)
 end
 
 return GamePlayerNode

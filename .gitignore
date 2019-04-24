@@ -66,3 +66,4 @@ zjh/frameworks/runtime-src/proj\.android/obj/
 zjh/frameworks/runtime-src/proj\.win32/Debug\.win32/
 zjh/frameworks/runtime-src/proj\.win32/Release\.win32/
 zjh_ui/res/
+zjh/frameworks/runtime-src/proj\.android/gen/org/cocos2dx/zjh/BuildConfig\.java

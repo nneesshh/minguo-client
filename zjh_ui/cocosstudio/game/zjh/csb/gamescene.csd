@@ -14,7 +14,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5000" Y="0.5000" />
             <PreSize X="1.0000" Y="1.0000" />
-            <FileData Type="Normal" Path="game/zjh/image/img_background.jpg" Plist="" />
+            <FileData Type="Normal" Path="game/public/background/img_background.jpg" Plist="" />
           </AbstractNodeData>
           <AbstractNodeData Name="pnl_middle" ActionTag="-1549897036" Tag="108" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="1334.0000" Y="750.0000" />
@@ -27,7 +27,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5000" Y="0.4693" />
                 <PreSize X="0.4670" Y="0.8667" />
-                <FileData Type="Normal" Path="game/zjh/image/img_desk.png" Plist="" />
+                <FileData Type="Normal" Path="game/public/background/img_desk.png" Plist="" />
               </AbstractNodeData>
               <AbstractNodeData Name="desk_l" ActionTag="-1334748921" Tag="164" IconVisible="False" LeftMargin="44.0000" RightMargin="667.0000" TopMargin="73.0000" BottomMargin="27.0000" LeftEage="205" RightEage="205" TopEage="214" BottomEage="214" Scale9OriginX="205" Scale9OriginY="214" Scale9Width="213" Scale9Height="222" ctype="ImageViewObjectData">
                 <Size X="623.0000" Y="650.0000" />
@@ -119,7 +119,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5000" Y="0.4693" />
                 <PreSize X="0.4670" Y="0.8667" />
-                <FileData Type="Normal" Path="game/zjh/image/img_desk.png" Plist="" />
+                <FileData Type="Normal" Path="game/public/background/img_desk.png" Plist="" />
               </AbstractNodeData>
               <AbstractNodeData Name="pnl_chip_area" ActionTag="-159345200" Tag="2225" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="1334.0000" Y="750.0000" />
@@ -246,7 +246,7 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.6923" />
                     <PreSize X="1.0000" Y="0.6154" />
-                    <FileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_0.png" Plist="lobby/image/plisthead.plist" />
+                    <FileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_0.png" Plist="lobby/image/head.plist" />
                   </AbstractNodeData>
                   <AbstractNodeData Name="txt_name" ActionTag="-1994445230" Tag="192" IconVisible="False" LeftMargin="4.0000" RightMargin="4.0000" TopMargin="85.0000" BottomMargin="27.0000" FontSize="18" LabelText="萨达撒上" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                     <Size X="72.0000" Y="18.0000" />
@@ -475,7 +475,7 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition Y="1.0000" />
                     <PreSize X="1.0000" Y="0.6154" />
-                    <FileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_0.png" Plist="lobby/image/plisthead.plist" />
+                    <FileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_0.png" Plist="lobby/image/head.plist" />
                   </AbstractNodeData>
                   <AbstractNodeData Name="txt_name" ActionTag="1171549932" Tag="198" IconVisible="False" LeftMargin="22.0000" RightMargin="22.0000" TopMargin="85.0000" BottomMargin="27.0000" FontSize="18" LabelText="萨达" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                     <Size X="36.0000" Y="18.0000" />
@@ -719,7 +719,7 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition Y="1.0000" />
                     <PreSize X="1.0000" Y="0.6154" />
-                    <FileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_0.png" Plist="lobby/image/plisthead.plist" />
+                    <FileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_0.png" Plist="lobby/image/head.plist" />
                   </AbstractNodeData>
                   <AbstractNodeData Name="txt_name" ActionTag="1060254332" Tag="204" IconVisible="False" LeftMargin="22.0000" RightMargin="22.0000" TopMargin="85.0000" BottomMargin="27.0000" FontSize="18" LabelText="萨达" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                     <Size X="36.0000" Y="18.0000" />
@@ -948,7 +948,7 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition Y="1.0000" />
                     <PreSize X="1.0000" Y="0.6154" />
-                    <FileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_0.png" Plist="lobby/image/plisthead.plist" />
+                    <FileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_0.png" Plist="lobby/image/head.plist" />
                   </AbstractNodeData>
                   <AbstractNodeData Name="txt_name" ActionTag="-682693085" Tag="210" IconVisible="False" LeftMargin="22.0000" RightMargin="22.0000" TopMargin="85.0000" BottomMargin="27.0000" FontSize="18" LabelText="萨达" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                     <Size X="36.0000" Y="18.0000" />
@@ -1177,7 +1177,7 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition Y="1.0000" />
                     <PreSize X="1.0000" Y="0.6154" />
-                    <FileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_0.png" Plist="lobby/image/plisthead.plist" />
+                    <FileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_0.png" Plist="lobby/image/head.plist" />
                   </AbstractNodeData>
                   <AbstractNodeData Name="txt_name" ActionTag="-544234549" Tag="216" IconVisible="False" LeftMargin="22.0000" RightMargin="22.0000" TopMargin="85.0000" BottomMargin="27.0000" FontSize="18" LabelText="萨达" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                     <Size X="36.0000" Y="18.0000" />
@@ -1385,6 +1385,16 @@
                 <PrePosition X="0.8006" Y="0.5467" />
                 <PreSize X="0.0000" Y="0.0000" />
               </AbstractNodeData>
+              <AbstractNodeData Name="node_game_btn" ActionTag="292914175" VisibleForFrame="False" Tag="282" IconVisible="True" LeftMargin="667.0000" RightMargin="667.0000" TopMargin="695.0250" BottomMargin="54.9750" StretchWidthEnable="False" StretchHeightEnable="False" InnerActionSpeed="1.0000" CustomSizeEnabled="False" ctype="ProjectNodeObjectData">
+                <Size X="0.0000" Y="0.0000" />
+                <AnchorPoint />
+                <Position X="667.0000" Y="54.9750" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.0733" />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="Normal" Path="game/zjh/csb/button.csd" Plist="" />
+              </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="667.0000" Y="375.0000" />
@@ -1579,9 +1589,9 @@
             <PrePosition X="0.0412" Y="0.9267" />
             <PreSize X="0.0450" Y="0.0800" />
             <TextColor A="255" R="65" G="65" B="70" />
-            <DisabledFileData Type="MarkedSubImage" Path="game/zjh/image/btn_back.png" Plist="game/zjh/image/plistscene.plist" />
-            <PressedFileData Type="MarkedSubImage" Path="game/zjh/image/btn_back.png" Plist="game/zjh/image/plistscene.plist" />
-            <NormalFileData Type="MarkedSubImage" Path="game/zjh/image/btn_back.png" Plist="game/zjh/image/plistscene.plist" />
+            <DisabledFileData Type="MarkedSubImage" Path="game/public/menu/btn_back.png" Plist="game/public/menuplist.plist" />
+            <PressedFileData Type="MarkedSubImage" Path="game/public/menu/btn_back.png" Plist="game/public/menuplist.plist" />
+            <NormalFileData Type="MarkedSubImage" Path="game/public/menu/btn_back.png" Plist="game/public/menuplist.plist" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
@@ -1594,16 +1604,6 @@
             <PrePosition X="0.9565" Y="0.9267" />
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="Normal" Path="game/zjh/csb/menu.csd" Plist="" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="node_game_btn" ActionTag="292914175" VisibleForFrame="False" Tag="282" IconVisible="True" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="667.0000" RightMargin="667.0000" TopMargin="695.0000" BottomMargin="55.0000" StretchWidthEnable="False" StretchHeightEnable="False" InnerActionSpeed="1.0000" CustomSizeEnabled="False" ctype="ProjectNodeObjectData">
-            <Size X="0.0000" Y="0.0000" />
-            <AnchorPoint />
-            <Position X="667.0000" Y="55.0000" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.0733" />
-            <PreSize X="0.0000" Y="0.0000" />
-            <FileData Type="Normal" Path="game/zjh/csb/button.csd" Plist="" />
           </AbstractNodeData>
           <AbstractNodeData Name="imgchip" ActionTag="1533020733" Tag="323" IconVisible="False" LeftMargin="-1025.5000" RightMargin="2308.5000" TopMargin="1722.5000" BottomMargin="-1027.5000" LeftEage="16" RightEage="16" TopEage="18" BottomEage="18" Scale9OriginX="16" Scale9OriginY="18" Scale9Width="19" Scale9Height="19" ctype="ImageViewObjectData">
             <Size X="51.0000" Y="55.0000" />
@@ -1628,19 +1628,19 @@
             <PreSize X="0.0382" Y="0.0733" />
             <FileData Type="MarkedSubImage" Path="game/zjh/image/img_chip_small_1.png" Plist="game/zjh/image/plistscene.plist" />
           </AbstractNodeData>
-          <AbstractNodeData Name="debug" ActionTag="-2017664146" Tag="6073" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+          <AbstractNodeData Name="debug" ActionTag="-2017664146" Tag="6073" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="1334.0000" Y="750.0000" />
             <Children>
               <AbstractNodeData Name="cbx_gdd_test" ActionTag="-117269429" Tag="6065" IconVisible="False" HorizontalEdge="LeftEdge" VerticalEdge="TopEdge" LeftMargin="20.0000" RightMargin="1194.0000" TopMargin="175.0000" BottomMargin="525.0000" TouchEnable="True" CheckedState="True" ctype="CheckBoxObjectData">
                 <Size X="120.0000" Y="50.0000" />
                 <Children>
-                  <AbstractNodeData Name="Text_218" ActionTag="-275685741" Tag="6074" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="33.3000" RightMargin="11.7000" TopMargin="17.5000" BottomMargin="17.5000" FontSize="15" LabelText="自动跟到底" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                  <AbstractNodeData Name="Text_218" ActionTag="-275685741" Tag="6074" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="33.3000" RightMargin="11.7000" TopMargin="12.5000" BottomMargin="22.5000" FontSize="15" LabelText="自动跟到底" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                     <Size X="75.0000" Y="15.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="70.8000" Y="25.0000" />
+                    <Position X="70.8000" Y="30.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.5900" Y="0.5000" />
+                    <PrePosition X="0.5900" Y="0.6000" />
                     <PreSize X="0.6250" Y="0.3000" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />

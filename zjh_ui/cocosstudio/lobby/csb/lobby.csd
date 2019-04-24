@@ -68,9 +68,9 @@
                         <PrePosition X="0.5000" Y="0.5000" />
                         <PreSize X="1.0000" Y="1.0000" />
                         <TextColor A="255" R="65" G="65" B="70" />
-                        <DisabledFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_0.png" Plist="lobby/image/plisthead.plist" />
-                        <PressedFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_0.png" Plist="lobby/image/plisthead.plist" />
-                        <NormalFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_0.png" Plist="lobby/image/plisthead.plist" />
+                        <DisabledFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_0.png" Plist="lobby/image/head.plist" />
+                        <PressedFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_0.png" Plist="lobby/image/head.plist" />
+                        <NormalFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_0.png" Plist="lobby/image/head.plist" />
                         <OutlineColor A="255" R="255" G="0" B="0" />
                         <ShadowColor A="255" R="110" G="110" B="110" />
                       </AbstractNodeData>
@@ -334,7 +334,7 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.8133" Y="0.5500" />
                     <PreSize X="0.1207" Y="0.6000" />
-                    <FileData Type="Normal" Path="lobby/image/plaza/img_game_4000.png" Plist="" />
+                    <FileData Type="MarkedSubImage" Path="lobby/image/plaza/img_game_1.png" Plist="lobby/image/plaza.plist" />
                   </AbstractNodeData>
                   <AbstractNodeData Name="btn_help" ActionTag="-1687162833" Tag="629" IconVisible="False" LeftMargin="1216.0000" RightMargin="30.0000" TopMargin="8.0000" BottomMargin="18.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="58" Scale9Height="52" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                     <Size X="88.0000" Y="74.0000" />
@@ -375,7 +375,7 @@
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
           </AbstractNodeData>
-          <AbstractNodeData Name="lobby" ActionTag="536308842" Tag="705" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" TopMargin="100.0000" BottomMargin="150.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+          <AbstractNodeData Name="lobby" ActionTag="536308842" Tag="705" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" TopMargin="100.0250" BottomMargin="149.9750" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="1334.0000" Y="500.0000" />
             <Children>
               <AbstractNodeData Name="btn_psz" ActionTag="-1626862362" Tag="772" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="369.0800" RightMargin="715.9200" TopMargin="-4.0000" BottomMargin="246.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="219" Scale9Height="236" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
@@ -470,7 +470,7 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="667.0000" Y="400.0000" />
+            <Position X="667.0000" Y="399.9750" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5000" Y="0.5333" />
@@ -480,7 +480,7 @@
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
           </AbstractNodeData>
-          <AbstractNodeData Name="plaza" ActionTag="-1792462123" VisibleForFrame="False" Tag="606" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" TopMargin="100.0000" BottomMargin="150.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+          <AbstractNodeData Name="plaza" ActionTag="-1792462123" VisibleForFrame="False" Tag="606" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" TopMargin="100.0250" BottomMargin="149.9750" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="1334.0000" Y="500.0000" />
             <Children>
               <AbstractNodeData Name="btn_plaza_1" ActionTag="-904991484" Tag="607" IconVisible="False" PositionPercentYEnabled="True" LeftMargin="21.2000" RightMargin="1005.8000" TopMargin="91.5000" BottomMargin="41.5000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="277" Scale9Height="345" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
@@ -515,9 +515,9 @@
                 <PrePosition X="0.1310" Y="0.4500" />
                 <PreSize X="0.2301" Y="0.7340" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="lobby/image/plaza/plaza_4000_1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="lobby/image/plaza/plaza_4000_1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="lobby/image/plaza/plaza_4000_1.png" Plist="" />
+                <DisabledFileData Type="MarkedSubImage" Path="lobby/image/plaza/plaza_1_1.png" Plist="lobby/image/plaza.plist" />
+                <PressedFileData Type="MarkedSubImage" Path="lobby/image/plaza/plaza_1_1.png" Plist="lobby/image/plaza.plist" />
+                <NormalFileData Type="MarkedSubImage" Path="lobby/image/plaza/plaza_1_1.png" Plist="lobby/image/plaza.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -553,9 +553,9 @@
                 <PrePosition X="0.3770" Y="0.4500" />
                 <PreSize X="0.2301" Y="0.7340" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="lobby/image/plaza/plaza_4000_2.png" Plist="" />
-                <PressedFileData Type="Normal" Path="lobby/image/plaza/plaza_4000_2.png" Plist="" />
-                <NormalFileData Type="Normal" Path="lobby/image/plaza/plaza_4000_2.png" Plist="" />
+                <DisabledFileData Type="MarkedSubImage" Path="lobby/image/plaza/plaza_1_2.png" Plist="lobby/image/plaza.plist" />
+                <PressedFileData Type="MarkedSubImage" Path="lobby/image/plaza/plaza_1_2.png" Plist="lobby/image/plaza.plist" />
+                <NormalFileData Type="MarkedSubImage" Path="lobby/image/plaza/plaza_1_2.png" Plist="lobby/image/plaza.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -591,9 +591,9 @@
                 <PrePosition X="0.6230" Y="0.4500" />
                 <PreSize X="0.2301" Y="0.7340" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="lobby/image/plaza/plaza_4000_3.png" Plist="" />
-                <PressedFileData Type="Normal" Path="lobby/image/plaza/plaza_4000_3.png" Plist="" />
-                <NormalFileData Type="Normal" Path="lobby/image/plaza/plaza_4000_3.png" Plist="" />
+                <DisabledFileData Type="MarkedSubImage" Path="lobby/image/plaza/plaza_1_3.png" Plist="lobby/image/plaza.plist" />
+                <PressedFileData Type="MarkedSubImage" Path="lobby/image/plaza/plaza_1_3.png" Plist="lobby/image/plaza.plist" />
+                <NormalFileData Type="MarkedSubImage" Path="lobby/image/plaza/plaza_1_3.png" Plist="lobby/image/plaza.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -629,15 +629,15 @@
                 <PrePosition X="0.8690" Y="0.4500" />
                 <PreSize X="0.2301" Y="0.7340" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="lobby/image/plaza/plaza_4000_4.png" Plist="" />
-                <PressedFileData Type="Normal" Path="lobby/image/plaza/plaza_4000_4.png" Plist="" />
-                <NormalFileData Type="Normal" Path="lobby/image/plaza/plaza_4000_4.png" Plist="" />
+                <DisabledFileData Type="MarkedSubImage" Path="lobby/image/plaza/plaza_1_4.png" Plist="lobby/image/plaza.plist" />
+                <PressedFileData Type="MarkedSubImage" Path="lobby/image/plaza/plaza_1_4.png" Plist="lobby/image/plaza.plist" />
+                <NormalFileData Type="MarkedSubImage" Path="lobby/image/plaza/plaza_1_4.png" Plist="lobby/image/plaza.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="667.0000" Y="400.0000" />
+            <Position X="667.0000" Y="399.9750" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5000" Y="0.5333" />

@@ -19,12 +19,15 @@ end
 
 function MainPresenter:init(gameid)
     self:initScene(gameid)
+    
+    
 end
 
 function MainPresenter:onEnter()
     if app.data.UserData.getLoginState() ~= 1 then
         app.lobby.login.LoginPresenter:getInstance():start()
     end
+    --app.lobby.debug.DebugPresenter:getInstance():start()
 end
 
 function MainPresenter:createDispatcher()
@@ -89,8 +92,8 @@ end
 
 -- 显示场列表
 function MainPresenter:showPlazaLists(gameid)
-    print("show gameid",gameid)    
     local plazainfo = app.data.PlazaData.getPlazaList(gameid)
+    
     self._ui:getInstance():showPlazaPnl(true)
     self._ui:getInstance():loadPlazaList(gameid , plazainfo)    
 end
@@ -146,7 +149,7 @@ function MainPresenter:showErrorMsg(code)
         , 1)
 end
 
-function MainPresenter:showSuccessMsg()
+function MainPresenter:loadingHintExit()
     self:dealLoadingHintExit()
 end
 
@@ -161,12 +164,17 @@ function MainPresenter:reqJoinRoom(gameid, index)
     local po = upconn.upconn:get_packet_obj()
     if po ~= nil and roomid then   
         self:dealLoadingHintStart("正在加入房间")      
-        app.game.GameEngine:getInstance():start(app.Game.GameID.ZJH, base, limit)
+        app.game.GameEngine:getInstance():start(gameid, base, limit)
     
         po:writer_reset()
         po:write_int32(sessionid)  
-        po:write_int32(roomid)       
-        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_ENTER_ROOM_REQ)
+        po:write_int32(roomid)     
+        
+        if gameid == app.Game.GameID.ZJH then
+            upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_ENTER_ROOM_REQ)
+        elseif gameid == app.Game.GameID.JDNN then	
+            upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_ENTER_ROOM_REQ)
+        end          
     end 
 end
 

@@ -1,0 +1,53 @@
+<PlistInfoProjectFile>
+  <PropertyGroup Name="plistscene" Type="Plist" ID="c0be82c8-fe77-4be6-b6ca-d80142cbea2f" Version="3.10.0.0" />
+  <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="2" AllowRotation="True" AllowAnySize="True" AllowTrim="True" ctype="PlistInfoData">
+    <ImageFiles>
+      <FilePathData Path="game/jdnn/image/btn_bq.png" />
+      <FilePathData Path="game/jdnn/image/btn_cal_sure.png" />
+      <FilePathData Path="game/jdnn/image/btn_m1.png" />
+      <FilePathData Path="game/jdnn/image/btn_m10.png" />
+      <FilePathData Path="game/jdnn/image/btn_m15.png" />
+      <FilePathData Path="game/jdnn/image/btn_m2.png" />
+      <FilePathData Path="game/jdnn/image/btn_m20.png" />
+      <FilePathData Path="game/jdnn/image/btn_m25.png" />
+      <FilePathData Path="game/jdnn/image/btn_m3.png" />
+      <FilePathData Path="game/jdnn/image/btn_m4.png" />
+      <FilePathData Path="game/jdnn/image/btn_m5.png" />
+      <FilePathData Path="game/jdnn/image/img_banker.png" />
+      <FilePathData Path="game/jdnn/image/img_cal_back.png" />
+      <FilePathData Path="game/jdnn/image/img_card_type_0.png" />
+      <FilePathData Path="game/jdnn/image/img_card_type_1.png" />
+      <FilePathData Path="game/jdnn/image/img_card_type_10.png" />
+      <FilePathData Path="game/jdnn/image/img_card_type_11.png" />
+      <FilePathData Path="game/jdnn/image/img_card_type_12.png" />
+      <FilePathData Path="game/jdnn/image/img_card_type_2.png" />
+      <FilePathData Path="game/jdnn/image/img_card_type_3.png" />
+      <FilePathData Path="game/jdnn/image/img_card_type_4.png" />
+      <FilePathData Path="game/jdnn/image/img_card_type_5.png" />
+      <FilePathData Path="game/jdnn/image/img_card_type_6.png" />
+      <FilePathData Path="game/jdnn/image/img_card_type_7.png" />
+      <FilePathData Path="game/jdnn/image/img_card_type_8.png" />
+      <FilePathData Path="game/jdnn/image/img_card_type_9.png" />
+      <FilePathData Path="game/jdnn/image/img_choose_1.png" />
+      <FilePathData Path="game/jdnn/image/img_choose_10.png" />
+      <FilePathData Path="game/jdnn/image/img_choose_15.png" />
+      <FilePathData Path="game/jdnn/image/img_choose_2.png" />
+      <FilePathData Path="game/jdnn/image/img_choose_20.png" />
+      <FilePathData Path="game/jdnn/image/img_choose_25.png" />
+      <FilePathData Path="game/jdnn/image/img_choose_3.png" />
+      <FilePathData Path="game/jdnn/image/img_choose_4.png" />
+      <FilePathData Path="game/jdnn/image/img_choose_5.png" />
+      <FilePathData Path="game/jdnn/image/img_choose_0.png" />
+      <FilePathData Path="game/jdnn/image/img_clock.png" />
+      <FilePathData Path="game/jdnn/image/img_cutdown_back.png" />
+      <FilePathData Path="game/jdnn/image/img_gold.png" />
+      <FilePathData Path="game/jdnn/image/img_head_back1.png" />
+      <FilePathData Path="game/jdnn/image/img_head_back2.png" />
+      <FilePathData Path="game/jdnn/image/img_hint.png" />
+      <FilePathData Path="game/jdnn/image/img_hint_start.png" />
+      <FilePathData Path="game/jdnn/image/img_nn_help.png" />
+      <FilePathData Path="game/jdnn/image/img_card_type_13.png" />
+    </ImageFiles>
+    <MaxSize Width="2048" Height="1024" />
+  </Content>
+</PlistInfoProjectFile>

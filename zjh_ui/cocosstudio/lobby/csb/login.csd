@@ -34,10 +34,10 @@
           <AbstractNodeData Name="container" ActionTag="-1195922310" Tag="1128" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="1334.0000" Y="750.0000" />
             <Children>
-              <AbstractNodeData Name="btn_tourist" ActionTag="-1474432465" Tag="1379" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BottomEdge" LeftMargin="352.0000" RightMargin="752.0000" TopMargin="596.0000" BottomMargin="71.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="200" Scale9Height="61" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+              <AbstractNodeData Name="btn_tourist" ActionTag="-1474432465" Tag="1379" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BottomEdge" LeftMargin="352.0334" RightMargin="751.9666" TopMargin="596.0000" BottomMargin="71.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="200" Scale9Height="61" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="230.0000" Y="83.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="467.0000" Y="112.5000" />
+                <Position X="467.0334" Y="112.5000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.3501" Y="0.1500" />
@@ -49,10 +49,10 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="btn_account" ActionTag="-319435045" Tag="1380" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BottomEdge" LeftMargin="752.0000" RightMargin="352.0000" TopMargin="596.0000" BottomMargin="71.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="200" Scale9Height="61" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+              <AbstractNodeData Name="btn_account" ActionTag="-319435045" Tag="1380" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BottomEdge" LeftMargin="751.9666" RightMargin="352.0334" TopMargin="596.0000" BottomMargin="71.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="200" Scale9Height="61" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="230.0000" Y="83.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="867.0000" Y="112.5000" />
+                <Position X="866.9666" Y="112.5000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.6499" Y="0.1500" />
@@ -151,39 +151,6 @@
                 <DisabledFileData Type="Normal" Path="lobby/image/loading/tourist1.png" Plist="" />
                 <PressedFileData Type="Normal" Path="lobby/image/loading/tourist1.png" Plist="" />
                 <NormalFileData Type="Normal" Path="lobby/image/loading/tourist1.png" Plist="" />
-                <OutlineColor A="255" R="255" G="0" B="0" />
-                <ShadowColor A="255" R="110" G="110" B="110" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="txt_ip" ActionTag="1251151975" Tag="32" IconVisible="False" HorizontalEdge="LeftEdge" VerticalEdge="TopEdge" LeftMargin="75.0000" RightMargin="1149.0000" TopMargin="64.0000" BottomMargin="664.0000" FontSize="22" LabelText="Text Label" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                <Size X="110.0000" Y="22.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="130.0000" Y="675.0000" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.0975" Y="0.9000" />
-                <PreSize X="0.0825" Y="0.0293" />
-                <OutlineColor A="255" R="255" G="0" B="0" />
-                <ShadowColor A="255" R="110" G="110" B="110" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="txt_port" ActionTag="-162858494" Tag="33" IconVisible="False" HorizontalEdge="LeftEdge" VerticalEdge="TopEdge" LeftMargin="75.0000" RightMargin="1149.0000" TopMargin="102.5000" BottomMargin="625.5000" FontSize="22" LabelText="Text Label" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                <Size X="110.0000" Y="22.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="130.0000" Y="636.5000" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.0975" Y="0.8487" />
-                <PreSize X="0.0825" Y="0.0293" />
-                <OutlineColor A="255" R="255" G="0" B="0" />
-                <ShadowColor A="255" R="110" G="110" B="110" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="txt_state" ActionTag="-381980470" Tag="15" IconVisible="False" LeftMargin="75.0000" RightMargin="1149.0000" TopMargin="139.0000" BottomMargin="589.0000" FontSize="22" LabelText="Text Label" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                <Size X="110.0000" Y="22.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="130.0000" Y="600.0000" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.0975" Y="0.8000" />
-                <PreSize X="0.0825" Y="0.0293" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>

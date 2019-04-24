@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>game/public/menu/btn_back.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{426,2},{60,60}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{60,60}</string>
+			</dict>
+			<key>game/public/menu/btn_change.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{2,72},{53,41}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{53,51}</string>
+			</dict>
+			<key>game/public/menu/btn_help.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{59,72},{30,47}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{53,51}</string>
+			</dict>
+			<key>game/public/menu/btn_menu1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{286,2},{66,66}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{66,66}</string>
+			</dict>
+			<key>game/public/menu/btn_menu2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{356,2},{66,66}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{66,66}</string>
+			</dict>
+			<key>game/public/menu/btn_set.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{426,66},{51,51}}</string>
+				<key>offset</key>
+				<string>{-1,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{53,51}</string>
+			</dict>
+			<key>game/public/menu/img_menu_back.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{2,2},{66,280}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{66,280}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>menuplist.png</string>
+			<key>realTextureFileName</key>
+			<string>menuplist.png</string>
+			<key>size</key>
+			<string>{488,119}</string>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>width</key>
+			<integer>488</integer>
+			<key>height</key>
+			<integer>119</integer>
+		</dict>
+	</dict>
+</plist>

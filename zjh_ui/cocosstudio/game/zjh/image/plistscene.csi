@@ -2,18 +2,12 @@
   <PropertyGroup Name="plistscene" Type="Plist" ID="8048d970-0edf-435f-9ccf-f2c2b153d9d3" Version="3.10.0.0" />
   <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="2" AllowRotation="True" AllowAnySize="True" AllowTrim="True" ctype="PlistInfoData">
     <ImageFiles>
-      <FilePathData Path="game/zjh/image/btn_back.png" />
       <FilePathData Path="game/zjh/image/btn_bp.png" />
-      <FilePathData Path="game/zjh/image/btn_change.png" />
       <FilePathData Path="game/zjh/image/btn_gdd.png" />
       <FilePathData Path="game/zjh/image/btn_gz.png" />
-      <FilePathData Path="game/zjh/image/btn_help.png" />
       <FilePathData Path="game/zjh/image/btn_jz.png" />
       <FilePathData Path="game/zjh/image/btn_kp.png" />
-      <FilePathData Path="game/zjh/image/btn_menu1.png" />
-      <FilePathData Path="game/zjh/image/btn_menu2.png" />
       <FilePathData Path="game/zjh/image/btn_qp.png" />
-      <FilePathData Path="game/zjh/image/btn_set.png" />
       <FilePathData Path="game/zjh/image/img_banker.png" />
       <FilePathData Path="game/zjh/image/img_bet_back.png" />
       <FilePathData Path="game/zjh/image/img_card_type_1.png" />
@@ -33,12 +27,10 @@
       <FilePathData Path="game/zjh/image/img_dz.png" />
       <FilePathData Path="game/zjh/image/img_fold.png" />
       <FilePathData Path="game/zjh/image/img_gold.png" />
-      <FilePathData Path="game/zjh/image/img_head_0_0.png" />
       <FilePathData Path="game/zjh/image/img_head_back.png" />
       <FilePathData Path="game/zjh/image/img_hint_start.png" />
       <FilePathData Path="game/zjh/image/img_jz_back.png" />
       <FilePathData Path="game/zjh/image/img_light.png" />
-      <FilePathData Path="game/zjh/image/img_menu_back.png" />
       <FilePathData Path="game/zjh/image/img_speak_1.png" />
       <FilePathData Path="game/zjh/image/img_speak_2.png" />
       <FilePathData Path="game/zjh/image/img_speak_3.png" />

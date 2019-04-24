@@ -83,7 +83,7 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.5000" />
                     <PreSize X="0.3902" Y="0.3922" />
-                    <FileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_0.png" Plist="lobby/image/plisthead.plist" />
+                    <FileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_0.png" Plist="lobby/image/head.plist" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />

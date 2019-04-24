@@ -316,8 +316,7 @@ function GamePlayerNode:playPanleAction(posf, post, flag)
         self:showImgBet(true)        
     end
     
-    local function dfunc()
-        print("dfunc is in")
+    local function dfunc()        
         self._presenter:showOtherPlayer() 
         self._presenter:checkBtnShowCard(true)   
     end
@@ -447,15 +446,8 @@ function GamePlayerNode:playEffectByName(name)
             end
         end
     end
-    local path = cc.FileUtils:getInstance():fullPathForFilename(soundPath .. strRes)
-    if not io.exists(path) then 
-        print("!!!sound effect missing!!!: ", path)
-        return
-    end
     
-    print("play sound effect: ", path)
-    app.util.SoundUtils.playEffect(soundPath..strRes)
-    print("play sound effect over ", path)
+    app.util.SoundUtils.playEffect(soundPath..strRes)   
 end
 
 return GamePlayerNode

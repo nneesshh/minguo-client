@@ -91,7 +91,12 @@ end
 
 -- 处理玩家状态
 function GamePresenter:onPlayerStatus(data)
-    print("status is",data.status)
+    -- 更新本家状态
+    if app.game.PlayerData.isHero(data.ticketid) then
+        local heroseat = app.game.PlayerData.getHeroSeat()
+        app.game.PlayerData.updatePlayerStatus(heroseat, data.status)
+    end
+    
     if data.status == 7 then    -- 退出
         self:onLeaveNormal(data)
     elseif data.status == 8 or data.status == 9 then -- 服务踢出房间     
@@ -283,7 +288,10 @@ function GamePresenter:onTakeFirst()
     	return
     end
     local function callback()
-        self._gameBtnNode:showBetNode(true)
+        local hero = app.game.PlayerData.getHero()
+        if hero and hero:isPlaying() then
+            self._gameBtnNode:showBetNode(true)
+        end
         local banker = app.game.GameData.getCurrseat()
         self:onPlayerBet(banker, 0)
     end
@@ -774,7 +782,7 @@ function GamePresenter:onResult(data, players)
         app.game.PlayerData.updatePlayerStatus(i, 0)       
     end    
                         
-    -- 延时结算
+    -- 延时准备
     self:performWithDelayGlobal(function()
         self:sendPlayerReady()
     end, 3)        
@@ -1295,11 +1303,11 @@ end
 -- 准备
 function GamePresenter:sendPlayerReady()
     local hero = app.game.PlayerData.getHero()   
-    if hero then
-        print("auto ready balance!!!!!",hero:getBalance())
+    if hero then       
+        print("hero is leave", hero:isLeave())
     end 
     local limit = app.game.GameConfig.getLimit()
-    if hero and hero:getBalance() > limit then        
+    if hero and not hero:isLeave() and hero:getBalance() > limit then        
         local sessionid = app.data.UserData.getSession() or 222
         local po = upconn.upconn:get_packet_obj()
         po:writer_reset()

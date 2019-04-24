@@ -76,7 +76,6 @@ function GameScene:isSelected(name)
     return false
 end
 
-
 function GameScene:exit()
     GameScene.super.exit(self)
 
@@ -90,7 +89,7 @@ end
 function GameScene:initUI()
     self:showBase()  
     self:showLunShu(0, GE.ALLROUND)
-    self:setSelected(true, "cbx_gdd_test")
+    self:setSelected(false, "cbx_gdd_test")
 end
 
 function GameScene:showStartEffect()

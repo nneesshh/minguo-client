@@ -106,10 +106,10 @@ function Connect:openScheduleTimeOut()
     local function timeoutfnc()     
         local nowTime = os.time()
         if nowTime - self.receiveTime > self.heartBeatTimeout then 
-            print("die le")                       
+            --print("die le")                       
             --self:close()
         else    
-            print("beat")                        
+            --print("beat")                        
         end
     end
     

@@ -1,0 +1,18 @@
+<PlistInfoProjectFile>
+  <PropertyGroup Name="plaza" Type="Plist" ID="c9f92603-3d1d-4aff-a7c3-3762b01fabe7" Version="3.10.0.0" />
+  <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="2" AllowRotation="True" AllowAnySize="True" AllowTrim="True" ctype="PlistInfoData">
+    <ImageFiles>
+      <FilePathData Path="lobby/image/plaza/img_game_1.png" />
+      <FilePathData Path="lobby/image/plaza/img_game_2.png" />
+      <FilePathData Path="lobby/image/plaza/plaza_1_1.png" />
+      <FilePathData Path="lobby/image/plaza/plaza_1_2.png" />
+      <FilePathData Path="lobby/image/plaza/plaza_1_3.png" />
+      <FilePathData Path="lobby/image/plaza/plaza_1_4.png" />
+      <FilePathData Path="lobby/image/plaza/plaza_2_1.png" />
+      <FilePathData Path="lobby/image/plaza/plaza_2_2.png" />
+      <FilePathData Path="lobby/image/plaza/plaza_2_3.png" />
+      <FilePathData Path="lobby/image/plaza/plaza_2_4.png" />
+    </ImageFiles>
+    <MaxSize Width="1024" Height="1024" />
+  </Content>
+</PlistInfoProjectFile>

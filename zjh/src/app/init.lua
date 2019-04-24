@@ -69,6 +69,8 @@ app.lobby.public = app.lobby.public or {}
 app.lobby.public.HintPresenter              = require("app.lobby.public.HintPresenter")
 app.lobby.public.LoadingHintPresenter       = require("app.lobby.public.LoadingHintPresenter")
 
+app.lobby.debug = app.lobby.debug or {}
+app.lobby.debug.DebugPresenter              = require("app.lobby.debug.DebugPresenter")
 ------------------------------------ 游戏文件  -------------------------------------
 app.game = app.game or {}
 app.game.GameConfig                         = require("app.game.GameConfig")

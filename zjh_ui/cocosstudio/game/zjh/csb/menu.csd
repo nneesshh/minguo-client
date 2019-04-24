@@ -21,9 +21,9 @@
                     <PrePosition X="0.5000" Y="0.1071" />
                     <PreSize X="0.8030" Y="0.1821" />
                     <TextColor A="255" R="65" G="65" B="70" />
-                    <DisabledFileData Type="MarkedSubImage" Path="game/zjh/image/btn_help.png" Plist="game/zjh/image/plistscene.plist" />
-                    <PressedFileData Type="MarkedSubImage" Path="game/zjh/image/btn_help.png" Plist="game/zjh/image/plistscene.plist" />
-                    <NormalFileData Type="MarkedSubImage" Path="game/zjh/image/btn_help.png" Plist="game/zjh/image/plistscene.plist" />
+                    <DisabledFileData Type="MarkedSubImage" Path="game/public/menu/btn_help.png" Plist="game/public/menuplist.plist" />
+                    <PressedFileData Type="MarkedSubImage" Path="game/public/menu/btn_help.png" Plist="game/public/menuplist.plist" />
+                    <NormalFileData Type="MarkedSubImage" Path="game/public/menu/btn_help.png" Plist="game/public/menuplist.plist" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
@@ -36,9 +36,9 @@
                     <PrePosition X="0.5000" Y="0.3571" />
                     <PreSize X="0.8030" Y="0.1821" />
                     <TextColor A="255" R="65" G="65" B="70" />
-                    <DisabledFileData Type="MarkedSubImage" Path="game/zjh/image/btn_change.png" Plist="game/zjh/image/plistscene.plist" />
-                    <PressedFileData Type="MarkedSubImage" Path="game/zjh/image/btn_change.png" Plist="game/zjh/image/plistscene.plist" />
-                    <NormalFileData Type="MarkedSubImage" Path="game/zjh/image/btn_change.png" Plist="game/zjh/image/plistscene.plist" />
+                    <DisabledFileData Type="MarkedSubImage" Path="game/public/menu/btn_change.png" Plist="game/public/menuplist.plist" />
+                    <PressedFileData Type="MarkedSubImage" Path="game/public/menu/btn_change.png" Plist="game/public/menuplist.plist" />
+                    <NormalFileData Type="MarkedSubImage" Path="game/public/menu/btn_change.png" Plist="game/public/menuplist.plist" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
@@ -51,9 +51,9 @@
                     <PrePosition X="0.5000" Y="0.6071" />
                     <PreSize X="0.8030" Y="0.1821" />
                     <TextColor A="255" R="65" G="65" B="70" />
-                    <DisabledFileData Type="MarkedSubImage" Path="game/zjh/image/btn_set.png" Plist="game/zjh/image/plistscene.plist" />
-                    <PressedFileData Type="MarkedSubImage" Path="game/zjh/image/btn_set.png" Plist="game/zjh/image/plistscene.plist" />
-                    <NormalFileData Type="MarkedSubImage" Path="game/zjh/image/btn_set.png" Plist="game/zjh/image/plistscene.plist" />
+                    <DisabledFileData Type="MarkedSubImage" Path="game/public/menu/btn_set.png" Plist="game/public/menuplist.plist" />
+                    <PressedFileData Type="MarkedSubImage" Path="game/public/menu/btn_set.png" Plist="game/public/menuplist.plist" />
+                    <NormalFileData Type="MarkedSubImage" Path="game/public/menu/btn_set.png" Plist="game/public/menuplist.plist" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
@@ -64,7 +64,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5000" Y="1.0000" />
                 <PreSize X="1.0000" Y="1.0000" />
-                <FileData Type="MarkedSubImage" Path="game/zjh/image/img_menu_back.png" Plist="game/zjh/image/plistscene.plist" />
+                <FileData Type="MarkedSubImage" Path="game/public/menu/img_menu_back.png" Plist="game/public/menuplist.plist" />
               </AbstractNodeData>
               <AbstractNodeData Name="btn_menu" ActionTag="-361313949" Tag="472" IconVisible="False" BottomMargin="214.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="36" Scale9Height="44" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="66.0000" Y="66.0000" />
@@ -75,9 +75,9 @@
                 <PrePosition X="0.5000" Y="0.8821" />
                 <PreSize X="1.0000" Y="0.2357" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="MarkedSubImage" Path="game/zjh/image/btn_menu1.png" Plist="game/zjh/image/plistscene.plist" />
-                <PressedFileData Type="MarkedSubImage" Path="game/zjh/image/btn_menu1.png" Plist="game/zjh/image/plistscene.plist" />
-                <NormalFileData Type="MarkedSubImage" Path="game/zjh/image/btn_menu1.png" Plist="game/zjh/image/plistscene.plist" />
+                <DisabledFileData Type="MarkedSubImage" Path="game/public/menu/btn_menu1.png" Plist="game/public/menuplist.plist" />
+                <PressedFileData Type="MarkedSubImage" Path="game/public/menu/btn_menu1.png" Plist="game/public/menuplist.plist" />
+                <NormalFileData Type="MarkedSubImage" Path="game/public/menu/btn_menu1.png" Plist="game/public/menuplist.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>

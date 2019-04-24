@@ -30,6 +30,10 @@ function PlazaData.getPlazaList(gameid)
     return PlazaData._plazaList[gameid]
 end
 
+function PlazaData.getAllPlazaList()
+    return PlazaData._plazaList
+end
+
 -- 根据金币获取当前可以进入的plazaid
 function PlazaData.getSuitPlazaInfo(gameid, balance)
     local plazaInfo = PlazaData.getPlazaList(gameid)

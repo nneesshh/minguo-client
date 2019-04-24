@@ -41,7 +41,9 @@ function MainScene:onTouch(sender, eventType)
         if name == "btn_back" then
             self:showPlazaPnl(false)           
         elseif name == "btn_psz" then
-            self._presenter:showPlazaLists(app.Game.GameID.ZJH)             
+            self._presenter:showPlazaLists(app.Game.GameID.ZJH)  
+        elseif name == "btn_jdnn" or name == "btn_qznn" or name == "btn_brnn" then
+            self._presenter:showPlazaLists(app.Game.GameID.JDNN)                             
         elseif name == "btn_head_info" then
             self._presenter:showUserCenter()             
         elseif name == "btn_gold_add_lobby" then
@@ -61,6 +63,8 @@ function MainScene:onTouch(sender, eventType)
         elseif string.find(name, "btn_plaza_") then 
             local index = string.split(name, "btn_plaza_")[2]
             local gameid = sender:getTag()
+            
+            print("gameid is",gameid)
             self._presenter:reqJoinRoom(gameid, tonumber(index))                       
         end 
     end
@@ -74,8 +78,7 @@ function MainScene:onEnter()
     self._presenter:onEnter()
 end
 
-----------------------------------------ui更新----------------------------------------------
-
+-- --------------------------------------ui更新-----------------------------------------
 -- 更新用户ID
 function MainScene:setID(name)
     local txtID1 = self:seekChildByName("txt_id_lobby")
@@ -109,8 +112,7 @@ end
 
 -- 显示隐藏场
 function MainScene:showPlazaPnl(bFlag)
-    if self._isRunAction then
-        print("self is run ????")
+    if self._isRunAction then       
         return
     end
     self._isRunAction = true
@@ -152,9 +154,14 @@ end
 -- 加载场列表
 function MainScene:loadPlazaList(gameid, plazainfos)
     if plazainfos == nil then
-        print("plazainfos is nil")
     	return
-    end
+    end        
+      
+    local resPath = string.format("lobby/image/plaza/img_game_%d.png", gameid)
+    local imgtitle = self:seekChildByName("img_game_title") 
+    imgtitle:ignoreContentAdaptWithSize(true)
+    imgtitle:loadTexture(resPath, ccui.TextureResType.plistType)
+    
     local pnlPlaza = self:seekChildByName("plaza")  
     local childs = pnlPlaza:getChildren()  
     for i,btn in ipairs(childs) do
@@ -174,9 +181,13 @@ function MainScene:loadPlazaList(gameid, plazainfos)
             base:setString(info.base .. "底分")
             lower:setString(info.lower)
             childs[i]:setTag(gameid)
-            print("load plaza")
+            
+            local btnPath = string.format("lobby/image/plaza/plaza_%d_%d.png", gameid, i)
+            childs[i]:loadTextures(btnPath, btnPath, btnPath, ccui.TextureResType.plistType) 
         end        
     end
 end
+
+
 
 return MainScene

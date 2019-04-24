@@ -7,7 +7,7 @@ local GameCardNode = class("GameCardNode", app.base.BaseNode)
 
 -- csb路径
 GameCardNode.csbPath         = "game/zjh/csb/card.csb"
-GameCardNode.imgCardPath     = "game/zjh/image/card/img_"
+GameCardNode.imgCardPath     = "game/public/card/img_"
 local HAND_CARD_TYPE         = 0
 local HAND_CARD_TYPE_NO_SELF = 1
 local OUT_CARD_TYPE          = 2

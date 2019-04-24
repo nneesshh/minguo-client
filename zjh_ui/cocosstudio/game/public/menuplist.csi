@@ -1,0 +1,15 @@
+<PlistInfoProjectFile>
+  <PropertyGroup Name="menuplist" Type="Plist" ID="5eabceae-c42f-4014-8369-875c401c3146" Version="3.10.0.0" />
+  <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="2" AllowRotation="True" AllowAnySize="True" AllowTrim="True" ctype="PlistInfoData">
+    <ImageFiles>
+      <FilePathData Path="game/public/menu/btn_back.png" />
+      <FilePathData Path="game/public/menu/btn_change.png" />
+      <FilePathData Path="game/public/menu/btn_help.png" />
+      <FilePathData Path="game/public/menu/btn_menu1.png" />
+      <FilePathData Path="game/public/menu/btn_menu2.png" />
+      <FilePathData Path="game/public/menu/btn_set.png" />
+      <FilePathData Path="game/public/menu/img_menu_back.png" />
+    </ImageFiles>
+    <MaxSize Width="512" Height="1024" />
+  </Content>
+</PlistInfoProjectFile>

@@ -1,0 +1,50 @@
+<PlistInfoProjectFile>
+  <PropertyGroup Name="plistcard" Type="Plist" ID="c3f7c983-f535-4e57-9a56-51c14a0afa09" Version="3.10.0.0" />
+  <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="2" AllowRotation="True" AllowAnySize="True" AllowTrim="True" ctype="PlistInfoData">
+    <ImageFiles>
+      <FilePathData Path="game/public/card/img_0_10.png" />
+      <FilePathData Path="game/public/card/img_0_11.png" />
+      <FilePathData Path="game/public/card/img_0_12.png" />
+      <FilePathData Path="game/public/card/img_0_13.png" />
+      <FilePathData Path="game/public/card/img_0_14.png" />
+      <FilePathData Path="game/public/card/img_0_2.png" />
+      <FilePathData Path="game/public/card/img_0_3.png" />
+      <FilePathData Path="game/public/card/img_0_4.png" />
+      <FilePathData Path="game/public/card/img_0_5.png" />
+      <FilePathData Path="game/public/card/img_0_6.png" />
+      <FilePathData Path="game/public/card/img_0_7.png" />
+      <FilePathData Path="game/public/card/img_0_8.png" />
+      <FilePathData Path="game/public/card/img_0_9.png" />
+      <FilePathData Path="game/public/card/img_1_10.png" />
+      <FilePathData Path="game/public/card/img_1_11.png" />
+      <FilePathData Path="game/public/card/img_1_12.png" />
+      <FilePathData Path="game/public/card/img_1_13.png" />
+      <FilePathData Path="game/public/card/img_1_14.png" />
+      <FilePathData Path="game/public/card/img_1_2.png" />
+      <FilePathData Path="game/public/card/img_1_3.png" />
+      <FilePathData Path="game/public/card/img_1_4.png" />
+      <FilePathData Path="game/public/card/img_1_5.png" />
+      <FilePathData Path="game/public/card/img_1_6.png" />
+      <FilePathData Path="game/public/card/img_1_7.png" />
+      <FilePathData Path="game/public/card/img_1_8.png" />
+      <FilePathData Path="game/public/card/img_1_9.png" />
+      <FilePathData Path="game/public/card/img_card_back.png" />
+      <FilePathData Path="game/public/card/img_card_front.png" />
+      <FilePathData Path="game/public/card/img_card_gary.png" />
+      <FilePathData Path="game/public/card/img_color_0.png" />
+      <FilePathData Path="game/public/card/img_color_1.png" />
+      <FilePathData Path="game/public/card/img_color_2.png" />
+      <FilePathData Path="game/public/card/img_color_3.png" />
+      <FilePathData Path="game/public/card/img_color_big_king.png" />
+      <FilePathData Path="game/public/card/img_color_small_king.png" />
+      <FilePathData Path="game/public/card/img_face_0_11.png" />
+      <FilePathData Path="game/public/card/img_face_0_12.png" />
+      <FilePathData Path="game/public/card/img_face_0_13.png" />
+      <FilePathData Path="game/public/card/img_face_1_11.png" />
+      <FilePathData Path="game/public/card/img_face_1_12.png" />
+      <FilePathData Path="game/public/card/img_face_1_13.png" />
+      <FilePathData Path="game/public/card/img_card_select.png" />
+    </ImageFiles>
+    <MaxSize Width="1024" Height="512" />
+  </Content>
+</PlistInfoProjectFile>

@@ -89,9 +89,9 @@
                     <PrePosition X="0.1207" Y="0.7500" />
                     <PreSize X="0.1379" Y="0.3404" />
                     <TextColor A="255" R="65" G="65" B="70" />
-                    <DisabledFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_0.png" Plist="lobby/image/plisthead.plist" />
-                    <PressedFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_0.png" Plist="lobby/image/plisthead.plist" />
-                    <NormalFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_0.png" Plist="lobby/image/plisthead.plist" />
+                    <DisabledFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_0.png" Plist="lobby/image/head.plist" />
+                    <PressedFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_0.png" Plist="lobby/image/head.plist" />
+                    <NormalFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_0.png" Plist="lobby/image/head.plist" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
@@ -104,9 +104,9 @@
                     <PrePosition X="0.3103" Y="0.7500" />
                     <PreSize X="0.1379" Y="0.3404" />
                     <TextColor A="255" R="65" G="65" B="70" />
-                    <DisabledFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_1.png" Plist="lobby/image/plisthead.plist" />
-                    <PressedFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_1.png" Plist="lobby/image/plisthead.plist" />
-                    <NormalFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_1.png" Plist="lobby/image/plisthead.plist" />
+                    <DisabledFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_1.png" Plist="lobby/image/head.plist" />
+                    <PressedFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_1.png" Plist="lobby/image/head.plist" />
+                    <NormalFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_1.png" Plist="lobby/image/head.plist" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
@@ -119,9 +119,9 @@
                     <PrePosition X="0.5000" Y="0.7500" />
                     <PreSize X="0.1379" Y="0.3404" />
                     <TextColor A="255" R="65" G="65" B="70" />
-                    <DisabledFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_2.png" Plist="lobby/image/plisthead.plist" />
-                    <PressedFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_2.png" Plist="lobby/image/plisthead.plist" />
-                    <NormalFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_2.png" Plist="lobby/image/plisthead.plist" />
+                    <DisabledFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_2.png" Plist="lobby/image/head.plist" />
+                    <PressedFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_2.png" Plist="lobby/image/head.plist" />
+                    <NormalFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_2.png" Plist="lobby/image/head.plist" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
@@ -134,9 +134,9 @@
                     <PrePosition X="0.6897" Y="0.7500" />
                     <PreSize X="0.1379" Y="0.3404" />
                     <TextColor A="255" R="65" G="65" B="70" />
-                    <DisabledFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_3.png" Plist="lobby/image/plisthead.plist" />
-                    <PressedFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_3.png" Plist="lobby/image/plisthead.plist" />
-                    <NormalFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_3.png" Plist="lobby/image/plisthead.plist" />
+                    <DisabledFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_3.png" Plist="lobby/image/head.plist" />
+                    <PressedFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_3.png" Plist="lobby/image/head.plist" />
+                    <NormalFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_3.png" Plist="lobby/image/head.plist" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
@@ -149,9 +149,9 @@
                     <PrePosition X="0.8793" Y="0.7500" />
                     <PreSize X="0.1379" Y="0.3404" />
                     <TextColor A="255" R="65" G="65" B="70" />
-                    <DisabledFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_4.png" Plist="lobby/image/plisthead.plist" />
-                    <PressedFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_4.png" Plist="lobby/image/plisthead.plist" />
-                    <NormalFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_4.png" Plist="lobby/image/plisthead.plist" />
+                    <DisabledFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_4.png" Plist="lobby/image/head.plist" />
+                    <PressedFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_4.png" Plist="lobby/image/head.plist" />
+                    <NormalFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_4.png" Plist="lobby/image/head.plist" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
@@ -164,9 +164,9 @@
                     <PrePosition X="0.1207" Y="0.2500" />
                     <PreSize X="0.1379" Y="0.3404" />
                     <TextColor A="255" R="65" G="65" B="70" />
-                    <DisabledFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_1_0.png" Plist="lobby/image/plisthead.plist" />
-                    <PressedFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_1_0.png" Plist="lobby/image/plisthead.plist" />
-                    <NormalFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_1_0.png" Plist="lobby/image/plisthead.plist" />
+                    <DisabledFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_1_0.png" Plist="lobby/image/head.plist" />
+                    <PressedFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_1_0.png" Plist="lobby/image/head.plist" />
+                    <NormalFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_1_0.png" Plist="lobby/image/head.plist" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
@@ -179,9 +179,9 @@
                     <PrePosition X="0.3103" Y="0.2500" />
                     <PreSize X="0.1379" Y="0.3404" />
                     <TextColor A="255" R="65" G="65" B="70" />
-                    <DisabledFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_1_1.png" Plist="lobby/image/plisthead.plist" />
-                    <PressedFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_1_1.png" Plist="lobby/image/plisthead.plist" />
-                    <NormalFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_1_1.png" Plist="lobby/image/plisthead.plist" />
+                    <DisabledFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_1_1.png" Plist="lobby/image/head.plist" />
+                    <PressedFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_1_1.png" Plist="lobby/image/head.plist" />
+                    <NormalFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_1_1.png" Plist="lobby/image/head.plist" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
@@ -194,9 +194,9 @@
                     <PrePosition X="0.5000" Y="0.2500" />
                     <PreSize X="0.1379" Y="0.3404" />
                     <TextColor A="255" R="65" G="65" B="70" />
-                    <DisabledFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_1_2.png" Plist="lobby/image/plisthead.plist" />
-                    <PressedFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_1_2.png" Plist="lobby/image/plisthead.plist" />
-                    <NormalFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_1_2.png" Plist="lobby/image/plisthead.plist" />
+                    <DisabledFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_1_2.png" Plist="lobby/image/head.plist" />
+                    <PressedFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_1_2.png" Plist="lobby/image/head.plist" />
+                    <NormalFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_1_2.png" Plist="lobby/image/head.plist" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
@@ -209,9 +209,9 @@
                     <PrePosition X="0.6897" Y="0.2500" />
                     <PreSize X="0.1379" Y="0.3404" />
                     <TextColor A="255" R="65" G="65" B="70" />
-                    <DisabledFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_1_3.png" Plist="lobby/image/plisthead.plist" />
-                    <PressedFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_1_3.png" Plist="lobby/image/plisthead.plist" />
-                    <NormalFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_1_3.png" Plist="lobby/image/plisthead.plist" />
+                    <DisabledFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_1_3.png" Plist="lobby/image/head.plist" />
+                    <PressedFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_1_3.png" Plist="lobby/image/head.plist" />
+                    <NormalFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_1_3.png" Plist="lobby/image/head.plist" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
@@ -224,9 +224,9 @@
                     <PrePosition X="0.8793" Y="0.2500" />
                     <PreSize X="0.1379" Y="0.3404" />
                     <TextColor A="255" R="65" G="65" B="70" />
-                    <DisabledFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_1_4.png" Plist="lobby/image/plisthead.plist" />
-                    <PressedFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_1_4.png" Plist="lobby/image/plisthead.plist" />
-                    <NormalFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_1_4.png" Plist="lobby/image/plisthead.plist" />
+                    <DisabledFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_1_4.png" Plist="lobby/image/head.plist" />
+                    <PressedFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_1_4.png" Plist="lobby/image/head.plist" />
+                    <NormalFileData Type="MarkedSubImage" Path="lobby/image/head/img_head_1_4.png" Plist="lobby/image/head.plist" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>

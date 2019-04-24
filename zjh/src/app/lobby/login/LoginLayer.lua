@@ -20,12 +20,12 @@ LoginLayer.touchs = {
 }
 
 local logindata = {
-    [0] = {0,"12345678914","a123123","imei00007","imsi00007","",""},
-    [1] = {0,"12345678913","a123123","imei00002","imsi00002","",""},
-    [2] = {0,"12345678912","a123123","imei00003","imsi00003","",""},
-    [3] = {0,"12345678911","a123123","imei00004","imsi00004","",""},
-    [4] = {0,"12345678910","a123123","imei00005","imsi00005","",""},
-    [5] = {0,"12345678909","a123123","imei00006","imsi00006","",""}
+    [0] = {0,"12345678920","a123123","imei00007","imsi00007","",""},
+    [1] = {0,"12345678919","a123123","imei00002","imsi00002","",""},
+    [2] = {0,"12345678918","a123123","imei00003","imsi00003","",""},
+    [3] = {0,"12345678917","a123123","imei00004","imsi00004","",""},
+    [4] = {0,"12345678916","a123123","imei00005","imsi00005","",""},
+    [5] = {0,"12345678915","a123123","imei00006","imsi00006","",""}
 }
 
 function LoginLayer:onTouch(sender, eventType)
@@ -44,17 +44,7 @@ function LoginLayer:onTouch(sender, eventType)
 end
 
 function LoginLayer:initUI()
-    local txtip = self:seekChildByName("txt_ip")
-    local txtport = self:seekChildByName("txt_port")
     
-    txtip:setString("ip:" .. cfg_game_zjh.servers[1].host)
-    txtport:setString("port:" .. cfg_game_zjh.servers[1].port)
-end
-
-function LoginLayer:updateState(state)
-    local txtstate = self:seekChildByName("txt_state")
-    
-    txtstate:setString(state)
 end
 
 function LoginLayer:onClickBtnGuest()

@@ -46,7 +46,7 @@
 *.apk
 *.udf
 *.prop
-*.jar
+#*.jar
 *.so
 
 \.svn/

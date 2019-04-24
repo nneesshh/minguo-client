@@ -27,7 +27,7 @@ function MainPresenter:onEnter()
     if app.data.UserData.getLoginState() ~= 1 then
         app.lobby.login.LoginPresenter:getInstance():start()
     end
-    --app.lobby.debug.DebugPresenter:getInstance():start()
+    app.lobby.debug.DebugPresenter:getInstance():start()
 end
 
 function MainPresenter:createDispatcher()

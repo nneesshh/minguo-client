@@ -42,7 +42,7 @@ function MainScene:onTouch(sender, eventType)
             self:showPlazaPnl(false)           
         elseif name == "btn_psz" then
             self._presenter:showPlazaLists(app.Game.GameID.ZJH)  
-        elseif name == "btn_jdnn" or name == "btn_qznn" or name == "btn_brnn" then
+        elseif name == "btn_jdnn" then
             self._presenter:showPlazaLists(app.Game.GameID.JDNN)                             
         elseif name == "btn_head_info" then
             self._presenter:showUserCenter()             

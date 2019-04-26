@@ -5,9 +5,9 @@
 local GameEnum = {}
 
 GameEnum.HERO_LOCAL_SEAT           = 1
-GameEnum.BANKER_TIME               = 5
-GameEnum.BET_TIME                  = 5
-GameEnum.CAL_TIME                  = 5
+GameEnum.BANKER_TIME               = 30
+GameEnum.BET_TIME                  = 30
+GameEnum.CAL_TIME                  = 30
 GameEnum.CARDBACK                  = 0
 GameEnum.CARDGRAY                  = 888
 
@@ -39,34 +39,46 @@ GameEnum.playerStatus = {
     zjh_playing    = 3,
     zjh_waiting    = 4,
     zjh_giveup     = 5,
-    zjh_lost       = 6
-    
+    zjh_lost       = 6    
 }
 
 GameEnum.soundType = {
-    win            = "af_jhwin.mp3",
-    pk             = "af_pk.mp3",
-    pk_lose        = "af_pk_loss.mp3",
-    baozi          = "af_t_baozi.mp3",
-    shunjin        = "af_t_shunjin.mp3",
-    game           = "bgm_game2.mp3",
-    didi           = "didi.mp3",
-    chip           = "jh_chip.mp3",
-    cd             = "countdown.mp3",  
-    
-    m_qp           = {"jh_m_qipai1.mp3", "jh_m_qipai2.mp3", "jh_m_qipai3.mp3"},
-    m_kp           = "jh_m_kan.mp3",
-    m_bp           = "jh_m_pk.mp3",
-    m_jz           = "jh_m_jia.mp3",
-    m_gz           = {"jh_m_gen1.mp3", "jh_m_gen2.mp3", "jh_m_gen3.mp3"},
-    m_qy           = "jh_m_allin.mp3",
-    
-    w_qp           = {"jh_w_qipai1.mp3", "jh_w_qipai2.mp3", "jh_w_qipai1.mp3"},
-    w_kp           = "jh_w_kan.mp3",
-    w_bp           = {"jh_w_pk1.mp3", "jh_w_pk2.mp3", "jh_w_pk3.mp3"},
-    w_jz           = "jh_w_jia.mp3",
-    w_gz           = {"jh_w_gen1.mp3", "jh_w_gen2.mp3", "jh_w_gen3.mp3"},
-    w_qy           = {"jh_w_allin1.mp3", "jh_w_allin2.mp3", "jh_w_allin2.mp3"}
+    lose           = "af_lose.mp3",
+    win            = "niu_win.mp3",
+    bankerwin      = "banker_win_all.mp3",
+    fly            = "se_chips.mp3",
+    game           = "bgm_game.mp3",
+    bankermult     = "ef_xuanzhuang.mp3",
+    mult           = "xia_zhu_1.mp3",    
+    banker         = "zhuang.mp3",
+    m_niu_0        = "niu_0_m.mp3",
+    m_niu_1        = "niu_1_m.mp3",
+    m_niu_2        = "niu_2_m.mp3",
+    m_niu_3        = "niu_3_m.mp3",
+    m_niu_4        = "niu_4_m.mp3",
+    m_niu_5        = "niu_5_m.mp3",
+    m_niu_6        = "niu_6_m.mp3",
+    m_niu_7        = "niu_7_m.mp3",
+    m_niu_8        = "niu_8_m.mp3",
+    m_niu_9        = "niu_9_m.mp3",
+    m_niu_10       = "niu_10_m.mp3",
+    m_niu_11       = "niu_sizha_m.mp3",
+    m_niu_12       = "niu_wuhua_m.mp3",
+    m_niu_13       = "niu_5_s_m.mp3",
+    w_niu_0        = "niu_0_w.mp3",
+    w_niu_1        = "niu_1_w.mp3",
+    w_niu_2        = "niu_2_w.mp3",
+    w_niu_3        = "niu_3_w.mp3",
+    w_niu_4        = "niu_4_w.mp3",
+    w_niu_5        = "niu_5_w.mp3",
+    w_niu_6        = "niu_6_w.mp3",
+    w_niu_7        = "niu_7_w.mp3",
+    w_niu_8        = "niu_8_w.mp3",
+    w_niu_9        = "niu_9_w.mp3",
+    w_niu_10       = "niu_10_w.mp3",
+    w_niu_11       = "niu_sizha_w.mp3",
+    w_niu_12       = "niu_wuhua_w.mp3",
+    w_niu_13       = "niu_5_s_w.mp3",
 }
 
 return GameEnum

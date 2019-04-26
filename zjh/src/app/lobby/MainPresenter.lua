@@ -168,13 +168,10 @@ function MainPresenter:reqJoinRoom(gameid, index)
     
         po:writer_reset()
         po:write_int32(sessionid)  
+        po:write_int32(gameid) 
         po:write_int32(roomid)     
         
-        if gameid == app.Game.GameID.ZJH then
-            upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_ENTER_ROOM_REQ)
-        elseif gameid == app.Game.GameID.JDNN then	
-            upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_ENTER_ROOM_REQ)
-        end          
+        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_ENTER_ROOM_REQ)     
     end 
 end
 

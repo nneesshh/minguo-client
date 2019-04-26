@@ -154,18 +154,24 @@ end
 -- 庄家动画    
 function GamePlayerNode:playBankAction(callback)
     local imgBanker = self:seekChildByName("img_banker")
-   
-    local visibleRect = cc.Director:getInstance():getOpenGLView():getVisibleRect()
-    local center = cc.p(visibleRect.x + visibleRect.width*0.5,visibleRect.y + visibleRect.height*0.6)    
-    local pCenter = imgBanker:convertToNodeSpace(center)
-    local x,y = imgBanker:getPosition()     
-    imgBanker:setPosition(pCenter)
+    local x,y = imgBanker:getPosition() 
+    
+    local pos = {
+        [0] = cc.p(627, 62.5),
+        [1] = cc.p(627, 353),
+        [2] = cc.p(-547, 62.5),
+        [3] = cc.p(-153, -242),
+        [4] = cc.p(342, -242),    
+    }
+    imgBanker:setPosition(pos[self._localSeat])
     imgBanker:setVisible(true)
     
     local function next()
         if callback then
         	callback()
         end
+        
+        imgBanker:setPosition(x, y)
     end
     imgBanker:runAction(cc.Sequence:create(
         cc.MoveTo:create(0.5, cc.p(x,y)), 
@@ -230,7 +236,7 @@ function GamePlayerNode:playEffectByName(name)
         end
     end
     
-    app.util.SoundUtils.playEffect(soundPath..strRes)   
+    app.util.SoundUtils.playEffect(soundPath .. strRes)   
 end
 
 return GamePlayerNode

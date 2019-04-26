@@ -125,20 +125,6 @@ local function _readTableInfo(po)
     return info
 end
 
-local function _readSeatPlayerInfo(po)
-    local info = {}
-    info.ticketid = po:read_int32()
-    info.nickname = po:read_string()
-    info.avatar   = po:read_string()
-    info.gender   = po:read_byte()
-    info.balance  = po:read_int64()
-    info.status   = po:read_byte()
-    info.seat     = po:read_byte()
-    info.bet      = po:read_int32()
-    info.isshow   = po:read_int32()
-    return info
-end
-
 local function _readPlayerAnteUp(po)
     local info = {}
     local gameinfo = {}
@@ -206,111 +192,7 @@ local function _readGameOver(po)
     return info, players
 end
 
-function _M.onEnterRoom(conn, sessionid, msgid)
-    print("onEnterRoom")
-    local resp = {}
-    local po = upconn.upconn:get_packet_obj()
-    resp.errorCode = po:read_int32()
-    resp.errorMsg  = po:read_string()
-    
-    if resp.errorCode == zjh_defs.ErrorCode.ERR_SUCCESS then
-        app.lobby.MainPresenter:getInstance():loadingHintExit()
-        -- enter gamescene
-        app.game.GameEngine:getInstance():onStartGame()
-        
-        -- table info
-        local tabInfo = _readTableInfo(po)       
-        tabInfo.basecoin = 0
-        app.game.GameData.setTableInfo(tabInfo)
-        
-        -- seat in-gaming player info     
-        local playerCount = po:read_int32()
-        local ids = {}
-        for i = 1, playerCount do
-            -- seat player info
-            local info = _readSeatPlayerInfo(po)
-            
-            table.insert(ids,info.ticketid)
-            app.game.PlayerData.onPlayerInfo(info)
-        end
-        
-        -- enter room
-        for k, id in ipairs(ids) do
-            local player = app.game.PlayerData.getPlayerByNumID(id)
-            if not player then                
-                return
-            end            
-            app.game.GamePresenter:getInstance():onPlayerEnter(player) 
-            if app.data.UserData.getTicketID() == id then               
-                _M.sendPlayerReady()
-            end                    
-        end
-    else
-        app.game.GameEngine:getInstance():exit()
-        app.lobby.MainPresenter:getInstance():showErrorMsg(resp.errorCode)
-    end
-end
 
-function _M.onLeaveRoom(conn, sessionid, msgid)
-    local resp = {}
-    local po   = upconn.upconn:get_packet_obj()
-    resp.errorCode = po:read_int32()
-    resp.errorMsg  = po:read_string()
-    if resp.errorCode == zjh_defs.ErrorCode.ERR_SUCCESS then
-        if app.game.GamePresenter then
-            app.game.GamePresenter:getInstance():onLeaveRoom()
-        end            
-    end
-end
-
-function _M.onChangeTable(conn, sessionid, msgid)
-    local resp = {}
-    local po = upconn.upconn:get_packet_obj()
-    resp.errorCode = po:read_int32()
-    resp.errorMsg  = po:read_string()
-    
-    if resp.errorCode == zjh_defs.ErrorCode.ERR_SUCCESS then
-        -- enter gamescene       
-        local gameid = po:read_int32()
-        local roomid =  po:read_int32()
-        local base = app.data.PlazaData.getBaseByRoomid(gameid, roomid)
-        local limit = app.data.PlazaData.getLimitByBase(gameid, base)
-        app.game.GameEngine:getInstance():start(gameid, base, limit)            
-        app.game.GameEngine:getInstance():onStartGame()
-
-        app.game.GamePresenter:getInstance():onChangeTable()        
-
-        -- table info
-        local tabInfo = _readTableInfo(po)
-        tabInfo.basecoin = 0
-        app.game.GameData.setTableInfo(tabInfo)
-
-        -- seat in-gaming player info     
-        local playerCount = po:read_int32()
-        local ids = {}
-        for i = 1, playerCount do
-            -- seat player info
-            local info = _readSeatPlayerInfo(po)
-
-            table.insert(ids,info.ticketid)
-            app.game.PlayerData.onPlayerInfo(info)
-        end
-        -- enter room
-        for k, id in ipairs(ids) do
-            local player = app.game.PlayerData.getPlayerByNumID(id)
-            if not player then
-                
-                return
-            end                  
-            app.game.GamePresenter:getInstance():onPlayerEnter(player)
-            if app.data.UserData.getTicketID() == id then                
-                _M.sendPlayerReady()
-            end         
-        end
-    else
-        app.game.GameEngine:getInstance():exit()  
-    end
-end
 
 function _M.onPlayerReady(conn, sessionid, msgid)
     local resp = {}
@@ -430,14 +312,15 @@ function _M.doRegisterMsgCallbacks()
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_REGISTER_RESP, pubconn.onRegister)
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_LOGIN_RESP, pubconn.onLogin)
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_CHANGE_USER_INFO_RESP, pubconn.onUserInfo)
+    
+    -- 玩家动作
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_PLAYER_STATUS_NOTIFY_NEW, pubconn.onPlayerStatus)
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_SIT_DOWN_NOTIFY_NEW, pubconn.onPlayerSitDown)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_ENTER_ROOM_RESP, pubconn.onEnterRoom)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_LEAVE_ROOM_RESP, pubconn.onLeaveRoom)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_CHANGE_TABLE_RESP, pubconn.onChangeTable)
     
     -- 拼三张相关
-    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_ENTER_ROOM_RESP, _M.onEnterRoom)
-    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_LEAVE_ROOM_RESP, _M.onLeaveRoom)
-    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_CHANGE_TABLE_RESP, _M.onChangeTable)
-    
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_GAME_PREPARE_NOTIFY, _M.onGamePrepare)
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_GAME_START_NOTIFY, _M.onGameStart)
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_GAME_OVER_NOTIFY, _M.onGameOver)    
@@ -449,9 +332,6 @@ function _M.doRegisterMsgCallbacks()
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_GIVE_UP_NOTIFY, _M.onPlayerGiveUp) 
     
     -- 牛牛相关
-    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_ENTER_ROOM_RESP, nnconn.onNiuEnterRoom)
-    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_LEAVE_ROOM_RESP, nnconn.onNiuLeaveRoom)
-    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_CHANGE_TABLE_RESP, nnconn.onNiuChangeTable)
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_GAME_PREPARE_NOTIFY, nnconn.onNiuGamePrepare)
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_GAME_START_NOTIFY, nnconn.onNiuGameStart)
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_GAME_OVER_NOTIFY, nnconn.onNiuGameOver)

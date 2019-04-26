@@ -75,9 +75,9 @@ function GameMenuNode:showMenu()
     local x,y = math.modf(angle/360) 
 
     if y == 0 then        
-        imgExpand:runAction(cc.FadeIn:create(0.13))
+        imgExpand:runAction(cc.Show:create())
     else
-        imgExpand:runAction(cc.FadeOut:create(0.13))
+        imgExpand:runAction(cc.Hide:create())
     end
 end
 

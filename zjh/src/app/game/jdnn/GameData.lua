@@ -16,7 +16,8 @@ local _selfData = {
     basecoin      = 0,
     isallIn       = false,     -- 是否全压
     cards         = {handcards = {}, cardtype = -1, mult = 1},     -- 手牌数据
-    bankermult    = {[0] = 0, [1] = 0, [2] = 0, [3] = 0, [4] = 0}  -- 抢庄倍数
+    bankermult    = {[0] = 0, [1] = 0, [2] = 0, [3] = 0, [4] = 0}, -- 抢庄倍数
+    isgroup       = {[0] = 0, [1] = 0, [2] = 0, [3] = 0, [4] = 0}  -- 是否组牌
 }
 
 function GameData.setTableInfo(info)
@@ -56,12 +57,14 @@ function GameData.restData()
     _selfData.isallIn     = false
     _selfData.cards       = {handcards = {}, cardtype = -1, mult = 1}
     _selfData.bankermult  = {[0] = 0, [1] = 0, [2] = 0, [3] = 0, [4] = 0}
+    _selfData.isgroup     = {[0] = 0, [1] = 0, [2] = 0, [3] = 0, [4] = 0}
 end
 
 function GameData.restDataEx()
     _selfData.banker      = -1
     _selfData.cards       = {handcards = {}, cardtype = -1, mult = 1}
     _selfData.bankermult  = {[0] = 0, [1] = 0, [2] = 0, [3] = 0, [4] = 0}
+    _selfData.isgroup     = {[0] = 0, [1] = 0, [2] = 0, [3] = 0, [4] = 0}
 end
 
 function GameData.setTableStatus(status)
@@ -170,6 +173,15 @@ end
 
 function GameData.getBankerMult()
     return _selfData.bankermult
+end
+
+-- 是否组牌
+function GameData.setGroup(seat, flag)
+    _selfData.isgroup[seat] = flag
+end
+
+function GameData.getGroup()
+    return _selfData.isgroup
 end
 
 return GameData

@@ -11,21 +11,21 @@
             <Children>
               <AbstractNodeData Name="img_card_gary" ActionTag="611220650" Tag="1052" IconVisible="False" LeftEage="51" RightEage="51" TopEage="71" BottomEage="71" Scale9OriginX="51" Scale9OriginY="71" Scale9Width="54" Scale9Height="76" ctype="ImageViewObjectData">
                 <Size X="156.0000" Y="218.0000" />
-                <AnchorPoint ScaleX="0.5000" />
-                <Position X="78.0000" />
+                <AnchorPoint />
+                <Position />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5000" />
+                <PrePosition />
                 <PreSize X="1.0000" Y="1.0000" />
                 <FileData Type="MarkedSubImage" Path="game/public/card/img_card_gary.png" Plist="game/public/plistcard.plist" />
               </AbstractNodeData>
               <AbstractNodeData Name="img_card_back" ActionTag="1724046586" VisibleForFrame="False" Tag="194" IconVisible="False" LeftEage="46" RightEage="46" TopEage="61" BottomEage="61" Scale9OriginX="46" Scale9OriginY="61" Scale9Width="64" Scale9Height="96" ctype="ImageViewObjectData">
                 <Size X="156.0000" Y="218.0000" />
-                <AnchorPoint ScaleX="0.5000" />
-                <Position X="78.0000" />
+                <AnchorPoint />
+                <Position />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5000" />
+                <PrePosition />
                 <PreSize X="1.0000" Y="1.0000" />
                 <FileData Type="MarkedSubImage" Path="game/public/card/img_card_back.png" Plist="game/public/plistcard.plist" />
               </AbstractNodeData>
@@ -108,21 +108,21 @@
                     <ColorVector ScaleY="1.0000" />
                   </AbstractNodeData>
                 </Children>
-                <AnchorPoint ScaleX="0.5000" />
-                <Position X="78.0000" />
+                <AnchorPoint />
+                <Position />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5000" />
+                <PrePosition />
                 <PreSize X="1.0000" Y="1.0000" />
                 <FileData Type="MarkedSubImage" Path="game/public/card/img_card_front.png" Plist="game/public/plistcard.plist" />
               </AbstractNodeData>
               <AbstractNodeData Name="img_card_select" ActionTag="-299681715" VisibleForFrame="False" Tag="2896" IconVisible="False" LeftEage="51" RightEage="51" TopEage="71" BottomEage="71" Scale9OriginX="51" Scale9OriginY="71" Scale9Width="54" Scale9Height="76" ctype="ImageViewObjectData">
                 <Size X="156.0000" Y="218.0000" />
-                <AnchorPoint ScaleX="0.5000" />
-                <Position X="78.0000" />
+                <AnchorPoint />
+                <Position />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5000" />
+                <PrePosition />
                 <PreSize X="1.0000" Y="1.0000" />
                 <FileData Type="MarkedSubImage" Path="game/public/card/img_card_select.png" Plist="game/public/plistcard.plist" />
               </AbstractNodeData>

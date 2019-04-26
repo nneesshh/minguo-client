@@ -249,17 +249,9 @@ function GameCardNode:playTakeFirstAction()
         pos = self._presenter:calHandCardPosition(self._index, self:getCardSize(), self._localSeat, self._bUp)
     end
     
-    local actTakefirst 
-    if self._localSeat == HERO_LOCAL_SEAT then
-        self._rootNode:setScale(CARD_SCALE_NO_SELF)
-        local actMoveTo = cc.MoveTo:create(TAKE_FIRST_DELAY, pos)
-        local actScale = cc.ScaleTo:create(TAKE_FIRST_DELAY, CARD_SCALE_SELF)
-        actTakefirst = cc.Spawn:create(actMoveTo, actScale)
-    else
-        actTakefirst = cc.MoveTo:create(TAKE_FIRST_DELAY, pos)  
-    end
-
-    self._rootNode:runAction(actTakefirst) 
+    local actMoveTo = cc.MoveTo:create(TAKE_FIRST_DELAY, pos) 
+    
+    self._rootNode:runAction(actMoveTo) 
 end
 
 -- 上移牌动作

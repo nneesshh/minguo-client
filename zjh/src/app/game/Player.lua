@@ -12,8 +12,10 @@ function Player:ctor(playerInfo)
     self._playerInfo.balance      = playerInfo.balance      -- 财富数量(金币)
     self._playerInfo.status       = playerInfo.status       -- 状态
     self._playerInfo.seat         = playerInfo.seat         -- 座位号(服务端)
-    self._playerInfo.bet          = playerInfo.bet          -- 下注
-    self._playerInfo.isshow       = playerInfo.isshow       -- 是否已经看牌 
+    self._playerInfo.bet          = playerInfo.bet          -- 下注(psz)/是否摊牌(nn)
+    self._playerInfo.bankermult   = playerInfo.bankermult   -- 抢庄倍数(nn)
+    self._playerInfo.mult         = playerInfo.mult         -- 闲家倍数(nn)
+    self._playerInfo.isshow       = playerInfo.isshow       -- 是否已经看牌 (psz)
 end
 
 -- 获取数字账号
@@ -96,7 +98,7 @@ function Player:setSeat(seat)
     self._playerInfo.seat = seat
 end
 
--- 玩家下注
+-- 玩家下注/是否摊牌
 function Player:getBet()
     return self._playerInfo.bet or 0
 end
@@ -107,6 +109,16 @@ end
 
 function Player:resetBet()
     self._playerInfo.bet = 0
+end
+
+-- 抢庄倍数
+function Player:getBankerMult()
+    return self._playerInfo.bankermult or -1
+end
+
+-- 闲家倍数
+function Player:getMult()
+    return self._playerInfo.mult or -1
 end
 
 -- 玩家是否已经看牌

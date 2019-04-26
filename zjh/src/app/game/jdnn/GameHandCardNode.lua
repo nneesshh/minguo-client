@@ -9,7 +9,7 @@ local HAND_CARD_TYPE          = 0
 local HAND_CARD_TYPE_NO_SELF  = 1
 
 local HAND_CARD_SCALE         = 1
-local HAND_CARD_SCALE_NO_SELF = 0.4
+local HAND_CARD_SCALE_NO_SELF = 0.5
 
 local HERO_LOCAL_SEAT         = 1
 

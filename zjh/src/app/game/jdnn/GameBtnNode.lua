@@ -52,6 +52,7 @@ function GameBtnNode:showTableBtn(type)
         self:showBankerPanel(false)
         self:showBetPanel(false)
         self:showCalPanel(true)
+        
     else
         self:showBankerPanel(false)
         self:showBetPanel(false)
@@ -64,6 +65,7 @@ function GameBtnNode:showBankerPanel(visible)
     local pnlbanker = self:seekChildByName("pnl_btn_select_banker")
     
     if visible then
+        self._presenter:playEffectByName("bankermult") 
         self._presenter:openSchedulerBankerClock(GameEnum.BANKER_TIME)
     else
         self._presenter:closeSchedulerBankerClock()
@@ -83,6 +85,7 @@ function GameBtnNode:showBetPanel(visible)
     local pnlBet = self:seekChildByName("pnl_btn_mult")
     
     if visible then
+        self._presenter:playEffectByName("mult") 
         self._presenter:openSchedulerBetClock(GameEnum.BET_TIME)
     else
         self._presenter:closeSchedulerBetClock()
@@ -102,6 +105,9 @@ function GameBtnNode:showCalPanel(visible)
     local pnlCal = self:seekChildByName("pnl_btn_cal")
 
     if visible then
+        for i=1, 4 do        
+            self:showCalNum(i, " ")
+        end
         self._presenter:openSchedulerCalClock(GameEnum.CAL_TIME)
     else
         self._presenter:closeSchedulerCalClock()

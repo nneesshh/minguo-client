@@ -160,13 +160,13 @@
                     <PreSize X="1.0250" Y="0.2846" />
                     <FileData Type="MarkedSubImage" Path="game/jdnn/image/img_choose_15.png" Plist="game/jdnn/image/plistscene.plist" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="img_cardtype" ActionTag="-1836780498" VisibleForFrame="False" Tag="2999" IconVisible="False" LeftMargin="131.5000" RightMargin="-198.5000" TopMargin="71.0000" BottomMargin="-3.0000" LeftEage="48" RightEage="48" TopEage="20" BottomEage="20" Scale9OriginX="48" Scale9OriginY="20" Scale9Width="51" Scale9Height="22" ctype="ImageViewObjectData">
+                  <AbstractNodeData Name="img_cardtype" ActionTag="-1836780498" VisibleForFrame="False" Tag="2999" IconVisible="False" LeftMargin="150.5000" RightMargin="-217.5000" TopMargin="71.0000" BottomMargin="-3.0000" LeftEage="48" RightEage="48" TopEage="20" BottomEage="20" Scale9OriginX="48" Scale9OriginY="20" Scale9Width="51" Scale9Height="22" ctype="ImageViewObjectData">
                     <Size X="147.0000" Y="62.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="205.0000" Y="28.0000" />
+                    <Position X="224.0000" Y="28.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="2.5625" Y="0.2154" />
+                    <PrePosition X="2.8000" Y="0.2154" />
                     <PreSize X="1.8375" Y="0.4769" />
                     <FileData Type="MarkedSubImage" Path="game/jdnn/image/img_card_type_0.png" Plist="game/jdnn/image/plistscene.plist" />
                   </AbstractNodeData>
@@ -202,7 +202,7 @@
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
               </AbstractNodeData>
-              <AbstractNodeData Name="pnl_player_1" ActionTag="926179359" VisibleForFrame="False" Tag="195" IconVisible="False" LeftMargin="30.0000" RightMargin="1104.0000" TopMargin="630.0000" BottomMargin="40.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+              <AbstractNodeData Name="pnl_player_1" ActionTag="926179359" VisibleForFrame="False" Tag="195" IconVisible="False" LeftMargin="40.0000" RightMargin="1094.0000" TopMargin="630.0000" BottomMargin="40.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="200.0000" Y="80.0000" />
                 <Children>
                   <AbstractNodeData Name="img_back" ActionTag="838676429" Tag="196" IconVisible="False" Scale9Enable="True" LeftEage="20" RightEage="20" TopEage="20" BottomEage="20" Scale9OriginX="20" Scale9OriginY="20" Scale9Width="199" Scale9Height="40" ctype="ImageViewObjectData">
@@ -267,22 +267,22 @@
                     <PreSize X="0.2450" Y="0.5875" />
                     <FileData Type="MarkedSubImage" Path="game/jdnn/image/img_banker.png" Plist="game/jdnn/image/plistscene.plist" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="node_hand_card" ActionTag="1019133995" Tag="1301" IconVisible="True" LeftMargin="636.0000" RightMargin="-436.0000" TopMargin="80.0000" ctype="SingleNodeObjectData">
+                  <AbstractNodeData Name="node_hand_card" ActionTag="1019133995" Tag="1301" IconVisible="True" LeftMargin="627.0000" RightMargin="-427.0000" TopMargin="80.0000" ctype="SingleNodeObjectData">
                     <Size X="0.0000" Y="0.0000" />
                     <AnchorPoint />
-                    <Position X="636.0000" />
+                    <Position X="627.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="3.1800" />
+                    <PrePosition X="3.1350" />
                     <PreSize X="0.0000" Y="0.0000" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="node_out_card" ActionTag="1603762772" Tag="2380" IconVisible="True" LeftMargin="636.0000" RightMargin="-436.0000" TopMargin="-55.0000" BottomMargin="135.0000" ctype="SingleNodeObjectData">
+                  <AbstractNodeData Name="node_out_card" ActionTag="1603762772" Tag="2380" IconVisible="True" LeftMargin="627.0000" RightMargin="-427.0000" TopMargin="-55.0000" BottomMargin="135.0000" ctype="SingleNodeObjectData">
                     <Size X="0.0000" Y="0.0000" />
                     <AnchorPoint />
-                    <Position X="636.0000" Y="135.0000" />
+                    <Position X="627.0000" Y="135.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="3.1800" Y="1.6875" />
+                    <PrePosition X="3.1350" Y="1.6875" />
                     <PreSize X="0.0000" Y="0.0000" />
                   </AbstractNodeData>
                   <AbstractNodeData Name="img_choose" ActionTag="1936471997" VisibleForFrame="False" Tag="872" IconVisible="False" LeftMargin="-1.0000" RightMargin="119.0000" TopMargin="-58.5000" BottomMargin="101.5000" LeftEage="27" RightEage="27" TopEage="12" BottomEage="12" Scale9OriginX="27" Scale9OriginY="12" Scale9Width="28" Scale9Height="13" ctype="ImageViewObjectData">
@@ -295,13 +295,13 @@
                     <PreSize X="0.4100" Y="0.4625" />
                     <FileData Type="MarkedSubImage" Path="game/jdnn/image/img_choose_1.png" Plist="game/jdnn/image/plistscene.plist" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="img_cardtype" ActionTag="1632910317" VisibleForFrame="False" Tag="2998" IconVisible="False" LeftMargin="574.0000" RightMargin="-521.0000" TopMargin="-114.0000" BottomMargin="132.0000" LeftEage="48" RightEage="48" TopEage="20" BottomEage="20" Scale9OriginX="48" Scale9OriginY="20" Scale9Width="51" Scale9Height="22" ctype="ImageViewObjectData">
+                  <AbstractNodeData Name="img_cardtype" ActionTag="1632910317" VisibleForFrame="False" Tag="2998" IconVisible="False" LeftMargin="553.5000" RightMargin="-500.5000" TopMargin="-114.0000" BottomMargin="132.0000" LeftEage="48" RightEage="48" TopEage="20" BottomEage="20" Scale9OriginX="48" Scale9OriginY="20" Scale9Width="51" Scale9Height="22" ctype="ImageViewObjectData">
                     <Size X="147.0000" Y="62.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="647.5000" Y="163.0000" />
+                    <Position X="627.0000" Y="163.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="3.2375" Y="2.0375" />
+                    <PrePosition X="3.1350" Y="2.0375" />
                     <PreSize X="0.7350" Y="0.7750" />
                     <FileData Type="MarkedSubImage" Path="game/jdnn/image/img_card_type_0.png" Plist="game/jdnn/image/plistscene.plist" />
                   </AbstractNodeData>
@@ -327,10 +327,10 @@
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleY="1.0000" />
-                <Position X="30.0000" Y="120.0000" />
+                <Position X="40.0000" Y="120.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.0225" Y="0.1600" />
+                <PrePosition X="0.0300" Y="0.1600" />
                 <PreSize X="0.1499" Y="0.1067" />
                 <SingleColor A="255" R="150" G="200" B="255" />
                 <FirstColor A="255" R="150" G="200" B="255" />
@@ -402,22 +402,22 @@
                     <PreSize X="0.6125" Y="0.3615" />
                     <FileData Type="MarkedSubImage" Path="game/jdnn/image/img_banker.png" Plist="game/jdnn/image/plistscene.plist" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="node_hand_card" ActionTag="-503872185" Tag="564" IconVisible="True" LeftMargin="-211.5000" RightMargin="291.5000" TopMargin="130.0000" ctype="SingleNodeObjectData">
+                  <AbstractNodeData Name="node_hand_card" ActionTag="-503872185" Tag="564" IconVisible="True" LeftMargin="-243.0000" RightMargin="323.0000" TopMargin="130.0000" ctype="SingleNodeObjectData">
                     <Size X="0.0000" Y="0.0000" />
                     <AnchorPoint />
-                    <Position X="-211.5000" />
+                    <Position X="-243.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="-2.6437" />
+                    <PrePosition X="-3.0375" />
                     <PreSize X="0.0000" Y="0.0000" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="node_out_card" ActionTag="-310019832" Tag="2382" IconVisible="True" LeftMargin="-211.5000" RightMargin="291.5000" TopMargin="130.0000" ctype="SingleNodeObjectData">
+                  <AbstractNodeData Name="node_out_card" ActionTag="-310019832" Tag="2382" IconVisible="True" LeftMargin="-243.0000" RightMargin="323.0000" TopMargin="130.0000" ctype="SingleNodeObjectData">
                     <Size X="0.0000" Y="0.0000" />
                     <AnchorPoint />
-                    <Position X="-211.5000" />
+                    <Position X="-243.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="-2.6437" />
+                    <PrePosition X="-3.0375" />
                     <PreSize X="0.0000" Y="0.0000" />
                   </AbstractNodeData>
                   <AbstractNodeData Name="img_choose" ActionTag="1734275523" VisibleForFrame="False" Tag="873" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="-1.0000" RightMargin="-1.0000" TopMargin="-57.5000" BottomMargin="150.5000" LeftEage="27" RightEage="27" TopEage="12" BottomEage="12" Scale9OriginX="27" Scale9OriginY="12" Scale9Width="28" Scale9Height="13" ctype="ImageViewObjectData">
@@ -430,13 +430,13 @@
                     <PreSize X="1.0250" Y="0.2846" />
                     <FileData Type="MarkedSubImage" Path="game/jdnn/image/img_choose_1.png" Plist="game/jdnn/image/plistscene.plist" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="img_cardtype" ActionTag="1697042900" VisibleForFrame="False" Tag="3000" IconVisible="False" LeftMargin="-203.5000" RightMargin="136.5000" TopMargin="71.0000" BottomMargin="-3.0000" LeftEage="48" RightEage="48" TopEage="20" BottomEage="20" Scale9OriginX="48" Scale9OriginY="20" Scale9Width="51" Scale9Height="22" ctype="ImageViewObjectData">
+                  <AbstractNodeData Name="img_cardtype" ActionTag="1697042900" VisibleForFrame="False" Tag="3000" IconVisible="False" LeftMargin="-217.5000" RightMargin="150.5000" TopMargin="71.0000" BottomMargin="-3.0000" LeftEage="48" RightEage="48" TopEage="20" BottomEage="20" Scale9OriginX="48" Scale9OriginY="20" Scale9Width="51" Scale9Height="22" ctype="ImageViewObjectData">
                     <Size X="147.0000" Y="62.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="-130.0000" Y="28.0000" />
+                    <Position X="-144.0000" Y="28.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="-1.6250" Y="0.2154" />
+                    <PrePosition X="-1.8000" Y="0.2154" />
                     <PreSize X="1.8375" Y="0.4769" />
                     <FileData Type="MarkedSubImage" Path="game/jdnn/image/img_card_type_0.png" Plist="game/jdnn/image/plistscene.plist" />
                   </AbstractNodeData>
@@ -537,22 +537,22 @@
                     <PreSize X="0.2450" Y="0.5875" />
                     <FileData Type="MarkedSubImage" Path="game/jdnn/image/img_banker.png" Plist="game/jdnn/image/plistscene.plist" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="node_hand_card" ActionTag="2128691946" Tag="574" IconVisible="True" RightMargin="200.0000" TopMargin="188.0000" BottomMargin="-108.0000" ctype="SingleNodeObjectData">
+                  <AbstractNodeData Name="node_hand_card" ActionTag="2128691946" Tag="574" IconVisible="True" RightMargin="200.0000" TopMargin="210.0000" BottomMargin="-130.0000" ctype="SingleNodeObjectData">
                     <Size X="0.0000" Y="0.0000" />
                     <AnchorPoint />
-                    <Position Y="-108.0000" />
+                    <Position Y="-130.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition Y="-1.3500" />
+                    <PrePosition Y="-1.6250" />
                     <PreSize X="0.0000" Y="0.0000" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="node_out_card" ActionTag="-99951655" Tag="2383" IconVisible="True" RightMargin="200.0000" TopMargin="188.0000" BottomMargin="-108.0000" ctype="SingleNodeObjectData">
+                  <AbstractNodeData Name="node_out_card" ActionTag="-99951655" Tag="2383" IconVisible="True" RightMargin="200.0000" TopMargin="210.0000" BottomMargin="-130.0000" ctype="SingleNodeObjectData">
                     <Size X="0.0000" Y="0.0000" />
                     <AnchorPoint />
-                    <Position Y="-108.0000" />
+                    <Position Y="-130.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition Y="-1.3500" />
+                    <PrePosition Y="-1.6250" />
                     <PreSize X="0.0000" Y="0.0000" />
                   </AbstractNodeData>
                   <AbstractNodeData Name="img_choose" ActionTag="-628572713" VisibleForFrame="False" Tag="874" IconVisible="False" LeftMargin="-101.0000" RightMargin="219.0000" TopMargin="28.0000" BottomMargin="15.0000" LeftEage="27" RightEage="27" TopEage="12" BottomEage="12" Scale9OriginX="27" Scale9OriginY="12" Scale9Width="28" Scale9Height="13" ctype="ImageViewObjectData">
@@ -565,13 +565,13 @@
                     <PreSize X="0.4100" Y="0.4625" />
                     <FileData Type="MarkedSubImage" Path="game/jdnn/image/img_choose_1.png" Plist="game/jdnn/image/plistscene.plist" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="img_cardtype" ActionTag="1294766965" VisibleForFrame="False" Tag="3001" IconVisible="False" LeftMargin="6.5000" RightMargin="46.5000" TopMargin="129.0000" BottomMargin="-111.0000" LeftEage="48" RightEage="48" TopEage="20" BottomEage="20" Scale9OriginX="48" Scale9OriginY="20" Scale9Width="51" Scale9Height="22" ctype="ImageViewObjectData">
+                  <AbstractNodeData Name="img_cardtype" ActionTag="1294766965" VisibleForFrame="False" Tag="3001" IconVisible="False" LeftMargin="25.5000" RightMargin="27.5000" TopMargin="151.0000" BottomMargin="-133.0000" LeftEage="48" RightEage="48" TopEage="20" BottomEage="20" Scale9OriginX="48" Scale9OriginY="20" Scale9Width="51" Scale9Height="22" ctype="ImageViewObjectData">
                     <Size X="147.0000" Y="62.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="80.0000" Y="-80.0000" />
+                    <Position X="99.0000" Y="-102.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.4000" Y="-1.0000" />
+                    <PrePosition X="0.4950" Y="-1.2750" />
                     <PreSize X="0.7350" Y="0.7750" />
                     <FileData Type="MarkedSubImage" Path="game/jdnn/image/img_card_type_0.png" Plist="game/jdnn/image/plistscene.plist" />
                   </AbstractNodeData>
@@ -672,22 +672,22 @@
                     <PreSize X="0.2450" Y="0.5875" />
                     <FileData Type="MarkedSubImage" Path="game/jdnn/image/img_banker.png" Plist="game/jdnn/image/plistscene.plist" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="node_hand_card" ActionTag="1175164072" Tag="584" IconVisible="True" RightMargin="200.0000" TopMargin="188.0000" BottomMargin="-108.0000" ctype="SingleNodeObjectData">
+                  <AbstractNodeData Name="node_hand_card" ActionTag="1175164072" Tag="584" IconVisible="True" RightMargin="200.0000" TopMargin="210.0000" BottomMargin="-130.0000" ctype="SingleNodeObjectData">
                     <Size X="0.0000" Y="0.0000" />
                     <AnchorPoint />
-                    <Position Y="-108.0000" />
+                    <Position Y="-130.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition Y="-1.3500" />
+                    <PrePosition Y="-1.6250" />
                     <PreSize X="0.0000" Y="0.0000" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="node_out_card" ActionTag="-1129879755" Tag="2384" IconVisible="True" RightMargin="200.0000" TopMargin="188.0000" BottomMargin="-108.0000" ctype="SingleNodeObjectData">
+                  <AbstractNodeData Name="node_out_card" ActionTag="-1129879755" Tag="2384" IconVisible="True" RightMargin="200.0000" TopMargin="210.0000" BottomMargin="-130.0000" ctype="SingleNodeObjectData">
                     <Size X="0.0000" Y="0.0000" />
                     <AnchorPoint />
-                    <Position Y="-108.0000" />
+                    <Position Y="-130.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition Y="-1.3500" />
+                    <PrePosition Y="-1.6250" />
                     <PreSize X="0.0000" Y="0.0000" />
                   </AbstractNodeData>
                   <AbstractNodeData Name="img_choose" ActionTag="1366345217" VisibleForFrame="False" Tag="875" IconVisible="False" LeftMargin="194.0000" RightMargin="-76.0000" TopMargin="28.0000" BottomMargin="15.0000" LeftEage="27" RightEage="27" TopEage="12" BottomEage="12" Scale9OriginX="27" Scale9OriginY="12" Scale9Width="28" Scale9Height="13" ctype="ImageViewObjectData">
@@ -700,13 +700,13 @@
                     <PreSize X="0.4100" Y="0.4625" />
                     <FileData Type="MarkedSubImage" Path="game/jdnn/image/img_choose_1.png" Plist="game/jdnn/image/plistscene.plist" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="img_cardtype" ActionTag="31037490" VisibleForFrame="False" Tag="3002" IconVisible="False" LeftMargin="6.5000" RightMargin="46.5000" TopMargin="129.0000" BottomMargin="-111.0000" LeftEage="48" RightEage="48" TopEage="20" BottomEage="20" Scale9OriginX="48" Scale9OriginY="20" Scale9Width="51" Scale9Height="22" ctype="ImageViewObjectData">
+                  <AbstractNodeData Name="img_cardtype" ActionTag="31037490" VisibleForFrame="False" Tag="3002" IconVisible="False" LeftMargin="25.5000" RightMargin="27.5000" TopMargin="151.0000" BottomMargin="-133.0000" LeftEage="48" RightEage="48" TopEage="20" BottomEage="20" Scale9OriginX="48" Scale9OriginY="20" Scale9Width="51" Scale9Height="22" ctype="ImageViewObjectData">
                     <Size X="147.0000" Y="62.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="80.0000" Y="-80.0000" />
+                    <Position X="99.0000" Y="-102.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.4000" Y="-1.0000" />
+                    <PrePosition X="0.4950" Y="-1.2750" />
                     <PreSize X="0.7350" Y="0.7750" />
                     <FileData Type="MarkedSubImage" Path="game/jdnn/image/img_card_type_0.png" Plist="game/jdnn/image/plistscene.plist" />
                   </AbstractNodeData>
@@ -731,11 +731,11 @@
                     <LabelBMFontFile_CNB Type="Normal" Path="game/jdnn/image/fnt/losefnt.fnt" Plist="" />
                   </AbstractNodeData>
                 </Children>
-                <AnchorPoint ScaleY="1.0000" />
-                <Position X="325.0000" Y="714.0000" />
+                <AnchorPoint />
+                <Position X="325.0000" Y="634.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.2436" Y="0.9520" />
+                <PrePosition X="0.2436" Y="0.8453" />
                 <PreSize X="0.1499" Y="0.1067" />
                 <SingleColor A="255" R="150" G="200" B="255" />
                 <FirstColor A="255" R="150" G="200" B="255" />
@@ -751,7 +751,7 @@
                 <PrePosition X="0.5000" Y="0.5000" />
                 <PreSize X="0.0000" Y="0.0000" />
               </AbstractNodeData>
-              <AbstractNodeData Name="node_game_btn" ActionTag="292914175" Tag="282" IconVisible="True" LeftMargin="667.0000" RightMargin="667.0000" TopMargin="480.0000" BottomMargin="270.0000" StretchWidthEnable="False" StretchHeightEnable="False" InnerActionSpeed="1.0000" CustomSizeEnabled="False" ctype="ProjectNodeObjectData">
+              <AbstractNodeData Name="node_game_btn" ActionTag="292914175" Tag="282" IconVisible="True" LeftMargin="667.0000" RightMargin="667.0000" TopMargin="480.0000" BottomMargin="270.0000" StretchWidthEnable="False" StretchHeightEnable="False" InnerActionSpeed="0.3333" CustomSizeEnabled="False" ctype="ProjectNodeObjectData">
                 <Size X="0.0000" Y="0.0000" />
                 <AnchorPoint />
                 <Position X="667.0000" Y="270.0000" />
@@ -760,6 +760,34 @@
                 <PrePosition X="0.5000" Y="0.3600" />
                 <PreSize X="0.0000" Y="0.0000" />
                 <FileData Type="Normal" Path="game/jdnn/csb/button.csd" Plist="" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="node_niu_type" ActionTag="-1436806165" Tag="536" IconVisible="True" LeftMargin="667.0000" RightMargin="667.0000" TopMargin="330.0000" BottomMargin="420.0000" StretchWidthEnable="False" StretchHeightEnable="False" InnerActionSpeed="0.3333" CustomSizeEnabled="False" ctype="ProjectNodeObjectData">
+                <Size X="0.0000" Y="0.0000" />
+                <AnchorPoint />
+                <Position X="667.0000" Y="420.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.5600" />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="Normal" Path="game/jdnn/csb/niutype.csd" Plist="" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="node_win" ActionTag="883095717" Tag="172" IconVisible="True" LeftMargin="667.0000" RightMargin="667.0000" TopMargin="375.0000" BottomMargin="375.0000" ctype="SingleNodeObjectData">
+                <Size X="0.0000" Y="0.0000" />
+                <AnchorPoint />
+                <Position X="667.0000" Y="375.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.5000" />
+                <PreSize X="0.0000" Y="0.0000" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="node_lose" ActionTag="1348972225" Tag="171" IconVisible="True" LeftMargin="667.0000" RightMargin="667.0000" TopMargin="375.0000" BottomMargin="375.0000" ctype="SingleNodeObjectData">
+                <Size X="0.0000" Y="0.0000" />
+                <AnchorPoint />
+                <Position X="667.0000" Y="375.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.5000" />
+                <PreSize X="0.0000" Y="0.0000" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -910,7 +938,7 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="node_menu" ActionTag="-872151733" Tag="478" IconVisible="True" HorizontalEdge="RightEdge" VerticalEdge="TopEdge" LeftMargin="1276.0000" RightMargin="58.0000" TopMargin="55.0000" BottomMargin="695.0000" StretchWidthEnable="False" StretchHeightEnable="False" InnerActionSpeed="1.0000" CustomSizeEnabled="False" ctype="ProjectNodeObjectData">
+          <AbstractNodeData Name="node_menu" ActionTag="-872151733" Tag="478" IconVisible="True" HorizontalEdge="RightEdge" VerticalEdge="TopEdge" LeftMargin="1276.0000" RightMargin="58.0000" TopMargin="55.0000" BottomMargin="695.0000" StretchWidthEnable="False" StretchHeightEnable="False" InnerActionSpeed="0.3333" CustomSizeEnabled="False" ctype="ProjectNodeObjectData">
             <Size X="0.0000" Y="0.0000" />
             <AnchorPoint />
             <Position X="1276.0000" Y="695.0000" />
@@ -929,6 +957,102 @@
             <PrePosition X="-0.7496" Y="-1.3333" />
             <PreSize X="0.0337" Y="0.0547" />
             <FileData Type="MarkedSubImage" Path="game/jdnn/image/img_gold.png" Plist="game/jdnn/image/plistscene.plist" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="debug" ActionTag="1230541293" Tag="744" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+            <Size X="1334.0000" Y="750.0000" />
+            <Children>
+              <AbstractNodeData Name="cbx_banker_test" ActionTag="493986234" Tag="745" IconVisible="False" HorizontalEdge="LeftEdge" VerticalEdge="TopEdge" LeftMargin="20.0000" RightMargin="1194.0000" TopMargin="105.0000" BottomMargin="595.0000" TouchEnable="True" ctype="CheckBoxObjectData">
+                <Size X="120.0000" Y="50.0000" />
+                <Children>
+                  <AbstractNodeData Name="Text_218" ActionTag="-741913041" Tag="746" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="32.8000" RightMargin="11.2000" TopMargin="12.5000" BottomMargin="22.5000" FontSize="15" LabelText="自动抢庄x1" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                    <Size X="76.0000" Y="15.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="70.8000" Y="30.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5900" Y="0.6000" />
+                    <PreSize X="0.6333" Y="0.3000" />
+                    <OutlineColor A="255" R="255" G="0" B="0" />
+                    <ShadowColor A="255" R="110" G="110" B="110" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="80.0000" Y="620.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.0600" Y="0.8267" />
+                <PreSize X="0.0900" Y="0.0667" />
+                <NormalBackFileData Type="Normal" Path="lobby/image/public/img_hint.png" Plist="" />
+                <PressedBackFileData Type="Normal" Path="lobby/image/public/img_hint.png" Plist="" />
+                <DisableBackFileData Type="Normal" Path="lobby/image/public/img_hint.png" Plist="" />
+                <NodeNormalFileData Type="MarkedSubImage" Path="game/zjh/image/img_sure.png" Plist="game/zjh/image/plistscene.plist" />
+                <NodeDisableFileData Type="MarkedSubImage" Path="game/zjh/image/img_sure.png" Plist="game/zjh/image/plistscene.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="cbx_mult_test" ActionTag="-1257455193" Tag="747" IconVisible="False" HorizontalEdge="LeftEdge" VerticalEdge="TopEdge" LeftMargin="20.0000" RightMargin="1194.0000" TopMargin="160.0000" BottomMargin="540.0000" TouchEnable="True" ctype="CheckBoxObjectData">
+                <Size X="120.0000" Y="50.0000" />
+                <Children>
+                  <AbstractNodeData Name="Text_218" ActionTag="706765698" Tag="748" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="32.8000" RightMargin="11.2000" TopMargin="12.5000" BottomMargin="22.5000" FontSize="15" LabelText="自动加倍x5" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                    <Size X="76.0000" Y="15.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="70.8000" Y="30.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5900" Y="0.6000" />
+                    <PreSize X="0.6333" Y="0.3000" />
+                    <OutlineColor A="255" R="255" G="0" B="0" />
+                    <ShadowColor A="255" R="110" G="110" B="110" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="80.0000" Y="565.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.0600" Y="0.7533" />
+                <PreSize X="0.0900" Y="0.0667" />
+                <NormalBackFileData Type="Normal" Path="lobby/image/public/img_hint.png" Plist="" />
+                <PressedBackFileData Type="Normal" Path="lobby/image/public/img_hint.png" Plist="" />
+                <DisableBackFileData Type="Normal" Path="lobby/image/public/img_hint.png" Plist="" />
+                <NodeNormalFileData Type="MarkedSubImage" Path="game/zjh/image/img_sure.png" Plist="game/zjh/image/plistscene.plist" />
+                <NodeDisableFileData Type="MarkedSubImage" Path="game/zjh/image/img_sure.png" Plist="game/zjh/image/plistscene.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="cbx_cal_test" ActionTag="-817876910" Tag="749" IconVisible="False" HorizontalEdge="LeftEdge" VerticalEdge="TopEdge" LeftMargin="20.0000" RightMargin="1194.0000" TopMargin="215.0000" BottomMargin="485.0000" TouchEnable="True" ctype="CheckBoxObjectData">
+                <Size X="120.0000" Y="50.0000" />
+                <Children>
+                  <AbstractNodeData Name="Text_218" ActionTag="1285430673" Tag="750" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="40.8000" RightMargin="19.2000" TopMargin="12.5000" BottomMargin="22.5000" FontSize="15" LabelText="自动摊牌" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                    <Size X="60.0000" Y="15.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="70.8000" Y="30.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5900" Y="0.6000" />
+                    <PreSize X="0.5000" Y="0.3000" />
+                    <OutlineColor A="255" R="255" G="0" B="0" />
+                    <ShadowColor A="255" R="110" G="110" B="110" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="80.0000" Y="510.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.0600" Y="0.6800" />
+                <PreSize X="0.0900" Y="0.0667" />
+                <NormalBackFileData Type="Normal" Path="lobby/image/public/img_hint.png" Plist="" />
+                <PressedBackFileData Type="Normal" Path="lobby/image/public/img_hint.png" Plist="" />
+                <DisableBackFileData Type="Normal" Path="lobby/image/public/img_hint.png" Plist="" />
+                <NodeNormalFileData Type="MarkedSubImage" Path="game/zjh/image/img_sure.png" Plist="game/zjh/image/plistscene.plist" />
+                <NodeDisableFileData Type="MarkedSubImage" Path="game/zjh/image/img_sure.png" Plist="game/zjh/image/plistscene.plist" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="667.0000" Y="375.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" Y="0.5000" />
+            <PreSize X="1.0000" Y="1.0000" />
+            <SingleColor A="255" R="150" G="200" B="255" />
+            <FirstColor A="255" R="150" G="200" B="255" />
+            <EndColor A="255" R="255" G="255" B="255" />
+            <ColorVector ScaleY="1.0000" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

@@ -39,20 +39,6 @@ local function _readTableInfo(po)
     return info
 end
 
-local function _readSeatPlayerInfo(po)
-    local info = {}
-    info.ticketid = po:read_int32()
-    info.nickname = po:read_string()
-    info.avatar   = po:read_string()
-    info.gender   = po:read_byte()
-    info.balance  = po:read_int64()
-    info.status   = po:read_byte()
-    info.seat     = po:read_byte()
-    info.bet      = po:read_int32()
-    info.isshow   = po:read_int32()
-    return info
-end
-
 local function _readCards(stringCards)
     local cards = {}
     for i=1, string.len(stringCards) do
@@ -86,120 +72,6 @@ local function _readGameOver(po)
     return info, players
 end
 
--- 进入房间
-function _M.onNiuEnterRoom(conn, sessionid, msgid)
-    print("onNiuEnterRoom")
-    local resp = {}
-    local po = upconn.upconn:get_packet_obj()
-    if po == nil then return end   
-    resp.errorCode = po:read_int32()
-    resp.errorMsg  = po:read_string()
-
-    if resp.errorCode == zjh_defs.ErrorCode.ERR_SUCCESS then
-        app.lobby.MainPresenter:getInstance():loadingHintExit()
-        -- enter gamescene
-        app.game.GameEngine:getInstance():onStartGame()
-
-        -- table info
-        local tabInfo = _readTableInfo(po)       
-        tabInfo.basecoin = 0
-        app.game.GameData.setTableInfo(tabInfo)
-
-        -- seat in-gaming player info     
-        local playerCount = po:read_int32()
-        local ids = {}
-        for i = 1, playerCount do
-            -- seat player info
-            local info = _readSeatPlayerInfo(po)
-
-            table.insert(ids,info.ticketid)
-            app.game.PlayerData.onPlayerInfo(info)
-        end
-
-        -- enter room
-        for k, id in ipairs(ids) do
-            local player = app.game.PlayerData.getPlayerByNumID(id)
-            if not player then                
-                return
-            end            
-            app.game.GamePresenter:getInstance():onPlayerEnter(player) 
-            if app.data.UserData.getTicketID() == id then               
-                _M.sendPlayerReady()
-            end                    
-        end
-    else
-        app.game.GameEngine:getInstance():exit()
-        app.lobby.MainPresenter:getInstance():showErrorMsg(resp.errorCode)
-    end
-end
-
--- 离开房间
-function _M.onNiuLeaveRoom(conn, sessionid, msgid)
-    print("onNiuLeaveRoom")
-    local resp = {}
-    local po   = upconn.upconn:get_packet_obj()
-    if po == nil then return end   
-    resp.errorCode = po:read_int32()
-    resp.errorMsg  = po:read_string()
-    if resp.errorCode == zjh_defs.ErrorCode.ERR_SUCCESS then
-        if app.game.GamePresenter then
-            app.game.GamePresenter:getInstance():onLeaveRoom()
-        end            
-    end
-end
-
--- 换桌
-function _M.onNiuChangeTable(conn, sessionid, msgid)
-    print("onNiuChangeTable")
-    local resp = {}
-    local po = upconn.upconn:get_packet_obj()
-    if po == nil then return end   
-    resp.errorCode = po:read_int32()
-    resp.errorMsg  = po:read_string()
-
-    if resp.errorCode == zjh_defs.ErrorCode.ERR_SUCCESS then
-        -- enter gamescene       
-        local gameid = po:read_int32()
-        local roomid = po:read_int32()
-        local base = app.data.PlazaData.getBaseByRoomid(gameid, roomid)
-        local limit = app.data.PlazaData.getLimitByBase(gameid, base)
-        app.game.GameEngine:getInstance():start(gameid, base, limit)            
-        app.game.GameEngine:getInstance():onStartGame()
-
-        app.game.GamePresenter:getInstance():onChangeTable()        
-
-        -- table info
-        local tabInfo = _readTableInfo(po)
-        tabInfo.basecoin = 0
-        app.game.GameData.setTableInfo(tabInfo)
-
-        -- seat in-gaming player info     
-        local playerCount = po:read_int32()
-        local ids = {}
-        for i = 1, playerCount do
-            -- seat player info
-            local info = _readSeatPlayerInfo(po)
-
-            table.insert(ids,info.ticketid)
-            app.game.PlayerData.onPlayerInfo(info)
-        end
-        -- enter room
-        for k, id in ipairs(ids) do
-            local player = app.game.PlayerData.getPlayerByNumID(id)
-            if not player then
-
-                return
-            end                  
-            app.game.GamePresenter:getInstance():onPlayerEnter(player)
-            if app.data.UserData.getTicketID() == id then                
-                _M.sendPlayerReady()
-            end         
-        end
-    else
-        app.game.GameEngine:getInstance():exit()  
-    end
-end
-
 -- 游戏准备
 function _M.onNiuGamePrepare(conn, sessionid, msgid) 
     print("onNiuGamePrepare")
@@ -219,8 +91,9 @@ function _M.onNiuGameStart(conn, sessionid, msgid)
     local tabInfo    = _readTableInfo(po)
     tabInfo.basecoin = basecoin
     app.game.GameData.setTableInfo(tabInfo)
-
-    app.game.GamePresenter:getInstance():onGameStart() 
+    if app.game.GamePresenter then
+        app.game.GamePresenter:getInstance():onGameStart() 
+    end    
 end
 
 -- 游戏结束
@@ -229,7 +102,7 @@ function _M.onNiuGameOver(conn, sessionid, msgid)
     local po = upconn.upconn:get_packet_obj()   
     if po == nil then return end   
     local playercont = po:read_int32()
-    print("playercont is",playercont)
+    
     local players = {}
     for i=1, playercont do
         players[i] = players[i] or {}
@@ -240,10 +113,9 @@ function _M.onNiuGameOver(conn, sessionid, msgid)
         players[i].cardtype = po:read_byte()   
         players[i].balance  = po:read_int64()
     end
-    
-    dump(players)
-    
-    app.game.GamePresenter:getInstance():onNiuGameOver(players)  
+    if app.game.GamePresenter then
+        app.game.GamePresenter:getInstance():onNiuGameOver(players) 
+    end     
 end
 
 -- 定庄 
@@ -265,7 +137,9 @@ function _M.onNiuConfirmBanker(conn, sessionid, msgid)
         print("player mult", players[i].mult)
     end
     
-    app.game.GamePresenter:getInstance():onNiuConfirmBanker(banker, players)    
+    if app.game.GamePresenter then
+        app.game.GamePresenter:getInstance():onNiuConfirmBanker(banker, players)    
+    end   
 end
 
 -- 比牌加倍结束
@@ -281,22 +155,18 @@ function _M.onNiuConfirmMult(conn, sessionid, msgid)
     hero.cardmult  = po:read_int32()    
          
     local players = {}
-    local banker = app.game.GameData.getBanker()    
     local playercont = po:read_int32()
     
     for i=1, playercont do
         players[i] = players[i] or {}
         players[i].seat = po:read_byte()
-        if players[i].seat ~= banker then
-            players[i].mult = po:read_int32()
-            players[i].balance = po:read_int64()
-        else
-            players[i].mult    = po:read_int32()
-            players[i].balance = po:read_int64()
-        end
+        
+        players[i].mult = po:read_int32()
+        players[i].balance = po:read_int64()       
     end
-
-    app.game.GamePresenter:getInstance():onNiuConfirmMult(hero, players) 
+    if app.game.GamePresenter then
+        app.game.GamePresenter:getInstance():onNiuConfirmMult(hero, players) 
+    end    
 end
 
 -- 准备
@@ -316,7 +186,9 @@ function _M.onNiuBankerBid(conn, sessionid, msgid)
     local seat = po:read_byte()
     local mult = po:read_int32()
     print("mult is",mult)
-    app.game.GamePresenter:getInstance():onNiuBankerBid(seat, mult) 
+    if app.game.GamePresenter then
+        app.game.GamePresenter:getInstance():onNiuBankerBid(seat, mult) 
+    end    
 end
 
 -- 比牌加倍
@@ -328,7 +200,9 @@ function _M.onNiuCompareBid(conn, sessionid, msgid)
     local seat = po:read_byte()
     local mult = po:read_int32()
 
-    app.game.GamePresenter:getInstance():onNiuCompareBid(seat, mult) 
+    if app.game.GamePresenter then
+        app.game.GamePresenter:getInstance():onNiuCompareBid(seat, mult) 
+    end    
 end
 
 -- 比牌
@@ -343,8 +217,9 @@ function _M.onNiuCompareCard(conn, sessionid, msgid)
     player.cards     = _readCards(strcards)    
     player.cardtype  = po:read_byte()
     player.cardmult  = po:read_int32() 
-
-    app.game.GamePresenter:getInstance():onNiuCompareCard(player)  
+    if app.game.GamePresenter then
+        app.game.GamePresenter:getInstance():onNiuCompareCard(player)  
+    end    
 end
 
 -- 请求准备
@@ -358,4 +233,5 @@ function _M.sendPlayerReady(self)
     po:write_int64(sessionid) -- test token
     upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_READY_REQ)
 end
+
 return _M

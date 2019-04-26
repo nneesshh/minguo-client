@@ -205,8 +205,10 @@ function GamePresenter:onPlayerLeave(player)
             if self._gamePlayerNodes[HERO_LOCAL_SEAT] then
                 self:performWithDelayGlobal(
                     function()
-                        self._ui:getInstance():showPnlHint(2)
-                        self._gamePlayerNodes[HERO_LOCAL_SEAT]:onResetTable()
+                        if app.game.GamePresenter then
+                            self._ui:getInstance():showPnlHint(2)
+                            self._gamePlayerNodes[HERO_LOCAL_SEAT]:onResetTable()
+                        end   
                     end, 5)
             end
         end
@@ -789,7 +791,7 @@ function GamePresenter:onResult(data, players)
          
 end
 
-function GamePresenter:onRelinkEnter(cards, cardtype)   
+function GamePresenter:onRelinkEnter(data)   
     -- 庄家
     local banker = app.game.GameData.getBanker()
     local localBanker = app.game.PlayerData.serverSeatToLocalSeat(banker) 
@@ -821,9 +823,9 @@ function GamePresenter:onRelinkEnter(cards, cardtype)
                 -- 手牌
                 local gameHandCardNode = self._gamePlayerNodes[localSeat]:getGameHandCardNode()
                 gameHandCardNode:resetHandCards()
-                gameHandCardNode:createCards(cards)  
+                gameHandCardNode:createCards(data.cards)  
                 -- 牌型
-                self._gamePlayerNodes[localSeat]:showImgCardType(true, cardtype) 
+                self._gamePlayerNodes[localSeat]:showImgCardType(true, data.cardtype) 
                 -- 是否看牌
                 self._gamePlayerNodes[localSeat]:showImgCheck(isshow)
                 -- 是否弃牌
@@ -1135,20 +1137,30 @@ end
 -- 准备倒计时
 function GamePresenter:openSchedulerPrepareClock(time)
     local allTime = time
-
+    local first,second,third = false,false,false
     local function flipIt(dt)
         time = time - dt
-
         if time <= 0 then
             self._ui:getInstance():showPnlHint()
             self:closeSchedulerPrepareClock()
         end
+        local t = math.ceil(time) % allTime
+        if t == 0 and not first then
+            self:playCountDownEffect()
+            first = true
+        elseif t == 1 and not second then
+            self:playCountDownEffect()
+            second = true
+        elseif t == 2 and not third then    
+            self:playCountDownEffect()
+            third = true
+        end
+
         local strTime = string.format("%d", math.ceil(time))
         self._ui:getInstance():showClockPrepare(strTime)
     end
 
     self:closeSchedulerPrepareClock()
-    self:playCountDownEffect()
     self._schedulerPrepareClock = scheduler:scheduleScriptFunc(flipIt, 0.1, false)
 end 
 

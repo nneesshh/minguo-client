@@ -41,15 +41,18 @@ end
 
 local function _readSeatPlayerInfo(po)
     local info = {}
-    info.ticketid = po:read_int32()
-    info.nickname = po:read_string()
-    info.avatar   = po:read_string()
-    info.gender   = po:read_byte()
-    info.balance  = po:read_int64()
-    info.status   = po:read_byte()
-    info.seat     = po:read_byte()
-    info.bet      = po:read_int32()
-    info.isshow   = po:read_int32()
+    info.ticketid   = po:read_int32()
+    info.nickname   = po:read_string()
+    info.avatar     = po:read_string()
+    info.gender     = po:read_byte()
+    info.balance    = po:read_int64()
+    info.status     = po:read_byte()
+    info.seat       = po:read_byte()
+    info.bet        = po:read_int32()
+    info.bankermult = po:read_int32()
+    info.mult       = po:read_int32()  
+    info.isshow     = po:read_int32()
+    
     return info
 end
 
@@ -66,8 +69,10 @@ end
 function _M.onHeartBeat(conn, sessionid, msgid)
     local resp = {}   
     local po = upconn.upconn:get_packet_obj()
-
-    app.Connect:getInstance():respHeartbeat()
+    
+    if app.Connect then
+        app.Connect:getInstance():respHeartbeat()
+    end    
 end
 
 -- 注册
@@ -138,6 +143,7 @@ function _M.onLogin(conn, sessionid, msgid)
             for i = 1, playerCount do
                 -- seat player info
                 local info = _readSeatPlayerInfo(po)
+                dump(info)
                 table.insert(ids,info.ticketid)
                 app.game.PlayerData.onPlayerInfo(info)
             end            
@@ -148,10 +154,13 @@ function _M.onLogin(conn, sessionid, msgid)
                 end          
                 app.game.GamePresenter:getInstance():onPlayerEnter(player)       
             end
-            local stringCards = po:read_string()
-            local cardtype = po:read_byte()
-            local cards = _readCards(stringCards)        
-            app.game.GamePresenter:getInstance():onRelinkEnter(cards, cardtype)
+            
+            local player = {}            
+            local stringCards = po:read_string()            
+            player.cards      = _readCards(stringCards)  
+            player.cardtype   = po:read_byte()
+
+            app.game.GamePresenter:getInstance():onRelinkEnter(player)
         end             
     else
         -- error
@@ -210,6 +219,132 @@ function _M.onPlayerSitDown(conn, sessionid, msgid)
     if app.game.GamePresenter then
         app.game.GamePresenter:getInstance():onPlayerEnter(player)    
     end            
+end
+
+function _M.onEnterRoom(conn, sessionid, msgid)
+    print("onEnterRoom")
+    local resp = {}
+    local po = upconn.upconn:get_packet_obj()
+    resp.errorCode = po:read_int32()
+    resp.errorMsg  = po:read_string()
+
+    if resp.errorCode == zjh_defs.ErrorCode.ERR_SUCCESS then
+        app.lobby.MainPresenter:getInstance():loadingHintExit()
+        -- enter gamescene
+        app.game.GameEngine:getInstance():onStartGame()
+        
+        local gameid = po:read_int32()
+        local roomid = po:read_int32()
+        
+        -- table info
+        local tabInfo = _readTableInfo(po)       
+        tabInfo.basecoin = 0
+        app.game.GameData.setTableInfo(tabInfo)
+
+        -- seat in-gaming player info     
+        local playerCount = po:read_int32()
+        local ids = {}
+        for i = 1, playerCount do
+            -- seat player info
+            local info = _readSeatPlayerInfo(po)
+
+            table.insert(ids,info.ticketid)
+            app.game.PlayerData.onPlayerInfo(info)
+        end
+
+        -- enter room
+        for k, id in ipairs(ids) do
+            local player = app.game.PlayerData.getPlayerByNumID(id)
+            if not player then                
+                return
+            end            
+            app.game.GamePresenter:getInstance():onPlayerEnter(player) 
+            if app.data.UserData.getTicketID() == id then               
+                _M.sendPlayerReady(gameid)
+            end                    
+        end
+    else
+        app.game.GameEngine:getInstance():exit()
+        app.lobby.MainPresenter:getInstance():showErrorMsg(resp.errorCode)
+    end
+end
+
+-- 离开房间
+function _M.onLeaveRoom(conn, sessionid, msgid)
+    local resp = {}
+    local po   = upconn.upconn:get_packet_obj()
+    resp.errorCode = po:read_int32()
+    resp.errorMsg  = po:read_string()
+    if resp.errorCode == zjh_defs.ErrorCode.ERR_SUCCESS then
+        if app.game.GamePresenter then
+            app.game.GamePresenter:getInstance():onLeaveRoom()
+        end            
+    end
+end
+
+-- 换桌
+function _M.onChangeTable(conn, sessionid, msgid)
+    local resp = {}
+    local po = upconn.upconn:get_packet_obj()
+    resp.errorCode = po:read_int32()
+    resp.errorMsg  = po:read_string()
+
+    if resp.errorCode == zjh_defs.ErrorCode.ERR_SUCCESS then
+        -- enter gamescene       
+        local gameid = po:read_int32()
+        local roomid =  po:read_int32()
+        local base = app.data.PlazaData.getBaseByRoomid(gameid, roomid)
+        local limit = app.data.PlazaData.getLimitByBase(gameid, base)
+        app.game.GameEngine:getInstance():start(gameid, base, limit)            
+        app.game.GameEngine:getInstance():onStartGame()
+
+        app.game.GamePresenter:getInstance():onChangeTable()        
+
+        -- table info
+        local tabInfo = _readTableInfo(po)
+        tabInfo.basecoin = 0
+        app.game.GameData.setTableInfo(tabInfo)
+
+        -- seat in-gaming player info     
+        local playerCount = po:read_int32()
+        local ids = {}
+        for i = 1, playerCount do
+            -- seat player info
+            local info = _readSeatPlayerInfo(po)
+
+            table.insert(ids,info.ticketid)
+            app.game.PlayerData.onPlayerInfo(info)
+        end
+        -- enter room
+        for k, id in ipairs(ids) do
+            local player = app.game.PlayerData.getPlayerByNumID(id)
+            if not player then
+
+                return
+            end                  
+            app.game.GamePresenter:getInstance():onPlayerEnter(player)
+            if app.data.UserData.getTicketID() == id then                
+                _M.sendPlayerReady(gameid)
+            end         
+        end
+    else
+        app.game.GameEngine:getInstance():exit()  
+    end
+end
+
+function _M.sendPlayerReady(gameid)
+    print("sendPlayerReady")
+    local sessionid = app.data.UserData.getSession() or 222
+    local po = upconn.upconn:get_packet_obj()
+    if po == nil then return end   
+
+    po:writer_reset()
+    po:write_int64(sessionid) -- test token
+    if gameid == app.Game.GameID.ZJH then
+        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_READY_REQ)
+    elseif gameid == app.Game.GameID.JDNN then
+        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_READY_REQ)
+    end    
 end
 
 return _M

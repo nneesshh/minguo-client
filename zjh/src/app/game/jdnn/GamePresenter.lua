@@ -15,6 +15,7 @@ local scheduler = cc.Director:getInstance():getScheduler()
 local GE   = app.game.GameEnum
 local GECT = app.game.GameEnum.cardsType
 local GEPS = app.game.GameEnum.playerStatus
+local ST   = app.game.GameEnum.soundType
 
 local HERO_LOCAL_SEAT   = 1
 local CARD_NUM          = 5
@@ -28,7 +29,7 @@ local SCHEDULE_WAIT_TIME= 0
 -- 初始化
 function GamePresenter:init(...)
     self._maxPlayerCnt = app.game.PlayerData.getMaxPlayerCount()
-    --self:playGameMusic()  
+    self:playGameMusic()  
     self:initPlayerNode()
     self:initBtnNode()
     self:initMenuNode()
@@ -195,8 +196,10 @@ function GamePresenter:onPlayerLeave(player)
             if self._gamePlayerNodes[HERO_LOCAL_SEAT] then
                 self:performWithDelayGlobal(
                     function()
-                        self._ui:getInstance():showPnlHint(2)
-                        self._gamePlayerNodes[HERO_LOCAL_SEAT]:onResetTable()
+                        if app.game.GamePresenter then
+                            self._ui:getInstance():showPnlHint(2)
+                            self._gamePlayerNodes[HERO_LOCAL_SEAT]:onResetTable()
+                        end                        
                     end, 5)
             end
         end
@@ -273,6 +276,12 @@ function GamePresenter:onGameStart()
     self:performWithDelayGlobal(
         function()
             self:showTableBtn("banker")
+            
+            if self._ui:getInstance():isSelected("cbx_banker_test") then
+                self:performWithDelayGlobal(function()
+                    self:onEventCbxBanker()
+                end, 1)
+            end
         end, TIME_MAKE_BANKER)  
 end
 
@@ -311,6 +320,12 @@ function GamePresenter:onNiuConfirmBanker(banker, players)
     local heroseat = app.game.PlayerData.getHeroSeat()
     if heroseat ~= banker.banker then
         self:showTableBtn("bet")
+        
+        if self._ui:getInstance():isSelected("cbx_mult_test") then
+            self:performWithDelayGlobal(function()
+                self:onEventCbxMult()
+            end, 1)
+        end
     end    
 end
 
@@ -324,7 +339,8 @@ function GamePresenter:onNiuConfirmMult(hero, players)
     local banker = app.game.GameData.getBanker()
     for i, player in ipairs(players) do        
         local localseat = app.game.PlayerData.serverSeatToLocalSeat(player.seat)
-        if player.seat ~= banker then
+        local playerObj = app.game.PlayerData.getPlayerByServerSeat(player.seat)
+        if player.seat ~= banker and playerObj:isPlaying() then
             self._gamePlayerNodes[localseat]:showImgChoose(true, player.mult)         
         end               
     end
@@ -336,6 +352,13 @@ end
 function GamePresenter:onTakeFirst() 
     local function callback()
         self:showTableBtn("cal")
+        
+        if self._ui:getInstance():isSelected("cbx_cal_test") then
+            self:performWithDelayGlobal(function()
+                self:onEventCbxCal()
+            end, 1)
+        end
+        
     end      
     self:openSchedulerTakeFirst(callback)
 end
@@ -366,6 +389,7 @@ end
 -- 摊牌
 function GamePresenter:onNiuCompareCard(player)
     local localseat = app.game.PlayerData.serverSeatToLocalSeat(player.seat)
+    local playerObj = app.game.PlayerData.getPlayerByServerSeat(player.seat)
     
     if localseat == HERO_LOCAL_SEAT then
         self._gameBtnNode:showCalPanel(false)
@@ -387,6 +411,18 @@ function GamePresenter:onNiuCompareCard(player)
     end
     
     self._gamePlayerNodes[localseat]:showImgCardtype(true, player.cardtype)
+    
+    -- 牌型音效
+    local gender = playerObj:getGender()
+    local sound = ""
+    if gender == 1 then
+        sound = string.format("m_niu_%d", player.cardtype)
+    else
+        sound = string.format("w_niu_%d", player.cardtype)
+    end
+    self._gamePlayerNodes[localseat]:playEffectByName(sound)
+    
+    app.game.GameData.setGroup(player.seat, 1)
 end
 
 -- 游戏结束
@@ -398,14 +434,27 @@ function GamePresenter:onNiuGameOver(players)
     for i = 0, 4 do
         self._gamePlayerNodes[i]:showImgChoose(false)    	
     end
-    
-    -- 展示手牌及牌型
-    self:onShowCard(players)
 
-    -- 找出输赢玩家
+    -- 展示手牌 牌型 音效
+    self:onShowCard(players)
+    
+    -- 输赢动画
+    self:onWinloseEffect(players)
+    
+    -- 飞金币   
+    self:performWithDelayGlobal(function()
+        self:onPlayFlyGoldAction(players) 
+    end, 1)    
+end
+
+-- 与庄家比找出输赢玩家
+function GamePresenter:calWinloseWithBanker(players)    
     local win, lose = {}, {}
     local banker = app.game.GameData.getBanker()
     local localbanker = app.game.PlayerData.serverSeatToLocalSeat(banker)
+    local bankerwin = false
+    local herowin   = false
+    local heroseat = app.game.PlayerData.getHeroSeat()
     for i, player in ipairs(players) do
         if player.seat ~= banker then
             local localseat = app.game.PlayerData.serverSeatToLocalSeat(player.seat)
@@ -413,56 +462,87 @@ function GamePresenter:onNiuGameOver(players)
                 table.insert(win, localseat)
             else
                 table.insert(lose, localseat)
-            end 
+            end
+        else
+            bankerwin = player.score >= 0    
+        end
+        
+        if player.seat == heroseat then
+            print("wq-heroseat is",heroseat, player.score, player.score >= 0)
+            herowin = player.score >= 0    
         end
     end
     
-    local function result()        
-        self:onResult(players)
-    end
-    
-    -- 庄家往赢家飞金币
-    local function winfly()
-        if #win > 0 then           
-            for i, localseat in ipairs(win) do
-                if i == #win then                    
-                    self._ui:getInstance():playFlyGoldAction(localbanker, localseat, result)
-                else
-                    self._ui:getInstance():playFlyGoldAction(localbanker, localseat)
-                end
-            end
-        else
-             result()  
-        end        
-    end
-    
-    -- 输家往庄家飞金币
-    local function losefly()
-        if #lose > 0 then            
-            for i, localseat in ipairs(lose) do
-                if i == #lose then                    
-                    self._ui:getInstance():playFlyGoldAction(localseat, localbanker, winfly)
-                else
-                    self._ui:getInstance():playFlyGoldAction(localseat, localbanker)
-                end
-            end
-        else            
-            winfly()
-        end        
-    end
+    return win, lose, bankerwin, herowin 
+end
 
-    -- 飞金币
-    self:performWithDelayGlobal(function()
-        losefly() 
-    end, 0.5)      
+function GamePresenter:onTestShowCard()
+    local players = {
+        [1] = {
+            seat = 0,
+            score = 1000,
+            cards = {0x01,0x02,0x03,0x04,0x05},
+            cardtype = 1,
+            balance = 1000
+        },
+        [2] = {
+            seat = 1,
+            score = 1000,
+            cards = {0x01,0x02,0x03,0x04,0x05},
+            cardtype = 1,
+            balance = 1000
+        },
+        [3] = {
+            seat = 2,
+            score = 1000,
+            cards = {0x01,0x02,0x03,0x04,0x05},
+            cardtype = 1,
+            balance = 1000
+        },
+        [4] = {
+            seat = 3,
+            score = 1000,
+            cards = {0x01,0x02,0x03,0x04,0x05},
+            cardtype = 1,
+            balance = 1000
+        },
+        [5] = {
+            seat = 4,
+            score = 1000,
+            cards = {0x01,0x02,0x03,0x04,0x05},
+            cardtype = 1,
+            balance = 1000
+        }    
+    }
+    
+    for index=0,4 do
+    	self._gamePlayerNodes[index]:showPnlPlayer(true)
+    end
+    
+    for i, player in ipairs(players) do
+        local gameHandCardNode = self._gamePlayerNodes[player.seat]:getGameHandCardNode()            
+        gameHandCardNode:resetHandCards()
+        
+        if player.seat ~= 1 then
+            gameHandCardNode:createCards(player.cards)
+        else
+            local gameOutCardNode = self._gamePlayerNodes[HERO_LOCAL_SEAT]:getGameOutCardNode()
+            gameOutCardNode:resetOutCards()
+            gameOutCardNode:createCards(player.cards)    
+        end
+        self._gamePlayerNodes[player.seat]:showImgCardtype(true, player.cardtype)        
+    end
 end
 
 -- 展示手牌及牌型
-function GamePresenter:onShowCard(players)    
+function GamePresenter:onShowCard(players) 
+    local group = app.game.GameData.getGroup()      
     for i, player in ipairs(players) do
         local localseat = app.game.PlayerData.serverSeatToLocalSeat(player.seat)
         if self._gamePlayerNodes[localseat] then
             if localseat >= 0 and localseat <= self._maxPlayerCnt-1 then
+                local playerObj = app.game.PlayerData.getPlayerByServerSeat(player.seat)
+                -- 手牌        
                 local gameHandCardNode = self._gamePlayerNodes[localseat]:getGameHandCardNode()            
                 gameHandCardNode:resetHandCards()
 
@@ -479,9 +559,92 @@ function GamePresenter:onShowCard(players)
                     gameOutCardNode:createCards(niu)    
                 end
                 self._gamePlayerNodes[localseat]:showImgCardtype(true, player.cardtype)
+                
+                -- 牌型音效
+                if group[player.seat] == 0 then
+                    local gender = playerObj:getGender()
+                    local sound = ""
+                    if gender == 1 then
+                        sound = string.format("m_niu_%d", player.cardtype)
+                    else
+                        sound = string.format("w_niu_%d", player.cardtype)
+                    end
+                    
+                    self._gamePlayerNodes[localseat]:playEffectByName(sound)	
+                end                                
             end
         end        
     end
+end
+
+function GamePresenter:onWinloseEffect(players)
+    local win, lose, bankerwin, herowin = self:calWinloseWithBanker(players)
+    local banker = app.game.GameData.getBanker()
+    local localbanker = app.game.PlayerData.serverSeatToLocalSeat(banker)
+    
+    local maxtype = GECT.NIU_TYPE_NIU_WU
+    for i, player in ipairs(players) do
+        if player.cardtype > maxtype then
+            maxtype = player.cardtype            
+    	end    	
+    end
+ 
+    --庄家通杀
+    if #win == 0 and #players > 2 and bankerwin then
+    	self._ui:getInstance():showTongShaEffect()
+    -- 特殊牌型	
+    elseif maxtype >= GECT.NIU_TYPE_BOMB and maxtype <= GECT.NIU_TYPE_FIVE_LITTLE then
+        self._ui:getInstance():showSpecialNiuType(maxtype)
+    -- 普通牌型
+    else 
+        local heroseat = app.game.PlayerData.getHeroSeat()
+        print("heroseat is",heroseat,herowin)
+        self._ui:getInstance():showWinloseEffect(herowin, heroseat)    
+    end	
+end
+
+-- 飞金币
+function GamePresenter:onPlayFlyGoldAction(players)
+    local win, lose, bankerwin, herowin = self:calWinloseWithBanker(players)
+    local banker = app.game.GameData.getBanker()
+    local localbanker = app.game.PlayerData.serverSeatToLocalSeat(banker) 
+    
+    -- 结算
+    local function result()        
+        self:onResult(players)
+    end
+       
+    -- 庄家往赢家飞金币
+    local function winfly()
+        if #win > 0 then           
+            for i, localseat in ipairs(win) do
+                if i == #win then                    
+                    self._ui:getInstance():playFlyGoldAction(localbanker, localseat, result)
+                else
+                    self._ui:getInstance():playFlyGoldAction(localbanker, localseat)
+                end
+            end
+        else
+            result()  
+        end        
+    end
+
+    -- 输家往庄家飞金币
+    local function losefly()
+        if #lose > 0 then            
+            for i, localseat in ipairs(lose) do
+                if i == #lose then                    
+                    self._ui:getInstance():playFlyGoldAction(localseat, localbanker, winfly)
+                else
+                    self._ui:getInstance():playFlyGoldAction(localseat, localbanker)
+                end
+            end
+        else            
+            winfly()
+        end        
+    end
+	
+    losefly()
 end
 
 -- 结算
@@ -510,8 +673,87 @@ function GamePresenter:onResult(players)
 end
 
 -- 断线重连
-function GamePresenter:onRelinkEnter()   
+function GamePresenter:onRelinkEnter(data) 
+    print("relink")
+    if data.cards[1] ~= CV_BACK then
+        app.game.GameData.setHeroCards(data.cards, data.cardtype, 1)
+    end
+
+    -- 庄家
+    local banker = app.game.GameData.getBanker()
+    local heroseat = app.game.PlayerData.getHeroSeat()
+    local localBanker = app.game.PlayerData.serverSeatToLocalSeat(banker) 
+    if localBanker >= 0 and localBanker <= 4 and self._gamePlayerNodes[localBanker] then
+        self._gamePlayerNodes[localBanker]:showImgBanker(true)                     
+    end 
     
+    -- 游戏流程    
+    for i = 0, self._maxPlayerCnt - 1 do
+        local player = app.game.PlayerData.getPlayerByServerSeat(i)
+        if player and player:isPlaying() then
+            local localseat = app.game.PlayerData.serverSeatToLocalSeat(i) 
+            local bankermult = player:getBankerMult()
+            local mult = player:getMult()
+            local bet = player:getBet()
+            
+            if i == heroseat then
+                print("relink self", bankermult, mult, bet)
+            end
+                        
+            -- 抢庄倍数
+            if i == banker and bankermult >= 0 then
+                self._gamePlayerNodes[localseat]:showImgChoose(true, bankermult)    
+            -- 闲家倍数    
+            elseif i ~= banker and mult >= 0 then 
+                self._gamePlayerNodes[localseat]:showImgChoose(true, mult)    
+        	end
+        	        
+            if i == heroseat then
+                -- 抢庄
+                if bankermult < 0 then
+                    self:showTableBtn("banker")
+                -- 闲家加倍
+                elseif bankermult >= 0 and mult < 0 then
+                    -- 自己是庄家
+                    if heroseat == banker then
+                        self:showTableBtn()
+                    else
+                    -- 自己是闲家
+                        self:showTableBtn("bet")
+                    end
+                -- 算牌    
+                elseif bankermult >= 0 and mult >= 0 then 
+                    -- 已摊牌   
+                    if bet == 1 then
+                        self:showTableBtn()
+                        
+                        if data.cards[1] ~= CV_BACK then
+                            local gameOutCardNode = self._gamePlayerNodes[HERO_LOCAL_SEAT]:getGameOutCardNode()
+                            gameOutCardNode:resetOutCards()
+                            gameOutCardNode:createCards(data.cards)
+
+                            self._gamePlayerNodes[HERO_LOCAL_SEAT]:showImgCardtype(true, data.cardtype)
+                        end                                            
+                    -- 未摊牌    
+                    else
+                        self:showTableBtn("cal")
+                        
+                        if data.cards[1] ~= CV_BACK then
+                            local gameHandCardNode = self._gamePlayerNodes[localseat]:getGameHandCardNode()
+                            gameHandCardNode:resetHandCards()
+                            gameHandCardNode:createCards(data.cards)  
+                        end
+                    end                   	
+                end
+            else
+                if bankermult >= 0 and mult >= 0 then
+                    local gameHandCardNode = self._gamePlayerNodes[localseat]:getGameHandCardNode()
+                    gameHandCardNode:resetHandCards()
+                    gameHandCardNode:createCards({CV_BACK, CV_BACK, CV_BACK, CV_BACK, CV_BACK})
+                end                
+            end
+        end
+    end
 end
 
 -- 换桌成功
@@ -538,12 +780,40 @@ end
 
 function GamePresenter:onTouchCalCard()   
     local data = app.game.GameData.getHeroCards()
+    dump(data)
     if #data.handcards == 5 then
         local niuCards, numCards = self:divideCards(data.handcards, data.cardtype)
         local strNiu = string.char(unpack(niuCards))
         local strNum = string.char(unpack(numCards))     
         self:sendCalCard(strNiu, strNum)
     end        
+end
+
+function GamePresenter:onEventCbxBanker()
+    local hero = app.game.PlayerData.getHero()
+    if hero and hero:isPlaying() then
+        self:sendBankerMult(1)
+    end
+end
+
+function GamePresenter:onEventCbxMult()
+    local hero = app.game.PlayerData.getHero()
+    if hero and hero:isPlaying() then
+        self:sendMult(5)
+    end
+end
+
+function GamePresenter:onEventCbxCal()
+    local hero = app.game.PlayerData.getHero()
+    if hero and hero:isPlaying() then
+        local data = app.game.GameData.getHeroCards()
+        if #data.handcards == 5 then
+            local niuCards, numCards = self:divideCards(data.handcards, data.cardtype)
+            local strNiu = string.char(unpack(niuCards))
+            local strNum = string.char(unpack(numCards))     
+            self:sendCalCard(strNiu, strNum)
+        end 
+    end
 end
 
 -- ------------------------------show ui------------------------------
@@ -599,21 +869,34 @@ end
 function GamePresenter:playBankerAction(callback)
     local banker = app.game.GameData.getBanker()
     local localSeat = app.game.PlayerData.serverSeatToLocalSeat(banker)
-    self._gamePlayerNodes[localSeat]:playBankAction(callback)    
+    self._gamePlayerNodes[localSeat]:playBankAction(callback)  
+    
+    self._gamePlayerNodes[localSeat]:playEffectByName("banker")   
 end
 
 -- -----------------------------schedule------------------------------
 -- 准备倒计时
 function GamePresenter:openSchedulerPrepareClock(time)
     local allTime = time
-
+    local first,second,third = false,false,false
     local function flipIt(dt)
         time = time - dt
-
         if time <= 0 then
             self._ui:getInstance():showPnlHint()
             self:closeSchedulerPrepareClock()
         end
+        local t = math.ceil(time) % allTime
+        if t == 0 and not first then
+            self:playCountDownEffect()
+            first = true
+        elseif t == 1 and not second then
+            self:playCountDownEffect()
+            second = true
+        elseif t == 2 and not third then	
+            self:playCountDownEffect()
+            third = true
+        end
+
         local strTime = string.format("%d", math.ceil(time))
         self._ui:getInstance():showClockPrepare(strTime)
     end
@@ -850,7 +1133,7 @@ end
 
 -- 计算手牌位置
 local SELECT_Y = 15
-local HAND_CARD_DISTANCE_OTHER = 25
+local HAND_CARD_DISTANCE_OTHER = 30
 function GamePresenter:calHandCardPosition(index, cardSize, localSeat, bUp)
     local gameHandCardNode = self._gamePlayerNodes[localSeat]:getGameHandCardNode()
     local count = gameHandCardNode:getHandCardCount()
@@ -861,8 +1144,7 @@ function GamePresenter:calHandCardPosition(index, cardSize, localSeat, bUp)
 
     index = index - 1
     if localSeat == HERO_LOCAL_SEAT then
-        local width = (screenSize.width - 200 - cardSize.width) / (count - 1) 
-            
+        local width = (screenSize.width - 200 - cardSize.width) / (count - 1)             
         if width > cardSize.width then
             width = cardSize.width + 5
         end
@@ -886,16 +1168,17 @@ function GamePresenter:calHandCardPosition(index, cardSize, localSeat, bUp)
 end
 
 -- 计算出牌位置
-local OUT_CARD_DISTANCE = 25
+local OUT_CARD_DISTANCE = 30
 function GamePresenter:calOutCardPosition(index, cardSize, localSeat)
     local gameOutCardNode = self._gamePlayerNodes[localSeat]:getGameOutCardNode()
     local count = gameOutCardNode:getOutCardCount()
 
     local posX, posY = 0, 0
-
-    local WIDTH = OUT_CARD_DISTANCE 
-    local handCardsLength = (count - 1) * WIDTH + cardSize.width
-    posX = posX + index * WIDTH - handCardsLength / 2
+    index = index - 1
+    
+    local width = OUT_CARD_DISTANCE 
+    local handCardsLength = (count - 1) * width + cardSize.width
+    posX = posX + index * width - handCardsLength / 2 + width / 2
 
     return cc.p(posX, posY)
 end
@@ -913,7 +1196,7 @@ function GamePresenter:sendLeaveRoom()
             local sessionid = app.data.UserData.getSession() or 222
             po:writer_reset()
             po:write_int32(sessionid)  
-            upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_LEAVE_ROOM_REQ)
+            upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_LEAVE_ROOM_REQ)
         end     
     end
 end
@@ -946,7 +1229,7 @@ function GamePresenter:sendChangeTable()
         local po = upconn.upconn:get_packet_obj()
         po:writer_reset()
         po:write_int64(sessionid)
-        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_CHANGE_TABLE_REQ)
+        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_CHANGE_TABLE_REQ)
     end    
 end
 
@@ -978,6 +1261,32 @@ function GamePresenter:sendCalCard(niuCards, numCards)
     po:write_string(niuCards)
     po:write_string(numCards)
     upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_COMPARE_CARD_REQ)   
+end
+
+-- 音效相关
+function GamePresenter:playGameMusic()
+    app.util.SoundUtils.playMusic("game/jdnn/sound/bgm_game.mp3")
+end
+
+function GamePresenter:playCountDownEffect()
+    app.util.SoundUtils.playEffect("game/jdnn/sound/countdown.mp3")   
+end
+
+function GamePresenter:playEffectByName(name)
+    local soundPath = "game/jdnn/sound/"
+    local strRes = ""
+    for alias, path in pairs(ST) do
+        if alias == name then
+            if type(path) == "table" then
+                local index = math.random(1, 3)
+                strRes = path[index]
+            else
+                strRes = path
+            end
+        end
+    end
+
+    app.util.SoundUtils.playEffect(soundPath .. strRes)   
 end
 
 return GamePresenter

@@ -47,6 +47,11 @@
       <FilePathData Path="game/jdnn/image/img_hint_start.png" />
       <FilePathData Path="game/jdnn/image/img_nn_help.png" />
       <FilePathData Path="game/jdnn/image/img_card_type_13.png" />
+      <FilePathData Path="game/jdnn/image/img_jx.png" />
+      <FilePathData Path="game/jdnn/image/img_nntou.png" />
+      <FilePathData Path="game/jdnn/image/img_type_11.png" />
+      <FilePathData Path="game/jdnn/image/img_type_12.png" />
+      <FilePathData Path="game/jdnn/image/img_type_13.png" />
     </ImageFiles>
     <MaxSize Width="2048" Height="1024" />
   </Content>

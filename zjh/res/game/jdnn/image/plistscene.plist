@@ -7,7 +7,7 @@
 			<key>game/jdnn/image/btn_bq.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{245,851},{156,75}}</string>
+				<string>{{712,64},{156,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -18,7 +18,7 @@
 			<key>game/jdnn/image/btn_cal_sure.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{405,842},{156,75}}</string>
+				<string>{{872,64},{156,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -29,18 +29,18 @@
 			<key>game/jdnn/image/btn_m1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{565,842},{156,75}}</string>
+				<string>{{354,334},{156,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{156,75}</string>
 			</dict>
 			<key>game/jdnn/image/btn_m10.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{618,2},{156,75}}</string>
+				<string>{{354,494},{156,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -51,7 +51,7 @@
 			<key>game/jdnn/image/btn_m15.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{465,2},{156,75}}</string>
+				<string>{{450,720},{156,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -62,18 +62,18 @@
 			<key>game/jdnn/image/btn_m2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{465,162},{156,75}}</string>
+				<string>{{450,880},{156,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{156,75}</string>
 			</dict>
 			<key>game/jdnn/image/btn_m20.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{354,2},{156,75}}</string>
+				<string>{{433,334},{156,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -84,7 +84,7 @@
 			<key>game/jdnn/image/btn_m25.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{354,162},{156,75}}</string>
+				<string>{{433,494},{156,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -95,7 +95,7 @@
 			<key>game/jdnn/image/btn_m3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{354,322},{156,75}}</string>
+				<string>{{529,720},{156,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -106,7 +106,7 @@
 			<key>game/jdnn/image/btn_m4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{354,482},{156,75}}</string>
+				<string>{{608,720},{156,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -117,7 +117,7 @@
 			<key>game/jdnn/image/btn_m5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{354,642},{156,75}}</string>
+				<string>{{610,880},{156,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -128,7 +128,7 @@
 			<key>game/jdnn/image/img_banker.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{793,949},{49,47}}</string>
+				<string>{{791,777},{49,47}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -139,7 +139,7 @@
 			<key>game/jdnn/image/img_cal_back.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{2,789},{394,58}}</string>
+				<string>{{469,2},{394,58}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -150,29 +150,29 @@
 			<key>game/jdnn/image/img_card_type_0.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{544,2},{146,62}}</string>
+				<string>{{354,654},{146,62}}</string>
 				<key>offset</key>
 				<string>{1,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{147,62}</string>
 			</dict>
 			<key>game/jdnn/image/img_card_type_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{544,152},{146,62}}</string>
+				<string>{{478,959},{146,62}}</string>
 				<key>offset</key>
 				<string>{1,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{147,62}</string>
 			</dict>
 			<key>game/jdnn/image/img_card_type_10.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{646,962},{143,58}}</string>
+				<string>{{867,2},{143,58}}</string>
 				<key>offset</key>
 				<string>{0,2}</string>
 				<key>rotated</key>
@@ -183,7 +183,7 @@
 			<key>game/jdnn/image/img_card_type_11.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{465,721},{146,62}}</string>
+				<string>{{504,654},{146,62}}</string>
 				<key>offset</key>
 				<string>{1,0}</string>
 				<key>rotated</key>
@@ -194,7 +194,7 @@
 			<key>game/jdnn/image/img_card_type_12.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{495,962},{147,59}}</string>
+				<string>{{687,204},{147,59}}</string>
 				<key>offset</key>
 				<string>{0,-1}</string>
 				<key>rotated</key>
@@ -205,18 +205,18 @@
 			<key>game/jdnn/image/img_card_type_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{433,322},{146,62}}</string>
+				<string>{{628,959},{146,62}}</string>
 				<key>offset</key>
 				<string>{1,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{147,62}</string>
 			</dict>
 			<key>game/jdnn/image/img_card_type_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{433,472},{146,62}}</string>
+				<string>{{512,334},{146,62}}</string>
 				<key>offset</key>
 				<string>{1,0}</string>
 				<key>rotated</key>
@@ -227,7 +227,7 @@
 			<key>game/jdnn/image/img_card_type_4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{499,322},{146,62}}</string>
+				<string>{{512,484},{146,62}}</string>
 				<key>offset</key>
 				<string>{1,0}</string>
 				<key>rotated</key>
@@ -238,7 +238,7 @@
 			<key>game/jdnn/image/img_card_type_5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{499,472},{146,62}}</string>
+				<string>{{578,334},{146,62}}</string>
 				<key>offset</key>
 				<string>{1,0}</string>
 				<key>rotated</key>
@@ -249,40 +249,40 @@
 			<key>game/jdnn/image/img_card_type_6.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{514,622},{146,62}}</string>
+				<string>{{578,484},{146,62}}</string>
 				<key>offset</key>
 				<string>{1,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{147,62}</string>
 			</dict>
 			<key>game/jdnn/image/img_card_type_7.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{615,688},{146,62}}</string>
+				<string>{{644,334},{146,62}}</string>
 				<key>offset</key>
 				<string>{1,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{147,62}</string>
 			</dict>
 			<key>game/jdnn/image/img_card_type_8.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{618,754},{146,62}}</string>
+				<string>{{644,484},{146,62}}</string>
 				<key>offset</key>
 				<string>{1,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{147,62}</string>
 			</dict>
 			<key>game/jdnn/image/img_card_type_9.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{725,820},{146,62}}</string>
+				<string>{{654,634},{146,62}}</string>
 				<key>offset</key>
 				<string>{1,0}</string>
 				<key>rotated</key>
@@ -293,18 +293,18 @@
 			<key>game/jdnn/image/img_choose_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{589,921},{73,37}}</string>
+				<string>{{765,700},{73,37}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{82,37}</string>
 			</dict>
 			<key>game/jdnn/image/img_choose_10.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{145,991},{61,31}}</string>
+				<string>{{791,830},{61,31}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -315,18 +315,18 @@
 			<key>game/jdnn/image/img_choose_15.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{210,991},{60,31}}</string>
+				<string>{{855,865},{60,31}}</string>
 				<key>offset</key>
 				<string>{1,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{82,37}</string>
 			</dict>
 			<key>game/jdnn/image/img_choose_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{410,982},{81,37}}</string>
+				<string>{{770,876},{81,37}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -337,7 +337,7 @@
 			<key>game/jdnn/image/img_choose_20.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{2,991},{68,31}}</string>
+				<string>{{335,991},{68,31}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -348,7 +348,7 @@
 			<key>game/jdnn/image/img_choose_25.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{74,991},{67,31}}</string>
+				<string>{{407,991},{67,31}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -359,7 +359,7 @@
 			<key>game/jdnn/image/img_choose_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{426,921},{81,37}}</string>
+				<string>{{770,917},{81,37}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -370,18 +370,18 @@
 			<key>game/jdnn/image/img_choose_4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{324,982},{82,37}}</string>
+				<string>{{750,790},{82,37}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{82,37}</string>
 			</dict>
 			<key>game/jdnn/image/img_choose_5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{274,991},{46,31}}</string>
+				<string>{{856,978},{46,31}}</string>
 				<key>offset</key>
 				<string>{1,0}</string>
 				<key>rotated</key>
@@ -392,7 +392,7 @@
 			<key>game/jdnn/image/img_choose_0.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{511,921},{74,37}}</string>
+				<string>{{778,958},{74,37}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -403,7 +403,7 @@
 			<key>game/jdnn/image/img_clock.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{844,935},{74,86}}</string>
+				<string>{{687,700},{74,86}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -414,7 +414,7 @@
 			<key>game/jdnn/image/img_cutdown_back.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{400,789},{214,49}}</string>
+				<string>{{469,204},{214,49}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -425,7 +425,7 @@
 			<key>game/jdnn/image/img_gold.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{809,886},{45,41}}</string>
+				<string>{{856,929},{45,41}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -436,18 +436,18 @@
 			<key>game/jdnn/image/img_head_back1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{725,886},{80,59}}</string>
+				<string>{{687,790},{80,59}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{80,59}</string>
 			</dict>
 			<key>game/jdnn/image/img_head_back2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{2,851},{239,80}}</string>
+				<string>{{469,64},{239,80}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -458,7 +458,7 @@
 			<key>game/jdnn/image/img_hint.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{2,724},{459,61}}</string>
+				<string>{{354,269},{459,61}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -469,7 +469,7 @@
 			<key>game/jdnn/image/img_hint_start.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{2,935},{272,52}}</string>
+				<string>{{469,148},{272,52}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -491,13 +491,68 @@
 			<key>game/jdnn/image/img_card_type_13.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{278,930},{144,48}}</string>
+				<string>{{745,143},{144,48}}</string>
 				<key>offset</key>
 				<string>{1,-3}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
 				<string>{147,62}</string>
+			</dict>
+			<key>game/jdnn/image/img_jx.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1014,2},{57,57}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{57,57}</string>
+			</dict>
+			<key>game/jdnn/image/img_nntou.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{2,724},{269,214}}</string>
+				<key>offset</key>
+				<string>{-5,-6}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{278,227}</string>
+			</dict>
+			<key>game/jdnn/image/img_type_11.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{335,724},{263,111}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{263,111}</string>
+			</dict>
+			<key>game/jdnn/image/img_type_12.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{354,2},{263,111}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{263,111}</string>
+			</dict>
+			<key>game/jdnn/image/img_type_13.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{220,724},{264,111}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{264,111}</string>
 			</dict>
 		</dict>
 		<key>metadata</key>
@@ -509,12 +564,12 @@
 			<key>realTextureFileName</key>
 			<string>plistscene.png</string>
 			<key>size</key>
-			<string>{920,1024}</string>
+			<string>{1073,1024}</string>
 		</dict>
 		<key>texture</key>
 		<dict>
 			<key>width</key>
-			<integer>920</integer>
+			<integer>1073</integer>
 			<key>height</key>
 			<integer>1024</integer>
 		</dict>

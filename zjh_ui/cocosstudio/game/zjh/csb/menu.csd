@@ -9,7 +9,7 @@
           <AbstractNodeData Name="pnl_menu" ActionTag="2126706354" Tag="420" IconVisible="False" LeftMargin="-33.0000" RightMargin="-33.0000" TopMargin="-33.0000" BottomMargin="-247.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="66.0000" Y="280.0000" />
             <Children>
-              <AbstractNodeData Name="img_menu_expand" ActionTag="-35424631" Alpha="0" Tag="474" IconVisible="False" PositionPercentYEnabled="True" LeftEage="21" RightEage="21" TopEage="92" BottomEage="92" Scale9OriginX="21" Scale9OriginY="92" Scale9Width="24" Scale9Height="96" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="img_menu_expand" ActionTag="-35424631" VisibleForFrame="False" Tag="474" IconVisible="False" PositionPercentYEnabled="True" LeftEage="21" RightEage="21" TopEage="92" BottomEage="92" Scale9OriginX="21" Scale9OriginY="92" Scale9Width="24" Scale9Height="96" ctype="ImageViewObjectData">
                 <Size X="66.0000" Y="280.0000" />
                 <Children>
                   <AbstractNodeData Name="btn_help" ActionTag="1306628486" Tag="477" IconVisible="False" LeftMargin="6.5000" RightMargin="6.5000" TopMargin="224.5000" BottomMargin="4.5000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="23" Scale9Height="29" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">

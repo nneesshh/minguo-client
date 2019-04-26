@@ -9,7 +9,7 @@ local GameOutCardNode    = class("GameOutCardNode", app.base.BaseNodeEx)
 local OUT_CARD_TYPE     = 2
 local BANKER_CARD_TYPE  = 3
 
-local OUT_CARD_SCALE    = 0.4
+local OUT_CARD_SCALE    = 0.5
 
 function GameOutCardNode:initData(localSeat)
     self._localSeat         = localSeat

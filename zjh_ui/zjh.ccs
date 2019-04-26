@@ -10,6 +10,7 @@
               <Project Name="card.csd" Type="Node" />
               <Project Name="gamescene.csd" Type="Scene" />
               <Project Name="menu.csd" Type="Node" />
+              <Project Name="niutype.csd" Type="Node" />
             </Folder>
             <Folder Name="image">
               <Folder Name="fnt">
@@ -63,7 +64,12 @@
               <Image Name="img_head_back2.png" />
               <Image Name="img_hint.png" />
               <Image Name="img_hint_start.png" />
+              <Image Name="img_jx.png" />
               <Image Name="img_nn_help.png" />
+              <Image Name="img_nntou.png" />
+              <Image Name="img_type_11.png" />
+              <Image Name="img_type_12.png" />
+              <Image Name="img_type_13.png" />
               <PlistInfo Name="plistscene.csi" Type="Plist" />
             </Folder>
           </Folder>
@@ -199,6 +205,7 @@
         <Folder Name="lobby">
           <Folder Name="csb">
             <Project Name="account.csd" Type="Layer" />
+            <Project Name="debug.csd" Type="Layer" />
             <Project Name="head.csd" Type="Layer" />
             <Project Name="help.csd" Type="Layer" />
             <Project Name="hint.csd" Type="Layer" />
@@ -212,7 +219,6 @@
             <Project Name="shop.csd" Type="Layer" />
             <Project Name="usercenter.csd" Type="Layer" />
             <Project Name="verifylogin.csd" Type="Layer" />
-            <Project Name="debug.csd" Type="Layer" />
           </Folder>
           <Folder Name="image">
             <Folder Name="fnt">

@@ -141,12 +141,9 @@ function _M:onUpdateEvent(event)
         end
         self.tips = "正在进行版本更新: " .. strInfo
     elseif cc.EventAssetsManagerEx.EventCode.ASSET_UPDATED == eventCode then
-        print("[AM]: asset updated.", eventCode)
-        self:release()
-        self.tips = "版本更新完毕"
-
-        -- reload
-        self.reloadHotPatchModules()
+        local assetId = event:getAssetId()
+        print("[AM]: asset updated.", eventCode, assetId)
+        self.tips = "资源文件" .. tostring(assetId) .. "更新完毕"
     elseif cc.EventAssetsManagerEx.EventCode.ERROR_UPDATING == eventCode then
         print("[AM]: error updating.", eventCode)
         self:release()

@@ -5,7 +5,7 @@ local ToolUtils = app.util.ToolUtils
 
 local HintLayer = class("HintLayer", app.base.BaseLayer)
 
-HintLayer.csbPath = "lobby/csb/hint.csb"
+HintLayer.csbPath = "lobby/csb/hint1.csb"
 
 HintLayer.clicks = {
     "background",

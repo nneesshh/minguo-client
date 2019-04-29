@@ -208,7 +208,8 @@
             <Project Name="debug.csd" Type="Layer" />
             <Project Name="head.csd" Type="Layer" />
             <Project Name="help.csd" Type="Layer" />
-            <Project Name="hint.csd" Type="Layer" />
+            <Project Name="hint1.csd" Type="Layer" />
+            <Project Name="hint2.csd" Type="Layer" />
             <Project Name="hintload.csd" Type="Layer" />
             <Project Name="loading.csd" Type="Scene" />
             <Project Name="lobby.csd" Type="Scene" />

@@ -1,6 +1,7 @@
 --[[
 @brief 账号信息
 ]]
+
 local AccountData = {}
 
 local _selfData = {
@@ -43,7 +44,7 @@ function AccountData.getAccountData(type)
     if udata and udata[type] and string.len(udata[type]) > 0 then
         return udata[type]
     end    
-    return {}
+    return ""
 end
 
 function AccountData.haveAccount()
@@ -56,34 +57,72 @@ function AccountData.haveAccount()
 end
 
 function AccountData.IMEI()
-    local uuid = app.util.uuid()
-    local imei = AccountData.getAccountData("imei")
-    if #imei > 0 then
-        return imei
-    end    
-    local targetPlatform = cc.Application:getInstance():getTargetPlatform()
-    if 3 == targetPlatform or 4 == targetPlatform or 5 == targetPlatform then
-        AccountData.setIMEI(uuid)
-        return uuid
+    local phoneIMEI = AccountData.getPhoneIMEI()
+    local localIMEI = AccountData.getAccountData("imei")
+    if #phoneIMEI > 0 then
+        AccountData.setIMEI(phoneIMEI)
+        return phoneIMEI    
     else
-        AccountData.setIMEI(uuid)
-        return uuid
+        if #localIMEI > 0 then
+            return localIMEI   
+        else
+            local uuid = app.util.uuid()
+            AccountData.setIMEI(uuid)
+            return uuid
+        end    	
     end
 end
 
 function AccountData.IMSI()
-    local uuid = app.util.uuid()
-    local imsi = AccountData.getAccountData("imsi")
-    if #imsi > 0 then
-        return imsi
-    end   
-    local targetPlatform = cc.Application:getInstance():getTargetPlatform()
-    if 3 == targetPlatform or 4 == targetPlatform or 5 == targetPlatform then
-        AccountData.setIMSI(uuid)
-        return uuid
+    local phoneIMSI = AccountData.getPhoneIMSI()
+    local localIMSI = AccountData.getAccountData("imsi")
+    if #phoneIMSI > 0 then
+        AccountData.setIMSI(phoneIMSI)
+        return phoneIMSI    
     else
-        AccountData.setIMSI(uuid)
-        return uuid
+        if #localIMSI > 0 then
+            return localIMSI   
+        else
+            local uuid = app.util.uuid()
+            AccountData.setIMSI(uuid)
+            return uuid
+        end     
+    end
+end
+
+-- 获取手机imei
+function AccountData.getPhoneIMEI()
+    local targetPlatform = cc.Application:getInstance():getTargetPlatform()
+    if cc.PLATFORM_OS_ANDROID == targetPlatform then
+        local args = {}
+        local sig = "()Ljava/lang/String;"
+        local luaj = require("cocos.cocos2d.luaj")
+        local ok ,ret = luaj.callStaticMethod("org/cocos2dx/lua/AppActivity","getIMEI",args,sig)
+        if not ok then
+            return ""
+        else
+            return ret
+        end
+    else 
+        return ""
+    end
+end
+
+-- 获取手机imsi
+function AccountData.getPhoneIMSI()
+    local targetPlatform = cc.Application:getInstance():getTargetPlatform()
+    if cc.PLATFORM_OS_ANDROID == targetPlatform then
+        local args = {}
+        local sig = "()Ljava/lang/String;"
+        local luaj = require("cocos.cocos2d.luaj")
+        local ok ,ret = luaj.callStaticMethod("org/cocos2dx/lua/AppActivity","getIMSI",args,sig)
+        if not ok then
+            return ""
+        else
+            return ret
+        end
+    else 
+        return ""
     end
 end
 

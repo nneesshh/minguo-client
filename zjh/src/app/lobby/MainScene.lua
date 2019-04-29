@@ -51,10 +51,12 @@ function MainScene:onTouch(sender, eventType)
         elseif name == "btn_gold_add_plaza" then
             self._presenter:showShop()             
         elseif name == "btn_notice" then        
-        elseif name == "btn_mail" then         
+        elseif name == "btn_mail" then  
+            print("test luaj----" ,app.data.AccountData.getIMEI())  
         elseif name == "btn_set" then      
             self._presenter:showSet()                     
-        elseif name == "btn_rank" then                     
+        elseif name == "btn_rank" then    
+            print("test luaj----" ,app.data.AccountData.getIMSI())                 
         elseif name == "btn_safe" then                               
         elseif name == "btn_shop" then      
             self._presenter:showShop()             
@@ -72,6 +74,8 @@ end
 
 function MainScene:initUI(gameID, roomMode)
     self._isRunAction = false   
+    
+    print("wq-- is", #"")
 end
 
 function MainScene:onEnter()

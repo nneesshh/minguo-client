@@ -124,24 +124,24 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="txt_name" ActionTag="-666171322" Tag="1005" IconVisible="False" LeftMargin="395.0000" RightMargin="330.0000" TopMargin="115.0000" BottomMargin="444.0000" FontSize="22" LabelText="玩家账号：" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+              <AbstractNodeData Name="txt_name" ActionTag="-666171322" Tag="1005" IconVisible="False" LeftMargin="395.0000" RightMargin="330.0000" TopMargin="180.0000" BottomMargin="379.0000" FontSize="22" LabelText="玩家账号：" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                 <Size X="110.0000" Y="22.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="450.0000" Y="455.0000" />
+                <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
+                <Position X="505.0000" Y="390.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5389" Y="0.7831" />
+                <PrePosition X="0.6048" Y="0.6713" />
                 <PreSize X="0.1317" Y="0.0379" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="name" ActionTag="-486648986" Tag="1009" IconVisible="False" LeftMargin="570.0000" RightMargin="165.0000" TopMargin="116.0000" BottomMargin="445.0000" FontSize="20" LabelText="Text Label" HorizontalAlignmentType="HT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+              <AbstractNodeData Name="name" ActionTag="-486648986" Tag="1009" IconVisible="False" LeftMargin="570.0000" RightMargin="165.0000" TopMargin="181.0000" BottomMargin="380.0000" FontSize="20" LabelText="Text Label" HorizontalAlignmentType="HT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                 <Size X="100.0000" Y="20.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="620.0000" Y="455.0000" />
+                <Position X="620.0000" Y="390.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.7425" Y="0.7831" />
+                <PrePosition X="0.7425" Y="0.6713" />
                 <PreSize X="0.1198" Y="0.0344" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
@@ -156,24 +156,24 @@
                 <PreSize X="0.5018" Y="0.0052" />
                 <FileData Type="Normal" Path="lobby/image/usercenter/img_line.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="txt_id" ActionTag="-429891614" Tag="1006" IconVisible="False" LeftMargin="406.0000" RightMargin="341.0000" TopMargin="180.0000" BottomMargin="379.0000" FontSize="22" LabelText="玩家ID：" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+              <AbstractNodeData Name="txt_id" ActionTag="-429891614" Tag="1006" IconVisible="False" LeftMargin="417.0000" RightMargin="330.0000" TopMargin="245.0000" BottomMargin="314.0000" FontSize="22" LabelText="玩家ID：" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                 <Size X="88.0000" Y="22.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="450.0000" Y="390.0000" />
+                <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
+                <Position X="505.0000" Y="325.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5389" Y="0.6713" />
+                <PrePosition X="0.6048" Y="0.5594" />
                 <PreSize X="0.1054" Y="0.0379" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="id" ActionTag="191358893" Tag="1010" IconVisible="False" LeftMargin="570.0000" RightMargin="165.0000" TopMargin="181.0000" BottomMargin="380.0000" FontSize="20" LabelText="Text Label" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+              <AbstractNodeData Name="id" ActionTag="191358893" Tag="1010" IconVisible="False" LeftMargin="570.0000" RightMargin="165.0000" TopMargin="246.0000" BottomMargin="315.0000" FontSize="20" LabelText="Text Label" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                 <Size X="100.0000" Y="20.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="620.0000" Y="390.0000" />
+                <Position X="620.0000" Y="325.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.7425" Y="0.6713" />
+                <PrePosition X="0.7425" Y="0.5594" />
                 <PreSize X="0.1198" Y="0.0344" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
@@ -188,24 +188,24 @@
                 <PreSize X="0.5018" Y="0.0052" />
                 <FileData Type="Normal" Path="lobby/image/usercenter/img_line.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="txt_nickname" ActionTag="-956644118" Tag="1007" IconVisible="False" LeftMargin="395.0000" RightMargin="330.0000" TopMargin="245.0000" BottomMargin="314.0000" FontSize="22" LabelText="玩家昵称：" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+              <AbstractNodeData Name="txt_nickname" ActionTag="-956644118" Tag="1007" IconVisible="False" LeftMargin="395.0000" RightMargin="330.0000" TopMargin="115.0000" BottomMargin="444.0000" FontSize="22" LabelText="玩家昵称：" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                 <Size X="110.0000" Y="22.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="450.0000" Y="325.0000" />
+                <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
+                <Position X="505.0000" Y="455.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5389" Y="0.5594" />
+                <PrePosition X="0.6048" Y="0.7831" />
                 <PreSize X="0.1317" Y="0.0379" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="nickname" ActionTag="1913581513" Tag="1011" IconVisible="False" LeftMargin="570.0000" RightMargin="165.0000" TopMargin="246.0000" BottomMargin="315.0000" FontSize="20" LabelText="Text Label" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+              <AbstractNodeData Name="nickname" ActionTag="1913581513" Tag="1011" IconVisible="False" LeftMargin="570.0000" RightMargin="165.0000" TopMargin="116.0000" BottomMargin="445.0000" FontSize="20" LabelText="Text Label" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                 <Size X="100.0000" Y="20.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="620.0000" Y="325.0000" />
+                <Position X="620.0000" Y="455.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.7425" Y="0.5594" />
+                <PrePosition X="0.7425" Y="0.7831" />
                 <PreSize X="0.1198" Y="0.0344" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
@@ -220,13 +220,13 @@
                 <PreSize X="0.5018" Y="0.0052" />
                 <FileData Type="Normal" Path="lobby/image/usercenter/img_line.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="txt_gold" ActionTag="1277336822" Tag="1008" IconVisible="False" LeftMargin="406.0000" RightMargin="341.0000" TopMargin="310.0000" BottomMargin="249.0000" FontSize="22" LabelText="金币数：" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+              <AbstractNodeData Name="txt_gold" ActionTag="1277336822" Tag="1008" IconVisible="False" LeftMargin="417.0000" RightMargin="330.0000" TopMargin="310.0000" BottomMargin="249.0000" FontSize="22" LabelText="金币数：" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                 <Size X="88.0000" Y="22.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="450.0000" Y="260.0000" />
+                <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
+                <Position X="505.0000" Y="260.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5389" Y="0.4475" />
+                <PrePosition X="0.6048" Y="0.4475" />
                 <PreSize X="0.1054" Y="0.0379" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />

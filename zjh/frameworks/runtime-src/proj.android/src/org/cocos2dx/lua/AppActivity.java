@@ -46,6 +46,7 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.telephony.TelephonyManager;
 import android.text.format.Formatter;
 import android.util.Log;
 import android.view.WindowManager;
@@ -55,6 +56,9 @@ import android.widget.Toast;
 public class AppActivity extends Cocos2dxActivity{
 
     static String hostIPAdress = "0.0.0.0";
+    static String imei = "";
+    static String imsi = "";		
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,6 +96,18 @@ public class AppActivity extends Cocos2dxActivity{
             }
             hostIPAdress = getHostIpAddress();
         }
+        
+        // imei imsiªÒ»°
+        imei = IMEI();       
+        imsi = IMSI();  
+        if(imei != null) {
+        	 Log.e("imei is",imei);
+             Log.e("imsi is",imsi);
+        } else {
+        	
+        	Log.e("imsi is null","aaa");
+        }
+       
     }
     private boolean isNetworkConnected() {
             ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);  
@@ -122,6 +138,24 @@ public class AppActivity extends Cocos2dxActivity{
     
     public static String getLocalIpAddress() {
         return hostIPAdress;
+    }
+	
+    public String IMEI() {
+    	TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);    	
+    	return tm.getDeviceId();
+    }
+    
+    public String IMSI() {
+    	TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);    	
+    	return tm.getSubscriberId();
+    }
+    
+    public static String getIMEI() {
+    	return imei;
+    }
+    
+    public static String getIMSI() {
+    	return imsi;
     }
     
     private static native boolean nativeIsLandScape();

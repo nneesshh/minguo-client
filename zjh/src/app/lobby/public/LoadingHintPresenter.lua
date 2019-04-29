@@ -16,7 +16,7 @@ local DEFAULT_TIME_OUT = 15
 function LoadingHintPresenter:start(txt, timeoutTxt, timeout)
     txt = txt or ""
     if timeoutTxt == nil or timeoutTxt == "" then
-        timeoutTxt = "操作超时，请稍后再试！"
+        timeoutTxt = "连接超时，请检查手机网络"
     end
     timeout = timeout or DEFAULT_TIME_OUT
 

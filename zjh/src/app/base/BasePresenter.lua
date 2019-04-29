@@ -73,4 +73,8 @@ function BasePresenter:dealLoadingHintExit()
     app.lobby.public.LoadingHintPresenter:getInstance():exit()
 end
 
+function BasePresenter:dealTxtHintStart(...)
+    app.lobby.public.TextHintPresenter:getInstance():start(...)
+end
+
 return BasePresenter

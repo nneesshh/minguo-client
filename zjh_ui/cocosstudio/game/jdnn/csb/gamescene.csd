@@ -67,7 +67,7 @@
           <AbstractNodeData Name="player" ActionTag="-454512329" Tag="2494" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="1334.0000" Y="750.0000" />
             <Children>
-              <AbstractNodeData Name="pnl_player_0" ActionTag="-719192478" VisibleForFrame="False" Tag="177" IconVisible="False" LeftMargin="40.0000" RightMargin="1214.0000" TopMargin="290.0000" BottomMargin="330.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+              <AbstractNodeData Name="pnl_player_0" ActionTag="-719192478" Tag="177" IconVisible="False" LeftMargin="40.0000" RightMargin="1214.0000" TopMargin="290.0000" BottomMargin="330.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="80.0000" Y="130.0000" />
                 <Children>
                   <AbstractNodeData Name="img_back" ActionTag="-1730906861" Tag="178" IconVisible="False" PositionPercentYEnabled="True" TopMargin="71.0000" LeftEage="26" RightEage="26" TopEage="19" BottomEage="19" Scale9OriginX="26" Scale9OriginY="19" Scale9Width="28" Scale9Height="21" ctype="ImageViewObjectData">
@@ -90,34 +90,34 @@
                     <PreSize X="1.0000" Y="0.6154" />
                     <FileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_0.png" Plist="lobby/image/head.plist" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="txt_name" ActionTag="-1994445230" Tag="192" IconVisible="False" LeftMargin="4.0000" RightMargin="4.0000" TopMargin="85.0000" BottomMargin="27.0000" FontSize="18" LabelText="萨达撒上" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                  <AbstractNodeData Name="txt_name" ActionTag="-1994445230" Tag="192" IconVisible="False" LeftMargin="4.0000" RightMargin="4.0000" TopMargin="109.0000" BottomMargin="3.0000" FontSize="18" LabelText="萨达撒上" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                     <Size X="72.0000" Y="18.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="40.0000" Y="36.0000" />
+                    <AnchorPoint ScaleX="0.5000" />
+                    <Position X="40.0000" Y="3.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="196" G="243" B="255" />
-                    <PrePosition X="0.5000" Y="0.2769" />
+                    <PrePosition X="0.5000" Y="0.0231" />
                     <PreSize X="0.9000" Y="0.1385" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="img_gold" ActionTag="654061962" Tag="194" IconVisible="False" LeftMargin="1.0000" RightMargin="34.0000" TopMargin="86.0000" BottomMargin="3.0000" LeftEage="14" RightEage="14" TopEage="13" BottomEage="13" Scale9OriginX="14" Scale9OriginY="13" Scale9Width="17" Scale9Height="15" ctype="ImageViewObjectData">
+                  <AbstractNodeData Name="img_gold" ActionTag="654061962" Tag="194" IconVisible="False" LeftMargin="1.0000" RightMargin="34.0000" TopMargin="73.5000" BottomMargin="15.5000" LeftEage="14" RightEage="14" TopEage="13" BottomEage="13" Scale9OriginX="14" Scale9OriginY="13" Scale9Width="17" Scale9Height="15" ctype="ImageViewObjectData">
                     <Size X="45.0000" Y="41.0000" />
-                    <AnchorPoint />
-                    <Position X="1.0000" Y="3.0000" />
+                    <AnchorPoint ScaleY="0.5000" />
+                    <Position X="1.0000" Y="36.0000" />
                     <Scale ScaleX="0.4000" ScaleY="0.4000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.0125" Y="0.0231" />
+                    <PrePosition X="0.0125" Y="0.2769" />
                     <PreSize X="0.5625" Y="0.3154" />
                     <FileData Type="MarkedSubImage" Path="game/jdnn/image/img_gold.png" Plist="game/jdnn/image/plistscene.plist" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="txt_balance" ActionTag="-2100355684" Tag="193" IconVisible="False" LeftMargin="20.0000" RightMargin="-3.0000" TopMargin="109.0000" BottomMargin="3.0000" FontSize="18" LabelText="101.3万" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                  <AbstractNodeData Name="txt_balance" ActionTag="-2100355684" Tag="193" IconVisible="False" LeftMargin="20.0000" RightMargin="-3.0000" TopMargin="85.0000" BottomMargin="27.0000" FontSize="18" LabelText="101.3万" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                     <Size X="63.0000" Y="18.0000" />
-                    <AnchorPoint />
-                    <Position X="20.0000" Y="3.0000" />
+                    <AnchorPoint ScaleY="0.5000" />
+                    <Position X="20.0000" Y="36.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.2500" Y="0.0231" />
+                    <PrePosition X="0.2500" Y="0.2769" />
                     <PreSize X="0.7875" Y="0.1385" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
@@ -202,7 +202,7 @@
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
               </AbstractNodeData>
-              <AbstractNodeData Name="pnl_player_1" ActionTag="926179359" VisibleForFrame="False" Tag="195" IconVisible="False" LeftMargin="40.0000" RightMargin="1094.0000" TopMargin="630.0000" BottomMargin="40.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+              <AbstractNodeData Name="pnl_player_1" ActionTag="926179359" Tag="195" IconVisible="False" LeftMargin="40.0000" RightMargin="1094.0000" TopMargin="630.0000" BottomMargin="40.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="200.0000" Y="80.0000" />
                 <Children>
                   <AbstractNodeData Name="img_back" ActionTag="838676429" Tag="196" IconVisible="False" Scale9Enable="True" LeftEage="20" RightEage="20" TopEage="20" BottomEage="20" Scale9OriginX="20" Scale9OriginY="20" Scale9Width="199" Scale9Height="40" ctype="ImageViewObjectData">
@@ -337,7 +337,7 @@
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
               </AbstractNodeData>
-              <AbstractNodeData Name="pnl_player_2" ActionTag="1544292343" VisibleForFrame="False" Tag="557" IconVisible="False" LeftMargin="1214.0000" RightMargin="40.0000" TopMargin="290.0000" BottomMargin="330.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+              <AbstractNodeData Name="pnl_player_2" ActionTag="1544292343" Tag="557" IconVisible="False" LeftMargin="1214.0000" RightMargin="40.0000" TopMargin="290.0000" BottomMargin="330.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="80.0000" Y="130.0000" />
                 <Children>
                   <AbstractNodeData Name="img_back" ActionTag="-1484221805" Tag="558" IconVisible="False" PositionPercentYEnabled="True" TopMargin="71.0000" LeftEage="26" RightEage="26" TopEage="19" BottomEage="19" Scale9OriginX="26" Scale9OriginY="19" Scale9Width="28" Scale9Height="21" ctype="ImageViewObjectData">
@@ -360,34 +360,34 @@
                     <PreSize X="1.0000" Y="0.6154" />
                     <FileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_0.png" Plist="lobby/image/head.plist" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="txt_name" ActionTag="2021921244" Tag="560" IconVisible="False" LeftMargin="4.0000" RightMargin="4.0000" TopMargin="85.0000" BottomMargin="27.0000" FontSize="18" LabelText="萨达撒上" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                  <AbstractNodeData Name="txt_name" ActionTag="2021921244" Tag="560" IconVisible="False" LeftMargin="4.0000" RightMargin="4.0000" TopMargin="109.0000" BottomMargin="3.0000" FontSize="18" LabelText="萨达撒上" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                     <Size X="72.0000" Y="18.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="40.0000" Y="36.0000" />
+                    <AnchorPoint ScaleX="0.5000" />
+                    <Position X="40.0000" Y="3.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="196" G="243" B="255" />
-                    <PrePosition X="0.5000" Y="0.2769" />
+                    <PrePosition X="0.5000" Y="0.0231" />
                     <PreSize X="0.9000" Y="0.1385" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="img_gold" ActionTag="-1864613972" Tag="561" IconVisible="False" LeftMargin="1.0000" RightMargin="34.0000" TopMargin="86.0000" BottomMargin="3.0000" LeftEage="14" RightEage="14" TopEage="13" BottomEage="13" Scale9OriginX="14" Scale9OriginY="13" Scale9Width="17" Scale9Height="15" ctype="ImageViewObjectData">
+                  <AbstractNodeData Name="img_gold" ActionTag="-1864613972" Tag="561" IconVisible="False" LeftMargin="1.0000" RightMargin="34.0000" TopMargin="73.5000" BottomMargin="15.5000" LeftEage="14" RightEage="14" TopEage="13" BottomEage="13" Scale9OriginX="14" Scale9OriginY="13" Scale9Width="17" Scale9Height="15" ctype="ImageViewObjectData">
                     <Size X="45.0000" Y="41.0000" />
-                    <AnchorPoint />
-                    <Position X="1.0000" Y="3.0000" />
+                    <AnchorPoint ScaleY="0.5000" />
+                    <Position X="1.0000" Y="36.0000" />
                     <Scale ScaleX="0.4000" ScaleY="0.4000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.0125" Y="0.0231" />
+                    <PrePosition X="0.0125" Y="0.2769" />
                     <PreSize X="0.5625" Y="0.3154" />
                     <FileData Type="MarkedSubImage" Path="game/jdnn/image/img_gold.png" Plist="game/jdnn/image/plistscene.plist" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="txt_balance" ActionTag="2115976120" Tag="562" IconVisible="False" LeftMargin="20.0000" RightMargin="-3.0000" TopMargin="109.0000" BottomMargin="3.0000" FontSize="18" LabelText="101.3万" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                  <AbstractNodeData Name="txt_balance" ActionTag="2115976120" Tag="562" IconVisible="False" LeftMargin="20.0000" RightMargin="-3.0000" TopMargin="85.0000" BottomMargin="27.0000" FontSize="18" LabelText="101.3万" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                     <Size X="63.0000" Y="18.0000" />
-                    <AnchorPoint />
-                    <Position X="20.0000" Y="3.0000" />
+                    <AnchorPoint ScaleY="0.5000" />
+                    <Position X="20.0000" Y="36.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.2500" Y="0.0231" />
+                    <PrePosition X="0.2500" Y="0.2769" />
                     <PreSize X="0.7875" Y="0.1385" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
@@ -472,7 +472,7 @@
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
               </AbstractNodeData>
-              <AbstractNodeData Name="pnl_player_3" ActionTag="-581122273" VisibleForFrame="False" Tag="567" IconVisible="False" LeftMargin="820.0000" RightMargin="314.0000" TopMargin="36.0000" BottomMargin="634.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+              <AbstractNodeData Name="pnl_player_3" ActionTag="-581122273" Tag="567" IconVisible="False" LeftMargin="820.0000" RightMargin="314.0000" TopMargin="36.0000" BottomMargin="634.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="200.0000" Y="80.0000" />
                 <Children>
                   <AbstractNodeData Name="img_back" ActionTag="1087903259" Tag="568" IconVisible="False" Scale9Enable="True" LeftEage="20" RightEage="20" TopEage="20" BottomEage="20" Scale9OriginX="20" Scale9OriginY="20" Scale9Width="199" Scale9Height="40" ctype="ImageViewObjectData">
@@ -495,34 +495,34 @@
                     <PreSize X="0.4000" Y="1.0000" />
                     <FileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_0.png" Plist="lobby/image/head.plist" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="txt_name" ActionTag="537686775" Tag="570" IconVisible="False" LeftMargin="90.0000" RightMargin="70.0000" TopMargin="15.0000" BottomMargin="45.0000" FontSize="20" LabelText="萨达" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                  <AbstractNodeData Name="txt_name" ActionTag="537686775" Tag="570" IconVisible="False" LeftMargin="90.0000" RightMargin="70.0000" TopMargin="48.0000" BottomMargin="12.0000" FontSize="20" LabelText="萨达" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                     <Size X="40.0000" Y="20.0000" />
                     <AnchorPoint ScaleY="0.5000" />
-                    <Position X="90.0000" Y="55.0000" />
+                    <Position X="90.0000" Y="22.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="196" G="243" B="255" />
-                    <PrePosition X="0.4500" Y="0.6875" />
+                    <PrePosition X="0.4500" Y="0.2750" />
                     <PreSize X="0.2000" Y="0.2500" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="img_gold" ActionTag="1423201446" Tag="571" IconVisible="False" LeftMargin="88.0000" RightMargin="67.0000" TopMargin="37.5000" BottomMargin="1.5000" LeftEage="14" RightEage="14" TopEage="13" BottomEage="13" Scale9OriginX="14" Scale9OriginY="13" Scale9Width="17" Scale9Height="15" ctype="ImageViewObjectData">
+                  <AbstractNodeData Name="img_gold" ActionTag="1423201446" Tag="571" IconVisible="False" LeftMargin="88.0000" RightMargin="67.0000" TopMargin="4.5000" BottomMargin="34.5000" LeftEage="14" RightEage="14" TopEage="13" BottomEage="13" Scale9OriginX="14" Scale9OriginY="13" Scale9Width="17" Scale9Height="15" ctype="ImageViewObjectData">
                     <Size X="45.0000" Y="41.0000" />
                     <AnchorPoint ScaleY="0.5000" />
-                    <Position X="88.0000" Y="22.0000" />
+                    <Position X="88.0000" Y="55.0000" />
                     <Scale ScaleX="0.4000" ScaleY="0.4000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.4400" Y="0.2750" />
+                    <PrePosition X="0.4400" Y="0.6875" />
                     <PreSize X="0.2250" Y="0.5125" />
                     <FileData Type="MarkedSubImage" Path="game/jdnn/image/img_gold.png" Plist="game/jdnn/image/plistscene.plist" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="txt_balance" ActionTag="688653597" Tag="572" IconVisible="False" LeftMargin="106.0000" RightMargin="54.0000" TopMargin="48.0000" BottomMargin="12.0000" FontSize="20" LabelText="1000" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                  <AbstractNodeData Name="txt_balance" ActionTag="688653597" Tag="572" IconVisible="False" LeftMargin="106.0000" RightMargin="54.0000" TopMargin="15.0000" BottomMargin="45.0000" FontSize="20" LabelText="1000" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                     <Size X="40.0000" Y="20.0000" />
                     <AnchorPoint ScaleY="0.5000" />
-                    <Position X="106.0000" Y="22.0000" />
+                    <Position X="106.0000" Y="55.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.5300" Y="0.2750" />
+                    <PrePosition X="0.5300" Y="0.6875" />
                     <PreSize X="0.2000" Y="0.2500" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
@@ -607,7 +607,7 @@
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
               </AbstractNodeData>
-              <AbstractNodeData Name="pnl_player_4" ActionTag="-1766639013" VisibleForFrame="False" Tag="577" IconVisible="False" LeftMargin="325.0000" RightMargin="809.0000" TopMargin="36.0000" BottomMargin="634.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+              <AbstractNodeData Name="pnl_player_4" ActionTag="-1766639013" Tag="577" IconVisible="False" LeftMargin="325.0000" RightMargin="809.0000" TopMargin="36.0000" BottomMargin="634.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="200.0000" Y="80.0000" />
                 <Children>
                   <AbstractNodeData Name="img_back" ActionTag="-1249610099" Tag="578" IconVisible="False" Scale9Enable="True" LeftEage="20" RightEage="20" TopEage="20" BottomEage="20" Scale9OriginX="20" Scale9OriginY="20" Scale9Width="199" Scale9Height="40" ctype="ImageViewObjectData">
@@ -630,34 +630,34 @@
                     <PreSize X="0.4000" Y="1.0000" />
                     <FileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_0.png" Plist="lobby/image/head.plist" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="txt_name" ActionTag="-1392782282" Tag="580" IconVisible="False" LeftMargin="90.0000" RightMargin="70.0000" TopMargin="15.0000" BottomMargin="45.0000" FontSize="20" LabelText="萨达" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                  <AbstractNodeData Name="txt_name" ActionTag="-1392782282" Tag="580" IconVisible="False" LeftMargin="90.0000" RightMargin="70.0000" TopMargin="48.0000" BottomMargin="12.0000" FontSize="20" LabelText="萨达" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                     <Size X="40.0000" Y="20.0000" />
                     <AnchorPoint ScaleY="0.5000" />
-                    <Position X="90.0000" Y="55.0000" />
+                    <Position X="90.0000" Y="22.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="196" G="243" B="255" />
-                    <PrePosition X="0.4500" Y="0.6875" />
+                    <PrePosition X="0.4500" Y="0.2750" />
                     <PreSize X="0.2000" Y="0.2500" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="img_gold" ActionTag="-1178038618" Tag="581" IconVisible="False" LeftMargin="88.0000" RightMargin="67.0000" TopMargin="37.5000" BottomMargin="1.5000" LeftEage="14" RightEage="14" TopEage="13" BottomEage="13" Scale9OriginX="14" Scale9OriginY="13" Scale9Width="17" Scale9Height="15" ctype="ImageViewObjectData">
+                  <AbstractNodeData Name="img_gold" ActionTag="-1178038618" Tag="581" IconVisible="False" LeftMargin="88.0000" RightMargin="67.0000" TopMargin="4.5000" BottomMargin="34.5000" LeftEage="14" RightEage="14" TopEage="13" BottomEage="13" Scale9OriginX="14" Scale9OriginY="13" Scale9Width="17" Scale9Height="15" ctype="ImageViewObjectData">
                     <Size X="45.0000" Y="41.0000" />
                     <AnchorPoint ScaleY="0.5000" />
-                    <Position X="88.0000" Y="22.0000" />
+                    <Position X="88.0000" Y="55.0000" />
                     <Scale ScaleX="0.4000" ScaleY="0.4000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.4400" Y="0.2750" />
+                    <PrePosition X="0.4400" Y="0.6875" />
                     <PreSize X="0.2250" Y="0.5125" />
                     <FileData Type="MarkedSubImage" Path="game/jdnn/image/img_gold.png" Plist="game/jdnn/image/plistscene.plist" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="txt_balance" ActionTag="-1620044317" Tag="582" IconVisible="False" LeftMargin="106.0000" RightMargin="54.0000" TopMargin="48.0000" BottomMargin="12.0000" FontSize="20" LabelText="1000" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                  <AbstractNodeData Name="txt_balance" ActionTag="-1620044317" Tag="582" IconVisible="False" LeftMargin="106.0000" RightMargin="54.0000" TopMargin="15.0000" BottomMargin="45.0000" FontSize="20" LabelText="1000" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                     <Size X="40.0000" Y="20.0000" />
                     <AnchorPoint ScaleY="0.5000" />
-                    <Position X="106.0000" Y="22.0000" />
+                    <Position X="106.0000" Y="55.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.5300" Y="0.2750" />
+                    <PrePosition X="0.5300" Y="0.6875" />
                     <PreSize X="0.2000" Y="0.2500" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
@@ -852,7 +852,7 @@
                     <PreSize X="1.2636" Y="1.0000" />
                     <FileData Type="MarkedSubImage" Path="game/jdnn/image/img_hint.png" Plist="game/jdnn/image/plistscene.plist" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="txt_wait" ActionTag="1807061937" Tag="238" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="229.5000" RightMargin="229.5000" TopMargin="30.5000" BottomMargin="30.5000" FontSize="24" LabelText="" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                  <AbstractNodeData Name="txt_wait" ActionTag="1807061937" Tag="238" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="229.5000" RightMargin="229.5000" TopMargin="30.5000" BottomMargin="30.5000" FontSize="24" LabelText="" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                     <Size X="0.0000" Y="0.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="229.5000" Y="30.5000" />

@@ -67,7 +67,7 @@
           <AbstractNodeData Name="player" ActionTag="-454512329" Tag="2494" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="1334.0000" Y="750.0000" />
             <Children>
-              <AbstractNodeData Name="pnl_player_0" ActionTag="-719192478" Tag="177" IconVisible="False" LeftMargin="40.0000" RightMargin="1214.0000" TopMargin="290.0000" BottomMargin="330.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+              <AbstractNodeData Name="pnl_player_0" ActionTag="-719192478" VisibleForFrame="False" Tag="177" IconVisible="False" LeftMargin="40.0000" RightMargin="1214.0000" TopMargin="290.0000" BottomMargin="330.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="80.0000" Y="130.0000" />
                 <Children>
                   <AbstractNodeData Name="img_back" ActionTag="-1730906861" Tag="178" IconVisible="False" PositionPercentYEnabled="True" TopMargin="71.0000" LeftEage="26" RightEage="26" TopEage="19" BottomEage="19" Scale9OriginX="26" Scale9OriginY="19" Scale9Width="28" Scale9Height="21" ctype="ImageViewObjectData">
@@ -202,7 +202,7 @@
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
               </AbstractNodeData>
-              <AbstractNodeData Name="pnl_player_1" ActionTag="926179359" Tag="195" IconVisible="False" LeftMargin="40.0000" RightMargin="1094.0000" TopMargin="630.0000" BottomMargin="40.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+              <AbstractNodeData Name="pnl_player_1" ActionTag="926179359" VisibleForFrame="False" Tag="195" IconVisible="False" LeftMargin="40.0000" RightMargin="1094.0000" TopMargin="630.0000" BottomMargin="40.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="200.0000" Y="80.0000" />
                 <Children>
                   <AbstractNodeData Name="img_back" ActionTag="838676429" Tag="196" IconVisible="False" Scale9Enable="True" LeftEage="20" RightEage="20" TopEage="20" BottomEage="20" Scale9OriginX="20" Scale9OriginY="20" Scale9Width="199" Scale9Height="40" ctype="ImageViewObjectData">
@@ -337,7 +337,7 @@
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
               </AbstractNodeData>
-              <AbstractNodeData Name="pnl_player_2" ActionTag="1544292343" Tag="557" IconVisible="False" LeftMargin="1214.0000" RightMargin="40.0000" TopMargin="290.0000" BottomMargin="330.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+              <AbstractNodeData Name="pnl_player_2" ActionTag="1544292343" VisibleForFrame="False" Tag="557" IconVisible="False" LeftMargin="1214.0000" RightMargin="40.0000" TopMargin="290.0000" BottomMargin="330.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="80.0000" Y="130.0000" />
                 <Children>
                   <AbstractNodeData Name="img_back" ActionTag="-1484221805" Tag="558" IconVisible="False" PositionPercentYEnabled="True" TopMargin="71.0000" LeftEage="26" RightEage="26" TopEage="19" BottomEage="19" Scale9OriginX="26" Scale9OriginY="19" Scale9Width="28" Scale9Height="21" ctype="ImageViewObjectData">
@@ -472,7 +472,7 @@
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
               </AbstractNodeData>
-              <AbstractNodeData Name="pnl_player_3" ActionTag="-581122273" Tag="567" IconVisible="False" LeftMargin="820.0000" RightMargin="314.0000" TopMargin="36.0000" BottomMargin="634.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+              <AbstractNodeData Name="pnl_player_3" ActionTag="-581122273" VisibleForFrame="False" Tag="567" IconVisible="False" LeftMargin="820.0000" RightMargin="314.0000" TopMargin="36.0000" BottomMargin="634.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="200.0000" Y="80.0000" />
                 <Children>
                   <AbstractNodeData Name="img_back" ActionTag="1087903259" Tag="568" IconVisible="False" Scale9Enable="True" LeftEage="20" RightEage="20" TopEage="20" BottomEage="20" Scale9OriginX="20" Scale9OriginY="20" Scale9Width="199" Scale9Height="40" ctype="ImageViewObjectData">
@@ -607,7 +607,7 @@
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
               </AbstractNodeData>
-              <AbstractNodeData Name="pnl_player_4" ActionTag="-1766639013" Tag="577" IconVisible="False" LeftMargin="325.0000" RightMargin="809.0000" TopMargin="36.0000" BottomMargin="634.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+              <AbstractNodeData Name="pnl_player_4" ActionTag="-1766639013" VisibleForFrame="False" Tag="577" IconVisible="False" LeftMargin="325.0000" RightMargin="809.0000" TopMargin="36.0000" BottomMargin="634.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="200.0000" Y="80.0000" />
                 <Children>
                   <AbstractNodeData Name="img_back" ActionTag="-1249610099" Tag="578" IconVisible="False" Scale9Enable="True" LeftEage="20" RightEage="20" TopEage="20" BottomEage="20" Scale9OriginX="20" Scale9OriginY="20" Scale9Width="199" Scale9Height="40" ctype="ImageViewObjectData">

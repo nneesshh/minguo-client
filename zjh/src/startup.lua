@@ -28,10 +28,10 @@ function startup:start()
         director:runWithScene(scene)
     end
     
-    hcLobby = HotpatchController:new("patch/lobby/project.manifest")
-    hcLobby:init()
-    hcLobby:doUpdate()
-    --self:openSchedulerProgress()
+--    hcLobby = HotpatchController:new("patch/lobby/project.manifest")
+--    hcLobby:init()
+--    hcLobby:doUpdate()
+    self:openSchedulerProgress()
 end
 
 function startup:exit()

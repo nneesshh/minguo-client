@@ -1,0 +1,17 @@
+info face="ËÎÌו" size=32 bold=0 italic=0 charset="" unicode=1 stretchH=100 smooth=1 aa=1 padding=0,0,0,0 spacing=1,1 outline=0
+common lineHeight=33 base=28 scaleW=256 scaleH=256 pages=1 packed=0 alphaChnl=1 redChnl=0 greenChnl=0 blueChnl=0
+page id=0 file="plazafnt.png"
+chars count=13
+char id=32   x=38    y=35    width=3     height=1     xoffset=-1    yoffset=32    xadvance=16    page=0  chnl=15
+char id=48   x=114   y=0     width=22    height=34    xoffset=0     yoffset=0     xadvance=22    page=0  chnl=15
+char id=49   x=21    y=35    width=16    height=34    xoffset=0     yoffset=0     xadvance=16    page=0  chnl=15
+char id=50   x=66    y=0     width=23    height=34    xoffset=0     yoffset=0     xadvance=23    page=0  chnl=15
+char id=51   x=206   y=0     width=21    height=34    xoffset=0     yoffset=0     xadvance=21    page=0  chnl=15
+char id=52   x=90    y=0     width=23    height=34    xoffset=0     yoffset=0     xadvance=23    page=0  chnl=15
+char id=53   x=0     y=35    width=20    height=34    xoffset=0     yoffset=0     xadvance=20    page=0  chnl=15
+char id=54   x=137   y=0     width=22    height=34    xoffset=0     yoffset=0     xadvance=22    page=0  chnl=15
+char id=55   x=228   y=0     width=21    height=34    xoffset=0     yoffset=0     xadvance=21    page=0  chnl=15
+char id=56   x=160   y=0     width=22    height=34    xoffset=0     yoffset=0     xadvance=22    page=0  chnl=15
+char id=57   x=183   y=0     width=22    height=34    xoffset=0     yoffset=0     xadvance=22    page=0  chnl=15
+char id=20998 x=0     y=0     width=32    height=34    xoffset=0     yoffset=0     xadvance=32    page=0  chnl=15
+char id=24213 x=33    y=0     width=32    height=34    xoffset=0     yoffset=0     xadvance=32    page=0  chnl=15

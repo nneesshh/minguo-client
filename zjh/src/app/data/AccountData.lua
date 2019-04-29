@@ -4,6 +4,8 @@
 
 local AccountData = {}
 
+local luaj
+
 local _selfData = {
     username = "", -- 用户名  
     password = "", -- 密码            
@@ -96,7 +98,9 @@ function AccountData.getPhoneIMEI()
     if cc.PLATFORM_OS_ANDROID == targetPlatform then
         local args = {}
         local sig = "()Ljava/lang/String;"
-        local luaj = require("cocos.cocos2d.luaj")
+        if not luaj then
+            luaj = require("cocos.cocos2d.luaj")
+        end        
         local ok ,ret = luaj.callStaticMethod("org/cocos2dx/lua/AppActivity","getIMEI",args,sig)
         if not ok then
             return ""
@@ -114,7 +118,9 @@ function AccountData.getPhoneIMSI()
     if cc.PLATFORM_OS_ANDROID == targetPlatform then
         local args = {}
         local sig = "()Ljava/lang/String;"
-        local luaj = require("cocos.cocos2d.luaj")
+        if not luaj then
+            luaj = require("cocos.cocos2d.luaj")
+        end 
         local ok ,ret = luaj.callStaticMethod("org/cocos2dx/lua/AppActivity","getIMSI",args,sig)
         if not ok then
             return ""

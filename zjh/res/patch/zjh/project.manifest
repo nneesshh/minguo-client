@@ -4,13 +4,16 @@
       "md5": "cb838d0f3c2c093313223004d768a1ee"
     }, 
     "res/game/jdnn/csb/card.csb": {
-      "md5": "a3f274ea6c2b5820a7317970b336322b"
+      "md5": "267301deb3793c42e266ad861cc95a2e"
     }, 
     "res/game/jdnn/csb/gamescene.csb": {
-      "md5": "f77fc7d73c5a657848257b3a3c40f9d1"
+      "md5": "376d8c3d55ee7a7761be120ab3b0d22c"
     }, 
     "res/game/jdnn/csb/menu.csb": {
-      "md5": "2063c6b273055b21da6c7a99d1d69971"
+      "md5": "f9d7679611e7266f7931ec1111e0bb76"
+    }, 
+    "res/game/jdnn/csb/niutype.csb": {
+      "md5": "6154f27eecef723ae737e8e406eb995b"
     }, 
     "res/game/jdnn/effect/jiubei_dh/jiubei_dh.ExportJson": {
       "md5": "4b209ad447ca5d90de68b817a4786272"
@@ -19,7 +22,34 @@
       "md5": "c1b8f614b3ee8b00e1df088c84541fe4"
     }, 
     "res/game/jdnn/effect/jiubei_dh/jiubei_dh0.png": {
-      "md5": "2e95a3aedab1507103bbab4ec69ab653"
+      "md5": "c4f9e68b9af0673fbda946afebdc520f"
+    }, 
+    "res/game/jdnn/effect/nnsbai_dh/nnsbai_dh.ExportJson": {
+      "md5": "a0a8d6cf1a3ec3625225c2a5ce88eb68"
+    }, 
+    "res/game/jdnn/effect/nnsbai_dh/nnsbai_dh0.plist": {
+      "md5": "3e644c7814f60b256b9f3e3fe925a552"
+    }, 
+    "res/game/jdnn/effect/nnsbai_dh/nnsbai_dh0.png": {
+      "md5": "c09e468d1dcca5b18f097ddf9c28544e"
+    }, 
+    "res/game/jdnn/effect/nnshengli_dh/nnshengli_dh.ExportJson": {
+      "md5": "00b10ca63056fa112d77b4d9c1e668ec"
+    }, 
+    "res/game/jdnn/effect/nnshengli_dh/nnshengli_dh0.plist": {
+      "md5": "a91bb629a415a07153b77888b6017dba"
+    }, 
+    "res/game/jdnn/effect/nnshengli_dh/nnshengli_dh0.png": {
+      "md5": "1f5175854e2aaa343d6edbe6f00fd48b"
+    }, 
+    "res/game/jdnn/effect/tongsha/tongsha.ExportJson": {
+      "md5": "a543a748d988a16f2b03c1340cd8d301"
+    }, 
+    "res/game/jdnn/effect/tongsha/tongsha0.plist": {
+      "md5": "6ba6871b01552e3556d66b777a4f34b1"
+    }, 
+    "res/game/jdnn/effect/tongsha/tongsha0.png": {
+      "md5": "f9cfc5077b7c8afca15c3b9b335ad79c"
     }, 
     "res/game/jdnn/image/fnt/calfnt.fnt": {
       "md5": "a5d0f2d4ce6c6939a8cbcc4ca3bd7a52"
@@ -52,10 +82,121 @@
       "md5": "2836af8baf764ed2493c87f61e005fc7"
     }, 
     "res/game/jdnn/image/plistscene.plist": {
-      "md5": "9ea69e793974997d90a7fd87cf7f2faa"
+      "md5": "056d5f7221e5631e0b5e6ece0e2d8b07"
     }, 
     "res/game/jdnn/image/plistscene.png": {
-      "md5": "b89cd58da4507b78408a021a9b0775f4"
+      "md5": "d182e5d1a0a3340ebaa5e4d1d55de5e5"
+    }, 
+    "res/game/jdnn/sound/af_lose.mp3": {
+      "md5": "6d0515713b394d0b25eb13ae1b99da90"
+    }, 
+    "res/game/jdnn/sound/banker_win_all.mp3": {
+      "md5": "a4ae6c9c13a98b9357cc5e51628ca159"
+    }, 
+    "res/game/jdnn/sound/bgm_game.mp3": {
+      "md5": "fb3e13361faf44e9d51fd0157886e6ef"
+    }, 
+    "res/game/jdnn/sound/countdown.mp3": {
+      "md5": "3a2d5984d5aef339857697082de95c6e"
+    }, 
+    "res/game/jdnn/sound/ef_xuanzhuang.mp3": {
+      "md5": "f7c876f314c8977b04b75b2ff9dc526d"
+    }, 
+    "res/game/jdnn/sound/niu_0_m.mp3": {
+      "md5": "fb6ce80d36bb4e22bdf6a51d08b3f94b"
+    }, 
+    "res/game/jdnn/sound/niu_0_w.mp3": {
+      "md5": "33b7cd860029b9f451e04674edf5c690"
+    }, 
+    "res/game/jdnn/sound/niu_10_m.mp3": {
+      "md5": "0aaaa600b1f68a4dd526dcfcfbd7011c"
+    }, 
+    "res/game/jdnn/sound/niu_10_w.mp3": {
+      "md5": "da36a84ebd4d55419712098c59bd0399"
+    }, 
+    "res/game/jdnn/sound/niu_1_m.mp3": {
+      "md5": "a7259c6ac10259f48d2cdd047e2e6d41"
+    }, 
+    "res/game/jdnn/sound/niu_1_w.mp3": {
+      "md5": "b7a6fc259649d3bc178d1dad6fce18ad"
+    }, 
+    "res/game/jdnn/sound/niu_2_m.mp3": {
+      "md5": "eac0e9ca523d86f298f97a5edeb6bea4"
+    }, 
+    "res/game/jdnn/sound/niu_2_w.mp3": {
+      "md5": "4598d0547293f7b27b8e71737ca7da36"
+    }, 
+    "res/game/jdnn/sound/niu_3_m.mp3": {
+      "md5": "6a912972e70330892f45c3574269376d"
+    }, 
+    "res/game/jdnn/sound/niu_3_w.mp3": {
+      "md5": "cf94e27aa85fd2d431060578c3ebbaa3"
+    }, 
+    "res/game/jdnn/sound/niu_4_m.mp3": {
+      "md5": "89604f4dbba282d5ad089fa8a5ad66eb"
+    }, 
+    "res/game/jdnn/sound/niu_4_w.mp3": {
+      "md5": "b03d71f6c0088819abc81205b157c4f8"
+    }, 
+    "res/game/jdnn/sound/niu_5_m.mp3": {
+      "md5": "61d66ae98eff9ddf1794737bfe86ed8a"
+    }, 
+    "res/game/jdnn/sound/niu_5_s_m.mp3": {
+      "md5": "c10b2f8a8ae29be6149b8e70e7d1123f"
+    }, 
+    "res/game/jdnn/sound/niu_5_s_w.mp3": {
+      "md5": "35c6add8ddeeb0c27314ec30faba96f4"
+    }, 
+    "res/game/jdnn/sound/niu_5_w.mp3": {
+      "md5": "128103a7dbfe71cefb7fcd41c4f45c0b"
+    }, 
+    "res/game/jdnn/sound/niu_6_m.mp3": {
+      "md5": "88d52f62b4abfb55aa7215d219606eb3"
+    }, 
+    "res/game/jdnn/sound/niu_6_w.mp3": {
+      "md5": "5240d76a05723739814b0210f02ad48d"
+    }, 
+    "res/game/jdnn/sound/niu_7_m.mp3": {
+      "md5": "30b179e09ec39dd5e732c5ac1d779e27"
+    }, 
+    "res/game/jdnn/sound/niu_7_w.mp3": {
+      "md5": "e41ff4ed7b293f081e52929fcb05e32c"
+    }, 
+    "res/game/jdnn/sound/niu_8_m.mp3": {
+      "md5": "1cb069779fd2291227568641b33e8ed9"
+    }, 
+    "res/game/jdnn/sound/niu_8_w.mp3": {
+      "md5": "6f8e2482b18b6d3477a86556559f57f0"
+    }, 
+    "res/game/jdnn/sound/niu_9_m.mp3": {
+      "md5": "515a66308ef134c254f0d60824c3d6d5"
+    }, 
+    "res/game/jdnn/sound/niu_9_w.mp3": {
+      "md5": "faa1839c07882c740cbd6a2356ddbb01"
+    }, 
+    "res/game/jdnn/sound/niu_sizha_m.mp3": {
+      "md5": "323095f1c65ace790b3b888df9880408"
+    }, 
+    "res/game/jdnn/sound/niu_sizha_w.mp3": {
+      "md5": "252c7259b8d5fa2cd5216e5aca6ddbf2"
+    }, 
+    "res/game/jdnn/sound/niu_win.mp3": {
+      "md5": "572ebd18b1244785f63abc48f5eeea4e"
+    }, 
+    "res/game/jdnn/sound/niu_wuhua_m.mp3": {
+      "md5": "641aaeaa7a5b9a0d0ea21f83a0b9932d"
+    }, 
+    "res/game/jdnn/sound/niu_wuhua_w.mp3": {
+      "md5": "96e96773935fb86522ae92d0d62ea646"
+    }, 
+    "res/game/jdnn/sound/se_chips.mp3": {
+      "md5": "40d940399aebce4e652e4ad7be803321"
+    }, 
+    "res/game/jdnn/sound/xia_zhu_1.mp3": {
+      "md5": "a62123894c85c8662113b991c01e0cf3"
+    }, 
+    "res/game/jdnn/sound/zhuang.mp3": {
+      "md5": "3ac7cba3b8aa3b6b2f20e724f27b0195"
     }, 
     "res/game/public/background/img_background.jpg": {
       "md5": "63f5bd60dec54b52d8b2671ed25ae6fb"
@@ -85,7 +226,7 @@
       "md5": "07b69d5cdd57848af93a6653c874502a"
     }, 
     "res/game/zjh/csb/menu.csb": {
-      "md5": "318ac0ee9de5594adc7bde47dabdada1"
+      "md5": "b3e8673d489344a4cff37202f5cc4865"
     }, 
     "res/game/zjh/effect/huo_2/huo_2.ExportJson": {
       "md5": "6309e64dd5774cab68d7ca4cab919f28"
@@ -94,7 +235,7 @@
       "md5": "836ab7d7529fc40c4e2087a54d3a80cb"
     }, 
     "res/game/zjh/effect/huo_2/huo_20.png": {
-      "md5": "aa07095e29a867071aab4c802331c161"
+      "md5": "92b5577f2edc5b42c4848b9776ca8d7c"
     }, 
     "res/game/zjh/effect/jiubei_dh/jiubei_dh.ExportJson": {
       "md5": "4b209ad447ca5d90de68b817a4786272"
@@ -103,7 +244,7 @@
       "md5": "c1b8f614b3ee8b00e1df088c84541fe4"
     }, 
     "res/game/zjh/effect/jiubei_dh/jiubei_dh0.png": {
-      "md5": "2e95a3aedab1507103bbab4ec69ab653"
+      "md5": "c4f9e68b9af0673fbda946afebdc520f"
     }, 
     "res/game/zjh/effect/vs_dh1/vs_dh1.ExportJson": {
       "md5": "2979306f3a29e810b619674d5cad862a"
@@ -112,7 +253,7 @@
       "md5": "89cbdb6891f41f7dfd911f643b1d3e6a"
     }, 
     "res/game/zjh/effect/vs_dh1/vs_dh10.png": {
-      "md5": "ea467a3bf30d3818105c951262b40c47"
+      "md5": "104892a34ff88f89b73f83e933da2718"
     }, 
     "res/game/zjh/effect/vs_dh2/vs_dh2.ExportJson": {
       "md5": "bddfc47776a4ee16087bc9a2cbbd7239"
@@ -121,7 +262,7 @@
       "md5": "f48ff211b7599350913d9957ae78c3fd"
     }, 
     "res/game/zjh/effect/vs_dh2/vs_dh20.png": {
-      "md5": "107e6b208625d48e5d44fc7268ade27c"
+      "md5": "76002a908e84f70c2ca1cb27e0cbdae1"
     }, 
     "res/game/zjh/effect/vs_dh3/vs_dh3.ExportJson": {
       "md5": "6a9290a6daaf6f43602daa5885eceea7"
@@ -130,7 +271,7 @@
       "md5": "55200a7f8d7414161ed9ecd6ffa1f151"
     }, 
     "res/game/zjh/effect/vs_dh3/vs_dh30.png": {
-      "md5": "b6e6580e5506248e1254bff0a6eb2624"
+      "md5": "1e7259eae28903b6d7e5333e7943d871"
     }, 
     "res/game/zjh/effect/vs_gzyz/vs_gzyz.ExportJson": {
       "md5": "ca9ffcbcb96993033ebabc050e089419"
@@ -139,7 +280,7 @@
       "md5": "f592cc0262f13fbaddadca9fb4c5f73e"
     }, 
     "res/game/zjh/effect/vs_gzyz/vs_gzyz0.png": {
-      "md5": "35f2fc1b225228a329f5d360ef79f5be"
+      "md5": "c98434457bd3276a6879edec1bc7ee61"
     }, 
     "res/game/zjh/effect/vs_qmlw/vs_qmlw.ExportJson": {
       "md5": "566cc8b88865496b590b25d7cb7ca6af"
@@ -148,7 +289,7 @@
       "md5": "c7462694eb782f1f22abffc17dc7ea71"
     }, 
     "res/game/zjh/effect/vs_qmlw/vs_qmlw0.png": {
-      "md5": "c2ea3d23642907395b0a3c29996b43ee"
+      "md5": "a4b0b36bc644557c37e285a2d2d5bd2e"
     }, 
     "res/game/zjh/image/fnt/losefnt.fnt": {
       "md5": "1297630d3d297844c33b7b1033db3a56"
@@ -199,7 +340,7 @@
       "md5": "7a58c098281b373f6a7ca6d67a88cc2b"
     }, 
     "res/game/zjh/sound/countdown.mp3": {
-      "md5": "26a0d64fbdd0738f2c209ef6cf9c2d93"
+      "md5": "3a2d5984d5aef339857697082de95c6e"
     }, 
     "res/game/zjh/sound/didi.mp3": {
       "md5": "2bd01249bffbacd33576173611437678"
@@ -616,40 +757,40 @@
       "md5": "515b83514fa91019ea3fd792b7a59d0a"
     }, 
     "src/app/game/Player.lua": {
-      "md5": "0f8254f71dd140658d8b522ea8d4b86a"
+      "md5": "42ca7d06104d3b8fe50c156547a13053"
     }, 
     "src/app/game/PlayerData.lua": {
       "md5": "7711a93e5d4cf5276e6e27d72f0b57b6"
     }, 
     "src/app/game/jdnn/GameBtnNode.lua": {
-      "md5": "50b4e0acbd52771215f1b02a1c13bdb7"
+      "md5": "c9f009e2ad82c33ae68629466a36e142"
     }, 
     "src/app/game/jdnn/GameCardNode.lua": {
-      "md5": "66a7a0fc331235cc6bdbc04c001fc259"
+      "md5": "3ab1e8b2235061809782aeb64f11a975"
     }, 
     "src/app/game/jdnn/GameData.lua": {
-      "md5": "a53cc843a9fd41c99d00da4a91a5067a"
+      "md5": "4db3a7ed69ce15761e7c2a56a33b4616"
     }, 
     "src/app/game/jdnn/GameEnum.lua": {
-      "md5": "97d5aadcdfd8ba551cdde48cb883361f"
+      "md5": "20bb64d812a68f03284434196c65fe69"
     }, 
     "src/app/game/jdnn/GameHandCardNode.lua": {
-      "md5": "f3f45d649fc8162d070437fb6197aaf9"
+      "md5": "fc17582a75316e2085d8ffc50501d4b2"
     }, 
     "src/app/game/jdnn/GameMenuNode.lua": {
-      "md5": "705bd9e25fc283db8ace904acf46e783"
+      "md5": "52444b2fccfadefd2ab187643ae037f9"
     }, 
     "src/app/game/jdnn/GameOutCardNode.lua": {
-      "md5": "d6ede03f2b4cb7a9289d47c1bd026ccf"
+      "md5": "ef73ed078f665615c2ad0d68d95ec3df"
     }, 
     "src/app/game/jdnn/GamePlayerNode.lua": {
-      "md5": "6b143f21c8860101e755add04d25d205"
+      "md5": "be6e0ee2d671382f842af858bd6553cf"
     }, 
     "src/app/game/jdnn/GamePresenter.lua": {
-      "md5": "411df58f0b1854fe628d7b584091d814"
+      "md5": "e818f08e192fdf8c05078ecc2be0446f"
     }, 
     "src/app/game/jdnn/GameScene.lua": {
-      "md5": "93e7065b76e1fbb8c0c301da60519307"
+      "md5": "69378e235d8b8b9e019644ca02a90d0c"
     }, 
     "src/app/game/zjh/GameBtnNode.lua": {
       "md5": "1c00e32eb87e09fe4571fbba7405e29e"
@@ -667,13 +808,13 @@
       "md5": "192defd36077938e5cd528c2fde5999f"
     }, 
     "src/app/game/zjh/GameMenuNode.lua": {
-      "md5": "3a872628001a450ccf266201c7160356"
+      "md5": "e9435cb2542e444a1b83384fdea1fc0f"
     }, 
     "src/app/game/zjh/GamePlayerNode.lua": {
       "md5": "c6d56059f000e8de651cf9bd6a425584"
     }, 
     "src/app/game/zjh/GamePresenter.lua": {
-      "md5": "de828378eeb1a8387e032b00eda91a34"
+      "md5": "d71f9c33edbcae1ffb01ab90d0d777bd"
     }, 
     "src/app/game/zjh/GameScene.lua": {
       "md5": "ad02bbbe91c0d17fb79576286f5b7cbd"
@@ -682,7 +823,7 @@
       "md5": "b0bf4105e6e9218803e4d9e969f27410"
     }, 
     "src/app/lobby/MainPresenter.lua": {
-      "md5": "34b064649eeb4a3c8728fd232770baf5"
+      "md5": "c744c5852ad6d831eb2ec96af0a34ed0"
     }, 
     "src/app/lobby/MainScene.lua": {
       "md5": "42169981f9ef3e47b58101f8bb546444"
@@ -706,7 +847,7 @@
       "md5": "804d15b5d789277e90445fdd2494591c"
     }, 
     "src/app/lobby/login/LoginLayer.lua": {
-      "md5": "896eae3a38a423866726f8f0865c63eb"
+      "md5": "45d832480dd92fb54d2c326cb6d04093"
     }, 
     "src/app/lobby/login/LoginPresenter.lua": {
       "md5": "701b11b2ab4d2370261ea67e74237845"
@@ -792,9 +933,6 @@
     "src/hotpatch/HotpatchController.lua": {
       "md5": "3c1677be77d23025b84c0a87eb9e0d3c"
     }, 
-    "src/hotpatch/UpdateScene.lua": {
-      "md5": "a46f0522aacab416459787257cbe1cb8"
-    }, 
     "src/main.lua": {
       "md5": "3aa64344f5b9abc3ad16f7e4866bf6b0"
     }, 
@@ -820,10 +958,10 @@
       "md5": "1c502a86cea06dfaf7a602a044bc971f"
     }, 
     "src/upconn/NiuUpconn.lua": {
-      "md5": "82ed03cfebf1f72eff413a41a86e877b"
+      "md5": "da26f4e866fa36f3afaa1df179d7de98"
     }, 
     "src/upconn/PublicUpconn.lua": {
-      "md5": "cac26dbf7529d53afcdf8474bf6694b8"
+      "md5": "f914f3d826789e55bd065d8d6891ebb3"
     }, 
     "src/upconn/ZjhDefs.lua": {
       "md5": "0d0a2dcb0ca0b6691e9a305c57a7a77a"
@@ -832,7 +970,7 @@
       "md5": "9cb740e3438c3ac98bca77f4f7f8c85f"
     }, 
     "src/upconn/ZjhUpconn.lua": {
-      "md5": "e3e401adb185a44fa9ff246f7fdb4662"
+      "md5": "6feeffea5235a65950a7505ad1eeb002"
     }, 
     "src/upconn/config/config_mgzjh_robot.lua": {
       "md5": "05f05aba08c15437e367055709edb943"
@@ -842,8 +980,8 @@
     }
   }, 
   "engineVersion": "cocos2dx-lua-3.10", 
-  "packageUrl": "ftp://anonymous:a@b.com@192.168.209.129/patch/zjh/assets/", 
-  "remoteManifestUrl": "ftp://anonymous:a@b.com@192.168.209.129/patch/zjh/project.manifest", 
-  "remoteVersionUrl": "ftp://anonymous:a@b.com@192.168.209.129/patch/zjh/version.manifest", 
+  "packageUrl": "http://192.168.200.101:9876/patch/patch/zjh/assets/", 
+  "remoteManifestUrl": "http://192.168.200.101:9876/patch/patch/zjh/project.manifest", 
+  "remoteVersionUrl": "http://192.168.200.101:9876/patch/patch/zjh/version.manifest", 
   "version": "1.1.0"
 }

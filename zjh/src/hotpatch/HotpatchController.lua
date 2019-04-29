@@ -1,7 +1,10 @@
 local _M = {
     _VERSION = "1.0.0.1",
-		_DESCRIPTION = "hotpacth controller",
+    _DESCRIPTION = "hotpacth controller",
+    nextId = 1
 }
+
+local mt = {__index = _M}
 
 local tbl_insert = table.insert
 local setmetatable, getmetatable = setmetatable, getmetatable
@@ -12,184 +15,167 @@ local math_ceil = math.ceil
 -- Localize
 local cwd = (...):gsub("%.[^%.]+$", "") .. "."
 
-local function __toSizeStr(value)
-  local str = ""
-  if value > 1024*1024*1024 then
-    value = math.ceil(value / (1024*1024*1024)*100) / 100
-    str = value.."G"
-  elseif value > 1024*1024 then
-    value = math.ceil(value / (1024*1024)*100) / 100
-    str = value.."M"
-  elseif value > 1024 then
-    value = math.ceil(value / (1024)*100) / 100
-    str = value.."K"
-  else
-    str = value.."B"
-  end    
-  return str
-end
+local AM_STATE = {
+    UNCHECKED = 0,
+    PREDOWNLOAD_VERSION = 1,
+    DOWNLOADING_VERSION = 2,
+    VERSION_LOADED = 3,
+    PREDOWNLOAD_MANIFEST = 4,
+    DOWNLOADING_MANIFEST = 5,
+    MANIFEST_LOADED = 6,
+    NEED_UPDATE = 7,
+    UPDATING = 8,
+    UNZIPPING = 9,
+    UP_TO_DATE = 10,
+    FAIL_TO_UPDATE = 11
+}
 
 --
-local mt = {__index = _M}
-
 function _M.new(self, projectManifest, savePath)
+    --
+    local nextId = _M.nextId
+    _M.nextId = _M.nextId + 1
     return setmetatable(
         {
-					--
-					id = id,
-					updateInfo = {},
-					assetsManager = nil,
-
-					--
-					projectManifest = projectManifest or "patch/project.manifest",
-					savePath = savePath and cc.FileUtils:getInstance():getWritablePath() .. savePath or cc.FileUtils:getInstance():getWritablePath() .. "update"
+            --
+            id = nextId,
+            assetsManager = nil,
+            localVersion = nil,
+            remoteVersion = nil,
+            totalSize = 0,
+            tips = "",
+            abort = false, -- client corrupted, can't go on
+            --
+            projectManifest = projectManifest or "patch/project.manifest",
+            savePath = savePath and cc.FileUtils:getInstance():getWritablePath() .. savePath or
+                cc.FileUtils:getInstance():getWritablePath() .. "update"
         },
         mt
     )
 end
 
-local CHECK_ASSETS_STATE = 7
+--
+function _M:init()
+    self.assetsManager = cc.AssetsManagerEx:create(self.projectManifest, self.savePath)
+    self.assetsManager:retain()
 
-function _M:initAssetsManager()
-	self.assetsManager = cc.AssetsManagerEx:create(self.projectManifest, self.savePath):retain()
-	self.updateInfo.oldVersion = self.assetsManager:getLocalManifest():getVersion()
-	
-	local checkListener = cc.EventListenerAssetsManagerEx:create(self.assetsManager, handler(self, self.assetsCheckEvent))
-	local eventDispatcher = cc.Director:getInstance():getEventDispatcher()
-	eventDispatcher:addEventListenerWithFixedPriority(checkListener, 1)
-	self.updateInfo.checkListener = checkListener
-
-	self.objects["Node_loading"]:hide()
-	self.objects["Text_prompt"]:setString("检查更新中...")
-end
-
-function _M:destroyAssetsManager()
-	local eventDispatcher = cc.Director:getInstance():getEventDispatcher()
-	if self.updateInfo.checkListener then
-		eventDispatcher:removeEventListener(self.updateInfo.checkListener)
-		self.updateInfo.checkListener = nil
-	end
-	if self.updateInfo.updateListener then
-		eventDispatcher:removeEventListener(self.updateInfo.updateListener)
-		self.updateInfo.updateListener = nil
-	end
-	_OLD_VERSION = self.updateInfo.oldVersion
-	_NEW_VERSION = self.updateInfo.newVersion
-	self.assetsManager:release()
-	self.assetsManager = nil
-	self.updateInfo = nil
-end
-
-function _M:procUI()
-	self:procAdviseUI()
-end
-
-function _M:procAdviseUI()
-	local layItem = cc.CSLoader:createNode(config.path .. "AdviseNode.csb")
-	local adviseNode = layItem:getChildByName("Node_advise")
-	layItem:addTo(self.objects["Panel_Middle"])
-	layItem:setPosition(cc.p(568, 320))
-
-	adviseNode:setOpacity(0):runAction(cc.FadeIn:create(0.3))
-	local callback = function() self.assetsManager:checkUpdate() end
-	layItem:runAction(cc.Sequence:create(cc.DelayTime:create(2), cc.FadeOut:create(0.3), cc.CallFunc:create(callback)))
-end
-
-function _M:refreshWithUpdate()
-	local updateListener = cc.EventListenerAssetsManagerEx:create(self.assetsManager, handler(self, self.assetsUpdateEvent))
-	local eventDispatcher = cc.Director:getInstance():getEventDispatcher()
-	eventDispatcher:removeEventListener(self.updateInfo.checkListener)
-	eventDispatcher:addEventListenerWithFixedPriority(updateListener, 1)
-	self.updateInfo.updateListener = updateListener
-	self.updateInfo.checkListener = nil
-	self.assetsManager:update()
-
-	self.objects["Node_loading"]:setVisible(true)
-	self.objects["LoadingBar_load"]:setPercent(0)
-end
-
-function _M:refreshWithLogin()
-	gg.ctrlManager["LoginLayer"]:removeFromParent(true)
-	gg.schedulerHelper:unscheduleAllScriptEntry()
-	display.removeAllSpriteFrames()
-
-	package.loaded["model.enterGame"] = nil
-	require("model.enterGame")
-end
-
-
---------evt
---------btnEvent
-function _M:assetsCheckEvent(event)
-	local eventCode, errorCode = event:getEventCode(), event:getCURLECode()
-	local isCheck = self.assetsManager:getState() == CHECK_ASSETS_STATE
-	if eventCode == cc.EventAssetsManagerEx.EventCode.ERROR_NO_LOCAL_MANIFEST then
-		self.objects["Text_prompt"]:setString("客户端损坏, 请下载新的安装包" )
-	elseif eventCode == cc.EventAssetsManagerEx.EventCode.ERROR_DOWNLOAD_MANIFEST then
-		self.objects["Text_prompt"]:setString("获取版本信息出错" )
-	elseif eventCode == cc.EventAssetsManagerEx.EventCode.ERROR_PARSE_MANIFEST then
-		self.objects["Text_prompt"]:setString("解析版本信息出错" )
-	elseif eventCode == cc.EventAssetsManagerEx.EventCode.NEED_NEW_CLIENT then
-		local title = "更新信息"
-		local content = "需要重新下载客户端"
-		local onSure = function() cc.Director:getInstance():endToLua() end
-		self.objects["Text_prompt"]:setString("客户端已更新")
-		gg.utils.showMessageTip(title, content, onSure)
-	elseif eventCode == cc.EventAssetsManagerEx.EventCode.NEW_VERSION_FOUND and isCheck then
-		self.objects["Text_prompt"]:setString("开始解析版本信息" )
-	elseif eventCode == cc.EventAssetsManagerEx.EventCode.NEW_VERSION_FOUND and not isCheck then
-		self.updateInfo.newVersion = self.assetsManager:getRemoteManifest():getVersion()
-		self.updateInfo.total = self.assetsManager:getTotalSize()
-		local sizeStr = __toSizeStr(self.updateInfo.total)
-
-		local title = "更新信息"
-		local onSure = handler(self, self.refreshWithUpdate)
-		local onCancel = function() cc.Director:getInstance():endToLua() end
-		local content = "检查到新版本#k" .. self.updateInfo.newVersion .. "#k\n需要下载#k" .. sizeStr .. "#k大小的文件"
-		
-		self.objects["Text_prompt"]:setString("发现新版本")
-		gg.utils.showMessageTip(title, content, onSure, onCancel)
-	elseif eventCode == cc.EventAssetsManagerEx.EventCode.ALREADY_UP_TO_DATE then
-		gg.ctrlManager["LoginLayer"]:loadRes()
-		self:destroyAssetsManager()
-		self:requireCfg()
-		self:onClose()
-	elseif eventCode == cc.EventAssetsManagerEx.EventCode.UPDATE_PROGRESSION then
-		local percent = math.floor(event:getPercent()) .. "%"
-		self.objects["Text_prompt"]:setString("获取版本信息:" .. percent)
-	elseif eventCode == cc.EventAssetsManagerEx.EventCode.CHECK_COMPRESS then
-		self.objects["Text_prompt"]:setString("检查更新中...")
-	end
+    self.localVersion = self.assetsManager:getLocalManifest():getVersion()
+    self.remoteVersion = nil
+    self.tips = "检查更新中..."
 end
 
 --
-function _M:assetsUpdateEvent(event)
-	local eventCode, errorCode = event:getEventCode(), event:getCURLECode()
-	if eventCode == cc.EventAssetsManagerEx.EventCode.ERROR_NO_LOCAL_MANIFEST then
-		self.objects["Text_prompt"]:setString("客户端损坏, 请下载新的安装包" )
-	elseif eventCode == cc.EventAssetsManagerEx.EventCode.UPDATE_PROGRESSION then
-		local percent = event:getPercent()
-		self.objects["LoadingBar_load"]:setPercent(percent)
-		local totalStr = __toSizeStr(self.updateInfo.total)
-		local curStr = __toSizeStr(self.updateInfo.total * percent / 100)
-		self.objects["Text_prompt"]:setString("载入中: " .. curStr .. "/" .. totalStr)
-	elseif eventCode == cc.EventAssetsManagerEx.EventCode.ERROR_UPDATING then
-		local title = "更新失败"
-		local content = "#k游戏维护中#k\n请留意官网开服公告"
-		local onSure = function() cc.Director:getInstance():endToLua() end
-		gg.utils.showMessageTip(title, content, onSure)
-	elseif eventCode == cc.EventAssetsManagerEx.EventCode.UPDATE_FINISHED then
-		_Loaded_New_Module = {}
-	    sp.SkeletonAnimation:removeAllSkeletonData()
-	    cc.Director:getInstance():getTextureCache():removeAllTextures()
-		self:destroyAssetsManager()
-		self:refreshWithLogin()
-	elseif eventCode == cc.EventAssetsManagerEx.EventCode.UPDATE_FAILED then
-		local title = "更新失败"
-		local content = "更新失败, 是否重试"
-		local onSure = handler(self, self.refreshWithUpdate)
-		local onCancel = function() cc.Director:getInstance():endToLua() end
-		gg.utils.showMessageTip(title, content, onSure, onCancel)	end
+function _M:release()
+    local eventDispatcher = cc.Director:getInstance():getEventDispatcher()
+    if self.updateListener then
+        eventDispatcher:removeEventListener(self.updateListener)
+        self.updateListener = nil
+    end
+    self.assetsManager:release()
+    self.assetsManager = nil
+end
+
+--
+function _M:doUpdate()
+    if not self.assetsManager:getLocalManifest():isLoaded() then
+        print("[AM]: fail to update assets, step skipped.")
+        self.tips = "加载本地更新配置失败, 跳过版本更新流程"
+        self.abort = false
+    else
+        local updateListener =
+            cc.EventListenerAssetsManagerEx:create(
+            self.assetsManager,
+            function(event)
+                self:onUpdateEvent(event)
+            end
+        )
+        local eventDispatcher = cc.Director:getInstance():getEventDispatcher()
+        eventDispatcher:addEventListenerWithFixedPriority(updateListener, 1)
+        self.updateListener = updateListener
+        self.assetsManager:update()
+    end
+end
+
+--
+function _M:reloadHotPatchModules()
+    --gg.ctrlManager["LoginLayer"]:removeFromParent(true)
+    --gg.schedulerHelper:unscheduleAllScriptEntry()
+    --display.removeAllSpriteFrames()
+    --package.loaded["model.enterGame"] = nil
+    --require("model.enterGame")
+end
+
+--
+function _M:onUpdateEvent(event)
+    local eventCode = event:getEventCode()
+
+    if cc.EventAssetsManagerEx.EventCode.ERROR_NO_LOCAL_MANIFEST == eventCode then
+        print("[AM]: no local manifest file found, skip assets update.", eventCode)
+        self.tips = "未找到本地更新配置文件, 跳过版本更新流程"
+    elseif cc.EventAssetsManagerEx.EventCode.ERROR_DOWNLOAD_MANIFEST == eventCode then
+        print("[AM]: fail to download manifest file, update skipped.", eventCode)
+        self.tips = "获取版本信息出错"
+    elseif cc.EventAssetsManagerEx.EventCode.ERROR_PARSE_MANIFEST == eventCode then
+        print("[AM]: fail to parse manifest file, update skipped.", eventCode)
+        self.tips = "解析版本信息出错"
+		elseif cc.EventAssetsManagerEx.EventCode.NEW_VERSION_FOUND == eventCode then
+        local needUpdate = self.assetsManager:getState() == AM_STATE.NEED_UPDATE
+				if not needUpdate then
+						print("[AM]: new version found.", eventCode)
+            self.tips = "开始解析版本信息"
+        else
+						-- need update
+						print("[AM]: new version found and need update.", eventCode)
+            self.remoteVersion = self.assetsManager:getRemoteManifest():getVersion()
+            self.tips = "发现新版本" .. self.remoteVersion
+        end
+    elseif cc.EventAssetsManagerEx.EventCode.ALREADY_UP_TO_DATE == eventCode then
+        self:release()
+        self.tips = "已经是最新版本"
+		elseif cc.EventAssetsManagerEx.EventCode.UPDATE_PROGRESSION == eventCode then
+				print("[AM]: update progression...", eventCode)
+        local assetId = event:getAssetId()
+        local percent = event:getPercent()
+        local strInfo = ""
+
+        if assetId == cc.AssetsManagerExStatic.VERSION_ID then
+            strInfo = string.format("Version file: %d%%", percent)
+        elseif assetId == cc.AssetsManagerExStatic.MANIFEST_ID then
+            strInfo = string.format("Manifest file: %d%%", percent)
+        else
+            strInfo = string.format("%d%%", percent)
+        end
+        self.tips = "正在进行版本更新: " .. strInfo
+    elseif cc.EventAssetsManagerEx.EventCode.ASSET_UPDATED == eventCode then
+        print("[AM]: asset updated.", eventCode)
+        self:release()
+        self.tips = "版本更新完毕"
+
+        -- reload
+        self.reloadHotPatchModules()
+		elseif cc.EventAssetsManagerEx.EventCode.ERROR_UPDATING == eventCode then
+				print("[AM]: error updating.", eventCode)
+        self:release()
+        self.tips = "游戏维护中, 请留意官网开服公告"
+        self.abort = true
+    elseif cc.EventAssetsManagerEx.EventCode.UPDATE_FINISHED == eventCode then
+        print("[AM]: update finished.", eventCode)
+        self:release()
+        self.tips = "版本更新完毕"
+
+        -- reload
+        self.reloadHotPatchModules()
+		elseif cc.EventAssetsManagerEx.EventCode.UPDATE_FAILED == eventCode then
+				print("[AM]: update failed.", eventCode)
+        self:release()
+        self.tips = "版本更新失败"
+        self.abort = true
+		elseif cc.EventAssetsManagerEx.EventCode.ERROR_DECOMPRESS == eventCode then
+				print("[AM]: error decompress.", eventCode)
+        self:release()
+        self.tips = "解压失败"
+        self.abort = true
+    end
 end
 
 return _M

@@ -5,15 +5,7 @@ local _M = {
 }
 
 local mt = {__index = _M}
-
-local tbl_insert = table.insert
 local setmetatable, getmetatable = setmetatable, getmetatable
-local tostring, pairs, ipairs = tostring, pairs, ipairs
-local str_sub = string.sub
-local math_ceil = math.ceil
-
--- Localize
-local cwd = (...):gsub("%.[^%.]+$", "") .. "."
 
 local AM_STATE = {
     UNCHECKED = 0,

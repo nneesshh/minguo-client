@@ -3,95 +3,8 @@
     "res/lobby/csb/account.csb": {
       "md5": "3c7de95c9984900f2da0ba61e7b892a3"
     }, 
-    "res/lobby/csb/debug.csb": {
-      "md5": "611811a8650f8630cbb9871af4c0e123"
-    }, 
-    "res/lobby/csb/head.csb": {
-      "md5": "cf7f699bebe1165859e5ecdba799f209"
-    }, 
-    "res/lobby/csb/help.csb": {
-      "md5": "870ffa0192bef847087c8e0a2e4214bf"
-    }, 
-    "res/lobby/csb/hint.csb": {
-      "md5": "c4094731e63284790632c81f18e64710"
-    }, 
-    "res/lobby/csb/hint1.csb": {
-      "md5": "c4094731e63284790632c81f18e64710"
-    }, 
-    "res/lobby/csb/hint2.csb": {
-      "md5": "6704e9fc47d16af32108cb5923fb5d05"
-    }, 
-    "res/lobby/csb/hintload.csb": {
-      "md5": "6f1f05f4ef0311a40530d96a527cad7f"
-    }, 
     "res/lobby/csb/loading.csb": {
       "md5": "648bf1e98346c0b3536e271781463ac5"
-    }, 
-    "res/lobby/csb/lobby.csb": {
-      "md5": "abdbf318ce8fb1f504d80e493b0102fc"
-    }, 
-    "res/lobby/csb/login.csb": {
-      "md5": "1a17042dbd9be66d1cb2f35d3a4483e5"
-    }, 
-    "res/lobby/csb/password.csb": {
-      "md5": "e79d3d0f4e0cf08e0406424ca398245b"
-    }, 
-    "res/lobby/csb/register.csb": {
-      "md5": "8534a6587f37f1b26ca022e4ac34ebda"
-    }, 
-    "res/lobby/csb/set.csb": {
-      "md5": "81c20273e645ba01c198e8ea82cdb72f"
-    }, 
-    "res/lobby/csb/shop.csb": {
-      "md5": "092a30f9a836893b4adda712d184971e"
-    }, 
-    "res/lobby/csb/usercenter.csb": {
-      "md5": "b59db09b293e70cb7ae29065151cdd1b"
-    }, 
-    "res/lobby/csb/verifylogin.csb": {
-      "md5": "3df34eff12ae6f4a8a787819143b5b13"
-    }, 
-    "res/lobby/effect/jiazhai/jiazhai.ExportJson": {
-      "md5": "ba321a03dd5b4bc173c01628ed00021a"
-    }, 
-    "res/lobby/effect/jiazhai/jiazhai0.plist": {
-      "md5": "5b6b26cc58edfa1229951bb5e83deec8"
-    }, 
-    "res/lobby/effect/jiazhai/jiazhai0.png": {
-      "md5": "9c849bfdf029ccf5b367195a3eb0e128"
-    }, 
-    "res/lobby/image/fnt/plazafnt.fnt": {
-      "md5": "67b4eb994fb82472ee716386bd692a9b"
-    }, 
-    "res/lobby/image/fnt/plazafnt.png": {
-      "md5": "47ab473a7efdb38f05866fec5f7947ae"
-    }, 
-    "res/lobby/image/head.plist": {
-      "md5": "1e806a54bb1de6be8bd29e6f83bfeef6"
-    }, 
-    "res/lobby/image/head.png": {
-      "md5": "d51f685ff60076d96ece79a3311e2a24"
-    }, 
-    "res/lobby/image/head/img_light.png": {
-      "md5": "60d5041f71c164ca9465fb39a6dfa672"
-    }, 
-    "res/lobby/image/head/imt_title.png": {
-      "md5": "d450f0dce23c2fe48d923f644d95be2c"
-    }, 
-    "res/lobby/image/help/img_psz_rule.png": {
-      "md5": "f14a2b4b96e2cec281918e92ec6c2fc7"
-    }, 
-    "res/lobby/image/help/img_title.png": {
-      "md5": "7938db58d2a70b73a636982a0584c8f7"
-    }, 
-    "res/lobby/image/hint/img_bank.png": {
-      "md5": "aa7c11fca8b9de2ab8e1786c3237732d"
-    }, 
-    "res/lobby/image/hint/img_charge.png": {
-      "md5": "cdee693b937067cd2f2458994626ea9f"
-    }, 
-    "res/lobby/image/hint/img_ts.png": {
-      "md5": "93cdc0adbab0040c4aace1510e6840fe"
     }, 
     "res/lobby/image/loading/account.png": {
       "md5": "76da8466be63b84f9a696cc8a7a4477a"
@@ -108,104 +21,8 @@
     "res/lobby/image/loading/tourist1.png": {
       "md5": "50ce41b6c17a5911cd1525da2d0cfbae"
     }, 
-    "res/lobby/image/lobby/btn_brnn.png": {
-      "md5": "6c3a2553b919b703640af20bcab52dd1"
-    }, 
-    "res/lobby/image/lobby/btn_ddz.png": {
-      "md5": "9ee17d51b037d7df48961e629e5cd4ba"
-    }, 
-    "res/lobby/image/lobby/btn_jdnn.png": {
-      "md5": "4cc12db0eb38e04d6eab31a251632dff"
-    }, 
-    "res/lobby/image/lobby/btn_lhd.png": {
-      "md5": "e5b7c66bdfbb1c69c2e6563944b4f3dd"
-    }, 
-    "res/lobby/image/lobby/btn_mail.png": {
-      "md5": "419f30da5db3313ff8561c1870f05477"
-    }, 
-    "res/lobby/image/lobby/btn_notice.png": {
-      "md5": "129c0fdb28206a308a8527c1ba01980f"
-    }, 
-    "res/lobby/image/lobby/btn_psz.png": {
-      "md5": "60583916291fdea195d32cfbacbf0c8c"
-    }, 
-    "res/lobby/image/lobby/btn_qznn.png": {
-      "md5": "e0617e8f811737c5588f0bd491b88b20"
-    }, 
-    "res/lobby/image/lobby/btn_rank.png": {
-      "md5": "fa76a27bb3e28a3beab5d8bf05f29841"
-    }, 
-    "res/lobby/image/lobby/btn_safe.png": {
-      "md5": "de4c17e88ad132d5b6a26eddb6d0ad7c"
-    }, 
-    "res/lobby/image/lobby/btn_set.png": {
-      "md5": "11bc77b60ae135163c490771f3035d01"
-    }, 
-    "res/lobby/image/lobby/btn_shop.png": {
-      "md5": "dd71eee99708d9c11cf2b10943d3ce03"
-    }, 
-    "res/lobby/image/lobby/img_background.jpg": {
-      "md5": "0f673baf73fdf69e09e2a8204ad45b90"
-    }, 
-    "res/lobby/image/lobby/img_gold.png": {
-      "md5": "088f888e6f9814488457809dbcdaeecf"
-    }, 
-    "res/lobby/image/lobby/img_gold_add.png": {
-      "md5": "3369d830a00f99a000605ec906dbaaf7"
-    }, 
-    "res/lobby/image/lobby/img_gold_back.png": {
-      "md5": "cc3c9c21a3fc635f01de1da2287603b2"
-    }, 
-    "res/lobby/image/lobby/img_head_back.png": {
-      "md5": "d3a8e2b2d1037d2cbf865388d5e5f03a"
-    }, 
-    "res/lobby/image/lobby/img_info_back.png": {
-      "md5": "76dbbdc15622008d7e4534885426c469"
-    }, 
-    "res/lobby/image/lobby/img_point.png": {
-      "md5": "ed612ac41bc009215da65e57f43a8c35"
-    }, 
-    "res/lobby/image/login/btn_phone.png": {
-      "md5": "906b32cb052d52aceca65367abb7be4b"
-    }, 
-    "res/lobby/image/login/btn_sign_up.png": {
-      "md5": "d712030b14fb222349e231b2ccee000d"
-    }, 
-    "res/lobby/image/login/img_back.png": {
-      "md5": "8eff2e04cec7cd5ba4ed43f902d3256f"
-    }, 
-    "res/lobby/image/login/img_hint.png": {
-      "md5": "77c9eadbc01c4d2d0222f8e71ac785b9"
-    }, 
-    "res/lobby/image/login/img_login.png": {
-      "md5": "76ee2e9b8e2ccf4ce29757deef3abddc"
-    }, 
-    "res/lobby/image/login/img_password.png": {
-      "md5": "5a8bd842f73d784f69b563f89d9dba4d"
-    }, 
-    "res/lobby/image/login/img_register.png": {
-      "md5": "ed43516aee0ac13809cd403e0f09cb40"
-    }, 
     "res/lobby/image/login/img_sure.png": {
       "md5": "643452cce74a4f8dd0a37c2985842d7a"
-    }, 
-    "res/lobby/image/login/img_title_login.png": {
-      "md5": "9117b432e8a34c32858b8cbe4be59ec3"
-    }, 
-    "res/lobby/image/login/img_verify_login.png": {
-      "md5": "add26eb6aab466f36a33f1ed11610573"
-    }, 
-    "res/lobby/image/plaza.plist": {
-      "md5": "1eb73a6a0a1328c45bec3d5e1bf548e1"
-    }, 
-    "res/lobby/image/plaza.png": {
-      "md5": "0d622f871def48112f17a5623a3efea9"
-    }, 
-    "res/lobby/image/plaza/btn_back.png": {
-      "md5": "d27bec248ca71089c10f893f5b81682b"
-    }, 
-    "res/lobby/image/plaza/btn_help.png": {
-      "md5": "5f959325a7e18d6469fbeda4d7720490"
     }, 
     "res/lobby/image/public/btn_close.png": {
       "md5": "18f7149bd1950de8fbbe354b82766d22"
@@ -240,263 +57,257 @@
     "res/lobby/image/public/img_title.png": {
       "md5": "edfa9620bba379f032cc881d8f7598e0"
     }, 
-    "res/lobby/image/set/btn_off.png": {
-      "md5": "fe8685dec22c78cdf237429fb1675e0a"
-    }, 
-    "res/lobby/image/set/btn_on.png": {
-      "md5": "dc3f58cd677fc316eba4878dc6d30e56"
-    }, 
-    "res/lobby/image/set/btn_switch_account.png": {
-      "md5": "69d93ff3eed93a73203ce63a8394d438"
-    }, 
-    "res/lobby/image/set/img_effect.png": {
-      "md5": "07d3f267fe63784e2c4c094c07091d0e"
-    }, 
-    "res/lobby/image/set/img_music.png": {
-      "md5": "abc850242dbb5de709d5c8ef1cb7558c"
-    }, 
-    "res/lobby/image/set/img_set.png": {
-      "md5": "cd9d1f2d7de2de1fcb4329ef958b0273"
-    }, 
-    "res/lobby/image/shop/btn_wx_1.png": {
-      "md5": "f85b3bf369fdeb9bc28f0eaba9d759cd"
-    }, 
-    "res/lobby/image/shop/btn_wx_2.png": {
-      "md5": "2f44356f1ee2e500f86d260388c4a991"
-    }, 
-    "res/lobby/image/shop/btn_zfb_1.png": {
-      "md5": "637a707116c234303dc7fca0235a54c1"
-    }, 
-    "res/lobby/image/shop/btn_zfb_2.png": {
-      "md5": "05fbe562ea40b4140efbf7a1033f647d"
-    }, 
-    "res/lobby/image/shop/img_title.png": {
-      "md5": "284d0c6e8bcf09b969101e570f76e934"
-    }, 
-    "res/lobby/image/shop/rmb10.png": {
-      "md5": "2197bd2192eb78be90ff7565ce969fda"
-    }, 
-    "res/lobby/image/shop/rmb100.png": {
-      "md5": "120affe1272352455214f26dec615f70"
-    }, 
-    "res/lobby/image/shop/rmb3.png": {
-      "md5": "e5aa5b357056bf7afb1b6af68d03f3ad"
-    }, 
-    "res/lobby/image/shop/rmb30.png": {
-      "md5": "29c01404639c53ba135b5ff7a2b05af6"
-    }, 
-    "res/lobby/image/shop/rmb50.png": {
-      "md5": "ce495492b36f7370d94f4c49f6d1f317"
-    }, 
-    "res/lobby/image/shop/rmb500.png": {
-      "md5": "25676f08b6e53d65eb3eb13f5cf879c1"
-    }, 
-    "res/lobby/image/usercenter/img_change_pass.png": {
-      "md5": "fb80afeb361570e8df7b43cb21032f31"
-    }, 
-    "res/lobby/image/usercenter/img_head_back.png": {
-      "md5": "477dd22bbba9e3f8685bb13fbb156025"
-    }, 
-    "res/lobby/image/usercenter/img_line.png": {
-      "md5": "fb71117dac14e31b9f3cfd21971ec4df"
-    }, 
-    "res/lobby/image/usercenter/img_title.png": {
-      "md5": "f5e0eb07615e54e3d29b130971fc73e4"
-    }, 
     "src/app/base/BaseLayer.lua": {
-      "md5": "eb72ba2e7a6599695dc8f940210046a1"
+      "md5": "8f7666ce97f7fdd1438cbd97227c4b63"
     }, 
     "src/app/base/BaseNode.lua": {
-      "md5": "dd0549f20821cda0e8663aa925907f1f"
+      "md5": "3980469b8d70dc51a74a5b0bdacebfab"
     }, 
     "src/app/base/BaseNodeEx.lua": {
-      "md5": "d6b0a5e8848ac279d50bcd1af45266ab"
+      "md5": "b65d80bdcfd3782982324518e8d53e16"
     }, 
     "src/app/base/BasePresenter.lua": {
-      "md5": "bac2256eb49b80a89fc79b1087cc1c8d"
+      "md5": "360cafd3d1b0a0f12178cff1e2edb537"
     }, 
     "src/app/base/BaseScene.lua": {
-      "md5": "275a09146cc328ed83dfad8ef7575fea"
+      "md5": "e8390838f0f89d6f971f925cf0b0ec06"
     }, 
     "src/app/connect/Connect.lua": {
-      "md5": "180a41b26d1d127772bc4ab4a184f198"
+      "md5": "55911f50a1d85d58f14f504d2597666b"
     }, 
     "src/app/constants/Event.lua": {
-      "md5": "c3416b1db29574b5629ecdc7c81ced0d"
+      "md5": "1f9ea604afd3ecca13af6c306f14ea7c"
     }, 
     "src/app/constants/Game.lua": {
-      "md5": "1cdd966fb6efb3bfdd87ba9d5ba625e5"
+      "md5": "35e85fd07e6460b0cd8f3d3c42c5d9e0"
     }, 
     "src/app/data/AccountData.lua": {
-      "md5": "b9a63f052247700a60be97f835e7fd59"
+      "md5": "26753d6da89aa3469423c32f8e14d75d"
     }, 
     "src/app/data/PlazaData.lua": {
-      "md5": "f04ae60edb3ad4694090dfc5e5da7ddc"
+      "md5": "ddc67b444a8e0b58d10322737ea7de6c"
     }, 
     "src/app/data/SetData.lua": {
-      "md5": "f57ecd62a1e5041f8f9648c93ebea809"
+      "md5": "ccc3802bc958f29fa3a288a06bf0200b"
     }, 
     "src/app/data/UserData.lua": {
-      "md5": "ebee6146f326c0f767d4a2a466b99cc6"
+      "md5": "cd96d54c58d8809fa9f4b88f3d5a7629"
     }, 
     "src/app/game/GameConfig.lua": {
-      "md5": "20136813333edeaeb295ed3dbecb82ba"
+      "md5": "7e0aaa36c23f255da23ed5444618fc96"
     }, 
     "src/app/game/GameEngine.lua": {
-      "md5": "e4485eea6b9597451636e35d7f9c8325"
+      "md5": "1db7048321610cd7a113d6f95285a829"
     }, 
     "src/app/game/GameLoader.lua": {
-      "md5": "a0d12c30b747ddc3fc5dd01de6e8650b"
+      "md5": "515b83514fa91019ea3fd792b7a59d0a"
     }, 
     "src/app/game/Player.lua": {
-      "md5": "a4c503094f15db722951d097602e327b"
+      "md5": "42ca7d06104d3b8fe50c156547a13053"
     }, 
     "src/app/game/PlayerData.lua": {
-      "md5": "601f8ec14f80958f42c2fa50f0d407b8"
+      "md5": "7711a93e5d4cf5276e6e27d72f0b57b6"
+    }, 
+    "src/app/game/jdnn/GameBtnNode.lua": {
+      "md5": "c9f009e2ad82c33ae68629466a36e142"
+    }, 
+    "src/app/game/jdnn/GameCardNode.lua": {
+      "md5": "3ab1e8b2235061809782aeb64f11a975"
+    }, 
+    "src/app/game/jdnn/GameData.lua": {
+      "md5": "4db3a7ed69ce15761e7c2a56a33b4616"
+    }, 
+    "src/app/game/jdnn/GameEnum.lua": {
+      "md5": "20bb64d812a68f03284434196c65fe69"
+    }, 
+    "src/app/game/jdnn/GameHandCardNode.lua": {
+      "md5": "fc17582a75316e2085d8ffc50501d4b2"
+    }, 
+    "src/app/game/jdnn/GameMenuNode.lua": {
+      "md5": "52444b2fccfadefd2ab187643ae037f9"
+    }, 
+    "src/app/game/jdnn/GameOutCardNode.lua": {
+      "md5": "ef73ed078f665615c2ad0d68d95ec3df"
+    }, 
+    "src/app/game/jdnn/GamePlayerNode.lua": {
+      "md5": "be6e0ee2d671382f842af858bd6553cf"
+    }, 
+    "src/app/game/jdnn/GamePresenter.lua": {
+      "md5": "e818f08e192fdf8c05078ecc2be0446f"
+    }, 
+    "src/app/game/jdnn/GameScene.lua": {
+      "md5": "69378e235d8b8b9e019644ca02a90d0c"
+    }, 
+    "src/app/game/zjh/GameBtnNode.lua": {
+      "md5": "1c00e32eb87e09fe4571fbba7405e29e"
+    }, 
+    "src/app/game/zjh/GameCardNode.lua": {
+      "md5": "56c858ec82b50562fb92745e3e474e21"
+    }, 
+    "src/app/game/zjh/GameData.lua": {
+      "md5": "4f8bc51c6629ca81dba204b615d16919"
+    }, 
+    "src/app/game/zjh/GameEnum.lua": {
+      "md5": "c44eb28f61fa30504c04406fa2503888"
+    }, 
+    "src/app/game/zjh/GameHandCardNode.lua": {
+      "md5": "192defd36077938e5cd528c2fde5999f"
+    }, 
+    "src/app/game/zjh/GameMenuNode.lua": {
+      "md5": "e9435cb2542e444a1b83384fdea1fc0f"
+    }, 
+    "src/app/game/zjh/GamePlayerNode.lua": {
+      "md5": "c6d56059f000e8de651cf9bd6a425584"
+    }, 
+    "src/app/game/zjh/GamePresenter.lua": {
+      "md5": "d71f9c33edbcae1ffb01ab90d0d777bd"
+    }, 
+    "src/app/game/zjh/GameScene.lua": {
+      "md5": "ad02bbbe91c0d17fb79576286f5b7cbd"
     }, 
     "src/app/init.lua": {
-      "md5": "53f28f08e70c30537cb75c00c1882654"
+      "md5": "3e801b337eaf54a9d5f3de21a0229cc4"
     }, 
     "src/app/lobby/MainPresenter.lua": {
-      "md5": "76057b49ad4e688a796581dfbac8c5d3"
+      "md5": "c744c5852ad6d831eb2ec96af0a34ed0"
     }, 
     "src/app/lobby/MainScene.lua": {
-      "md5": "2aa7f697479cb9b4c4cccc9e849570eb"
+      "md5": "23c83d2f74173dc7fc76a5c8491bc1c3"
     }, 
     "src/app/lobby/debug/DebugLayer.lua": {
-      "md5": "54ad091b924195798961c67d6fe66783"
+      "md5": "45a6e667d2903d3ad10dd900a73c8471"
     }, 
     "src/app/lobby/debug/DebugPresenter.lua": {
-      "md5": "ee621ef88b2bf621eac51630b8eb3993"
+      "md5": "e461a3a143bbf4b9d87b5555e6f23191"
     }, 
     "src/app/lobby/help/HelpLayer.lua": {
-      "md5": "141a436ee296014523744b2a520395a5"
+      "md5": "2a272fdc87fc1cbdaca6dcbdf25a4aac"
     }, 
     "src/app/lobby/help/HelpPresenter.lua": {
-      "md5": "92ab53767eef1d45ec1c85e4f798323f"
+      "md5": "bf46bcadc6ae95be4817c94e25d1033e"
     }, 
     "src/app/lobby/login/AccountLoginLayer.lua": {
-      "md5": "d0618ff19a5b12dee40b3876e1b53ac7"
+      "md5": "996e434086b7032bd3b07a48e5a61209"
     }, 
     "src/app/lobby/login/AccountLoginPresenter.lua": {
-      "md5": "b3e8289e9d47721cefb55261cecbd8b9"
+      "md5": "804d15b5d789277e90445fdd2494591c"
     }, 
     "src/app/lobby/login/LoginLayer.lua": {
-      "md5": "cfbda1769d698d6c66f8f3cd31f09bb8"
+      "md5": "45d832480dd92fb54d2c326cb6d04093"
     }, 
     "src/app/lobby/login/LoginPresenter.lua": {
-      "md5": "2306ff22fbf6e561a8b30e5836417049"
+      "md5": "701b11b2ab4d2370261ea67e74237845"
     }, 
     "src/app/lobby/login/RegisterLayer.lua": {
-      "md5": "dfc514d762d901c8693892ea0e1e7437"
+      "md5": "cb440e07ed79f86ad7ef037fa45945c8"
     }, 
     "src/app/lobby/login/RegisterPresenter.lua": {
-      "md5": "5d21d0e75fc39c1c69a9eaa0526b93f8"
+      "md5": "eb8b602fa613a9f22b245c7d81496c30"
     }, 
     "src/app/lobby/login/VerifyLoginLayer.lua": {
-      "md5": "cc7be9b2798802dc40417c11c46b8465"
+      "md5": "d29691a69c39aa262ce52cf03e477145"
     }, 
     "src/app/lobby/login/VerifyLoginPresenter.lua": {
-      "md5": "0b8e429cf764a09f9d7c78681699280b"
+      "md5": "21bb21385505efb7a35ce7487ca30ab1"
     }, 
     "src/app/lobby/public/HintLayer.lua": {
-      "md5": "9162ea404d88435caaf9926400ee4fba"
+      "md5": "c325d77e646731104c4d8f46a012cb1a"
     }, 
     "src/app/lobby/public/HintPresenter.lua": {
-      "md5": "ea7d85634f97ec0955416f0c21b94f85"
+      "md5": "056531279bb08cd849497a76bff6fb4b"
     }, 
     "src/app/lobby/public/LoadingHintLayer.lua": {
-      "md5": "239f2464d675c4ca06bf87220f17f814"
+      "md5": "fd90db9c97dea667a423815d435f6c7a"
     }, 
     "src/app/lobby/public/LoadingHintPresenter.lua": {
-      "md5": "c4ab9da4884cd30696e468acc4a8c218"
+      "md5": "47ebc8d761242aba84d78fee324f0588"
     }, 
     "src/app/lobby/public/TextHintLayer.lua": {
-      "md5": "8c538ab86d854d565f1e05455fa15d9d"
+      "md5": "61752bf94b908403b6273c4da6985b75"
     }, 
     "src/app/lobby/public/TextHintPresenter.lua": {
-      "md5": "6161345c81c75f653735c18f5a6d065c"
+      "md5": "debc1194a67b1282b0e1d1f69c977f16"
     }, 
     "src/app/lobby/set/SetLayer.lua": {
-      "md5": "e8b0c2c33cd7c22278f42dde3117397a"
+      "md5": "992d717b99943886919d32141eea61c6"
     }, 
     "src/app/lobby/set/SetPresenter.lua": {
-      "md5": "82a62018671c6a8ebe8cea7f9cc7488b"
+      "md5": "9c01081d995745965552b8bb5ed2284d"
     }, 
     "src/app/lobby/shop/ShopLayer.lua": {
-      "md5": "6b4b8e4c7d1cf70aa31f60f8156a3e49"
+      "md5": "5e2020571c6508ef229e990da37ad5d5"
     }, 
     "src/app/lobby/shop/ShopPresenter.lua": {
-      "md5": "6ae853a9b53d11985781ed7c25de3ee5"
+      "md5": "a5866d11c19b7719ea9199626bf4f80b"
     }, 
     "src/app/lobby/usercenter/ChangeHeadLayer.lua": {
-      "md5": "9ed9427961b15c66f7b6fb815ef80296"
+      "md5": "6980befe1bbff974c426101fbdd4a4ca"
     }, 
     "src/app/lobby/usercenter/ChangeHeadPresenter.lua": {
-      "md5": "d53738aea1e52b4f0e9d323a7db288bb"
+      "md5": "2b7f7b5eb52f6ff6fede165cf2c8f369"
     }, 
     "src/app/lobby/usercenter/UserCenterLayer.lua": {
-      "md5": "77e311c81137406b2aabfdaf006ffc98"
+      "md5": "cbffbd2080fcc3b6ff2d6f8de6efecc3"
     }, 
     "src/app/lobby/usercenter/UserCenterPresenter.lua": {
-      "md5": "0541b16a67558c2f927af63334f48d74"
+      "md5": "65f11b33e9266d80507d02d6efe1c103"
     }, 
     "src/app/start.lua": {
-      "md5": "15a3f43b062b23b908d869c8c58112d9"
+      "md5": "e0f4f28e722c6a267c0db438213dbacb"
     }, 
     "src/app/util/DispatcherUtils.lua": {
-      "md5": "b993ec9a5ccb80b30379d65fde32d671"
+      "md5": "e636e03541c7b9d48c90b13e38c5d0fe"
     }, 
     "src/app/util/Queue.lua": {
-      "md5": "8c70a93f083ae2d89789f68321dd8146"
+      "md5": "f70a1eaffe1441e147ab228b25fffb98"
     }, 
     "src/app/util/SoundUtils.lua": {
-      "md5": "8b2e5e770667dc538bbd9d048afbbe63"
+      "md5": "1f90fe4d1f8ef7db07220270e658a4ef"
     }, 
     "src/app/util/ToolUtils.lua": {
-      "md5": "6257878378bc134104140991149b776e"
+      "md5": "244600d8a945695153687e34efcf0f11"
     }, 
     "src/app/util/UIUtils.lua": {
-      "md5": "4128487c3f857dd68d8801201695df5f"
+      "md5": "21abb306c667c40069b8a217fbb8b456"
     }, 
     "src/app/util/VaildUtils.lua": {
-      "md5": "25f985e5ceea09e94b91f22327c87481"
+      "md5": "0b679d548b46ecd88355b736f114949e"
     }, 
     "src/app/util/bit.lua": {
-      "md5": "ebc754a3ad907db0440ddbd9cb8f9b62"
+      "md5": "09c7a864f48086aa609f5e9d88e74794"
     }, 
     "src/app/util/uuid.lua": {
-      "md5": "eecfbc751e164b4693639185d997d69c"
+      "md5": "9f6bed2dfb5d331103985746ba89e49c"
     }, 
     "src/config.lua": {
-      "md5": "73c26d0ee94ef0ce667bcdb5df056659"
+      "md5": "ba6799a859bb099beb60143071ce662f"
     }, 
     "src/hotpatch/HotpatchController.lua": {
-      "md5": "6f12414bd41448696a871774cbecaf45"
+      "md5": "73a8631dcdc9e46c3d7407404473520a"
     }, 
     "src/main.lua": {
-      "md5": "29d25f39f75ba81fe1fa2f0a17fa6438"
+      "md5": "3aa64344f5b9abc3ad16f7e4866bf6b0"
     }, 
     "src/network/async_socket.lua": {
-      "md5": "5f5760aa339c8252490707efc465ab6f"
+      "md5": "d3306f58901e69bf4595349ebf7f8066"
     }, 
     "src/network/byte_stream_packet.lua": {
-      "md5": "82de0bf89a865c5f7b76b7d83250ed06"
+      "md5": "8fb8c3189d1b6c693ce3d74837c6627d"
     }, 
     "src/network/byte_stream_packet_ffi.lua": {
-      "md5": "ffd32e6d0ef0776ccd4bde60d4c42102"
+      "md5": "2512cd352e3202cc60da3c5fc89fc369"
     }, 
     "src/network/luasocket_uptcp.lua": {
-      "md5": "b13ad10f33f3374db0f7d0e618d355e2"
+      "md5": "c2fdc75a968ea51f67f37bddf3f27020"
     }, 
     "src/network/socket_timer.lua": {
-      "md5": "ad31118b534920c94481fef7c97a2085"
+      "md5": "476464c4e9c10ef23aa13898ae8ac904"
     }, 
     "src/network/socket_timer_manager.lua": {
-      "md5": "22f653c86ee63057ffa1cc62b8f04777"
+      "md5": "2d013eb153074f00a0dcd98b053d0f83"
     }, 
     "src/startup.lua": {
-      "md5": "4b3da0697f91760236f37dbf35c426c6"
+      "md5": "b8a91bedf4fc559e054c42e5f0ef6020"
     }, 
     "src/upconn/NiuUpconn.lua": {
       "md5": "da26f4e866fa36f3afaa1df179d7de98"
@@ -505,24 +316,24 @@
       "md5": "f914f3d826789e55bd065d8d6891ebb3"
     }, 
     "src/upconn/ZjhDefs.lua": {
-      "md5": "a6a0ac189eb6250d6bf2c4f565dc7f9f"
+      "md5": "0d0a2dcb0ca0b6691e9a305c57a7a77a"
     }, 
     "src/upconn/ZjhMsgDispatcher.lua": {
-      "md5": "9d692f3fb5af5e2bd0ac773a157bc758"
+      "md5": "9cb740e3438c3ac98bca77f4f7f8c85f"
     }, 
     "src/upconn/ZjhUpconn.lua": {
-      "md5": "73ffac0ff8b0c4917a65733453736442"
+      "md5": "6feeffea5235a65950a7505ad1eeb002"
     }, 
     "src/upconn/config/config_mgzjh_robot.lua": {
-      "md5": "f523d6ea5f895866cf0e101fc38b2eaa"
+      "md5": "05f05aba08c15437e367055709edb943"
     }, 
     "src/upconn/config/game_zjh.lua": {
-      "md5": "c11ddae09cfed059cff0372c48d6a385"
+      "md5": "342defc58e31da5e7b4b7730393b11b5"
     }
   }, 
   "engineVersion": "cocos2dx-lua-3.10", 
   "packageUrl": "http://192.168.200.101:9876/patch/lobby/assets/", 
   "remoteManifestUrl": "http://192.168.200.101:9876/patch/lobby/project.manifest", 
   "remoteVersionUrl": "http://192.168.200.101:9876/patch/lobby/version.manifest", 
-  "version": "1.1.1"
+  "version": "1.1.0"
 }

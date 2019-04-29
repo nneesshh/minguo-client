@@ -28,9 +28,9 @@ function startup:start()
         director:runWithScene(scene)
     end
     
-    local temp = HotpatchController:new("patch/lobby/project.manifest")
-    temp:init()
-    temp:doUpdate()
+    hcLobby = HotpatchController:new("patch/lobby/project.manifest")
+    hcLobby:init()
+    hcLobby:doUpdate()
     --self:openSchedulerProgress()
 end
 

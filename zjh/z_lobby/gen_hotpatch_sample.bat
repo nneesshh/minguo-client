@@ -1,1 +1,0 @@
-python gen_hotpatch_sample.py

@@ -7,13 +7,13 @@
       "md5": "cfdb990a417476609a0de20f67c4a1dc"
     }, 
     "res/game/public/menuplist.plist": {
-      "md5": "5a12c9b5816da152d6eee29e601a8f62"
+      "md5": "4df8f76e30ada7d96f06161d82529c87"
     }, 
     "res/game/public/menuplist.png": {
       "md5": "336d9a527cc1da6bda35b2d9709168ac"
     }, 
     "res/game/public/plistcard.plist": {
-      "md5": "66965ac195a69f737f552596ef909443"
+      "md5": "1a7c93558ea7e6864b7d6f56c86405fd"
     }, 
     "res/game/public/plistcard.png": {
       "md5": "0172c12758d93d8feaf9eee416089011"
@@ -31,94 +31,94 @@
       "md5": "b3e8673d489344a4cff37202f5cc4865"
     }, 
     "res/game/zjh/effect/huo_2/huo_2.ExportJson": {
-      "md5": "b7366b11ca7e16cc1ccdbfea9db7640f"
+      "md5": "6309e64dd5774cab68d7ca4cab919f28"
     }, 
     "res/game/zjh/effect/huo_2/huo_20.plist": {
-      "md5": "adfa0619e846e4b53d85887e339b6405"
+      "md5": "836ab7d7529fc40c4e2087a54d3a80cb"
     }, 
     "res/game/zjh/effect/huo_2/huo_20.png": {
       "md5": "92b5577f2edc5b42c4848b9776ca8d7c"
     }, 
     "res/game/zjh/effect/jiubei_dh/jiubei_dh.ExportJson": {
-      "md5": "a7c5c815c5c63e260f72286bce514ace"
+      "md5": "4b209ad447ca5d90de68b817a4786272"
     }, 
     "res/game/zjh/effect/jiubei_dh/jiubei_dh0.plist": {
-      "md5": "a38053f23b9005886a4b30b9714010cc"
+      "md5": "c1b8f614b3ee8b00e1df088c84541fe4"
     }, 
     "res/game/zjh/effect/jiubei_dh/jiubei_dh0.png": {
       "md5": "c4f9e68b9af0673fbda946afebdc520f"
     }, 
     "res/game/zjh/effect/vs_dh1/vs_dh1.ExportJson": {
-      "md5": "67e401a8fccd0384e69ccf7defede8b1"
+      "md5": "2979306f3a29e810b619674d5cad862a"
     }, 
     "res/game/zjh/effect/vs_dh1/vs_dh10.plist": {
-      "md5": "b38b69d6ae05f9e905f68b7d2c845699"
+      "md5": "89cbdb6891f41f7dfd911f643b1d3e6a"
     }, 
     "res/game/zjh/effect/vs_dh1/vs_dh10.png": {
       "md5": "104892a34ff88f89b73f83e933da2718"
     }, 
     "res/game/zjh/effect/vs_dh2/vs_dh2.ExportJson": {
-      "md5": "20571a361d1b92bde88d4e5d628a815d"
+      "md5": "bddfc47776a4ee16087bc9a2cbbd7239"
     }, 
     "res/game/zjh/effect/vs_dh2/vs_dh20.plist": {
-      "md5": "c52f50168ab76b0cc44721b9f5b39ff9"
+      "md5": "f48ff211b7599350913d9957ae78c3fd"
     }, 
     "res/game/zjh/effect/vs_dh2/vs_dh20.png": {
       "md5": "76002a908e84f70c2ca1cb27e0cbdae1"
     }, 
     "res/game/zjh/effect/vs_dh3/vs_dh3.ExportJson": {
-      "md5": "d0d50a8cb33782d0edf3c3188b70e202"
+      "md5": "6a9290a6daaf6f43602daa5885eceea7"
     }, 
     "res/game/zjh/effect/vs_dh3/vs_dh30.plist": {
-      "md5": "c3e5f595451c4017a7bdc744015a2bad"
+      "md5": "55200a7f8d7414161ed9ecd6ffa1f151"
     }, 
     "res/game/zjh/effect/vs_dh3/vs_dh30.png": {
       "md5": "1e7259eae28903b6d7e5333e7943d871"
     }, 
     "res/game/zjh/effect/vs_gzyz/vs_gzyz.ExportJson": {
-      "md5": "a6d0486e2e49adb11e9974e5153f229d"
+      "md5": "ca9ffcbcb96993033ebabc050e089419"
     }, 
     "res/game/zjh/effect/vs_gzyz/vs_gzyz0.plist": {
-      "md5": "0c6e95724f2899e023160f9d2ddbd04e"
+      "md5": "f592cc0262f13fbaddadca9fb4c5f73e"
     }, 
     "res/game/zjh/effect/vs_gzyz/vs_gzyz0.png": {
       "md5": "c98434457bd3276a6879edec1bc7ee61"
     }, 
     "res/game/zjh/effect/vs_qmlw/vs_qmlw.ExportJson": {
-      "md5": "a7e1dc7f8c72e67632f7601346a9e921"
+      "md5": "566cc8b88865496b590b25d7cb7ca6af"
     }, 
     "res/game/zjh/effect/vs_qmlw/vs_qmlw0.plist": {
-      "md5": "246e80b0291ec05363b89026e024c27f"
+      "md5": "c7462694eb782f1f22abffc17dc7ea71"
     }, 
     "res/game/zjh/effect/vs_qmlw/vs_qmlw0.png": {
       "md5": "a4b0b36bc644557c37e285a2d2d5bd2e"
     }, 
     "res/game/zjh/image/fnt/losefnt.fnt": {
-      "md5": "28617ef97eb698baada6944a8399c0fe"
+      "md5": "1297630d3d297844c33b7b1033db3a56"
     }, 
     "res/game/zjh/image/fnt/losefnt.png": {
       "md5": "91fb62356b621931571e818bce20a2ca"
     }, 
     "res/game/zjh/image/fnt/numfnt.fnt": {
-      "md5": "89fcd00dfd7f3320baf800b0f1ed36eb"
+      "md5": "ad3e1f1f217c42f656218ce9231313ff"
     }, 
     "res/game/zjh/image/fnt/numfnt.png": {
       "md5": "3e31584e162d9169c956dc67fb419f2f"
     }, 
     "res/game/zjh/image/fnt/startfnt.fnt": {
-      "md5": "3ec2976019ce5673c4d8f72cb2b29a33"
+      "md5": "dab96665daa1cabee6d94ae85003989c"
     }, 
     "res/game/zjh/image/fnt/startfnt.png": {
       "md5": "f996bffea77252f6a69b015d719a8cc7"
     }, 
     "res/game/zjh/image/fnt/winfnt.fnt": {
-      "md5": "e2222b8e281e584e315f3f4fdbd949ed"
+      "md5": "c02df86ac2b11d4d5fd9294d8162494f"
     }, 
     "res/game/zjh/image/fnt/winfnt.png": {
       "md5": "2836af8baf764ed2493c87f61e005fc7"
     }, 
     "res/game/zjh/image/plistscene.plist": {
-      "md5": "0a98df20e56df14e6949f552f99a660e"
+      "md5": "1c59b4a8201cd7c40d08c379696d8d24"
     }, 
     "res/game/zjh/image/plistscene.png": {
       "md5": "3d0bb2b781e277f6ebd62a4b7ebcefd3"
@@ -216,32 +216,278 @@
     "res/game/zjh/sound/jh_w_qipai2.mp3": {
       "md5": "0b37e122a252478727598bbfce3431ed"
     }, 
+    "src/app/base/BaseLayer.lua": {
+      "md5": "8f7666ce97f7fdd1438cbd97227c4b63"
+    }, 
+    "src/app/base/BaseNode.lua": {
+      "md5": "3980469b8d70dc51a74a5b0bdacebfab"
+    }, 
+    "src/app/base/BaseNodeEx.lua": {
+      "md5": "b65d80bdcfd3782982324518e8d53e16"
+    }, 
+    "src/app/base/BasePresenter.lua": {
+      "md5": "360cafd3d1b0a0f12178cff1e2edb537"
+    }, 
+    "src/app/base/BaseScene.lua": {
+      "md5": "e8390838f0f89d6f971f925cf0b0ec06"
+    }, 
+    "src/app/connect/Connect.lua": {
+      "md5": "55911f50a1d85d58f14f504d2597666b"
+    }, 
+    "src/app/constants/Event.lua": {
+      "md5": "1f9ea604afd3ecca13af6c306f14ea7c"
+    }, 
+    "src/app/constants/Game.lua": {
+      "md5": "35e85fd07e6460b0cd8f3d3c42c5d9e0"
+    }, 
+    "src/app/data/AccountData.lua": {
+      "md5": "26753d6da89aa3469423c32f8e14d75d"
+    }, 
+    "src/app/data/PlazaData.lua": {
+      "md5": "ddc67b444a8e0b58d10322737ea7de6c"
+    }, 
+    "src/app/data/SetData.lua": {
+      "md5": "ccc3802bc958f29fa3a288a06bf0200b"
+    }, 
+    "src/app/data/UserData.lua": {
+      "md5": "cd96d54c58d8809fa9f4b88f3d5a7629"
+    }, 
+    "src/app/game/GameConfig.lua": {
+      "md5": "7e0aaa36c23f255da23ed5444618fc96"
+    }, 
+    "src/app/game/GameEngine.lua": {
+      "md5": "1db7048321610cd7a113d6f95285a829"
+    }, 
+    "src/app/game/GameLoader.lua": {
+      "md5": "515b83514fa91019ea3fd792b7a59d0a"
+    }, 
+    "src/app/game/Player.lua": {
+      "md5": "42ca7d06104d3b8fe50c156547a13053"
+    }, 
+    "src/app/game/PlayerData.lua": {
+      "md5": "7711a93e5d4cf5276e6e27d72f0b57b6"
+    }, 
+    "src/app/game/jdnn/GameBtnNode.lua": {
+      "md5": "c9f009e2ad82c33ae68629466a36e142"
+    }, 
+    "src/app/game/jdnn/GameCardNode.lua": {
+      "md5": "3ab1e8b2235061809782aeb64f11a975"
+    }, 
+    "src/app/game/jdnn/GameData.lua": {
+      "md5": "4db3a7ed69ce15761e7c2a56a33b4616"
+    }, 
+    "src/app/game/jdnn/GameEnum.lua": {
+      "md5": "20bb64d812a68f03284434196c65fe69"
+    }, 
+    "src/app/game/jdnn/GameHandCardNode.lua": {
+      "md5": "fc17582a75316e2085d8ffc50501d4b2"
+    }, 
+    "src/app/game/jdnn/GameMenuNode.lua": {
+      "md5": "52444b2fccfadefd2ab187643ae037f9"
+    }, 
+    "src/app/game/jdnn/GameOutCardNode.lua": {
+      "md5": "ef73ed078f665615c2ad0d68d95ec3df"
+    }, 
+    "src/app/game/jdnn/GamePlayerNode.lua": {
+      "md5": "be6e0ee2d671382f842af858bd6553cf"
+    }, 
+    "src/app/game/jdnn/GamePresenter.lua": {
+      "md5": "e818f08e192fdf8c05078ecc2be0446f"
+    }, 
+    "src/app/game/jdnn/GameScene.lua": {
+      "md5": "69378e235d8b8b9e019644ca02a90d0c"
+    }, 
     "src/app/game/zjh/GameBtnNode.lua": {
-      "md5": "80afd149716e7f82eaa80179efd397d6"
+      "md5": "1c00e32eb87e09fe4571fbba7405e29e"
     }, 
     "src/app/game/zjh/GameCardNode.lua": {
-      "md5": "62d0eba50b2636b7b3446c53c8ce04d3"
+      "md5": "56c858ec82b50562fb92745e3e474e21"
     }, 
     "src/app/game/zjh/GameData.lua": {
-      "md5": "b12e06eeb426478b9419a684d5b7e422"
+      "md5": "4f8bc51c6629ca81dba204b615d16919"
     }, 
     "src/app/game/zjh/GameEnum.lua": {
-      "md5": "b67510fbf16366ba0c4d161a9643d8bb"
+      "md5": "c44eb28f61fa30504c04406fa2503888"
     }, 
     "src/app/game/zjh/GameHandCardNode.lua": {
-      "md5": "b6c01c7c95f3aa525b09b7b17ca341d4"
+      "md5": "192defd36077938e5cd528c2fde5999f"
     }, 
     "src/app/game/zjh/GameMenuNode.lua": {
-      "md5": "d7f21a20316bcca9ea15b39c488ca957"
+      "md5": "e9435cb2542e444a1b83384fdea1fc0f"
     }, 
     "src/app/game/zjh/GamePlayerNode.lua": {
-      "md5": "7179773a4fc222fc19c64af5f65960cf"
+      "md5": "c6d56059f000e8de651cf9bd6a425584"
     }, 
     "src/app/game/zjh/GamePresenter.lua": {
-      "md5": "8d48efcf7d32984b033be50bdedba596"
+      "md5": "d71f9c33edbcae1ffb01ab90d0d777bd"
     }, 
     "src/app/game/zjh/GameScene.lua": {
-      "md5": "09dbaa078afe3bcdb0dd36e562bc1a7b"
+      "md5": "ad02bbbe91c0d17fb79576286f5b7cbd"
+    }, 
+    "src/app/init.lua": {
+      "md5": "3e801b337eaf54a9d5f3de21a0229cc4"
+    }, 
+    "src/app/lobby/MainPresenter.lua": {
+      "md5": "c744c5852ad6d831eb2ec96af0a34ed0"
+    }, 
+    "src/app/lobby/MainScene.lua": {
+      "md5": "23c83d2f74173dc7fc76a5c8491bc1c3"
+    }, 
+    "src/app/lobby/debug/DebugLayer.lua": {
+      "md5": "45a6e667d2903d3ad10dd900a73c8471"
+    }, 
+    "src/app/lobby/debug/DebugPresenter.lua": {
+      "md5": "e461a3a143bbf4b9d87b5555e6f23191"
+    }, 
+    "src/app/lobby/help/HelpLayer.lua": {
+      "md5": "2a272fdc87fc1cbdaca6dcbdf25a4aac"
+    }, 
+    "src/app/lobby/help/HelpPresenter.lua": {
+      "md5": "bf46bcadc6ae95be4817c94e25d1033e"
+    }, 
+    "src/app/lobby/login/AccountLoginLayer.lua": {
+      "md5": "996e434086b7032bd3b07a48e5a61209"
+    }, 
+    "src/app/lobby/login/AccountLoginPresenter.lua": {
+      "md5": "804d15b5d789277e90445fdd2494591c"
+    }, 
+    "src/app/lobby/login/LoginLayer.lua": {
+      "md5": "45d832480dd92fb54d2c326cb6d04093"
+    }, 
+    "src/app/lobby/login/LoginPresenter.lua": {
+      "md5": "701b11b2ab4d2370261ea67e74237845"
+    }, 
+    "src/app/lobby/login/RegisterLayer.lua": {
+      "md5": "cb440e07ed79f86ad7ef037fa45945c8"
+    }, 
+    "src/app/lobby/login/RegisterPresenter.lua": {
+      "md5": "eb8b602fa613a9f22b245c7d81496c30"
+    }, 
+    "src/app/lobby/login/VerifyLoginLayer.lua": {
+      "md5": "d29691a69c39aa262ce52cf03e477145"
+    }, 
+    "src/app/lobby/login/VerifyLoginPresenter.lua": {
+      "md5": "21bb21385505efb7a35ce7487ca30ab1"
+    }, 
+    "src/app/lobby/public/HintLayer.lua": {
+      "md5": "c325d77e646731104c4d8f46a012cb1a"
+    }, 
+    "src/app/lobby/public/HintPresenter.lua": {
+      "md5": "056531279bb08cd849497a76bff6fb4b"
+    }, 
+    "src/app/lobby/public/LoadingHintLayer.lua": {
+      "md5": "fd90db9c97dea667a423815d435f6c7a"
+    }, 
+    "src/app/lobby/public/LoadingHintPresenter.lua": {
+      "md5": "47ebc8d761242aba84d78fee324f0588"
+    }, 
+    "src/app/lobby/public/TextHintLayer.lua": {
+      "md5": "61752bf94b908403b6273c4da6985b75"
+    }, 
+    "src/app/lobby/public/TextHintPresenter.lua": {
+      "md5": "debc1194a67b1282b0e1d1f69c977f16"
+    }, 
+    "src/app/lobby/set/SetLayer.lua": {
+      "md5": "992d717b99943886919d32141eea61c6"
+    }, 
+    "src/app/lobby/set/SetPresenter.lua": {
+      "md5": "9c01081d995745965552b8bb5ed2284d"
+    }, 
+    "src/app/lobby/shop/ShopLayer.lua": {
+      "md5": "5e2020571c6508ef229e990da37ad5d5"
+    }, 
+    "src/app/lobby/shop/ShopPresenter.lua": {
+      "md5": "a5866d11c19b7719ea9199626bf4f80b"
+    }, 
+    "src/app/lobby/usercenter/ChangeHeadLayer.lua": {
+      "md5": "6980befe1bbff974c426101fbdd4a4ca"
+    }, 
+    "src/app/lobby/usercenter/ChangeHeadPresenter.lua": {
+      "md5": "2b7f7b5eb52f6ff6fede165cf2c8f369"
+    }, 
+    "src/app/lobby/usercenter/UserCenterLayer.lua": {
+      "md5": "cbffbd2080fcc3b6ff2d6f8de6efecc3"
+    }, 
+    "src/app/lobby/usercenter/UserCenterPresenter.lua": {
+      "md5": "65f11b33e9266d80507d02d6efe1c103"
+    }, 
+    "src/app/start.lua": {
+      "md5": "e0f4f28e722c6a267c0db438213dbacb"
+    }, 
+    "src/app/util/DispatcherUtils.lua": {
+      "md5": "e636e03541c7b9d48c90b13e38c5d0fe"
+    }, 
+    "src/app/util/Queue.lua": {
+      "md5": "f70a1eaffe1441e147ab228b25fffb98"
+    }, 
+    "src/app/util/SoundUtils.lua": {
+      "md5": "1f90fe4d1f8ef7db07220270e658a4ef"
+    }, 
+    "src/app/util/ToolUtils.lua": {
+      "md5": "244600d8a945695153687e34efcf0f11"
+    }, 
+    "src/app/util/UIUtils.lua": {
+      "md5": "21abb306c667c40069b8a217fbb8b456"
+    }, 
+    "src/app/util/VaildUtils.lua": {
+      "md5": "0b679d548b46ecd88355b736f114949e"
+    }, 
+    "src/app/util/bit.lua": {
+      "md5": "09c7a864f48086aa609f5e9d88e74794"
+    }, 
+    "src/app/util/uuid.lua": {
+      "md5": "9f6bed2dfb5d331103985746ba89e49c"
+    }, 
+    "src/config.lua": {
+      "md5": "ba6799a859bb099beb60143071ce662f"
+    }, 
+    "src/hotpatch/HotpatchController.lua": {
+      "md5": "73a8631dcdc9e46c3d7407404473520a"
+    }, 
+    "src/main.lua": {
+      "md5": "3aa64344f5b9abc3ad16f7e4866bf6b0"
+    }, 
+    "src/network/async_socket.lua": {
+      "md5": "d3306f58901e69bf4595349ebf7f8066"
+    }, 
+    "src/network/byte_stream_packet.lua": {
+      "md5": "8fb8c3189d1b6c693ce3d74837c6627d"
+    }, 
+    "src/network/byte_stream_packet_ffi.lua": {
+      "md5": "2512cd352e3202cc60da3c5fc89fc369"
+    }, 
+    "src/network/luasocket_uptcp.lua": {
+      "md5": "c2fdc75a968ea51f67f37bddf3f27020"
+    }, 
+    "src/network/socket_timer.lua": {
+      "md5": "476464c4e9c10ef23aa13898ae8ac904"
+    }, 
+    "src/network/socket_timer_manager.lua": {
+      "md5": "2d013eb153074f00a0dcd98b053d0f83"
+    }, 
+    "src/startup.lua": {
+      "md5": "b8a91bedf4fc559e054c42e5f0ef6020"
+    }, 
+    "src/upconn/NiuUpconn.lua": {
+      "md5": "da26f4e866fa36f3afaa1df179d7de98"
+    }, 
+    "src/upconn/PublicUpconn.lua": {
+      "md5": "f914f3d826789e55bd065d8d6891ebb3"
+    }, 
+    "src/upconn/ZjhDefs.lua": {
+      "md5": "0d0a2dcb0ca0b6691e9a305c57a7a77a"
+    }, 
+    "src/upconn/ZjhMsgDispatcher.lua": {
+      "md5": "9cb740e3438c3ac98bca77f4f7f8c85f"
+    }, 
+    "src/upconn/ZjhUpconn.lua": {
+      "md5": "6feeffea5235a65950a7505ad1eeb002"
+    }, 
+    "src/upconn/config/config_mgzjh_robot.lua": {
+      "md5": "05f05aba08c15437e367055709edb943"
+    }, 
+    "src/upconn/config/game_zjh.lua": {
+      "md5": "342defc58e31da5e7b4b7730393b11b5"
     }
   }, 
   "engineVersion": "cocos2dx-lua-3.10", 

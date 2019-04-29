@@ -15,8 +15,14 @@
     "res/lobby/csb/hint.csb": {
       "md5": "c4094731e63284790632c81f18e64710"
     }, 
+    "res/lobby/csb/hint1.csb": {
+      "md5": "c4094731e63284790632c81f18e64710"
+    }, 
+    "res/lobby/csb/hint2.csb": {
+      "md5": "6704e9fc47d16af32108cb5923fb5d05"
+    }, 
     "res/lobby/csb/hintload.csb": {
-      "md5": "e796a55876ad9bc063fdfe6cfe2e8602"
+      "md5": "6f1f05f4ef0311a40530d96a527cad7f"
     }, 
     "res/lobby/csb/loading.csb": {
       "md5": "648bf1e98346c0b3536e271781463ac5"
@@ -40,7 +46,7 @@
       "md5": "092a30f9a836893b4adda712d184971e"
     }, 
     "res/lobby/csb/usercenter.csb": {
-      "md5": "975ca0297c202c9fb6f09108716f80da"
+      "md5": "b59db09b293e70cb7ae29065151cdd1b"
     }, 
     "res/lobby/csb/verifylogin.csb": {
       "md5": "3df34eff12ae6f4a8a787819143b5b13"
@@ -307,7 +313,7 @@
       "md5": "d6b0a5e8848ac279d50bcd1af45266ab"
     }, 
     "src/app/base/BasePresenter.lua": {
-      "md5": "1051892fb893e890efd540a54754a6d8"
+      "md5": "bac2256eb49b80a89fc79b1087cc1c8d"
     }, 
     "src/app/base/BaseScene.lua": {
       "md5": "275a09146cc328ed83dfad8ef7575fea"
@@ -322,7 +328,7 @@
       "md5": "1cdd966fb6efb3bfdd87ba9d5ba625e5"
     }, 
     "src/app/data/AccountData.lua": {
-      "md5": "6540eefcbd1b3ee3ab67f91c1f10bc4e"
+      "md5": "b9a63f052247700a60be97f835e7fd59"
     }, 
     "src/app/data/PlazaData.lua": {
       "md5": "f04ae60edb3ad4694090dfc5e5da7ddc"
@@ -349,13 +355,13 @@
       "md5": "601f8ec14f80958f42c2fa50f0d407b8"
     }, 
     "src/app/init.lua": {
-      "md5": "b8be0ba0d31ace421b89bc1f1158803d"
+      "md5": "53f28f08e70c30537cb75c00c1882654"
     }, 
     "src/app/lobby/MainPresenter.lua": {
       "md5": "76057b49ad4e688a796581dfbac8c5d3"
     }, 
     "src/app/lobby/MainScene.lua": {
-      "md5": "8f260960f735df3f59f8ea6c2fd95b8f"
+      "md5": "2aa7f697479cb9b4c4cccc9e849570eb"
     }, 
     "src/app/lobby/debug/DebugLayer.lua": {
       "md5": "54ad091b924195798961c67d6fe66783"
@@ -394,7 +400,7 @@
       "md5": "0b8e429cf764a09f9d7c78681699280b"
     }, 
     "src/app/lobby/public/HintLayer.lua": {
-      "md5": "89c6951ad54e4f8164c710927d09a50a"
+      "md5": "9162ea404d88435caaf9926400ee4fba"
     }, 
     "src/app/lobby/public/HintPresenter.lua": {
       "md5": "ea7d85634f97ec0955416f0c21b94f85"
@@ -403,7 +409,13 @@
       "md5": "239f2464d675c4ca06bf87220f17f814"
     }, 
     "src/app/lobby/public/LoadingHintPresenter.lua": {
-      "md5": "14cf0156d4fa94cc85071f1d85515db4"
+      "md5": "c4ab9da4884cd30696e468acc4a8c218"
+    }, 
+    "src/app/lobby/public/TextHintLayer.lua": {
+      "md5": "8c538ab86d854d565f1e05455fa15d9d"
+    }, 
+    "src/app/lobby/public/TextHintPresenter.lua": {
+      "md5": "6161345c81c75f653735c18f5a6d065c"
     }, 
     "src/app/lobby/set/SetLayer.lua": {
       "md5": "e8b0c2c33cd7c22278f42dde3117397a"
@@ -421,10 +433,10 @@
       "md5": "9ed9427961b15c66f7b6fb815ef80296"
     }, 
     "src/app/lobby/usercenter/ChangeHeadPresenter.lua": {
-      "md5": "dd9ca894879aa5c334ab07e1abeb03a3"
+      "md5": "d53738aea1e52b4f0e9d323a7db288bb"
     }, 
     "src/app/lobby/usercenter/UserCenterLayer.lua": {
-      "md5": "21d62ae1c391bfa4c2313b0f7ecc1804"
+      "md5": "77e311c81137406b2aabfdaf006ffc98"
     }, 
     "src/app/lobby/usercenter/UserCenterPresenter.lua": {
       "md5": "0541b16a67558c2f927af63334f48d74"
@@ -460,10 +472,7 @@
       "md5": "73c26d0ee94ef0ce667bcdb5df056659"
     }, 
     "src/hotpatch/HotpatchController.lua": {
-      "md5": "7835001cd5216eb06446f2509ba25651"
-    }, 
-    "src/hotpatch/UpdateScene.lua": {
-      "md5": "78f90b2bd384e6a3d495a988aadb2821"
+      "md5": "6f12414bd41448696a871774cbecaf45"
     }, 
     "src/main.lua": {
       "md5": "29d25f39f75ba81fe1fa2f0a17fa6438"
@@ -512,8 +521,8 @@
     }
   }, 
   "engineVersion": "cocos2dx-lua-3.10", 
-  "packageUrl": "ftp://anonymous:a@b.com@192.168.209.129/patch/lobby/assets/", 
-  "remoteManifestUrl": "ftp://anonymous:a@b.com@192.168.209.129/patch/lobby/project.manifest", 
-  "remoteVersionUrl": "ftp://anonymous:a@b.com@192.168.209.129/patch/lobby/version.manifest", 
-  "version": "1.1.0"
+  "packageUrl": "http://192.168.200.101:9876/patch/lobby/assets/", 
+  "remoteManifestUrl": "http://192.168.200.101:9876/patch/lobby/project.manifest", 
+  "remoteVersionUrl": "http://192.168.200.101:9876/patch/lobby/version.manifest", 
+  "version": "1.1.1"
 }

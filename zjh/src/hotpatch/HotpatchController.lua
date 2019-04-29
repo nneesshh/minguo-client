@@ -8,18 +8,18 @@ local mt = {__index = _M}
 local setmetatable, getmetatable = setmetatable, getmetatable
 
 local AM_STATE = {
-    UNCHECKED = 0,
-    PREDOWNLOAD_VERSION = 1,
-    DOWNLOADING_VERSION = 2,
-    VERSION_LOADED = 3,
+    UNCHECKED            = 0,
+    PREDOWNLOAD_VERSION  = 1,
+    DOWNLOADING_VERSION  = 2,
+    VERSION_LOADED       = 3,
     PREDOWNLOAD_MANIFEST = 4,
     DOWNLOADING_MANIFEST = 5,
-    MANIFEST_LOADED = 6,
-    NEED_UPDATE = 7,
-    UPDATING = 8,
-    UNZIPPING = 9,
-    UP_TO_DATE = 10,
-    FAIL_TO_UPDATE = 11
+    MANIFEST_LOADED      = 6,
+    NEED_UPDATE          = 7,
+    UPDATING             = 8,
+    UNZIPPING            = 9,
+    UP_TO_DATE           = 10,
+    FAIL_TO_UPDATE       = 11
 }
 
 --
@@ -38,9 +38,9 @@ function _M.new(self, projectManifest, savePath)
             tips = "",
             abort = false, -- client corrupted, can't go on
             --
-            projectManifest = projectManifest or "patch/project.manifest",
+            projectManifest = projectManifest or "patch/lobby/project.manifest",
             savePath = savePath and cc.FileUtils:getInstance():getWritablePath() .. savePath or
-                cc.FileUtils:getInstance():getWritablePath() .. "update"
+                cc.FileUtils:getInstance():getWritablePath()
         },
         mt
     )
@@ -48,6 +48,8 @@ end
 
 --
 function _M:init()
+    print("write path is",cc.FileUtils:getInstance():getWritablePath())
+    
     self.assetsManager = cc.AssetsManagerEx:create(self.projectManifest, self.savePath)
     self.assetsManager:retain()
 
@@ -110,22 +112,22 @@ function _M:onUpdateEvent(event)
     elseif cc.EventAssetsManagerEx.EventCode.ERROR_PARSE_MANIFEST == eventCode then
         print("[AM]: fail to parse manifest file, update skipped.", eventCode)
         self.tips = "解析版本信息出错"
-		elseif cc.EventAssetsManagerEx.EventCode.NEW_VERSION_FOUND == eventCode then
+    elseif cc.EventAssetsManagerEx.EventCode.NEW_VERSION_FOUND == eventCode then
         local needUpdate = self.assetsManager:getState() == AM_STATE.NEED_UPDATE
-				if not needUpdate then
-						print("[AM]: new version found.", eventCode)
+        if not needUpdate then
+            print("[AM]: new version found.", eventCode)
             self.tips = "开始解析版本信息"
         else
-						-- need update
-						print("[AM]: new version found and need update.", eventCode)
+            -- need update
+            print("[AM]: new version found and need update.", eventCode)
             self.remoteVersion = self.assetsManager:getRemoteManifest():getVersion()
             self.tips = "发现新版本" .. self.remoteVersion
         end
     elseif cc.EventAssetsManagerEx.EventCode.ALREADY_UP_TO_DATE == eventCode then
         self:release()
         self.tips = "已经是最新版本"
-		elseif cc.EventAssetsManagerEx.EventCode.UPDATE_PROGRESSION == eventCode then
-				print("[AM]: update progression...", eventCode)
+    elseif cc.EventAssetsManagerEx.EventCode.UPDATE_PROGRESSION == eventCode then
+        print("[AM]: update progression...", eventCode)
         local assetId = event:getAssetId()
         local percent = event:getPercent()
         local strInfo = ""
@@ -145,8 +147,8 @@ function _M:onUpdateEvent(event)
 
         -- reload
         self.reloadHotPatchModules()
-		elseif cc.EventAssetsManagerEx.EventCode.ERROR_UPDATING == eventCode then
-				print("[AM]: error updating.", eventCode)
+    elseif cc.EventAssetsManagerEx.EventCode.ERROR_UPDATING == eventCode then
+        print("[AM]: error updating.", eventCode)
         self:release()
         self.tips = "游戏维护中, 请留意官网开服公告"
         self.abort = true
@@ -157,17 +159,19 @@ function _M:onUpdateEvent(event)
 
         -- reload
         self.reloadHotPatchModules()
-		elseif cc.EventAssetsManagerEx.EventCode.UPDATE_FAILED == eventCode then
-				print("[AM]: update failed.", eventCode)
+    elseif cc.EventAssetsManagerEx.EventCode.UPDATE_FAILED == eventCode then
+        print("[AM]: update failed.", eventCode)
         self:release()
         self.tips = "版本更新失败"
         self.abort = true
-		elseif cc.EventAssetsManagerEx.EventCode.ERROR_DECOMPRESS == eventCode then
-				print("[AM]: error decompress.", eventCode)
+    elseif cc.EventAssetsManagerEx.EventCode.ERROR_DECOMPRESS == eventCode then
+        print("[AM]: error decompress.", eventCode)
         self:release()
         self.tips = "解压失败"
         self.abort = true
     end
+    
+    print("tip is", self.tips)    
 end
 
 return _M

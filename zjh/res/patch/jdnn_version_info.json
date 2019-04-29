@@ -1,7 +1,0 @@
-{
-    "packageUrl" : "ftp://anonymous:a@b.com@192.168.209.129/patch/jdnn/assets/",
-    "remoteManifestUrl" : "ftp://anonymous:a@b.com@192.168.209.129/patch/jdnn/project.manifest",
-    "remoteVersionUrl" : "ftp://anonymous:a@b.com@192.168.209.129/patch/jdnn/version.manifest",
-    "engineVersion" : "cocos2dx-lua-3.10",
-    "version" : "1.1.0"
-}

@@ -2,6 +2,7 @@
 @brief 启动页
 ]]
 local startup   = class("startup")
+local HotpatchController = require("hotpatch.HotpatchController")
 
 startup.csbPath = "lobby/csb/loading.csb"
 startup._schedulerProgress = nil
@@ -27,7 +28,10 @@ function startup:start()
         director:runWithScene(scene)
     end
     
-    self:openSchedulerProgress()
+    local temp = HotpatchController:new("patch/lobby/project.manifest")
+    temp:init()
+    temp:doUpdate()
+    --self:openSchedulerProgress()
 end
 
 function startup:exit()

@@ -1,0 +1,1 @@
+python gen_hotpatch_jdnn.py

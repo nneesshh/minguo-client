@@ -1,7 +1,7 @@
 --[[
     @brief  游戏玩家类
 ]]--
-local GameHandCardNode = require("app.game.zjh.GameHandCardNode")
+local GameHandCardNode = requireZJH("app.game.zjh.GameHandCardNode")
 
 local GamePlayerNode   = class("GamePlayerNode", app.base.BaseNodeEx)
 

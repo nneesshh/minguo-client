@@ -2,7 +2,7 @@
 --[[
     @brief  手牌
 ]]--
-local GameCardNode            = require("app.game.jdnn.GameCardNode")
+local GameCardNode            = requireJDNN("app.game.jdnn.GameCardNode")
 local GameHandCardNode        = class("GameHandCardNode", app.base.BaseNodeEx)
 
 local HAND_CARD_TYPE          = 0

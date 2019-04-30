@@ -3,6 +3,6 @@
 ]]
 local TextHintPresenter = class("TextHintPresenter", app.base.BasePresenter)
 
-TextHintPresenter._ui   = require("app.lobby.public.TextHintLayer")
+TextHintPresenter._ui   = requireLobby("app.lobby.public.TextHintLayer")
 
 return TextHintPresenter

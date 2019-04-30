@@ -5,7 +5,7 @@
 local ChangeHeadPresenter = class("ChangeHeadPresenter", app.base.BasePresenter)
 
 -- UI
-ChangeHeadPresenter._ui         = require("app.lobby.usercenter.ChangeHeadLayer")
+ChangeHeadPresenter._ui         = requireLobby("app.lobby.usercenter.ChangeHeadLayer")
 
 local _gender, _avatar = nil, nil 
 

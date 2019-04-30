@@ -7,7 +7,7 @@ local SetPresenter = class("SetPresenter", app.base.BasePresenter)
 local SetData = app.data.SetData
 
 -- UI
-SetPresenter._ui = require("app.lobby.set.SetLayer")
+SetPresenter._ui = requireLobby("app.lobby.set.SetLayer")
 
 function SetPresenter:init()
     self:initSetData()

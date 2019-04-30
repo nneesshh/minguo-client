@@ -40,7 +40,7 @@ function _M.new(self, projectManifest, savePath)
             --
             projectManifest = projectManifest or "patch/lobby/project.manifest",
             savePath = savePath and cc.FileUtils:getInstance():getWritablePath() .. savePath or
-                cc.FileUtils:getInstance():getWritablePath()
+                cc.FileUtils:getInstance():getWritablePath() .. "update"
         },
         mt
     )

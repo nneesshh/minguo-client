@@ -2,7 +2,7 @@
 @brief 启动页
 ]]
 local startup   = class("startup")
-local HotpatchController = require("hotpatch.HotpatchController")
+local HotpatchController = requireLobby("hotpatch.HotpatchController")
 
 startup.csbPath = "lobby/csb/loading.csb"
 startup._schedulerProgress = nil
@@ -28,10 +28,10 @@ function startup:start()
         director:runWithScene(scene)
     end
     
---    hcLobby = HotpatchController:new("patch/lobby/project.manifest")
---    hcLobby:init()
---    hcLobby:doUpdate()
-    self:openSchedulerProgress()
+    hcLobby = HotpatchController:new("patch/lobby/project.manifest", "patch_lobby")
+    hcLobby:init()
+    hcLobby:doUpdate()
+--    self:openSchedulerProgress()
 end
 
 function startup:exit()
@@ -42,6 +42,8 @@ function startup:exit()
         self._rootNode = nil
         self._children = {}
         self:closeSchedulerProgress()
+        
+        hcLobby = nil
     end
 end
 
@@ -78,7 +80,7 @@ end
 function startup:startGame()
     self:exit()
   
-    local start = require "app.start"
+    local start = requireLobby "app.start"
     start.init()
     start.start()
 end

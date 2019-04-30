@@ -8,7 +8,7 @@ print = release_print
 local start = {}
 
 function start.init()    
-	require("app.init")	
+    requireLobby("app.init")	
 end
 
 function start.start()

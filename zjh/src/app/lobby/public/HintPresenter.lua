@@ -3,7 +3,7 @@
 ]]
 local HintPresenter = class("HintPresenter", app.base.BasePresenter)
 
-HintPresenter._ui   = require("app.lobby.public.HintLayer")
+HintPresenter._ui   = requireLobby("app.lobby.public.HintLayer")
 
 -- 提示语队列
 HintPresenter._hintQueue = app.util.Queue.new()

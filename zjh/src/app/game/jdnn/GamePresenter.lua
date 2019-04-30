@@ -2,13 +2,13 @@
 @brief  游戏主场景控制基类
 ]]
 
-local GamePlayerNode = require("app.game.jdnn.GamePlayerNode")
-local GameBtnNode    = require("app.game.jdnn.GameBtnNode")
-local GameMenuNode   = require("app.game.jdnn.GameMenuNode")
+local GamePlayerNode = requireJDNN("app.game.jdnn.GamePlayerNode")
+local GameBtnNode    = requireJDNN("app.game.jdnn.GameBtnNode")
+local GameMenuNode   = requireJDNN("app.game.jdnn.GameMenuNode")
 
 local GamePresenter  = class("GamePresenter", app.base.BasePresenter)
 
-GamePresenter._ui    = require("app.game.jdnn.GameScene")
+GamePresenter._ui    = requireJDNN("app.game.jdnn.GameScene")
 
 local scheduler = cc.Director:getInstance():getScheduler()
 

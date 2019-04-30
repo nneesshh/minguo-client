@@ -6,7 +6,7 @@
 local LoginPresenter   = class("LoginPresenter", app.base.BasePresenter)
 
 -- UI
-LoginPresenter._ui  = require("app.lobby.login.LoginLayer")
+LoginPresenter._ui  = requireLobby("app.lobby.login.LoginLayer")
 
 local AccountData = app.data.AccountData
 

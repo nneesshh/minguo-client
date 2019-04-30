@@ -5,7 +5,7 @@
 
 local UserCenterPresenter = class("UserCenterPresenter", app.base.BasePresenter)
 -- UI
-UserCenterPresenter._ui         = require("app.lobby.usercenter.UserCenterLayer")
+UserCenterPresenter._ui         = requireLobby("app.lobby.usercenter.UserCenterLayer")
 
 function UserCenterPresenter:init()
     self:createDispatcher()

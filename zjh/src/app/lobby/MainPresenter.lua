@@ -6,7 +6,7 @@ local MainPresenter = class("MainPresenter", app.base.BasePresenter)
 
 local socket        = require("socket")
 -- UI
-MainPresenter._ui   = require("app.lobby.MainScene")
+MainPresenter._ui   = requireLobby("app.lobby.MainScene")
 local HEART_BEAT_TIMEOUT = 10
 local receiveTime        = 0
 

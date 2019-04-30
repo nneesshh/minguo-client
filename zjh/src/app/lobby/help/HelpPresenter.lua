@@ -6,6 +6,6 @@
 local HelpPresenter = class("HelpPresenter", app.base.BasePresenter)
 
 -- UI
-HelpPresenter._ui = require("app.lobby.help.HelpLayer")
+HelpPresenter._ui = requireLobby("app.lobby.help.HelpLayer")
 
 return HelpPresenter

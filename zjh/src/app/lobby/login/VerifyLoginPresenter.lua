@@ -7,7 +7,7 @@
 local VerifyLoginPresenter   = class("VerifyLoginPresenter", app.base.BasePresenter)
 
 -- UI
-VerifyLoginPresenter._ui  = require("app.lobby.login.VerifyLoginLayer")
+VerifyLoginPresenter._ui  = requireLobby("app.lobby.login.VerifyLoginLayer")
 
 function VerifyLoginPresenter:dealAccountLogin(account, verify)
     

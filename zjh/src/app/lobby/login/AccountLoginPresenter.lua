@@ -6,7 +6,7 @@
 local AccountLoginPresenter   = class("AccountLoginPresenter", app.base.BasePresenter)
 
 -- UI
-AccountLoginPresenter._ui  = require("app.lobby.login.AccountLoginLayer")
+AccountLoginPresenter._ui  = requireLobby("app.lobby.login.AccountLoginLayer")
 
 local AccountData = app.data.AccountData
 local _username, _password = "", ""

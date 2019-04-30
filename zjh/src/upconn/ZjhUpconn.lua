@@ -15,8 +15,8 @@ msg_dispatcher   = require(cwd .."ZjhMsgDispatcher")
 
 local uptcpd     = require("network.luasocket_uptcp")
 local packet_cls = require("network.byte_stream_packet")
-local pubconn    = require(cwd .. "PublicUpconn")
-local nnconn     = require(cwd .. "NiuUpconn")
+local pubconn    = requireLobby(cwd .. "PublicUpconn")
+local nnconn     = requireLobby(cwd .. "NiuUpconn")
 --
 function _M.createUpconn()
     --

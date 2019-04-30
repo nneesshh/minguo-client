@@ -6,7 +6,7 @@
 local RegisterPresenter   = class("RegisterPresenter", app.base.BasePresenter)
 
 -- UI
-RegisterPresenter._ui  = require("app.lobby.login.RegisterLayer")
+RegisterPresenter._ui  = requireLobby("app.lobby.login.RegisterLayer")
 
 local AccountData = app.data.AccountData
 local _username, _password = "", ""

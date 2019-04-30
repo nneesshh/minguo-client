@@ -3,6 +3,6 @@
 ]]
 
 local ShopPresenter = class("ShopPresenter",app.base.BasePresenter)
-ShopPresenter._ui = require("app.lobby.shop.ShopLayer")
+ShopPresenter._ui = requireLobby("app.lobby.shop.ShopLayer")
 
 return ShopPresenter

@@ -3,7 +3,7 @@
     @brief  游戏出牌UI基类
 ]]--
 
-local GameCardNode       = require("app.game.jdnn.GameCardNode")
+local GameCardNode       = requireJDNN("app.game.jdnn.GameCardNode")
 local GameOutCardNode    = class("GameOutCardNode", app.base.BaseNodeEx)
 
 local OUT_CARD_TYPE     = 2

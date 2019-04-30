@@ -2,7 +2,7 @@
 --[[
     @brief  手牌
 ]]--
-local GameCardNode            = require("app.game.zjh.GameCardNode")
+local GameCardNode            = requireZJH("app.game.zjh.GameCardNode")
 local GameHandCardNode        = class("GameHandCardNode", app.base.BaseNodeEx)
 
 local HAND_CARD_TYPE          = 0

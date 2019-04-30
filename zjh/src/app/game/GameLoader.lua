@@ -22,15 +22,15 @@ function GameLoader.unloader()
 end
 
 function GameLoader.loadZJH()
-    app.game.GameData           = require("app.game.zjh.GameData")    
-    app.game.GameEnum           = require("app.game.zjh.GameEnum")    
-    app.game.GamePresenter      = require("app.game.zjh.GamePresenter")
+    app.game.GameData           = requireZJH("app.game.zjh.GameData")    
+    app.game.GameEnum           = requireZJH("app.game.zjh.GameEnum")    
+    app.game.GamePresenter      = requireZJH("app.game.zjh.GamePresenter")
 end
 
 function GameLoader.loadJDNN()
-    app.game.GameData           = require("app.game.jdnn.GameData")    
-    app.game.GameEnum           = require("app.game.jdnn.GameEnum")    
-    app.game.GamePresenter      = require("app.game.jdnn.GamePresenter")
+    app.game.GameData           = requireJDNN("app.game.jdnn.GameData")    
+    app.game.GameEnum           = requireJDNN("app.game.jdnn.GameEnum")    
+    app.game.GamePresenter      = requireJDNN("app.game.jdnn.GamePresenter")
 end
 
 return GameLoader

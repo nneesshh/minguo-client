@@ -1,8 +1,8 @@
 --[[
     @brief  游戏玩家类
 ]]--
-local GameHandCardNode = require("app.game.jdnn.GameHandCardNode")
-local GameOutCardNode  = require("app.game.jdnn.GameOutCardNode")
+local GameHandCardNode = requireJDNN("app.game.jdnn.GameHandCardNode")
+local GameOutCardNode  = requireJDNN("app.game.jdnn.GameOutCardNode")
 
 local GamePlayerNode   = class("GamePlayerNode", app.base.BaseNodeEx)
 

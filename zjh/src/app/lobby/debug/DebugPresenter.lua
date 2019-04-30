@@ -6,7 +6,7 @@
 local DebugPresenter = class("DebugPresenter", app.base.BasePresenter)
 
 -- UI
-DebugPresenter._ui = require("app.lobby.debug.DebugLayer")
+DebugPresenter._ui = requireLobby("app.lobby.debug.DebugLayer")
 
 function DebugPresenter:init()
     app.util.DispatcherUtils.addEventListenerSafe(app.Event.EVENT_CONNECT_STATE, handler(self, self.onState))

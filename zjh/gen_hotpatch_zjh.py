@@ -7,7 +7,7 @@ import subprocess
 
 
 assetsDir = {
-    "searchDir" : ["src", "res/game/public", "res/game/zjh"],
+    "searchDir" : ["src/app/game/zjh", "res/game/public", "res/game/zjh"],
     "ignoreDir" : ["cocos", "obj", "patch"]
 }
 

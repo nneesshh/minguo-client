@@ -5,7 +5,7 @@ local app                    = app
 
 local LoadingHintPresenter   = class("LoadingHintPresenter", app.base.BasePresenter)
 
-LoadingHintPresenter._ui  = require("app.lobby.public.LoadingHintLayer")
+LoadingHintPresenter._ui  = requireLobby("app.lobby.public.LoadingHintLayer")
 
 local DEFAULT_TIME_OUT = 15
 

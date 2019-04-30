@@ -19,19 +19,10 @@ local _M = {
             id = 1000,
             type = 1,
             name = "Zjh服务器1",
-<<<<<<< Updated upstream
---            host = "139.162.27.138", -- 外网
---            port = 8860,
---            host = "192.168.200.101", -- 内网
---            port = 8860,
-            host = "192.168.200.111", -- 111, 8861
-            port = 8861,
-=======
             --host = "139.162.27.138", port = 8860, -- 外网
             --host = "192.168.200.101", port = 8860, -- 内网
             --host = "192.168.209.129", port = 8860, -- 209.129, 8860
             host = "192.168.200.111", port = 8861, -- 111, 8861
->>>>>>> Stashed changes
             visibility = 1,
             white_peerip = "",
             enable = true

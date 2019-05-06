@@ -67,6 +67,8 @@ function GamePresenter:initTouch()
 end
 
 function GamePresenter:onTouchBegin(touch, event)  
+    self:showJdnnHelp(false)
+    
     local gameHandCardNode = self._gamePlayerNodes[HERO_LOCAL_SEAT]:getGameHandCardNode()
     return gameHandCardNode:onTouchBegin(touch, event)
 end
@@ -296,8 +298,8 @@ function GamePresenter:onNiuConfirmBanker(banker, players)
     -- 显示抢庄倍数
     local localbanker = app.game.PlayerData.serverSeatToLocalSeat(banker.banker)
     self._gamePlayerNodes[localbanker]:showImgChoose(true, banker.bankerMult)
-    
-    local function showchoose(flag)
+           
+    local function showchoose(flag)        
         local mult = app.game.GameData.getBankerMult()
         for i, player in ipairs(players) do
             local playerObj = app.game.PlayerData.getPlayerByServerSeat(player.seat)
@@ -307,26 +309,38 @@ function GamePresenter:onNiuConfirmBanker(banker, players)
             end     
         end
     end
+    
     -- 显示其他玩家的选择
     showchoose(true)
     
+    -- 与庄家相同倍数的座位 2次
+    local sameSeats = {}
+    for i=1, 2 do
+        for _, player in ipairs(players) do
+            if player.mult == banker.bankerMult then
+                table.insert(sameSeats, player.seat)
+            end
+        end
+    end
+       
     -- 隐藏
-    local function hide()
+    local function callback()
         showchoose(false)
+        
+        local heroseat = app.game.PlayerData.getHeroSeat()
+        if heroseat ~= banker.banker then
+            self:showTableBtn("bet")
+
+            if self._ui:getInstance():isSelected("cbx_mult_test") then
+                self:performWithDelayGlobal(function()
+                    self:onEventCbxMult()
+                end, 1)
+            end
+        end    
     end
     
-    self:playBankerAction(hide)
-    
-    local heroseat = app.game.PlayerData.getHeroSeat()
-    if heroseat ~= banker.banker then
-        self:showTableBtn("bet")
-        
-        if self._ui:getInstance():isSelected("cbx_mult_test") then
-            self:performWithDelayGlobal(function()
-                self:onEventCbxMult()
-            end, 1)
-        end
-    end    
+    -- 定庄动画
+    self:playBankerAction(sameSeats, banker.banker, callback)       
 end
 
 -- 闲家加倍结束
@@ -350,6 +364,11 @@ end
 
 -- 发牌
 function GamePresenter:onTakeFirst() 
+    for i = 0, self._maxPlayerCnt - 1 do
+        local gameHandCardNode = self._gamePlayerNodes[i]:getGameHandCardNode()
+        gameHandCardNode:resetHandCards()  
+    end
+
     local function callback()
         self:showTableBtn("cal")
         
@@ -439,7 +458,9 @@ function GamePresenter:onNiuGameOver(players)
     self:onShowCard(players)
     
     -- 输赢动画
-    self:onWinloseEffect(players)
+    self:performWithDelayGlobal(function()
+        self:onWinloseEffect(players)
+    end, 0.5) 
     
     -- 飞金币   
     self:performWithDelayGlobal(function()
@@ -866,13 +887,42 @@ function GamePresenter:downAllHandCards()
     return gameHandCardNode:downAllHandCards()
 end
 
-function GamePresenter:playBankerAction(callback)
-    local banker = app.game.GameData.getBanker()
-    local localSeat = app.game.PlayerData.serverSeatToLocalSeat(banker)
-    self._gamePlayerNodes[localSeat]:playBankAction(callback)  
+function GamePresenter:playBankerAction(sameSeats, banker, callback)
+    local actiontime = 2
+    -- 单人1次播放动画时长
+    local pertime = actiontime / #sameSeats / 2
     
-    self._gamePlayerNodes[localSeat]:playEffectByName("banker")   
+    local function call()
+        local localBanker = app.game.PlayerData.serverSeatToLocalSeat(banker)
+        self._gamePlayerNodes[localBanker]:playBankAction(callback)  
+        self._gamePlayerNodes[localBanker]:playEffectByName("banker")  
+    end   
+    
+    for i, seat in ipairs(sameSeats) do
+        if i <= #sameSeats / 2 then
+            local localSeat = app.game.PlayerData.serverSeatToLocalSeat(seat)
+            self._gamePlayerNodes[localSeat]:resetLightOpacity()
+        end
+    end 
+     
+    for i, seat in ipairs(sameSeats) do
+        local localSeat = app.game.PlayerData.serverSeatToLocalSeat(seat)
+        self:performWithDelayGlobal(function()
+            if i == #sameSeats then
+                self._gamePlayerNodes[localSeat]:playLightAction(pertime, call) 
+            else
+                self._gamePlayerNodes[localSeat]:playLightAction(pertime) 
+            end
+            
+        end, (i-1)*pertime)
+    end
+     
 end
+
+function GamePresenter:showJdnnHelp(flag)
+    self._ui:getInstance():showJdnnHelp(flag)
+end
+
 
 -- -----------------------------schedule------------------------------
 -- 准备倒计时
@@ -955,7 +1005,10 @@ function GamePresenter:openSchedulerTakeFirst(callback)
     cardbacks[HERO_LOCAL_SEAT] = herocards
 
     local cardNum = 1
-    local seats = app.game.GameData.getPlayerseat() 
+    local seats = {}
+    if app.game.GameData then
+        seats = app.game.GameData.getPlayerseat()
+    end
     local function onInterval(dt)
         if cardNum <= CARD_NUM then
             for i, seat in ipairs(seats) do
@@ -1189,7 +1242,7 @@ function GamePresenter:sendLeaveRoom()
     local heroseat = app.game.PlayerData.getHeroSeat()
     local player = app.game.PlayerData.getPlayerByServerSeat(heroseat)    
     if player:isPlaying() then
-        self:dealHintStart("游戏中,暂无法离开！")            
+        self:dealTxtHintStart("游戏中,暂无法离开！")            
     else
         local po = upconn.upconn:get_packet_obj()
         if po ~= nil then
@@ -1207,11 +1260,11 @@ function GamePresenter:sendPlayerReady()
     if hero then       
         print("hero is leave", hero:isLeave())
     end 
+    local po = upconn.upconn:get_packet_obj()
     local limit = app.game.GameConfig.getLimit()
-    if hero and not hero:isLeave() and hero:getBalance() > limit then        
+    if hero and not hero:isLeave() and hero:getBalance() > limit and po then        
         print("send ready", hero:getSeat())
-        local sessionid = app.data.UserData.getSession() or 222
-        local po = upconn.upconn:get_packet_obj()
+        local sessionid = app.data.UserData.getSession() or 222        
         po:writer_reset()
         po:write_int64(sessionid)
         upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_READY_REQ)
@@ -1223,7 +1276,7 @@ function GamePresenter:sendChangeTable()
     local heroseat = app.game.PlayerData.getHeroSeat()
     local player = app.game.PlayerData.getPlayerByServerSeat(heroseat)    
     if player:isPlaying() then
-        self:dealHintStart("游戏中,暂无法换桌！")            
+        self:dealTxtHintStart("游戏中,暂无法换桌！")            
     else
         local sessionid = app.data.UserData.getSession() or 222
         local po = upconn.upconn:get_packet_obj()

@@ -105,19 +105,4 @@ function UIUtils.runEffectOne(dir, name, posX, posY, flag, callback, time)
     return effect
 end
 
-function UIUtils.runEffectLoop(node, name, dir, file, posX, posY, flag)    
-    if node == nil then return end
-    flag = flag or true
-    local effect = nil
-    if node:getChildByName(name) ~= nil then
-        effect = node:getChildByName(name)
-        effect:getAnimation():playWithIndex(0)
-    else
-        effect = app.util.UIUtils.runEffect(dir, file, posX, posY, flag)
-        node:addChild(effect)
-        effect:setName(name)        
-    end
-    node:setVisible(true)
-end
-
 return UIUtils

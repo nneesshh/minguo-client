@@ -1,15 +1,15 @@
 
 cc.FileUtils:getInstance():setPopupNotify(false)
 -- lobby
-cc.FileUtils:getInstance():addSearchPath("patch_lobby/src/", true)
-cc.FileUtils:getInstance():addSearchPath("patch_lobby/res/", true)
+cc.FileUtils:getInstance():addSearchPath(cc.FileUtils:getInstance():getWritablePath() .. "patch_lobby/src/", true)
+cc.FileUtils:getInstance():addSearchPath(cc.FileUtils:getInstance():getWritablePath() .. "patch_lobby/res/", true)
 
 -- zjh
-cc.FileUtils:getInstance():addSearchPath("patch_zjh/src/", true)
-cc.FileUtils:getInstance():addSearchPath("patch_zjh/res/", true)
+cc.FileUtils:getInstance():addSearchPath(cc.FileUtils:getInstance():getWritablePath() .. "patch_zjh/src/", true)
+cc.FileUtils:getInstance():addSearchPath(cc.FileUtils:getInstance():getWritablePath() .. "patch_zjh/res/", true)
 -- jdnn
-cc.FileUtils:getInstance():addSearchPath("patch_jdnn/src/", true)
-cc.FileUtils:getInstance():addSearchPath("patch_jdnn/res/", true)
+cc.FileUtils:getInstance():addSearchPath(cc.FileUtils:getInstance():getWritablePath() .. "patch_jdnn/src/", true)
+cc.FileUtils:getInstance():addSearchPath(cc.FileUtils:getInstance():getWritablePath() .. "patch_jdnn/res/", true)
 
 -- default
 cc.FileUtils:getInstance():addSearchPath("src/")
@@ -32,6 +32,8 @@ end
 print = release_print
 
 HotpatchRequire = require("hotpatch.HotpatchRequire")
+HotpatchController = require("hotpatch.HotpatchController")
+
 requireLobby = HotpatchRequire.requireLobby
 requireZJH   = HotpatchRequire.requireZJH
 requireJDNN  = HotpatchRequire.requireJDNN
@@ -44,7 +46,14 @@ local function main()
     require "config"
     require "cocos.init"
     
-    requireLobby("startup"):start()    
+    local targetPlatform = cc.Application:getInstance():getTargetPlatform()
+    if 3 == targetPlatform or 4 == targetPlatform or 5 == targetPlatform then
+        requireLobby("startup"):start()    
+    else        
+        local start = requireLobby "app.start"
+        start.init()
+        start.start()
+    end
 end
 
 local status, msg = xpcall(main, __G__TRACKBACK__)

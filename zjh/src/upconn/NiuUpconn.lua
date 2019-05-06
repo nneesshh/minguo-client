@@ -126,7 +126,7 @@ function _M.onNiuConfirmBanker(conn, sessionid, msgid)
     local banker = {}
     banker.banker     = po:read_byte()
     banker.bankerMult = po:read_int32()
-    print("banker.bankerMult",banker.bankerMult)
+    print("banker.bankerMult",banker.bankerMult, banker.banker)
     local players = {}
     local playercont = po:read_int32()
     for i=1,playercont do
@@ -134,7 +134,7 @@ function _M.onNiuConfirmBanker(conn, sessionid, msgid)
         players[i].seat    = po:read_byte()
         players[i].mult    = po:read_int32()
         players[i].balance = po:read_int64()
-        print("player mult", players[i].mult)
+        print("player mult", players[i].mult, players[i].seat )
     end
     
     if app.game.GamePresenter then
@@ -224,7 +224,7 @@ end
 
 -- 请求准备
 function _M.sendPlayerReady(self)
-    print("sendPlayerReady")
+    print("sendPlayerReady NiuUpconn")
     local sessionid = app.data.UserData.getSession() or 222
     local po = upconn.upconn:get_packet_obj()
     if po == nil then return end   

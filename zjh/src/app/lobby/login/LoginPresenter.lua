@@ -8,11 +8,31 @@ local LoginPresenter   = class("LoginPresenter", app.base.BasePresenter)
 -- UI
 LoginPresenter._ui  = requireLobby("app.lobby.login.LoginLayer")
 
+local scheduler = cc.Director:getInstance():getScheduler()
 local AccountData = app.data.AccountData
+local _username, _password = "", ""
 
-function LoginPresenter:init()
+function LoginPresenter:init(flag)
     self:createDispatcher()
-    self:dealAutoLogin()
+        
+    _username, _password = "", ""  
+    
+    if flag then
+        self:performWithDelayGlobal(
+            function()
+                app.Connect:getInstance():reConnect()
+            end, 0.2)
+    end
+end
+
+function LoginPresenter:performWithDelayGlobal(listener, time)
+    local handle
+    handle = scheduler:scheduleScriptFunc(
+        function()
+            scheduler:unscheduleScriptEntry(handle)
+            listener()
+        end, time, false)
+    return handle
 end
 
 function LoginPresenter:createDispatcher()
@@ -22,11 +42,16 @@ end
 
 function LoginPresenter:onLoginSuccess()
     self:dealLoadingHintExit()
+    -- 保存账号密码
+    AccountData.setUsername(_username)
+    AccountData.setPassword(_password)
+    
     self._ui:getInstance():exit()    
     app.lobby.login.LoginPresenter:getInstance():exit()  
 end
 
 function LoginPresenter:onLoginFail()
+    _username, _password = "", ""  
     self:dealLoadingHintExit()
      self:dealHintStart("登录失败")
 end
@@ -46,17 +71,25 @@ function LoginPresenter:testLogin(data)
 
         local sessionId = self.sessionId or 222
         upconn.upconn:send_packet(sessionId, zjh_defs.MsgId.MSGID_LOGIN_REQ)
+        
+        _username, _password = data[2], data[3]
+    else
+        print("test po is nil")              
     end              
 end
 
 -- 自动登录
-function LoginPresenter:dealAutoLogin()    
-    local have, username, password = AccountData.haveAccount()
-    if have then
-        print("auto login",username, password)
-        app.lobby.login.AccountLoginPresenter:getInstance():start()
-        self:sendLogin(username, password)  -- 账号登录
-    end
+function LoginPresenter:dealAutoLogin()
+    self:performWithDelayGlobal(
+        function()
+            local po = upconn.upconn:get_packet_obj()    
+            local have, username, password = AccountData.haveAccount()
+            local loginstate = app.data.UserData.getLoginState()
+            if have and loginstate ~= 1 then                
+                app.lobby.login.AccountLoginPresenter:getInstance():start()
+                self:sendLogin(username, password)  -- 账号登录
+            end
+        end, 0.2)
 end
 
 -- 游客登录
@@ -75,7 +108,7 @@ function LoginPresenter:dealAccountLogin()
 end
 
 function LoginPresenter:sendLogin(username, password)        
-    local po = upconn.upconn:get_packet_obj()
+    local po = upconn.upconn:get_packet_obj()    
     if po ~= nil then
         self:dealLoadingHintStart("正在登录中") 
         
@@ -91,16 +124,25 @@ function LoginPresenter:sendLogin(username, password)
 
         local sessionId = self.sessionId or 222
         print("send login",username, password)
-        upconn.upconn:send_packet(sessionId, zjh_defs.MsgId.MSGID_LOGIN_REQ)            
+        upconn.upconn:send_packet(sessionId, zjh_defs.MsgId.MSGID_LOGIN_REQ)   
+    else
+        print("wq - login po is nil")             
     end     
 end
 
 -- 
-function LoginPresenter:reLogin()
+function LoginPresenter:reLogin(hint)
     if not self:isCurrentUI() then
-        self:dealHintStart("连接异常,将返回登录界面重新登录！",
-            function(bFlag)            
-                app.lobby.login.LoginPresenter:getInstance():start()                       
+        hint = hint or "连接异常,请重新登录！"
+        self:dealHintStart(hint,
+            function(bFlag)               
+                app.game.GameEngine:getInstance():exit()
+                   
+                self:performWithDelayGlobal(
+                    function()
+                        app.lobby.login.LoginPresenter:getInstance():start(true) 
+                        self:dealAccountLogin()
+                    end, 0.05)                 
             end
             ,0)        
     end

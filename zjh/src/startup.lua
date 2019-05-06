@@ -2,7 +2,6 @@
 @brief 启动页
 ]]
 local startup   = class("startup")
-local HotpatchController = requireLobby("hotpatch.HotpatchController")
 
 startup.csbPath = "lobby/csb/loading.csb"
 startup._schedulerProgress = nil
@@ -28,10 +27,14 @@ function startup:start()
         director:runWithScene(scene)
     end
     
+    local btn = self:seekNodeByName(self._rootNode, "btn_hint_ok")
+    if btn then
+        btn:addTouchEventListener(handler(self, self.onTouch))
+    end
+    
     hcLobby = HotpatchController:new("patch/lobby/project.manifest", "patch_lobby")
-    hcLobby:init()
+    hcLobby:init(handler(self, self.onHotUpdate))
     hcLobby:doUpdate()
---    self:openSchedulerProgress()
 end
 
 function startup:exit()
@@ -67,10 +70,25 @@ function startup:seekNodeByName(root, name)
     end
 end
 
+-- onTouch事件
+function startup:onTouch(sender, eventType)
+    local originalScale = sender:getScale()
+    local scaleMult = 0.95
+    if eventType == ccui.TouchEventType.began then
+        sender:setScale(originalScale*scaleMult)
+    elseif eventType == ccui.TouchEventType.moved then
+    elseif eventType == ccui.TouchEventType.ended then
+        sender:setScale(originalScale/scaleMult)
+        cc.Director:getInstance():endToLua()        
+    elseif eventType == ccui.TouchEventType.canceled then
+        sender:setScale(originalScale/scaleMult)
+    end
+end
+
 function startup:showProgress(nPercent)
     if not nPercent or nPercent < 0 then return end
-    local lbProcess = self:seekNodeByName(self._rootNode,"loadbar")
-    local lbHint = self:seekNodeByName(self._rootNode,"txt_hint")
+    local lbProcess = self:seekNodeByName(self._rootNode, "loadbar")
+    local lbHint = self:seekNodeByName(self._rootNode, "txt_hint")
     if (not lbProcess) or (not lbHint) then return end 
     lbProcess:setPercent(nPercent)
     local strProcess = tostring(math.ceil(nPercent))
@@ -107,6 +125,33 @@ function startup:closeSchedulerProgress()
     if self._schedulerProgress ~= nil then
         scheduler:unscheduleScriptEntry(self._schedulerProgress)
         self._schedulerProgress = nil
+    end
+end
+
+function startup:showErrorHint(txt, visible)
+    local pnl = self:seekNodeByName(self._rootNode, "pnl_error_hint")
+    if visible then
+        local txt_hint = self:seekNodeByName(self._rootNode, "txt_error_hint")
+        txt_hint:setString(txt)		
+	end
+    pnl:setVisible(visible)
+end
+
+function startup:onHotUpdate(info)
+    if self._rootNode then
+        self:showErrorHint("", false)
+        if cc.EventAssetsManagerEx.EventCode.UPDATE_FINISHED == info.code then
+            HotpatchRequire.reloadLobby()
+            self:startGame()  
+        elseif cc.EventAssetsManagerEx.EventCode.ALREADY_UP_TO_DATE == info.code then
+            self:startGame()  
+        elseif cc.EventAssetsManagerEx.EventCode.UPDATE_PROGRESSION == info.code or
+               cc.EventAssetsManagerEx.EventCode.ASSET_UPDATED == info.code then
+            self:showProgress(info.percent)
+        elseif cc.EventAssetsManagerEx.EventCode.NEW_VERSION_FOUND == info.code then           
+        else
+            self:showErrorHint(info.tips, true)
+        end        
     end
 end
 

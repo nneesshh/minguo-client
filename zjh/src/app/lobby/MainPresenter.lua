@@ -7,8 +7,8 @@ local MainPresenter = class("MainPresenter", app.base.BasePresenter)
 local socket        = require("socket")
 -- UI
 MainPresenter._ui   = requireLobby("app.lobby.MainScene")
-local HEART_BEAT_TIMEOUT = 10
-local receiveTime        = 0
+
+local isHotpatch         = false
 
 function MainPresenter:ctor()
     MainPresenter.super.ctor(self)
@@ -19,15 +19,15 @@ end
 
 function MainPresenter:init(gameid)
     self:initScene(gameid)
-    
-    
 end
 
 function MainPresenter:onEnter()
     if app.data.UserData.getLoginState() ~= 1 then
-        app.lobby.login.LoginPresenter:getInstance():start()
+        app.lobby.login.LoginPresenter:getInstance():start()      
+        
+        --app.lobby.login.LoginPresenter:getInstance():dealAutoLogin() 
     end
-    app.lobby.debug.DebugPresenter:getInstance():start()
+    --app.lobby.debug.DebugPresenter:getInstance():start()
 end
 
 function MainPresenter:createDispatcher()
@@ -39,6 +39,7 @@ function MainPresenter:createDispatcher()
 end
 
 function MainPresenter:initScene(gameid)
+    isHotpatch = false
     self:reLoad()
     if gameid then
         self:showPlazaLists(gameid)
@@ -52,6 +53,11 @@ function MainPresenter:reLoad()
     self:onBalanceUpdate()
 end 
 
+-- 退出界面
+function MainPresenter:exit()
+    isHotpatch = false
+    self._ui:getInstance():exit()
+end
 ------------------------ 信息更新 ------------------------
 function MainPresenter:onIDUpdate()
     if not self:isCurrentUI() then
@@ -104,8 +110,8 @@ function MainPresenter:showUserCenter()
 end
 
 -- 显示规则
-function MainPresenter:showHelp()
-    app.lobby.help.HelpPresenter:getInstance():start()
+function MainPresenter:showHelp(gameid)
+    app.lobby.help.HelpPresenter:getInstance():start(gameid)
 end
 
 -- 显示设置
@@ -153,6 +159,54 @@ function MainPresenter:loadingHintExit()
     self:dealLoadingHintExit()
 end
 
+function MainPresenter:reqHotpatch(gameid)
+    local projManifest, savePath = "", ""
+    if gameid == app.Game.GameID.ZJH then
+        projManifest = "patch/zjh/project.manifest"
+        savePath = "patch_zjh"
+    elseif gameid == app.Game.GameID.JDNN then
+        projManifest = "patch/jdnn/project.manifest"
+        savePath = "patch_jdnn"	 	
+	end
+	
+	if projManifest ~= "" and savePath ~= "" then
+        hcGame = HotpatchController:new(projManifest, savePath)
+        hcGame:init(handler(self, self.onHotpatch))
+        hcGame:doUpdate()
+	end	
+end
+
+function MainPresenter:onHotpatch(info)
+    if not self:isCurrentUI() then
+        isHotpatch = false
+        return
+    end
+    -- 热更完成    
+    if cc.EventAssetsManagerEx.EventCode.UPDATE_FINISHED == info.code then
+        if info.gameid == app.Game.GameID.ZJH then
+            HotpatchRequire.reloadZJH()    
+        elseif info.gameid == app.Game.GameID.JDNN then
+            HotpatchRequire.reloadJDNN()   
+        end
+        self._ui:getInstance():showHotpatchProgress(false, info.percent, info.gameid)
+        self:showPlazaLists(info.gameid)
+    -- 已最新               
+    elseif cc.EventAssetsManagerEx.EventCode.ALREADY_UP_TO_DATE == info.code then
+        self._ui:getInstance():showHotpatchProgress(false, info.percent, info.gameid)
+        self:showPlazaLists(info.gameid)
+    -- 热更中    
+    elseif cc.EventAssetsManagerEx.EventCode.UPDATE_PROGRESSION == info.code or
+        cc.EventAssetsManagerEx.EventCode.ASSET_UPDATED == info.code then       
+        self._ui:getInstance():showHotpatchProgress(true, info.percent, info.gameid)
+    -- 发现新版本    
+    elseif cc.EventAssetsManagerEx.EventCode.NEW_VERSION_FOUND == info.code then    
+    -- 热更出错       
+    else
+        self._ui:getInstance():showHotpatchProgress(false, info.percent, info.gameid)
+        self:dealHintStart(info.tips)
+    end
+end
+
 ------------------------ request ------------------------
 -- 请求加入房间
 function MainPresenter:reqJoinRoom(gameid, index)
@@ -165,12 +219,12 @@ function MainPresenter:reqJoinRoom(gameid, index)
     if po ~= nil and roomid then   
         self:dealLoadingHintStart("正在加入房间")      
         app.game.GameEngine:getInstance():start(gameid, base, limit)
-    
+
         po:writer_reset()
         po:write_int32(sessionid)  
         po:write_int32(gameid) 
         po:write_int32(roomid)     
-        
+
         upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_ENTER_ROOM_REQ)     
     end 
 end

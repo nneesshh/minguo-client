@@ -41,9 +41,11 @@ function MainScene:onTouch(sender, eventType)
         if name == "btn_back" then
             self:showPlazaPnl(false)           
         elseif name == "btn_psz" then
-            self._presenter:showPlazaLists(app.Game.GameID.ZJH)  
+            self._presenter:showPlazaLists(app.Game.GameID.ZJH)   
+            --self._presenter:reqHotpatch(app.Game.GameID.ZJH)  
         elseif name == "btn_jdnn" then
-            self._presenter:showPlazaLists(app.Game.GameID.JDNN)                             
+            self._presenter:showPlazaLists(app.Game.GameID.JDNN)   
+            --self._presenter:reqHotpatch(app.Game.GameID.JDNN)                             
         elseif name == "btn_head_info" then
             self._presenter:showUserCenter()             
         elseif name == "btn_gold_add_lobby" then
@@ -51,23 +53,21 @@ function MainScene:onTouch(sender, eventType)
         elseif name == "btn_gold_add_plaza" then
             self._presenter:showShop()             
         elseif name == "btn_notice" then        
-        elseif name == "btn_mail" then  
-            print("test luaj----" ,app.data.AccountData.getIMEI())  
+        elseif name == "btn_mail" then             
         elseif name == "btn_set" then      
             self._presenter:showSet()                     
-        elseif name == "btn_rank" then    
-            print("test luaj----" ,app.data.AccountData.getIMSI())                 
-        elseif name == "btn_safe" then                               
+        elseif name == "btn_rank" then                            
+        elseif name == "btn_safe" then                           
         elseif name == "btn_shop" then      
             self._presenter:showShop()             
-        elseif name == "btn_help" then      
-            self._presenter:showHelp()
+        elseif name == "btn_help" then    
+            local gameid = sender:getTag()    
+            self._presenter:showHelp(gameid)
         elseif string.find(name, "btn_plaza_") then 
             local index = string.split(name, "btn_plaza_")[2]
-            local gameid = sender:getTag()
-            
+            local gameid = sender:getTag()            
             print("gameid is",gameid)
-            self._presenter:reqJoinRoom(gameid, tonumber(index))                       
+            self._presenter:reqJoinRoom(gameid, tonumber(index))                                
         end 
     end
 end
@@ -75,7 +75,7 @@ end
 function MainScene:initUI(gameID, roomMode)
     self._isRunAction = false   
     
-    print("wq-- is", #"")
+    self:initEffect()   
 end
 
 function MainScene:onEnter()
@@ -92,6 +92,7 @@ function MainScene:setID(name)
     txtID2:setString("ID:" .. name)
 end
 
+-- 头像
 function MainScene:setAvatar(avator, gender)
     local btnHead = self:seekChildByName("btn_head_info")
     local resPath = string.format("lobby/image/head/img_head_%d_%d.png", gender, avator)
@@ -166,6 +167,9 @@ function MainScene:loadPlazaList(gameid, plazainfos)
     imgtitle:ignoreContentAdaptWithSize(true)
     imgtitle:loadTexture(resPath, ccui.TextureResType.plistType)
     
+    local btnhelp = self:seekChildByName("btn_help") 
+    btnhelp:setTag(gameid)
+    
     local pnlPlaza = self:seekChildByName("plaza")  
     local childs = pnlPlaza:getChildren()  
     for i,btn in ipairs(childs) do
@@ -192,6 +196,36 @@ function MainScene:loadPlazaList(gameid, plazainfos)
     end
 end
 
+-- 显示热更进度
+function MainScene:showHotpatchProgress(visible, percent, gameid)
+	local btnname = {
+        [app.Game.GameID.ZJH] = "btn_psz",
+        [app.Game.GameID.JDNN] = "btn_jdnn"
+	} 
+	
+    local btn = self:seekChildByName(btnname[gameid]) 
+	if btn then
+        local hotpnl = btn:getChildByName("hotpatch_pnl")        
+        local circle = hotpnl:getChildByName("img_circle")
+        local perfnt = hotpnl:getChildByName("fnt_percent")        
+        if visible then 
+            hotpnl:setVisible(true)           
+            circle:runAction(cc.RepeatForever:create(cc.RotateBy:create(1, 180)))
+            perfnt:setString(string.format("%d%%", percent))
+        else
+            hotpnl:setVisible(false)
+            circle:stopAllActions()
+        end
+	end	
+end
 
+-- 加载人物动画
+function MainScene:initEffect()
+    local node = self:seekChildByName("node_character")  
+    node:removeAllChildren()
+    node:stopAllActions()
+    local effect = app.util.UIUtils.runEffect("lobby/effect","ggdh", 0, 0)
+    node:addChild(effect)    
+end
 
 return MainScene

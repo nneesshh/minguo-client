@@ -143,7 +143,6 @@ function _M.onLogin(conn, sessionid, msgid)
             for i = 1, playerCount do
                 -- seat player info
                 local info = _readSeatPlayerInfo(po)
-                dump(info)
                 table.insert(ids,info.ticketid)
                 app.game.PlayerData.onPlayerInfo(info)
             end            
@@ -167,6 +166,20 @@ function _M.onLogin(conn, sessionid, msgid)
         app.data.UserData.setLoginState(-1)
         app.util.DispatcherUtils.dispatchEvent(app.Event.EVENT_LOGIN_FAIL)
         print("login failed -- !!!!, errcode=" .. tostring(resp.errorCode) .. ", " .. resp.errorMsg)
+    end    
+end
+
+function _M.onRelogin(conn, sessionid, msgid)
+    local resp = {}
+    local po = upconn.upconn:get_packet_obj()
+    resp.errorCode = po:read_int32()
+    resp.errorMsg  = po:read_string()
+    
+    if resp.errorCode == zjh_defs.ErrorCode.ERR_RELOGIN then
+        if app.Connect then            
+            app.Connect:getInstance():close()
+            app.lobby.login.LoginPresenter:getInstance():reLogin("您的账号在其他地方登录")            
+        end 
     end    
 end
 
@@ -264,6 +277,7 @@ function _M.onEnterRoom(conn, sessionid, msgid)
             end                    
         end
     else
+        print("wq engine exit 3333",resp.errorCode, resp.errorMsg)
         app.game.GameEngine:getInstance():exit()
         app.lobby.MainPresenter:getInstance():showErrorMsg(resp.errorCode)
     end
@@ -328,12 +342,13 @@ function _M.onChangeTable(conn, sessionid, msgid)
             end         
         end
     else
+        print("wq engine exit 4444")
         app.game.GameEngine:getInstance():exit()  
     end
 end
 
 function _M.sendPlayerReady(gameid)
-    print("sendPlayerReady")
+    print("sendPlayerReady publicUpconn",gameid)
     local sessionid = app.data.UserData.getSession() or 222
     local po = upconn.upconn:get_packet_obj()
     if po == nil then return end   

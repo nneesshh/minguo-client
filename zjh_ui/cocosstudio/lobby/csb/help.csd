@@ -77,8 +77,8 @@
                 <PreSize X="0.1820" Y="0.0671" />
                 <FileData Type="Normal" Path="lobby/image/help/img_title.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="svw_psz" ActionTag="-789475804" Tag="839" IconVisible="False" LeftMargin="85.0000" RightMargin="84.0000" TopMargin="101.0000" BottomMargin="70.0000" TouchEnable="True" ClipAble="True" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" IsBounceEnabled="True" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
-                <Size X="666.0000" Y="410.0000" />
+              <AbstractNodeData Name="svw_1" ActionTag="-789475804" Tag="839" IconVisible="False" LeftMargin="85.0000" RightMargin="84.0000" TopMargin="98.5000" BottomMargin="67.5000" TouchEnable="True" ClipAble="True" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" IsBounceEnabled="True" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
+                <Size X="666.0000" Y="415.0000" />
                 <Children>
                   <AbstractNodeData Name="psz" ActionTag="1812770390" Tag="840" IconVisible="False" LeftEage="219" RightEage="219" TopEage="305" BottomEage="305" Scale9OriginX="219" Scale9OriginY="305" Scale9Width="228" Scale9Height="317" ctype="ImageViewObjectData">
                     <Size X="666.0000" Y="927.0000" />
@@ -96,12 +96,38 @@
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5006" Y="0.4733" />
-                <PreSize X="0.7976" Y="0.7057" />
+                <PreSize X="0.7976" Y="0.7143" />
                 <SingleColor A="255" R="255" G="150" B="100" />
                 <FirstColor A="255" R="255" G="150" B="100" />
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
                 <InnerNodeSize Width="666" Height="927" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="svw_2" ActionTag="1491121856" VisibleForFrame="False" Tag="596" IconVisible="False" LeftMargin="75.5000" RightMargin="74.5000" TopMargin="96.0000" BottomMargin="65.0000" TouchEnable="True" ClipAble="True" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" IsBounceEnabled="True" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
+                <Size X="685.0000" Y="420.0000" />
+                <Children>
+                  <AbstractNodeData Name="jdnn" ActionTag="920461672" Tag="597" IconVisible="False" LeftEage="219" RightEage="219" TopEage="305" BottomEage="305" Scale9OriginX="219" Scale9OriginY="305" Scale9Width="247" Scale9Height="531" ctype="ImageViewObjectData">
+                    <Size X="685.0000" Y="1141.0000" />
+                    <AnchorPoint />
+                    <Position />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition />
+                    <PreSize X="1.0000" Y="1.0000" />
+                    <FileData Type="Normal" Path="lobby/image/help/img_jdnn_rule.png" Plist="" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="418.0000" Y="275.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5006" Y="0.4733" />
+                <PreSize X="0.8204" Y="0.7229" />
+                <SingleColor A="255" R="255" G="150" B="100" />
+                <FirstColor A="255" R="255" G="150" B="100" />
+                <EndColor A="255" R="255" G="255" B="255" />
+                <ColorVector ScaleY="1.0000" />
+                <InnerNodeSize Width="685" Height="1141" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />

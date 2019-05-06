@@ -175,6 +175,8 @@ function GamePresenter:onPlayerEnter(player)
             app.game.PlayerData.updatePlayerStatus(player:getSeat(), 4)
         end         
     end
+    
+    print("wq-player-enter", player:getSeat(), player:getStatus(), player:getTicketID())
 end
 
 function GamePresenter:onLeaveRoom()
@@ -253,6 +255,7 @@ function GamePresenter:onGameStart()
     for i = 0, self._maxPlayerCnt - 1 do
         if self._gamePlayerNodes[i] then
             self._gamePlayerNodes[i]:onGameStart()
+            self._gamePlayerNodes[i]:showPlayerInfo()
         end
     end
     
@@ -289,13 +292,21 @@ function GamePresenter:onTakeFirst()
     if self:checkHeroWaiting() then
     	return
     end
+    
+    for i = 0, self._maxPlayerCnt - 1 do
+        local gameHandCardNode = self._gamePlayerNodes[i]:getGameHandCardNode()
+        gameHandCardNode:resetHandCards()  
+    end
+    
     local function callback()
         local hero = app.game.PlayerData.getHero()
         if hero and hero:isPlaying() then
             self._gameBtnNode:showBetNode(true)
         end
-        local banker = app.game.GameData.getCurrseat()
-        self:onPlayerBet(banker, 0)
+        if app.game.GameData then
+            local banker = app.game.GameData.getCurrseat()
+            self:onPlayerBet(banker, 0)
+        end
     end
     
     self:openSchedulerTakeFirst(callback)
@@ -792,6 +803,10 @@ function GamePresenter:onResult(data, players)
 end
 
 function GamePresenter:onRelinkEnter(data)   
+    -- 根据总注生成筹码
+    local jackpot = app.game.GameData.getJackpot() or 0
+    self._ui:getInstance():showRandomChip(jackpot)
+    
     -- 庄家
     local banker = app.game.GameData.getBanker()
     local localBanker = app.game.PlayerData.serverSeatToLocalSeat(banker) 
@@ -1070,7 +1085,10 @@ function GamePresenter:openSchedulerTakeFirst(callback)
     end
          
     local cardNum = 1
-    local seats = app.game.GameData.getPlayerseat()
+    local seats = {}
+    if app.game.GameData then
+        seats = app.game.GameData.getPlayerseat()
+    end
     local function onInterval(dt)
         if cardNum <= CARD_NUM then
             for i, seat in ipairs(seats) do
@@ -1126,12 +1144,12 @@ function GamePresenter:closeSchedulerClock(localSeat)
     end
 end
 
-function GamePresenter:closeSchedulerClocks()
-    for i = 0, self._maxPlayerCnt - 1 do
-        if self._schedulerClocks[i] then
-            self:closeSchedulerClock(i)
-        end
-    end
+function GamePresenter:closeSchedulerClocks()    
+	for i = 0, 4 do
+	    if self._schedulerClocks[i] then
+	        self:closeSchedulerClock(i)
+	    end
+	end   
 end
 
 -- 准备倒计时
@@ -1256,7 +1274,7 @@ function GamePresenter:sendLeaveRoom()
     local heroseat = app.game.PlayerData.getHeroSeat()
     local player = app.game.PlayerData.getPlayerByServerSeat(heroseat)    
     if player:isPlaying() then
-        self:dealHintStart("游戏中,暂无法离开！")            
+        self:dealTxtHintStart("游戏中,暂无法离开！")            
     else
         local po = upconn.upconn:get_packet_obj()
         if po ~= nil then
@@ -1318,10 +1336,10 @@ function GamePresenter:sendPlayerReady()
     if hero then       
         print("hero is leave", hero:isLeave())
     end 
-    local limit = app.game.GameConfig.getLimit()
-    if hero and not hero:isLeave() and hero:getBalance() > limit then        
-        local sessionid = app.data.UserData.getSession() or 222
-        local po = upconn.upconn:get_packet_obj()
+    local po = upconn.upconn:get_packet_obj()
+    local limit = app.game.GameConfig.getLimit()    
+    if hero and not hero:isLeave() and hero:getBalance() > limit and po then        
+        local sessionid = app.data.UserData.getSession() or 222        
         po:writer_reset()
         po:write_int64(sessionid)
         upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_READY_REQ)
@@ -1334,7 +1352,7 @@ function GamePresenter:sendChangeTable()
     local heroseat = app.game.PlayerData.getHeroSeat()
     local player = app.game.PlayerData.getPlayerByServerSeat(heroseat)    
     if player:isPlaying() then
-        self:dealHintStart("游戏中,暂无法换桌！")            
+        self:dealTxtHintStart("游戏中,暂无法换桌！")            
     else
         local sessionid = app.data.UserData.getSession() or 222
         local po = upconn.upconn:get_packet_obj()

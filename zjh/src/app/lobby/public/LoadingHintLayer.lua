@@ -40,8 +40,11 @@ end
 function LoadingHintLayer:initUI(txt, timeoutTxt, timeout)    
     -- 播放动画
     local node = self:seekChildByName("hint_node_effect")
-    app.util.UIUtils.runEffectLoop(node, "jz", "lobby/effect","jiazhai", 0, 0, true)    
-
+    node:removeAllChildren()
+    node:stopAllActions()
+    local effect = app.util.UIUtils.runEffect("lobby/effect","jiazhai", 0, 0)
+    node:addChild(effect)
+    
     -- 超时处理
     unAllScheduler()    
     

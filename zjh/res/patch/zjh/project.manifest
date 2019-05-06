@@ -229,16 +229,16 @@
       "md5": "b67510fbf16366ba0c4d161a9643d8bb"
     }, 
     "src/app/game/zjh/GameHandCardNode.lua": {
-      "md5": "b6c01c7c95f3aa525b09b7b17ca341d4"
+      "md5": "fa03021d86c8e2467728975e820325ed"
     }, 
     "src/app/game/zjh/GameMenuNode.lua": {
       "md5": "d7f21a20316bcca9ea15b39c488ca957"
     }, 
     "src/app/game/zjh/GamePlayerNode.lua": {
-      "md5": "7179773a4fc222fc19c64af5f65960cf"
+      "md5": "aed4820383f450fd64d58427c3c7232d"
     }, 
     "src/app/game/zjh/GamePresenter.lua": {
-      "md5": "8d48efcf7d32984b033be50bdedba596"
+      "md5": "a90172abfed0a13cfef73311eaae363d"
     }, 
     "src/app/game/zjh/GameScene.lua": {
       "md5": "09dbaa078afe3bcdb0dd36e562bc1a7b"

@@ -41,14 +41,15 @@ function _M.new(self, projectManifest, savePath)
             --
             projectManifest = projectManifest or "patch/lobby/project.manifest",
             savePath = savePath and cc.FileUtils:getInstance():getWritablePath() .. savePath or
-                cc.FileUtils:getInstance():getWritablePath() .. "update"
+                cc.FileUtils:getInstance():getWritablePath() .. "update",
+            callback = nil    
         },
         mt
     )
 end
 
 --
-function _M:init()
+function _M:init(callback)
     print("write path is",cc.FileUtils:getInstance():getWritablePath())
     
     self.assetsManager = cc.AssetsManagerEx:create(self.projectManifest, self.savePath)
@@ -57,6 +58,7 @@ function _M:init()
     self.localVersion = self.assetsManager:getLocalManifest():getVersion()
     self.remoteVersion = nil
     self.tips = "检查更新中..."
+    self.callback = callback
 end
 
 --
@@ -92,18 +94,9 @@ function _M:doUpdate()
 end
 
 --
-function _M:reloadHotPatchModules()
-    --gg.ctrlManager["LoginLayer"]:removeFromParent(true)
-    --gg.schedulerHelper:unscheduleAllScriptEntry()
-    --display.removeAllSpriteFrames()
-    --package.loaded["model.enterGame"] = nil
-    --require("model.enterGame")
-end
-
---
 function _M:onUpdateEvent(event)
     local eventCode = event:getEventCode()
-    print("[AM]:", eventCode)
+    print("wq-[AM]:", eventCode)
 
     if cc.EventAssetsManagerEx.EventCode.ERROR_NO_LOCAL_MANIFEST == eventCode then
         -- code 0
@@ -147,7 +140,7 @@ function _M:onUpdateEvent(event)
         else
             strInfo = string.format("%d%%", percent)
         end
-        self.tips = "正在进行版本更新: " .. strInfo
+        self.tips = "正在进行版本更新: " .. strInfo                      
     elseif cc.EventAssetsManagerEx.EventCode.ASSET_UPDATED == eventCode then
         -- code 6
         local assetId = event:getAssetId()
@@ -164,9 +157,6 @@ function _M:onUpdateEvent(event)
         print("[AM]: update finished.", eventCode)
         self:release()
         self.tips = "版本更新完毕"
-
-        -- reload
-        self.reloadHotPatchModules()
     elseif cc.EventAssetsManagerEx.EventCode.UPDATE_FAILED == eventCode then
         -- code 9
         print("[AM]: update failed.", eventCode)
@@ -177,9 +167,32 @@ function _M:onUpdateEvent(event)
         print("[AM]: error decompress.", eventCode)
         self.tips = "解压失败"
         self.abort = true
+    end    
+    print("tip is", self.tips)        
+    local tInfo = {
+        tips    = self.tips,
+        abort   = self.abort,
+        code    = eventCode,
+        percent = event:getPercentByFile(),
+        gameid  = self:findGameidByManifest()        
+    }
+    self:onUpdateCallBack(tInfo)
+end
+
+-- 与游戏gameid对应
+function _M:findGameidByManifest()
+    if string.find(self.projectManifest, "lobby") then
+        return 0   
+    elseif string.find(self.projectManifest, "zjh") then
+        return 1
+    elseif string.find(self.projectManifest, "jdnn") then
+        return 2
     end
-    
-    print("tip is", self.tips)    
+    return -1
+end
+
+function _M:onUpdateCallBack(tInfo)
+    self.callback(tInfo)
 end
 
 return _M

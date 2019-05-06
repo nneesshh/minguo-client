@@ -31,7 +31,7 @@ Connect.STATENAME = {
     [Connect.STATE.CLOSED]       = "CLOSED"
 }
 
-Connect.state     = Connect.STATE.IDLE
+Connect.state = Connect.STATE.IDLE
 
 function Connect:getInstance()
     if self._instance == nil then
@@ -46,7 +46,7 @@ function Connect:start()
 end
 
 function Connect:reset()	
-	self.receiveTime       = 0
+	self.receiveTime = 0
 
     self:updateState(Connect.STATE.IDLE)
 	self:closeScheduleUpdate()
@@ -62,7 +62,7 @@ function Connect:openScheduleUpdate()
         upconn.update()         
     end
     
-    upconn.start() 
+    upconn.start()     
     self._scheduleUpdate = scheduler:scheduleScriptFunc(updatefunc, 0.1, false)
     self:openScheduleHeartBeat()
     self:openScheduleTimeOut()
@@ -106,10 +106,9 @@ function Connect:openScheduleTimeOut()
     local function timeoutfnc()     
         local nowTime = os.time()
         if nowTime - self.receiveTime > self.heartBeatTimeout then 
-            --print("die le")                       
-            --self:close()
-        else    
-            --print("beat")                        
+            print("die le")                       
+            self:close()
+            app.lobby.login.LoginPresenter:getInstance():reLogin()                              
         end
     end
     
@@ -124,10 +123,9 @@ function Connect:closeScheduleTimeOut()
 end
 
 function Connect:close()    
-    upconn.close()      
+    upconn.close()  
     self:reset()  
-    self:updateState(Connect.STATE.CLOSED) 
-    app.lobby.login.LoginPresenter:getInstance():reLogin()   
+    self:updateState(Connect.STATE.CLOSED)     
 end
 
 function Connect:respHeartbeat()    
@@ -141,6 +139,13 @@ end
 
 function Connect:getState()
     return Connect.STATENAME[self.state]
+end
+
+function Connect:reConnect()
+    local po = upconn.upconn:get_packet_obj()
+    if po == nil then
+        self:start()        
+    end
 end
 
 return Connect

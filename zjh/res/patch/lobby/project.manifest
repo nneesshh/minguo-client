@@ -22,10 +22,10 @@
       "md5": "6f1f05f4ef0311a40530d96a527cad7f"
     }, 
     "res/lobby/csb/loading.csb": {
-      "md5": "648bf1e98346c0b3536e271781463ac5"
+      "md5": "990ce81e01e64abcaa10e70eeb39d2e4"
     }, 
     "res/lobby/csb/lobby.csb": {
-      "md5": "abdbf318ce8fb1f504d80e493b0102fc"
+      "md5": "c0ad751b68bd747d9e2252f615ec4af5"
     }, 
     "res/lobby/csb/login.csb": {
       "md5": "1a17042dbd9be66d1cb2f35d3a4483e5"
@@ -56,6 +56,12 @@
     }, 
     "res/lobby/effect/jiazhai/jiazhai0.png": {
       "md5": "9c849bfdf029ccf5b367195a3eb0e128"
+    }, 
+    "res/lobby/image/fnt/hotfnt.fnt": {
+      "md5": "4fad2e1b28dd365d493864252969061c"
+    }, 
+    "res/lobby/image/fnt/hotfnt.png": {
+      "md5": "b3b4aba631b8b74b42b5980ef4b54bf7"
     }, 
     "res/lobby/image/fnt/plazafnt.fnt": {
       "md5": "67b4eb994fb82472ee716386bd692a9b"
@@ -158,6 +164,12 @@
     }, 
     "res/lobby/image/lobby/img_info_back.png": {
       "md5": "76dbbdc15622008d7e4534885426c469"
+    }, 
+    "res/lobby/image/lobby/img_load_1.png": {
+      "md5": "d2c336247de8806309d1b5e47317ce45"
+    }, 
+    "res/lobby/image/lobby/img_load_2.png": {
+      "md5": "c6bbfb6a3a70231fba25be33e178bbdb"
     }, 
     "res/lobby/image/lobby/img_point.png": {
       "md5": "ed612ac41bc009215da65e57f43a8c35"
@@ -351,71 +363,14 @@
     "src/app/game/PlayerData.lua": {
       "md5": "601f8ec14f80958f42c2fa50f0d407b8"
     }, 
-    "src/app/game/jdnn/GameBtnNode.lua": {
-      "md5": "34e173f05078fb5cf34cb958cb34e07d"
-    }, 
-    "src/app/game/jdnn/GameCardNode.lua": {
-      "md5": "680904087546e24887d25bd6f67c9d4c"
-    }, 
-    "src/app/game/jdnn/GameData.lua": {
-      "md5": "495d2c972d9b7ab797da7da85586ee10"
-    }, 
-    "src/app/game/jdnn/GameEnum.lua": {
-      "md5": "87e00ca0ffb5400f3a10c0ff8efca75b"
-    }, 
-    "src/app/game/jdnn/GameHandCardNode.lua": {
-      "md5": "120793d9ad5df1af2d1a5d2d5d979b94"
-    }, 
-    "src/app/game/jdnn/GameMenuNode.lua": {
-      "md5": "26e58cec8b8ada3ed271927207710424"
-    }, 
-    "src/app/game/jdnn/GameOutCardNode.lua": {
-      "md5": "f78dce8b6e1b86055210c06d390ecf2c"
-    }, 
-    "src/app/game/jdnn/GamePlayerNode.lua": {
-      "md5": "a1679cf0b358dd28f5ad05253deff774"
-    }, 
-    "src/app/game/jdnn/GamePresenter.lua": {
-      "md5": "0843f472ad490cf50568cf44532c4af5"
-    }, 
-    "src/app/game/jdnn/GameScene.lua": {
-      "md5": "341632213868e841bc34d0fdb19cac46"
-    }, 
-    "src/app/game/zjh/GameBtnNode.lua": {
-      "md5": "80afd149716e7f82eaa80179efd397d6"
-    }, 
-    "src/app/game/zjh/GameCardNode.lua": {
-      "md5": "62d0eba50b2636b7b3446c53c8ce04d3"
-    }, 
-    "src/app/game/zjh/GameData.lua": {
-      "md5": "b12e06eeb426478b9419a684d5b7e422"
-    }, 
-    "src/app/game/zjh/GameEnum.lua": {
-      "md5": "b67510fbf16366ba0c4d161a9643d8bb"
-    }, 
-    "src/app/game/zjh/GameHandCardNode.lua": {
-      "md5": "fa03021d86c8e2467728975e820325ed"
-    }, 
-    "src/app/game/zjh/GameMenuNode.lua": {
-      "md5": "d7f21a20316bcca9ea15b39c488ca957"
-    }, 
-    "src/app/game/zjh/GamePlayerNode.lua": {
-      "md5": "aed4820383f450fd64d58427c3c7232d"
-    }, 
-    "src/app/game/zjh/GamePresenter.lua": {
-      "md5": "1cf653d1a7226b6d3523714330f77a90"
-    }, 
-    "src/app/game/zjh/GameScene.lua": {
-      "md5": "09dbaa078afe3bcdb0dd36e562bc1a7b"
-    }, 
     "src/app/init.lua": {
       "md5": "9fced89aa4ee426d188f40ce96c7fdc6"
     }, 
     "src/app/lobby/MainPresenter.lua": {
-      "md5": "993f955bf658e276ed070f431d980029"
+      "md5": "20de2b08648ba479e382f0a6fd1a1a0d"
     }, 
     "src/app/lobby/MainScene.lua": {
-      "md5": "2aa7f697479cb9b4c4cccc9e849570eb"
+      "md5": "e19ad861d70ac83e88f2acc5f9872a4d"
     }, 
     "src/app/lobby/debug/DebugLayer.lua": {
       "md5": "54ad091b924195798961c67d6fe66783"
@@ -526,7 +481,7 @@
       "md5": "73c26d0ee94ef0ce667bcdb5df056659"
     }, 
     "src/hotpatch/HotpatchController.lua": {
-      "md5": "03fdc36a53fbb0e9902c6edd0cb79aa1"
+      "md5": "9c93e6c925210551526e1db091be5123"
     }, 
     "src/hotpatch/HotpatchRequire.lua": {
       "md5": "4fc2c1718faccc664b5025d7a933aa24"
@@ -553,7 +508,7 @@
       "md5": "22f653c86ee63057ffa1cc62b8f04777"
     }, 
     "src/startup.lua": {
-      "md5": "5dba0575faef2a58ab1a3aa676f39356"
+      "md5": "964f47da0d90c039ee35040105b105d1"
     }, 
     "src/upconn/NiuUpconn.lua": {
       "md5": "da26f4e866fa36f3afaa1df179d7de98"
@@ -574,7 +529,7 @@
       "md5": "f523d6ea5f895866cf0e101fc38b2eaa"
     }, 
     "src/upconn/config/game_zjh.lua": {
-      "md5": "9f56dfe72dea16324df44243cb344a42"
+      "md5": "30b76d47c12411dce3ad3834129a5922"
     }
   }, 
   "engineVersion": "cocos2dx-lua-3.10", 

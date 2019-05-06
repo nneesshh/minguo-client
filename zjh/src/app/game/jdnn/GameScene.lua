@@ -157,20 +157,12 @@ end
 
 -- 结算飞金币
 function GameScene:playFlyGoldAction(from, to, callback)
-    print("enter fly")
-    
---    if from ~= to then
---        if from == 1 then
---            self:showLoseEffect() 
---        end
---        if to == 1 then
---            self:showWinEffect()
---        end
---    end
-
-    local pnlfrom = self:seekChildByName("pnl_player_" .. from)
-    local fx, fy = pnlfrom:getPosition()      
+    local pnlfrom = self:seekChildByName("pnl_player_" .. from)      
     local pnlto = self:seekChildByName("pnl_player_" .. to)
+    if not pnlfrom or not pnlto then
+    	return
+    end    
+    local fx, fy = pnlfrom:getPosition()    
     local tx,ty = pnlto:getPosition()  
     fx, fy = fx+40, fy-40
     tx, ty = tx+40, ty-40
@@ -261,8 +253,12 @@ end
 
 -- 通杀
 function GameScene:showTongShaEffect()
+    local node = self:seekChildByName("node_start_effect")
+    node:removeAllChildren()
+    node:stopAllActions()
+    
     local effect = app.util.UIUtils.runEffectOne("game/jdnn/effect","tongsha", 0, 20)
-    self:seekChildByName("node_start_effect"):addChild(effect)
+    node:addChild(effect)
     
     self._presenter:playEffectByName("bankerwin")
 end
@@ -280,6 +276,11 @@ function GameScene:showSpecialNiuType(index)
     node:runAction(action)
     
     self._presenter:playEffectByName(string.format("m_niu_%d", index))
+end
+
+function GameScene:showJdnnHelp(flag)
+    self:seekChildByName("node_menu"):setVisible(not flag)
+    self:seekChildByName("img_help_nn"):setVisible(flag)
 end
 
 return GameScene

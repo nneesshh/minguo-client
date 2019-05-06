@@ -6,7 +6,7 @@
       <ObjectData Name="Layer" Tag="951" ctype="GameLayerObjectData">
         <Size X="1334.0000" Y="750.0000" />
         <Children>
-          <AbstractNodeData Name="background" ActionTag="1280680011" Tag="970" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" TopMargin="0.0001" TouchEnable="True" StretchWidthEnable="True" StretchHeightEnable="True" ClipAble="False" BackColorAlpha="127" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+          <AbstractNodeData Name="background" ActionTag="1280680011" Tag="970" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" TopMargin="0.0001" StretchWidthEnable="True" StretchHeightEnable="True" ClipAble="False" BackColorAlpha="127" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="1334.0000" Y="749.9999" />
             <AnchorPoint />
             <Position />
@@ -22,7 +22,7 @@
           <AbstractNodeData Name="container" ActionTag="-1498034098" Tag="987" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" LeftEage="275" RightEage="275" TopEage="191" BottomEage="191" Scale9OriginX="-275" Scale9OriginY="-191" Scale9Width="550" Scale9Height="382" ctype="PanelObjectData">
             <Size X="1334.0000" Y="750.0000" />
             <Children>
-              <AbstractNodeData Name="img_hint_back" ActionTag="-1848940455" Tag="453" IconVisible="False" LeftMargin="437.5000" RightMargin="437.5000" TopMargin="344.5000" BottomMargin="344.5000" LeftEage="151" RightEage="151" TopEage="20" BottomEage="20" Scale9OriginX="151" Scale9OriginY="20" Scale9Width="157" Scale9Height="21" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="img_hint_back" ActionTag="-1848940455" VisibleForFrame="False" Tag="453" IconVisible="False" LeftMargin="437.5000" RightMargin="437.5000" TopMargin="344.5000" BottomMargin="344.5000" LeftEage="151" RightEage="151" TopEage="20" BottomEage="20" Scale9OriginX="151" Scale9OriginY="20" Scale9Width="157" Scale9Height="21" ctype="ImageViewObjectData">
                 <Size X="459.0000" Y="61.0000" />
                 <Children>
                   <AbstractNodeData Name="txt_hint" ActionTag="620193463" Tag="121" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="229.5000" RightMargin="229.5000" TopMargin="30.5000" BottomMargin="30.5000" FontSize="30" LabelText="" HorizontalAlignmentType="HT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">

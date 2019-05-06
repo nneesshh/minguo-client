@@ -114,6 +114,17 @@
 				<key>sourceSize</key>
 				<string>{80,80}</string>
 			</dict>
+			<key>lobby/image/head/img_head_2_0.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{338,86},{80,80}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{80,80}</string>
+			</dict>
 		</dict>
 		<key>metadata</key>
 		<dict>

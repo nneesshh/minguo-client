@@ -12,8 +12,15 @@ HelpLayer.touchs = {
     "btn_close",
 }
 
+HelpLayer.svws = {
+    "svw_1",
+    "svw_2"
+}
+
 function HelpLayer:onCreate()
-    self:seekChildByName("svw_psz"):setScrollBarEnabled(false)    
+    for i=1, #self.svws do
+        self:seekChildByName("svw_" .. i):setScrollBarEnabled(false)    
+    end    
 end
 
 function HelpLayer:onClick(sender)
@@ -32,6 +39,17 @@ function HelpLayer:onTouch(sender, eventType)
             self:exit()                     
         end
     end
+end
+
+function HelpLayer:init(gameid)
+	self:showOnlySvw(gameid)
+end
+
+function HelpLayer:showOnlySvw(gameid)
+    for i, var in ipairs(self.svws) do
+        local id = tonumber(string.split(var, "svw_")[2]) 
+        self:seekChildByName(var):setVisible(id == gameid)
+    end    
 end
 
 return HelpLayer

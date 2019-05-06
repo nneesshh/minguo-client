@@ -52,7 +52,7 @@ function GameMenuNode:onTouchBtnChange()
 end
 
 function GameMenuNode:onTouchBtnHelp()
-    app.lobby.help.HelpPresenter:getInstance():start()
+    app.lobby.help.HelpPresenter:getInstance():start(1)
 end
 
 -- 旋转菜单

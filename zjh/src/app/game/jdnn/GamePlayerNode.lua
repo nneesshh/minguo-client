@@ -44,6 +44,8 @@ function GamePlayerNode:onPlayerEnter()
     self:showImgFace(player:getGender(), player:getAvatar())
     -- 隐藏庄家
     self:showImgBanker(false)
+    -- 隐藏光
+    self:showImgLight(false)
     -- 隐藏玩家选择
     self:showImgChoose(false)
     -- 隐藏牌型
@@ -74,6 +76,8 @@ end
 function GamePlayerNode:onGameStart()
     -- 隐藏庄家
     self:showImgBanker(false)
+    -- 隐藏光
+    self:showImgLight(false)
     -- 隐藏玩家选择
     self:showImgChoose(false)
     -- 隐藏牌型
@@ -91,7 +95,9 @@ end
 
 -- 显示用户节点    
 function GamePlayerNode:showPnlPlayer(visible)
-    self._rootNode:setVisible(visible)
+    if self._rootNode then
+        self._rootNode:setVisible(visible)
+    end  
 end
 
 -- 姓名
@@ -131,6 +137,12 @@ function GamePlayerNode:showImgBanker(visible)
     imgBanker:setVisible(visible)
 end
 
+-- 庄家光
+function GamePlayerNode:showImgLight(visible)
+    local imgLight = self:seekChildByName("img_light")
+    imgLight:setVisible(visible)
+end
+
 -- 玩家选择
 function GamePlayerNode:showImgChoose(visible, index)
     local imgChoose = self:seekChildByName("img_choose")
@@ -151,33 +163,87 @@ function GamePlayerNode:showImgCardtype(visible, index)
     imgtype:setVisible(visible) 
 end
 
--- 庄家动画    
-function GamePlayerNode:playBankAction(callback)
-    local imgBanker = self:seekChildByName("img_banker")
-    local x,y = imgBanker:getPosition() 
-    
-    local pos = {
-        [0] = cc.p(627, 62.5),
-        [1] = cc.p(627, 353),
-        [2] = cc.p(-547, 62.5),
-        [3] = cc.p(-153, -242),
-        [4] = cc.p(342, -242),    
-    }
-    imgBanker:setPosition(pos[self._localSeat])
-    imgBanker:setVisible(true)
-    
+-- 播放闪光动画
+function GamePlayerNode:playLightAction(pertime, callback)
     local function next()
         if callback then
-        	callback()
+            callback()
         end
-        
-        imgBanker:setPosition(x, y)
     end
-    imgBanker:runAction(cc.Sequence:create(
-        cc.MoveTo:create(0.5, cc.p(x,y)), 
-        cc.CallFunc:create(next)))     
+    local sequence = cc.Sequence:create(
+        cc.FadeIn:create(pertime*0.3),
+        cc.DelayTime:create(pertime*0.4),
+        cc.FadeOut:create(pertime*0.3),
+        cc.CallFunc:create(next))
+    local imgLight = self:seekChildByName("img_light")
+    if self._localSeat == 1 or self._localSeat == 3 or self._localSeat == 4 then
+        imgLight:setScaleY(1.3)
+    end
+    imgLight:setVisible(true)
+    imgLight:runAction(sequence)
+end
+
+-- 庄家动画    
+function GamePlayerNode:playBankAction(callback)
+    local function bankermove()
+        local imgBanker = self:seekChildByName("img_banker")
+        local x,y = imgBanker:getPosition() 
+
+        local pos = {
+            [0] = cc.p(627, 62.5),
+            [1] = cc.p(627, 353),
+            [2] = cc.p(-547, 62.5),
+            [3] = cc.p(-153, -242),
+            [4] = cc.p(342, -242),    
+        }
+        imgBanker:setPosition(pos[self._localSeat])
+        imgBanker:setVisible(true)
+
+        local function next()
+            if callback then
+                callback()
+            end
+
+            imgBanker:setPosition(x, y)
+        end
+        imgBanker:runAction(cc.Sequence:create(
+            cc.MoveTo:create(0.5, cc.p(x,y)), 
+            cc.CallFunc:create(next)))     
+    end
+
+    local imgLight = self:seekChildByName("img_light")
+    local sequence
+    if self._localSeat == 1 or self._localSeat == 3 or self._localSeat == 4 then
+        sequence = cc.Sequence:create(
+            cc.FadeIn:create(0.2),
+            cc.ScaleTo:create(0.2,1.2,1.3*1.2),
+            cc.DelayTime:create(0.2),
+            cc.ScaleTo:create(0.1,1,1.3),
+            cc.FadeOut:create(0.2))
+    else
+        sequence = cc.Sequence:create(
+            cc.FadeIn:create(0.2),
+            cc.ScaleTo:create(0.2,1.2),
+            cc.DelayTime:create(0.2),
+            cc.ScaleTo:create(0.1,1),
+            cc.FadeOut:create(0.2))
+    end
+    
+    imgLight:runAction(sequence)
+    
+    local pnlLight = self:seekChildByName("pnl_light")
+    pnlLight:runAction(cc.Sequence:create(
+        cc.FadeTo:create(0.3, 130), 
+        cc.FadeOut:create(0.2),
+        cc.CallFunc:create(bankermove)))
 end    
 
+function GamePlayerNode:resetLightOpacity()
+    local pnlLight = self:seekChildByName("pnl_light")
+    pnlLight:setOpacity(0)
+end
+
+-- 结算分数
 function GamePlayerNode:showWinloseScore(score)
     local fntScore = nil
     if score <= 0 then

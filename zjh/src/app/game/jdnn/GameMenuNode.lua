@@ -37,8 +37,7 @@ function GameMenuNode:onClick(sender)
 end
 
 function GameMenuNode:init()
-    local imghelp = self:seekChildByName("img_nn_help") 
-    imghelp:setVisible(false)
+
 end
 
 function GameMenuNode:onTouchBtnGameMenu()
@@ -55,9 +54,7 @@ function GameMenuNode:onTouchBtnChange()
 end
 
 function GameMenuNode:onTouchBtnHelp()
-    local imghelp = self:seekChildByName("img_nn_help") 
-    
-    imghelp:setVisible(not imghelp:isVisible())
+    self._presenter:showJdnnHelp(true)
 end
 
 -- 旋转菜单
@@ -83,9 +80,6 @@ function GameMenuNode:showMenu()
         imgExpand:runAction(cc.Show:create())
     else
         imgExpand:runAction(cc.Hide:create())
-        
-        local imghelp = self:seekChildByName("img_nn_help") 
-        imghelp:setVisible(false)
     end
 end
 

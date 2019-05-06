@@ -54,6 +54,10 @@ function GameData.restData()
     _selfData.isallIn     = false
 end
 
+function GameData.getTableID()
+    return _selfData.tableid
+end
+
 function GameData.setTableStatus(status)
     _selfData.status = status 
 end

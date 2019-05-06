@@ -10,7 +10,7 @@ local GE   = app.game.GameEnum
 
 GameScene.touchs = {
     "btn_exit", 
-    "btn_show_card"  
+    "btn_show_card",  
 }
 
 GameScene.clicks = {
@@ -20,7 +20,7 @@ GameScene.clicks = {
     "pnl_player_2",
     "pnl_player_3",
     "pnl_player_4",
-    
+    "pnl_bipai"    
 }
 
 GameScene.events = {
@@ -45,6 +45,9 @@ function GameScene:onClick(sender)
     if string.find(name, "pnl_player_") then 
         local localseat = string.split(name, "pnl_player_")[2]
         self._presenter:onTouchPanelBiPai(tonumber(localseat)) 
+        print("pnl_player")    
+    elseif name == "pnl_bipai" then
+        self._presenter:playBiPaiPanel(false, true)  
     end    
 end
 
@@ -93,20 +96,31 @@ function GameScene:initUI()
 end
 
 function GameScene:showStartEffect()
+    local node = self:seekChildByName("node_start_effect")
+    node:removeAllChildren()
+    node:stopAllActions()
+    
     local effect = app.util.UIUtils.runEffectOne("game/zjh/effect","jiubei_dh", 0, 85)
-    self:seekChildByName("node_start_effect"):addChild(effect)
+    node:addChild(effect)
 end
 
 function GameScene:showBiPaiEffect()
+    local node = self:seekChildByName("node_bipai_effect")
+    node:removeAllChildren()
+    node:stopAllActions()
+    
     local effect = app.util.UIUtils.runEffectOne("game/zjh/effect","vs_dh2", 0, 0)
-    self:seekChildByName("node_bipai_effect"):addChild(effect)
+    node:addChild(effect)
 end
 
 function GameScene:showFireEffect()
     for i=0,3 do
         local node = self:seekChildByName("node_fire_" .. i)
     	if node then
-            app.util.UIUtils.runEffectLoop(node, "fire"..i, "game/zjh/effect","huo_2", 0, 0, true)
+            node:removeAllChildren()
+            node:stopAllActions()
+            local effect = app.util.UIUtils.runEffect("game/zjh/effect","huo_2", 0, 0)
+            node:addChild(effect)
     	end
     end   
 end
@@ -122,13 +136,21 @@ function GameScene:stopFireEffectLoop()
 end
 
 function GameScene:playQMLWeffect()
+    local node = self:seekChildByName("node_start_effect")
+    node:removeAllChildren()
+    node:stopAllActions()
+    
     local effect = app.util.UIUtils.runEffectOne("game/zjh/effect","vs_qmlw", 0, -50)
-    self:seekChildByName("node_start_effect"):addChild(effect)
+    node:addChild(effect)
 end
 
 function GameScene:playGZYZeffect()
+    local node = self:seekChildByName("node_gzyz_effect")
+    node:removeAllChildren()
+    node:stopAllActions()
+    
     local effect = app.util.UIUtils.runEffectOne("game/zjh/effect","vs_gzyz", 0, 0)
-    self:seekChildByName("node_gzyz_effect"):addChild(effect)
+    node:addChild(effect)
 end
 
 function GameScene:showBase()
@@ -157,6 +179,7 @@ end
 function GameScene:showBaseChipAction(localseat)        
     local pnlarea = self:seekChildByName("pnl_chip_area")    
     local pnlplayer = self:seekChildByName("pnl_player_"..localseat)
+    if not pnlplayer then return end
     local fx,fy = pnlplayer:getPosition()  
         
     local chipParent = self:seekChildByName("imgchip")    
@@ -175,6 +198,7 @@ end
 function GameScene:showAllInChipAction(localseat)         
     local pnlarea = self:seekChildByName("pnl_chip_area")    
     local pnlplayer = self:seekChildByName("pnl_player_"..localseat)
+    if not pnlplayer then return end
     local fx,fy = pnlplayer:getPosition()  
 
     local chipParent = self:seekChildByName("imgchip")    
@@ -194,6 +218,7 @@ function GameScene:showChipAction(index, count, localseat)
     local base = app.game.GameConfig.getBase()       
     local pnlarea = self:seekChildByName("pnl_chip_area")
     local pnlplayer = self:seekChildByName("pnl_player_"..localseat)
+    if not pnlplayer then return end
     local fx,fy = pnlplayer:getPosition()  
     local chipParent = self:seekChildByName("imgchip")  
     
@@ -215,6 +240,7 @@ end
 
 function GameScene:showChipBackAction(localseats)
     local pnlarea = self:seekChildByName("pnl_chip_area")
+    if not pnlarea then return end
     local childrens = pnlarea:getChildren()
     local total = #localseats
     
@@ -224,7 +250,7 @@ function GameScene:showChipBackAction(localseats)
         for i = 1, total do
             local pnlplayer = self:seekChildByName("pnl_player_"..localseats[i])
             local fx,fy = pnlplayer:getPosition()    
-            
+
             if i == total then
                 for j = per*(i-1)+1, #childrens do                    
                     childrens[j]:runAction(cc.Sequence:create(
@@ -253,6 +279,60 @@ function GameScene:showChipBackAction(localseats)
             ))  
     	end
     end
+end
+
+function GameScene:showRandomChip(jackpot)
+    local base = app.game.GameConfig.getBase()      
+    local count = math.floor(jackpot / base) 
+    if count < 10 then
+        self:createChip(count, 1, base)
+    elseif count < 20 then       
+        self:createChip(count-10, 1, base)
+        self:createChip(5, 1, base*2)   
+    elseif count < 40 then
+        self:createChip(count-18, 1, base)
+        self:createChip(3, 1, base*2)   
+        self:createChip(3, 2, base*4)        
+    elseif count < 70 then
+        self:createChip(count-36, 1, base)
+        self:createChip(3, 1, base*2)   
+        self:createChip(3, 2, base*4)
+        self:createChip(3, 3, base*6)   
+    elseif count < 110 then          
+        self:createChip(count-60, 1, base)
+        self:createChip(3, 1, base*2)   
+        self:createChip(3, 2, base*4)
+        self:createChip(3, 3, base*6)  
+        self:createChip(3, 4, base*8) 
+    elseif count < 170 then          
+        self:createChip(count-90, 1, base)
+        self:createChip(3, 1, base*2)   
+        self:createChip(3, 2, base*4)
+        self:createChip(3, 3, base*6)  
+        self:createChip(3, 4, base*8) 
+        self:createChip(3, 5, base*10)
+    else
+        self:createChip(count-166, 1, base)
+        self:createChip(3, 1, base*2)   
+        self:createChip(3, 2, base*4)
+        self:createChip(5, 3, base*6)  
+        self:createChip(6, 4, base*8) 
+        self:createChip(7, 5, base*10)  
+    end      
+end
+
+function GameScene:createChip(count, color, txt)
+    local pnlarea = self:seekChildByName("pnl_chip_area")
+    local chipParent = self:seekChildByName("imgchip")
+    for i=1, count do
+        local imgChip = chipParent:clone()
+        local txtChip = imgChip:getChildByName("txt_chip_value")
+        txtChip:setString(txt)  
+        local tx,ty = math.random(457, 457+420), math.random(280, 280+180)    
+        imgChip:setPosition(cc.p(tx, ty))            
+        imgChip:loadTexture(string.format("game/zjh/image/img_chip_small_%d.png", color), ccui.TextureResType.plistType) 
+        pnlarea:addChild(imgChip)  
+    end       
 end
 
 function GameScene:showBiPaiPanel(visible)

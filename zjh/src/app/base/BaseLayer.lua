@@ -181,14 +181,20 @@ function BaseLayer:onTouch(sender, eventType)
         sender:setScale(originalScale*scaleMult)
     elseif eventType == ccui.TouchEventType.moved then
     elseif eventType == ccui.TouchEventType.ended then
-        sender:setScale(originalScale/scaleMult)
+        sender:setScale(originalScale/scaleMult)        
+        if app.Connect then
+            
+            app.Connect:getInstance():reConnect()
+        end         
     elseif eventType == ccui.TouchEventType.canceled then
         sender:setScale(originalScale/scaleMult)
     end
 end
 
 function BaseLayer:onClick(sender)
-
+    if app.Connect then
+        app.Connect:getInstance():reConnect()
+    end
 end
 
 function BaseLayer:onEvent(sender, eventType)

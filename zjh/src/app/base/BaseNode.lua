@@ -144,12 +144,18 @@ function BaseNode:onTouch(sender, eventType)
     elseif eventType == ccui.TouchEventType.moved then
     elseif eventType == ccui.TouchEventType.ended then
         sender:setScale(originalScale/scaleMult)
+        if app.Connect then
+            app.Connect:getInstance():reConnect()
+        end
     elseif eventType == ccui.TouchEventType.canceled then
         sender:setScale(originalScale/scaleMult)
     end
 end
 
-function BaseNode:onClick(sender)    
+function BaseNode:onClick(sender)  
+    if app.Connect then
+        app.Connect:getInstance():reConnect()
+    end  
 end
 
 function BaseNode:onEvent(sender, eventType)

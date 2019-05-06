@@ -12,6 +12,7 @@
       <FilePathData Path="lobby/image/head/img_head_1_3.png" />
       <FilePathData Path="lobby/image/head/img_head_1_4.png" />
       <FilePathData Path="lobby/image/head/img_head_1_0.png" />
+      <FilePathData Path="lobby/image/head/img_head_2_0.png" />
     </ImageFiles>
     <MaxSize Width="512" Height="1024" />
   </Content>

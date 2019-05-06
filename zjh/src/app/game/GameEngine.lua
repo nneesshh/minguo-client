@@ -20,9 +20,14 @@ function GameEngine:start(gameID, base)
     app.game.PlayerData.init(app.Game.MaxPlayCnt[gameID])
 end
 
-function GameEngine:exit()    
+function GameEngine:exit()
+    print("game engine exit")    
     app.game.PlayerData.exit()
-    app.game.GameData.restData()
+    
+    if app.game.GameData then
+        app.game.GameData.restData()
+    end
+    
     self:onExitGame()
 
     app.game.GameLoader.unloader()

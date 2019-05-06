@@ -14,8 +14,6 @@ function SetPresenter:init()
 end
 
 function SetPresenter:initSetData()
-    print("SetData.isOpenMusic()",SetData.isOpenMusic())
-    print("SetData.isOpenEffect()",SetData.isOpenEffect())
     self._ui:getInstance():setMusic(SetData.isOpenMusic())
     self._ui:getInstance():setEffect(SetData.isOpenEffect())    
 end
@@ -42,8 +40,11 @@ function SetPresenter:dealChangeAccount()
     self:dealHintStart("你确定要退出到登录选择界面么？",
         function(bFlag)
             if bFlag then
-                app.lobby.login.LoginPresenter:getInstance():start()
                 self:exit()
+                app.data.UserData.setLoginState(-1)
+                app.Connect:getInstance():close()              
+                app.lobby.login.LoginPresenter:getInstance():start(true) 
+                app.lobby.login.LoginPresenter:getInstance():dealAccountLogin()     
             end
         end
         ,0)

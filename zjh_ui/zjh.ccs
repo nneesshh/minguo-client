@@ -65,6 +65,7 @@
               <Image Name="img_hint.png" />
               <Image Name="img_hint_start.png" />
               <Image Name="img_jx.png" />
+              <Image Name="img_light.png" />
               <Image Name="img_nn_help.png" />
               <Image Name="img_nntou.png" />
               <Image Name="img_type_11.png" />
@@ -223,6 +224,7 @@
           </Folder>
           <Folder Name="image">
             <Folder Name="fnt">
+              <Fnt Name="hotfnt.fnt" />
               <Fnt Name="plazafnt.fnt" />
             </Folder>
             <Folder Name="head">
@@ -236,10 +238,12 @@
               <Image Name="img_head_1_2.png" />
               <Image Name="img_head_1_3.png" />
               <Image Name="img_head_1_4.png" />
+              <Image Name="img_head_2_0.png" />
               <Image Name="img_light.png" />
               <Image Name="imt_title.png" />
             </Folder>
             <Folder Name="help">
+              <Image Name="img_jdnn_rule.png" />
               <Image Name="img_psz_rule.png" />
               <Image Name="img_title.png" />
             </Folder>
@@ -276,6 +280,8 @@
               <Image Name="img_head_0_0.png" />
               <Image Name="img_head_back.png" />
               <Image Name="img_info_back.png" />
+              <Image Name="img_load_1.png" />
+              <Image Name="img_load_2.png" />
               <Image Name="img_notice_back.png" />
               <Image Name="img_point.png" />
             </Folder>

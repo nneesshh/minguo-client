@@ -36,7 +36,7 @@ function _M.update()
     _M.upconn:update()
 end
 
-function _M.close()
+function _M.close()    
     _M.upconn:close()
 end
 
@@ -53,15 +53,15 @@ function _M.start()
     _M.doRegisterMsgCallbacks()
 
     local connected_cb = function(self)
-        print("connected_cb, connid=" .. tostring(self.id))               
+        print("connected_cb, connid=" .. tostring(self.id))         
     end
 
     local disconnected_cb = function(self)
-        print("disconnected_cb, connid=" .. tostring(self.id))        
+        print("disconnected_cb, connid=" .. tostring(self.id))       
     end
 
     local error_cb = function(self, errstr)
-        print("error_cb, connid=" .. tostring(self.id) .. ", err:" .. errstr)        
+        print("error_cb, connid=" .. tostring(self.id) .. ", err:" .. errstr)     
     end
 
     local got_packet_cb = function(self, pkt)
@@ -198,6 +198,8 @@ function _M.onPlayerReady(conn, sessionid, msgid)
     local resp = {}
     local po = upconn.upconn:get_packet_obj()
     local seat = po:read_byte()
+    
+    print("ready", seat)
 end
 
 function _M.onGamePrepare(conn, sessionid, msgid)
@@ -298,7 +300,7 @@ end
 
 -- request
 function _M.sendPlayerReady(self)
-    print("sendPlayerReady")
+    print("wq--sendPlayerReady", app.data.UserData.getTicketID())
     local sessionid = app.data.UserData.getSession() or 222
     local po = upconn.upconn:get_packet_obj()
     po:writer_reset()
@@ -312,7 +314,8 @@ function _M.doRegisterMsgCallbacks()
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_REGISTER_RESP, pubconn.onRegister)
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_LOGIN_RESP, pubconn.onLogin)
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_CHANGE_USER_INFO_RESP, pubconn.onUserInfo)
-    
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_RELOGIN_NOTIFY_NEW, pubconn.onRelogin)
+        
     -- 玩家动作
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_PLAYER_STATUS_NOTIFY_NEW, pubconn.onPlayerStatus)
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_SIT_DOWN_NOTIFY_NEW, pubconn.onPlayerSitDown)

@@ -49,6 +49,7 @@ end
 
 -- 添加Player
 function PlayerData.addPlayer(playerInfo)
+    if not _players then return nil end
     for index, player in pairs(_players) do
         if player:getTicketID() == playerInfo.ticketid then                
             _players[index] = nil
@@ -110,6 +111,7 @@ end
 
 -- 删除Player
 function PlayerData.delPlayerByNumID(numID)
+    if not _players then return nil end
     for index, player in pairs(_players) do
         if player:getTicketID() == numID then
             _players[index] = nil
@@ -121,6 +123,7 @@ end
 
 -- 删除除自己外其他玩家
 function PlayerData.delOtherPlayers()
+    if not _players then return nil end
     for index, player in pairs(_players) do
         if player:getTicketID() ~= app.data.UserData.getTicketID() then
             _players[index] = nil
@@ -130,16 +133,20 @@ end
 
 -- 获取Player
 function PlayerData.getPlayerByNumID(numID)
+    if not _players then return nil end
+    
     for index, player in pairs(_players) do
         if player:getTicketID() == numID then
             return player
         end
     end
+         
     return nil
 end
 
 -- 获取Player
 function PlayerData.getPlayerByServerSeat(serverSeat)
+    if not _players then return nil end
     for index, player in pairs(_players) do
         if player:getSeat() == serverSeat then
             return player
@@ -160,9 +167,7 @@ function PlayerData.isHero(numID)
 end
 
 function PlayerData.getHeroSeat()
-    if not _players then 
-        return nil 
-    end
+    if not _players then return nil end
     for index, player in pairs(_players) do
         if PlayerData.isHero(player:getTicketID()) then
             return player:getSeat()

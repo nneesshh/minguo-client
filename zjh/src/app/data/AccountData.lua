@@ -15,43 +15,41 @@ local _selfData = {
 
 function AccountData.setUsername(username)
     _selfData.username = username
-    AccountData.saveAccountData(_selfData)
+    AccountData.saveAccountData(_selfData.username, "USERNAME")
 end
 
 function AccountData.setPassword(password)
     _selfData.password = password
-    AccountData.saveAccountData(_selfData)
+    AccountData.saveAccountData(_selfData.password, "PASSWORD")
 end
 
 function AccountData.setIMEI(imei)
     _selfData.imei = imei
-    AccountData.saveAccountData(_selfData)
+    AccountData.saveAccountData(_selfData.imei, "IMEI")
 end
 
 function AccountData.setIMSI(imsi)
     _selfData.imsi = imsi
-    AccountData.saveAccountData(_selfData)
+    AccountData.saveAccountData(_selfData.imsi, "IMSI")
 end
 
 -- 设置账号数据
-function AccountData.saveAccountData(data)
-    local strAccount = app.util.ToolUtils.serialize(data)
-    cc.UserDefault:getInstance():setStringForKey("ACCOUNT", strAccount)
+function AccountData.saveAccountData(data, key)
+    if data == "" or data == nil then
+    	return
+    end
+    
+    cc.UserDefault:getInstance():setStringForKey(key, data)
 end
 
 -- 获取账号数据
-function AccountData.getAccountData(type)
-    local strdata = cc.UserDefault:getInstance():getStringForKey("ACCOUNT") or {}
-    local udata = app.util.ToolUtils.unserialize(strdata)
-    if udata and udata[type] and string.len(udata[type]) > 0 then
-        return udata[type]
-    end    
-    return ""
+function AccountData.getAccountData(key)    
+    return cc.UserDefault:getInstance():getStringForKey(key) or ""
 end
 
 function AccountData.haveAccount()
-    local username = AccountData.getAccountData("username")
-    local password = AccountData.getAccountData("password")
+    local username = AccountData.getAccountData("USERNAME")
+    local password = AccountData.getAccountData("PASSWORD")
     if #username > 0 and #password > 0 then
         return true, username, password
     end
@@ -60,7 +58,7 @@ end
 
 function AccountData.IMEI()
     local phoneIMEI = AccountData.getPhoneIMEI()
-    local localIMEI = AccountData.getAccountData("imei")
+    local localIMEI = AccountData.getAccountData("IMEI")
     if #phoneIMEI > 0 then
         AccountData.setIMEI(phoneIMEI)
         return phoneIMEI    
@@ -77,7 +75,7 @@ end
 
 function AccountData.IMSI()
     local phoneIMSI = AccountData.getPhoneIMSI()
-    local localIMSI = AccountData.getAccountData("imsi")
+    local localIMSI = AccountData.getAccountData("IMSI")
     if #phoneIMSI > 0 then
         AccountData.setIMSI(phoneIMSI)
         return phoneIMSI    

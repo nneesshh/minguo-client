@@ -43,15 +43,26 @@ end
 -- 玩家进入
 function GamePlayerNode:onPlayerEnter()  
     local player = app.game.PlayerData.getPlayerByLocalSeat(self._localSeat)
-
+    
+    if self._localSeat == HERO_LOCAL_SEAT then
+        -- 设置姓名
+        self:showTxtPlayerName(true, player:getTicketID())
+        -- 设置金币
+        self:showTxtBalance(true, player:getBalance())
+        -- 显示头像
+        self:showImgFace(player:getGender(), player:getAvatar())
+    else
+        -- 设置姓名
+        self:showTxtPlayerName(true, "  -")
+        -- 设置金币
+        self:showTxtBalance(true, "-")
+        -- 显示头像
+        self:showImgFace(2, 0)    
+    end
+    
     -- 显示用户节点    
     self:showPnlPlayer(true)
-    -- 设置姓名
-    self:showTxtPlayerName(true, player:getTicketID())
-    -- 设置金币
-    self:showTxtBalance(true, player:getBalance())
-    -- 显示头像
-    self:showImgFace(player:getGender(), player:getAvatar())
+    
     -- 隐藏庄家
     self:showImgBanker(false)
     -- 隐藏庄家框
@@ -108,6 +119,17 @@ function GamePlayerNode:onGameStart()
     self._gameHandCardNode:resetHandCards()
 end
 
+-- 显示信息
+function GamePlayerNode:showPlayerInfo()
+    local player = app.game.PlayerData.getPlayerByLocalSeat(self._localSeat)
+	if not player then return end	
+    self:showTxtPlayerName(true, player:getTicketID())
+    -- 设置金币
+    self:showTxtBalance(true, player:getBalance())
+    -- 显示头像
+    self:showImgFace(player:getGender(), player:getAvatar())
+end
+
 -- 发牌
 function GamePlayerNode:onTakeFirst(cardID)
     self._gameHandCardNode:onTakeFirst(cardID)
@@ -120,7 +142,9 @@ end
 
 -- 显示用户节点    
 function GamePlayerNode:showPnlPlayer(visible)
-    self._rootNode:setVisible(visible)
+    if self._rootNode then
+        self._rootNode:setVisible(visible)
+    end   
 end
 
 -- 姓名
@@ -231,7 +255,6 @@ function GamePlayerNode:adjustCardTypePos(x,y)
     end
 end
     
-
 -- 庄家动画    
 function GamePlayerNode:playBankAction()
     local imgLight = self:seekChildByName("img_light") 
@@ -278,12 +301,18 @@ end
 
 function GamePlayerNode:playWinEffect()
     local node = self:seekChildByName("node_effect")
+    node:removeAllChildren()
+    node:stopAllActions()
+    
     local effect = app.util.UIUtils.runEffectOne("game/zjh/effect", "vs_dh3", 0, -25)
     node:addChild(effect)
 end
 
-function GamePlayerNode:playLoseEffect()
+function GamePlayerNode:playLoseEffect() 
     local node = self:seekChildByName("node_effect")
+    node:removeAllChildren()
+    node:stopAllActions()
+    
     local effect = app.util.UIUtils.runEffectOne("game/zjh/effect", "vs_dh1", 0, 0)
     node:addChild(effect)
 end
@@ -293,20 +322,22 @@ function GamePlayerNode:playPanleAction(posf, post, flag)
         self._presenter:setCardScale(0.4, self._localSeat)
         self:adjustCardTypePos(152,-12)        
         self:showPnlBlack(false)
-        self:showImgBet(false)
-        self:playEffectByName("pk")
-        self._presenter:checkBtnShowCard(false)
+        self:showImgBet(false)        
+        self._presenter:checkBtnShowCard(false)        
+        
+        if not flag then
+            self:playEffectByName("pk_lose")
+        end
     end
     
     local function bfunc()
         if flag then
             self:showPnlBlack(false)
             self:playWinEffect()
-        else
+        else            
             self:showPnlBlack(true)
             self._presenter:showGaryCard(self._localSeat, 0.4)
-            self:playLoseEffect() 
-            self:playEffectByName("pk_lose")    
+            self:playLoseEffect()                
         end              
     end
     
@@ -320,6 +351,9 @@ function GamePlayerNode:playPanleAction(posf, post, flag)
         self._presenter:showOtherPlayer() 
         self._presenter:checkBtnShowCard(true)   
     end
+    
+    self:playEffectByName("pk")
+    
     local action1 = cc.CallFunc:create(function() afunc() end)
     local action2 = cc.MoveTo:create(0.5, cc.p(post))    
     local sp1 = cc.Spawn:create(action1, action2)
@@ -346,8 +380,9 @@ function GamePlayerNode:playQMLWAction(flag)
         if flag then
             self:playWinEffect()
             self:showPnlBlack(false)
-        else           
-            self:playLoseEffect()    
+        else 
+            self:playEffectByName("pk_lose")          
+            self:playLoseEffect()                
             self:showPnlBlack(true)
         end                  
     end

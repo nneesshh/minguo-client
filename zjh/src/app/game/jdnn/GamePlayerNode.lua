@@ -36,12 +36,23 @@ function GamePlayerNode:onPlayerEnter()
 
     -- 显示用户节点    
     self:showPnlPlayer(true)
-    -- 设置姓名
-    self:showTxtPlayerName(true, player:getTicketID())
-    -- 设置金币
-    self:showTxtBalance(true, player:getBalance())
-    -- 显示头像
-    self:showImgFace(player:getGender(), player:getAvatar())
+    
+    if self._localSeat == HERO_LOCAL_SEAT then
+        -- 设置姓名
+        self:showTxtPlayerName(true, player:getTicketID())
+        -- 设置金币
+        self:showTxtBalance(true, player:getBalance())
+        -- 显示头像
+        self:showImgFace(player:getGender(), player:getAvatar())
+    else
+        -- 设置姓名
+        self:showTxtPlayerName(true, "    -")
+        -- 设置金币
+        self:showTxtBalance(true, "  -")
+        -- 显示头像
+        self:showImgFace(2, 0)    
+    end
+    
     -- 隐藏庄家
     self:showImgBanker(false)
     -- 隐藏光
@@ -86,6 +97,20 @@ function GamePlayerNode:onGameStart()
     self._gameHandCardNode:resetHandCards()    
     -- 隐藏出牌
     self._gameOutCardNode:resetOutCards()
+end
+
+-- 显示信息
+function GamePlayerNode:showPlayerInfo()
+    local player = app.game.PlayerData.getPlayerByLocalSeat(self._localSeat)
+    if not player then return end   
+    -- 显示用户节点    
+    self:showPnlPlayer(true)
+    
+    self:showTxtPlayerName(true, player:getTicketID())
+    -- 设置金币
+    self:showTxtBalance(true, player:getBalance())
+    -- 显示头像
+    self:showImgFace(player:getGender(), player:getAvatar())
 end
 
 -- 发牌
@@ -187,27 +212,13 @@ end
 function GamePlayerNode:playBankAction(callback)
     local function bankermove()
         local imgBanker = self:seekChildByName("img_banker")
-        local x,y = imgBanker:getPosition() 
-
-        local pos = {
-            [0] = cc.p(627, 62.5),
-            [1] = cc.p(627, 353),
-            [2] = cc.p(-547, 62.5),
-            [3] = cc.p(-153, -242),
-            [4] = cc.p(342, -242),    
-        }
-        imgBanker:setPosition(pos[self._localSeat])
         imgBanker:setVisible(true)
-
         local function next()
             if callback then
                 callback()
             end
-
-            imgBanker:setPosition(x, y)
         end
         imgBanker:runAction(cc.Sequence:create(
-            cc.MoveTo:create(0.5, cc.p(x,y)), 
             cc.CallFunc:create(next)))     
     end
 
@@ -246,27 +257,30 @@ end
 -- 结算分数
 function GamePlayerNode:showWinloseScore(score)
     local fntScore = nil
+    local imgBack = nil
     if score <= 0 then
+        imgBack = self:seekChildByName("img_desc_back")
         fntScore = self:seekChildByName("fnt_lose_score")
     else
+        imgBack = self:seekChildByName("img_add_back")
         fntScore = self:seekChildByName("fnt_win_score")
-        score = "+"..score
+        score = "+" .. score
     end
-
-    fntScore:setVisible(true)
     fntScore:setString(score)
-    fntScore:setOpacity(255)
+    
+    imgBack:setVisible(true)    
+    imgBack:setOpacity(255)
 
     local action = cc.Sequence:create(
         cc.MoveBy:create(0.8, cc.p(0, 15)),
         cc.Spawn:create(
             cc.MoveBy:create(0.8, cc.p(0, 15)), 
-            cc.FadeOut:create(3)
+            cc.FadeOut:create(2)
         ),
-        cc.MoveTo:create(0.01, cc.p(fntScore:getPosition()))
+        cc.MoveTo:create(0.01, cc.p(imgBack:getPosition()))
     )
 
-    fntScore:runAction(action)        
+    imgBack:runAction(action)        
 end
 
 function GamePlayerNode:getPosition()

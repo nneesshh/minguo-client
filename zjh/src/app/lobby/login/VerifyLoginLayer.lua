@@ -26,6 +26,8 @@ function VerifyLoginLayer:onCreate()
     
     account:setTextHorizontalAlignment(cc.TEXT_ALIGNMENT_CENTER)
     verify:setTextHorizontalAlignment(cc.TEXT_ALIGNMENT_CENTER)
+    account:setTextVerticalAlignment(cc.VERTICAL_TEXT_ALIGNMENT_CENTER)
+    verify:setTextVerticalAlignment(cc.VERTICAL_TEXT_ALIGNMENT_CENTER)
 end
 
 function VerifyLoginLayer:initUI()

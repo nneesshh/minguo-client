@@ -1,15 +1,20 @@
 
 cc.FileUtils:getInstance():setPopupNotify(false)
--- lobby
-cc.FileUtils:getInstance():addSearchPath(cc.FileUtils:getInstance():getWritablePath() .. "patch_lobby/src/", true)
-cc.FileUtils:getInstance():addSearchPath(cc.FileUtils:getInstance():getWritablePath() .. "patch_lobby/res/", true)
 
--- zjh
-cc.FileUtils:getInstance():addSearchPath(cc.FileUtils:getInstance():getWritablePath() .. "patch_zjh/src/", true)
-cc.FileUtils:getInstance():addSearchPath(cc.FileUtils:getInstance():getWritablePath() .. "patch_zjh/res/", true)
--- jdnn
-cc.FileUtils:getInstance():addSearchPath(cc.FileUtils:getInstance():getWritablePath() .. "patch_jdnn/src/", true)
-cc.FileUtils:getInstance():addSearchPath(cc.FileUtils:getInstance():getWritablePath() .. "patch_jdnn/res/", true)
+CC_HOTPATCH = true
+
+if CC_HOTPATCH then
+    -- lobby
+    cc.FileUtils:getInstance():addSearchPath(cc.FileUtils:getInstance():getWritablePath() .. "patch_lobby/src/", true)
+    cc.FileUtils:getInstance():addSearchPath(cc.FileUtils:getInstance():getWritablePath() .. "patch_lobby/res/", true)
+
+    -- zjh
+    cc.FileUtils:getInstance():addSearchPath(cc.FileUtils:getInstance():getWritablePath() .. "patch_zjh/src/", true)
+    cc.FileUtils:getInstance():addSearchPath(cc.FileUtils:getInstance():getWritablePath() .. "patch_zjh/res/", true)
+    -- jdnn
+    cc.FileUtils:getInstance():addSearchPath(cc.FileUtils:getInstance():getWritablePath() .. "patch_jdnn/src/", true)
+    cc.FileUtils:getInstance():addSearchPath(cc.FileUtils:getInstance():getWritablePath() .. "patch_jdnn/res/", true)
+end
 
 -- default
 cc.FileUtils:getInstance():addSearchPath("src/")
@@ -49,10 +54,14 @@ local function main()
     local targetPlatform = cc.Application:getInstance():getTargetPlatform()
     if 3 == targetPlatform or 4 == targetPlatform or 5 == targetPlatform then
         requireLobby("startup"):start()    
-    else        
-        local start = requireLobby "app.start"
-        start.init()
-        start.start()
+    else       
+        if CC_HOTPATCH then
+            requireLobby("startup"):start()    
+        else
+            local start = requireLobby "app.start"
+            start.init()
+            start.start()
+        end
     end
 end
 

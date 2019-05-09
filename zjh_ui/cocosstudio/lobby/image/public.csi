@@ -1,0 +1,15 @@
+<PlistInfoProjectFile>
+  <PropertyGroup Name="public" Type="Plist" ID="c8103cb2-902d-4f98-80da-e5facf4426f9" Version="3.10.0.0" />
+  <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="2" AllowRotation="True" AllowAnySize="True" AllowTrim="True" ctype="PlistInfoData">
+    <ImageFiles>
+      <FilePathData Path="lobby/image/rank/img_rank_1.png" />
+      <FilePathData Path="lobby/image/rank/img_rank_2.png" />
+      <FilePathData Path="lobby/image/rank/img_rank_3.png" />
+      <FilePathData Path="lobby/image/mail/img_mail_0.png" />
+      <FilePathData Path="lobby/image/mail/img_mail_1.png" />
+      <FilePathData Path="lobby/image/mail/img_read_0.png" />
+      <FilePathData Path="lobby/image/mail/img_read_1.png" />
+    </ImageFiles>
+    <MaxSize Width="512" Height="512" />
+  </Content>
+</PlistInfoProjectFile>

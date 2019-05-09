@@ -38,7 +38,6 @@
       <FilePathData Path="game/jdnn/image/img_choose_4.png" />
       <FilePathData Path="game/jdnn/image/img_choose_5.png" />
       <FilePathData Path="game/jdnn/image/img_choose_0.png" />
-      <FilePathData Path="game/jdnn/image/img_clock.png" />
       <FilePathData Path="game/jdnn/image/img_cutdown_back.png" />
       <FilePathData Path="game/jdnn/image/img_gold.png" />
       <FilePathData Path="game/jdnn/image/img_head_back1.png" />
@@ -53,6 +52,12 @@
       <FilePathData Path="game/jdnn/image/img_type_12.png" />
       <FilePathData Path="game/jdnn/image/img_type_13.png" />
       <FilePathData Path="game/jdnn/image/img_light.png" />
+      <FilePathData Path="game/jdnn/image/img_add_back.png" />
+      <FilePathData Path="game/jdnn/image/img_desc_back.png" />
+      <FilePathData Path="game/jdnn/image/img_load.png" />
+      <FilePathData Path="game/jdnn/image/img_load_back.png" />
+      <FilePathData Path="game/jdnn/image/img_qqz.png" />
+      <FilePathData Path="game/jdnn/image/img_qxz.png" />
     </ImageFiles>
     <MaxSize Width="2048" Height="1024" />
   </Content>

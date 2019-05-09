@@ -30,7 +30,7 @@ local SCHEDULE_WAIT_TIME= 0
 
 -- 初始化
 function GamePresenter:init(...)
-    self._maxPlayerCnt = app.game.PlayerData.getMaxPlayerCount()
+    self._maxPlayerCnt = app.game.PlayerData.getMaxPlayerCount() or 5
     self:playGameMusic()  
     self:initPlayerNode()
     self:initBtnNode()
@@ -38,7 +38,7 @@ function GamePresenter:init(...)
     self:initScheduler() 
     
     self._overDelaytime = 0
-    self._gameOver   = false
+    self._gameOver = false
 end
 
 function GamePresenter:initPlayerNode()
@@ -91,6 +91,17 @@ end
 
 -- 处理玩家状态
 function GamePresenter:onPlayerStatus(data)
+    local player = app.game.PlayerData.getPlayerByNumID(data.ticketid)        
+    if not player then
+        return
+    end
+    local flag = false -- 结算时退出的玩家暂不隐藏，等待动画完成后再判断是否隐藏
+    if player:isInGame() and self._gameOver then
+        local localSeat = app.game.PlayerData.serverSeatToLocalSeat(player:getSeat())
+        app.game.GameData.setLeaveSeats(localSeat)
+        flag = true              
+    end
+   
     -- 更新本家状态
     if app.game.PlayerData.isHero(data.ticketid) then
         local heroseat = app.game.PlayerData.getHeroSeat()
@@ -98,13 +109,13 @@ function GamePresenter:onPlayerStatus(data)
     end
     
     if data.status == 7 then    -- 退出
-        self:onLeaveNormal(data)
+        self:onLeaveNormal(data, flag)
     elseif data.status == 8 or data.status == 9 then -- 服务踢出房间     
-        self:onLeaveKick(data)                           
+        self:onLeaveKick(data, flag)                           
     end
 end
 
-function GamePresenter:onLeaveNormal(data)
+function GamePresenter:onLeaveNormal(data, flag)
     local numID = data.ticketid
     local player = app.game.PlayerData.getPlayerByNumID(numID)        
     if not player then
@@ -112,14 +123,13 @@ function GamePresenter:onLeaveNormal(data)
     end
 
     app.game.PlayerData.onPlayerLeave(numID)
-    self:onPlayerLeave(player)        
+    self:onPlayerLeave(player, flag)        
     if app.game.PlayerData.isHero(data.ticketid) then 
         self:onLeaveRoom()
     end 
 end
 
-function GamePresenter:onLeaveKick(data)
-    print("leave hero id is:", app.data.UserData.getTicketID())
+function GamePresenter:onLeaveKick(data, flag)
     local hint = ""
     if data.status == 8 then
         hint = "亲，你身上的金币不太多了噢~请换个房间或者再补充点金币吧！"
@@ -134,14 +144,52 @@ function GamePresenter:onLeaveKick(data)
                 return
             end
             app.game.PlayerData.onPlayerLeave(numID)
-            self:onPlayerLeave(player)
-            print("leave numid is", app.data.UserData.getTicketID(), data.ticketid) 
+            self:onPlayerLeave(player, flag)
             if app.game.PlayerData.isHero(data.ticketid) then 
                 self:dealHintStart(hint,function(bFlag)
                     self:onLeaveRoom()
                 end, 0)
             end 
         end, self._overDelaytime + 3)
+end
+
+-- 处理玩家离开
+function GamePresenter:onPlayerLeave(player, flag)
+    local numID = player:getTicketID()
+
+    app.game.GameData.removePlayerseat(player:getSeat())
+
+    -- 自己离开重置桌子
+    if app.game.PlayerData.isHero(numID) then 
+        for i = 0, self._maxPlayerCnt - 1 do
+            if self._gamePlayerNodes[i] then
+                self._gamePlayerNodes[i]:onResetTable()
+            end
+        end        
+    -- 某个玩家离开将该节点隐藏
+    else 
+        local localSeat = app.game.PlayerData.serverSeatToLocalSeat(player:getSeat())
+        if self._gamePlayerNodes[localSeat] then
+            self._gamePlayerNodes[localSeat]:onPlayerLeave(flag)
+        end
+
+        if app.game.PlayerData.getPlayerCount() <= 1 then
+            if self._gamePlayerNodes[HERO_LOCAL_SEAT] then
+                self:performWithDelayGlobal(
+                    function()
+                        if app.game.GamePresenter then
+                            self._ui:getInstance():showPnlHint(2)
+                            self._gamePlayerNodes[HERO_LOCAL_SEAT]:onResetTable()
+                        end   
+                    end, 4)
+            end
+        end
+    end
+end
+
+-- 退出游戏区
+function GamePresenter:onLeaveRoom()
+    app.game.GameEngine:getInstance():exit()
 end
 
 -- 处理玩家进入
@@ -174,47 +222,7 @@ function GamePresenter:onPlayerEnter(player)
             end
             app.game.PlayerData.updatePlayerStatus(player:getSeat(), 4)
         end         
-    end
-    
-    print("wq-player-enter", player:getSeat(), player:getStatus(), player:getTicketID())
-end
-
-function GamePresenter:onLeaveRoom()
-    app.game.GameEngine:getInstance():exit()
-end
-
--- 处理玩家离开
-function GamePresenter:onPlayerLeave(player)
-    local numID = player:getTicketID()
-    
-    app.game.GameData.removePlayerseat(player:getSeat())
-    
-    -- 自己离开重置桌子
-    if app.game.PlayerData.isHero(numID) then 
-        for i = 0, self._maxPlayerCnt - 1 do
-            if self._gamePlayerNodes[i] then
-                self._gamePlayerNodes[i]:onResetTable()
-            end
-        end        
-    -- 某个玩家离开将该节点隐藏
-    else 
-        local localSeat = app.game.PlayerData.serverSeatToLocalSeat(player:getSeat())
-        if self._gamePlayerNodes[localSeat] then
-            self._gamePlayerNodes[localSeat]:onPlayerLeave()
-        end
-
-        if app.game.PlayerData.getPlayerCount() <= 1 then
-            if self._gamePlayerNodes[HERO_LOCAL_SEAT] then
-                self:performWithDelayGlobal(
-                    function()
-                        if app.game.GamePresenter then
-                            self._ui:getInstance():showPnlHint(2)
-                            self._gamePlayerNodes[HERO_LOCAL_SEAT]:onResetTable()
-                        end   
-                    end, 5)
-            end
-        end
-    end
+    end    
 end
 
 -- 玩家准备
@@ -231,6 +239,7 @@ end
 function GamePresenter:onGameStart()  
     self._overDelaytime = 0
     self._gameOver = false
+
     self._ui:getInstance():showPnlHint()
     
     for i = 0, self._maxPlayerCnt - 1 do        
@@ -239,12 +248,14 @@ function GamePresenter:onGameStart()
         app.game.PlayerData.resetPlayerBet(i)
     end
     
+    local heroseat = app.game.PlayerData.getHeroSeat()
     local seats = app.game.GameData.getPlayerseat()    
     for k, i in ipairs(seats) do
-        app.game.PlayerData.updatePlayerStatus(i, 3)        
+        app.game.PlayerData.updatePlayerStatus(i, 3)      
     end
     
     app.game.GameData.setAllIn(false)
+    app.game.GameData.resetLeaveSeats()
     
     -- 隐藏看牌按钮
     self._ui:getInstance():showBtnShowCard(false)
@@ -462,7 +473,9 @@ function GamePresenter:onPlayerCompareCard(data)
    
     self:refreshUI()    
     self._ui:getInstance():showChipAction(ib, count, localSeat)
+    
     self:playCompareAction(localSeat, otherSeat, loserSeat)
+    
     self._gamePlayerNodes[localSeat]:playEffectByName("chip")
     self._gamePlayerNodes[localSeat]:showTxtBalance(true, data.playerBalance)    
     self._gamePlayerNodes[localSeat]:showImgBet(true,  player:getBet())
@@ -495,6 +508,9 @@ function GamePresenter:onPlayerShowCard(seat, cards, cardtype)
     app.game.PlayerData.updatePlayerIsshow(seat, 1) 
     local localSeat = app.game.PlayerData.serverSeatToLocalSeat(seat)
     local player = app.game.PlayerData.getPlayerByServerSeat(seat)
+    if not player then
+    	return
+    end
     local gender = player:getGender() 
     if gender == 1 then
         self._gamePlayerNodes[localSeat]:playEffectByName("m_kp")   
@@ -507,6 +523,7 @@ function GamePresenter:onPlayerShowCard(seat, cards, cardtype)
         local normal, disable = self:checkButtonEnable(player)
         self._gameBtnNode:setEnableByName(normal, disable) 
         self._ui:getInstance():showBtnShowCard(false) 
+        self._gamePlayerNodes[localSeat]:showImgCheck(false)  
     else
         self._gamePlayerNodes[localSeat]:showImgCheck(true)     
     end
@@ -551,13 +568,13 @@ function GamePresenter:onPlayerAnteUpAllIn(data)
     end
     
     self:refreshUI()
+    
     self._ui:getInstance():showAllInChipAction(localSeat)
     self._ui:getInstance():showFireEffect()
     self._gamePlayerNodes[localSeat]:playEffectByName("chip")
     self._gamePlayerNodes[localSeat]:showTxtBalance(true, data.playerBalance)    
     self._gamePlayerNodes[localSeat]:showImgBet(true, player:getBet())
-   
-    
+       
     app.game.GameData.setBasebet(data.basebet)
 
     self:onPlayerAllIn(app.game.GameData.getCurrseat())
@@ -701,7 +718,7 @@ function GamePresenter:onGameOver(data, players)
     self._ui:getInstance():showBtnShowCard(false)
     -- 当前座位为-1
     app.game.GameData.setCurrseat(-1) 
-    
+        
     -- 是否全压
     local isallin = app.game.GameData.getAllIn()
     local round = app.game.GameData.getRound()
@@ -733,8 +750,9 @@ function GamePresenter:onGameOver(data, players)
         end           	
     end
     
+    
     -- 延时结算
-    self:performWithDelayGlobal(function()
+    self:performWithDelayGlobal(function()        
         self:onResult(data, players)
     end, self._overDelaytime)     
 end
@@ -742,7 +760,7 @@ end
 -- 结算
 function GamePresenter:onResult(data, players)
     self:showOtherPlayer()
-   
+    
     local tempSeat = data.winnerSeat
     local newWinseats = {}
     if tempSeat == 255 then   -- 平分        
@@ -778,31 +796,46 @@ function GamePresenter:onResult(data, players)
         end
     end
     
+    -- 筹码回收
     self._ui:getInstance():showChipBackAction(chipBackseats)
     
-    local seats = app.game.GameData.getPlayerseat()    
-    for k, seat in ipairs(seats) do
-        if players[seat] then          
-            app.game.PlayerData.updatePlayerRiches(seat, 0, players[seat].balance) 
-            local localSeat = app.game.PlayerData.serverSeatToLocalSeat(seat)            
-            self._gamePlayerNodes[localSeat]:showWinloseScore(players[seat].score)            
-            self._gamePlayerNodes[localSeat]:showTxtBalance(true, players[seat].balance)                                         
-        end 
-    end       
+    local scoreLists = {}    
+    for seat, player in pairs(players) do  
+        if player.cards[1] ~= CV_BACK then
+            app.game.PlayerData.updatePlayerRiches(seat, 0, player.balance)
+            local localSeat = app.game.PlayerData.serverSeatToLocalSeat(seat)    
+            scoreLists[localSeat] = player.score           
+            self._gamePlayerNodes[localSeat]:showTxtBalance(true, player.balance)    
+        end                    
+    end
     
-    -- 当前玩家状态设为默认
-    for i = 0, self._maxPlayerCnt - 1 do        
-        app.game.PlayerData.updatePlayerStatus(i, 0)       
+    self._ui:getInstance():showWinloseScore(scoreLists)
+    
+    -- 将正在游戏的玩家状态设为默认
+    for i = 0, self._maxPlayerCnt - 1 do 
+        local player = app.game.PlayerData.getPlayerByServerSeat(i)
+        if player and player:isPlaying() then
+            app.game.PlayerData.updatePlayerStatus(i, 0) 
+        end              
     end    
-                        
+    
+    self:performWithDelayGlobal(function()
+        self:showLeavePlayer(false)        
+    end, 1)
+     
     -- 延时准备
     self:performWithDelayGlobal(function()
         self:sendPlayerReady()
-    end, 3)        
-         
+    end, 4)                 
 end
 
 function GamePresenter:onRelinkEnter(data)   
+    -- 展示玩家信息
+    for i = 0, self._maxPlayerCnt - 1 do
+        if self._gamePlayerNodes[i] then            
+            self._gamePlayerNodes[i]:showPlayerInfo()
+        end
+    end
     -- 根据总注生成筹码
     local jackpot = app.game.GameData.getJackpot() or 0
     self._ui:getInstance():showRandomChip(jackpot)
@@ -841,8 +874,8 @@ function GamePresenter:onRelinkEnter(data)
                 gameHandCardNode:createCards(data.cards)  
                 -- 牌型
                 self._gamePlayerNodes[localSeat]:showImgCardType(true, data.cardtype) 
-                -- 是否看牌
-                self._gamePlayerNodes[localSeat]:showImgCheck(isshow)
+                -- 是否看牌                
+                self._ui:getInstance():showBtnShowCard(not isshow)
                 -- 是否弃牌
                 if status == GEPS.zjh_giveup then   -- 弃牌
                     self._gamePlayerNodes[localSeat]:showPnlBlack(true, true)
@@ -982,6 +1015,27 @@ function GamePresenter:showOtherPlayer()
             end
         end                        
     end
+end
+
+-- test
+function GamePresenter:showLeavePlayer(flag)
+    local leavaeseats = app.game.GameData.getLeaveSeats()
+    print("leave seats")
+    dump(leavaeseats)
+    if flag then
+        for _, localseat in ipairs(leavaeseats) do
+            if self._gamePlayerNodes[localseat] then
+                self._gamePlayerNodes[localseat]:showPnlPlayer(true)
+            end     
+        end
+    else
+        for _, localseat in ipairs(leavaeseats) do
+            local player = app.game.PlayerData.getPlayerByLocalSeat(localseat)
+            if self._gamePlayerNodes[localseat] and not player then
+                self._gamePlayerNodes[localseat]:showPnlPlayer(false)
+            end     
+        end     
+    end    
 end
 
 function GamePresenter:playQMLWAction(liveSeat, winnerSeat)

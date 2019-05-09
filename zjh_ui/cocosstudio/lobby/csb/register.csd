@@ -31,57 +31,47 @@
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
           </AbstractNodeData>
-          <AbstractNodeData Name="container" ActionTag="119928360" Tag="29" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="336.0000" RightMargin="336.0000" TopMargin="168.0000" BottomMargin="168.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
-            <Size X="662.0000" Y="414.0000" />
+          <AbstractNodeData Name="container" ActionTag="119928360" Tag="29" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="224.0000" RightMargin="224.0000" TopMargin="100.0000" BottomMargin="100.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+            <Size X="886.0000" Y="550.0000" />
             <Children>
-              <AbstractNodeData Name="img_back1" ActionTag="-2061178520" Tag="31" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftEage="218" RightEage="218" TopEage="136" BottomEage="136" Scale9OriginX="218" Scale9OriginY="136" Scale9Width="226" Scale9Height="142" ctype="ImageViewObjectData">
-                <Size X="662.0000" Y="414.0000" />
+              <AbstractNodeData Name="img_back1" ActionTag="-2061178520" Tag="31" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftEage="218" RightEage="218" TopEage="136" BottomEage="136" Scale9OriginX="218" Scale9OriginY="136" Scale9Width="450" Scale9Height="278" ctype="ImageViewObjectData">
+                <Size X="886.0000" Y="550.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="331.0000" Y="207.0000" />
+                <Position X="443.0000" Y="275.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5000" Y="0.5000" />
                 <PreSize X="1.0000" Y="1.0000" />
-                <FileData Type="Normal" Path="lobby/image/public/img_back1.png" Plist="" />
+                <FileData Type="Normal" Path="lobby/image/public/img_back_3.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="img_back2" ActionTag="-515154346" Tag="32" IconVisible="False" LeftMargin="42.0002" RightMargin="39.9998" TopMargin="76.4995" BottomMargin="102.5005" Scale9Enable="True" LeftEage="25" RightEage="25" TopEage="25" BottomEage="25" Scale9OriginX="25" Scale9OriginY="25" Scale9Width="511" Scale9Height="28" ctype="ImageViewObjectData">
-                <Size X="580.0000" Y="235.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="332.0002" Y="220.0005" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5015" Y="0.5314" />
-                <PreSize X="0.8761" Y="0.5676" />
-                <FileData Type="Normal" Path="lobby/image/public/img_back2.png" Plist="" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="img_title" ActionTag="1908601001" Tag="33" IconVisible="False" LeftMargin="154.2779" RightMargin="162.7221" TopMargin="-6.4305" BottomMargin="356.4305" LeftEage="113" RightEage="113" TopEage="21" BottomEage="21" Scale9OriginX="113" Scale9OriginY="21" Scale9Width="119" Scale9Height="22" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="img_title" ActionTag="1908601001" Tag="33" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="270.5000" RightMargin="270.5000" TopMargin="-7.0000" BottomMargin="493.0000" LeftEage="113" RightEage="113" TopEage="21" BottomEage="21" Scale9OriginX="113" Scale9OriginY="21" Scale9Width="119" Scale9Height="22" ctype="ImageViewObjectData">
                 <Size X="345.0000" Y="64.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="326.7779" Y="388.4305" />
+                <Position X="443.0000" Y="525.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.4936" Y="0.9382" />
-                <PreSize X="0.5211" Y="0.1546" />
+                <PrePosition X="0.5000" Y="0.9545" />
+                <PreSize X="0.3894" Y="0.1164" />
                 <FileData Type="Normal" Path="lobby/image/public/img_title.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="img_title_password" ActionTag="1875091584" Tag="34" IconVisible="False" LeftMargin="256.0000" RightMargin="254.0000" BottomMargin="374.0000" LeftEage="32" RightEage="32" TopEage="12" BottomEage="12" Scale9OriginX="32" Scale9OriginY="12" Scale9Width="88" Scale9Height="16" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="img_title_password" ActionTag="1875091584" Tag="34" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="367.0000" RightMargin="367.0000" TopMargin="-1.0000" BottomMargin="511.0000" LeftEage="32" RightEage="32" TopEage="12" BottomEage="12" Scale9OriginX="32" Scale9OriginY="12" Scale9Width="88" Scale9Height="16" ctype="ImageViewObjectData">
                 <Size X="152.0000" Y="40.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="332.0000" Y="394.0000" />
+                <Position X="443.0000" Y="531.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5015" Y="0.9517" />
-                <PreSize X="0.2296" Y="0.0966" />
+                <PrePosition X="0.5000" Y="0.9655" />
+                <PreSize X="0.1716" Y="0.0727" />
                 <FileData Type="Normal" Path="lobby/image/login/img_register.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="btn_close" ActionTag="-1801848479" Tag="35" IconVisible="False" LeftMargin="593.4184" RightMargin="-20.4184" TopMargin="-19.0903" BottomMargin="344.0903" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="59" Scale9Height="67" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+              <AbstractNodeData Name="btn_close" ActionTag="-1801848479" Tag="35" IconVisible="False" LeftMargin="825.5000" RightMargin="-28.5000" TopMargin="-29.5000" BottomMargin="490.5000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="59" Scale9Height="67" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="89.0000" Y="89.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="637.9184" Y="388.5903" />
+                <Position X="870.0000" Y="535.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.9636" Y="0.9386" />
-                <PreSize X="0.1344" Y="0.2150" />
+                <PrePosition X="0.9819" Y="0.9727" />
+                <PreSize X="0.1005" Y="0.1618" />
                 <TextColor A="255" R="65" G="65" B="70" />
                 <DisabledFileData Type="Normal" Path="lobby/image/public/btn_close.png" Plist="" />
                 <PressedFileData Type="Normal" Path="lobby/image/public/btn_close.png" Plist="" />
@@ -89,166 +79,140 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="txt_account" ActionTag="-1207289324" Tag="45" IconVisible="False" LeftMargin="52.0000" RightMargin="445.0000" TopMargin="109.0000" BottomMargin="275.0000" FontSize="30" LabelText="账号/手机：" HorizontalAlignmentType="HT_Right" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                <Size X="165.0000" Y="30.0000" />
-                <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
-                <Position X="217.0000" Y="290.0000" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.3278" Y="0.7005" />
-                <PreSize X="0.2492" Y="0.0725" />
-                <OutlineColor A="255" R="255" G="0" B="0" />
-                <ShadowColor A="255" R="110" G="110" B="110" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="txt_verify" ActionTag="633498284" Tag="46" IconVisible="False" LeftMargin="97.0000" RightMargin="445.0000" TopMargin="175.3671" BottomMargin="208.6329" IsCustomSize="True" FontSize="30" LabelText="验证码：" HorizontalAlignmentType="HT_Right" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                <Size X="120.0000" Y="30.0000" />
-                <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
-                <Position X="217.0000" Y="223.6329" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.3278" Y="0.5402" />
-                <PreSize X="0.1813" Y="0.0725" />
-                <OutlineColor A="255" R="255" G="0" B="0" />
-                <ShadowColor A="255" R="110" G="110" B="110" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="txt_password" ActionTag="1840202165" Tag="167" IconVisible="False" LeftMargin="127.0000" RightMargin="445.0000" TopMargin="239.0000" BottomMargin="145.0000" IsCustomSize="True" FontSize="30" LabelText="密码：" HorizontalAlignmentType="HT_Right" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                <Size X="90.0000" Y="30.0000" />
-                <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
-                <Position X="217.0000" Y="160.0000" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.3278" Y="0.3865" />
-                <PreSize X="0.1360" Y="0.0725" />
-                <OutlineColor A="255" R="255" G="0" B="0" />
-                <ShadowColor A="255" R="110" G="110" B="110" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="img_back3" ActionTag="438818845" Tag="43" IconVisible="False" LeftMargin="200.0000" RightMargin="132.0000" TopMargin="108.0000" BottomMargin="274.0000" LeftEage="108" RightEage="108" TopEage="10" BottomEage="10" Scale9OriginX="108" Scale9OriginY="10" Scale9Width="114" Scale9Height="12" ctype="ImageViewObjectData">
-                <Size X="330.0000" Y="32.0000" />
+              <AbstractNodeData Name="img_back2" ActionTag="-515154346" Tag="32" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="25.5000" RightMargin="25.5000" TopMargin="77.5000" BottomMargin="167.5000" Scale9Enable="True" LeftEage="25" RightEage="25" TopEage="25" BottomEage="25" Scale9OriginX="25" Scale9OriginY="25" Scale9Width="785" Scale9Height="32" ctype="ImageViewObjectData">
+                <Size X="835.0000" Y="305.0000" />
                 <Children>
-                  <AbstractNodeData Name="tf_account" ActionTag="1343777365" Tag="42" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" TopMargin="5.0000" BottomMargin="5.0000" TouchEnable="True" FontSize="22" IsCustomSize="True" LabelText="" PlaceHolderText="请输入可接收短信的手机号" MaxLengthEnable="True" MaxLengthText="11" ctype="TextFieldObjectData">
-                    <Size X="330.0000" Y="22.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="165.0000" Y="16.0000" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="114" G="162" B="193" />
-                    <PrePosition X="0.5000" Y="0.5000" />
-                    <PreSize X="1.0000" Y="0.6875" />
-                  </AbstractNodeData>
-                </Children>
-                <AnchorPoint ScaleY="0.5000" />
-                <Position X="200.0000" Y="290.0000" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.3021" Y="0.7005" />
-                <PreSize X="0.4985" Y="0.0773" />
-                <FileData Type="Normal" Path="lobby/image/login/img_back.png" Plist="" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="img_back4" ActionTag="1986343303" Tag="44" IconVisible="False" LeftMargin="200.0000" RightMargin="132.0000" TopMargin="173.0000" BottomMargin="209.0000" LeftEage="108" RightEage="108" TopEage="10" BottomEage="10" Scale9OriginX="108" Scale9OriginY="10" Scale9Width="114" Scale9Height="12" ctype="ImageViewObjectData">
-                <Size X="330.0000" Y="32.0000" />
-                <Children>
-                  <AbstractNodeData Name="tf_verify" ActionTag="1558720312" Tag="41" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" TopMargin="5.0000" BottomMargin="5.0000" TouchEnable="True" FontSize="22" IsCustomSize="True" LabelText="" PlaceHolderText="请输入您的验证码" MaxLengthEnable="True" MaxLengthText="10" ctype="TextFieldObjectData">
-                    <Size X="330.0000" Y="22.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="165.0000" Y="16.0000" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="114" G="162" B="193" />
-                    <PrePosition X="0.5000" Y="0.5000" />
-                    <PreSize X="1.0000" Y="0.6875" />
-                  </AbstractNodeData>
-                </Children>
-                <AnchorPoint ScaleY="0.5000" />
-                <Position X="200.0000" Y="225.0000" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.3021" Y="0.5435" />
-                <PreSize X="0.4985" Y="0.0773" />
-                <FileData Type="Normal" Path="lobby/image/login/img_back.png" Plist="" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="img_back5" ActionTag="-2092597891" Tag="169" IconVisible="False" LeftMargin="200.0000" RightMargin="132.0000" TopMargin="238.0000" BottomMargin="144.0000" LeftEage="108" RightEage="108" TopEage="10" BottomEage="10" Scale9OriginX="108" Scale9OriginY="10" Scale9Width="114" Scale9Height="12" ctype="ImageViewObjectData">
-                <Size X="330.0000" Y="32.0000" />
-                <Children>
-                  <AbstractNodeData Name="tf_new_password" ActionTag="-80855189" Tag="170" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" TopMargin="5.0000" BottomMargin="5.0000" TouchEnable="True" FontSize="22" IsCustomSize="True" LabelText="" PlaceHolderText="6~16位数字和字母组合密码" MaxLengthText="10" PasswordEnable="True" ctype="TextFieldObjectData">
-                    <Size X="330.0000" Y="22.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="165.0000" Y="16.0000" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="114" G="162" B="193" />
-                    <PrePosition X="0.5000" Y="0.5000" />
-                    <PreSize X="1.0000" Y="0.6875" />
-                  </AbstractNodeData>
-                </Children>
-                <AnchorPoint ScaleY="0.5000" />
-                <Position X="200.0000" Y="160.0000" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.3021" Y="0.3865" />
-                <PreSize X="0.4985" Y="0.0773" />
-                <FileData Type="Normal" Path="lobby/image/login/img_back.png" Plist="" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="btn_verify" ActionTag="1579839242" Tag="171" IconVisible="False" LeftMargin="486.5000" RightMargin="48.5000" TopMargin="171.0000" BottomMargin="207.0000" TouchEnable="True" FontSize="22" ButtonText="获取验证码" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="97" Scale9Height="14" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
-                <Size X="127.0000" Y="36.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="550.0000" Y="225.0000" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.8308" Y="0.5435" />
-                <PreSize X="0.1918" Y="0.0870" />
-                <TextColor A="255" R="53" G="53" B="53" />
-                <DisabledFileData Type="Normal" Path="lobby/image/public/btn_gray.png" Plist="" />
-                <PressedFileData Type="Normal" Path="lobby/image/public/btn_gray.png" Plist="" />
-                <NormalFileData Type="Normal" Path="lobby/image/public/btn_gray.png" Plist="" />
-                <OutlineColor A="255" R="255" G="0" B="0" />
-                <ShadowColor A="255" R="110" G="110" B="110" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="btn_sure" ActionTag="-915545460" Tag="36" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="228.0000" RightMargin="228.0000" TopMargin="325.0000" BottomMargin="13.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="176" Scale9Height="54" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
-                <Size X="206.0000" Y="76.0000" />
-                <Children>
-                  <AbstractNodeData Name="img_sure" ActionTag="44113084" Tag="47" IconVisible="False" LeftMargin="57.5000" RightMargin="51.5000" TopMargin="14.5000" BottomMargin="26.5000" LeftEage="31" RightEage="31" TopEage="10" BottomEage="10" Scale9OriginX="31" Scale9OriginY="10" Scale9Width="35" Scale9Height="15" ctype="ImageViewObjectData">
-                    <Size X="97.0000" Y="35.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="106.0000" Y="44.0000" />
+                  <AbstractNodeData Name="img_acc_ph" ActionTag="-133622713" Tag="627" IconVisible="False" LeftMargin="40.0000" RightMargin="623.0000" TopMargin="50.5000" BottomMargin="219.5000" LeftEage="56" RightEage="56" TopEage="11" BottomEage="11" Scale9OriginX="56" Scale9OriginY="11" Scale9Width="60" Scale9Height="13" ctype="ImageViewObjectData">
+                    <Size X="172.0000" Y="35.0000" />
+                    <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
+                    <Position X="212.0000" Y="237.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.5146" Y="0.5789" />
-                    <PreSize X="0.4709" Y="0.4605" />
-                    <FileData Type="Normal" Path="lobby/image/login/img_sure.png" Plist="" />
+                    <PrePosition X="0.2539" Y="0.7770" />
+                    <PreSize X="0.2060" Y="0.1148" />
+                    <FileData Type="Normal" Path="lobby/image/login/img_acc_ph.png" Plist="" />
                   </AbstractNodeData>
-                </Children>
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="331.0000" Y="51.0000" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5000" Y="0.1232" />
-                <PreSize X="0.3112" Y="0.1836" />
-                <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="lobby/image/public/btn_yellow.png" Plist="" />
-                <PressedFileData Type="Normal" Path="lobby/image/public/btn_yellow.png" Plist="" />
-                <NormalFileData Type="Normal" Path="lobby/image/public/btn_yellow.png" Plist="" />
-                <OutlineColor A="255" R="255" G="0" B="0" />
-                <ShadowColor A="255" R="110" G="110" B="110" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="img_hint_back" ActionTag="1070671934" VisibleForFrame="False" Tag="2254" IconVisible="False" LeftMargin="101.5000" RightMargin="101.5000" TopMargin="143.5000" BottomMargin="209.5000" LeftEage="151" RightEage="151" TopEage="20" BottomEage="20" Scale9OriginX="151" Scale9OriginY="20" Scale9Width="157" Scale9Height="21" ctype="ImageViewObjectData">
-                <Size X="459.0000" Y="61.0000" />
-                <Children>
-                  <AbstractNodeData Name="text_hint" ActionTag="954955969" Tag="2255" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="129.5000" RightMargin="129.5000" TopMargin="10.5000" BottomMargin="10.5000" FontSize="40" LabelText="Text Label" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                    <Size X="200.0000" Y="40.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="229.5000" Y="30.5000" />
+                  <AbstractNodeData Name="img_verify" ActionTag="-1322258882" Tag="628" IconVisible="False" LeftMargin="92.0000" RightMargin="623.0000" TopMargin="137.0000" BottomMargin="134.0000" LeftEage="39" RightEage="39" TopEage="11" BottomEage="11" Scale9OriginX="39" Scale9OriginY="11" Scale9Width="42" Scale9Height="12" ctype="ImageViewObjectData">
+                    <Size X="120.0000" Y="34.0000" />
+                    <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
+                    <Position X="212.0000" Y="151.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.5000" Y="0.5000" />
-                    <PreSize X="0.4357" Y="0.6557" />
+                    <PrePosition X="0.2539" Y="0.4951" />
+                    <PreSize X="0.1437" Y="0.1115" />
+                    <FileData Type="Normal" Path="lobby/image/login/img_vertify.png" Plist="" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="img_pwd" ActionTag="770236937" Tag="629" IconVisible="False" LeftMargin="128.0000" RightMargin="623.0000" TopMargin="220.5000" BottomMargin="49.5000" LeftEage="27" RightEage="27" TopEage="11" BottomEage="11" Scale9OriginX="27" Scale9OriginY="11" Scale9Width="30" Scale9Height="13" ctype="ImageViewObjectData">
+                    <Size X="84.0000" Y="35.0000" />
+                    <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
+                    <Position X="212.0000" Y="67.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.2539" Y="0.2197" />
+                    <PreSize X="0.1006" Y="0.1148" />
+                    <FileData Type="Normal" Path="lobby/image/login/img_psw.png" Plist="" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="img_back3" ActionTag="438818845" Tag="43" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="252.0000" RightMargin="252.0000" TopMargin="45.0000" BottomMargin="214.0000" LeftEage="108" RightEage="108" TopEage="10" BottomEage="10" Scale9OriginX="108" Scale9OriginY="10" Scale9Width="115" Scale9Height="26" ctype="ImageViewObjectData">
+                    <Size X="331.0000" Y="46.0000" />
+                    <Children>
+                      <AbstractNodeData Name="tf_account" ActionTag="1343777365" Tag="42" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" TouchEnable="True" FontSize="22" IsCustomSize="True" LabelText="" PlaceHolderText="请输入可接收短信的手机号" MaxLengthEnable="True" MaxLengthText="11" ctype="TextFieldObjectData">
+                        <Size X="331.0000" Y="46.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="165.5000" Y="23.0000" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="0.5000" Y="0.5000" />
+                        <PreSize X="1.0000" Y="1.0000" />
+                      </AbstractNodeData>
+                    </Children>
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="417.5000" Y="237.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5000" Y="0.7770" />
+                    <PreSize X="0.3964" Y="0.1508" />
+                    <FileData Type="Normal" Path="lobby/image/public/img_enter_back.png" Plist="" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="img_back4" ActionTag="1986343303" Tag="44" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="252.0000" RightMargin="252.0000" TopMargin="131.0000" BottomMargin="128.0000" LeftEage="108" RightEage="108" TopEage="10" BottomEage="10" Scale9OriginX="108" Scale9OriginY="10" Scale9Width="115" Scale9Height="26" ctype="ImageViewObjectData">
+                    <Size X="331.0000" Y="46.0000" />
+                    <Children>
+                      <AbstractNodeData Name="tf_verify" ActionTag="1558720312" Tag="41" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" TouchEnable="True" FontSize="22" IsCustomSize="True" LabelText="" PlaceHolderText="请输入您的验证码" MaxLengthEnable="True" MaxLengthText="10" ctype="TextFieldObjectData">
+                        <Size X="331.0000" Y="46.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="165.5000" Y="23.0000" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="0.5000" Y="0.5000" />
+                        <PreSize X="1.0000" Y="1.0000" />
+                      </AbstractNodeData>
+                    </Children>
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="417.5000" Y="151.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5000" Y="0.4951" />
+                    <PreSize X="0.3964" Y="0.1508" />
+                    <FileData Type="Normal" Path="lobby/image/public/img_enter_back.png" Plist="" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="img_back5" ActionTag="-2092597891" Tag="169" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="252.0000" RightMargin="252.0000" TopMargin="215.0000" BottomMargin="44.0000" LeftEage="108" RightEage="108" TopEage="10" BottomEage="10" Scale9OriginX="108" Scale9OriginY="10" Scale9Width="115" Scale9Height="26" ctype="ImageViewObjectData">
+                    <Size X="331.0000" Y="46.0000" />
+                    <Children>
+                      <AbstractNodeData Name="tf_new_password" ActionTag="-80855189" Tag="170" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" TouchEnable="True" FontSize="22" IsCustomSize="True" LabelText="" PlaceHolderText="6~16位数字和字母组合密码" MaxLengthText="10" PasswordEnable="True" ctype="TextFieldObjectData">
+                        <Size X="331.0000" Y="46.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="165.5000" Y="23.0000" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="0.5000" Y="0.5000" />
+                        <PreSize X="1.0000" Y="1.0000" />
+                      </AbstractNodeData>
+                    </Children>
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="417.5000" Y="67.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5000" Y="0.2197" />
+                    <PreSize X="0.3964" Y="0.1508" />
+                    <FileData Type="Normal" Path="lobby/image/public/img_enter_back.png" Plist="" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="btn_verify" ActionTag="1579839242" Tag="171" IconVisible="False" LeftMargin="645.5000" RightMargin="62.5000" TopMargin="136.0000" BottomMargin="133.0000" TouchEnable="True" FontSize="22" ButtonText="获取验证码" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="97" Scale9Height="14" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                    <Size X="127.0000" Y="36.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="709.0000" Y="151.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.8491" Y="0.4951" />
+                    <PreSize X="0.1521" Y="0.1180" />
+                    <TextColor A="255" R="53" G="53" B="53" />
+                    <DisabledFileData Type="Normal" Path="lobby/image/public/btn_gray.png" Plist="" />
+                    <PressedFileData Type="Normal" Path="lobby/image/public/btn_gray.png" Plist="" />
+                    <NormalFileData Type="Normal" Path="lobby/image/public/btn_gray.png" Plist="" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="331.0000" Y="240.0000" />
+                <Position X="443.0000" Y="320.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5000" Y="0.5797" />
-                <PreSize X="0.6934" Y="0.1473" />
-                <FileData Type="Normal" Path="lobby/image/login/img_hint.png" Plist="" />
+                <PrePosition X="0.5000" Y="0.5818" />
+                <PreSize X="0.9424" Y="0.5545" />
+                <FileData Type="Normal" Path="lobby/image/public/img_back_4.png" Plist="" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="btn_sure" ActionTag="-915545460" Tag="36" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="288.0000" RightMargin="288.0000" TopMargin="409.5000" BottomMargin="29.5000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="280" Scale9Height="89" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                <Size X="310.0000" Y="111.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="443.0000" Y="85.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.1545" />
+                <PreSize X="0.3499" Y="0.2018" />
+                <TextColor A="255" R="65" G="65" B="70" />
+                <DisabledFileData Type="Normal" Path="lobby/image/public/btn_sure.png" Plist="" />
+                <PressedFileData Type="Normal" Path="lobby/image/public/btn_sure.png" Plist="" />
+                <NormalFileData Type="Normal" Path="lobby/image/public/btn_sure.png" Plist="" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -256,7 +220,7 @@
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5000" Y="0.5000" />
-            <PreSize X="0.4963" Y="0.5520" />
+            <PreSize X="0.6642" Y="0.7333" />
             <SingleColor A="255" R="150" G="200" B="255" />
             <FirstColor A="255" R="150" G="200" B="255" />
             <EndColor A="255" R="255" G="255" B="255" />

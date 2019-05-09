@@ -12,7 +12,8 @@ function start.init()
 end
 
 function start.start()
-    app.Connect:getInstance():start()        
+    app.Connect:getInstance():start()  
+    app.util.FrontBackListener:getInstance():start()         
     app.lobby.MainPresenter:getInstance():start()
 end
 

@@ -38,6 +38,29 @@ function GameBtnNode:onTouch(sender, eventType)
     end
 end
 
+function GameBtnNode:initData()
+    self._clockProgress     = nil
+end
+
+function GameBtnNode:initUI()
+	self:initClockCircle()
+end
+
+function GameBtnNode:initClockCircle()
+    local spLight = self:seekChildByName("img_load")
+    if spLight == nil then
+        return
+    end
+    self._clockProgress = cc.ProgressTimer:create(spLight)
+    self._clockProgress:setType(0)
+    self._clockProgress:setPosition(cc.p(spLight:getPosition()))
+    self._clockProgress:setReverseDirection(true)
+    spLight:setVisible(false)
+
+    local pnlClockCircle = self:seekChildByName("pnl_clock")
+    pnlClockCircle:addChild(self._clockProgress)
+end
+
 -- 1抢庄 2加倍 3计算牌 4隐藏所有
 function GameBtnNode:showTableBtn(type)
     if type == "banker" then
@@ -116,10 +139,11 @@ function GameBtnNode:showCalPanel(visible)
     pnlCal:setVisible(visible)
 end
 
-function GameBtnNode:showCalTime(time)
+function GameBtnNode:showCalTime(strTime, time)
     local txtTime = self:seekChildByName("fnt_clock_num")
-
-    txtTime:setString(time)
+    txtTime:setString(strTime)
+    
+    self._clockProgress:setPercentage(time / GameEnum.CAL_TIME * 100)
 end
 
 function GameBtnNode:showCalNum(index, num)

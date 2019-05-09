@@ -89,6 +89,10 @@ function Player:isLeave()
     return self._playerInfo.status == 7 or self._playerInfo.status == 8 or self._playerInfo.status == 9
 end
 
+function Player:isInGame()
+    return self._playerInfo.status == 3 or self._playerInfo.status == 5 or self._playerInfo.status == 6
+end 
+
 -- 玩家服务端座号
 function Player:getSeat()
     return self._playerInfo.seat or -1

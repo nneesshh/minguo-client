@@ -6,7 +6,7 @@
       <ObjectData Name="Layer" Tag="951" ctype="GameLayerObjectData">
         <Size X="1334.0000" Y="750.0000" />
         <Children>
-          <AbstractNodeData Name="background" ActionTag="1280680011" Tag="970" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" TopMargin="0.0001" TouchEnable="True" StretchWidthEnable="True" StretchHeightEnable="True" ClipAble="False" BackColorAlpha="114" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+          <AbstractNodeData Name="background" ActionTag="1280680011" Tag="970" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" TopMargin="0.0001" TouchEnable="True" StretchWidthEnable="True" StretchHeightEnable="True" ClipAble="False" BackColorAlpha="127" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="1334.0000" Y="749.9999" />
             <AnchorPoint />
             <Position />

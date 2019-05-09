@@ -87,7 +87,7 @@ function BaseScene:startScene(presenter)
     if not self.csbPath then
         print(" csbPath are not configured. ")
     end
-    print("BaseScene:startScene, scene name : ", self.__cname)
+    print("BaseScene:startScene, scene name : ", self.__cname, self.csbPath)
     self._rootNode = cc.CSLoader:createNodeWithVisibleSize(self.csbPath)
     layer:addChild(self._rootNode)
 

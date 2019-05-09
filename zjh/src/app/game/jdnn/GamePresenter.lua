@@ -28,7 +28,7 @@ local SCHEDULE_WAIT_TIME= 0
 
 -- 初始化
 function GamePresenter:init(...)
-    self._maxPlayerCnt = app.game.PlayerData.getMaxPlayerCount()
+    self._maxPlayerCnt = app.game.PlayerData.getMaxPlayerCount() or 5
     self:playGameMusic()  
     self:initPlayerNode()
     self:initBtnNode()
@@ -171,10 +171,6 @@ function GamePresenter:onLeaveKick(data)
         end, 3)
 end
 
-function GamePresenter:onLeaveRoom()
-    app.game.GameEngine:getInstance():exit()
-end
-
 -- 处理玩家离开
 function GamePresenter:onPlayerLeave(player)
     local numID = player:getTicketID()
@@ -202,10 +198,15 @@ function GamePresenter:onPlayerLeave(player)
                             self._ui:getInstance():showPnlHint(2)
                             self._gamePlayerNodes[HERO_LOCAL_SEAT]:onResetTable()
                         end                        
-                    end, 5)
+                    end, 4)
             end
         end
     end
+end
+
+-- 退出游戏区
+function GamePresenter:onLeaveRoom()
+    app.game.GameEngine:getInstance():exit()
 end
 
 -- 处理玩家进入
@@ -252,8 +253,7 @@ function GamePresenter:onGameStart()
         app.game.PlayerData.updatePlayerStatus(i, 0)
     end
     
-    local seats = app.game.GameData.getPlayerseat()  
-    dump(seats) 
+    local seats = app.game.GameData.getPlayerseat()   
     for k, i in ipairs(seats) do
         app.game.PlayerData.updatePlayerStatus(i, 3)        
     end
@@ -265,6 +265,7 @@ function GamePresenter:onGameStart()
     for i = 0, self._maxPlayerCnt - 1 do
         if self._gamePlayerNodes[i] then
             self._gamePlayerNodes[i]:onGameStart()
+            self._gamePlayerNodes[i]:showPlayerInfo()
         end
     end
     
@@ -488,8 +489,7 @@ function GamePresenter:calWinloseWithBanker(players)
             bankerwin = player.score >= 0    
         end
         
-        if player.seat == heroseat then
-            print("wq-heroseat is",heroseat, player.score, player.score >= 0)
+        if player.seat == heroseat then       
             herowin = player.score >= 0    
         end
     end
@@ -609,19 +609,21 @@ function GamePresenter:onWinloseEffect(players)
             maxtype = player.cardtype            
     	end    	
     end
- 
-    --庄家通杀
-    if #win == 0 and #players > 2 and bankerwin then
-    	self._ui:getInstance():showTongShaEffect()
-    -- 特殊牌型	
-    elseif maxtype >= GECT.NIU_TYPE_BOMB and maxtype <= GECT.NIU_TYPE_FIVE_LITTLE then
-        self._ui:getInstance():showSpecialNiuType(maxtype)
-    -- 普通牌型
-    else 
-        local heroseat = app.game.PlayerData.getHeroSeat()
-        print("heroseat is",heroseat,herowin)
-        self._ui:getInstance():showWinloseEffect(herowin, heroseat)    
-    end	
+    
+    local hero = app.game.PlayerData.getHero()
+    if hero and hero:isPlaying() then
+        --庄家通杀
+        if #win == 0 and #players > 2 and bankerwin then
+            self._ui:getInstance():showTongShaEffect()
+            -- 特殊牌型 
+        elseif maxtype >= GECT.NIU_TYPE_BOMB and maxtype <= GECT.NIU_TYPE_FIVE_LITTLE then
+            self._ui:getInstance():showSpecialNiuType(maxtype)
+            -- 普通牌型
+        else 
+            local heroseat = app.game.PlayerData.getHeroSeat()
+            self._ui:getInstance():showWinloseEffect(herowin, heroseat)    
+        end 
+    end
 end
 
 -- 飞金币
@@ -682,10 +684,13 @@ function GamePresenter:onResult(players)
         end        
     end
 
-    -- 当前玩家状态设为默认
-    for i = 0, self._maxPlayerCnt - 1 do        
-        app.game.PlayerData.updatePlayerStatus(i, 0)       
-    end 
+    -- 将正在游戏的玩家状态设为默认
+    for i = 0, self._maxPlayerCnt - 1 do 
+        local player = app.game.PlayerData.getPlayerByServerSeat(i)
+        if player and player:isPlaying() then
+            app.game.PlayerData.updatePlayerStatus(i, 0) 
+        end              
+    end    
     
     -- 自动准备
     self:performWithDelayGlobal(function()
@@ -696,6 +701,13 @@ end
 -- 断线重连
 function GamePresenter:onRelinkEnter(data) 
     print("relink")
+    -- 展示玩家信息
+    for i = 0, self._maxPlayerCnt - 1 do
+        if self._gamePlayerNodes[i] then            
+            self._gamePlayerNodes[i]:showPlayerInfo()
+        end
+    end
+    
     if data.cards[1] ~= CV_BACK then
         app.game.GameData.setHeroCards(data.cards, data.cardtype, 1)
     end
@@ -1093,10 +1105,11 @@ function GamePresenter:openSchedulerCalClock(time)
             self._gameBtnNode:showCalPanel(false)
         end
         local strTime = string.format("%d", math.ceil(time))
-        self._gameBtnNode:showCalTime(strTime)
+        self._gameBtnNode:showCalTime(strTime, time)
     end
 
     self:closeSchedulerCalClock()
+    self._gameBtnNode:showCalTime(time, time)
     self._schedulerCalClock = scheduler:scheduleScriptFunc(flipIt, 0.1, false)
 end
 
@@ -1298,7 +1311,6 @@ end
 
 -- 押注倍数
 function GamePresenter:sendMult(index)
-    print("mult index",index)
     local sessionid = app.data.UserData.getSession() or 222
     local po = upconn.upconn:get_packet_obj()
     po:writer_reset()

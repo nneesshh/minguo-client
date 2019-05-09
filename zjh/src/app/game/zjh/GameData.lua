@@ -14,7 +14,8 @@ local _selfData = {
     playercount   = 0,         -- 玩家数
     playerseat    = {},        -- 座位号  
     basecoin      = 0,
-    isallIn       = false      -- 是否全压
+    isallIn       = false,     -- 是否全压
+    leaveseats    = {}         -- 游戏过程中收到要退出玩家的本地座位
 }
 
 function GameData.setTableInfo(info)
@@ -52,10 +53,7 @@ function GameData.restData()
     _selfData.playerseat  = {}
     _selfData.basecoin    = 0
     _selfData.isallIn     = false
-end
-
-function GameData.getTableID()
-    return _selfData.tableid
+    _selfData.leaveseats  = {}
 end
 
 function GameData.setTableStatus(status)
@@ -146,6 +144,21 @@ end
 
 function GameData.getAllIn()
     return _selfData.isallIn
+end
+
+--_selfData.leaveseats
+function GameData.setLeaveSeats(localseat)
+    if localseat >= 0 and localseat <= 4 then
+        table.insert(_selfData.leaveseats, localseat)
+    end
+end
+
+function GameData.getLeaveSeats()
+    return _selfData.leaveseats
+end
+
+function GameData.resetLeaveSeats()
+    _selfData.leaveseats = {}
 end
 
 return GameData

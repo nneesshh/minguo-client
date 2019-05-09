@@ -5,7 +5,19 @@ local ShopLayer = class("ShopLayer",app.base.BaseLayer)
 ShopLayer.csbPath = "lobby/csb/shop.csb"
 
 ShopLayer.touchs = {    
-    "btn_close"  
+    "btn_close",
+    "btn_zfb_rmb3",
+    "btn_zfb_rmb10",
+    "btn_zfb_rmb30",
+    "btn_zfb_rmb50",
+    "btn_zfb_rmb100",
+    "btn_zfb_rmb500",
+    "btn_wx_rmb3",
+    "btn_wx_rmb10",
+    "btn_wx_rmb30",
+    "btn_wx_rmb50",
+    "btn_wx_rmb100",
+    "btn_wx_rmb500",  
 }
 
 ShopLayer.clicks = {
@@ -30,6 +42,12 @@ function ShopLayer:onTouch(sender, eventType)
     if eventType == ccui.TouchEventType.ended then
         if name == "btn_close" then
             self:exit()
+        elseif string.find(name, "btn_zfb_rmb") then  
+            local index = string.split(name, "btn_zfb_rmb")[2]
+            self._presenter:dealTxtHintStart("正在支付宝购买" .. index .. "rmb金币") 
+        elseif string.find(name, "btn_wx_rmb") then   
+            local index = string.split(name, "btn_wx_rmb")[2]
+            self._presenter:dealTxtHintStart("正在微信购买" .. index .. "rmb金币") 
         end
     end
 end
@@ -37,9 +55,7 @@ end
 function ShopLayer:onClick(sender)
     ShopLayer.super.onClick(self, sender)
     local name = sender:getName()
-    if name == "background" then
-        self:exit()
-    elseif name == "btn_zfb" then
+    if name == "btn_zfb" then
         self:onTouchZFB()    
     elseif name == "btn_wx" then
         self:onTouchWX()

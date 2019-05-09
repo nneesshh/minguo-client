@@ -26,7 +26,7 @@ app.util.UIUtils                            = requireLobby("app.util.UIUtils")
 app.util.VaildUtils                         = requireLobby("app.util.VaildUtils")
 app.util.SoundUtils                         = requireLobby("app.util.SoundUtils")
 app.util.uuid                               = requireLobby("app.util.uuid")
-
+app.util.FrontBackListener                  = requireLobby("app.util.FrontBackListener")
 ------------------------------------ 基类 -------------------------------------
 app.base = app.base or {}
 app.base.BaseLayer                          = requireLobby("app.base.BaseLayer")
@@ -55,6 +55,7 @@ app.lobby.login.VerifyLoginPresenter        = requireLobby("app.lobby.login.Veri
 app.lobby.usercenter = app.lobby.usercenter or {}
 app.lobby.usercenter.UserCenterPresenter    = requireLobby("app.lobby.usercenter.UserCenterPresenter")
 app.lobby.usercenter.ChangeHeadPresenter    = requireLobby("app.lobby.usercenter.ChangeHeadPresenter")
+app.lobby.usercenter.ChangePwdPresenter     = requireLobby("app.lobby.usercenter.ChangePwdPresenter")
 
 app.lobby.help = app.lobby.help or {}
 app.lobby.help.HelpPresenter                = requireLobby("app.lobby.help.HelpPresenter")
@@ -69,6 +70,19 @@ app.lobby.public = app.lobby.public or {}
 app.lobby.public.HintPresenter              = requireLobby("app.lobby.public.HintPresenter")
 app.lobby.public.LoadingHintPresenter       = requireLobby("app.lobby.public.LoadingHintPresenter")
 app.lobby.public.TextHintPresenter          = requireLobby("app.lobby.public.TextHintPresenter")
+
+app.lobby.mail = app.lobby.mail or {}
+app.lobby.mail.MailPresenter                = requireLobby("app.lobby.mail.MailPresenter")
+app.lobby.mail.MailDetailPresenter          = requireLobby("app.lobby.mail.MailDetailPresenter")
+
+app.lobby.notice = app.lobby.notice or {}
+app.lobby.notice.NoticePresenter            = requireLobby("app.lobby.notice.NoticePresenter")
+
+app.lobby.rank = app.lobby.rank or {}
+app.lobby.rank.RankPresenter                = requireLobby("app.lobby.rank.RankPresenter")
+
+app.lobby.safe = app.lobby.safe or {}
+app.lobby.safe.SafePresenter                = requireLobby("app.lobby.safe.SafePresenter")
 
 app.lobby.debug = app.lobby.debug or {}
 app.lobby.debug.DebugPresenter              = requireLobby("app.lobby.debug.DebugPresenter")

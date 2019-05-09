@@ -12,27 +12,25 @@
               <AbstractNodeData Name="banker_back" ActionTag="-1574978198" Tag="1031" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="343.0000" RightMargin="343.0000" TopMargin="35.5000" BottomMargin="215.5000" LeftEage="70" RightEage="70" TopEage="16" BottomEage="16" Scale9OriginX="70" Scale9OriginY="16" Scale9Width="74" Scale9Height="17" ctype="ImageViewObjectData">
                 <Size X="214.0000" Y="49.0000" />
                 <Children>
-                  <AbstractNodeData Name="txt_qqz" ActionTag="-363691032" Tag="1067" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="53.5000" RightMargin="88.5000" TopMargin="12.5000" BottomMargin="12.5000" FontSize="24" LabelText="请抢庄" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                    <Size X="72.0000" Y="24.0000" />
+                  <AbstractNodeData Name="img_qqz" ActionTag="-1261935645" Tag="918" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="42.8000" RightMargin="80.2000" TopMargin="8.0000" BottomMargin="8.0000" LeftEage="30" RightEage="30" TopEage="10" BottomEage="10" Scale9OriginX="30" Scale9OriginY="10" Scale9Width="31" Scale9Height="13" ctype="ImageViewObjectData">
+                    <Size X="91.0000" Y="33.0000" />
                     <AnchorPoint ScaleY="0.5000" />
-                    <Position X="53.5000" Y="24.5000" />
+                    <Position X="42.8000" Y="24.5000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.2500" Y="0.5000" />
-                    <PreSize X="0.3364" Y="0.4898" />
-                    <OutlineColor A="255" R="255" G="0" B="0" />
-                    <ShadowColor A="255" R="110" G="110" B="110" />
+                    <PrePosition X="0.2000" Y="0.5000" />
+                    <PreSize X="0.4252" Y="0.6735" />
+                    <FileData Type="MarkedSubImage" Path="game/jdnn/image/img_qqz.png" Plist="game/jdnn/image/plistscene.plist" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="txt_banker_time" ActionTag="-1891958050" Tag="1068" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="148.5000" RightMargin="53.5000" TopMargin="12.5000" BottomMargin="12.5000" FontSize="24" LabelText="5" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                    <Size X="12.0000" Y="24.0000" />
-                    <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
-                    <Position X="160.5000" Y="24.5000" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                  <AbstractNodeData Name="txt_banker_time" ActionTag="-1704995791" Tag="919" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="141.0800" RightMargin="46.9200" TopMargin="5.5500" BottomMargin="10.4500" LabelText="5" ctype="TextBMFontObjectData">
+                    <Size X="26.0000" Y="33.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="154.0800" Y="26.9500" />
+                    <Scale ScaleX="0.6000" ScaleY="0.6000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.7500" Y="0.5000" />
-                    <PreSize X="0.0561" Y="0.4898" />
-                    <OutlineColor A="255" R="255" G="0" B="0" />
-                    <ShadowColor A="255" R="110" G="110" B="110" />
+                    <PrePosition X="0.7200" Y="0.5500" />
+                    <PreSize X="0.1215" Y="0.6735" />
+                    <LabelBMFontFile_CNB Type="Normal" Path="game/jdnn/image/fnt/startfnt.fnt" Plist="" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -73,7 +71,7 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="btn_banker_2" ActionTag="-62435838" Tag="290" IconVisible="False" LeftMargin="372.0000" RightMargin="372.0000" TopMargin="112.5000" BottomMargin="112.5000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="126" Scale9Height="53" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+              <AbstractNodeData Name="btn_banker_2" CanEdit="False" ActionTag="-62435838" Tag="290" IconVisible="False" LeftMargin="372.0000" RightMargin="372.0000" TopMargin="112.5000" BottomMargin="112.5000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="126" Scale9Height="53" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="156.0000" Y="75.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="450.0000" Y="150.0000" />
@@ -136,27 +134,25 @@
               <AbstractNodeData Name="bet_back" ActionTag="-1599660475" Tag="1108" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="343.0000" RightMargin="343.0000" TopMargin="35.5000" BottomMargin="215.5000" LeftEage="70" RightEage="70" TopEage="16" BottomEage="16" Scale9OriginX="70" Scale9OriginY="16" Scale9Width="74" Scale9Height="17" ctype="ImageViewObjectData">
                 <Size X="214.0000" Y="49.0000" />
                 <Children>
-                  <AbstractNodeData Name="txt_qxz" ActionTag="-456013367" Tag="1109" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="53.5000" RightMargin="88.5000" TopMargin="12.5000" BottomMargin="12.5000" FontSize="24" LabelText="请下注" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                    <Size X="72.0000" Y="24.0000" />
+                  <AbstractNodeData Name="img_qxz" ActionTag="-556456549" Tag="959" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="42.8000" RightMargin="80.2000" TopMargin="8.0000" BottomMargin="8.0000" LeftEage="30" RightEage="30" TopEage="10" BottomEage="10" Scale9OriginX="30" Scale9OriginY="10" Scale9Width="31" Scale9Height="13" ctype="ImageViewObjectData">
+                    <Size X="91.0000" Y="33.0000" />
                     <AnchorPoint ScaleY="0.5000" />
-                    <Position X="53.5000" Y="24.5000" />
+                    <Position X="42.8000" Y="24.5000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.2500" Y="0.5000" />
-                    <PreSize X="0.3364" Y="0.4898" />
-                    <OutlineColor A="255" R="255" G="0" B="0" />
-                    <ShadowColor A="255" R="110" G="110" B="110" />
+                    <PrePosition X="0.2000" Y="0.5000" />
+                    <PreSize X="0.4252" Y="0.6735" />
+                    <FileData Type="MarkedSubImage" Path="game/jdnn/image/img_qxz.png" Plist="game/jdnn/image/plistscene.plist" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="txt_bet_time" ActionTag="-624443242" Tag="1110" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="148.5000" RightMargin="53.5000" TopMargin="12.5000" BottomMargin="12.5000" FontSize="24" LabelText="5" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                    <Size X="12.0000" Y="24.0000" />
-                    <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
-                    <Position X="160.5000" Y="24.5000" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                  <AbstractNodeData Name="txt_bet_time" ActionTag="-351546154" Tag="960" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="141.0800" RightMargin="46.9200" TopMargin="5.5500" BottomMargin="10.4500" LabelText="5" ctype="TextBMFontObjectData">
+                    <Size X="26.0000" Y="33.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="154.0800" Y="26.9500" />
+                    <Scale ScaleX="0.6000" ScaleY="0.6000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.7500" Y="0.5000" />
-                    <PreSize X="0.0561" Y="0.4898" />
-                    <OutlineColor A="255" R="255" G="0" B="0" />
-                    <ShadowColor A="255" R="110" G="110" B="110" />
+                    <PrePosition X="0.7200" Y="0.5500" />
+                    <PreSize X="0.1215" Y="0.6735" />
+                    <LabelBMFontFile_CNB Type="Normal" Path="game/jdnn/image/fnt/startfnt.fnt" Plist="" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -257,18 +253,39 @@
           <AbstractNodeData Name="pnl_btn_cal" ActionTag="-1553494891" VisibleForFrame="False" Tag="1170" IconVisible="False" LeftMargin="-450.0000" RightMargin="-450.0000" TopMargin="-150.0000" BottomMargin="-150.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="900.0000" Y="300.0000" />
             <Children>
-              <AbstractNodeData Name="img_center_clock" ActionTag="-1861147379" Tag="2091" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="413.0000" RightMargin="413.0000" TopMargin="-28.0000" BottomMargin="242.0000" LeftEage="24" RightEage="24" TopEage="28" BottomEage="28" Scale9OriginX="24" Scale9OriginY="28" Scale9Width="26" Scale9Height="30" ctype="ImageViewObjectData">
-                <Size X="74.0000" Y="86.0000" />
+              <AbstractNodeData Name="pnl_clock" ActionTag="-540724846" Tag="1316" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="400.5000" RightMargin="400.5000" TopMargin="-34.5000" BottomMargin="235.5000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+                <Size X="99.0000" Y="99.0000" />
                 <Children>
-                  <AbstractNodeData Name="fnt_clock_num" ActionTag="511035274" Tag="2092" IconVisible="False" LeftMargin="26.0000" RightMargin="32.0000" TopMargin="36.0000" BottomMargin="26.0000" LabelText="0" ctype="TextBMFontObjectData">
-                    <Size X="16.0000" Y="24.0000" />
+                  <AbstractNodeData Name="img_load_back" ActionTag="-1861147379" Tag="2091" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftEage="24" RightEage="24" TopEage="28" BottomEage="28" Scale9OriginX="24" Scale9OriginY="28" Scale9Width="51" Scale9Height="43" ctype="ImageViewObjectData">
+                    <Size X="99.0000" Y="99.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="34.0000" Y="38.0000" />
+                    <Position X="49.5000" Y="49.5000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.4595" Y="0.4419" />
-                    <PreSize X="0.2162" Y="0.2791" />
-                    <LabelBMFontFile_CNB Type="Normal" Path="game/jdnn/image/fnt/clockfnt.fnt" Plist="" />
+                    <PrePosition X="0.5000" Y="0.5000" />
+                    <PreSize X="1.0000" Y="1.0000" />
+                    <FileData Type="MarkedSubImage" Path="game/jdnn/image/img_load_back.png" Plist="game/jdnn/image/plistscene.plist" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="img_load" ActionTag="-92783102" Tag="1385" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" ctype="SpriteObjectData">
+                    <Size X="99.0000" Y="99.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="49.5000" Y="49.5000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5000" Y="0.5000" />
+                    <PreSize X="1.0000" Y="1.0000" />
+                    <FileData Type="MarkedSubImage" Path="game/jdnn/image/img_load.png" Plist="game/jdnn/image/plistscene.plist" />
+                    <BlendFunc Src="1" Dst="771" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="fnt_clock_num" ActionTag="511035274" Tag="2092" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="49.5000" RightMargin="49.5000" TopMargin="50.4900" BottomMargin="48.5100" LabelText="" ctype="TextBMFontObjectData">
+                    <Size X="0.0000" Y="0.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="49.5000" Y="48.5100" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5000" Y="0.4900" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <LabelBMFontFile_CNB Type="Normal" Path="game/jdnn/image/fnt/calfnt.fnt" Plist="" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -276,8 +293,11 @@
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5000" Y="0.9500" />
-                <PreSize X="0.0822" Y="0.2867" />
-                <FileData Type="MarkedSubImage" Path="game/jdnn/image/img_clock.png" Plist="game/jdnn/image/plistscene.plist" />
+                <PreSize X="0.1100" Y="0.3300" />
+                <SingleColor A="255" R="150" G="200" B="255" />
+                <FirstColor A="255" R="150" G="200" B="255" />
+                <EndColor A="255" R="255" G="255" B="255" />
+                <ColorVector ScaleY="1.0000" />
               </AbstractNodeData>
               <AbstractNodeData Name="img_cal" ActionTag="-262187831" Tag="1179" IconVisible="False" PositionPercentYEnabled="True" LeftMargin="160.0000" RightMargin="346.0000" TopMargin="121.0000" BottomMargin="121.0000" LeftEage="130" RightEage="130" TopEage="19" BottomEage="19" Scale9OriginX="130" Scale9OriginY="19" Scale9Width="134" Scale9Height="20" ctype="ImageViewObjectData">
                 <Size X="394.0000" Y="58.0000" />

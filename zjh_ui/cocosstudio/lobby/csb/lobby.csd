@@ -375,7 +375,7 @@
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
           </AbstractNodeData>
-          <AbstractNodeData Name="lobby" ActionTag="536308842" Tag="705" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" TopMargin="100.0250" BottomMargin="149.9750" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+          <AbstractNodeData Name="lobby" ActionTag="536308842" Tag="705" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" TopMargin="110.0000" BottomMargin="140.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="1334.0000" Y="500.0000" />
             <Children>
               <AbstractNodeData Name="node_character" ActionTag="861408678" Tag="266" IconVisible="True" LeftMargin="220.0000" RightMargin="1114.0000" TopMargin="225.0000" BottomMargin="275.0000" ctype="SingleNodeObjectData">
@@ -387,7 +387,22 @@
                 <PrePosition X="0.1649" Y="0.5500" />
                 <PreSize X="0.0000" Y="0.0000" />
               </AbstractNodeData>
-              <AbstractNodeData Name="btn_psz" ActionTag="-1626862362" Tag="772" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="409.1000" RightMargin="675.9000" TopMargin="-4.0000" BottomMargin="246.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="219" Scale9Height="236" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+              <AbstractNodeData Name="btn_qznn" ActionTag="270161202" Tag="771" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="422.4400" RightMargin="662.5600" TopMargin="-4.0000" BottomMargin="246.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="219" Scale9Height="236" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                <Size X="249.0000" Y="258.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="546.9400" Y="375.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.4100" Y="0.7500" />
+                <PreSize X="0.1867" Y="0.5160" />
+                <TextColor A="255" R="65" G="65" B="70" />
+                <DisabledFileData Type="Normal" Path="lobby/image/lobby/btn_qznn.png" Plist="" />
+                <PressedFileData Type="Normal" Path="lobby/image/lobby/btn_qznn.png" Plist="" />
+                <NormalFileData Type="Normal" Path="lobby/image/lobby/btn_qznn.png" Plist="" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="btn_psz" ActionTag="-1626862362" Tag="772" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="715.9200" RightMargin="369.0800" TopMargin="-4.0000" BottomMargin="246.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="219" Scale9Height="236" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="249.0000" Y="258.0000" />
                 <Children>
                   <AbstractNodeData Name="hotpatch_pnl" ActionTag="-949165257" VisibleForFrame="False" Tag="258" IconVisible="False" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
@@ -437,10 +452,10 @@
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="533.6000" Y="375.0000" />
+                <Position X="840.4200" Y="375.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.4000" Y="0.7500" />
+                <PrePosition X="0.6300" Y="0.7500" />
                 <PreSize X="0.1867" Y="0.5160" />
                 <TextColor A="255" R="65" G="65" B="70" />
                 <DisabledFileData Type="Normal" Path="lobby/image/lobby/btn_psz.png" Plist="" />
@@ -449,25 +464,10 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="btn_qznn" ActionTag="270161202" Tag="771" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="709.2500" RightMargin="375.7500" TopMargin="-4.0000" BottomMargin="246.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="219" Scale9Height="236" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+              <AbstractNodeData Name="btn_brnn" ActionTag="1670475082" Tag="773" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="1009.4000" RightMargin="75.6000" TopMargin="-4.0000" BottomMargin="246.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="219" Scale9Height="236" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="249.0000" Y="258.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="833.7500" Y="375.0000" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.6250" Y="0.7500" />
-                <PreSize X="0.1867" Y="0.5160" />
-                <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="lobby/image/lobby/btn_qznn.png" Plist="" />
-                <PressedFileData Type="Normal" Path="lobby/image/lobby/btn_qznn.png" Plist="" />
-                <NormalFileData Type="Normal" Path="lobby/image/lobby/btn_qznn.png" Plist="" />
-                <OutlineColor A="255" R="255" G="0" B="0" />
-                <ShadowColor A="255" R="110" G="110" B="110" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="btn_brnn" ActionTag="1670475082" Tag="773" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="1009.3999" RightMargin="75.6001" TopMargin="-4.0000" BottomMargin="246.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="219" Scale9Height="236" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
-                <Size X="249.0000" Y="258.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="1133.8999" Y="375.0000" />
+                <Position X="1133.9000" Y="375.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.8500" Y="0.7500" />
@@ -479,13 +479,13 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="btn_lhd" ActionTag="257555841" Tag="774" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="409.1000" RightMargin="675.9000" TopMargin="252.0000" BottomMargin="-10.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="219" Scale9Height="236" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+              <AbstractNodeData Name="btn_lhd" ActionTag="257555841" Tag="774" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="422.4400" RightMargin="662.5600" TopMargin="252.0000" BottomMargin="-10.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="219" Scale9Height="236" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="249.0000" Y="258.0000" />
                 <AnchorPoint ScaleX="0.5000" />
-                <Position X="533.6000" Y="-10.0000" />
+                <Position X="546.9400" Y="-10.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.4000" Y="-0.0200" />
+                <PrePosition X="0.4100" Y="-0.0200" />
                 <PreSize X="0.1867" Y="0.5160" />
                 <TextColor A="255" R="65" G="65" B="70" />
                 <DisabledFileData Type="Normal" Path="lobby/image/lobby/btn_lhd.png" Plist="" />
@@ -494,13 +494,13 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="btn_ddz" ActionTag="1743622958" Tag="775" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="709.2500" RightMargin="375.7500" TopMargin="252.0000" BottomMargin="-10.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="219" Scale9Height="236" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+              <AbstractNodeData Name="btn_ddz" ActionTag="1743622958" Tag="775" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="715.9200" RightMargin="369.0800" TopMargin="252.0000" BottomMargin="-10.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="219" Scale9Height="236" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="249.0000" Y="258.0000" />
                 <AnchorPoint ScaleX="0.5000" />
-                <Position X="833.7500" Y="-10.0000" />
+                <Position X="840.4200" Y="-10.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.6250" Y="-0.0200" />
+                <PrePosition X="0.6300" Y="-0.0200" />
                 <PreSize X="0.1867" Y="0.5160" />
                 <TextColor A="255" R="65" G="65" B="70" />
                 <DisabledFileData Type="Normal" Path="lobby/image/lobby/btn_ddz.png" Plist="" />
@@ -509,7 +509,7 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="btn_jdnn" ActionTag="-2134264222" Tag="776" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="1009.3999" RightMargin="75.6001" TopMargin="252.0000" BottomMargin="-10.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="219" Scale9Height="236" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+              <AbstractNodeData Name="btn_jdnn" ActionTag="-2134264222" Tag="776" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="1009.4000" RightMargin="75.6000" TopMargin="252.0000" BottomMargin="-10.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="219" Scale9Height="236" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="249.0000" Y="258.0000" />
                 <Children>
                   <AbstractNodeData Name="hotpatch_pnl" ActionTag="-2109293592" VisibleForFrame="False" Tag="262" IconVisible="False" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
@@ -559,7 +559,7 @@
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" />
-                <Position X="1133.8999" Y="-10.0000" />
+                <Position X="1133.9000" Y="-10.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.8500" Y="-0.0200" />
@@ -573,10 +573,10 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="667.0000" Y="399.9750" />
+            <Position X="667.0000" Y="390.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.5333" />
+            <PrePosition X="0.5000" Y="0.5200" />
             <PreSize X="1.0000" Y="0.6667" />
             <SingleColor A="255" R="150" G="200" B="255" />
             <FirstColor A="255" R="150" G="200" B="255" />

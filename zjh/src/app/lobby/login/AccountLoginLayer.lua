@@ -33,9 +33,11 @@ function AccountLoginLayer:initUI()
     
     tf_account:setText(username)
     tf_account:setTextHorizontalAlignment(cc.TEXT_ALIGNMENT_CENTER)
+    tf_account:setTextVerticalAlignment(cc.VERTICAL_TEXT_ALIGNMENT_CENTER)
     
     tf_password:setText(password)
     tf_password:setTextHorizontalAlignment(cc.TEXT_ALIGNMENT_CENTER)
+    tf_password:setTextVerticalAlignment(cc.VERTICAL_TEXT_ALIGNMENT_CENTER)
 end
 
 function AccountLoginLayer:onClick(sender)

@@ -51,7 +51,9 @@
       <FilePathData Path="game/zjh/image/img_chip_small_6.png" />
       <FilePathData Path="game/zjh/image/img_show_card.png" />
       <FilePathData Path="game/zjh/image/img_base.png" />
+      <FilePathData Path="game/zjh/image/img_add_back.png" />
+      <FilePathData Path="game/zjh/image/img_desc_back.png" />
     </ImageFiles>
-    <MaxSize Width="1024" Height="1024" />
+    <MaxSize Width="512" Height="1024" />
   </Content>
 </PlistInfoProjectFile>

@@ -19,15 +19,16 @@ end
 
 function MainPresenter:init(gameid)
     self:initScene(gameid)
+    self:playGameMusic()
 end
 
 function MainPresenter:onEnter()
     if app.data.UserData.getLoginState() ~= 1 then
         app.lobby.login.LoginPresenter:getInstance():start()      
         
-        --app.lobby.login.LoginPresenter:getInstance():dealAutoLogin() 
+        app.lobby.login.LoginPresenter:getInstance():dealAutoLogin() 
     end
-    --app.lobby.debug.DebugPresenter:getInstance():start()
+    app.lobby.debug.DebugPresenter:getInstance():start()
 end
 
 function MainPresenter:createDispatcher()
@@ -124,6 +125,23 @@ function MainPresenter:showShop()
     app.lobby.shop.ShopPresenter:getInstance():start()
 end
 
+-- 显示邮件
+function MainPresenter:showMail()
+    app.lobby.mail.MailPresenter:getInstance():start()
+end
+
+function MainPresenter:showNotice()
+    app.lobby.notice.NoticePresenter:getInstance():start()
+end
+
+function MainPresenter:showRank()
+    app.lobby.rank.RankPresenter:getInstance():start()
+end
+
+function MainPresenter:showSafe()
+    app.lobby.safe.SafePresenter:getInstance():start()
+end
+
 -- 安卓返回键
 -- 在主场景时提示退出游戏
 function MainPresenter:clickBack()
@@ -160,20 +178,24 @@ function MainPresenter:loadingHintExit()
 end
 
 function MainPresenter:reqHotpatch(gameid)
-    local projManifest, savePath = "", ""
-    if gameid == app.Game.GameID.ZJH then
-        projManifest = "patch/zjh/project.manifest"
-        savePath = "patch_zjh"
-    elseif gameid == app.Game.GameID.JDNN then
-        projManifest = "patch/jdnn/project.manifest"
-        savePath = "patch_jdnn"	 	
-	end
-	
-	if projManifest ~= "" and savePath ~= "" then
-        hcGame = HotpatchController:new(projManifest, savePath)
-        hcGame:init(handler(self, self.onHotpatch))
-        hcGame:doUpdate()
-	end	
+    if CC_HOTPATCH then
+        local projManifest, savePath = "", ""
+        if gameid == app.Game.GameID.ZJH then
+            projManifest = "patch/zjh/project.manifest"
+            savePath = "patch_zjh"
+        elseif gameid == app.Game.GameID.JDNN then
+            projManifest = "patch/jdnn/project.manifest"
+            savePath = "patch_jdnn"     
+        end
+
+        if projManifest ~= "" and savePath ~= "" then
+            hcGame = HotpatchController:new(projManifest, savePath)
+            hcGame:init(handler(self, self.onHotpatch))
+            hcGame:doUpdate()
+        end 
+    else
+        self:showPlazaLists(gameid)         
+    end
 end
 
 function MainPresenter:onHotpatch(info)
@@ -227,6 +249,10 @@ function MainPresenter:reqJoinRoom(gameid, index)
 
         upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_ENTER_ROOM_REQ)     
     end 
+end
+
+function MainPresenter:playGameMusic()
+    app.util.SoundUtils.playMusic("lobby/sound/lobbyBack.mp3")
 end
 
 return MainPresenter

@@ -121,6 +121,9 @@ function GameScene:showFireEffect()
             node:stopAllActions()
             local effect = app.util.UIUtils.runEffect("game/zjh/effect","huo_2", 0, 0)
             node:addChild(effect)
+            node:setVisible(true)
+        else
+            print("fire node is nil")    
     	end
     end   
 end
@@ -425,4 +428,36 @@ function GameScene:getShowCardVisible()
 	return self:seekChildByName("btn_show_card"):isVisible()    
 end
 
+-- 结算分数
+function GameScene:showWinloseScore(scoreList)
+    for localseat, score in pairs(scoreList) do
+        local fntScore = nil
+        local imgBack = nil
+        
+        if score <= 0 then
+            imgBack = self:seekChildByName("img_desc_back_" .. localseat)
+            fntScore = imgBack:getChildByName("fnt_lose_score")
+        else
+            imgBack = self:seekChildByName("img_add_back_" .. localseat)
+            fntScore = imgBack:getChildByName("fnt_win_score")
+            score = "+" .. score
+        end
+        
+        fntScore:setString(score)
+
+        imgBack:setVisible(true)    
+        imgBack:setOpacity(255)
+
+        local action = cc.Sequence:create(
+            cc.MoveBy:create(0.8, cc.p(0, 15)),
+            cc.Spawn:create(
+                cc.MoveBy:create(0.8, cc.p(0, 15)), 
+                cc.FadeOut:create(2)
+            ),
+            cc.MoveTo:create(0.01, cc.p(imgBack:getPosition()))
+        )
+
+        imgBack:runAction(action)       
+    end
+end
 return GameScene

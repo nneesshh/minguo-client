@@ -18,7 +18,8 @@ local _selfData = {
     gender   = 0,              -- 性别
     balance  = 0,              -- 财富
     session  = "0",            -- 用户session  
-    state    = _state.nologin  -- 登录状态
+    state    = _state.nologin, -- 登录状态
+    bank     = 0               -- 保险箱 
 }
 
 function UserData.setUserData(tPlayerData)
@@ -128,6 +129,16 @@ end
 
 function UserData.getLoginState()
     return _selfData.state or _state.nologin
+end
+
+
+function UserData.setBank(num)
+    _selfData.bank = num
+    app.util.DispatcherUtils.dispatchEvent(app.Event.EVENT_BANK) 
+end
+
+function UserData.getBank()
+    return _selfData.bank
 end
 
 return UserData

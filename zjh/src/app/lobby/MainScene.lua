@@ -40,24 +40,26 @@ function MainScene:onTouch(sender, eventType)
         print("button name is:",name) 
         if name == "btn_back" then
             self:showPlazaPnl(false)           
-        elseif name == "btn_psz" then
-            self._presenter:showPlazaLists(app.Game.GameID.ZJH)   
-            --self._presenter:reqHotpatch(app.Game.GameID.ZJH)  
+        elseif name == "btn_psz" then            
+            self._presenter:reqHotpatch(app.Game.GameID.ZJH)  
         elseif name == "btn_jdnn" then
-            self._presenter:showPlazaLists(app.Game.GameID.JDNN)   
-            --self._presenter:reqHotpatch(app.Game.GameID.JDNN)                             
+            self._presenter:reqHotpatch(app.Game.GameID.JDNN)                             
         elseif name == "btn_head_info" then
             self._presenter:showUserCenter()             
         elseif name == "btn_gold_add_lobby" then
             self._presenter:showShop()             
         elseif name == "btn_gold_add_plaza" then
             self._presenter:showShop()             
-        elseif name == "btn_notice" then        
-        elseif name == "btn_mail" then             
+        elseif name == "btn_notice" then  
+            self._presenter:showNotice()      
+        elseif name == "btn_mail" then 
+            self._presenter:showMail()                     
         elseif name == "btn_set" then      
             self._presenter:showSet()                     
-        elseif name == "btn_rank" then                            
-        elseif name == "btn_safe" then                           
+        elseif name == "btn_rank" then  
+            self._presenter:showRank()                          
+        elseif name == "btn_safe" then
+            self._presenter:showSafe()                           
         elseif name == "btn_shop" then      
             self._presenter:showShop()             
         elseif name == "btn_help" then    
@@ -178,12 +180,13 @@ function MainScene:loadPlazaList(gameid, plazainfos)
     
     local psize = pnlPlaza:getContentSize()
     local isize = childs[1]:getContentSize()
-    local border = (psize.width - isize.width*#plazainfos) / (#plazainfos+1)
+ 
+    local border = (psize.width - isize.width*#plazainfos) / 2
           
     for i, info in ipairs(plazainfos) do
         if i <= 4 then
             childs[i]:setVisible(true)
-            childs[i]:setPositionX((border+isize.width/2)*i + (i-1)*isize.width/2)
+            childs[i]:setPositionX(border + isize.width * (i-0.5))
             local base = childs[i]:getChildByName("fnt_base")
             local lower = childs[i]:getChildByName("txt_lower")
             base:setString(info.base .. "底分")

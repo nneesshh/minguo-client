@@ -44,6 +44,9 @@ end
 function GamePlayerNode:onPlayerEnter()  
     local player = app.game.PlayerData.getPlayerByLocalSeat(self._localSeat)
     
+    -- 显示用户节点    
+    self:showPnlPlayer(true)
+    
     if self._localSeat == HERO_LOCAL_SEAT then
         -- 设置姓名
         self:showTxtPlayerName(true, player:getTicketID())
@@ -53,16 +56,13 @@ function GamePlayerNode:onPlayerEnter()
         self:showImgFace(player:getGender(), player:getAvatar())
     else
         -- 设置姓名
-        self:showTxtPlayerName(true, "  -")
+        self:showTxtPlayerName(true, "    -")
         -- 设置金币
-        self:showTxtBalance(true, "-")
+        self:showTxtBalance(true, "  -")
         -- 显示头像
         self:showImgFace(2, 0)    
     end
-    
-    -- 显示用户节点    
-    self:showPnlPlayer(true)
-    
+            
     -- 隐藏庄家
     self:showImgBanker(false)
     -- 隐藏庄家框
@@ -91,9 +91,11 @@ function GamePlayerNode:onResetTable()
 end
 
 -- 玩家离开
-function GamePlayerNode:onPlayerLeave()
-    if self._localSeat ~= HERO_LOCAL_SEAT then
-        self:showPnlPlayer(false)
+function GamePlayerNode:onPlayerLeave(flag)
+    if not flag then
+        if self._localSeat ~= HERO_LOCAL_SEAT then
+            self:showPnlPlayer(false)
+        end
     end
     
     self:showPnlClockCircle(false)
@@ -122,7 +124,10 @@ end
 -- 显示信息
 function GamePlayerNode:showPlayerInfo()
     local player = app.game.PlayerData.getPlayerByLocalSeat(self._localSeat)
-	if not player then return end	
+	if not player then return end
+    -- 显示用户节点    
+    self:showPnlPlayer(true)
+    	
     self:showTxtPlayerName(true, player:getTicketID())
     -- 设置金币
     self:showTxtBalance(true, player:getBalance())
@@ -402,31 +407,6 @@ function GamePlayerNode:playQMLWAction(flag)
         ))
 end
 
-function GamePlayerNode:showWinloseScore(score)
-    local fntScore = nil
-    if score <= 0 then
-        fntScore = self:seekChildByName("fnt_lose_score")
-    else
-        fntScore = self:seekChildByName("fnt_win_score")
-        score = "+"..score
-    end
-
-    fntScore:setVisible(true)
-    fntScore:setString(score)
-    fntScore:setOpacity(255)
-
-    local action = cc.Sequence:create(
-        cc.MoveBy:create(0.8, cc.p(0, 30)),
-        cc.Spawn:create(
-            cc.MoveBy:create(0.8, cc.p(0, 30)), 
-            cc.FadeOut:create(3)
-        ),
-        cc.MoveTo:create(0.01, cc.p(fntScore:getPosition()))
-    )
-
-    fntScore:runAction(action)        
-end
-
  local SPEAKE = {
     "img_speak_1.png",  -- 跟注
     "img_speak_2.png",  -- 加注
@@ -455,7 +435,6 @@ end
     
 -- 获取手牌
 function GamePlayerNode:getGameHandCardNode()
-    print("gethandcardnode",self._localSeat,self._gameHandCardNode)
     return self._gameHandCardNode
 end
 

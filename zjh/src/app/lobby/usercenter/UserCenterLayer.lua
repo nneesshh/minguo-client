@@ -25,9 +25,9 @@ function UserCenterLayer:onTouch(sender, eventType)
         if name == "btn_close" then
             self:exit()  
         elseif name == "btn_change_head" then
-            app.lobby.usercenter.ChangeHeadPresenter:start()
+            app.lobby.usercenter.ChangeHeadPresenter:getInstance():start()
         elseif name == "btn_change_password" then
-                  
+            app.lobby.usercenter.ChangePwdPresenter:getInstance():start()
         end
     end
 end

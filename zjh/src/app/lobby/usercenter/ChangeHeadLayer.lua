@@ -26,7 +26,7 @@ function ChangeHeadLayer:onTouch(sender, eventType)
     if eventType == ccui.TouchEventType.ended then
         local name = sender:getName()
         if name == "btn_close" then
-            self:onTouchClose()
+            self:exit()
         elseif name == "btn_sure" then
             self:onTouchBtnOK()
         elseif string.find(name, "head_") then 
@@ -39,11 +39,6 @@ end
 function ChangeHeadLayer:init()
     self.gender = 0
     self.avatar = 0
-end
-
-function ChangeHeadLayer:onTouchClose()
-    self:exit()
-    app.lobby.usercenter.UserCenterPresenter:getInstance():start()              
 end
 
 function ChangeHeadLayer:onTouchBtnOK()

@@ -295,6 +295,10 @@ function _M.onGameOver(conn, sessionid, msgid)
     local resp = {}
     local po = upconn.upconn:get_packet_obj()   
     local info, players = _readGameOver(po)
+
+    dump(info)
+    dump(players)
+    
     app.game.GamePresenter:getInstance():onGameOver(info, players) 
 end
 

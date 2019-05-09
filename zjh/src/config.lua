@@ -6,7 +6,7 @@ DEBUG = 0
 CC_USE_FRAMEWORK = true
 
 -- show FPS on screen
-CC_SHOW_FPS = true
+CC_SHOW_FPS = false
 
 -- disable create unexpected global variable
 CC_DISABLE_GLOBAL = false
@@ -24,3 +24,13 @@ CC_DESIGN_RESOLUTION = {
         end
     end
 }
+
+-- IP
+local IP_LIST = {
+    {host = "139.162.27.138",  port = 8860},
+    {host = "192.168.200.101", port = 8860},
+    {host = "192.168.209.129", port = 8860},
+    {host = "192.168.200.111", port = 8861},    
+}
+
+CC_IP = IP_LIST[2]

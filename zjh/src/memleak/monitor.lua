@@ -7,9 +7,37 @@ local pairs = pairs
 local collectgarbage = collectgarbage
 local setmetatable = setmetatable
 
+function formatnumberthousands(num)
+	num = math.ceil(num)
+	local function checknumber(value)
+		return tonumber(value) or 0
+	end
+	local formatted = tostring(checknumber(num))
+	local k
+	while true do
+		formatted, k = string.gsub(formatted, "^(-?%d+)(%d%d%d)", '%1,%2')
+		--print(formatted,k)
+		if k == 0 then 
+			break end
+		end
+	return formatted
+end
+
+local function toSizeStr(val)
+	val = math.ceil(val)
+	local rem = val
+	local str = {}
+
+	while rem > 10000 do
+		table.insert(str, rem % 10000)
+		rem = rem / 10000
+	end
+	return str
+  end
+
 local _M = {
     --内存泄露监控间隔（单位：秒）
-    memLeaksInterval 	= 60,
+    memLeaksInterval 	= 10,
     
     __memLeakTbl = {},
     __updateFunc = function(dt) end,
@@ -29,12 +57,14 @@ local function __createMonitorFunc(dt)
 			collectgarbage("collect")
 			collectgarbage("collect")
 			--打印当前内存泄露监控表中依然存在（没有被释放）的对象信息
-			str = "[memory leak monitor:]"
-			for k, v in pairs(self.__memLeakTbl) do
-				str = str..string.format("  \n%s = %s", tostring(k), tostring(v))
+			str = "[memory leak monitor objects:] ================================"
+			for k, v in pairs(_M.__memLeakTbl) do
+				str = str..string.format("  \n%s = %s\n", tostring(k), tostring(v))
 			end
-            print(str)
-            print("\nmem(K): ", tostring(collectgarbage("count")))
+			print(str.."\n")
+			
+			local mem = tonumber(collectgarbage("count") * 1024)
+            print("\n\t mem(B): ", formatnumberthousands(mem), " -- ", mem)
 		end
 	end
 end

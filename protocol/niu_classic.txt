@@ -1,11 +1,4 @@
 // niu -- 0x2200
-#define MSGID_NIU_ENTER_ROOM_REQ		0x2201		//牛牛--进入房间请求 8705
-#define MSGID_NIU_ENTER_ROOM_RESP		0x2202		//牛牛--进入房间回应 8706
-#define MSGID_NIU_LEAVE_ROOM_REQ		0x2203		//牛牛--离开房间请求 8707
-#define MSGID_NIU_LEAVE_ROOM_RESP		0x2204		//牛牛--离开房间回应 8708
-#define MSGID_NIU_CHANGE_TABLE_REQ		0x2205		//牛牛--换桌请求 8709
-#define MSGID_NIU_CHANGE_TABLE_RESP		0x2206		//牛牛--换桌回应 8710
-
 #define MSGID_NIU_READY_REQ				0x2211		//牛牛--准备请求 8721
 //#define MSGID_NIU_CHANGE_XXX			0x2212		//8722
 #define MSGID_NIU_BANKER_BID_REQ		0x2213		//牛牛--抢庄加倍 8723

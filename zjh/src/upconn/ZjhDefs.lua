@@ -6,10 +6,19 @@ local ErrorCode = {
     ERR_WRONG_PASSWORD          = 0x04, --
     ERR_ACCOUNT_RESTRICTION     = 0x05, --
     ERR_OUT_OF_LIMIT            = 0x06, --
-    ERR_NO_FREE_TABLE           = 0x07,  --
+    ERR_NO_FREE_TABLE           = 0x07, --
     ERR_ROOM_OR_TABLE_INVALID   = 0x08, 
     ERR_LEAVE_LOCK              = 0x09, 
     ERR_RELOGIN                 = 0x0A,
+}
+
+local ErrorMessage = {
+    "登录成功",
+    "未知错误",
+    "账号错误",
+    "账号无效",
+    "密码错误",
+    "账号限制",
 }
 
 local MsgId = {

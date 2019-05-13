@@ -19,14 +19,16 @@ end
 
 function MainPresenter:init(gameid)
     self:initScene(gameid)
-    self:playGameMusic()
+    self:playGameMusic()   
 end
 
 function MainPresenter:onEnter()
     if app.data.UserData.getLoginState() ~= 1 then
         app.lobby.login.LoginPresenter:getInstance():start()      
         
-        app.lobby.login.LoginPresenter:getInstance():dealAutoLogin() 
+        if CC_AUTO_LOGIN then
+            app.lobby.login.LoginPresenter:getInstance():dealAutoLogin() 
+        end        
     end
     app.lobby.debug.DebugPresenter:getInstance():start()
 end
@@ -42,6 +44,7 @@ end
 function MainPresenter:initScene(gameid)
     isHotpatch = false
     self:reLoad()
+    self:initDownload()
     if gameid then
         self:showPlazaLists(gameid)
     end    
@@ -53,6 +56,19 @@ function MainPresenter:reLoad()
     self:onAvatarUpdate()
     self:onBalanceUpdate()
 end 
+
+function MainPresenter:initDownload()
+    local patch = {}    
+    for k, gameid in pairs(app.Game.GameID) do
+        if gameid == 1 or gameid == 2 then
+            if not cc.FileUtils:getInstance():isFileExist(app.Game.patchManifest[gameid]) then
+                table.insert(patch, gameid)
+            end
+        end                
+    end
+    
+    self._ui:getInstance():showImgDownload(patch)
+end
 
 -- 退出界面
 function MainPresenter:exit()
@@ -100,7 +116,7 @@ end
 -- 显示场列表
 function MainPresenter:showPlazaLists(gameid)
     local plazainfo = app.data.PlazaData.getPlazaList(gameid)
-    
+     
     self._ui:getInstance():showPlazaPnl(true)
     self._ui:getInstance():loadPlazaList(gameid , plazainfo)    
 end
@@ -177,8 +193,12 @@ function MainPresenter:loadingHintExit()
     self:dealLoadingHintExit()
 end
 
-function MainPresenter:reqHotpatch(gameid)
-    if CC_HOTPATCH then
+function MainPresenter:reqHotpatch(gameid)    
+    if CC_HOTPATCH then   
+        if isHotpatch then
+        	self:dealTxtHintStart("正在下载,请耐心等待当前游戏更新完成")
+        	return
+        end     
         local projManifest, savePath = "", ""
         if gameid == app.Game.GameID.ZJH then
             projManifest = "patch/zjh/project.manifest"
@@ -189,9 +209,14 @@ function MainPresenter:reqHotpatch(gameid)
         end
 
         if projManifest ~= "" and savePath ~= "" then
+            -- 隐藏下载图标
+            self._ui:getInstance():hideImgDownload(gameid)
+            
             hcGame = HotpatchController:new(projManifest, savePath)
             hcGame:init(handler(self, self.onHotpatch))
             hcGame:doUpdate()
+        else
+            print("manifest is nil")    
         end 
     else
         self:showPlazaLists(gameid)         
@@ -199,12 +224,10 @@ function MainPresenter:reqHotpatch(gameid)
 end
 
 function MainPresenter:onHotpatch(info)
-    if not self:isCurrentUI() then
-        isHotpatch = false
-        return
-    end
     -- 热更完成    
     if cc.EventAssetsManagerEx.EventCode.UPDATE_FINISHED == info.code then
+        print("热更新完成")        
+        isHotpatch = false
         if info.gameid == app.Game.GameID.ZJH then
             HotpatchRequire.reloadZJH()    
         elseif info.gameid == app.Game.GameID.JDNN then
@@ -214,6 +237,8 @@ function MainPresenter:onHotpatch(info)
         self:showPlazaLists(info.gameid)
     -- 已最新               
     elseif cc.EventAssetsManagerEx.EventCode.ALREADY_UP_TO_DATE == info.code then
+        print("已经是最新啦")
+        isHotpatch = false
         self._ui:getInstance():showHotpatchProgress(false, info.percent, info.gameid)
         self:showPlazaLists(info.gameid)
     -- 热更中    
@@ -221,9 +246,11 @@ function MainPresenter:onHotpatch(info)
         cc.EventAssetsManagerEx.EventCode.ASSET_UPDATED == info.code then       
         self._ui:getInstance():showHotpatchProgress(true, info.percent, info.gameid)
     -- 发现新版本    
-    elseif cc.EventAssetsManagerEx.EventCode.NEW_VERSION_FOUND == info.code then    
+    elseif cc.EventAssetsManagerEx.EventCode.NEW_VERSION_FOUND == info.code then   
+        isHotpatch = true 
     -- 热更出错       
     else
+        isHotpatch = false
         self._ui:getInstance():showHotpatchProgress(false, info.percent, info.gameid)
         self:dealHintStart(info.tips)
     end

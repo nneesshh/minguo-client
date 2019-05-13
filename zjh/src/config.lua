@@ -25,7 +25,16 @@ CC_DESIGN_RESOLUTION = {
     end
 }
 
--- IP
+-- hotpatch
+CC_HOTPATCH = true
+
+-- show login debug
+CC_SHOW_LOGIN_DEBUG = true
+
+-- auto login
+CC_AUTO_LOGIN = true
+
+-- ip
 local IP_LIST = {
     {host = "139.162.27.138",  port = 8860}, -- 1 外网
     {host = "192.168.200.101", port = 8860}, -- 2 内网服务器

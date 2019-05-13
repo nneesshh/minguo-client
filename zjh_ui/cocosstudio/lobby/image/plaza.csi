@@ -12,7 +12,12 @@
       <FilePathData Path="lobby/image/plaza/plaza_2_2.png" />
       <FilePathData Path="lobby/image/plaza/plaza_2_3.png" />
       <FilePathData Path="lobby/image/plaza/plaza_2_4.png" />
+      <FilePathData Path="lobby/image/plaza/img_game_3.png" />
+      <FilePathData Path="lobby/image/plaza/plaza_3_1.png" />
+      <FilePathData Path="lobby/image/plaza/plaza_3_2.png" />
+      <FilePathData Path="lobby/image/plaza/plaza_3_3.png" />
+      <FilePathData Path="lobby/image/plaza/plaza_3_4.png" />
     </ImageFiles>
-    <MaxSize Width="1024" Height="1024" />
+    <MaxSize Width="2048" Height="1024" />
   </Content>
 </PlistInfoProjectFile>

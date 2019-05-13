@@ -50,10 +50,14 @@ end
 function AccountData.haveAccount()
     local username = AccountData.getAccountData("USERNAME")
     local password = AccountData.getAccountData("PASSWORD")
+    local imei = AccountData.getAccountData("IMEI")
+    print("have account", imei)
     if #username > 0 and #password > 0 then
         return true, username, password
+    elseif #imei > 0 then   
+        return true, "", "mg123456", imei  
     end
-    return false, "", ""
+    return false, "", "", ""
 end
 
 function AccountData.IMEI()

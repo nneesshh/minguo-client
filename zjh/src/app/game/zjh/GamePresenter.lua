@@ -413,6 +413,14 @@ function GamePresenter:onPlayerGiveUp(now, next, round)
     self._gamePlayerNodes[localSeat]:showPnlBlack(true, true)
     self:showGaryCard(localSeat)
     
+    local playerobj = app.game.PlayerData.getPlayerByServerSeat(now)     
+    local gender = playerobj:getGender() 
+    if gender == 1 then
+        self._gamePlayerNodes[localSeat]:playEffectByName("m_qp")   
+    else
+        self._gamePlayerNodes[localSeat]:playEffectByName("w_qp")       
+    end
+        
     app.game.GameData.setCurrseat(next)
     
     local heroseat = app.game.PlayerData.getHeroSeat()
@@ -420,14 +428,7 @@ function GamePresenter:onPlayerGiveUp(now, next, round)
         local player = app.game.PlayerData.getPlayerByServerSeat(now)            
         local normal, disable = self:checkButtonEnable(player)
         self._gameBtnNode:setEnableByName(normal, disable)
-        
-        local gender = player:getGender() 
-        if gender == 1 then
-            self._gamePlayerNodes[localSeat]:playEffectByName("m_qp")   
-        else
-            self._gamePlayerNodes[localSeat]:playEffectByName("w_qp")       
-        end
-                
+            
         self._ui:getInstance():showBtnShowCard(false)           
     elseif heroseat == next then	
         local player = app.game.PlayerData.getPlayerByServerSeat(next)    

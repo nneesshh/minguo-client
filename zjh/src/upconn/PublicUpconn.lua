@@ -52,7 +52,7 @@ local function _readSeatPlayerInfo(po)
     info.bankermult = po:read_int32()
     info.mult       = po:read_int32()  
     info.isshow     = po:read_int32()
-    
+    --info.overshow   = po:read_int32()
     return info
 end
 
@@ -91,7 +91,7 @@ function _M.onRegister(conn, sessionid, msgid)
 end
 
 -- 登录
-function _M.onLogin(conn, sessionid, msgid)   
+function _M.onLogin(conn, sessionid, msgid)    
     local resp = {}   
     local po = upconn.upconn:get_packet_obj()
     resp.errorCode = po:read_int32()
@@ -110,7 +110,7 @@ function _M.onLogin(conn, sessionid, msgid)
             app.data.PlazaData.setPlazaList(info, gametype, j)
         end
     end
-
+    print("onlogin",resp.errorCode, resp.errorMsg)   
     if resp.errorCode == zjh_defs.ErrorCode.ERR_SUCCESS then
         -- user info
         local userInfo = {}
@@ -164,7 +164,7 @@ function _M.onLogin(conn, sessionid, msgid)
     else
         -- error
         app.data.UserData.setLoginState(-1)
-        app.util.DispatcherUtils.dispatchEvent(app.Event.EVENT_LOGIN_FAIL)
+        app.util.DispatcherUtils.dispatchEvent(app.Event.EVENT_LOGIN_FAIL, resp.errorCode)
         print("login failed -- !!!!, errcode=" .. tostring(resp.errorCode) .. ", " .. resp.errorMsg)
     end    
 end

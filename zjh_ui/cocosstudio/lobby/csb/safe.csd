@@ -322,27 +322,27 @@
               <AbstractNodeData Name="panel_out" ActionTag="1706154358" VisibleForFrame="False" Tag="1615" IconVisible="False" LeftMargin="340.0000" RightMargin="74.0000" TopMargin="106.0000" BottomMargin="75.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="713.0000" Y="530.0000" />
                 <Children>
-                  <AbstractNodeData Name="img_out_gold" ActionTag="2118666145" Tag="1616" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="102.7500" RightMargin="459.2500" TopMargin="47.1000" BottomMargin="396.9000" LeftEage="49" RightEage="49" TopEage="28" BottomEage="28" Scale9OriginX="49" Scale9OriginY="28" Scale9Width="53" Scale9Height="30" ctype="ImageViewObjectData">
+                  <AbstractNodeData Name="img_out_gold" ActionTag="2118666145" Tag="1616" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="459.2500" RightMargin="102.7500" TopMargin="47.1000" BottomMargin="396.9000" LeftEage="49" RightEage="49" TopEage="28" BottomEage="28" Scale9OriginX="49" Scale9OriginY="28" Scale9Width="53" Scale9Height="30" ctype="ImageViewObjectData">
                     <Size X="151.0000" Y="86.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="178.2500" Y="439.9000" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.2500" Y="0.8300" />
-                    <PreSize X="0.2118" Y="0.1623" />
-                    <FileData Type="Normal" Path="lobby/image/safe/img_gold.png" Plist="" />
-                  </AbstractNodeData>
-                  <AbstractNodeData Name="img_out_safe" ActionTag="1713128320" Tag="1617" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="486.2500" RightMargin="129.7500" TopMargin="41.1000" BottomMargin="390.9000" LeftEage="32" RightEage="32" TopEage="32" BottomEage="32" Scale9OriginX="32" Scale9OriginY="32" Scale9Width="33" Scale9Height="34" ctype="ImageViewObjectData">
-                    <Size X="97.0000" Y="98.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="534.7500" Y="439.9000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.7500" Y="0.8300" />
+                    <PreSize X="0.2118" Y="0.1623" />
+                    <FileData Type="Normal" Path="lobby/image/safe/img_gold.png" Plist="" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="img_out_safe" ActionTag="1713128320" Tag="1617" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="129.7500" RightMargin="486.2500" TopMargin="41.1000" BottomMargin="390.9000" LeftEage="32" RightEage="32" TopEage="32" BottomEage="32" Scale9OriginX="32" Scale9OriginY="32" Scale9Width="33" Scale9Height="34" ctype="ImageViewObjectData">
+                    <Size X="97.0000" Y="98.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="178.2500" Y="439.9000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.2500" Y="0.8300" />
                     <PreSize X="0.1360" Y="0.1849" />
                     <FileData Type="Normal" Path="lobby/image/safe/img_safe_icon.png" Plist="" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="node_out_arrow" ActionTag="-1465980865" Tag="1618" RotationSkewX="180.0000" RotationSkewY="180.0000" IconVisible="True" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="356.5000" RightMargin="356.5000" TopMargin="90.1000" BottomMargin="439.9000" ctype="SingleNodeObjectData">
+                  <AbstractNodeData Name="node_out_arrow" ActionTag="-1465980865" Tag="1618" IconVisible="True" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="356.5000" RightMargin="356.5000" TopMargin="90.1000" BottomMargin="439.9000" ctype="SingleNodeObjectData">
                     <Size X="0.0000" Y="0.0000" />
                     <AnchorPoint />
                     <Position X="356.5000" Y="439.9000" />
@@ -351,7 +351,7 @@
                     <PrePosition X="0.5000" Y="0.8300" />
                     <PreSize X="0.0000" Y="0.0000" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="img_out_curr_back" ActionTag="51854158" Tag="1619" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="28.2500" RightMargin="384.7500" TopMargin="157.0000" BottomMargin="327.0000" Scale9Enable="True" LeftEage="30" RightEage="30" TopEage="16" BottomEage="30" Scale9OriginX="30" Scale9OriginY="16" Scale9Width="271" Scale9Height="1" ctype="ImageViewObjectData">
+                  <AbstractNodeData Name="img_out_curr_back" ActionTag="51854158" Tag="1619" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="384.7500" RightMargin="28.2500" TopMargin="157.0000" BottomMargin="327.0000" Scale9Enable="True" LeftEage="30" RightEage="30" TopEage="16" BottomEage="30" Scale9OriginX="30" Scale9OriginY="16" Scale9Width="271" Scale9Height="1" ctype="ImageViewObjectData">
                     <Size X="300.0000" Y="46.0000" />
                     <Children>
                       <AbstractNodeData Name="img_out_cur" ActionTag="-2023594883" Tag="1620" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="30.0000" RightMargin="210.0000" TopMargin="10.0000" BottomMargin="10.0000" LeftEage="19" RightEage="19" TopEage="8" BottomEage="8" Scale9OriginX="19" Scale9OriginY="8" Scale9Width="22" Scale9Height="10" ctype="ImageViewObjectData">
@@ -377,14 +377,14 @@
                       </AbstractNodeData>
                     </Children>
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="178.2500" Y="350.0000" />
+                    <Position X="534.7500" Y="350.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.2500" Y="0.6604" />
+                    <PrePosition X="0.7500" Y="0.6604" />
                     <PreSize X="0.4208" Y="0.0868" />
                     <FileData Type="Normal" Path="lobby/image/public/img_enter_back.png" Plist="" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="img_out_safe_back" ActionTag="964879119" Tag="1622" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="384.7500" RightMargin="28.2500" TopMargin="157.0000" BottomMargin="327.0000" Scale9Enable="True" LeftEage="30" RightEage="30" TopEage="16" BottomEage="30" Scale9OriginX="30" Scale9OriginY="16" Scale9Width="271" Scale9Height="1" ctype="ImageViewObjectData">
+                  <AbstractNodeData Name="img_out_safe_back" ActionTag="964879119" Tag="1622" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="28.2500" RightMargin="384.7500" TopMargin="157.0000" BottomMargin="327.0000" Scale9Enable="True" LeftEage="30" RightEage="30" TopEage="16" BottomEage="30" Scale9OriginX="30" Scale9OriginY="16" Scale9Width="271" Scale9Height="1" ctype="ImageViewObjectData">
                     <Size X="300.0000" Y="46.0000" />
                     <Children>
                       <AbstractNodeData Name="img_out_sa" ActionTag="-132890023" Tag="1623" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="16.5000" RightMargin="196.5000" TopMargin="10.5000" BottomMargin="10.5000" LeftEage="28" RightEage="28" TopEage="8" BottomEage="8" Scale9OriginX="28" Scale9OriginY="8" Scale9Width="31" Scale9Height="9" ctype="ImageViewObjectData">
@@ -410,10 +410,10 @@
                       </AbstractNodeData>
                     </Children>
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="534.7500" Y="350.0000" />
+                    <Position X="178.2500" Y="350.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.7500" Y="0.6604" />
+                    <PrePosition X="0.2500" Y="0.6604" />
                     <PreSize X="0.4208" Y="0.0868" />
                     <FileData Type="Normal" Path="lobby/image/public/img_enter_back.png" Plist="" />
                   </AbstractNodeData>

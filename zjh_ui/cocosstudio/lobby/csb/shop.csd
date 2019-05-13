@@ -67,7 +67,7 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="img_back2" ActionTag="862281001" Tag="665" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="73.9561" RightMargin="74.0439" TopMargin="106.0000" BottomMargin="75.0000" Scale9Enable="True" LeftEage="30" RightEage="30" TopEage="30" BottomEage="30" Scale9OriginX="30" Scale9OriginY="30" Scale9Width="919" Scale9Height="73" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="img_back2" ActionTag="862281001" Tag="665" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="74.0000" RightMargin="74.0000" TopMargin="106.0000" BottomMargin="75.0000" Scale9Enable="True" LeftEage="30" RightEage="30" TopEage="30" BottomEage="30" Scale9OriginX="30" Scale9OriginY="30" Scale9Width="919" Scale9Height="73" ctype="ImageViewObjectData">
                 <Size X="979.0000" Y="530.0000" />
                 <Children>
                   <AbstractNodeData Name="img_back3" ActionTag="-1086454574" Tag="666" IconVisible="False" PositionPercentYEnabled="True" RightMargin="713.0000" Scale9Enable="True" LeftEage="30" RightEage="30" TopEage="30" BottomEage="30" Scale9OriginX="30" Scale9OriginY="30" Scale9Width="206" Scale9Height="423" ctype="ImageViewObjectData">
@@ -112,7 +112,7 @@
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="563.4561" Y="340.0000" />
+                <Position X="563.5000" Y="340.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5000" Y="0.4782" />
@@ -302,7 +302,7 @@
                   <AbstractNodeData Name="btn_wx_rmb3" ActionTag="-1764413565" Tag="725" IconVisible="False" LeftMargin="40.0000" RightMargin="489.0000" TopMargin="36.0000" BottomMargin="282.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="154" Scale9Height="190" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                     <Size X="184.0000" Y="212.0000" />
                     <Children>
-                      <AbstractNodeData Name="img_hot" ActionTag="-378551935" VisibleForFrame="False" Tag="726" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="109.7200" RightMargin="-11.7200" TopMargin="-44.5000" BottomMargin="153.5000" Scale9Width="86" Scale9Height="103" ctype="ImageViewObjectData">
+                      <AbstractNodeData Name="img_hot" ActionTag="-378551935" Tag="726" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="109.7200" RightMargin="-11.7200" TopMargin="-44.5000" BottomMargin="153.5000" Scale9Width="86" Scale9Height="103" ctype="ImageViewObjectData">
                         <Size X="86.0000" Y="103.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <Position X="152.7200" Y="205.0000" />
@@ -329,7 +329,7 @@
                   <AbstractNodeData Name="btn_wx_rmb10" ActionTag="2025500283" Tag="727" IconVisible="False" LeftMargin="264.0000" RightMargin="264.0000" TopMargin="36.0000" BottomMargin="282.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="155" Scale9Height="190" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                     <Size X="185.0000" Y="212.0000" />
                     <Children>
-                      <AbstractNodeData Name="img_hot" ActionTag="-1791357337" VisibleForFrame="False" Tag="728" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="110.5500" RightMargin="-11.5500" TopMargin="-44.5000" BottomMargin="153.5000" Scale9Width="86" Scale9Height="103" ctype="ImageViewObjectData">
+                      <AbstractNodeData Name="img_hot" ActionTag="-1791357337" Tag="728" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="110.5500" RightMargin="-11.5500" TopMargin="-44.5000" BottomMargin="153.5000" Scale9Width="86" Scale9Height="103" ctype="ImageViewObjectData">
                         <Size X="86.0000" Y="103.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <Position X="153.5500" Y="205.0000" />
@@ -356,7 +356,7 @@
                   <AbstractNodeData Name="btn_wx_rmb30" ActionTag="-898972780" Tag="729" IconVisible="False" LeftMargin="489.0000" RightMargin="40.0000" TopMargin="36.0000" BottomMargin="282.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="154" Scale9Height="190" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                     <Size X="184.0000" Y="212.0000" />
                     <Children>
-                      <AbstractNodeData Name="img_hot" ActionTag="501817630" VisibleForFrame="False" Tag="730" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="109.7200" RightMargin="-11.7200" TopMargin="-44.5000" BottomMargin="153.5000" Scale9Width="86" Scale9Height="103" ctype="ImageViewObjectData">
+                      <AbstractNodeData Name="img_hot" ActionTag="501817630" Tag="730" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="109.7200" RightMargin="-11.7200" TopMargin="-44.5000" BottomMargin="153.5000" Scale9Width="86" Scale9Height="103" ctype="ImageViewObjectData">
                         <Size X="86.0000" Y="103.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <Position X="152.7200" Y="205.0000" />

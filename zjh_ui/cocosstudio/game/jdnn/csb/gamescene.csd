@@ -1006,24 +1006,6 @@
                 <PreSize X="0.0000" Y="0.0000" />
                 <FileData Type="Normal" Path="game/jdnn/csb/niutype.csd" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="node_win" ActionTag="883095717" Tag="172" IconVisible="True" LeftMargin="667.0000" RightMargin="667.0000" TopMargin="375.0000" BottomMargin="375.0000" ctype="SingleNodeObjectData">
-                <Size X="0.0000" Y="0.0000" />
-                <AnchorPoint />
-                <Position X="667.0000" Y="375.0000" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5000" Y="0.5000" />
-                <PreSize X="0.0000" Y="0.0000" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="node_lose" ActionTag="1348972225" Tag="171" IconVisible="True" LeftMargin="667.0000" RightMargin="667.0000" TopMargin="375.0000" BottomMargin="375.0000" ctype="SingleNodeObjectData">
-                <Size X="0.0000" Y="0.0000" />
-                <AnchorPoint />
-                <Position X="667.0000" Y="375.0000" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5000" Y="0.5000" />
-                <PreSize X="0.0000" Y="0.0000" />
-              </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="667.0000" Y="375.0000" />
@@ -1192,6 +1174,24 @@
             <PrePosition X="1.0000" Y="0.5000" />
             <PreSize X="0.2609" Y="0.9573" />
             <FileData Type="MarkedSubImage" Path="game/jdnn/image/img_nn_help.png" Plist="game/jdnn/image/plistscene.plist" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="node_win" ActionTag="883095717" Tag="172" IconVisible="True" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="667.0000" RightMargin="667.0000" TopMargin="375.0000" BottomMargin="375.0000" ctype="SingleNodeObjectData">
+            <Size X="0.0000" Y="0.0000" />
+            <AnchorPoint />
+            <Position X="667.0000" Y="375.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" Y="0.5000" />
+            <PreSize X="0.0000" Y="0.0000" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="node_lose" ActionTag="1348972225" Tag="171" IconVisible="True" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="667.0000" RightMargin="667.0000" TopMargin="375.0000" BottomMargin="375.0000" ctype="SingleNodeObjectData">
+            <Size X="0.0000" Y="0.0000" />
+            <AnchorPoint />
+            <Position X="667.0000" Y="375.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" Y="0.5000" />
+            <PreSize X="0.0000" Y="0.0000" />
           </AbstractNodeData>
           <AbstractNodeData Name="img_fly_gold" ActionTag="1533020733" Tag="323" IconVisible="False" LeftMargin="-1022.5000" RightMargin="2311.5000" TopMargin="1729.5000" BottomMargin="-1020.5000" LeftEage="16" RightEage="16" TopEage="18" BottomEage="18" Scale9OriginX="16" Scale9OriginY="18" Scale9Width="13" Scale9Height="5" ctype="ImageViewObjectData">
             <Size X="45.0000" Y="41.0000" />

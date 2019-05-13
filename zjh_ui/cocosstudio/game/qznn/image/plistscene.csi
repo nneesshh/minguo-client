@@ -1,0 +1,64 @@
+<PlistInfoProjectFile>
+  <PropertyGroup Name="plistscene" Type="Plist" ID="82339b17-b521-48b5-ac50-3ffc8e759043" Version="3.10.0.0" />
+  <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="2" AllowRotation="True" AllowAnySize="True" AllowTrim="True" ctype="PlistInfoData">
+    <ImageFiles>
+      <FilePathData Path="game/qznn/image/btn_bq.png" />
+      <FilePathData Path="game/qznn/image/btn_cal_sure.png" />
+      <FilePathData Path="game/qznn/image/btn_m1.png" />
+      <FilePathData Path="game/qznn/image/btn_m10.png" />
+      <FilePathData Path="game/qznn/image/btn_m15.png" />
+      <FilePathData Path="game/qznn/image/btn_m2.png" />
+      <FilePathData Path="game/qznn/image/btn_m20.png" />
+      <FilePathData Path="game/qznn/image/btn_m25.png" />
+      <FilePathData Path="game/qznn/image/btn_m3.png" />
+      <FilePathData Path="game/qznn/image/btn_m4.png" />
+      <FilePathData Path="game/qznn/image/btn_m5.png" />
+      <FilePathData Path="game/qznn/image/img_add_back.png" />
+      <FilePathData Path="game/qznn/image/img_banker.png" />
+      <FilePathData Path="game/qznn/image/img_cal_back.png" />
+      <FilePathData Path="game/qznn/image/img_card_type_0.png" />
+      <FilePathData Path="game/qznn/image/img_card_type_1.png" />
+      <FilePathData Path="game/qznn/image/img_card_type_10.png" />
+      <FilePathData Path="game/qznn/image/img_card_type_11.png" />
+      <FilePathData Path="game/qznn/image/img_card_type_12.png" />
+      <FilePathData Path="game/qznn/image/img_card_type_13.png" />
+      <FilePathData Path="game/qznn/image/img_card_type_2.png" />
+      <FilePathData Path="game/qznn/image/img_card_type_3.png" />
+      <FilePathData Path="game/qznn/image/img_card_type_4.png" />
+      <FilePathData Path="game/qznn/image/img_card_type_5.png" />
+      <FilePathData Path="game/qznn/image/img_card_type_6.png" />
+      <FilePathData Path="game/qznn/image/img_card_type_7.png" />
+      <FilePathData Path="game/qznn/image/img_card_type_8.png" />
+      <FilePathData Path="game/qznn/image/img_card_type_9.png" />
+      <FilePathData Path="game/qznn/image/img_choose_0.png" />
+      <FilePathData Path="game/qznn/image/img_choose_1.png" />
+      <FilePathData Path="game/qznn/image/img_choose_10.png" />
+      <FilePathData Path="game/qznn/image/img_choose_15.png" />
+      <FilePathData Path="game/qznn/image/img_choose_2.png" />
+      <FilePathData Path="game/qznn/image/img_choose_20.png" />
+      <FilePathData Path="game/qznn/image/img_choose_25.png" />
+      <FilePathData Path="game/qznn/image/img_choose_3.png" />
+      <FilePathData Path="game/qznn/image/img_choose_4.png" />
+      <FilePathData Path="game/qznn/image/img_choose_5.png" />
+      <FilePathData Path="game/qznn/image/img_cutdown_back.png" />
+      <FilePathData Path="game/qznn/image/img_desc_back.png" />
+      <FilePathData Path="game/qznn/image/img_gold.png" />
+      <FilePathData Path="game/qznn/image/img_head_back1.png" />
+      <FilePathData Path="game/qznn/image/img_head_back2.png" />
+      <FilePathData Path="game/qznn/image/img_hint.png" />
+      <FilePathData Path="game/qznn/image/img_hint_start.png" />
+      <FilePathData Path="game/qznn/image/img_jx.png" />
+      <FilePathData Path="game/qznn/image/img_light.png" />
+      <FilePathData Path="game/qznn/image/img_load.png" />
+      <FilePathData Path="game/qznn/image/img_load_back.png" />
+      <FilePathData Path="game/qznn/image/img_nn_help.png" />
+      <FilePathData Path="game/qznn/image/img_nntou.png" />
+      <FilePathData Path="game/qznn/image/img_qqz.png" />
+      <FilePathData Path="game/qznn/image/img_qxz.png" />
+      <FilePathData Path="game/qznn/image/img_type_11.png" />
+      <FilePathData Path="game/qznn/image/img_type_12.png" />
+      <FilePathData Path="game/qznn/image/img_type_13.png" />
+    </ImageFiles>
+    <MaxSize Width="1024" Height="1024" />
+  </Content>
+</PlistInfoProjectFile>

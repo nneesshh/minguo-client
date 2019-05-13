@@ -57,13 +57,21 @@ end
 
 -- 旋转菜单
 function GameMenuNode:rotateMneu()
-    local btnMenu = self:seekChildByName("btn_menu")    
-    local act = cc.RotateBy:create(0.13, 180)
+    local btnMenu = self:seekChildByName("btn_menu")  
+    local angle = btnMenu:getRotation()
+    local rotate = 0
+    if angle == 180 then
+        rotate = -180
+    else 
+        rotate = 180
+    end  
+    
+    local act = cc.RotateBy:create(0.13, rotate)
     act:setTag(1)
     if btnMenu:getActionByTag(1) then
         return
     end    
-    
+
     btnMenu:runAction(act)
 end
 

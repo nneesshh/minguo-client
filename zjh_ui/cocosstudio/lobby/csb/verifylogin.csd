@@ -154,18 +154,18 @@
                     <PreSize X="0.3964" Y="0.1508" />
                     <FileData Type="Normal" Path="lobby/image/public/img_enter_back.png" Plist="" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="btn_verify" ActionTag="1579839242" Tag="171" IconVisible="False" LeftMargin="645.5000" RightMargin="62.5000" TopMargin="191.5000" BottomMargin="77.5000" TouchEnable="True" FontSize="22" ButtonText="获取验证码" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="97" Scale9Height="14" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
-                    <Size X="127.0000" Y="36.0000" />
+                  <AbstractNodeData Name="btn_verify" ActionTag="1579839242" Tag="171" IconVisible="False" LeftMargin="645.5000" RightMargin="62.5000" TopMargin="187.0000" BottomMargin="73.0000" TouchEnable="True" FontSize="22" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="97" Scale9Height="23" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                    <Size X="127.0000" Y="45.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="709.0000" Y="95.5000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.8491" Y="0.3131" />
-                    <PreSize X="0.1521" Y="0.1180" />
+                    <PreSize X="0.1521" Y="0.1475" />
                     <TextColor A="255" R="53" G="53" B="53" />
-                    <DisabledFileData Type="Normal" Path="lobby/image/public/btn_gray.png" Plist="" />
-                    <PressedFileData Type="Normal" Path="lobby/image/public/btn_gray.png" Plist="" />
-                    <NormalFileData Type="Normal" Path="lobby/image/public/btn_gray.png" Plist="" />
+                    <DisabledFileData Type="Normal" Path="lobby/image/login/btn_vertify.png" Plist="" />
+                    <PressedFileData Type="Normal" Path="lobby/image/login/btn_vertify.png" Plist="" />
+                    <NormalFileData Type="Normal" Path="lobby/image/login/btn_vertify.png" Plist="" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>

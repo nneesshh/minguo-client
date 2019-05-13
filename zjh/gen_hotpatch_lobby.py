@@ -8,7 +8,7 @@ import subprocess
 
 assetsDir = {
     "searchDir" : ["src", "res/lobby"],
-    "ignoreDir" : ["cocos", "obj", "patch"]
+    "ignoreDir" : ["cocos", "obj", "patch", "jdnn", "zjh", "qznn"]
 }
 
 

@@ -146,6 +146,16 @@
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
           </AbstractNodeData>
+          <AbstractNodeData Name="img_bottom" ActionTag="-591822949" Tag="1149" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BottomEdge" LeftMargin="1.0000" RightMargin="1.0000" TopMargin="683.0000" LeftEage="439" RightEage="439" TopEage="22" BottomEage="22" Scale9OriginX="439" Scale9OriginY="22" Scale9Width="454" Scale9Height="23" ctype="ImageViewObjectData">
+            <Size X="1332.0000" Y="67.0000" />
+            <AnchorPoint ScaleX="0.5000" />
+            <Position X="667.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" />
+            <PreSize X="0.9985" Y="0.0893" />
+            <FileData Type="Normal" Path="game/zjh/image/img_bottom.png" Plist="" />
+          </AbstractNodeData>
           <AbstractNodeData Name="player" ActionTag="-454512329" Tag="2494" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="1334.0000" Y="750.0000" />
             <Children>

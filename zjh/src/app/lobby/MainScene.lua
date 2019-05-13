@@ -16,12 +16,12 @@ MainScene.touchs = {
     "btn_notice",
     "btn_mail",
     "btn_set",
-    "btn_qznn",
-    "btn_psz",
-    "btn_brnn",
-    "btn_lhd",
-    "btn_ddz",
-    "btn_jdnn",
+    "btn_game_1",
+    "btn_game_2",
+    "btn_game_3",
+    "btn_game_4",
+    "btn_game_5",
+    "btn_game_6",
     "btn_rank",
     "btn_safe",
     "btn_shop",
@@ -39,11 +39,13 @@ function MainScene:onTouch(sender, eventType)
     if eventType == ccui.TouchEventType.ended then
         print("button name is:",name) 
         if name == "btn_back" then
-            self:showPlazaPnl(false)           
-        elseif name == "btn_psz" then            
-            self._presenter:reqHotpatch(app.Game.GameID.ZJH)  
-        elseif name == "btn_jdnn" then
-            self._presenter:reqHotpatch(app.Game.GameID.JDNN)                             
+            self:showPlazaPnl(false)
+            self._presenter:initDownload()             
+        elseif string.find(name, "btn_game_") then
+            local gameid = tonumber(string.split(name, "btn_game_")[2])            
+            if gameid == 1 or gameid == 2 then
+                self._presenter:reqHotpatch(gameid)         
+            end                                                      
         elseif name == "btn_head_info" then
             self._presenter:showUserCenter()             
         elseif name == "btn_gold_add_lobby" then
@@ -200,13 +202,8 @@ function MainScene:loadPlazaList(gameid, plazainfos)
 end
 
 -- 显示热更进度
-function MainScene:showHotpatchProgress(visible, percent, gameid)
-	local btnname = {
-        [app.Game.GameID.ZJH] = "btn_psz",
-        [app.Game.GameID.JDNN] = "btn_jdnn"
-	} 
-	
-    local btn = self:seekChildByName(btnname[gameid]) 
+function MainScene:showHotpatchProgress(visible, percent, gameid)	
+    local btn = self:seekChildByName("btn_game_" .. gameid) 
 	if btn then
         local hotpnl = btn:getChildByName("hotpatch_pnl")        
         local circle = hotpnl:getChildByName("img_circle")
@@ -229,6 +226,31 @@ function MainScene:initEffect()
     node:stopAllActions()
     local effect = app.util.UIUtils.runEffect("lobby/effect","ggdh", 0, 0)
     node:addChild(effect)    
+end
+
+function MainScene:showImgDownload(patch)
+    local parent = self:seekChildByName("lobby")
+    local childs = parent:getChildren()  
+    for _, btn in ipairs(childs) do
+        local img = btn:getChildByName("img_download")
+        if img then
+            img:setVisible(false)
+        end           
+    end
+    
+    for i, gameid in pairs(patch) do
+        local btn = self:seekChildByName("btn_game_" .. gameid)
+        if btn then
+            btn:getChildByName("img_download"):setVisible(true)
+        end        
+    end
+end
+
+function MainScene:hideImgDownload(gameid)
+    local btn = self:seekChildByName("btn_game_" .. gameid)
+    if btn then
+        btn:getChildByName("img_download"):setVisible(false)
+    end
 end
 
 return MainScene

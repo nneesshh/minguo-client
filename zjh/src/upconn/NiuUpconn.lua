@@ -90,7 +90,11 @@ function _M.onNiuGameStart(conn, sessionid, msgid)
     local basecoin   = po:read_int32()
     local tabInfo    = _readTableInfo(po)
     tabInfo.basecoin = basecoin
-    app.game.GameData.setTableInfo(tabInfo)
+    
+    if app.game.GameData then
+        app.game.GameData.setTableInfo(tabInfo)
+    end
+    
     if app.game.GamePresenter then
         app.game.GamePresenter:getInstance():onGameStart() 
     end    

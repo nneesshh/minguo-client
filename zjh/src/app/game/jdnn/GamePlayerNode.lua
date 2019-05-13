@@ -46,9 +46,9 @@ function GamePlayerNode:onPlayerEnter()
         self:showImgFace(player:getGender(), player:getAvatar())
     else
         -- 设置姓名
-        self:showTxtPlayerName(true, "    -")
+        self:showTxtPlayerName(true, "   --")
         -- 设置金币
-        self:showTxtBalance(true, "  -")
+        self:showTxtBalance(true, " --")
         -- 显示头像
         self:showImgFace(2, 0)    
     end

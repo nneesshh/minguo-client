@@ -140,6 +140,81 @@
             <PlistInfo Name="menuplist.csi" Type="Plist" />
             <PlistInfo Name="plistcard.csi" Type="Plist" />
           </Folder>
+          <Folder Name="qznn">
+            <Folder Name="csb">
+              <Project Name="button.csd" Type="Node" />
+              <Project Name="card.csd" Type="Node" />
+              <Project Name="gamescene.csd" Type="Scene" />
+              <Project Name="menu.csd" Type="Node" />
+              <Project Name="niutype.csd" Type="Node" />
+            </Folder>
+            <Folder Name="image">
+              <Folder Name="fnt">
+                <Fnt Name="calfnt.fnt" />
+                <Fnt Name="clockfnt.fnt" />
+                <Fnt Name="losefnt.fnt" />
+                <Fnt Name="startfnt.fnt" />
+                <Fnt Name="winfnt.fnt" />
+              </Folder>
+              <Image Name="btn_bq.png" />
+              <Image Name="btn_cal_sure.png" />
+              <Image Name="btn_m1.png" />
+              <Image Name="btn_m10.png" />
+              <Image Name="btn_m15.png" />
+              <Image Name="btn_m2.png" />
+              <Image Name="btn_m20.png" />
+              <Image Name="btn_m25.png" />
+              <Image Name="btn_m3.png" />
+              <Image Name="btn_m4.png" />
+              <Image Name="btn_m5.png" />
+              <Image Name="img_add_back.png" />
+              <Image Name="img_banker.png" />
+              <Image Name="img_cal_back.png" />
+              <Image Name="img_card_type_0.png" />
+              <Image Name="img_card_type_1.png" />
+              <Image Name="img_card_type_10.png" />
+              <Image Name="img_card_type_11.png" />
+              <Image Name="img_card_type_12.png" />
+              <Image Name="img_card_type_13.png" />
+              <Image Name="img_card_type_2.png" />
+              <Image Name="img_card_type_3.png" />
+              <Image Name="img_card_type_4.png" />
+              <Image Name="img_card_type_5.png" />
+              <Image Name="img_card_type_6.png" />
+              <Image Name="img_card_type_7.png" />
+              <Image Name="img_card_type_8.png" />
+              <Image Name="img_card_type_9.png" />
+              <Image Name="img_choose_0.png" />
+              <Image Name="img_choose_1.png" />
+              <Image Name="img_choose_10.png" />
+              <Image Name="img_choose_15.png" />
+              <Image Name="img_choose_2.png" />
+              <Image Name="img_choose_20.png" />
+              <Image Name="img_choose_25.png" />
+              <Image Name="img_choose_3.png" />
+              <Image Name="img_choose_4.png" />
+              <Image Name="img_choose_5.png" />
+              <Image Name="img_cutdown_back.png" />
+              <Image Name="img_desc_back.png" />
+              <Image Name="img_gold.png" />
+              <Image Name="img_head_back1.png" />
+              <Image Name="img_head_back2.png" />
+              <Image Name="img_hint.png" />
+              <Image Name="img_hint_start.png" />
+              <Image Name="img_jx.png" />
+              <Image Name="img_light.png" />
+              <Image Name="img_load.png" />
+              <Image Name="img_load_back.png" />
+              <Image Name="img_nn_help.png" />
+              <Image Name="img_nntou.png" />
+              <Image Name="img_qqz.png" />
+              <Image Name="img_qxz.png" />
+              <Image Name="img_type_11.png" />
+              <Image Name="img_type_12.png" />
+              <Image Name="img_type_13.png" />
+              <PlistInfo Name="plistscene.csi" Type="Plist" />
+            </Folder>
+          </Folder>
           <Folder Name="zjh">
             <Folder Name="csb">
               <Project Name="button.csd" Type="Node" />
@@ -284,6 +359,7 @@
               <Image Name="btn_set.png" />
               <Image Name="btn_shop.png" />
               <Image Name="img_background.jpg" />
+              <Image Name="img_download.png" />
               <Image Name="img_gold.png" />
               <Image Name="img_gold_add.png" />
               <Image Name="img_gold_back.png" />
@@ -301,6 +377,7 @@
               <Image Name="btn_phone.png" />
               <Image Name="btn_sign_up.png" />
               <Image Name="btn_tourist.png" />
+              <Image Name="btn_vertify.png" />
               <Image Name="img_acc_ph.png" />
               <Image Name="img_account.png" />
               <Image Name="img_new_pwd.png" />
@@ -314,11 +391,34 @@
               <Image Name="img_verify_login.png" />
               <Image Name="img_vertify.png" />
             </Folder>
+            <Folder Name="mail">
+              <Image Name="btn_back.png" />
+              <Image Name="btn_del.png" />
+              <Image Name="btn_del_all.png" />
+              <Image Name="btn_del_read.png" />
+              <Image Name="img_mail_0.png" />
+              <Image Name="img_mail_1.png" />
+              <Image Name="img_mail_title.png" />
+              <Image Name="img_read_0.png" />
+              <Image Name="img_read_1.png" />
+            </Folder>
+            <Folder Name="notice">
+              <Image Name="btn_fzb_1.png" />
+              <Image Name="btn_fzb_2.png" />
+              <Image Name="btn_money_1.png" />
+              <Image Name="btn_money_2.png" />
+              <Image Name="btn_new_1.png" />
+              <Image Name="btn_new_2.png" />
+              <Image Name="btn_notice_1.png" />
+              <Image Name="btn_notice_2.png" />
+              <Image Name="img_notice.png" />
+            </Folder>
             <Folder Name="plaza">
               <Image Name="btn_back.png" />
               <Image Name="btn_help.png" />
               <Image Name="img_game_1.png" />
               <Image Name="img_game_2.png" />
+              <Image Name="img_game_3.png" />
               <Image Name="plaza_1_1.png" />
               <Image Name="plaza_1_2.png" />
               <Image Name="plaza_1_3.png" />
@@ -327,6 +427,10 @@
               <Image Name="plaza_2_2.png" />
               <Image Name="plaza_2_3.png" />
               <Image Name="plaza_2_4.png" />
+              <Image Name="plaza_3_1.png" />
+              <Image Name="plaza_3_2.png" />
+              <Image Name="plaza_3_3.png" />
+              <Image Name="plaza_3_4.png" />
             </Folder>
             <Folder Name="public">
               <Image Name="btn_close.png" />
@@ -343,6 +447,38 @@
               <Image Name="img_enter_back.png" />
               <Image Name="img_hint.png" />
               <Image Name="img_title.png" />
+            </Folder>
+            <Folder Name="rank">
+              <Image Name="btn_rich_1.png" />
+              <Image Name="btn_rich_2.png" />
+              <Image Name="btn_win_1.png" />
+              <Image Name="btn_win_2.png" />
+              <Image Name="img_inrank.png" />
+              <Image Name="img_rank_1.png" />
+              <Image Name="img_rank_2.png" />
+              <Image Name="img_rank_3.png" />
+              <Image Name="img_rank_title.png" />
+            </Folder>
+            <Folder Name="safe">
+              <Image Name="btn_clear.png" />
+              <Image Name="btn_out.png" />
+              <Image Name="btn_out_1.png" />
+              <Image Name="btn_out_2.png" />
+              <Image Name="btn_put.png" />
+              <Image Name="btn_put_1.png" />
+              <Image Name="btn_put_2.png" />
+              <Image Name="img_gold.png" />
+              <Image Name="img_in.png" />
+              <Image Name="img_load.png" />
+              <Image Name="img_load_back.png" />
+              <Image Name="img_out.png" />
+              <Image Name="img_out_all.png" />
+              <Image Name="img_out_gold.png" />
+              <Image Name="img_put_all.png" />
+              <Image Name="img_put_gold.png" />
+              <Image Name="img_safe_icon.png" />
+              <Image Name="img_safe_title.png" />
+              <Image Name="img_slider.png" />
             </Folder>
             <Folder Name="set">
               <Image Name="btn_off.png" />
@@ -367,6 +503,7 @@
               <Image Name="rmb500.png" />
             </Folder>
             <Folder Name="usercenter">
+              <Image Name="btn_change_head.png" />
               <Image Name="btn_change_pwd.png" />
               <Image Name="img_head_back.png" />
               <Image Name="img_line.png" />
@@ -374,60 +511,6 @@
             </Folder>
             <PlistInfo Name="head.csi" Type="Plist" />
             <PlistInfo Name="plaza.csi" Type="Plist" />
-            <Folder Name="notice">
-              <Image Name="btn_fzb_1.png" />
-              <Image Name="btn_fzb_2.png" />
-              <Image Name="btn_money_1.png" />
-              <Image Name="btn_money_2.png" />
-              <Image Name="btn_new_1.png" />
-              <Image Name="btn_new_2.png" />
-              <Image Name="btn_notice_1.png" />
-              <Image Name="btn_notice_2.png" />
-              <Image Name="img_notice.png" />
-            </Folder>
-            <Folder Name="safe">
-              <Image Name="btn_clear.png" />
-              <Image Name="btn_out.png" />
-              <Image Name="btn_out_1.png" />
-              <Image Name="btn_out_2.png" />
-              <Image Name="btn_put.png" />
-              <Image Name="btn_put_1.png" />
-              <Image Name="btn_put_2.png" />
-              <Image Name="img_gold.png" />
-              <Image Name="img_in.png" />
-              <Image Name="img_load.png" />
-              <Image Name="img_load_back.png" />
-              <Image Name="img_out.png" />
-              <Image Name="img_out_all.png" />
-              <Image Name="img_out_gold.png" />
-              <Image Name="img_put_all.png" />
-              <Image Name="img_put_gold.png" />
-              <Image Name="img_safe_icon.png" />
-              <Image Name="img_safe_title.png" />
-              <Image Name="img_slider.png" />
-            </Folder>
-            <Folder Name="mail">
-              <Image Name="btn_back.png" />
-              <Image Name="btn_del.png" />
-              <Image Name="btn_del_all.png" />
-              <Image Name="btn_del_read.png" />
-              <Image Name="img_mail_0.png" />
-              <Image Name="img_mail_1.png" />
-              <Image Name="img_mail_title.png" />
-              <Image Name="img_read_0.png" />
-              <Image Name="img_read_1.png" />
-            </Folder>
-            <Folder Name="rank">
-              <Image Name="btn_rich_1.png" />
-              <Image Name="btn_rich_2.png" />
-              <Image Name="btn_win_1.png" />
-              <Image Name="btn_win_2.png" />
-              <Image Name="img_inrank.png" />
-              <Image Name="img_rank_1.png" />
-              <Image Name="img_rank_2.png" />
-              <Image Name="img_rank_3.png" />
-              <Image Name="img_rank_title.png" />
-            </Folder>
             <PlistInfo Name="public.csi" Type="Plist" />
           </Folder>
         </Folder>

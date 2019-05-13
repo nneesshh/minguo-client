@@ -387,8 +387,20 @@
                 <PrePosition X="0.1649" Y="0.5500" />
                 <PreSize X="0.0000" Y="0.0000" />
               </AbstractNodeData>
-              <AbstractNodeData Name="btn_qznn" ActionTag="270161202" Tag="771" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="422.4400" RightMargin="662.5600" TopMargin="-4.0000" BottomMargin="246.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="219" Scale9Height="236" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+              <AbstractNodeData Name="btn_game_3" ActionTag="270161202" Tag="771" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="422.4400" RightMargin="662.5600" TopMargin="-4.0000" BottomMargin="246.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="219" Scale9Height="236" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="249.0000" Y="258.0000" />
+                <Children>
+                  <AbstractNodeData Name="img_download" ActionTag="-73396084" VisibleForFrame="False" Tag="678" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="169.2000" RightMargin="19.8000" TopMargin="21.6000" BottomMargin="176.4000" Scale9Width="60" Scale9Height="60" ctype="ImageViewObjectData">
+                    <Size X="60.0000" Y="60.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="199.2000" Y="206.4000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.8000" Y="0.8000" />
+                    <PreSize X="0.2410" Y="0.2326" />
+                    <FileData Type="Normal" Path="lobby/image/lobby/img_download.png" Plist="" />
+                  </AbstractNodeData>
+                </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="546.9400" Y="375.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
@@ -402,7 +414,7 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="btn_psz" ActionTag="-1626862362" Tag="772" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="715.9200" RightMargin="369.0800" TopMargin="-4.0000" BottomMargin="246.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="219" Scale9Height="236" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+              <AbstractNodeData Name="btn_game_1" ActionTag="-1626862362" Tag="772" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="715.9200" RightMargin="369.0800" TopMargin="-4.0000" BottomMargin="246.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="219" Scale9Height="236" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="249.0000" Y="258.0000" />
                 <Children>
                   <AbstractNodeData Name="hotpatch_pnl" ActionTag="-949165257" VisibleForFrame="False" Tag="258" IconVisible="False" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
@@ -450,6 +462,16 @@
                     <EndColor A="255" R="255" G="255" B="255" />
                     <ColorVector ScaleY="1.0000" />
                   </AbstractNodeData>
+                  <AbstractNodeData Name="img_download" ActionTag="-1357407805" VisibleForFrame="False" Tag="679" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="169.2000" RightMargin="19.8000" TopMargin="21.6000" BottomMargin="176.4000" Scale9Width="60" Scale9Height="60" ctype="ImageViewObjectData">
+                    <Size X="60.0000" Y="60.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="199.2000" Y="206.4000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.8000" Y="0.8000" />
+                    <PreSize X="0.2410" Y="0.2326" />
+                    <FileData Type="Normal" Path="lobby/image/lobby/img_download.png" Plist="" />
+                  </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="840.4200" Y="375.0000" />
@@ -464,8 +486,20 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="btn_brnn" ActionTag="1670475082" Tag="773" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="1009.4000" RightMargin="75.6000" TopMargin="-4.0000" BottomMargin="246.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="219" Scale9Height="236" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+              <AbstractNodeData Name="btn_game_4" ActionTag="1670475082" Tag="773" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="1009.4000" RightMargin="75.6000" TopMargin="-4.0000" BottomMargin="246.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="219" Scale9Height="236" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="249.0000" Y="258.0000" />
+                <Children>
+                  <AbstractNodeData Name="img_download" ActionTag="-727001366" VisibleForFrame="False" Tag="680" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="169.2000" RightMargin="19.8000" TopMargin="21.6000" BottomMargin="176.4000" Scale9Width="60" Scale9Height="60" ctype="ImageViewObjectData">
+                    <Size X="60.0000" Y="60.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="199.2000" Y="206.4000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.8000" Y="0.8000" />
+                    <PreSize X="0.2410" Y="0.2326" />
+                    <FileData Type="Normal" Path="lobby/image/lobby/img_download.png" Plist="" />
+                  </AbstractNodeData>
+                </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="1133.9000" Y="375.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
@@ -479,13 +513,25 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="btn_lhd" ActionTag="257555841" Tag="774" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="422.4400" RightMargin="662.5600" TopMargin="252.0000" BottomMargin="-10.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="219" Scale9Height="236" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+              <AbstractNodeData Name="btn_game_5" ActionTag="257555841" Tag="774" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="422.4400" RightMargin="662.5600" TopMargin="252.0000" BottomMargin="-10.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="219" Scale9Height="236" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="249.0000" Y="258.0000" />
-                <AnchorPoint ScaleX="0.5000" />
-                <Position X="546.9400" Y="-10.0000" />
+                <Children>
+                  <AbstractNodeData Name="img_download" ActionTag="397672540" VisibleForFrame="False" Tag="681" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="169.2000" RightMargin="19.8000" TopMargin="21.6000" BottomMargin="176.4000" Scale9Width="60" Scale9Height="60" ctype="ImageViewObjectData">
+                    <Size X="60.0000" Y="60.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="199.2000" Y="206.4000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.8000" Y="0.8000" />
+                    <PreSize X="0.2410" Y="0.2326" />
+                    <FileData Type="Normal" Path="lobby/image/lobby/img_download.png" Plist="" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="546.9400" Y="119.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.4100" Y="-0.0200" />
+                <PrePosition X="0.4100" Y="0.2380" />
                 <PreSize X="0.1867" Y="0.5160" />
                 <TextColor A="255" R="65" G="65" B="70" />
                 <DisabledFileData Type="Normal" Path="lobby/image/lobby/btn_lhd.png" Plist="" />
@@ -494,13 +540,25 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="btn_ddz" ActionTag="1743622958" Tag="775" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="715.9200" RightMargin="369.0800" TopMargin="252.0000" BottomMargin="-10.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="219" Scale9Height="236" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+              <AbstractNodeData Name="btn_game_6" ActionTag="1743622958" Tag="775" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="715.9200" RightMargin="369.0800" TopMargin="252.0000" BottomMargin="-10.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="219" Scale9Height="236" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="249.0000" Y="258.0000" />
-                <AnchorPoint ScaleX="0.5000" />
-                <Position X="840.4200" Y="-10.0000" />
+                <Children>
+                  <AbstractNodeData Name="img_download" ActionTag="866534672" VisibleForFrame="False" Tag="682" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="169.2000" RightMargin="19.8000" TopMargin="21.6000" BottomMargin="176.4000" Scale9Width="60" Scale9Height="60" ctype="ImageViewObjectData">
+                    <Size X="60.0000" Y="60.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="199.2000" Y="206.4000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.8000" Y="0.8000" />
+                    <PreSize X="0.2410" Y="0.2326" />
+                    <FileData Type="Normal" Path="lobby/image/lobby/img_download.png" Plist="" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="840.4200" Y="119.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.6300" Y="-0.0200" />
+                <PrePosition X="0.6300" Y="0.2380" />
                 <PreSize X="0.1867" Y="0.5160" />
                 <TextColor A="255" R="65" G="65" B="70" />
                 <DisabledFileData Type="Normal" Path="lobby/image/lobby/btn_ddz.png" Plist="" />
@@ -509,7 +567,7 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="btn_jdnn" ActionTag="-2134264222" Tag="776" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="1009.4000" RightMargin="75.6000" TopMargin="252.0000" BottomMargin="-10.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="219" Scale9Height="236" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+              <AbstractNodeData Name="btn_game_2" ActionTag="-2134264222" Tag="776" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="1009.4000" RightMargin="75.6000" TopMargin="252.0000" BottomMargin="-10.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="219" Scale9Height="236" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="249.0000" Y="258.0000" />
                 <Children>
                   <AbstractNodeData Name="hotpatch_pnl" ActionTag="-2109293592" VisibleForFrame="False" Tag="262" IconVisible="False" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
@@ -557,12 +615,22 @@
                     <EndColor A="255" R="255" G="255" B="255" />
                     <ColorVector ScaleY="1.0000" />
                   </AbstractNodeData>
+                  <AbstractNodeData Name="img_download" ActionTag="381400836" VisibleForFrame="False" Tag="683" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="169.2000" RightMargin="19.8000" TopMargin="21.6000" BottomMargin="176.4000" Scale9Width="60" Scale9Height="60" ctype="ImageViewObjectData">
+                    <Size X="60.0000" Y="60.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="199.2000" Y="206.4000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.8000" Y="0.8000" />
+                    <PreSize X="0.2410" Y="0.2326" />
+                    <FileData Type="Normal" Path="lobby/image/lobby/img_download.png" Plist="" />
+                  </AbstractNodeData>
                 </Children>
-                <AnchorPoint ScaleX="0.5000" />
-                <Position X="1133.9000" Y="-10.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="1133.9000" Y="119.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.8500" Y="-0.0200" />
+                <PrePosition X="0.8500" Y="0.2380" />
                 <PreSize X="0.1867" Y="0.5160" />
                 <TextColor A="255" R="65" G="65" B="70" />
                 <DisabledFileData Type="Normal" Path="lobby/image/lobby/btn_jdnn.png" Plist="" />

@@ -50,10 +50,14 @@ function LoginPresenter:onLoginSuccess()
     app.lobby.login.LoginPresenter:getInstance():exit()  
 end
 
-function LoginPresenter:onLoginFail()
+function LoginPresenter:onLoginFail(errcode)    
     _username, _password = "", ""  
     self:dealLoadingHintExit()
-     self:dealHintStart("登录失败")
+    
+    if app.Connect then            
+        app.Connect:getInstance():close()
+        self:dealHintStart(zjh_defs.ErrorMessage[errcode])    
+    end      
 end
 
 function LoginPresenter:testLogin(data)
@@ -83,11 +87,16 @@ function LoginPresenter:dealAutoLogin()
     self:performWithDelayGlobal(
         function()
             local po = upconn.upconn:get_packet_obj()    
-            local have, username, password = AccountData.haveAccount()
+            local have, username, password, imei = AccountData.haveAccount()
+            print("wq-login", have, username, password, imei)
             local loginstate = app.data.UserData.getLoginState()
             if have and loginstate ~= 1 then                
                 app.lobby.login.AccountLoginPresenter:getInstance():start()
-                self:sendLogin(username, password)  -- 账号登录
+                if imei then
+                    self:sendLogin("", "mg123456")      -- 游客自动登录
+                else
+                    self:sendLogin(username, password)  -- 账号自动登录                	
+                end                
             end
         end, 0.2)
 end

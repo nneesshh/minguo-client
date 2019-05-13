@@ -6,7 +6,7 @@
       <ObjectData Name="Layer" Tag="951" ctype="GameLayerObjectData">
         <Size X="1334.0000" Y="750.0000" />
         <Children>
-          <AbstractNodeData Name="background" ActionTag="1280680011" Tag="970" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" TopMargin="0.0001" TouchEnable="True" StretchWidthEnable="True" StretchHeightEnable="True" ClipAble="False" BackColorAlpha="127" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+          <AbstractNodeData Name="background" ActionTag="1280680011" Tag="970" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" TopMargin="0.0001" TouchEnable="True" StretchWidthEnable="True" StretchHeightEnable="True" ClipAble="False" BackColorAlpha="127" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="1334.0000" Y="749.9999" />
             <AnchorPoint />
             <Position />
@@ -77,7 +77,7 @@
                 <PreSize X="0.8687" Y="0.6048" />
                 <FileData Type="Normal" Path="lobby/image/public/img_back_2.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="pnl_detail" ActionTag="1738742947" Tag="1754" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="113.5000" RightMargin="113.5000" TopMargin="146.0000" BottomMargin="215.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+              <AbstractNodeData Name="pnl_detail" ActionTag="1738742947" Tag="1754" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="113.5000" RightMargin="113.5000" TopMargin="146.0000" BottomMargin="215.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="900.0000" Y="350.0000" />
                 <Children>
                   <AbstractNodeData Name="txt_mail_detail" ActionTag="-184107158" Tag="1753" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="10.0000" RightMargin="10.0000" TopMargin="10.0000" BottomMargin="10.0000" IsCustomSize="True" FontSize="30" LabelText="" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">

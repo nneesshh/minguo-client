@@ -7,8 +7,7 @@ local GameConfig = {}
 GameConfig._gameID = nil
 GameConfig._base   = nil
 
-function GameConfig.reset()
-    print("gameconfig reset")
+function GameConfig.reset()    
     GameConfig._gameID = nil
     GameConfig._base   = nil
     GameConfig._limit  = nil 

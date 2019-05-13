@@ -54,10 +54,14 @@ function AccountLoginPresenter:onLoginSuccess()
     app.lobby.login.LoginPresenter:getInstance():exit()  
 end
 
-function AccountLoginPresenter:onLoginFail()   
-    self:dealLoadingHintExit()
+function AccountLoginPresenter:onLoginFail(errcode)   
     _username, _password = "", ""      
-    self:dealHintStart("登录失败！")
+    self:dealLoadingHintExit() 
+    
+    if app.Connect then            
+        app.Connect:getInstance():close()
+        self:dealHintStart(zjh_defs.ErrorMessage[errcode])    
+    end    
 end
 
 function AccountLoginPresenter:dealAccountLogin(account, password)    

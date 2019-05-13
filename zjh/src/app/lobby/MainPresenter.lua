@@ -271,12 +271,8 @@ function MainPresenter:reqJoinRoom(gameid, index)
     local limit = plazainfo[index].lower
     local po = upconn.upconn:get_packet_obj()
     if po ~= nil and roomid then   
-        self:performWithDelayGlobal(function() 
-            if app.lobby.MainPresenter:getInstance():isCurrentUI() then
-                self:dealLoadingHintStart("正在加入房间")             
-            end           
-        end, 0.5)
-                 
+        self:dealLoadingHintStart("正在加入房间")             
+       
         app.game.GameEngine:getInstance():start(gameid, base, limit)
 
         po:writer_reset()

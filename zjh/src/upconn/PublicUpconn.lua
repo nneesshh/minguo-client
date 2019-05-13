@@ -52,7 +52,7 @@ local function _readSeatPlayerInfo(po)
     info.bankermult = po:read_int32()
     info.mult       = po:read_int32()  
     info.isshow     = po:read_int32()
-    --info.overshow   = po:read_int32()
+    info.overshow   = po:read_int32()
     return info
 end
 
@@ -359,6 +359,8 @@ function _M.sendPlayerReady(gameid)
         upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_READY_REQ)
     elseif gameid == app.Game.GameID.JDNN then
         upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_READY_REQ)
+    elseif gameid == app.Game.GameID.QZNN then
+        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_C41_READY_REQ)        
     end    
 end
 

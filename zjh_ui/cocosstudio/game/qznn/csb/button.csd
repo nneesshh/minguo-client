@@ -9,37 +9,25 @@
           <AbstractNodeData Name="pnl_btn_select_banker" ActionTag="1015980780" VisibleForFrame="False" Tag="871" IconVisible="False" LeftMargin="-450.0000" RightMargin="-450.0000" TopMargin="-150.0000" BottomMargin="-150.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="900.0000" Y="300.0000" />
             <Children>
-              <AbstractNodeData Name="banker_back" ActionTag="-1574978198" Tag="1031" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="343.0000" RightMargin="343.0000" TopMargin="35.5000" BottomMargin="215.5000" LeftEage="70" RightEage="70" TopEage="16" BottomEage="16" Scale9OriginX="70" Scale9OriginY="16" Scale9Width="74" Scale9Height="17" ctype="ImageViewObjectData">
-                <Size X="214.0000" Y="49.0000" />
-                <Children>
-                  <AbstractNodeData Name="img_qqz" ActionTag="-1261935645" Tag="918" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="42.8000" RightMargin="80.2000" TopMargin="8.0000" BottomMargin="8.0000" LeftEage="30" RightEage="30" TopEage="10" BottomEage="10" Scale9OriginX="30" Scale9OriginY="10" Scale9Width="31" Scale9Height="13" ctype="ImageViewObjectData">
-                    <Size X="91.0000" Y="33.0000" />
-                    <AnchorPoint ScaleY="0.5000" />
-                    <Position X="42.8000" Y="24.5000" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.2000" Y="0.5000" />
-                    <PreSize X="0.4252" Y="0.6735" />
-                    <FileData Type="MarkedSubImage" Path="game/qznn/image/img_qqz.png" Plist="game/qznn/image/plistscene.plist" />
-                  </AbstractNodeData>
-                  <AbstractNodeData Name="txt_banker_time" ActionTag="-1704995791" Tag="919" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="141.0800" RightMargin="46.9200" TopMargin="5.5500" BottomMargin="10.4500" LabelText="5" ctype="TextBMFontObjectData">
-                    <Size X="26.0000" Y="33.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="154.0800" Y="26.9500" />
-                    <Scale ScaleX="0.6000" ScaleY="0.6000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.7200" Y="0.5500" />
-                    <PreSize X="0.1215" Y="0.6735" />
-                    <LabelBMFontFile_CNB Type="Normal" Path="game/qznn/image/fnt/startfnt.fnt" Plist="" />
-                  </AbstractNodeData>
-                </Children>
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="450.0000" Y="240.0000" />
+              <AbstractNodeData Name="img_qqz" ActionTag="-1261935645" Tag="918" IconVisible="False" PositionPercentYEnabled="True" LeftMargin="355.0000" RightMargin="390.0000" TopMargin="16.5000" BottomMargin="232.5000" LeftEage="30" RightEage="30" TopEage="10" BottomEage="10" Scale9OriginX="30" Scale9OriginY="10" Scale9Width="95" Scale9Height="31" ctype="ImageViewObjectData">
+                <Size X="155.0000" Y="51.0000" />
+                <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
+                <Position X="510.0000" Y="258.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5000" Y="0.8000" />
-                <PreSize X="0.2378" Y="0.1633" />
-                <FileData Type="MarkedSubImage" Path="game/qznn/image/img_cutdown_back.png" Plist="game/qznn/image/plistscene.plist" />
+                <PrePosition X="0.5667" Y="0.8600" />
+                <PreSize X="0.1722" Y="0.1700" />
+                <FileData Type="MarkedSubImage" Path="game/qznn/image/img_qqz.png" Plist="game/qznn/image/plistscene.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="txt_banker_time" ActionTag="-1704995791" Tag="919" IconVisible="False" PositionPercentYEnabled="True" LeftMargin="520.0000" RightMargin="354.0000" TopMargin="22.5000" BottomMargin="244.5000" LabelText="5" ctype="TextBMFontObjectData">
+                <Size X="26.0000" Y="33.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="533.0000" Y="261.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5922" Y="0.8700" />
+                <PreSize X="0.0289" Y="0.1100" />
+                <LabelBMFontFile_CNB Type="Normal" Path="game/qznn/image/fnt/startfnt.fnt" Plist="" />
               </AbstractNodeData>
               <AbstractNodeData Name="btn_banker_0" ActionTag="-1814028884" Tag="259" IconVisible="False" LeftMargin="40.0000" RightMargin="704.0000" TopMargin="112.5000" BottomMargin="112.5000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="126" Scale9Height="53" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="156.0000" Y="75.0000" />
@@ -131,37 +119,25 @@
           <AbstractNodeData Name="pnl_btn_mult" ActionTag="-1746242531" VisibleForFrame="False" Tag="1189" IconVisible="False" LeftMargin="-450.0000" RightMargin="-450.0000" TopMargin="-150.0000" BottomMargin="-150.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="900.0000" Y="300.0000" />
             <Children>
-              <AbstractNodeData Name="bet_back" ActionTag="-1599660475" Tag="1108" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="343.0000" RightMargin="343.0000" TopMargin="35.5000" BottomMargin="215.5000" LeftEage="70" RightEage="70" TopEage="16" BottomEage="16" Scale9OriginX="70" Scale9OriginY="16" Scale9Width="74" Scale9Height="17" ctype="ImageViewObjectData">
-                <Size X="214.0000" Y="49.0000" />
-                <Children>
-                  <AbstractNodeData Name="img_qxz" ActionTag="-556456549" Tag="959" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="42.8000" RightMargin="80.2000" TopMargin="8.0000" BottomMargin="8.0000" LeftEage="30" RightEage="30" TopEage="10" BottomEage="10" Scale9OriginX="30" Scale9OriginY="10" Scale9Width="31" Scale9Height="13" ctype="ImageViewObjectData">
-                    <Size X="91.0000" Y="33.0000" />
-                    <AnchorPoint ScaleY="0.5000" />
-                    <Position X="42.8000" Y="24.5000" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.2000" Y="0.5000" />
-                    <PreSize X="0.4252" Y="0.6735" />
-                    <FileData Type="MarkedSubImage" Path="game/qznn/image/img_qxz.png" Plist="game/qznn/image/plistscene.plist" />
-                  </AbstractNodeData>
-                  <AbstractNodeData Name="txt_bet_time" ActionTag="-351546154" Tag="960" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="141.0800" RightMargin="46.9200" TopMargin="5.5500" BottomMargin="10.4500" LabelText="5" ctype="TextBMFontObjectData">
-                    <Size X="26.0000" Y="33.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="154.0800" Y="26.9500" />
-                    <Scale ScaleX="0.6000" ScaleY="0.6000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.7200" Y="0.5500" />
-                    <PreSize X="0.1215" Y="0.6735" />
-                    <LabelBMFontFile_CNB Type="Normal" Path="game/qznn/image/fnt/startfnt.fnt" Plist="" />
-                  </AbstractNodeData>
-                </Children>
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="450.0000" Y="240.0000" />
+              <AbstractNodeData Name="img_qxz" ActionTag="-556456549" Tag="959" IconVisible="False" PositionPercentYEnabled="True" LeftMargin="355.0000" RightMargin="390.0000" TopMargin="16.5000" BottomMargin="232.5000" LeftEage="30" RightEage="30" TopEage="10" BottomEage="10" Scale9OriginX="30" Scale9OriginY="10" Scale9Width="95" Scale9Height="31" ctype="ImageViewObjectData">
+                <Size X="155.0000" Y="51.0000" />
+                <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
+                <Position X="510.0000" Y="258.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5000" Y="0.8000" />
-                <PreSize X="0.2378" Y="0.1633" />
-                <FileData Type="MarkedSubImage" Path="game/qznn/image/img_cutdown_back.png" Plist="game/qznn/image/plistscene.plist" />
+                <PrePosition X="0.5667" Y="0.8600" />
+                <PreSize X="0.1722" Y="0.1700" />
+                <FileData Type="MarkedSubImage" Path="game/qznn/image/img_qxz.png" Plist="game/qznn/image/plistscene.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="txt_bet_time" ActionTag="-351546154" Tag="960" IconVisible="False" PositionPercentYEnabled="True" LeftMargin="520.0000" RightMargin="354.0000" TopMargin="22.5000" BottomMargin="244.5000" LabelText="5" ctype="TextBMFontObjectData">
+                <Size X="26.0000" Y="33.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="533.0000" Y="261.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5922" Y="0.8700" />
+                <PreSize X="0.0289" Y="0.1100" />
+                <LabelBMFontFile_CNB Type="Normal" Path="game/qznn/image/fnt/startfnt.fnt" Plist="" />
               </AbstractNodeData>
               <AbstractNodeData Name="btn_mult_5" ActionTag="883899501" Tag="1190" IconVisible="False" LeftMargin="40.0000" RightMargin="704.0000" TopMargin="112.5000" BottomMargin="112.5000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="126" Scale9Height="53" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="156.0000" Y="75.0000" />

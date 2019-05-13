@@ -4,7 +4,7 @@
 local app           = app
 
 local BasePresenter = class("BasePresenter")
-
+local scheduler = cc.Director:getInstance():getScheduler()
 ---------------- 子类需配置项目 ---------------
 -- UI单例
 BasePresenter._ui   = nil
@@ -65,7 +65,7 @@ end
 
 -- 打开loading提示框
 function BasePresenter:dealLoadingHintStart(...)
-    app.lobby.public.LoadingHintPresenter:getInstance():start(...)
+   app.lobby.public.LoadingHintPresenter:getInstance():start(...)
 end
 
 -- 关闭loading提示框
@@ -75,6 +75,16 @@ end
 
 function BasePresenter:dealTxtHintStart(...)
     app.lobby.public.TextHintPresenter:getInstance():start(...)
+end
+
+function BasePresenter:performWithDelayGlobal(listener, time)
+    local handle
+    handle = scheduler:scheduleScriptFunc(
+        function()
+            scheduler:unscheduleScriptEntry(handle)
+            listener()
+        end, time, false)
+    return handle
 end
 
 return BasePresenter

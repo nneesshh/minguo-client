@@ -333,6 +333,7 @@
             <Folder Name="help">
               <Image Name="img_jdnn_rule.png" />
               <Image Name="img_psz_rule.png" />
+              <Image Name="img_qznn.png" />
               <Image Name="img_title.png" />
             </Folder>
             <Folder Name="hint">

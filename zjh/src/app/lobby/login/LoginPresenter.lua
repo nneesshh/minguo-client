@@ -56,11 +56,37 @@ function LoginPresenter:onLoginFail(errcode)
     
     if app.Connect then            
         app.Connect:getInstance():close()
-        self:dealHintStart(zjh_defs.ErrorMessage[errcode])    
+        self:dealTxtHintStart(zjh_defs.ErrorMessage[errcode])    
     end      
 end
 
+function LoginPresenter:onLoginFail(errcode)       
+    self:dealLoadingHintExit()    
+    
+    if app.Connect then            
+        app.Connect:getInstance():close()    
+        if CC_SHOW_LOGIN_DEBUG and errcode == 3 then
+            self:dealHintStart("账号未注册,是否自动注册并登录",
+                function(bFlag)
+                    if bFlag then
+                        print("_username",_username)
+                        print("_password",_password)
+                        
+                        app.lobby.login.RegisterPresenter:getInstance():dealAccountRegister(_username, " ", _password)                                                
+                    end
+                end
+                , 0)
+        else
+            _username, _password = "", ""      
+            self:dealTxtHintStart(zjh_defs.ErrorMessage[errcode]) 
+        end              
+    end    
+end
+
 function LoginPresenter:testLogin(data)
+    if not data then
+        return
+    end
     local po = upconn.upconn:get_packet_obj()
     if po ~= nil then
         po:writer_reset()

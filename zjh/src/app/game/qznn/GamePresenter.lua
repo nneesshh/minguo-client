@@ -18,10 +18,10 @@ local GEPS = app.game.GameEnum.playerStatus
 local ST   = app.game.GameEnum.soundType
 
 local HERO_LOCAL_SEAT   = 1
-local CARD_NUM          = 5
+local CARD_NUM          = 4
 local CV_BACK           = 0
-
-local TIME_START_EFFECT = 0
+local LAST_CARD         = 1
+local TIME_START_EFFECT = 1
 local TIME_MAKE_BANKER  = 1
 
 local SCHEDULE_WAIT_TIME= 0
@@ -269,24 +269,16 @@ function GamePresenter:onGameStart()
             self._gamePlayerNodes[i]:showPlayerInfo()
         end
     end
-    
     -- 开局动画    
+    self._ui:getInstance():showStartEffect()
+    
+    
     self:performWithDelayGlobal(
         function()
-            self._ui:getInstance():showStartEffect()
+            self:onTakeFirst()
         end, TIME_START_EFFECT)
     
-    -- 抢庄加倍
-    self:performWithDelayGlobal(
-        function()
-            self:showTableBtn("banker")
-            
-            if self._ui:getInstance():isSelected("cbx_banker_test") then
-                self:performWithDelayGlobal(function()
-                    self:onEventCbxBanker()
-                end, 1)
-            end
-        end, TIME_MAKE_BANKER)  
+    
 end
 
 -- 抢庄加倍结束
@@ -324,7 +316,7 @@ function GamePresenter:onNiuConfirmBanker(banker, players)
             end
         end
     end
-       
+          
     -- 隐藏
     local function callback()
         showchoose(false)
@@ -359,9 +351,9 @@ function GamePresenter:onNiuConfirmMult(hero, players)
         if player.seat ~= banker and playerObj:isPlaying() then
             self._gamePlayerNodes[localseat]:showImgChoose(true, player.mult)         
         end               
-    end
+    end 
     
-    self:onTakeFirst()
+    self:onTakeFirstLast() 
 end
 
 -- 发牌
@@ -372,16 +364,34 @@ function GamePresenter:onTakeFirst()
     end
 
     local function callback()
+        -- 抢庄加倍
+        self:performWithDelayGlobal(
+            function()
+                self:showTableBtn("banker")
+
+                if self._ui:getInstance():isSelected("cbx_banker_test") then
+                    self:performWithDelayGlobal(function()
+                        self:onEventCbxBanker()
+                    end, 1)
+                end
+            end, TIME_MAKE_BANKER)     
+    end      
+    self:openSchedulerTakeFirst(callback)
+end
+
+-- 发最后一张牌
+function GamePresenter:onTakeFirstLast() 
+    local function callback()
+        -- 摊牌
         self:showTableBtn("cal")
-        
+
         if self._ui:getInstance():isSelected("cbx_cal_test") then
             self:performWithDelayGlobal(function()
                 self:onEventCbxCal()
             end, 1)
-        end
-        
+        end             
     end      
-    self:openSchedulerTakeFirst(callback)
+    self:openSchedulerTakeFirstLast(callback)
 end
 
 -- 抢庄加倍
@@ -813,13 +823,17 @@ function GamePresenter:onTouchMult(index)
 end
 
 function GamePresenter:onTouchCalCard()   
+    local handcards = app.game.GameData.getHandCards()
     local data = app.game.GameData.getHeroCards()
-    dump(data)
-    if #data.handcards == 5 then
-        local niuCards, numCards = self:divideCards(data.handcards, data.cardtype)
+    local lastCard = data.handcards[1]
+    table.insert(handcards, lastCard)
+    if #handcards == 5 then
+        local niuCards, numCards = self:divideCards(handcards, data.cardtype)
         local strNiu = string.char(unpack(niuCards))
         local strNum = string.char(unpack(numCards))     
         self:sendCalCard(strNiu, strNum)
+    else
+        print("card is less 5")    
     end        
 end
 
@@ -840,9 +854,12 @@ end
 function GamePresenter:onEventCbxCal()
     local hero = app.game.PlayerData.getHero()
     if hero and hero:isPlaying() then
+        local handcards = app.game.GameData.getHandCards()
         local data = app.game.GameData.getHeroCards()
-        if #data.handcards == 5 then
-            local niuCards, numCards = self:divideCards(data.handcards, data.cardtype)
+        local lastCard = data.handcards[1]
+        table.insert(handcards, lastCard)
+        if #handcards == 5 then
+            local niuCards, numCards = self:divideCards(handcards, data.cardtype)
             local strNiu = string.char(unpack(niuCards))
             local strNum = string.char(unpack(numCards))     
             self:sendCalCard(strNiu, strNum)
@@ -1012,22 +1029,66 @@ function GamePresenter:openSchedulerTakeFirst(callback)
             cardbacks[i][j] = CV_BACK
         end
     end
-        
-    local cards = app.game.GameData.getHeroCards()
-    local herocards = cards.handcards
-    cardbacks[HERO_LOCAL_SEAT] = herocards
-
+    
+    local cards = app.game.GameData.getHandCards()
+    cardbacks[HERO_LOCAL_SEAT] = cards
+    
+    dump(cardbacks)
+    
+    
     local cardNum = 1
     local seats = {}
     if app.game.GameData then
         seats = app.game.GameData.getPlayerseat()
     end
+       
     local function onInterval(dt)
         if cardNum <= CARD_NUM then
             for i, seat in ipairs(seats) do
                 local localseat = app.game.PlayerData.serverSeatToLocalSeat(seat)
                 if self._gamePlayerNodes[localseat] then
                     self._gamePlayerNodes[localseat]:onTakeFirst(cardbacks[localseat][cardNum])                     
+                end
+            end
+            cardNum = cardNum + 1
+        else
+            self:closeSchedulerTakeFirst()
+            if callback then
+                callback()
+            end
+        end
+    end
+
+    self:closeSchedulerTakeFirst()
+
+    self._schedulerTakeFirst = scheduler:scheduleScriptFunc(onInterval, 1/CARD_NUM, false)
+end
+
+function GamePresenter:openSchedulerTakeFirstLast(callback)
+    print("on take first last")
+    local cardbacks = {}             
+    for i = 0, self._maxPlayerCnt - 1 do
+        cardbacks[i] = cardbacks[i] or {}  
+        for j=1, LAST_CARD do
+            cardbacks[i][j] = CV_BACK
+        end
+    end
+
+    local cards = app.game.GameData.getHeroCards()
+    local herocards = cards.handcards
+    cardbacks[HERO_LOCAL_SEAT] = herocards    
+    
+    local cardNum = 1
+    local seats = {}
+    if app.game.GameData then
+        seats = app.game.GameData.getPlayerseat()
+    end
+    local function onInterval(dt)
+        if cardNum <= LAST_CARD then
+            for i, seat in ipairs(seats) do
+                local localseat = app.game.PlayerData.serverSeatToLocalSeat(seat)
+                if self._gamePlayerNodes[localseat] then
+                    self._gamePlayerNodes[localseat]:onTakeFirstLast(cardbacks[localseat][cardNum])                     
                 end
             end
             cardNum = cardNum + 1
@@ -1281,7 +1342,7 @@ function GamePresenter:sendPlayerReady()
         local sessionid = app.data.UserData.getSession() or 222        
         po:writer_reset()
         po:write_int64(sessionid)
-        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_READY_REQ)
+        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_C41_READY_REQ)
     end    
 end
 
@@ -1307,7 +1368,7 @@ function GamePresenter:sendBankerMult(index)
     local po = upconn.upconn:get_packet_obj()
     po:writer_reset()
     po:write_int32(index)
-    upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_BANKER_BID_REQ)
+    upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_C41_BANKER_BID_REQ)
 end
 
 -- 押注倍数
@@ -1316,7 +1377,7 @@ function GamePresenter:sendMult(index)
     local po = upconn.upconn:get_packet_obj()
     po:writer_reset()
     po:write_int32(index)
-    upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_COMPARE_BID_REQ)  
+    upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_C41_COMPARE_BID_REQ)  
 end
 
 -- 组牌
@@ -1326,7 +1387,7 @@ function GamePresenter:sendCalCard(niuCards, numCards)
     po:writer_reset()
     po:write_string(niuCards)
     po:write_string(numCards)
-    upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_COMPARE_CARD_REQ)   
+    upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_C41_COMPARE_CARD_REQ)   
 end
 
 -- 音效相关

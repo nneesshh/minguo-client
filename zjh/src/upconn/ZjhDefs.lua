@@ -13,12 +13,12 @@ local ErrorCode = {
 }
 
 local ErrorMessage = {
-    "登录成功",
-    "未知错误",
-    "账号错误",
-    "账号无效",
-    "密码错误",
-    "账号限制",
+    [0] = "登录成功",
+    [1] = "未知错误",
+    [2] = "请输入手机账号！",
+    [3] = "该账号尚未注册！",
+    [4] = "账号密码错误！",
+    [5] = "账号限制",
 }
 
 local MsgId = {
@@ -90,13 +90,29 @@ local MsgId = {
     MSGID_NIU_COMPARE_BID_NOTIFY   = 0x2243,      --牛牛通知--比牌加倍 8771
     MSGID_NIU_COMPARE_CARD_NOTIFY  = 0x2244,      --牛牛通知--比牌 8772
 
-
+    -- niu compete 4 + 1 -- = 0x2400
+    MSGID_NIU_C41_READY_REQ                 = 0x2411,    --牛牛--准备请求 9233
+    -- MSGID_NIU_C41_CHANGE_XXX             = 0x2412    --9234
+    MSGID_NIU_C41_BANKER_BID_REQ            = 0x2413,    --牛牛--抢庄加倍 9235
+    MSGID_NIU_C41_COMPARE_BID_REQ           = 0x2414,    --牛牛--比牌加倍 9236
+    MSGID_NIU_C41_COMPARE_CARD_REQ          = 0x2415,    --牛牛--比牌 9237
+    MSGID_NIU_C41_GAME_PREPARE_NOTIFY       = 0x2431,    --牛牛通知--游戏准备 9265
+    MSGID_NIU_C41_GAME_START_NOTIFY         = 0x2432,    --牛牛通知--游戏开始 9266
+    MSGID_NIU_C41_GAME_OVER_NOTIFY          = 0x2433,    --牛牛通知--游戏结束 9267
+    MSGID_NIU_C41_GAME_CONFIRM_BANKER_NOTIFY    = 0x2434,--牛牛通知--定庄 9268
+    MSGID_NIU_C41_GAME_COMPARE_BID_OVER_NOTIFY  = 0x2435,--牛牛通知--比牌加倍结束 9269
+    MSGID_NIU_C41_READY_NOTIFY              = 0x2441,    --牛牛通知--准备 9281
+    MSGID_NIU_C41_BANKER_BID_NOTIFY         = 0x2442,    --牛牛通知--抢庄加倍 9282
+    MSGID_NIU_C41_COMPARE_BID_NOTIFY        = 0x2443,    --牛牛通知--比牌加倍 9283
+    MSGID_NIU_C41_COMPARE_CARD_NOTIFY       = 0x2444,    --牛牛通知--比牌 9284
+   
     MSGID_CLOSE_CONNECTION		= 0x03,		--//
     MSGID_CREATE_HANDLER		= 0x04,		--//
     MSGID_CLOSE_HANDLER			= 0x05,		--//
 }
 
 return {
-    ErrorCode = ErrorCode,
-    MsgId = MsgId
+    ErrorCode    = ErrorCode,
+    ErrorMessage = ErrorMessage,
+    MsgId        = MsgId
 }

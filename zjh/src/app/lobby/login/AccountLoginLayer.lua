@@ -78,22 +78,4 @@ function AccountLoginLayer:onTouchPhone()
     self:exit()
 end
 
-function AccountLoginLayer:scrollHint(msg)
-    local hint = self:seekChildByName("img_hint_back")
-    local father = hint:getParent()
-    local node = hint:clone()
-    local text = node:getChildByName("text_hint")
-    text:setText(msg)
-    node:setPosition(cc.p(331, 240))
-    node:setVisible(true)
-    father:addChild(node)
-    node:runAction(cc.Sequence:create(
-        cc.FadeIn:create(0.5),                       
-        cc.FadeOut:create(0.5),
-        cc.CallFunc:create(function()
-            node:removeFromParent(true)
-        end)
-    ))
-end
-
 return AccountLoginLayer

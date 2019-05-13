@@ -26,13 +26,13 @@ CC_DESIGN_RESOLUTION = {
 }
 
 -- hotpatch
-CC_HOTPATCH = true
+CC_HOTPATCH = false
 
 -- show login debug
 CC_SHOW_LOGIN_DEBUG = true
 
 -- auto login
-CC_AUTO_LOGIN = true
+CC_AUTO_LOGIN = false
 
 -- ip
 local IP_LIST = {
@@ -42,4 +42,4 @@ local IP_LIST = {
     {host = "192.168.2.111",   port = 8861}, -- 4 私人测试2
 }
 
-CC_IP = IP_LIST[2]
+CC_IP = IP_LIST[3]

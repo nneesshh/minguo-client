@@ -1,5 +1,5 @@
 <PlistInfoProjectFile>
-  <PropertyGroup Name="plistscene" Type="Plist" ID="82339b17-b521-48b5-ac50-3ffc8e759043" Version="3.10.0.0" />
+  <PropertyGroup Name="plistscene" Type="Plist" ID="c0be82c8-fe77-4be6-b6ca-d80142cbea2f" Version="3.10.0.0" />
   <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="2" AllowRotation="True" AllowAnySize="True" AllowTrim="True" ctype="PlistInfoData">
     <ImageFiles>
       <FilePathData Path="game/qznn/image/btn_bq.png" />
@@ -59,6 +59,6 @@
       <FilePathData Path="game/qznn/image/img_type_12.png" />
       <FilePathData Path="game/qznn/image/img_type_13.png" />
     </ImageFiles>
-    <MaxSize Width="1024" Height="1024" />
+    <MaxSize Width="2048" Height="1024" />
   </Content>
 </PlistInfoProjectFile>

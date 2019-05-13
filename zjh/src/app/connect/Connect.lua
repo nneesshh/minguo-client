@@ -7,7 +7,7 @@ Connect._instance = nil
 
 Connect.heartBeatTime      = 10
 Connect.heartBeatTimeout   = 10
-Connect.receiveTime        = 0
+Connect.receiveTime        = os.time()
 
 Connect._scheduleUpdate    = nil
 Connect._scheduleHeartBeat = nil
@@ -46,7 +46,7 @@ function Connect:start()
 end
 
 function Connect:reset()	
-	self.receiveTime = 0
+    self.receiveTime = os.time()
 
     self:updateState(Connect.STATE.IDLE)
 	self:closeScheduleUpdate()

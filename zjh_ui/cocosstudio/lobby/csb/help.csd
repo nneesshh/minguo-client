@@ -129,6 +129,32 @@
                 <ColorVector ScaleY="1.0000" />
                 <InnerNodeSize Width="685" Height="1141" />
               </AbstractNodeData>
+              <AbstractNodeData Name="svw_3" ActionTag="-740424127" VisibleForFrame="False" Tag="710" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="104.0000" RightMargin="104.0000" TopMargin="90.0000" BottomMargin="40.0000" TouchEnable="True" ClipAble="True" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" IsBounceEnabled="True" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
+                <Size X="678.0000" Y="420.0000" />
+                <Children>
+                  <AbstractNodeData Name="qznn" ActionTag="-1377829841" Tag="711" IconVisible="False" RightMargin="7.0000" LeftEage="219" RightEage="219" TopEage="305" BottomEage="305" Scale9OriginX="219" Scale9OriginY="305" Scale9Width="240" Scale9Height="563" ctype="ImageViewObjectData">
+                    <Size X="678.0000" Y="1173.0000" />
+                    <AnchorPoint />
+                    <Position />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition />
+                    <PreSize X="0.9898" Y="1.0000" />
+                    <FileData Type="Normal" Path="lobby/image/help/img_qznn.png" Plist="" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="443.0000" Y="250.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.4545" />
+                <PreSize X="0.7652" Y="0.7636" />
+                <SingleColor A="255" R="255" G="150" B="100" />
+                <FirstColor A="255" R="255" G="150" B="100" />
+                <EndColor A="255" R="255" G="255" B="255" />
+                <ColorVector ScaleY="1.0000" />
+                <InnerNodeSize Width="678" Height="1173" />
+              </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="667.0000" Y="375.0000" />

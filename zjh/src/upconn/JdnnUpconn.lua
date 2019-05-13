@@ -226,16 +226,4 @@ function _M.onNiuCompareCard(conn, sessionid, msgid)
     end    
 end
 
--- 请求准备
-function _M.sendPlayerReady(self)
-    print("sendPlayerReady NiuUpconn")
-    local sessionid = app.data.UserData.getSession() or 222
-    local po = upconn.upconn:get_packet_obj()
-    if po == nil then return end   
-    
-    po:writer_reset()
-    po:write_int64(sessionid) -- test token
-    upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_READY_REQ)
-end
-
 return _M

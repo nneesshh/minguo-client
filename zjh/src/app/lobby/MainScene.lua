@@ -43,7 +43,7 @@ function MainScene:onTouch(sender, eventType)
             self._presenter:initDownload()             
         elseif string.find(name, "btn_game_") then
             local gameid = tonumber(string.split(name, "btn_game_")[2])            
-            if gameid == 1 or gameid == 2 then
+            if gameid == 1 or gameid == 2 or gameid == 3 then
                 self._presenter:reqHotpatch(gameid)         
             end                                                      
         elseif name == "btn_head_info" then
@@ -80,6 +80,10 @@ function MainScene:initUI(gameID, roomMode)
     self._isRunAction = false   
     
     self:initEffect()   
+    
+    print("is all num", app.util.VaildUtils.isAlNum("1589"))
+    
+    
 end
 
 function MainScene:onEnter()
@@ -162,18 +166,18 @@ end
 
 -- 加载场列表
 function MainScene:loadPlazaList(gameid, plazainfos)
-    if plazainfos == nil then
-    	return
-    end        
-      
     local resPath = string.format("lobby/image/plaza/img_game_%d.png", gameid)
     local imgtitle = self:seekChildByName("img_game_title") 
     imgtitle:ignoreContentAdaptWithSize(true)
     imgtitle:loadTexture(resPath, ccui.TextureResType.plistType)
-    
+
     local btnhelp = self:seekChildByName("btn_help") 
     btnhelp:setTag(gameid)
     
+    if plazainfos == nil then
+    	return
+    end        
+          
     local pnlPlaza = self:seekChildByName("plaza")  
     local childs = pnlPlaza:getChildren()  
     for i,btn in ipairs(childs) do
@@ -229,6 +233,9 @@ function MainScene:initEffect()
 end
 
 function MainScene:showImgDownload(patch)
+    if not CC_HOTPATCH then
+    	return
+    end
     local parent = self:seekChildByName("lobby")
     local childs = parent:getChildren()  
     for _, btn in ipairs(childs) do

@@ -15,8 +15,9 @@ msg_dispatcher   = require(cwd .."ZjhMsgDispatcher")
 
 local uptcpd     = require("network.luasocket_uptcp")
 local packet_cls = require("network.byte_stream_packet")
-local pubconn    = requireLobby(cwd .. "PublicUpconn")
-local nnconn     = requireLobby(cwd .. "NiuUpconn")
+local pubConn    = requireLobby(cwd .. "PublicUpconn")
+local jdnnConn   = requireLobby(cwd .. "JdnnUpconn")
+local qznnConn   = requireLobby(cwd .. "QznnUpconn")
 --
 function _M.createUpconn()
     --
@@ -296,36 +297,23 @@ function _M.onGameOver(conn, sessionid, msgid)
     local po = upconn.upconn:get_packet_obj()   
     local info, players = _readGameOver(po)
 
-    dump(info)
-    dump(players)
-    
     app.game.GamePresenter:getInstance():onGameOver(info, players) 
-end
-
--- request
-function _M.sendPlayerReady(self)
-    print("wq--sendPlayerReady", app.data.UserData.getTicketID())
-    local sessionid = app.data.UserData.getSession() or 222
-    local po = upconn.upconn:get_packet_obj()
-    po:writer_reset()
-    po:write_int64(sessionid) -- test token
-    upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_READY_REQ)
 end
 
 --
 function _M.doRegisterMsgCallbacks()
-    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_HEART_BEAT_RESP, pubconn.onHeartBeat)        
-    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_REGISTER_RESP, pubconn.onRegister)
-    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_LOGIN_RESP, pubconn.onLogin)
-    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_CHANGE_USER_INFO_RESP, pubconn.onUserInfo)
-    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_RELOGIN_NOTIFY_NEW, pubconn.onRelogin)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_HEART_BEAT_RESP, pubConn.onHeartBeat)        
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_REGISTER_RESP, pubConn.onRegister)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_LOGIN_RESP, pubConn.onLogin)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_CHANGE_USER_INFO_RESP, pubConn.onUserInfo)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_RELOGIN_NOTIFY_NEW, pubConn.onRelogin)
         
     -- 玩家动作
-    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_PLAYER_STATUS_NOTIFY_NEW, pubconn.onPlayerStatus)
-    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_SIT_DOWN_NOTIFY_NEW, pubconn.onPlayerSitDown)
-    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_ENTER_ROOM_RESP, pubconn.onEnterRoom)
-    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_LEAVE_ROOM_RESP, pubconn.onLeaveRoom)
-    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_CHANGE_TABLE_RESP, pubconn.onChangeTable)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_PLAYER_STATUS_NOTIFY_NEW, pubConn.onPlayerStatus)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_SIT_DOWN_NOTIFY_NEW, pubConn.onPlayerSitDown)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_ENTER_ROOM_RESP, pubConn.onEnterRoom)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_LEAVE_ROOM_RESP, pubConn.onLeaveRoom)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_CHANGE_TABLE_RESP, pubConn.onChangeTable)
     
     -- 拼三张相关
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_GAME_PREPARE_NOTIFY, _M.onGamePrepare)
@@ -339,15 +327,26 @@ function _M.doRegisterMsgCallbacks()
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_GIVE_UP_NOTIFY, _M.onPlayerGiveUp) 
     
     -- 牛牛相关
-    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_GAME_PREPARE_NOTIFY, nnconn.onNiuGamePrepare)
-    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_GAME_START_NOTIFY, nnconn.onNiuGameStart)
-    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_GAME_OVER_NOTIFY, nnconn.onNiuGameOver)
-    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_GAME_CONFIRM_BANKER_NOTIFY, nnconn.onNiuConfirmBanker)    
-    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_GAME_COMPARE_BID_OVER_NOTIFY, nnconn.onNiuConfirmMult) 
-    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_READY_NOTIFY, nnconn.onNiuPlayerReady) 
-    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_BANKER_BID_NOTIFY, nnconn.onNiuBankerBid) 
-    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_COMPARE_BID_NOTIFY, nnconn.onNiuCompareBid) 
-    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_COMPARE_CARD_NOTIFY, nnconn.onNiuCompareCard)    
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_GAME_PREPARE_NOTIFY, jdnnConn.onNiuGamePrepare)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_GAME_START_NOTIFY, jdnnConn.onNiuGameStart)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_GAME_OVER_NOTIFY, jdnnConn.onNiuGameOver)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_GAME_CONFIRM_BANKER_NOTIFY, jdnnConn.onNiuConfirmBanker)    
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_GAME_COMPARE_BID_OVER_NOTIFY, jdnnConn.onNiuConfirmMult) 
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_READY_NOTIFY, jdnnConn.onNiuPlayerReady) 
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_BANKER_BID_NOTIFY, jdnnConn.onNiuBankerBid) 
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_COMPARE_BID_NOTIFY, jdnnConn.onNiuCompareBid) 
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_COMPARE_CARD_NOTIFY, jdnnConn.onNiuCompareCard)   
+    
+    -- 牛牛相关
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_C41_GAME_PREPARE_NOTIFY, qznnConn.onNiuGamePrepare)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_C41_GAME_START_NOTIFY, qznnConn.onNiuGameStart)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_C41_GAME_OVER_NOTIFY, qznnConn.onNiuGameOver)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_C41_GAME_CONFIRM_BANKER_NOTIFY, qznnConn.onNiuConfirmBanker)    
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_C41_GAME_COMPARE_BID_OVER_NOTIFY, qznnConn.onNiuConfirmMult) 
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_C41_READY_NOTIFY, qznnConn.onNiuPlayerReady) 
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_C41_BANKER_BID_NOTIFY, qznnConn.onNiuBankerBid) 
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_C41_COMPARE_BID_NOTIFY, qznnConn.onNiuCompareBid) 
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_C41_COMPARE_CARD_NOTIFY, qznnConn.onNiuCompareCard) 
 end
 
 return _M

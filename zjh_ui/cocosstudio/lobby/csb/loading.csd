@@ -36,14 +36,14 @@
             <PreSize X="0.8328" Y="0.0160" />
             <ImageFileData Type="Normal" Path="lobby/image/loading/loadbar2.png" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="txt_hint" ActionTag="907282524" Tag="1376" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BottomEdge" LeftMargin="651.0000" RightMargin="651.0000" TopMargin="630.0000" BottomMargin="105.0000" FontSize="15" LabelText="100%" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="32.0000" Y="15.0000" />
+          <AbstractNodeData Name="txt_hint" ActionTag="907282524" Tag="1376" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BottomEdge" LeftMargin="647.0000" RightMargin="647.0000" TopMargin="647.5000" BottomMargin="82.5000" FontSize="20" LabelText="100%" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="40.0000" Y="20.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="667.0000" Y="112.5000" />
+            <Position X="667.0000" Y="92.5000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.1500" />
-            <PreSize X="0.0240" Y="0.0200" />
+            <PrePosition X="0.5000" Y="0.1233" />
+            <PreSize X="0.0300" Y="0.0267" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>

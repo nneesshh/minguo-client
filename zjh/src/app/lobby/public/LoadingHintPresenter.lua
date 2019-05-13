@@ -19,8 +19,8 @@ function LoadingHintPresenter:start(txt, timeoutTxt, timeout)
         timeoutTxt = "连接超时，请检查手机网络"
     end
     timeout = timeout or DEFAULT_TIME_OUT
-
-    self._ui:getInstance():start(self, txt, timeoutTxt, timeout)
+    
+    self._ui:getInstance():start(self, txt, timeoutTxt, timeout)  
 end
 
 function LoadingHintPresenter:exit()

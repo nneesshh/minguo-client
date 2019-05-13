@@ -172,6 +172,9 @@ function GameHandCardNode:createCard(id, scale, type)
     if self._gameCards[index] then
         self._gameCards[index]:resetCard()
     else
+        if index > 5 then
+        	return
+        end
         local gameCard = GameCardNode:create(self._presenter, self._localSeat, type)
         table.insert(self._gameCards, gameCard)
 
@@ -208,6 +211,21 @@ function GameHandCardNode:onTakeFirst(id)
         local card = self:createCard(id, HAND_CARD_SCALE_NO_SELF, HAND_CARD_TYPE_NO_SELF)
         if card then
             card:playTakeFirstAction()
+        end              
+    end
+end
+
+-- 发牌
+function GameHandCardNode:onTakeFirstLast(id)       
+    if self._localSeat == HERO_LOCAL_SEAT then
+        local card = self:createCard(id, HAND_CARD_SCALE, HAND_CARD_TYPE)
+        if card then
+            card:playTakeFirstLastAction()
+        end 
+    else
+        local card = self:createCard(id, HAND_CARD_SCALE_NO_SELF, HAND_CARD_TYPE_NO_SELF)
+        if card then
+            card:playTakeFirstLastAction()
         end              
     end
 end

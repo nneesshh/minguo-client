@@ -54,32 +54,42 @@ function AccountLoginPresenter:onLoginSuccess()
     app.lobby.login.LoginPresenter:getInstance():exit()  
 end
 
-function AccountLoginPresenter:onLoginFail(errcode)   
-    _username, _password = "", ""      
-    self:dealLoadingHintExit() 
-    
+function AccountLoginPresenter:onLoginFail(errcode)       
+    self:dealLoadingHintExit()    
     if app.Connect then            
-        app.Connect:getInstance():close()
-        self:dealHintStart(zjh_defs.ErrorMessage[errcode])    
+        app.Connect:getInstance():close()    
+        if CC_SHOW_LOGIN_DEBUG and errcode == 3 then
+            self:dealHintStart("账号未注册,是否自动注册并登录",
+                function(bFlag)
+                    if bFlag then
+                        app.lobby.login.RegisterPresenter:getInstance():dealAccountRegister(_username, "", _password)                                                
+                    end
+                end
+                , 0)
+        else
+            _username, _password = "", ""      
+            self:dealTxtHintStart(zjh_defs.ErrorMessage[errcode]) 
+        end              
     end    
 end
 
-function AccountLoginPresenter:dealAccountLogin(account, password)    
+function AccountLoginPresenter:dealAccountLogin(account, password)  
+    print("password is", password, checkPwd(password))  
     local hint = ""
     if account == "" then
         hint = "请输入手机账号！" 
-    elseif account ~= "" and password == "" then
-        hint = "请输入登陆密码！"
+    elseif password == "" then
+        hint = "请输入登录密码！"
     elseif not checkPwdLength(password) then
         hint = "密码长度应为6-16位！"
 --    elseif not checkPhoneNum(account) then  
 --        hint = "手机号格式不正确" 
---    elseif checkPwd(password) then
---        hint = "密码格式不正确！"            
+    elseif checkPwd(password) then
+        hint = "密码格式不正确！"            
     end
 
     if hint ~= "" then        
-        self._ui:getInstance():scrollHint(hint)
+        self:dealTxtHintStart(hint)
         return
     else        
         _username, _password = account, password          

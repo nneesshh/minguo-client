@@ -118,6 +118,11 @@ function GamePlayerNode:onTakeFirst(cardID)
     self._gameHandCardNode:onTakeFirst(cardID)
 end
 
+-- 发最后一张牌
+function GamePlayerNode:onTakeFirstLast(cardID)    
+    self._gameHandCardNode:onTakeFirstLast(cardID)
+end
+
 -- 显示用户节点    
 function GamePlayerNode:showPnlPlayer(visible)
     if self._rootNode then

@@ -254,6 +254,25 @@ function GameCardNode:playTakeFirstAction()
     self._rootNode:runAction(actMoveTo) 
 end
 
+-- 发最后一张牌
+function GameCardNode:playTakeFirstLastAction()
+    local parent = self._rootNode:getParent()
+    local szScreen = cc.Director:getInstance():getWinSize()
+    local pCenter = parent:convertToNodeSpace(cc.p(szScreen.width*0.5, szScreen.height*0.5))
+    self._rootNode:setPosition(pCenter)    
+
+    local pos = cc.p(0, 0)
+    if self._type == HAND_CARD_TYPE then
+        pos = self._presenter:calHandCardPosition(self._index, self:getCardSize(), self._localSeat, self._bUp)
+    elseif self._type == HAND_CARD_TYPE_NO_SELF then
+        pos = self._presenter:calHandCardPosition(self._index, self:getCardSize(), self._localSeat, self._bUp)
+    end
+
+    local actMoveTo = cc.MoveTo:create(0.5, pos) 
+
+    self._rootNode:runAction(actMoveTo) 
+end
+
 -- 上移牌动作
 local DELETE_ACTION = 1
 local SORT_ACTION   = 2

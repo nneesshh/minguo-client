@@ -15,9 +15,10 @@ local _selfData = {
     playerseat    = {},        -- 座位号  
     basecoin      = 0,
     isallIn       = false,     -- 是否全压
-    cards         = {handcards = {}, cardtype = -1, mult = 1},     -- 手牌数据
+    cards         = {handcards = {}, cardtype = -1, mult = 1},     -- 手牌数据(jdnn)
     bankermult    = {[0] = 0, [1] = 0, [2] = 0, [3] = 0, [4] = 0}, -- 抢庄倍数
-    isgroup       = {[0] = 0, [1] = 0, [2] = 0, [3] = 0, [4] = 0}  -- 是否组牌
+    isgroup       = {[0] = 0, [1] = 0, [2] = 0, [3] = 0, [4] = 0}, -- 是否组牌
+    handcards     = {}         -- 手牌 (qznn)                            
 }
 
 function GameData.setTableInfo(info)
@@ -58,6 +59,7 @@ function GameData.restData()
     _selfData.cards       = {handcards = {}, cardtype = -1, mult = 1}
     _selfData.bankermult  = {[0] = 0, [1] = 0, [2] = 0, [3] = 0, [4] = 0}
     _selfData.isgroup     = {[0] = 0, [1] = 0, [2] = 0, [3] = 0, [4] = 0}
+    _selfData.handcards   = {}
 end
 
 function GameData.restDataEx()
@@ -182,6 +184,15 @@ end
 
 function GameData.getGroup()
     return _selfData.isgroup
+end
+
+-- 设置手牌
+function GameData.setHandCards(cards)
+	_selfData.handcards = clone(cards)
+end
+
+function GameData.getHandCards()
+    return _selfData.handcards
 end
 
 return GameData

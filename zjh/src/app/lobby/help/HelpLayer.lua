@@ -14,7 +14,8 @@ HelpLayer.touchs = {
 
 HelpLayer.svws = {
     "svw_1",
-    "svw_2"
+    "svw_2",
+    "svw_3"
 }
 
 function HelpLayer:onCreate()

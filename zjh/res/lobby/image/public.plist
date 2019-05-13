@@ -11,58 +11,58 @@
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{60,62}</string>
 			</dict>
 			<key>lobby/image/rank/img_rank_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{130,2},{56,58}}</string>
+				<string>{{2,130},{56,58}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{56,58}</string>
 			</dict>
 			<key>lobby/image/rank/img_rank_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{192,2},{57,56}}</string>
+				<string>{{2,192},{57,56}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{57,56}</string>
 			</dict>
 			<key>lobby/image/mail/img_mail_0.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{130,62},{58,48}}</string>
+				<string>{{2,253},{58,48}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{58,48}</string>
 			</dict>
 			<key>lobby/image/mail/img_mail_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{68,64},{58,48}}</string>
+				<string>{{2,315},{58,48}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{58,48}</string>
 			</dict>
 			<key>lobby/image/mail/img_read_0.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{68,2},{58,58}}</string>
+				<string>{{2,68},{58,58}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -73,11 +73,11 @@
 			<key>lobby/image/mail/img_read_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{2,66},{50,25}}</string>
+				<string>{{2,377},{50,25}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{50,25}</string>
 			</dict>
@@ -91,14 +91,14 @@
 			<key>realTextureFileName</key>
 			<string>public.png</string>
 			<key>size</key>
-			<string>{251,114}</string>
+			<string>{64,429}</string>
 		</dict>
 		<key>texture</key>
 		<dict>
 			<key>width</key>
-			<integer>251</integer>
+			<integer>64</integer>
 			<key>height</key>
-			<integer>114</integer>
+			<integer>429</integer>
 		</dict>
 	</dict>
 </plist>

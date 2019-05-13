@@ -30,7 +30,9 @@ function MainPresenter:onEnter()
             app.lobby.login.LoginPresenter:getInstance():dealAutoLogin() 
         end        
     end
-    app.lobby.debug.DebugPresenter:getInstance():start()
+    if CC_SHOW_LOGIN_DEBUG then
+        app.lobby.debug.DebugPresenter:getInstance():start()
+    end
 end
 
 function MainPresenter:createDispatcher()
@@ -61,7 +63,8 @@ function MainPresenter:initDownload()
     local patch = {}    
     for k, gameid in pairs(app.Game.GameID) do
         if gameid == 1 or gameid == 2 then
-            if not cc.FileUtils:getInstance():isFileExist(app.Game.patchManifest[gameid]) then
+            if not cc.FileUtils:getInstance():isFileExist(
+                cc.FileUtils:getInstance():getWritablePath() .. app.Game.patchManifest[gameid]) then
                 table.insert(patch, gameid)
             end
         end                
@@ -116,7 +119,8 @@ end
 -- 显示场列表
 function MainPresenter:showPlazaLists(gameid)
     local plazainfo = app.data.PlazaData.getPlazaList(gameid)
-     
+    print(gameid)     
+    dump(plazainfo) 
     self._ui:getInstance():showPlazaPnl(true)
     self._ui:getInstance():loadPlazaList(gameid , plazainfo)    
 end
@@ -219,6 +223,7 @@ function MainPresenter:reqHotpatch(gameid)
             print("manifest is nil")    
         end 
     else
+        self._ui:getInstance():hideImgDownload(gameid)
         self:showPlazaLists(gameid)         
     end
 end
@@ -266,7 +271,12 @@ function MainPresenter:reqJoinRoom(gameid, index)
     local limit = plazainfo[index].lower
     local po = upconn.upconn:get_packet_obj()
     if po ~= nil and roomid then   
-        self:dealLoadingHintStart("正在加入房间")      
+        self:performWithDelayGlobal(function() 
+            if app.lobby.MainPresenter:getInstance():isCurrentUI() then
+                self:dealLoadingHintStart("正在加入房间")             
+            end           
+        end, 0.5)
+                 
         app.game.GameEngine:getInstance():start(gameid, base, limit)
 
         po:writer_reset()

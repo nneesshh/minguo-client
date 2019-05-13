@@ -95,7 +95,8 @@ function GamePresenter:onPlayerStatus(data)
     if not player then
         return
     end
-    local flag = false -- 结算时退出的玩家暂不隐藏，等待动画完成后再判断是否隐藏
+    
+    local flag = false -- 若退出的玩家需要比牌，则等待比牌动画完成后再判断是否隐藏
     if player:isInGame() and self._gameOver then
         local localSeat = app.game.PlayerData.serverSeatToLocalSeat(player:getSeat())
         app.game.GameData.setLeaveSeats(localSeat)
@@ -179,6 +180,7 @@ function GamePresenter:onPlayerLeave(player, flag)
                     function()
                         if app.game.GamePresenter then
                             self._ui:getInstance():showPnlHint(2)
+                            self:showLeavePlayer(false) 
                             self._gamePlayerNodes[HERO_LOCAL_SEAT]:onResetTable()
                         end   
                     end, 4)
@@ -204,7 +206,8 @@ function GamePresenter:onPlayerEnter(player)
       
     if app.game.PlayerData.getPlayerCount() <= 1 then
         if not self._ischangeTable  then
-            self._ui:getInstance():showPnlHint(2)
+            self._ui:getInstance():showPnlHint(2)  
+            self:showLeavePlayer(false)                       
         end    
     end
 
@@ -242,10 +245,18 @@ function GamePresenter:onGameStart()
 
     self._ui:getInstance():showPnlHint()
     
+    self:showLeavePlayer(false)        
+    
     for i = 0, self._maxPlayerCnt - 1 do        
         app.game.PlayerData.updatePlayerStatus(i, 0)
         app.game.PlayerData.updatePlayerIsshow(i, 0)
         app.game.PlayerData.resetPlayerBet(i)
+        
+        local player = app.game.PlayerData.getPlayerByServerSeat(i)   
+        if not player then
+            local localSeat = app.game.PlayerData.serverSeatToLocalSeat(i)
+            self._gamePlayerNodes[localSeat]:showPnlPlayer(false)    
+        end
     end
     
     local heroseat = app.game.PlayerData.getHeroSeat()
@@ -694,7 +705,8 @@ function GamePresenter:onPlayerLastBet(data)
 end
 
 -- 游戏结束
-function GamePresenter:onGameOver(data, players)   
+function GamePresenter:onGameOver(data, players) 
+    print("on game over")  
     self._gameOver = true 
     if self:checkHeroWaiting() then               
         self:performWithDelayGlobal(function()
@@ -901,6 +913,7 @@ function GamePresenter:onChangeTable(flag)
             if app.game.PlayerData.getPlayerCount() <= 1 then
                 self._ischangeTable = false  
                 self._ui:getInstance():showPnlHint(2)
+                self:showLeavePlayer(false) 
             end
         end, 2)
 end
@@ -1021,8 +1034,7 @@ end
 -- test
 function GamePresenter:showLeavePlayer(flag)
     local leavaeseats = app.game.GameData.getLeaveSeats()
-    print("leave seats")
-    dump(leavaeseats)
+
     if flag then
         for _, localseat in ipairs(leavaeseats) do
             if self._gamePlayerNodes[localseat] then

@@ -102,12 +102,14 @@ function RegisterPresenter:RegisterSuccess()
     app.lobby.login.LoginPresenter:getInstance():sendLogin(_username, _password)
 end
 
-function RegisterPresenter:RegisterFail()  
-    if not self:isCurrentUI() then
-        return
-    end
-    _username, _password = "", ""  
-    self:dealTxtHintStart("注册失败")    
+function RegisterPresenter:RegisterFail(errcode) 
+    self:dealLoadingHintExit()   
+      
+    if app.Connect then            
+        app.Connect:getInstance():close()             
+    end    
+    self:dealTxtHintStart(zjh_defs.ErrorMessage[errcode]) 
+    _username, _password = "", ""     
 end
 
 return RegisterPresenter

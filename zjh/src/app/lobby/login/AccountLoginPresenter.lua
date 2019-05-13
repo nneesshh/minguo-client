@@ -84,8 +84,8 @@ function AccountLoginPresenter:dealAccountLogin(account, password)
         hint = "密码长度应为6-16位！"
 --    elseif not checkPhoneNum(account) then  
 --        hint = "手机号格式不正确" 
-    elseif checkPwd(password) then
-        hint = "密码格式不正确！"            
+--    elseif checkPwd(password) then
+--        hint = "密码格式不正确！"            
     end
 
     if hint ~= "" then        

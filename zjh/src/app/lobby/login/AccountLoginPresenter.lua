@@ -92,9 +92,12 @@ function AccountLoginPresenter:dealAccountLogin(account, password)
     if hint ~= "" then        
         self:dealTxtHintStart(hint)
         return
-    else        
-        _username, _password = account, password          
-        app.lobby.login.LoginPresenter:getInstance():sendLogin(account, password)
+    else
+        self:performWithDelayGlobal(
+            function()
+                _username, _password = account, password          
+                app.lobby.login.LoginPresenter:getInstance():sendLogin(account, password)
+            end, 0.2)
     end
 end
 

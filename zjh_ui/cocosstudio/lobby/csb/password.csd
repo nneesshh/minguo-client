@@ -103,7 +103,7 @@
                   <AbstractNodeData Name="img_back3" ActionTag="438818845" Tag="43" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="252.0000" RightMargin="252.0000" TopMargin="45.0000" BottomMargin="214.0000" LeftEage="108" RightEage="108" TopEage="10" BottomEage="10" Scale9OriginX="108" Scale9OriginY="10" Scale9Width="115" Scale9Height="26" ctype="ImageViewObjectData">
                     <Size X="331.0000" Y="46.0000" />
                     <Children>
-                      <AbstractNodeData Name="tf_account" ActionTag="1343777365" Tag="42" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" TouchEnable="True" FontSize="22" IsCustomSize="True" LabelText="" PlaceHolderText="请输入您的账号" MaxLengthText="10" ctype="TextFieldObjectData">
+                      <AbstractNodeData Name="tf_account" ActionTag="1343777365" Tag="42" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" TouchEnable="True" FontSize="26" IsCustomSize="True" LabelText="" PlaceHolderText="请输入您的账号" MaxLengthText="10" ctype="TextFieldObjectData">
                         <Size X="331.0000" Y="46.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <Position X="165.5000" Y="23.0000" />
@@ -124,7 +124,7 @@
                   <AbstractNodeData Name="img_back4" ActionTag="1986343303" Tag="44" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="252.0000" RightMargin="252.0000" TopMargin="131.0000" BottomMargin="128.0000" LeftEage="108" RightEage="108" TopEage="10" BottomEage="10" Scale9OriginX="108" Scale9OriginY="10" Scale9Width="115" Scale9Height="26" ctype="ImageViewObjectData">
                     <Size X="331.0000" Y="46.0000" />
                     <Children>
-                      <AbstractNodeData Name="tf_vertify" ActionTag="1558720312" Tag="41" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" TouchEnable="True" FontSize="22" IsCustomSize="True" LabelText="" PlaceHolderText="请输入您的验证码" MaxLengthText="10" ctype="TextFieldObjectData">
+                      <AbstractNodeData Name="tf_vertify" ActionTag="1558720312" Tag="41" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" TouchEnable="True" FontSize="26" IsCustomSize="True" LabelText="" PlaceHolderText="请输入您的验证码" MaxLengthText="10" ctype="TextFieldObjectData">
                         <Size X="331.0000" Y="46.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <Position X="165.5000" Y="23.0000" />
@@ -145,7 +145,7 @@
                   <AbstractNodeData Name="img_back5" ActionTag="-2092597891" Tag="169" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="252.0000" RightMargin="252.0000" TopMargin="215.0000" BottomMargin="44.0000" LeftEage="108" RightEage="108" TopEage="10" BottomEage="10" Scale9OriginX="108" Scale9OriginY="10" Scale9Width="115" Scale9Height="26" ctype="ImageViewObjectData">
                     <Size X="331.0000" Y="46.0000" />
                     <Children>
-                      <AbstractNodeData Name="tf_new_password" ActionTag="-80855189" Tag="170" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" TouchEnable="True" FontSize="22" IsCustomSize="True" LabelText="" PlaceHolderText="6~16位数字和字母组合密码" MaxLengthText="10" PasswordEnable="True" ctype="TextFieldObjectData">
+                      <AbstractNodeData Name="tf_new_password" ActionTag="-80855189" Tag="170" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" TouchEnable="True" FontSize="26" IsCustomSize="True" LabelText="" PlaceHolderText="6~16位数字和字母组合密码" MaxLengthText="10" PasswordEnable="True" ctype="TextFieldObjectData">
                         <Size X="331.0000" Y="46.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <Position X="165.5000" Y="23.0000" />

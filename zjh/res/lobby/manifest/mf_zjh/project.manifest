@@ -1,0 +1,10 @@
+{
+  "assets": {
+    
+  }, 
+  "engineVersion": "cocos2dx-lua-3.10", 
+  "packageUrl": "http://192.168.200.101:9876/patch/zjh/assets/", 
+  "remoteManifestUrl": "http://192.168.200.101:9876/patch/zjh/project.manifest", 
+  "remoteVersionUrl": "http://192.168.200.101:9876/patch/zjh/version.manifest", 
+  "version": "1.1.0"
+}

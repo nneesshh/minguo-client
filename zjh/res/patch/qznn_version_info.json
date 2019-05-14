@@ -1,0 +1,7 @@
+{
+    "packageUrl" : "http://192.168.200.101:9876/patch/qznn/assets/",
+    "remoteManifestUrl" : "http://192.168.200.101:9876/patch/qznn/project.manifest",
+    "remoteVersionUrl" : "http://192.168.200.101:9876/patch/qznn/version.manifest",
+    "engineVersion" : "cocos2dx-lua-3.10",
+    "version" : "1.1.0"
+}

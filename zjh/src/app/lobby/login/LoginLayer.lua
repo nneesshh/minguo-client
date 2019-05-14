@@ -28,7 +28,9 @@ function LoginLayer:onTouch(sender, eventType)
         elseif name == "btn_account" then
             self:onClickBtnAccount()           
         elseif string.find(name, "btn_test_") then 
-            local index = tonumber(string.split(name, "btn_test_")[2])           
+            local index = tonumber(string.split(name, "btn_test_")[2]) 
+            dump(app.Account.list[index+1])
+                          
             self._presenter:testLogin(app.Account.list[index+1])   
         end
     end

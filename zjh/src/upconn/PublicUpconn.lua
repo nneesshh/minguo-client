@@ -71,6 +71,8 @@ function _M.onHeartBeat(conn, sessionid, msgid)
     local resp = {}   
     local po = upconn.upconn:get_packet_obj()
     
+    print("on beat")
+    
     if app.Connect then
         app.Connect:getInstance():respHeartbeat()
     end    
@@ -93,6 +95,8 @@ end
 
 -- 登录
 function _M.onLogin(conn, sessionid, msgid)    
+    print("sz-onlogin")
+    
     local resp = {}   
     local po = upconn.upconn:get_packet_obj()
     resp.errorCode = po:read_int32()
@@ -116,10 +120,12 @@ function _M.onLogin(conn, sessionid, msgid)
         -- user info
         local userInfo = {}
         userInfo = _readUserInfo(po)
+        dump(userInfo)
+        
         userInfo.session = sessionid
         -- recover flag
         local inroom = po:read_byte()  
-        print("onenter is gaming",inroom)     
+        print("onenter is inroom",inroom)     
         -- 保存个人数据
         app.data.UserData.setUserData(userInfo)
         -- 分发登录成功消息

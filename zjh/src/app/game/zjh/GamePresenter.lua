@@ -79,16 +79,6 @@ function GamePresenter:exit()
     GamePresenter._instance = nil
 end
 
-function GamePresenter:performWithDelayGlobal(listener, time)
-    local handle
-    handle = scheduler:scheduleScriptFunc(
-        function()
-            scheduler:unscheduleScriptEntry(handle)
-            listener()
-        end, time, false)
-    return handle
-end
-
 -- 处理玩家状态
 function GamePresenter:onPlayerStatus(data)
     local player = app.game.PlayerData.getPlayerByNumID(data.ticketid)        

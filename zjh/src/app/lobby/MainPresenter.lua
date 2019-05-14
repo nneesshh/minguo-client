@@ -118,9 +118,9 @@ end
 
 -- 显示场列表
 function MainPresenter:showPlazaLists(gameid)
+    print("gameid is",gameid)
     local plazainfo = app.data.PlazaData.getPlazaList(gameid)
-    print(gameid)     
-    dump(plazainfo) 
+    dump(plazainfo)
     self._ui:getInstance():showPlazaPnl(true)
     self._ui:getInstance():loadPlazaList(gameid , plazainfo)    
 end
@@ -200,16 +200,19 @@ end
 function MainPresenter:reqHotpatch(gameid)    
     if CC_HOTPATCH then   
         if isHotpatch then
-        	self:dealTxtHintStart("正在下载,请耐心等待当前游戏更新完成")
+        	self:dealTxtHintStart("请耐心等待当前游戏更新完成再进行操作")
         	return
         end     
         local projManifest, savePath = "", ""
         if gameid == app.Game.GameID.ZJH then
-            projManifest = "patch/zjh/project.manifest"
+            projManifest = "lobby/manifest/mf_zjh/project.manifest"
             savePath = "patch_zjh"
         elseif gameid == app.Game.GameID.JDNN then
-            projManifest = "patch/jdnn/project.manifest"
-            savePath = "patch_jdnn"     
+            projManifest = "lobby/manifest/mf_jdnn/project.manifest"
+            savePath = "patch_jdnn"
+        elseif gameid == app.Game.GameID.QZNN then
+            projManifest = "lobby/manifest/mf_qznn/project.manifest"
+            savePath = "patch_qznn"     
         end
 
         if projManifest ~= "" and savePath ~= "" then

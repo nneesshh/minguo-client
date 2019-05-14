@@ -6,8 +6,8 @@ local scheduler = cc.Director:getInstance():getScheduler()
 Connect._instance = nil
 
 Connect.heartBeatTime      = 10
-Connect.heartBeatTimeout   = 10
-Connect.receiveTime        = os.time()
+Connect.heartBeatTimeout   = 30
+Connect.receiveTime        = 0
 
 Connect._scheduleUpdate    = nil
 Connect._scheduleHeartBeat = nil
@@ -46,7 +46,7 @@ function Connect:start()
 end
 
 function Connect:reset()	
-    self.receiveTime = os.time()
+    self.receiveTime = 0
 
     self:updateState(Connect.STATE.IDLE)
 	self:closeScheduleUpdate()
@@ -128,7 +128,9 @@ function Connect:close()
     self:updateState(Connect.STATE.CLOSED)     
 end
 
-function Connect:respHeartbeat()    
+function Connect:respHeartbeat()
+    print("beat !!!")
+        
     self.receiveTime = os.time()    
 end
 

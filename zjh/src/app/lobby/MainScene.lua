@@ -166,17 +166,17 @@ end
 
 -- 加载场列表
 function MainScene:loadPlazaList(gameid, plazainfos)
+    if plazainfos == nil then
+    	return
+    end    
+    
     local resPath = string.format("lobby/image/plaza/img_game_%d.png", gameid)
     local imgtitle = self:seekChildByName("img_game_title") 
     imgtitle:ignoreContentAdaptWithSize(true)
     imgtitle:loadTexture(resPath, ccui.TextureResType.plistType)
 
     local btnhelp = self:seekChildByName("btn_help") 
-    btnhelp:setTag(gameid)
-    
-    if plazainfos == nil then
-    	return
-    end        
+    btnhelp:setTag(gameid)    
           
     local pnlPlaza = self:seekChildByName("plaza")  
     local childs = pnlPlaza:getChildren()  

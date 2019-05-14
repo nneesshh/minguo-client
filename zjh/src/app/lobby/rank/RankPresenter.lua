@@ -12,7 +12,7 @@ end
 
 function RankPresenter:getRankList()    
     local richList, winlist = {}, {}
-    for i=1, 20 do        
+    for i=1, 100 do        
         local rich  = {}
         rich.id     = i
         rich.gender = i % 2

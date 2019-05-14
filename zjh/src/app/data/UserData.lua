@@ -11,15 +11,15 @@ local _state = {
 }
 
 local _selfData = {
-    ticketid = 0,
-    username = "",             -- 帐号
-    nickname = "",             -- 昵称
-    avatar   = "avatar",       -- 头像
-    gender   = 0,              -- 性别
-    balance  = 0,              -- 财富
-    session  = "0",            -- 用户session  
-    state    = _state.nologin, -- 登录状态
-    bank     = 0               -- 保险箱 
+    ticketid    = 0,
+    username    = "",             -- 帐号
+    nickname    = "",             -- 昵称
+    avatar      = "avatar",       -- 头像
+    gender      = 0,              -- 性别
+    balance     = 0,              -- 财富
+    session     = "0",            -- 用户session  
+    state       = _state.nologin, -- 登录状态
+    safebalance = 0               -- 保险箱 
 }
 
 function UserData.setUserData(tPlayerData)
@@ -30,6 +30,7 @@ function UserData.setUserData(tPlayerData)
     UserData.setGender(tPlayerData.gender)
     UserData.setBalance(tPlayerData.balance)   
     UserData.setSession(tPlayerData.session)
+    UserData.setSafeBalance(tPlayerData.safebalance)   
 end
 
 function UserData.getUserData()
@@ -131,14 +132,13 @@ function UserData.getLoginState()
     return _selfData.state or _state.nologin
 end
 
-
-function UserData.setBank(num)
-    _selfData.bank = num
+function UserData.setSafeBalance(num)
+    _selfData.safebalance = num
     app.util.DispatcherUtils.dispatchEvent(app.Event.EVENT_BANK) 
 end
 
-function UserData.getBank()
-    return _selfData.bank
+function UserData.getSafeBalance()
+    return _selfData.safebalance
 end
 
 return UserData

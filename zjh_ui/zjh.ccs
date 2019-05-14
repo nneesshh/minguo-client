@@ -284,6 +284,10 @@
               <PlistInfo Name="plistscene.csi" Type="Plist" />
             </Folder>
           </Folder>
+          <Folder Name="ldh">
+            <Folder Name="csb" />
+            <Folder Name="image" />
+          </Folder>
         </Folder>
         <Folder Name="lobby">
           <Folder Name="csb">

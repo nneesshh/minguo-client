@@ -7,7 +7,7 @@ local LoadingHintPresenter   = class("LoadingHintPresenter", app.base.BasePresen
 
 LoadingHintPresenter._ui  = requireLobby("app.lobby.public.LoadingHintLayer")
 
-local DEFAULT_TIME_OUT = 15
+local DEFAULT_TIME_OUT = 10
 
 --[[
 缓冲提示，超时提示，超时时间

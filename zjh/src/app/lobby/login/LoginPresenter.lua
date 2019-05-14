@@ -25,16 +25,6 @@ function LoginPresenter:init(flag)
     end
 end
 
-function LoginPresenter:performWithDelayGlobal(listener, time)
-    local handle
-    handle = scheduler:scheduleScriptFunc(
-        function()
-            scheduler:unscheduleScriptEntry(handle)
-            listener()
-        end, time, false)
-    return handle
-end
-
 function LoginPresenter:createDispatcher()
     app.util.DispatcherUtils.addEventListenerSafe(app.Event.EVENT_LOGIN_SUCCESS, handler(self, self.onLoginSuccess))    
     app.util.DispatcherUtils.addEventListenerSafe(app.Event.EVENT_LOGIN_FAIL, handler(self, self.onLoginFail))       
@@ -76,25 +66,29 @@ function LoginPresenter:testLogin(data)
     if not data then
         return
     end
-    local po = upconn.upconn:get_packet_obj()
-    if po ~= nil then
-        po:writer_reset()
+    
+    self:performWithDelayGlobal(
+        function()
+            local po = upconn.upconn:get_packet_obj()
+            if po ~= nil then
+                po:writer_reset()
 
-        po:write_int32(data[1])        -- userTicketId
-        po:write_string(data[2])       -- phoneNumber as userName
-        po:write_string(data[3])       -- pwd
-        po:write_string(data[4])       -- imei
-        po:write_string(data[5])       -- imsi
-        po:write_string(data[6])       -- channel
-        po:write_string(data[7])       -- subChannel
+                po:write_int32(data[1])        -- userTicketId
+                po:write_string(data[2])       -- phoneNumber as userName
+                po:write_string(data[3])       -- pwd
+                po:write_string(data[4])       -- imei
+                po:write_string(data[5])       -- imsi
+                po:write_string(data[6])       -- channel
+                po:write_string(data[7])       -- subChannel
 
-        local sessionId = self.sessionId or 222
-        upconn.upconn:send_packet(sessionId, zjh_defs.MsgId.MSGID_LOGIN_REQ)
-        
-        _username, _password = data[2], data[3]
-    else
-        print("test po is nil")              
-    end              
+                local sessionId = self.sessionId or 222
+                upconn.upconn:send_packet(sessionId, zjh_defs.MsgId.MSGID_LOGIN_REQ)
+
+                _username, _password = data[2], data[3]
+            else
+                print("test po is nil")              
+            end                          
+        end, 0.2)
 end
 
 -- 自动登录

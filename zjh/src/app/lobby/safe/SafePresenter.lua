@@ -47,17 +47,53 @@ function SafePresenter:getMaxGold(type)
 	end
 end
 
-function SafePresenter:putBank(num)
-    app.data.UserData.setBank(num)
-    self:dealTxtHintStart("存入" .. num)
-    self._ui:getInstance():resetEnterNum()
+-- send
+function SafePresenter:reqPut(num)
+    self:performWithDelayGlobal(
+        function()
+            local po = upconn.upconn:get_packet_obj()
+            if po ~= nil then
+                po:writer_reset()
+                po:write_int64(num)                  
+                local sessionid = app.data.UserData.getSession() or 222
+                upconn.upconn:send_packet(sessionId, zjh_defs.MsgId.MSGID_REGISTER_REQ)                       
+            end              
+        end, 0.2)
 end
 
-function SafePresenter:outBank(num)
-    local bank = app.data.UserData.getBank(num)
-    app.data.UserData.setBank(bank-num)
-    self:dealTxtHintStart("取出" .. num)
-    self._ui:getInstance():resetEnterNum()
+function SafePresenter:onPutCallback(data)
+    if data.errcode == zjh_defs.ErrorCode.ERR_SUCCESS then
+        app.data.UserData.setSafeBalance(data.safebalance)
+        app.data.UserData.setBalance(data.balance)
+        
+        self._ui:getInstance():resetEnterNum()
+    else
+        self:dealTxtHintStart("存入失败")
+	end
+end
+
+function SafePresenter:reqOut(num)
+    self:performWithDelayGlobal(
+        function()
+            local po = upconn.upconn:get_packet_obj()
+            if po ~= nil then
+                po:writer_reset()
+                po:write_int64(-num)                  
+                local sessionid = app.data.UserData.getSession() or 222
+                upconn.upconn:send_packet(sessionId, zjh_defs.MsgId.MSGID_REGISTER_REQ)                       
+            end              
+        end, 0.2)
+end
+
+function SafePresenter:onOutCallback(data)
+    if data.errcode == zjh_defs.ErrorCode.ERR_SUCCESS then
+        app.data.UserData.setSafeBalance(data.safebalance)
+        app.data.UserData.setBalance(data.balance)
+        
+        self._ui:getInstance():resetEnterNum()
+    else
+        self:dealTxtHintStart("取出失败")
+    end
 end
     
 return SafePresenter

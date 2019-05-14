@@ -121,22 +121,6 @@ function SafeLayer:showTabPanel(btnName)
     self:resetEnterNum()  
 end
 
-function SafeLayer:initEffect(name)
-    local put = self:seekChildByName("node_put_arrow")  
-    put:removeAllChildren()
-    put:stopAllActions()
-    local out = self:seekChildByName("node_out_arrow")
-    out:removeAllChildren()
-    out:stopAllActions()
-    if name == "btn_put" then
-        local effect = app.util.UIUtils.runEffect("lobby/effect","jiantou", 0, 0)
-        put:addChild(effect)    
-    elseif name == "btn_out" then
-        local effect = app.util.UIUtils.runEffect("lobby/effect","jiantou", 0, 0)
-        out:addChild(effect) 
-    end
-end
-
 function SafeLayer:sliderPut()
     local percent = self:seekChildByName("sld_put_gold_put"):getPercent()
     local max = self._presenter:getMaxGold("put")
@@ -214,9 +198,9 @@ function SafeLayer:onTouchPutIn()
     local max = self._presenter:getMaxGold("put")
     if tonumber(num) and tonumber(num) >= 0 then
     	if tonumber(num) > max then
-            self._presenter:putBank(max)
+            self._presenter:reqPut(max)
         else        
-            self._presenter:putBank(tonumber(num))
+            self._presenter:reqPut(tonumber(num))
     	end
     end
 end
@@ -226,14 +210,30 @@ function SafeLayer:onTouchOutIn()
     local max = self._presenter:getMaxGold("out")
     if tonumber(num) and tonumber(num) >= 0 then
         if tonumber(num) > max then
-            self._presenter:outBank(max)
+            self._presenter:reqOut(max)
         else        
-            self._presenter:outBank(tonumber(num))
+            self._presenter:reqOut(tonumber(num))
         end
     end
 end
 
 -- update ui
+function SafeLayer:initEffect(name)
+    local put = self:seekChildByName("node_put_arrow")  
+    put:removeAllChildren()
+    put:stopAllActions()
+    local out = self:seekChildByName("node_out_arrow")
+    out:removeAllChildren()
+    out:stopAllActions()
+    if name == "btn_put" then
+        local effect = app.util.UIUtils.runEffect("lobby/effect","jiantou", 0, 0)
+        put:addChild(effect)    
+    elseif name == "btn_out" then
+        local effect = app.util.UIUtils.runEffect("lobby/effect","jiantou", 0, 0)
+        out:addChild(effect) 
+    end
+end
+
 function SafeLayer:setBalance(balance)
     local put_gold = self:seekChildByName("txt_put_cur_gold")
     local out_gold = self:seekChildByName("txt_out_cur_gold")

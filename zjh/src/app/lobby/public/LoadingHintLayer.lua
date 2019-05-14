@@ -27,16 +27,6 @@ local function unAllScheduler()
     end
 end
 
-function LoadingHintLayer:performWithDelayGlobal(listener, time)
-    local handle
-    handle = scheduler:scheduleScriptFunc(
-        function()
-            scheduler:unscheduleScriptEntry(handle)
-            listener()
-        end, time, false)
-    return handle
-end
-
 function LoadingHintLayer:initUI(txt, timeoutTxt, timeout)    
     -- 播放动画
     local node = self:seekChildByName("hint_node_effect")
@@ -70,7 +60,7 @@ function LoadingHintLayer:initUI(txt, timeoutTxt, timeout)
         _schedulerTimeOut = nil
         self:exit()
     end
-    _schedulerTimeOut = self:performWithDelayGlobal(timeOutCallBack, timeout)
+    _schedulerTimeOut = self._presenter:performWithDelayGlobal(timeOutCallBack, timeout)
 end
 
 function LoadingHintLayer:exit()

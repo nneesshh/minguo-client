@@ -21,6 +21,7 @@ local STATE_RECONNECTING = 2
 local STATE_CONNECTED = 3
 local STATE_CLEANUP = 4
 local STATE_CLOSED = 5
+
 --
 local mt = {__index = _M}
 
@@ -33,7 +34,7 @@ function _M.new(self, id)
             upstream = false,
             state = STATE_IDLE,
             --
-            is_connecting = false,
+            is_connecting = false
         },
         mt
     )
@@ -60,7 +61,7 @@ function _M.send_packet(self, ...)
 end
 
 --
-function _M.cleanup(self) 
+function _M.cleanup(self)
     local sock = self.upstream
     if not sock then
         return nil, "not initialized"
@@ -68,7 +69,7 @@ function _M.cleanup(self)
     sock:close()
     self.upstream = false
     self.state = STATE_CLEANUP
-end        
+end
 
 --
 function _M.close(self)
@@ -85,7 +86,7 @@ function _M.init(self, opts)
     self.opts.timeouts = {
         connect_timeout_in_ms = 10 * 1000,
         send_timeout_in_ms = 100,
-        read_idle_timeout_in_ms = 1800 * 1000,
+        read_idle_timeout_in_ms = 1800 * 1000
     }
 end
 
@@ -132,18 +133,18 @@ function _M.connect(self)
     as_tcp:settimeouts(
         self.opts.timeouts.connect_timeout_in_ms,
         self.opts.timeouts.send_timeout_in_ms,
-        self.opts.timeouts.read_idle_timeout_in_ms)
+        self.opts.timeouts.read_idle_timeout_in_ms
+    )
 
     --
     local flag = as_tcp:connect(host, port, 1000)
     print("CONNECT:", flag)
-    if flag < 0 then 
+    if flag < 0 then
         as_tcp:close()
         self.state = STATE_CLEANUP
-
     else
         self.upstream = as_tcp
-        if 0 == flag then 
+        if 0 == flag then
             self.state = STATE_CONNECTING
         else
             self.state = STATE_CONNECTED
@@ -183,7 +184,7 @@ end
 --
 function _M.update(self)
     app.Connect:getInstance():updateState(self.state)
-    
+
     if self.state == STATE_CONNECTING then
         --
         local ok, err = self.upstream:check_connecting()
@@ -191,7 +192,8 @@ function _M.update(self)
             self.state = STATE_CONNECTED
             __on_connect(self)
         elseif err ~= "EAGAIN" then
-            __on_connect_failed(self, err)         
+            self:close()
+            __on_connect_failed(self, err)
         end
     elseif self.state == STATE_RECONNECTING then
         return self:connect()
@@ -203,9 +205,6 @@ function _M.update(self)
         elseif err ~= "EAGAIN" then
             __on_receive_failed(self, err)
         end
-    else
-       --
-       print("idle")       
     end
 end
 

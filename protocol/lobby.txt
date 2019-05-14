@@ -1,0 +1,20 @@
+﻿// lobby
+#define MSGID_HEART_BEAT_REQ		0x1001		//心跳 4097
+#define MSGID_HEART_BEAT_RESP		0x1002		//心跳 4098
+#define MSGID_LOGIN_REQ				0x1003		//登录请求 4099
+#define MSGID_LOGIN_RESP			0x1004		//登录回应 4100
+#define MSGID_REGISTER_REQ			0x1005		//注册请求 4101
+#define MSGID_REGISTER_RESP			0x1006		//注册回应 4102
+
+#define MSGID_ENTER_ROOM_REQ		0x1007		//进入房间请求 4103
+#define MSGID_ENTER_ROOM_RESP		0x1008		//进入房间回应 4104
+#define MSGID_LEAVE_ROOM_REQ		0x1009		//离开房间请求 4105
+#define MSGID_LEAVE_ROOM_RESP		0x100A		//离开房间回应 4106
+#define MSGID_CHANGE_TABLE_REQ		0x100B		//换桌请求 4107
+#define MSGID_CHANGE_TABLE_RESP		0x100C		//换桌回应 4108
+
+#define MSGID_CHANGE_USER_INFO_REQ	0x1101		//修改用户信息请求 4353
+#define MSGID_CHANGE_USER_INFO_RESP	0x1102		//修改用户信息回应 4354
+
+#define MSGID_DEPOSIT_CASH_REQ		0x1103		//存款请求 4355
+#define MSGID_DEPOSIT_CASH_RESP		0x1104		//存款回应 4356

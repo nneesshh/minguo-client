@@ -50,22 +50,11 @@ function LoginPresenter:onLoginSuccess()
     app.lobby.login.LoginPresenter:getInstance():exit()  
 end
 
-function LoginPresenter:onLoginFail(errcode)    
-    _username, _password = "", ""  
-    self:dealLoadingHintExit()
-    
-    if app.Connect then            
-        app.Connect:getInstance():close()
-        self:dealTxtHintStart(zjh_defs.ErrorMessage[errcode])    
-    end      
-end
-
 function LoginPresenter:onLoginFail(errcode)       
-    self:dealLoadingHintExit()    
-    
+    self:dealLoadingHintExit()        
     if app.Connect then            
         app.Connect:getInstance():close()    
-        if CC_SHOW_LOGIN_DEBUG and errcode == 3 then
+        if CC_SHOW_LOGIN_DEBUG and errcode == 3 and not app.lobby.login.AccountLoginPresenter:isCurrentUI() then
             self:dealHintStart("账号未注册,是否自动注册并登录",
                 function(bFlag)
                     if bFlag then

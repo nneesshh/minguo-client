@@ -11,17 +11,6 @@ local function _readRoomInfo(po)
     return info
 end
 
-local function _readUserInfo(po)
-    local info = {}
-    info.ticketid = po:read_int32()
-    info.username = po:read_string()
-    info.nickname = po:read_string()
-    info.avatar   = po:read_string()
-    info.gender   = po:read_byte()
-    info.balance  = po:read_int64()
-    return info
-end
-
 local function _readTableInfo(po)
     local info = {}
     info.tableid     = po:read_int32()

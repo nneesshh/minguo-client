@@ -19,6 +19,7 @@ local function _readUserInfo(po)
     info.avatar   = po:read_string()
     info.gender   = po:read_byte()
     info.balance  = po:read_int64()
+    info.safebalance = po:read_int64()
     return info
 end
 
@@ -86,7 +87,7 @@ function _M.onRegister(conn, sessionid, msgid)
     if resp.errorCode == zjh_defs.ErrorCode.ERR_SUCCESS then
         app.lobby.login.RegisterPresenter:getInstance():RegisterSuccess()
     else
-        app.lobby.login.RegisterPresenter:getInstance():RegisterFail()
+        app.lobby.login.RegisterPresenter:getInstance():RegisterFail(resp.errorCode)
     end    
 end
 
@@ -117,8 +118,8 @@ function _M.onLogin(conn, sessionid, msgid)
         userInfo = _readUserInfo(po)
         userInfo.session = sessionid
         -- recover flag
-        local gaming = po:read_byte()  
-        print("onenter is gaming",gaming)     
+        local inroom = po:read_byte()  
+        print("onenter is gaming",inroom)     
         -- 保存个人数据
         app.data.UserData.setUserData(userInfo)
         -- 分发登录成功消息
@@ -126,7 +127,7 @@ function _M.onLogin(conn, sessionid, msgid)
 
         app.data.UserData.setLoginState(1)      
 
-        if gaming ~= 0 then
+        if inroom ~= 0 then
             local gametype = po:read_int32()
             local roomid =  po:read_int32()
             local base = app.data.PlazaData.getBaseByRoomid(gametype, roomid)
@@ -154,12 +155,17 @@ function _M.onLogin(conn, sessionid, msgid)
                 app.game.GamePresenter:getInstance():onPlayerEnter(player)       
             end
             
-            local player = {}            
-            local stringCards = po:read_string()            
-            player.cards      = _readCards(stringCards)  
-            player.cardtype   = po:read_byte()
-
-            app.game.GamePresenter:getInstance():onRelinkEnter(player)
+            local gaming = po:read_byte()            
+            print("onenter is gaming", gaming)   
+              
+            if gaming ~= 0 then
+                local player = {}            
+                local stringCards = po:read_string()            
+                player.cards      = _readCards(stringCards)  
+                player.cardtype   = po:read_byte()
+                
+                app.game.GamePresenter:getInstance():onRelinkEnter(player)
+            end  
         end             
     else
         -- error

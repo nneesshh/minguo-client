@@ -90,7 +90,7 @@ function Player:isLeave()
 end
 
 function Player:isInGame()
-    return self._playerInfo.status == 3 or self._playerInfo.status == 5 or self._playerInfo.status == 6
+    return self._playerInfo.status == 3 or self._playerInfo.status == 6
 end 
 
 -- 玩家服务端座号

@@ -271,10 +271,8 @@ function MainPresenter:reqJoinRoom(gameid, index)
     local limit = plazainfo[index].lower
     local po = upconn.upconn:get_packet_obj()
     if po ~= nil and roomid then   
-        self:dealLoadingHintStart("正在加入房间")             
-       
+        self:dealLoadingHintStart("正在加入房间")                    
         app.game.GameEngine:getInstance():start(gameid, base, limit)
-
         po:writer_reset()
         po:write_int32(sessionid)  
         po:write_int32(gameid) 

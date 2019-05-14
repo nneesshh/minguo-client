@@ -33,6 +33,10 @@ function _M.new(self, id)
             upstream = false,
             state = STATE_IDLE,
             --
+            enable_reconnect = true,
+            reconnect_delay_seconds = 10.001,
+            reconnect_timer = false,
+            --
             is_connecting = false,
         },
         mt
@@ -77,6 +81,30 @@ function _M.close(self)
 end
 
 --
+function _M.reconnect(self, opts, last_error)
+    if self.state ~= STATE_CLOSED and self.enable_reconnect and self.reconnect_delay_seconds > 0 then
+        -- try reconnect
+        if self.state ~= STATE_RECONNECTING then
+            if not self.reconnect_timer then
+                self.reconnect_timer = timer:new()
+                self.reconnect_timer:set_interval(self.reconnect_delay_seconds * 1000)
+                self.reconnect_timer:start()
+            else
+                self.reconnect_timer:restart()
+            end
+
+            --
+            print("connid=" .. tostring(self.id) .. ", reconnect after(s): " .. tostring(self.reconnect_delay_seconds))
+
+            --
+            self.state = STATE_RECONNECTING
+        end
+    else
+        return nil, last_error
+    end
+end
+
+--
 function _M.init(self, opts)
     -- opts
     self.opts = opts
@@ -106,6 +134,9 @@ local function __on_connect_failed(self, errstr)
     if cb then
         cb(self, errstr)
     end
+
+    -- reconnect
+    return self:reconnect(self.opts, errstr)
 end
 
 local function __on_receive_failed(self, errstr)
@@ -114,6 +145,9 @@ local function __on_receive_failed(self, errstr)
     if cb then
         cb(self, errstr)
     end
+
+    -- reconnect
+    return self:reconnect(self.opts, errstr)
 end
 
 --
@@ -181,6 +215,9 @@ function _M.read_packet(self)
 end
 
 --
+local last_reconnect_countdown = {}
+
+--
 function _M.update(self)
     app.Connect:getInstance():updateState(self.state)
     
@@ -194,7 +231,19 @@ function _M.update(self)
             __on_connect_failed(self, err)         
         end
     elseif self.state == STATE_RECONNECTING then
-        return self:connect()
+        local rest = self.reconnect_timer:rest()
+        if 0 == rest then
+            last_reconnect_countdown[self.id] = nil
+            return self:connect()
+        else
+            local cd = math_ceil(rest/1000)
+
+            last_reconnect_countdown[self.id] = last_reconnect_countdown[self.id] or { _cd = 0 }
+            if cd ~= last_reconnect_countdown[self.id]._cd then
+                print("connid=" .. tostring(self.id) ..",  reconnect countdown(s):" .. tostring(cd))
+                last_reconnect_countdown[self.id]._cd  = cd                
+            end
+        end
     elseif self.state == STATE_CONNECTED then
         -- receive
         local data, err = self.upstream:receive()

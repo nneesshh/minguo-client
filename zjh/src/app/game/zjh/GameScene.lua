@@ -156,23 +156,33 @@ function GameScene:playGZYZeffect()
 end
 
 function GameScene:playWinEffect(localseat)
-    local player = self:seekChildByName("pnl_player_" .. localseat)
-    local node = player:getChildByName("node_effect")
-    node:removeAllChildren()
-    node:stopAllActions()
+    print("sz-effect1")
+    local clones =  self:seekChildByName("players_clone")
+    local player = clones:getChildByName("clone_player" .. localseat)
+    if player then
+        print("yes win effect")
+        local node = player:getChildByName("node_effect")
+        node:removeAllChildren()
+        node:stopAllActions()
 
-    local effect = app.util.UIUtils.runEffectOne("game/zjh/effect", "vs_dh3", 0, -25)
-    node:addChild(effect)
+        local effect = app.util.UIUtils.runEffectOne("game/zjh/effect", "vs_dh3", 0, -25)
+        node:addChild(effect)
+    end    
 end
 
-function GameScene:playLoseEffect(localseat) 
-    local player = self:seekChildByName("pnl_player_" .. localseat)
-    local node = player:getChildByName("node_effect")
-    node:removeAllChildren()
-    node:stopAllActions()
+function GameScene:playLoseEffect(localseat)
+    print("sz-effect2")
+    local clones =  self:seekChildByName("players_clone")
+    local player = clones:getChildByName("clone_player" .. localseat)
+    if player then
+        print("yes lose effect")
+        local node = player:getChildByName("node_effect")
+        node:removeAllChildren()
+        node:stopAllActions()
 
-    local effect = app.util.UIUtils.runEffectOne("game/zjh/effect", "vs_dh1", 0, 0)
-    node:addChild(effect)
+        local effect = app.util.UIUtils.runEffectOne("game/zjh/effect", "vs_dh1", 0, 0)
+        node:addChild(effect)
+    end   
 end
 
 function GameScene:showBase()
@@ -563,6 +573,7 @@ function GameScene:runCompareAction(localSeat, pos, flag, cards, callback)
     local clone = player:clone()    
     clone:setPosition(cc.p(fx, fy)) 
     clone:setVisible(true)
+    clone:setName("clone_player" .. localSeat)
     parent:addChild(clone)
     
     local bet   = clone:getChildByName("img_bet_back")
@@ -574,6 +585,8 @@ function GameScene:runCompareAction(localSeat, pos, flag, cards, callback)
     local btn  = clone:getChildByName("btn_show_card")
 
     local pnlcards = clone:getChildByName("pnl_cards")         
+   
+    self:playEffectByName("pk")
    
     local function afunc()
         pnlcards:removeAllChildren()

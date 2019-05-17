@@ -85,11 +85,15 @@
               <Project Name="card.csd" Type="Node" />
               <Project Name="gamescene.csd" Type="Scene" />
               <Project Name="menu.csd" Type="Node" />
+              <Project Name="trend.csd" Type="Layer" />
             </Folder>
             <Folder Name="image">
               <Folder Name="fnt" />
               <Image Name="btn_other.png" />
               <Image Name="img_back.png" />
+              <Image Name="img_back_he.png" />
+              <Image Name="img_back_hu.png" />
+              <Image Name="img_back_long.png" />
               <Image Name="img_chip_100_1.png" />
               <Image Name="img_chip_100_2.png" />
               <Image Name="img_chip_1000_1.png" />
@@ -104,6 +108,7 @@
               <Image Name="img_gold.png" />
               <Image Name="img_head_back1.png" />
               <Image Name="img_head_back2.png" />
+              <Image Name="img_hint_wait.png" />
               <Image Name="img_hu.png" />
               <Image Name="img_light_he.png" />
               <Image Name="img_light_hu.png" />
@@ -113,6 +118,8 @@
               <Image Name="img_result_2.png" />
               <Image Name="img_result_3.png" />
               <Image Name="img_richer.png" />
+              <Image Name="img_trend.png" />
+              <Image Name="ing_hint_less.png" />
             </Folder>
           </Folder>
           <Folder Name="public">

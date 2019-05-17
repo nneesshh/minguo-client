@@ -107,12 +107,12 @@ local function _readTableInfo(po)
     info.round       = po:read_byte()
     info.basebet     = po:read_int32()
     info.jackpot     = po:read_int32()
-    info.banker      = po:read_byte()
-    info.currseat    = po:read_byte()
+    info.banker      = po:read_int16()
+    info.currseat    = po:read_int16()
     info.playercount = po:read_int32()
     info.playerseat  = {}
     for i = 1, info.playercount do
-        table.insert(info.playerseat, po:read_byte())
+        table.insert(info.playerseat, po:read_int16())
     end
     return info
 end
@@ -120,14 +120,14 @@ end
 local function _readPlayerAnteUp(po)
     local info = {}
     local gameinfo = {}
-    info.playerSeat    = po:read_byte()
+    info.playerSeat    = po:read_int16()
     info.playerBet     = po:read_int32()
     info.playerBalance = po:read_int64()
     --
     gameinfo.round     = po:read_byte()
     info.basebet       = po:read_int32()
     gameinfo.jackpot   = po:read_int32()
-    gameinfo.currseat  = po:read_byte()
+    gameinfo.currseat  = po:read_int16()
     
     info.isAllIn       = po:read_byte()
     return info, gameinfo
@@ -137,17 +137,17 @@ local function _readPlayerCompareCard(po)
     local info = {}
     local gameinfo = {}
     
-    info.playerSeat    = po:read_byte()
+    info.playerSeat    = po:read_int16()
     info.playerBet     = po:read_int32()
     info.playerBalance = po:read_int64()
     --
-    info.acceptorSeat  = po:read_byte()
-    info.loserSeat     = po:read_byte()
+    info.acceptorSeat  = po:read_int16()
+    info.loserSeat     = po:read_int16()
     --
     gameinfo.round     = po:read_byte()
     info.basebet       = po:read_int32()
     gameinfo.jackpot   = po:read_int32()
-    gameinfo.currseat  = po:read_byte()
+    gameinfo.currseat  = po:read_int16()
     return info ,gameinfo
 end
 
@@ -163,12 +163,12 @@ end
 local function _readGameOver(po)
     local info = {}
     local players = {}    
-    info.winnerSeat = po:read_byte()
+    info.winnerSeat = po:read_int16()
     info.tax        = po:read_int32()
     local pCount    = po:read_int32()
    
     for i = 1, pCount do     
-        local seat = po:read_byte()
+        local seat = po:read_int16()
         players[seat] = players[seat] or {}
         
         players[seat].score = po:read_int32() 
@@ -187,7 +187,7 @@ end
 function _M.onPlayerReady(conn, sessionid, msgid)
     local resp = {}
     local po = upconn.upconn:get_packet_obj()
-    local seat = po:read_byte()
+    local seat = po:read_int16()
     
     if app.game.GamePresenter then
         app.game.GamePresenter:getInstance():onPlayerReady(seat) 
@@ -221,9 +221,9 @@ function _M.onPlayerGiveUp(conn, sessionid, msgid)
     print("onPlayerGiveUp")
     local resp = {}
     local po = upconn.upconn:get_packet_obj()
-    local now   = po:read_byte()
-    local next  = po:read_byte()
-    local round = po:read_int32()
+    local now   = po:read_int16()
+    local next  = po:read_int16()
+    local round = po:read_byte()
     
     if app.game.GamePresenter then
         app.game.GamePresenter:getInstance():onPlayerGiveUp(now, next, round) 
@@ -234,7 +234,7 @@ function _M.onGameOverShow(conn, sessionid, msgid)
     print("onGameOverShow")
     local resp = {}
     local po = upconn.upconn:get_packet_obj()
-    local seat = po:read_byte()
+    local seat = po:read_int16()
     
     if app.game.GamePresenter then
         app.game.GamePresenter:getInstance():onGameOverShow(seat) 
@@ -255,7 +255,7 @@ function _M.onPlayerShowCard(conn, sessionid, msgid)
     print("onPlayerShowCard") 
     local resp = {}
     local po = upconn.upconn:get_packet_obj()
-    resp.seat = po:read_byte()
+    resp.seat = po:read_int16()
     resp.cards = po:read_string()
     resp.cardtype = po:read_byte()
     local cards = {}
@@ -281,14 +281,14 @@ function _M.onPlayerLastBet(conn, sessionid, msgid)
     print("onPlayerLastBet")
     local resp = {}
     local po = upconn.upconn:get_packet_obj()    
-    resp.playerSeat = po:read_byte()
+    resp.playerSeat = po:read_int16()
     resp.count = po:read_int32()
     resp.otherSeat = {} 
     for i=1, resp.count do
-        resp.otherSeat[i] = po:read_byte()
+        resp.otherSeat[i] = po:read_int16()
     end
     resp.win = po:read_byte()   
-    resp.nextseat = po:read_byte()  
+    resp.nextseat = po:read_int16()  
     
     app.game.GamePresenter:getInstance():onPlayerLastBet(resp) 
 end
@@ -298,7 +298,7 @@ function _M.onGameOver(conn, sessionid, msgid)
     local resp = {}
     local po = upconn.upconn:get_packet_obj()   
     local info, players = _readGameOver(po)
-
+    
     app.game.GamePresenter:getInstance():onGameOver(info, players) 
 end
 

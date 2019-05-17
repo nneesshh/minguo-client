@@ -350,7 +350,7 @@
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
           </AbstractNodeData>
-          <AbstractNodeData Name="pnl_end_btn" ActionTag="-1077615477" VisibleForFrame="False" Tag="1363" IconVisible="False" LeftMargin="-10450.0000" RightMargin="9550.0000" TopMargin="-150.0000" BottomMargin="-150.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+          <AbstractNodeData Name="pnl_end_btn" ActionTag="-1077615477" VisibleForFrame="False" Tag="1363" IconVisible="False" LeftMargin="-450.0000" RightMargin="-450.0000" TopMargin="-150.0000" BottomMargin="-150.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="900.0000" Y="300.0000" />
             <Children>
               <AbstractNodeData Name="btn_end_show" ActionTag="845669429" Tag="1367" IconVisible="False" LeftMargin="343.5000" RightMargin="343.5000" TopMargin="112.5000" BottomMargin="112.5000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="183" Scale9Height="53" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
@@ -370,7 +370,7 @@
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="-10000.0000" />
+            <Position />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />

@@ -18,12 +18,12 @@ local function _readTableInfo(po)
     info.round       = po:read_byte()
     info.basebet     = po:read_int32()
     info.jackpot     = po:read_int32()
-    info.banker      = po:read_byte()
-    info.currseat    = po:read_byte()
+    info.banker      = po:read_int16()
+    info.currseat    = po:read_int16()
     info.playercount = po:read_int32()
     info.playerseat  = {}
     for i = 1, info.playercount do
-        table.insert(info.playerseat, po:read_byte())
+        table.insert(info.playerseat, po:read_int16())
     end
     return info
 end
@@ -40,12 +40,12 @@ end
 local function _readGameOver(po)
     local info = {}
     local players = {}    
-    info.winnerSeat = po:read_byte()
+    info.winnerSeat = po:read_int16()
     info.tax        = po:read_int32()
     local pCount    = po:read_int32()
 
     for i = 1, pCount do     
-        local seat = po:read_byte()
+        local seat = po:read_int16()
         players[seat] = players[seat] or {}
 
         players[seat].score = po:read_int32() 
@@ -99,7 +99,7 @@ function _M.onNiuGameOver(conn, sessionid, msgid)
     local players = {}
     for i=1, playercont do
         players[i] = players[i] or {}
-        players[i].seat     = po:read_byte()
+        players[i].seat     = po:read_int16()
         players[i].score    = po:read_int32()
         local strcards      = po:read_string()    
         players[i].cards    = _readCards(strcards)  
@@ -117,14 +117,14 @@ function _M.onNiuConfirmBanker(conn, sessionid, msgid)
     local po = upconn.upconn:get_packet_obj() 
     if po == nil then return end   
     local banker = {}
-    banker.banker     = po:read_byte()
+    banker.banker     = po:read_int16()
     banker.bankerMult = po:read_int32()
     print("banker.bankerMult",banker.bankerMult, banker.banker)
     local players = {}
     local playercont = po:read_int32()
     for i=1,playercont do
         players[i] = players[i] or {}
-        players[i].seat    = po:read_byte()
+        players[i].seat    = po:read_int16()
         players[i].mult    = po:read_int32()
         players[i].balance = po:read_int64()
         print("player mult", players[i].mult, players[i].seat )
@@ -152,7 +152,7 @@ function _M.onNiuConfirmMult(conn, sessionid, msgid)
     
     for i=1, playercont do
         players[i] = players[i] or {}
-        players[i].seat = po:read_byte()
+        players[i].seat = po:read_int16()
         
         players[i].mult = po:read_int32()
         players[i].balance = po:read_int64()       
@@ -167,7 +167,7 @@ function _M.onNiuPlayerReady(conn, sessionid, msgid)
     print("onNiuPlayerReady")
     local po = upconn.upconn:get_packet_obj()
     if po == nil then return end   
-    local seat = po:read_byte()
+    local seat = po:read_int16()
 end
 
 -- 抢庄加倍
@@ -176,7 +176,7 @@ function _M.onNiuBankerBid(conn, sessionid, msgid)
     local po = upconn.upconn:get_packet_obj()
     if po == nil then return end   
     
-    local seat = po:read_byte()
+    local seat = po:read_int16()
     local mult = po:read_int32()
     print("mult is",mult)
     if app.game.GamePresenter then
@@ -190,7 +190,7 @@ function _M.onNiuCompareBid(conn, sessionid, msgid)
     local po = upconn.upconn:get_packet_obj()
     if po == nil then return end   
     
-    local seat = po:read_byte()
+    local seat = po:read_int16()
     local mult = po:read_int32()
 
     if app.game.GamePresenter then
@@ -205,7 +205,7 @@ function _M.onNiuCompareCard(conn, sessionid, msgid)
     if po == nil then return end   
     
     local player = {}
-    player.seat      = po:read_byte()
+    player.seat      = po:read_int16()
     local strcards   = po:read_string()    
     player.cards     = _readCards(strcards)    
     player.cardtype  = po:read_byte()

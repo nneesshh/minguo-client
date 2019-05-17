@@ -220,12 +220,7 @@ end
 -- 玩家准备
 function GamePresenter:onPlayerReady(seat)
     local localseat = app.game.PlayerData.serverSeatToLocalSeat(seat)
-    if localseat ~= HERO_LOCAL_SEAT then
-        local ready = app.game.GameData.getHeroReady()
-        if not ready then
-            self:sendPlayerReady()      
-        end 
-    elseif localseat == HERO_LOCAL_SEAT then      
+    if localseat == HERO_LOCAL_SEAT then      
         app.game.GameData.setHeroReady(true)
     end         
 end
@@ -259,9 +254,7 @@ function GamePresenter:onGameStart()
         app.game.PlayerData.updatePlayerStatus(i, 3)      
     end
     
-    app.game.GameData.setHeroReady(false)
-    app.game.GameData.setAllIn(false)
-    app.game.GameData.resetHandcards()
+    app.game.GameData.resetDataEx()
     
     -- 隐藏看牌按钮
     self._ui:getInstance():showBtnShowCard(false)
@@ -471,6 +464,13 @@ function GamePresenter:onPlayerCompareCard(data)
         print("player compare is nil")
         return
     end
+    
+    if localSeat == HERO_LOCAL_SEAT then
+        app.game.GameData.setCompareSeat(otherSeat)
+    elseif otherSeat == HERO_LOCAL_SEAT	then
+        app.game.GameData.setCompareSeat(localSeat)
+    end
+    
     local isshow = player:getIsshow() 
     local gender = player:getGender() 
     if gender == 1 then
@@ -692,6 +692,9 @@ function GamePresenter:onPlayerLastBet(data)
     self._ui:getInstance():showAllInChipAction(localSeat)    
     for i, seat in ipairs(data.otherSeat) do
         local otherSeat = app.game.PlayerData.serverSeatToLocalSeat(seat)
+        
+        app.game.GameData.setCompareSeat(otherSeat)
+        
         self:performWithDelayGlobal(function()
             if i < #data.otherSeat then
                 self:playCompareAction(localSeat, otherSeat, otherSeat, true)
@@ -725,7 +728,7 @@ function GamePresenter:onGameOver(data, players)
     
     if self:checkHeroWaiting() then               
         self:performWithDelayGlobal(function()
-            self:sendPlayerReady()
+            self:sendPlayerReady()                             
         end, self._overDelaytime + 3)
         
         print("time",self._overDelaytime + 3)        
@@ -747,6 +750,15 @@ function GamePresenter:onGameOver(data, players)
     self._ui:getInstance():showBtnShowCard(false)
     -- 当前座位为-1
     app.game.GameData.setCurrseat(-1) 
+    
+    -- 保存玩家的手牌
+    local pCards = {}
+    for seat, player in pairs(players) do         
+        pCards[seat] = pCards[seat] or {}
+        pCards[seat].cards = player.cards
+        pCards[seat].type = player.type                          
+    end
+    app.game.GameData.setCardsData(pCards)
         
     -- 是否全压
     local isallin = app.game.GameData.getAllIn()
@@ -758,9 +770,27 @@ function GamePresenter:onGameOver(data, players)
         for seat = 0, self._maxPlayerCnt - 1 do
             local player = app.game.PlayerData.getPlayerByServerSeat(seat)            
             if players[seat] and player and player:isPlaying() then                      
-                table.insert(liveSeat,seat)    
+                table.insert(liveSeat,seat)  
             end 
         end
+        
+        local intab = false
+        for _, seat in ipairs(liveSeat) do
+            local localseat = app.game.PlayerData.serverSeatToLocalSeat(seat) 
+            if localseat == HERO_LOCAL_SEAT then
+            	intab = true
+            end
+        end
+        
+        if intab then
+            for _, seat in ipairs(liveSeat) do
+                local localseat = app.game.PlayerData.serverSeatToLocalSeat(seat) 
+                if localseat ~= HERO_LOCAL_SEAT then
+                    app.game.GameData.setCompareSeat(localseat)  
+                end
+            end        	
+        end
+
         if #liveSeat > 2 then
             -- 群魔乱舞动画
             self:playQMLWAction(liveSeat, data.winnerSeat) 
@@ -804,15 +834,30 @@ function GamePresenter:onResult(data, players)
         table.insert(newWinseats, tempSeat)                
     end
     
+    local showseats = app.game.GameData.getShowSeat()
+    for _, seat in ipairs(showseats) do
+        local localSeat = app.game.PlayerData.serverSeatToLocalSeat(seat)
+        local gameHandCardNode = self._gamePlayerNodes[localSeat]:getGameHandCardNode()       
+        gameHandCardNode:resetHandCards()
+        gameHandCardNode:createCards(players[seat].cards)  
+        
+        self._gamePlayerNodes[localSeat]:showImgCardType(true, players[seat].type)        
+    end
+
     local chipBackseats = {}
     for i, winseat in ipairs(newWinseats) do
         local localSeat = app.game.PlayerData.serverSeatToLocalSeat(winseat)
         if localSeat >= 0 and localSeat <= self._maxPlayerCnt-1 then
-            local gameHandCardNode = self._gamePlayerNodes[localSeat]:getGameHandCardNode()            
-            gameHandCardNode:resetHandCards()
-            gameHandCardNode:createCards(players[winseat].cards)  
+            local comparedata = app.game.GameData.getCompareSeat()
+            for _, tmpseat in ipairs(comparedata) do
+                if tmpseat == localSeat then
+                    local gameHandCardNode = self._gamePlayerNodes[localSeat]:getGameHandCardNode()       
+                    gameHandCardNode:resetHandCards()
+                    gameHandCardNode:createCards(players[winseat].cards)  
+                    self._gamePlayerNodes[localSeat]:showImgCardType(true, players[winseat].type) 
+                end
+            end
 
-            self._gamePlayerNodes[localSeat]:showImgCardType(true, players[winseat].type)          
             self._gamePlayerNodes[localSeat]:showImgCheck(false)
             
             if players[winseat].type == GECT.zjh_shunjin then
@@ -853,7 +898,7 @@ function GamePresenter:onResult(data, players)
     -- 延时准备
     self:performWithDelayGlobal(function()
         print("delay 4")
-        self:sendPlayerReady()
+        self:sendPlayerReady()        
     end, 4)                 
 end
 
@@ -933,8 +978,24 @@ function GamePresenter:onChangeTable(flag)
         end, 2)
 end
 
-function GamePresenter:onGameOverShow(seat)
-	print("over show seat is",seat)	
+function GamePresenter:onGameOverShow(showseat)
+    print("onGameOverShow")
+    local localseat = app.game.PlayerData.serverSeatToLocalSeat(showseat)
+    
+    app.game.GameData.setShowSeat(showseat)
+    
+    if localseat == HERO_LOCAL_SEAT then
+        self._gameBtnNode:showBetNode(false)  
+    end
+   
+    local data = app.game.GameData.getCardsData()
+    if data[showseat] then
+        local gameHandCardNode = self._gamePlayerNodes[localseat]:getGameHandCardNode()       
+        gameHandCardNode:resetHandCards()
+        gameHandCardNode:createCards(data[showseat].cards)  
+
+        self._gamePlayerNodes[localseat]:showImgCardType(true, data[showseat].type)
+    end
 end
 
 --------------------------------------------
@@ -1364,7 +1425,7 @@ function GamePresenter:sendBipai(seat)
     if po ~= nil then
         local sessionid = app.data.UserData.getSession() or 222
         po:writer_reset()
-        po:write_byte(seat) 
+        po:write_int16(seat) 
         upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_COMPARE_CARD_REQ)
     end 
 end
@@ -1404,16 +1465,24 @@ function GamePresenter:sendEndShow()
 end
 
 -- 准备
-function GamePresenter:sendPlayerReady()    
-    local hero = app.game.PlayerData.getHero()   
-    if hero then       
-        print("hero is leave", hero:isLeave())
+function GamePresenter:sendPlayerReady()   
+    local ready = app.game.GameData.getHeroReady()
+    if ready then
+        print("have ready")
+        return 
     end 
-    print("zjh send ready", hero)
-    
+      
+    local hero = app.game.PlayerData.getHero()   
+    if not hero then  
+        print("no hero")     
+        return
+    end 
+   
     local po = upconn.upconn:get_packet_obj()
     local limit = app.game.GameConfig.getLimit()    
     if hero and not hero:isLeave() and hero:getBalance() > limit and po then        
+        print("hero send ready", hero:getTicketID())
+        
         local sessionid = app.data.UserData.getSession() or 222        
         po:writer_reset()
         po:write_int64(sessionid)

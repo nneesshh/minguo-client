@@ -30,12 +30,12 @@ local function _readTableInfo(po)
     info.round       = po:read_byte()
     info.basebet     = po:read_int32()
     info.jackpot     = po:read_int32()
-    info.banker      = po:read_byte()
-    info.currseat    = po:read_byte()
+    info.banker      = po:read_int16()
+    info.currseat    = po:read_int16()
     info.playercount = po:read_int32()
     info.playerseat  = {}
     for i = 1, info.playercount do
-        table.insert(info.playerseat, po:read_byte())
+        table.insert(info.playerseat, po:read_int16())
     end
     return info
 end
@@ -48,12 +48,11 @@ local function _readSeatPlayerInfo(po)
     info.gender     = po:read_byte()
     info.balance    = po:read_int64()
     info.status     = po:read_byte()
-    info.seat       = po:read_byte()
+    info.seat       = po:read_int16()
     info.bet        = po:read_int32()
     info.bankermult = po:read_int32()
     info.mult       = po:read_int32()  
-    info.isshow     = po:read_int32()
-    info.overshow   = po:read_int32()
+    info.isshow     = po:read_byte()
     return info
 end
 
@@ -296,7 +295,12 @@ function _M.onEnterRoom(conn, sessionid, msgid)
             end            
             app.game.GamePresenter:getInstance():onPlayerEnter(player) 
             if app.data.UserData.getTicketID() == id then               
-                _M.sendPlayerReady(gameid)
+                if tabInfo.status == zjh_defs.TableStatus.TS_IDLE 
+                    or tabInfo.status == zjh_defs.TableStatus.TS_PREPARE 
+                    or tabInfo.status == zjh_defs.TableStatus.TS_ENDING then 
+                    print("enter player send ready")                   
+                    _M.sendPlayerReady(gameid)
+                end
             end                    
         end
     else
@@ -361,7 +365,12 @@ function _M.onChangeTable(conn, sessionid, msgid)
             end                  
             app.game.GamePresenter:getInstance():onPlayerEnter(player)
             if app.data.UserData.getTicketID() == id then                
-                _M.sendPlayerReady(gameid)
+                if tabInfo.status == zjh_defs.TableStatus.TS_IDLE 
+                    or tabInfo.status == zjh_defs.TableStatus.TS_PREPARE 
+                    or tabInfo.status == zjh_defs.TableStatus.TS_ENDING then    
+                    print("change table send ready")                  
+                    _M.sendPlayerReady(gameid)
+                end
             end         
         end
     else

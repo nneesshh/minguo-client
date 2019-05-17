@@ -21,6 +21,17 @@ local ErrorMessage = {
     [5] = "账号限制",
 }
 
+--// 桌子状态
+local TableStatus = {
+    TS_IDLE         = 0,
+    TS_PREPARE      = 1, --准备
+    TS_BANKER       = 2, --抢庄
+    TS_DEALING      = 3, -- 发牌
+    TS_PLAYING      = 4, -- 游戏中
+    TS_ENDING       = 5, -- 游戏结束
+    TS_CLOSED       = 6, -- 游戏停服，桌子已经关闭
+}
+
 local MsgId = {
     --// lobby
     MSGID_HEART_BEAT_REQ		= 0x1001,		--//心跳 4097
@@ -118,5 +129,6 @@ local MsgId = {
 return {
     ErrorCode    = ErrorCode,
     ErrorMessage = ErrorMessage,
-    MsgId        = MsgId
+    MsgId        = MsgId,
+    TableStatus  = TableStatus
 }

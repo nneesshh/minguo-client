@@ -22,7 +22,8 @@ app.Connect                                 = requireLobby("app.connect.Connect"
 ------------------------------------ 常量 -------------------------------------
 app.Event                                   = requireLobby("app.constants.Event")
 app.Game                                    = requireLobby("app.constants.Game")
-app.Account                                 = requireLobby("app.constants.Account")
+
+app.Account                                 = requireLobby("app.account.Account")
 
 ----------------------------------- 工具类 ------------------------------------
 app.util = app.util or {}

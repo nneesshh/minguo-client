@@ -4,12 +4,19 @@
 
 app = app or {}
 
+----------------------------------- require ----------------------------------
+HotpatchRequire                             = require("hotpatch.HotpatchRequire")
+requireLobby                                = HotpatchRequire.requireLobby
+requireZJH                                  = HotpatchRequire.requireZJH
+requireJDNN                                 = HotpatchRequire.requireJDNN
+requireQZNN                                 = HotpatchRequire.requireQZNN
+
 ----------------------------------- network ----------------------------------
-upconn                                      = requireLobby "upconn.ZjhUpconn"
 cfg_game_zjh                                = cfg_game_zjh or {}
 zjh_defs                                    = zjh_defs or {}
 msg_dispatcher                              = msg_dispatcher or {}
 
+upconn                                      = requireLobby "upconn.ZjhUpconn"
 app.Connect                                 = requireLobby("app.connect.Connect")
 
 ------------------------------------ 常量 -------------------------------------

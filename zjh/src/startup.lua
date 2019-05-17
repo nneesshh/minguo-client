@@ -3,6 +3,9 @@
 ]]
 local startup   = class("startup")
 
+
+HotpatchController = require("hotpatch.HotpatchController")
+
 startup.csbPath = "lobby/csb/loading.csb"
 startup._schedulerProgress = nil
 
@@ -98,7 +101,7 @@ end
 function startup:startGame()
     self:exit()
   
-    local start = requireLobby "app.start"
+    local start = require "app.start"
     start.init()
     start.start()
 end
@@ -140,8 +143,8 @@ end
 function startup:onHotUpdate(info)
     if self._rootNode then
         self:showErrorHint("", false)
-        if cc.EventAssetsManagerEx.EventCode.UPDATE_FINISHED == info.code then
-            HotpatchRequire.reloadLobby()
+        if cc.EventAssetsManagerEx.EventCode.UPDATE_FINISHED == info.code then              
+            self:reload()            
             self:startGame()  
         elseif cc.EventAssetsManagerEx.EventCode.ALREADY_UP_TO_DATE == info.code then
             self:startGame()  
@@ -152,6 +155,25 @@ function startup:onHotUpdate(info)
         else
             self:showErrorHint(info.tips, true)
         end        
+    end
+end
+
+function startup:reloadRequire(name)
+    if package.loaded[name] then
+        package.loaded[name] = nil
+        return require(name)
+    end 
+end
+
+function startup:reload()
+    self:reloadRequire("config")   
+    self:reloadRequire("startup")   
+    HotpatchController = self:reloadRequire("hotpatch.HotpatchController")
+    if HotpatchRequire then
+        print("is not nil")
+        HotpatchRequire.reloadLobby()
+    else
+        print("HotpatchRequire is not nil")  
     end
 end
 

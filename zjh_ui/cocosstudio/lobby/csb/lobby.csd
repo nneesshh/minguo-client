@@ -390,6 +390,51 @@
               <AbstractNodeData Name="btn_game_3" ActionTag="270161202" Tag="771" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="422.4400" RightMargin="662.5600" TopMargin="-4.0000" BottomMargin="246.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="219" Scale9Height="236" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="249.0000" Y="258.0000" />
                 <Children>
+                  <AbstractNodeData Name="hotpatch_pnl" ActionTag="-1338379471" VisibleForFrame="False" Tag="83" IconVisible="False" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+                    <Size X="249.0000" Y="258.0000" />
+                    <Children>
+                      <AbstractNodeData Name="img_circle" ActionTag="-59554455" Tag="84" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="57.5000" RightMargin="57.5000" TopMargin="62.0000" BottomMargin="62.0000" LeftEage="44" RightEage="44" TopEage="44" BottomEage="44" Scale9OriginX="44" Scale9OriginY="44" Scale9Width="46" Scale9Height="46" ctype="ImageViewObjectData">
+                        <Size X="134.0000" Y="134.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="124.5000" Y="129.0000" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="0.5000" Y="0.5000" />
+                        <PreSize X="0.5382" Y="0.5194" />
+                        <FileData Type="Normal" Path="lobby/image/lobby/img_load_1.png" Plist="" />
+                      </AbstractNodeData>
+                      <AbstractNodeData Name="img_icon" ActionTag="1045919383" Tag="85" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="57.5000" RightMargin="57.5000" TopMargin="62.0000" BottomMargin="62.0000" LeftEage="44" RightEage="44" TopEage="44" BottomEage="44" Scale9OriginX="44" Scale9OriginY="44" Scale9Width="46" Scale9Height="46" ctype="ImageViewObjectData">
+                        <Size X="134.0000" Y="134.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="124.5000" Y="129.0000" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="0.5000" Y="0.5000" />
+                        <PreSize X="0.5382" Y="0.5194" />
+                        <FileData Type="Normal" Path="lobby/image/lobby/img_load_2.png" Plist="" />
+                      </AbstractNodeData>
+                      <AbstractNodeData Name="fnt_percent" ActionTag="-123463251" Tag="86" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="108.5000" RightMargin="108.5000" TopMargin="118.0000" BottomMargin="118.0000" LabelText="0%" ctype="TextBMFontObjectData">
+                        <Size X="32.0000" Y="22.0000" />
+                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <Position X="124.5000" Y="129.0000" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="0.5000" Y="0.5000" />
+                        <PreSize X="0.1285" Y="0.0853" />
+                        <LabelBMFontFile_CNB Type="Normal" Path="lobby/image/fnt/hotfnt.fnt" Plist="" />
+                      </AbstractNodeData>
+                    </Children>
+                    <AnchorPoint />
+                    <Position />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition />
+                    <PreSize X="1.0000" Y="1.0000" />
+                    <SingleColor A="255" R="150" G="200" B="255" />
+                    <FirstColor A="255" R="150" G="200" B="255" />
+                    <EndColor A="255" R="255" G="255" B="255" />
+                    <ColorVector ScaleY="1.0000" />
+                  </AbstractNodeData>
                   <AbstractNodeData Name="img_download" ActionTag="-73396084" VisibleForFrame="False" Tag="678" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="169.2000" RightMargin="19.8000" TopMargin="21.6000" BottomMargin="176.4000" Scale9Width="60" Scale9Height="60" ctype="ImageViewObjectData">
                     <Size X="60.0000" Y="60.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />

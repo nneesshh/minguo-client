@@ -1,10 +1,16 @@
 {
   "assets": {
+    "res/game/public/background/img_back_lhd.jpg": {
+      "md5": "6a9969ad89a877737d83178ed2b9de25"
+    }, 
     "res/game/public/background/img_background.jpg": {
       "md5": "63f5bd60dec54b52d8b2671ed25ae6fb"
     }, 
     "res/game/public/background/img_desk.png": {
       "md5": "cfdb990a417476609a0de20f67c4a1dc"
+    }, 
+    "res/game/public/background/img_desk_lhd.png": {
+      "md5": "f76264b9d493b18f7f8320b8b39e9bfd"
     }, 
     "res/game/public/menuplist.plist": {
       "md5": "5a12c9b5816da152d6eee29e601a8f62"
@@ -19,13 +25,13 @@
       "md5": "0172c12758d93d8feaf9eee416089011"
     }, 
     "res/game/zjh/csb/button.csb": {
-      "md5": "c128e7f5c7d621b6b8b23143b98fa859"
+      "md5": "c2f6a23e70f61953a31b29ebfed25509"
     }, 
     "res/game/zjh/csb/card.csb": {
       "md5": "ff848c80d87aa9177d2ce3cea3e5ceef"
     }, 
     "res/game/zjh/csb/gamescene.csb": {
-      "md5": "449d2df99c1692ee4556daba3c1c9e20"
+      "md5": "d246efbfd47eb78813a012c74159db89"
     }, 
     "res/game/zjh/csb/menu.csb": {
       "md5": "b3e8673d489344a4cff37202f5cc4865"
@@ -117,11 +123,14 @@
     "res/game/zjh/image/fnt/winfnt.png": {
       "md5": "2836af8baf764ed2493c87f61e005fc7"
     }, 
+    "res/game/zjh/image/img_bottom.png": {
+      "md5": "1c7019bce4b0a5be1b94503119dd0014"
+    }, 
     "res/game/zjh/image/plistscene.plist": {
-      "md5": "10aebf6137b4186dd857ac004315700d"
+      "md5": "ad3dd246ff185360336aa733f506eb5f"
     }, 
     "res/game/zjh/image/plistscene.png": {
-      "md5": "2c96efb7249e9a9ca6ae18220e17a36a"
+      "md5": "76f6e287485bb6116eced3fd38532773"
     }, 
     "res/game/zjh/sound/af_jhwin.mp3": {
       "md5": "d1d8b27555ae2f5ffe50dce4c2f38fc4"
@@ -217,13 +226,13 @@
       "md5": "0b37e122a252478727598bbfce3431ed"
     }, 
     "src/app/game/zjh/GameBtnNode.lua": {
-      "md5": "80afd149716e7f82eaa80179efd397d6"
+      "md5": "f8ce29160bb213e4d3086b2d216f984b"
     }, 
     "src/app/game/zjh/GameCardNode.lua": {
-      "md5": "62d0eba50b2636b7b3446c53c8ce04d3"
+      "md5": "311425697328c68bbc3edae9fbbf96a2"
     }, 
     "src/app/game/zjh/GameData.lua": {
-      "md5": "3f5722c183acae9d12fda4a8ed8b9e21"
+      "md5": "d84a8f8ee908234e34516549b11a103b"
     }, 
     "src/app/game/zjh/GameEnum.lua": {
       "md5": "b67510fbf16366ba0c4d161a9643d8bb"
@@ -232,16 +241,16 @@
       "md5": "fa03021d86c8e2467728975e820325ed"
     }, 
     "src/app/game/zjh/GameMenuNode.lua": {
-      "md5": "a15bf412458ffc601e7326a83d6ac386"
+      "md5": "93482aa9877d5fad88557c20ed539b8e"
     }, 
     "src/app/game/zjh/GamePlayerNode.lua": {
-      "md5": "b39df2623a81d7104952b75cbf570aa7"
+      "md5": "5cb60ff9db130f3f7412ae38940e0c7a"
     }, 
     "src/app/game/zjh/GamePresenter.lua": {
-      "md5": "bd94f23cc0e2f2bd5518db358ef076d0"
+      "md5": "e96c63862637c2a9614deb953193d7fa"
     }, 
     "src/app/game/zjh/GameScene.lua": {
-      "md5": "0ddc0fe030464a9e2b73f6373aae23e3"
+      "md5": "ad6158e36d20d350a927b24eb3ba53e9"
     }
   }, 
   "engineVersion": "cocos2dx-lua-3.10", 

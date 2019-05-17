@@ -1,13 +1,13 @@
 {
   "assets": {
     "res/game/jdnn/csb/button.csb": {
-      "md5": "d8d593b6c71855c95a3054d763ea519b"
+      "md5": "654c2decd3c0fd4d82e2b3340c4db74e"
     }, 
     "res/game/jdnn/csb/card.csb": {
       "md5": "267301deb3793c42e266ad861cc95a2e"
     }, 
     "res/game/jdnn/csb/gamescene.csb": {
-      "md5": "659387cd160c309dc7a7ae80cd4a2549"
+      "md5": "cdddcf4cb4b385c8eb807547cc4b8405"
     }, 
     "res/game/jdnn/csb/menu.csb": {
       "md5": "7a806a776eb84373b39446b03231f463"
@@ -76,10 +76,10 @@
       "md5": "2836af8baf764ed2493c87f61e005fc7"
     }, 
     "res/game/jdnn/image/plistscene.plist": {
-      "md5": "170057ae6a3804d23e6995e7909960d7"
+      "md5": "8953dfff51b1fb69db4fb8cffd5a7a8d"
     }, 
     "res/game/jdnn/image/plistscene.png": {
-      "md5": "484b18dec085efde2b0cfb80246e2559"
+      "md5": "1f98f8b4ebe25e8b3d9e97f32a2d8458"
     }, 
     "res/game/jdnn/sound/af_lose.mp3": {
       "md5": "6d0515713b394d0b25eb13ae1b99da90"
@@ -192,11 +192,17 @@
     "res/game/jdnn/sound/zhuang.mp3": {
       "md5": "3ac7cba3b8aa3b6b2f20e724f27b0195"
     }, 
+    "res/game/public/background/img_back_lhd.jpg": {
+      "md5": "6a9969ad89a877737d83178ed2b9de25"
+    }, 
     "res/game/public/background/img_background.jpg": {
       "md5": "63f5bd60dec54b52d8b2671ed25ae6fb"
     }, 
     "res/game/public/background/img_desk.png": {
       "md5": "cfdb990a417476609a0de20f67c4a1dc"
+    }, 
+    "res/game/public/background/img_desk_lhd.png": {
+      "md5": "f76264b9d493b18f7f8320b8b39e9bfd"
     }, 
     "res/game/public/menuplist.plist": {
       "md5": "5a12c9b5816da152d6eee29e601a8f62"
@@ -214,10 +220,10 @@
       "md5": "15dc090f5443298d0620c2d1beac0ba6"
     }, 
     "src/app/game/jdnn/GameCardNode.lua": {
-      "md5": "680904087546e24887d25bd6f67c9d4c"
+      "md5": "4013b75cbf2d0f9b7cc00a33288b312a"
     }, 
     "src/app/game/jdnn/GameData.lua": {
-      "md5": "495d2c972d9b7ab797da7da85586ee10"
+      "md5": "ac41d947fe93b52ff63fdf4e03245e4e"
     }, 
     "src/app/game/jdnn/GameEnum.lua": {
       "md5": "87e00ca0ffb5400f3a10c0ff8efca75b"
@@ -232,13 +238,13 @@
       "md5": "f78dce8b6e1b86055210c06d390ecf2c"
     }, 
     "src/app/game/jdnn/GamePlayerNode.lua": {
-      "md5": "2f321850f0c30e6da084fd0bd95acf4c"
+      "md5": "2774331e2ee5d71c372327adbf617c92"
     }, 
     "src/app/game/jdnn/GamePresenter.lua": {
-      "md5": "eab094070da7776ea27bb3b6eff683eb"
+      "md5": "05fac08d821da59991e1cbf627d6a625"
     }, 
     "src/app/game/jdnn/GameScene.lua": {
-      "md5": "93386e424371ac386bcfa10f7e5601f5"
+      "md5": "288156ed4adb718469624aeddc97fae8"
     }
   }, 
   "engineVersion": "cocos2dx-lua-3.10", 

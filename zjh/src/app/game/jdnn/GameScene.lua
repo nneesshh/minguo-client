@@ -36,22 +36,22 @@ function GameScene:onEvent(sender, eventType)
     local name = sender:getName()
     if name == "cbx_banker_test" then
         if eventType == ccui.CheckBoxEventType.selected then  
-            self:setSelected(true, name)                          
-            self._presenter:onEventCbxBanker()            
+            self:setSelected(true, name)   
+            self._presenter:onEventCbxBanker()                                       
         elseif eventType == ccui.CheckBoxEventType.unselected then            
             self:setSelected(false, name)                                              
         end
     elseif name == "cbx_mult_test" then
         if eventType == ccui.CheckBoxEventType.selected then  
-            self:setSelected(true, name)          
-            self._presenter:onEventCbxMult()                
+            self:setSelected(true, name)  
+            self._presenter:onEventCbxMult()                                   
         elseif eventType == ccui.CheckBoxEventType.unselected then            
             self:setSelected(false, name)                   
         end
     elseif name == "cbx_cal_test" then 
         if eventType == ccui.CheckBoxEventType.selected then  
-            self:setSelected(true, name)          
-            self._presenter:onEventCbxCal()            
+            self._presenter:onEventCbxCal()  
+            self:setSelected(true, name)                   
         elseif eventType == ccui.CheckBoxEventType.unselected then            
             self:setSelected(false, name)
         end
@@ -159,7 +159,8 @@ end
 function GameScene:playFlyGoldAction(from, to, callback)
     local pnlfrom = self:seekChildByName("pnl_player_" .. from)      
     local pnlto = self:seekChildByName("pnl_player_" .. to)
-    if not pnlfrom or not pnlto then
+    if not pnlfrom or not pnlto then  
+        self._presenter:dealHintStart("pnlfrom or pnlto is nil")      
     	return
     end    
     local fx, fy = pnlfrom:getPosition()    
@@ -241,7 +242,7 @@ function GameScene:showLoseEffect()
     self._presenter:playEffectByName("lose")
 end
 
-function GameScene:showWinloseEffect(flag, heroseat)
+function GameScene:showWinloseEffect(flag)
 	if flag then       
 	   print("win")
 	    self:showWinEffect()

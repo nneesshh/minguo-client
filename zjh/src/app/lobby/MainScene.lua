@@ -81,9 +81,7 @@ function MainScene:initUI(gameID, roomMode)
     
     self:initEffect()   
     
-    print("is all num", app.util.VaildUtils.isAlNum("1589"))
-    
-    
+    print("wo tao ni hou zi")
 end
 
 function MainScene:onEnter()
@@ -164,9 +162,23 @@ function MainScene:commonActionMoveBy()
     return Action
 end
 
+function MainScene:showLobby()
+    local pnlLobbyTop = self:seekChildByName("lobby_top")
+    local pnlPlazaTop = self:seekChildByName("plaza_top")
+    local pnlLobby = self:seekChildByName("lobby")    
+    local pnlPlaza = self:seekChildByName("plaza")
+    local pnlBottom = self:seekChildByName("bottom")
+    
+    pnlLobbyTop:setVisible(true)
+    pnlPlazaTop:setVisible(false)
+    pnlLobby:setVisible(true)
+    pnlPlaza:setVisible(false)
+    pnlBottom:setVisible(true)
+end
+
 -- 加载场列表
 function MainScene:loadPlazaList(gameid, plazainfos)
-    if plazainfos == nil then
+    if plazainfos == nil or gameid == nil then
     	return
     end    
     

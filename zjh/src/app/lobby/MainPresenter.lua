@@ -62,7 +62,7 @@ end
 function MainPresenter:initDownload()
     local patch = {}    
     for k, gameid in pairs(app.Game.GameID) do
-        if gameid == 1 or gameid == 2 then
+        if gameid == 1 or gameid == 2 or gameid == 3 then
             if not cc.FileUtils:getInstance():isFileExist(
                 cc.FileUtils:getInstance():getWritablePath() .. app.Game.patchManifest[gameid]) then
                 table.insert(patch, gameid)
@@ -118,11 +118,15 @@ end
 
 -- 显示场列表
 function MainPresenter:showPlazaLists(gameid)
-    print("gameid is",gameid)
     local plazainfo = app.data.PlazaData.getPlazaList(gameid)
-    dump(plazainfo)
+
     self._ui:getInstance():showPlazaPnl(true)
     self._ui:getInstance():loadPlazaList(gameid , plazainfo)    
+end
+
+-- 展示大厅
+function MainPresenter:showLobby()
+	self._ui:getInstance():showLobby()
 end
 
 -- 显示个人中心
@@ -242,7 +246,9 @@ function MainPresenter:onHotpatch(info)
             HotpatchRequire.reloadJDNN()   
         end
         self._ui:getInstance():showHotpatchProgress(false, info.percent, info.gameid)
-        self:showPlazaLists(info.gameid)
+        if info.gameid >= app.Game.GameID.ZJH then
+            self:showPlazaLists(info.gameid)
+        end        
     -- 已最新               
     elseif cc.EventAssetsManagerEx.EventCode.ALREADY_UP_TO_DATE == info.code then
         print("已经是最新啦")

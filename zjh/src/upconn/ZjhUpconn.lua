@@ -62,7 +62,9 @@ function _M.start()
     end
 
     local error_cb = function(self, errstr)
-        print("error_cb, connid=" .. tostring(self.id) .. ", err:" .. errstr)     
+        print("error_cb, connid=" .. tostring(self.id) .. ", err:" .. errstr) 
+        app.Connect:getInstance():close()
+        app.lobby.login.LoginPresenter:getInstance():reLogin()      
     end
 
     local got_packet_cb = function(self, pkt)
@@ -182,14 +184,14 @@ local function _readGameOver(po)
     return info, players
 end
 
-
-
 function _M.onPlayerReady(conn, sessionid, msgid)
     local resp = {}
     local po = upconn.upconn:get_packet_obj()
     local seat = po:read_byte()
     
-    print("ready", seat)
+    if app.game.GamePresenter then
+        app.game.GamePresenter:getInstance():onPlayerReady(seat) 
+    end  
 end
 
 function _M.onGamePrepare(conn, sessionid, msgid)
@@ -225,6 +227,17 @@ function _M.onPlayerGiveUp(conn, sessionid, msgid)
     
     if app.game.GamePresenter then
         app.game.GamePresenter:getInstance():onPlayerGiveUp(now, next, round) 
+    end    
+end
+
+function _M.onGameOverShow(conn, sessionid, msgid)
+    print("onGameOverShow")
+    local resp = {}
+    local po = upconn.upconn:get_packet_obj()
+    local seat = po:read_byte()
+    
+    if app.game.GamePresenter then
+        app.game.GamePresenter:getInstance():onGameOverShow(seat) 
     end    
 end
 
@@ -295,7 +308,8 @@ function _M.doRegisterMsgCallbacks()
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_REGISTER_RESP, pubConn.onRegister)
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_LOGIN_RESP, pubConn.onLogin)
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_CHANGE_USER_INFO_RESP, pubConn.onUserInfo)
-    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_RELOGIN_NOTIFY_NEW, pubConn.onRelogin)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_RELOGIN_NOTIFY_NEW, pubConn.onRelogin)    
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_DEPOSIT_CASH_RESP, pubConn.onDepositCash)
         
     -- 玩家动作
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_PLAYER_STATUS_NOTIFY_NEW, pubConn.onPlayerStatus)
@@ -314,6 +328,7 @@ function _M.doRegisterMsgCallbacks()
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_SHOW_CARD_NOTIFY, _M.onPlayerShowCard)
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_COMPARE_CARD_NOTIFY, _M.onPlayerCompareCard)
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_GIVE_UP_NOTIFY, _M.onPlayerGiveUp) 
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_ZJH_GAME_OVER_SHOW_NOTIFY, _M.onGameOverShow) 
     
     -- 牛牛相关
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_GAME_PREPARE_NOTIFY, jdnnConn.onNiuGamePrepare)

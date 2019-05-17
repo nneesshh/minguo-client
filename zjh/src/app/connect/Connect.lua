@@ -106,9 +106,12 @@ function Connect:openScheduleTimeOut()
     local function timeoutfnc()     
         local nowTime = os.time()
         if nowTime - self.receiveTime > self.heartBeatTimeout then 
-            print("die le")                       
-            self:close()
-            app.lobby.login.LoginPresenter:getInstance():reLogin()                              
+            print("die le save me")   
+            
+            if CC_HEART_BEAT then
+                self:close()
+                app.lobby.login.LoginPresenter:getInstance():reLogin()          
+            end                                           
         end
     end
     
@@ -128,9 +131,7 @@ function Connect:close()
     self:updateState(Connect.STATE.CLOSED)     
 end
 
-function Connect:respHeartbeat()
-    print("beat !!!")
-        
+function Connect:respHeartbeat()   
     self.receiveTime = os.time()    
 end
 

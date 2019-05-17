@@ -36,22 +36,22 @@ function GameScene:onEvent(sender, eventType)
     local name = sender:getName()
     if name == "cbx_banker_test" then
         if eventType == ccui.CheckBoxEventType.selected then  
-            self:setSelected(true, name)                          
-            self._presenter:onEventCbxBanker()            
+            self:setSelected(true, name)   
+            self._presenter:onEventCbxBanker()                                    
         elseif eventType == ccui.CheckBoxEventType.unselected then            
             self:setSelected(false, name)                                              
         end
     elseif name == "cbx_mult_test" then
         if eventType == ccui.CheckBoxEventType.selected then  
-            self:setSelected(true, name)          
-            self._presenter:onEventCbxMult()                
+            self:setSelected(true, name) 
+            self._presenter:onEventCbxMult()                              
         elseif eventType == ccui.CheckBoxEventType.unselected then            
             self:setSelected(false, name)                   
         end
     elseif name == "cbx_cal_test" then 
         if eventType == ccui.CheckBoxEventType.selected then  
-            self:setSelected(true, name)          
-            self._presenter:onEventCbxCal()            
+            self._presenter:onEventCbxCal()
+            self:setSelected(true, name)                              
         elseif eventType == ccui.CheckBoxEventType.unselected then            
             self:setSelected(false, name)
         end

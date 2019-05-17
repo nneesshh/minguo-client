@@ -35,7 +35,8 @@ function GamePresenter:init(...)
     self:initBtnNode()
     self:initMenuNode()
     self:initTouch()
-    self:initScheduler()        
+    self:initScheduler()  
+    self._playing = false      
 end
 
 function GamePresenter:initPlayerNode()
@@ -110,6 +111,10 @@ end
 
 -- 处理玩家状态
 function GamePresenter:onPlayerStatus(data)
+    local player = app.game.PlayerData.getPlayerByNumID(data.ticketid)        
+    if not player then
+        return
+    end    
     -- 更新本家状态
     if app.game.PlayerData.isHero(data.ticketid) then
         local heroseat = app.game.PlayerData.getHeroSeat()
@@ -185,7 +190,7 @@ function GamePresenter:onPlayerLeave(player)
             if self._gamePlayerNodes[HERO_LOCAL_SEAT] then
                 self:performWithDelayGlobal(
                     function()
-                        if app.game.GamePresenter then
+                        if app.game.GamePresenter and not self._playing then
                             self._ui:getInstance():showPnlHint(2)
                             self._gamePlayerNodes[HERO_LOCAL_SEAT]:onResetTable()
                         end                        
@@ -237,7 +242,9 @@ function GamePresenter:onGamePrepare()
 end
 
 -- 开始
-function GamePresenter:onGameStart()      
+function GamePresenter:onGameStart()   
+    self._playing = true  
+       
     self._ui:getInstance():showPnlHint()
     
     for i = 0, self._maxPlayerCnt - 1 do        
@@ -261,18 +268,24 @@ function GamePresenter:onGameStart()
     end
     -- 开局动画    
     self._ui:getInstance():showStartEffect()
-    
-    
+        
     self:performWithDelayGlobal(
         function()
+            for i = 0, self._maxPlayerCnt - 1 do
+                if self._gamePlayerNodes[i] then                   
+                    self._gamePlayerNodes[i]:showPlayerInfo()
+                end
+            end
+            
             self:onTakeFirst()
+            
         end, TIME_START_EFFECT)
-    
-    
 end
 
 -- 抢庄加倍结束
 function GamePresenter:onNiuConfirmBanker(banker, players)
+    app.game.GameData.setPbanker(true)
+    
     -- 隐藏UI
     self._gameBtnNode:showBankerPanel(false)
     
@@ -287,7 +300,7 @@ function GamePresenter:onNiuConfirmBanker(banker, players)
         local mult = app.game.GameData.getBankerMult()
         for i, player in ipairs(players) do
             local playerObj = app.game.PlayerData.getPlayerByServerSeat(player.seat)
-            if player.seat ~= banker.banker and playerObj:isPlaying() then            
+            if playerObj and player.seat ~= banker.banker and playerObj:isPlaying() then            
                 local localseat = app.game.PlayerData.serverSeatToLocalSeat(player.seat)
                 self._gamePlayerNodes[localseat]:showImgChoose(flag, mult[player.seat])
             end     
@@ -329,6 +342,8 @@ end
 
 -- 闲家加倍结束
 function GamePresenter:onNiuConfirmMult(hero, players)
+    app.game.GameData.setPmult(true)
+    
     -- 隐藏UI
     self._gameBtnNode:showBetPanel(false)
 
@@ -371,14 +386,16 @@ end
 
 -- 发最后一张牌
 function GamePresenter:onTakeFirstLast() 
-    local function callback()
+    local function callback()    
         -- 摊牌
-        self:showTableBtn("cal")
-
+        self:performWithDelayGlobal(function()
+            self:showTableBtn("cal")
+        end, 0.5)
+                
         if self._ui:getInstance():isSelected("cbx_cal_test") then
             self:performWithDelayGlobal(function()
                 self:onEventCbxCal()
-            end, 1)
+            end, 2)
         end             
     end      
     self:openSchedulerTakeFirstLast(callback)
@@ -394,6 +411,10 @@ function GamePresenter:onNiuBankerBid(seat, mult)
         end
     end
     app.game.GameData.setBankerMult(seat, mult)
+    
+    if localseat == HERO_LOCAL_SEAT then
+        app.game.GameData.setPbanker(true)
+    end
 end
 
 -- 闲家加倍
@@ -404,6 +425,10 @@ function GamePresenter:onNiuCompareBid(seat, mult)
         if localseat == HERO_LOCAL_SEAT then
             self._gameBtnNode:showBetPanel(false)
         end
+    end
+    
+    if localseat == HERO_LOCAL_SEAT then
+        app.game.GameData.setPmult(true)
     end
 end
 
@@ -444,10 +469,17 @@ function GamePresenter:onNiuCompareCard(player)
     self._gamePlayerNodes[localseat]:playEffectByName(sound)
     
     app.game.GameData.setGroup(player.seat, 1)
+    
+    if localseat == HERO_LOCAL_SEAT then
+        app.game.GameData.setPgroup(true)
+    end
 end
 
 -- 游戏结束
 function GamePresenter:onNiuGameOver(players) 
+    app.game.GameData.setPgroup(true)
+    
+    self._playing = false
     -- 隐藏ui
     self:showTableBtn()
     
@@ -817,14 +849,11 @@ function GamePresenter:onTouchCalCard()
     local data = app.game.GameData.getHeroCards()
     local lastCard = data.handcards[1]
     table.insert(handcards, lastCard)
-    if #handcards == 5 then
-        local niuCards, numCards = self:divideCards(handcards, data.cardtype)
-        local strNiu = string.char(unpack(niuCards))
-        local strNum = string.char(unpack(numCards))     
-        self:sendCalCard(strNiu, strNum)
-    else
-        print("card is less 5")    
-    end        
+
+    local niuCards, numCards = self:divideCards(handcards, data.cardtype)
+    local strNiu = string.char(unpack(niuCards))
+    local strNum = string.char(unpack(numCards))     
+    self:sendCalCard(strNiu, strNum)     
 end
 
 function GamePresenter:onEventCbxBanker()
@@ -1092,7 +1121,7 @@ function GamePresenter:openSchedulerTakeFirstLast(callback)
 
     self:closeSchedulerTakeFirst()
 
-    self._schedulerTakeFirst = scheduler:scheduleScriptFunc(onInterval, 1/CARD_NUM, false)
+    self._schedulerTakeFirst = scheduler:scheduleScriptFunc(onInterval, 0.5/CARD_NUM, false)
 end
 
 function GamePresenter:closeSchedulerTakeFirst()
@@ -1353,6 +1382,10 @@ end
 
 -- 抢庄倍数
 function GamePresenter:sendBankerMult(index)
+    if app.game.GameData.getPbanker() then
+        print("send qznn banker too much return")
+        return
+    end
     print("banker mult index",index)
     local sessionid = app.data.UserData.getSession() or 222
     local po = upconn.upconn:get_packet_obj()
@@ -1363,6 +1396,10 @@ end
 
 -- 押注倍数
 function GamePresenter:sendMult(index)
+    if not app.game.GameData.getPbanker() or app.game.GameData.getPmult() then
+        print("send qznn mult too much or no banker")
+        return
+    end    
     local sessionid = app.data.UserData.getSession() or 222
     local po = upconn.upconn:get_packet_obj()
     po:writer_reset()
@@ -1371,7 +1408,12 @@ function GamePresenter:sendMult(index)
 end
 
 -- 组牌
-function GamePresenter:sendCalCard(niuCards, numCards)    
+function GamePresenter:sendCalCard(niuCards, numCards)   
+    if not app.game.GameData.getPbanker() or not app.game.GameData.getPmult() or app.game.GameData.getPgroup() then
+        print("send qznn cal too much return or no banker or no mult")
+        return
+    end
+     
     local sessionid = app.data.UserData.getSession() or 222
     local po = upconn.upconn:get_packet_obj()
     po:writer_reset()

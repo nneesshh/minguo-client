@@ -19,6 +19,7 @@ function PlayerData.resetPlayerCount(maxPlayerCnt)
 end
 
 function PlayerData.exit()
+    print("playerdata is exit")
     _maxPlayerCnt  = nil
     _players       = nil
 end
@@ -202,7 +203,7 @@ end
 
 function PlayerData.serverSeatToLocalSeat(serverSeat)
     if serverSeat == nil or _maxPlayerCnt == nil or serverSeat < 0 or serverSeat >= _maxPlayerCnt then
-        print("server seat error") 
+        print("server seat error", serverSeat)  
         return -1
     end
 

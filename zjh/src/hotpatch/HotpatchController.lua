@@ -181,12 +181,12 @@ end
 
 -- 与游戏gameid对应
 function _M:findGameidByManifest()
-    if string.find(self.projectManifest, "lobby") then
-        return 0   
-    elseif string.find(self.projectManifest, "zjh") then
+    if string.find(self.projectManifest, "zjh") then
         return 1
     elseif string.find(self.projectManifest, "jdnn") then
         return 2
+    elseif string.find(self.projectManifest, "qznn") then
+        return 3
     end
     return -1
 end

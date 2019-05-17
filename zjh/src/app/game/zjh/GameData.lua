@@ -15,7 +15,9 @@ local _selfData = {
     playerseat    = {},        -- 座位号  
     basecoin      = 0,
     isallIn       = false,     -- 是否全压
-    leaveseats    = {}         -- 游戏过程中收到要退出玩家的本地座位
+    leaveseats    = {},        -- 游戏过程中收到要退出玩家的本地座位
+    handcards     = {},        -- 手牌 
+    isready       = false      -- 自己是否准备  
 }
 
 function GameData.setTableInfo(info)
@@ -54,6 +56,8 @@ function GameData.restData()
     _selfData.basecoin    = 0
     _selfData.isallIn     = false
     _selfData.leaveseats  = {}
+    _selfData.handcards   = {}
+    _selfData.isready     = false
 end
 
 function GameData.setTableStatus(status)
@@ -159,6 +163,27 @@ end
 
 function GameData.resetLeaveSeats()
     _selfData.leaveseats = {}
+end
+
+function GameData.setHandcards(cards)
+    _selfData.handcards = {}
+    _selfData.handcards = cards
+end
+
+function GameData.resetHandcards()
+    _selfData.handcards = {}
+end
+
+function GameData.getHandcards()
+    return _selfData.handcards
+end
+
+function GameData.setHeroReady(flag)
+	_selfData.isready = flag
+end
+
+function GameData.getHeroReady()
+	return _selfData.isready
 end
 
 return GameData

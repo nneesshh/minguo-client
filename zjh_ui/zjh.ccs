@@ -79,10 +79,48 @@
               <PlistInfo Name="plistscene.csi" Type="Plist" />
             </Folder>
           </Folder>
+          <Folder Name="lhd">
+            <Folder Name="csb">
+              <Project Name="button.csd" Type="Node" />
+              <Project Name="card.csd" Type="Node" />
+              <Project Name="gamescene.csd" Type="Scene" />
+              <Project Name="menu.csd" Type="Node" />
+            </Folder>
+            <Folder Name="image">
+              <Folder Name="fnt" />
+              <Image Name="btn_other.png" />
+              <Image Name="img_back.png" />
+              <Image Name="img_chip_100_1.png" />
+              <Image Name="img_chip_100_2.png" />
+              <Image Name="img_chip_1000_1.png" />
+              <Image Name="img_chip_1000_2.png" />
+              <Image Name="img_chip_10000_1.png" />
+              <Image Name="img_chip_10000_2.png" />
+              <Image Name="img_chip_5000_1.png" />
+              <Image Name="img_chip_5000_2.png" />
+              <Image Name="img_chip_50000_1.png" />
+              <Image Name="img_chip_50000_2.png" />
+              <Image Name="img_going.png" />
+              <Image Name="img_gold.png" />
+              <Image Name="img_head_back1.png" />
+              <Image Name="img_head_back2.png" />
+              <Image Name="img_hu.png" />
+              <Image Name="img_light_he.png" />
+              <Image Name="img_light_hu.png" />
+              <Image Name="img_long.png" />
+              <Image Name="img_lucker.png" />
+              <Image Name="img_result_1.png" />
+              <Image Name="img_result_2.png" />
+              <Image Name="img_result_3.png" />
+              <Image Name="img_richer.png" />
+            </Folder>
+          </Folder>
           <Folder Name="public">
             <Folder Name="background">
+              <Image Name="img_back_lhd.jpg" />
               <Image Name="img_background.jpg" />
               <Image Name="img_desk.png" />
+              <Image Name="img_desk_lhd.png" />
             </Folder>
             <Folder Name="card">
               <Image Name="img_0_10.png" />
@@ -231,6 +269,7 @@
               </Folder>
               <Image Name="btn_bp.png" />
               <Image Name="btn_bp_gray.png" />
+              <Image Name="btn_end_show.png" />
               <Image Name="btn_gdd.png" />
               <Image Name="btn_gz.png" />
               <Image Name="btn_gz_gray.png" />
@@ -283,10 +322,6 @@
               <Image Name="img_zz.png" />
               <PlistInfo Name="plistscene.csi" Type="Plist" />
             </Folder>
-          </Folder>
-          <Folder Name="ldh">
-            <Folder Name="csb" />
-            <Folder Name="image" />
           </Folder>
         </Folder>
         <Folder Name="lobby">

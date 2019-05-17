@@ -17,7 +17,8 @@ GameBtnNode.touchs = {
     "btn_bet_3",
     "btn_bet_4",
     "btn_bet_5",
-    "btn_bet_6"    
+    "btn_bet_6",
+    "btn_end_show"    
 }
 
 GameBtnNode.events = {
@@ -28,21 +29,25 @@ function GameBtnNode:onTouch(sender, eventType)
     GameBtnNode.super.onTouch(self, sender, eventType)
     local name = sender:getName()
     if eventType == ccui.TouchEventType.ended then
+        if name ~= "btn_bp" then
+            self._presenter:playBiPaiPanel(false, true) 
+        end
+        
         if name == "btn_qp" then
             self._presenter:onTouchBtnQipai()
         elseif name == "btn_bp" then
             self._presenter:onTouchBtnBipai()        
-        elseif name == "btn_jz_on" then
-            self._presenter:playBiPaiPanel(false) 
+        elseif name == "btn_jz_on" then            
             self:showExpand(true)
-       elseif name == "btn_jz_off" then
-            self._presenter:playBiPaiPanel(false) 
+       elseif name == "btn_jz_off" then            
             self:showExpand(false)
         elseif name == "btn_gz" then 
             self._presenter:onTouchBtnGenzhu()
         elseif string.find(name, "btn_bet_") then             
             local index = string.split(name, "btn_bet_")[2]
             self._presenter:onTouchBtnBetmult(tonumber(index))
+        elseif name == "btn_end_show" then
+            self._presenter:onTouchBtnEndshow()
         end
     end
 end
@@ -104,10 +109,26 @@ function GameBtnNode:showExpand(flag)
     end
 end
 
-function GameBtnNode:showBetNode(visible)
-    local nodeTableBtn = self:seekChildByName("node_game_btn")
+
+local BET_TYPE  = 1
+local END_SHOW  = 2
+function GameBtnNode:showBetNode(visible, type)
+    local nodeTableBtn = self:seekChildByName("node_game_btn")    
+    self:setSelected(false, "cbx_gdd")
+            
+    if visible then
+        local betbtn = self:seekChildByName("pnl_btn")
+        local endbtn = self:seekChildByName("pnl_end_btn")
+        
+        if type == BET_TYPE then            
+            betbtn:setVisible(true)
+            endbtn:setVisible(false)
+        elseif type == END_SHOW then            
+            betbtn:setVisible(false)
+            endbtn:setVisible(true)
+        end
+    end 
     nodeTableBtn:setVisible(visible)
-    self:setSelected(false, "cbx_gdd")    
 end
 
 -- name1:可点击  name2:不可点击

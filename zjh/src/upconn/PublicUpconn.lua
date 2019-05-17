@@ -70,9 +70,7 @@ end
 function _M.onHeartBeat(conn, sessionid, msgid)
     local resp = {}   
     local po = upconn.upconn:get_packet_obj()
-    
-    print("on beat")
-    
+
     if app.Connect then
         app.Connect:getInstance():respHeartbeat()
     end    
@@ -203,6 +201,19 @@ function _M.onUserInfo(conn, sessionid, msgid)
     resp.errorMsg  = po:read_string()
 
     app.lobby.usercenter.ChangeHeadPresenter:onReqChangeUserinfo(resp.errorCode == zjh_defs.ErrorCode.ERR_SUCCESS)
+end
+
+-- 保险箱
+function _M.onDepositCash(conn, sessionid, msgid)
+    local resp = {}
+    local po = upconn.upconn:get_packet_obj()
+    resp.errorCode = po:read_int32()
+    resp.errorMsg  = po:read_string()
+    
+    resp.balance     = po:read_int64()
+    resp.safebalance = po:read_int64()
+    
+    app.lobby.safe.SafePresenter:onSafeCallback(resp)
 end
 
 -- 玩家状态

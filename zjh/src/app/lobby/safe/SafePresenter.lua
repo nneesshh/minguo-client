@@ -26,7 +26,7 @@ function SafePresenter:onBankUpdate()
         return
     end
 
-    local bank = app.data.UserData.getBank()
+    local bank = app.data.UserData.getSafeBalance()
     self._ui:getInstance():setBank(bank)
 end
 
@@ -43,7 +43,7 @@ function SafePresenter:getMaxGold(type)
 	if type == "put" then
         return app.data.UserData.getBalance()
 	elseif type == "out" then
-        return app.data.UserData.getBank()	
+        return app.data.UserData.getSafeBalance()	
 	end
 end
 
@@ -56,20 +56,12 @@ function SafePresenter:reqPut(num)
                 po:writer_reset()
                 po:write_int64(num)                  
                 local sessionid = app.data.UserData.getSession() or 222
-                upconn.upconn:send_packet(sessionId, zjh_defs.MsgId.MSGID_REGISTER_REQ)                       
+                upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_DEPOSIT_CASH_REQ)                       
+                
+                print("存入%d元",num)               
             end              
         end, 0.2)
-end
-
-function SafePresenter:onPutCallback(data)
-    if data.errcode == zjh_defs.ErrorCode.ERR_SUCCESS then
-        app.data.UserData.setSafeBalance(data.safebalance)
-        app.data.UserData.setBalance(data.balance)
         
-        self._ui:getInstance():resetEnterNum()
-    else
-        self:dealTxtHintStart("存入失败")
-	end
 end
 
 function SafePresenter:reqOut(num)
@@ -80,20 +72,21 @@ function SafePresenter:reqOut(num)
                 po:writer_reset()
                 po:write_int64(-num)                  
                 local sessionid = app.data.UserData.getSession() or 222
-                upconn.upconn:send_packet(sessionId, zjh_defs.MsgId.MSGID_REGISTER_REQ)                       
+                upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_DEPOSIT_CASH_REQ)
+                print("取出%d元",num)                        
             end              
         end, 0.2)
 end
-
-function SafePresenter:onOutCallback(data)
-    if data.errcode == zjh_defs.ErrorCode.ERR_SUCCESS then
-        app.data.UserData.setSafeBalance(data.safebalance)
+  
+function SafePresenter:onSafeCallback(data)
+    if data.errorCode == zjh_defs.ErrorCode.ERR_SUCCESS then        
         app.data.UserData.setBalance(data.balance)
-        
+        app.data.UserData.setSafeBalance(data.safebalance)
+
         self._ui:getInstance():resetEnterNum()
     else
-        self:dealTxtHintStart("取出失败")
+        self:dealTxtHintStart("操作失败")
     end
 end
-    
+  
 return SafePresenter

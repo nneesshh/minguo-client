@@ -12,7 +12,7 @@ local scheduler = cc.Director:getInstance():getScheduler()
 local AccountData = app.data.AccountData
 local _username, _password = "", ""
 
-function LoginPresenter:init(flag)
+function LoginPresenter:init(flag)    
     self:createDispatcher()
         
     _username, _password = "", ""  
@@ -23,6 +23,12 @@ function LoginPresenter:init(flag)
                 app.Connect:getInstance():reConnect()
             end, 0.2)
     end
+end
+
+function LoginPresenter:exit()
+    app.lobby.MainPresenter:getInstance():showLobby()
+    
+    self._ui:getInstance():exit()
 end
 
 function LoginPresenter:createDispatcher()
@@ -36,8 +42,7 @@ function LoginPresenter:onLoginSuccess()
     AccountData.setUsername(_username)
     AccountData.setPassword(_password)
     
-    self._ui:getInstance():exit()    
-    app.lobby.login.LoginPresenter:getInstance():exit()  
+    self:exit()        
 end
 
 function LoginPresenter:onLoginFail(errcode)       
@@ -155,7 +160,7 @@ function LoginPresenter:reLogin(hint)
         self:dealHintStart(hint,
             function(bFlag)               
                 app.game.GameEngine:getInstance():exit()
-                   
+
                 self:performWithDelayGlobal(
                     function()
                         app.lobby.login.LoginPresenter:getInstance():start(true) 

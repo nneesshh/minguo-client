@@ -31,6 +31,9 @@ local MsgId = {
     MSGID_REGISTER_RESP			= 0x1006,		--//注册回应 4102        
     MSGID_CHANGE_USER_INFO_REQ  = 0x1101,       --//修改用户信息请求 4353 
     MSGID_CHANGE_USER_INFO_RESP = 0x1102,       --//修改用户信息回应 4354 
+    
+    MSGID_DEPOSIT_CASH_REQ      = 0x1103,        --//存款请求 4355
+    MSGID_DEPOSIT_CASH_RESP     = 0x1104,        --//存款回应 4356
 
     MSGID_RELOGIN_NOTIFY_NEW       = 0x888,     --//其他用户登录通知 2184 
     MSGID_PLAYER_STATUS_NOTIFY_NEW = 0x889,     --//玩家状态改变通知 2185 
@@ -51,6 +54,7 @@ local MsgId = {
     MSGID_SHOW_CARD_REQ			= 0x2004,		--//看牌 8196
     MSGID_COMPARE_CARD_REQ		= 0x2005,		--//比牌 8197
     MSGID_GIVE_UP_REQ			= 0x2006,		--//弃牌 8198
+    MSGID_ZJH_GAME_OVER_SHOW_REQ= 0x2007,       --//结束游戏时亮牌 8199
 
     MSGID_GAME_PREPARE_NOTIFY   = 0x2021,       --//游戏准备通知 8225
     MSGID_GAME_START_NOTIFY     = 0x2022,       --//游戏开始通知 8226
@@ -63,7 +67,7 @@ local MsgId = {
     MSGID_SHOW_CARD_NOTIFY      = 0x2029,       --//看牌 8233
     MSGID_COMPARE_CARD_NOTIFY   = 0x202A,       --//比牌 8234
     MSGID_GIVE_UP_NOTIFY        = 0x202B,       --//弃牌 8235
-    MSGID_RELOGIN_NOTIFY        = 0x202C,       --//其他用户登录 8236
+    MSGID_ZJH_GAME_OVER_SHOW_NOTIFY = 0x202C,   --//结束游戏时亮牌通知 8236       
     
     -- niu -- 0x2200
     MSGID_NIU_ENTER_ROOM_REQ       = 0x2201,      --牛牛--进入房间请求 8705

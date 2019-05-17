@@ -172,33 +172,6 @@
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
               </AbstractNodeData>
-              <AbstractNodeData Name="node_bipai_effect" ActionTag="-779347899" Tag="300" IconVisible="True" LeftMargin="667.0000" RightMargin="667.0000" TopMargin="380.0000" BottomMargin="370.0000" ctype="SingleNodeObjectData">
-                <Size X="0.0000" Y="0.0000" />
-                <AnchorPoint />
-                <Position X="667.0000" Y="370.0000" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5000" Y="0.4933" />
-                <PreSize X="0.0000" Y="0.0000" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="node_start_effect" ActionTag="-328820952" Tag="292" IconVisible="True" LeftMargin="667.0000" RightMargin="667.0000" TopMargin="375.0000" BottomMargin="375.0000" ctype="SingleNodeObjectData">
-                <Size X="0.0000" Y="0.0000" />
-                <AnchorPoint />
-                <Position X="667.0000" Y="375.0000" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5000" Y="0.5000" />
-                <PreSize X="0.0000" Y="0.0000" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="node_gzyz_effect" ActionTag="-2121855005" Tag="1308" IconVisible="True" LeftMargin="667.0000" RightMargin="667.0000" TopMargin="170.0000" BottomMargin="580.0000" ctype="SingleNodeObjectData">
-                <Size X="0.0000" Y="0.0000" />
-                <AnchorPoint />
-                <Position X="667.0000" Y="580.0000" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5000" Y="0.7733" />
-                <PreSize X="0.0000" Y="0.0000" />
-              </AbstractNodeData>
               <AbstractNodeData Name="pnl_player_0" ActionTag="-719192478" VisibleForFrame="False" Tag="177" IconVisible="False" LeftMargin="72.0000" RightMargin="1182.0000" TopMargin="305.0000" BottomMargin="315.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="80.0000" Y="130.0000" />
                 <Children>
@@ -395,6 +368,19 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.6923" />
                     <PreSize X="0.0000" Y="0.0000" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="pnl_cards" ActionTag="-1699722457" Tag="991" IconVisible="False" LeftMargin="90.0000" RightMargin="-230.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+                    <Size X="220.0000" Y="130.0000" />
+                    <AnchorPoint />
+                    <Position X="90.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="1.1250" />
+                    <PreSize X="2.7500" Y="1.0000" />
+                    <SingleColor A="255" R="150" G="200" B="255" />
+                    <FirstColor A="255" R="150" G="200" B="255" />
+                    <EndColor A="255" R="255" G="255" B="255" />
+                    <ColorVector ScaleY="1.0000" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -620,6 +606,19 @@
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
+                  <AbstractNodeData Name="pnl_cards" ActionTag="-241619348" Tag="992" IconVisible="False" LeftMargin="90.0000" RightMargin="-230.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+                    <Size X="220.0000" Y="130.0000" />
+                    <AnchorPoint />
+                    <Position X="90.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="1.1250" />
+                    <PreSize X="2.7500" Y="1.0000" />
+                    <SingleColor A="255" R="150" G="200" B="255" />
+                    <FirstColor A="255" R="150" G="200" B="255" />
+                    <EndColor A="255" R="255" G="255" B="255" />
+                    <ColorVector ScaleY="1.0000" />
+                  </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="552.0000" Y="165.0000" />
@@ -828,6 +827,19 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.6923" />
                     <PreSize X="0.0000" Y="0.0000" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="pnl_cards" ActionTag="-736032202" Tag="993" IconVisible="False" LeftMargin="-135.0000" RightMargin="-5.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+                    <Size X="220.0000" Y="130.0000" />
+                    <AnchorPoint />
+                    <Position X="-135.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="-1.6875" />
+                    <PreSize X="2.7500" Y="1.0000" />
+                    <SingleColor A="255" R="150" G="200" B="255" />
+                    <FirstColor A="255" R="150" G="200" B="255" />
+                    <EndColor A="255" R="255" G="255" B="255" />
+                    <ColorVector ScaleY="1.0000" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -1038,6 +1050,19 @@
                     <PrePosition X="0.5000" Y="0.6923" />
                     <PreSize X="0.0000" Y="0.0000" />
                   </AbstractNodeData>
+                  <AbstractNodeData Name="pnl_cards" ActionTag="1238670758" Tag="994" IconVisible="False" LeftMargin="-135.0000" RightMargin="-5.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+                    <Size X="220.0000" Y="130.0000" />
+                    <AnchorPoint />
+                    <Position X="-135.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="-1.6875" />
+                    <PreSize X="2.7500" Y="1.0000" />
+                    <SingleColor A="255" R="150" G="200" B="255" />
+                    <FirstColor A="255" R="150" G="200" B="255" />
+                    <EndColor A="255" R="255" G="255" B="255" />
+                    <ColorVector ScaleY="1.0000" />
+                  </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="1006.0000" Y="565.0000" />
@@ -1247,6 +1272,19 @@
                     <PrePosition X="0.5000" Y="0.6923" />
                     <PreSize X="0.0000" Y="0.0000" />
                   </AbstractNodeData>
+                  <AbstractNodeData Name="pnl_cards" ActionTag="1326766377" Tag="995" IconVisible="False" LeftMargin="90.0000" RightMargin="-230.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+                    <Size X="220.0000" Y="130.0000" />
+                    <AnchorPoint />
+                    <Position X="90.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="1.1250" />
+                    <PreSize X="2.7500" Y="1.0000" />
+                    <SingleColor A="255" R="150" G="200" B="255" />
+                    <FirstColor A="255" R="150" G="200" B="255" />
+                    <EndColor A="255" R="255" G="255" B="255" />
+                    <ColorVector ScaleY="1.0000" />
+                  </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="328.0000" Y="565.0000" />
@@ -1295,13 +1333,13 @@
                 <PrePosition X="0.8006" Y="0.5467" />
                 <PreSize X="0.0000" Y="0.0000" />
               </AbstractNodeData>
-              <AbstractNodeData Name="node_game_btn" ActionTag="292914175" VisibleForFrame="False" Tag="282" IconVisible="True" LeftMargin="667.0000" RightMargin="667.0000" TopMargin="695.0250" BottomMargin="54.9750" StretchWidthEnable="False" StretchHeightEnable="False" InnerActionSpeed="1.0000" CustomSizeEnabled="False" ctype="ProjectNodeObjectData">
+              <AbstractNodeData Name="node_game_btn" ActionTag="292914175" Tag="282" IconVisible="True" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="667.0000" RightMargin="667.0000" TopMargin="700.0000" BottomMargin="50.0000" StretchWidthEnable="False" StretchHeightEnable="False" InnerActionSpeed="1.0000" CustomSizeEnabled="False" ctype="ProjectNodeObjectData">
                 <Size X="0.0000" Y="0.0000" />
                 <AnchorPoint />
-                <Position X="667.0000" Y="54.9750" />
+                <Position X="667.0000" Y="50.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5000" Y="0.0733" />
+                <PrePosition X="0.5000" Y="0.0667" />
                 <PreSize X="0.0000" Y="0.0000" />
                 <FileData Type="Normal" Path="game/zjh/csb/button.csd" Plist="" />
               </AbstractNodeData>
@@ -1316,6 +1354,74 @@
             <FirstColor A="255" R="150" G="200" B="255" />
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="pnl_clones" ActionTag="-1649592474" VisibleForFrame="False" Tag="724" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+            <Size X="1334.0000" Y="750.0000" />
+            <Children>
+              <AbstractNodeData Name="pnl_clone_black" ActionTag="-1097543879" Tag="725" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="-833.0000" RightMargin="-833.0000" TopMargin="-1125.0000" BottomMargin="-1125.0000" ClipAble="False" BackColorAlpha="102" ComboBoxIndex="1" ColorAngle="90.0000" ctype="PanelObjectData">
+                <Size X="3000.0000" Y="3000.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="667.0000" Y="375.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.5000" />
+                <PreSize X="2.2489" Y="4.0000" />
+                <SingleColor A="255" R="0" G="0" B="0" />
+                <FirstColor A="255" R="150" G="200" B="255" />
+                <EndColor A="255" R="255" G="255" B="255" />
+                <ColorVector ScaleY="1.0000" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="node_bipai_effect" ActionTag="-779347899" Tag="300" IconVisible="True" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="667.0000" RightMargin="667.0000" TopMargin="375.0000" BottomMargin="375.0000" ctype="SingleNodeObjectData">
+                <Size X="0.0000" Y="0.0000" />
+                <AnchorPoint />
+                <Position X="667.0000" Y="375.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.5000" />
+                <PreSize X="0.0000" Y="0.0000" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="players_clone" ActionTag="427597353" Tag="881" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+                <Size X="1334.0000" Y="750.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="667.0000" Y="375.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.5000" />
+                <PreSize X="1.0000" Y="1.0000" />
+                <SingleColor A="255" R="150" G="200" B="255" />
+                <FirstColor A="255" R="150" G="200" B="255" />
+                <EndColor A="255" R="255" G="255" B="255" />
+                <ColorVector ScaleY="1.0000" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="667.0000" Y="375.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" Y="0.5000" />
+            <PreSize X="1.0000" Y="1.0000" />
+            <SingleColor A="255" R="150" G="200" B="255" />
+            <FirstColor A="255" R="150" G="200" B="255" />
+            <EndColor A="255" R="255" G="255" B="255" />
+            <ColorVector ScaleY="1.0000" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="node_start_effect" ActionTag="-328820952" Tag="292" IconVisible="True" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="667.0000" RightMargin="667.0000" TopMargin="375.0000" BottomMargin="375.0000" ctype="SingleNodeObjectData">
+            <Size X="0.0000" Y="0.0000" />
+            <AnchorPoint />
+            <Position X="667.0000" Y="375.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" Y="0.5000" />
+            <PreSize X="0.0000" Y="0.0000" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="node_gzyz_effect" ActionTag="-2121855005" Tag="1308" IconVisible="True" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="667.0000" RightMargin="667.0000" TopMargin="170.0000" BottomMargin="580.0000" ctype="SingleNodeObjectData">
+            <Size X="0.0000" Y="0.0000" />
+            <AnchorPoint />
+            <Position X="667.0000" Y="580.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" Y="0.7733" />
+            <PreSize X="0.0000" Y="0.0000" />
           </AbstractNodeData>
           <AbstractNodeData Name="pnl_hint" ActionTag="283468178" Tag="327" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="437.5000" RightMargin="437.5000" TopMargin="344.5000" BottomMargin="344.5000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" LeftEage="151" RightEage="151" TopEage="20" BottomEage="20" Scale9OriginX="-151" Scale9OriginY="-20" Scale9Width="302" Scale9Height="40" ctype="PanelObjectData">
             <Size X="459.0000" Y="61.0000" />
@@ -1768,6 +1874,128 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5000" Y="0.5000" />
             <PreSize X="1.0000" Y="1.0000" />
+            <SingleColor A="255" R="150" G="200" B="255" />
+            <FirstColor A="255" R="150" G="200" B="255" />
+            <EndColor A="255" R="255" G="255" B="255" />
+            <ColorVector ScaleY="1.0000" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="panl_single_card" ActionTag="-1256974185" Tag="1017" IconVisible="False" LeftMargin="-1000.0000" RightMargin="2178.0000" TopMargin="1532.0000" BottomMargin="-1000.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+            <Size X="156.0000" Y="218.0000" />
+            <Children>
+              <AbstractNodeData Name="img_card_gary" ActionTag="1790336864" Tag="1018" IconVisible="False" LeftEage="51" RightEage="51" TopEage="71" BottomEage="71" Scale9OriginX="51" Scale9OriginY="71" Scale9Width="54" Scale9Height="76" ctype="ImageViewObjectData">
+                <Size X="156.0000" Y="218.0000" />
+                <AnchorPoint ScaleX="0.5000" />
+                <Position X="78.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" />
+                <PreSize X="1.0000" Y="1.0000" />
+                <FileData Type="MarkedSubImage" Path="game/public/card/img_card_gary.png" Plist="game/public/plistcard.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="img_card_back" ActionTag="-566270189" VisibleForFrame="False" Tag="1019" IconVisible="False" LeftEage="46" RightEage="46" TopEage="61" BottomEage="61" Scale9OriginX="46" Scale9OriginY="61" Scale9Width="64" Scale9Height="96" ctype="ImageViewObjectData">
+                <Size X="156.0000" Y="218.0000" />
+                <AnchorPoint ScaleX="0.5000" />
+                <Position X="78.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" />
+                <PreSize X="1.0000" Y="1.0000" />
+                <FileData Type="MarkedSubImage" Path="game/public/card/img_card_back.png" Plist="game/public/plistcard.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="img_card_front" ActionTag="203326197" VisibleForFrame="False" Tag="1020" IconVisible="False" LeftEage="46" RightEage="46" TopEage="61" BottomEage="61" Scale9OriginX="46" Scale9OriginY="61" Scale9Width="64" Scale9Height="96" ctype="ImageViewObjectData">
+                <Size X="156.0000" Y="218.0000" />
+                <Children>
+                  <AbstractNodeData Name="img_card_big_king" ActionTag="-17224490" VisibleForFrame="False" Tag="1021" IconVisible="False" LeftMargin="11.0000" RightMargin="11.0000" TopMargin="9.0000" BottomMargin="9.0000" LeftEage="44" RightEage="44" TopEage="66" BottomEage="66" Scale9OriginX="44" Scale9OriginY="66" Scale9Width="46" Scale9Height="68" ctype="ImageViewObjectData">
+                    <Size X="134.0000" Y="200.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="78.0000" Y="109.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5000" Y="0.5000" />
+                    <PreSize X="0.8590" Y="0.9174" />
+                    <FileData Type="MarkedSubImage" Path="game/public/card/img_color_big_king.png" Plist="game/public/plistcard.plist" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="img_card_small_king" ActionTag="1753767499" VisibleForFrame="False" Tag="1022" IconVisible="False" LeftMargin="11.0000" RightMargin="11.0000" TopMargin="9.0000" BottomMargin="9.0000" LeftEage="44" RightEage="44" TopEage="66" BottomEage="66" Scale9OriginX="44" Scale9OriginY="66" Scale9Width="46" Scale9Height="68" ctype="ImageViewObjectData">
+                    <Size X="134.0000" Y="200.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="78.0000" Y="109.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5000" Y="0.5000" />
+                    <PreSize X="0.8590" Y="0.9174" />
+                    <FileData Type="MarkedSubImage" Path="game/public/card/img_color_small_king.png" Plist="game/public/plistcard.plist" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="panl_card_normal" ActionTag="992420969" Tag="1023" IconVisible="False" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+                    <Size X="156.0000" Y="218.0000" />
+                    <Children>
+                      <AbstractNodeData Name="img_card_num" ActionTag="-918970897" Tag="1024" IconVisible="False" LeftMargin="9.0000" RightMargin="107.0000" TopMargin="9.0000" BottomMargin="169.0000" LeftEage="13" RightEage="13" TopEage="13" BottomEage="13" Scale9OriginX="13" Scale9OriginY="13" Scale9Width="14" Scale9Height="14" ctype="ImageViewObjectData">
+                        <Size X="40.0000" Y="40.0000" />
+                        <AnchorPoint />
+                        <Position X="9.0000" Y="169.0000" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="0.0577" Y="0.7752" />
+                        <PreSize X="0.2564" Y="0.1835" />
+                        <FileData Type="MarkedSubImage" Path="game/public/card/img_0_10.png" Plist="game/public/plistcard.plist" />
+                      </AbstractNodeData>
+                      <AbstractNodeData Name="img_color_small" ActionTag="259057577" Tag="1025" IconVisible="False" LeftMargin="9.0000" RightMargin="62.0000" TopMargin="8.0000" BottomMargin="125.0000" LeftEage="28" RightEage="28" TopEage="28" BottomEage="28" Scale9OriginX="28" Scale9OriginY="28" Scale9Width="29" Scale9Height="29" ctype="ImageViewObjectData">
+                        <Size X="85.0000" Y="85.0000" />
+                        <AnchorPoint />
+                        <Position X="9.0000" Y="125.0000" />
+                        <Scale ScaleX="0.4600" ScaleY="0.4600" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="0.0577" Y="0.5734" />
+                        <PreSize X="0.5449" Y="0.3899" />
+                        <FileData Type="MarkedSubImage" Path="game/public/card/img_color_2.png" Plist="game/public/plistcard.plist" />
+                      </AbstractNodeData>
+                      <AbstractNodeData Name="img_color_big" ActionTag="-369185266" VisibleForFrame="False" Tag="1026" IconVisible="False" LeftMargin="62.0000" RightMargin="9.0000" TopMargin="124.0000" BottomMargin="9.0000" LeftEage="28" RightEage="28" TopEage="28" BottomEage="28" Scale9OriginX="28" Scale9OriginY="28" Scale9Width="29" Scale9Height="29" ctype="ImageViewObjectData">
+                        <Size X="85.0000" Y="85.0000" />
+                        <AnchorPoint ScaleX="1.0000" />
+                        <Position X="147.0000" Y="9.0000" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="0.9423" Y="0.0413" />
+                        <PreSize X="0.5449" Y="0.3899" />
+                        <FileData Type="MarkedSubImage" Path="game/public/card/img_color_2.png" Plist="game/public/plistcard.plist" />
+                      </AbstractNodeData>
+                      <AbstractNodeData Name="img_card_face" ActionTag="1515363986" Tag="1027" IconVisible="False" LeftMargin="50.0000" RightMargin="9.0000" TopMargin="106.0000" BottomMargin="9.0000" LeftEage="32" RightEage="32" TopEage="33" BottomEage="33" Scale9OriginX="32" Scale9OriginY="33" Scale9Width="33" Scale9Height="37" ctype="ImageViewObjectData">
+                        <Size X="97.0000" Y="103.0000" />
+                        <AnchorPoint ScaleX="1.0000" />
+                        <Position X="147.0000" Y="9.0000" />
+                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <CColor A="255" R="255" G="255" B="255" />
+                        <PrePosition X="0.9423" Y="0.0413" />
+                        <PreSize X="0.6218" Y="0.4725" />
+                        <FileData Type="MarkedSubImage" Path="game/public/card/img_face_1_11.png" Plist="game/public/plistcard.plist" />
+                      </AbstractNodeData>
+                    </Children>
+                    <AnchorPoint />
+                    <Position />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition />
+                    <PreSize X="1.0000" Y="1.0000" />
+                    <SingleColor A="255" R="150" G="200" B="255" />
+                    <FirstColor A="255" R="150" G="200" B="255" />
+                    <EndColor A="255" R="255" G="255" B="255" />
+                    <ColorVector ScaleY="1.0000" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" />
+                <Position X="78.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" />
+                <PreSize X="1.0000" Y="1.0000" />
+                <FileData Type="MarkedSubImage" Path="game/public/card/img_card_front.png" Plist="game/public/plistcard.plist" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint />
+            <Position X="-1000.0000" Y="-1000.0000" />
+            <Scale ScaleX="0.4000" ScaleY="0.4000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="-0.7496" Y="-1.3333" />
+            <PreSize X="0.1169" Y="0.2907" />
             <SingleColor A="255" R="150" G="200" B="255" />
             <FirstColor A="255" R="150" G="200" B="255" />
             <EndColor A="255" R="255" G="255" B="255" />

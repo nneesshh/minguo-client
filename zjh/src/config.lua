@@ -34,6 +34,9 @@ CC_SHOW_LOGIN_DEBUG = true
 -- auto login
 CC_AUTO_LOGIN = false
 
+-- heart beat
+CC_HEART_BEAT = true
+
 -- ip
 local IP_LIST = {
     {host = "139.162.27.138",  port = 8860}, -- 1 外网
@@ -42,4 +45,4 @@ local IP_LIST = {
     {host = "192.168.2.111",   port = 8861}, -- 4 私人测试2
 }
 
-CC_IP = IP_LIST[3]
+CC_IP = IP_LIST[2]

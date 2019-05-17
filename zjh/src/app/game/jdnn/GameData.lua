@@ -17,7 +17,10 @@ local _selfData = {
     isallIn       = false,     -- 是否全压
     cards         = {handcards = {}, cardtype = -1, mult = 1},     -- 手牌数据
     bankermult    = {[0] = 0, [1] = 0, [2] = 0, [3] = 0, [4] = 0}, -- 抢庄倍数
-    isgroup       = {[0] = 0, [1] = 0, [2] = 0, [3] = 0, [4] = 0}  -- 是否组牌
+    isgroup       = {[0] = 0, [1] = 0, [2] = 0, [3] = 0, [4] = 0}, -- 是否组牌
+    pbanker       = false,     -- 是否抢庄(防止多次请求) 
+    pmult         = false,     -- 是否下注
+    pgroup        = false      -- 是否摊牌 
 }
 
 function GameData.setTableInfo(info)
@@ -58,6 +61,9 @@ function GameData.restData()
     _selfData.cards       = {handcards = {}, cardtype = -1, mult = 1}
     _selfData.bankermult  = {[0] = 0, [1] = 0, [2] = 0, [3] = 0, [4] = 0}
     _selfData.isgroup     = {[0] = 0, [1] = 0, [2] = 0, [3] = 0, [4] = 0}
+    _selfData.pbanker     = false
+    _selfData.pmult       = false
+    _selfData.pgroup      = false
 end
 
 function GameData.restDataEx()
@@ -65,6 +71,9 @@ function GameData.restDataEx()
     _selfData.cards       = {handcards = {}, cardtype = -1, mult = 1}
     _selfData.bankermult  = {[0] = 0, [1] = 0, [2] = 0, [3] = 0, [4] = 0}
     _selfData.isgroup     = {[0] = 0, [1] = 0, [2] = 0, [3] = 0, [4] = 0}
+    _selfData.pbanker     = false
+    _selfData.pmult       = false
+    _selfData.pgroup      = false
 end
 
 function GameData.setTableStatus(status)
@@ -182,6 +191,31 @@ end
 
 function GameData.getGroup()
     return _selfData.isgroup
+end
+
+-- 标记防止多次请求
+function GameData.setPbanker(flag)
+    _selfData.pbanker = flag
+end
+
+function GameData.getPbanker()
+    return _selfData.pbanker
+end
+
+function GameData.setPmult(flag)
+    _selfData.pmult = flag
+end
+
+function GameData.getPmult()
+    return _selfData.pmult
+end
+
+function GameData.setPgroup(flag)
+    _selfData.pgroup = flag
+end
+
+function GameData.getPgroup()
+    return _selfData.pgroup
 end
 
 return GameData

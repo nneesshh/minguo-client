@@ -48,7 +48,7 @@ function GameCardNode:setCardID(id)
     
     local front = self:seekChildByName("img_card_front")
     local back = self:seekChildByName("img_card_back")
-    local gary = self:seekChildByName("img_card_small_king")
+    local gary = self:seekChildByName("img_card_gary")
     
     if id == CV_BACK then
         front:setVisible(false)

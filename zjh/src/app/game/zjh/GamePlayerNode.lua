@@ -56,9 +56,9 @@ function GamePlayerNode:onPlayerEnter()
         self:showImgFace(player:getGender(), player:getAvatar())
     else
         -- 设置姓名
-        self:showTxtPlayerName(true, "   --")
+        self:showTxtPlayerName(true, "   - -")
         -- 设置金币
-        self:showTxtBalance(true, " --")
+        self:showTxtBalance(true, " - -")
         -- 显示头像
         self:showImgFace(2, 0)    
     end
@@ -91,11 +91,9 @@ function GamePlayerNode:onResetTable()
 end
 
 -- 玩家离开
-function GamePlayerNode:onPlayerLeave(flag)
-    if not flag then
-        if self._localSeat ~= HERO_LOCAL_SEAT then
-            self:showPnlPlayer(false)
-        end
+function GamePlayerNode:onPlayerLeave()
+    if self._localSeat ~= HERO_LOCAL_SEAT then
+        self:showPnlPlayer(false)
     end
     
     self:showPnlClockCircle(false)
@@ -356,9 +354,7 @@ function GamePlayerNode:playPanleAction(posf, post, flag)
         self._presenter:showOtherPlayer() 
         self._presenter:checkBtnShowCard(true)   
     end
-    
-    self:playEffectByName("pk")
-    
+  
     local action1 = cc.CallFunc:create(function() afunc() end)
     local action2 = cc.MoveTo:create(0.5, cc.p(post))    
     local sp1 = cc.Spawn:create(action1, action2)
@@ -366,6 +362,8 @@ function GamePlayerNode:playPanleAction(posf, post, flag)
     local action3 = cc.CallFunc:create(function() cfunc() end)
     local action4 = cc.MoveTo:create(0.5, cc.p(posf))
     local sp2 = cc.Spawn:create(action3, action4)
+    
+    self:playEffectByName("pk")
     
     self._rootNode:runAction(
         cc.Sequence:create(
@@ -462,6 +460,10 @@ function GamePlayerNode:playEffectByName(name)
     end
     
     app.util.SoundUtils.playEffect(soundPath..strRes)   
+end
+
+function GamePlayerNode:getRootNode()
+    return self._rootNode
 end
 
 return GamePlayerNode

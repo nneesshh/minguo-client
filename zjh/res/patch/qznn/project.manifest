@@ -1,10 +1,16 @@
 {
   "assets": {
+    "res/game/public/background/img_back_lhd.jpg": {
+      "md5": "6a9969ad89a877737d83178ed2b9de25"
+    }, 
     "res/game/public/background/img_background.jpg": {
       "md5": "63f5bd60dec54b52d8b2671ed25ae6fb"
     }, 
     "res/game/public/background/img_desk.png": {
       "md5": "cfdb990a417476609a0de20f67c4a1dc"
+    }, 
+    "res/game/public/background/img_desk_lhd.png": {
+      "md5": "f76264b9d493b18f7f8320b8b39e9bfd"
     }, 
     "res/game/public/menuplist.plist": {
       "md5": "5a12c9b5816da152d6eee29e601a8f62"
@@ -69,39 +75,6 @@
     "res/game/qznn/effect/tongsha/tongsha0.png": {
       "md5": "f9cfc5077b7c8afca15c3b9b335ad79c"
     }, 
-    "res/game/qznn/image/btn_bq.png": {
-      "md5": "c0fd3edcd785c54380d875b45232eb04"
-    }, 
-    "res/game/qznn/image/btn_cal_sure.png": {
-      "md5": "75baa17d79a09d05279e074852eb013d"
-    }, 
-    "res/game/qznn/image/btn_m1.png": {
-      "md5": "19f65e6ae271c09c6f0f2ff2674a1a95"
-    }, 
-    "res/game/qznn/image/btn_m10.png": {
-      "md5": "14fa2a5e56b49d6dc7ea9f79da03a31d"
-    }, 
-    "res/game/qznn/image/btn_m15.png": {
-      "md5": "e6385601707fa269203285deb9bac32e"
-    }, 
-    "res/game/qznn/image/btn_m2.png": {
-      "md5": "71f750292ff1b8dd485e4adef5991a88"
-    }, 
-    "res/game/qznn/image/btn_m20.png": {
-      "md5": "a90b24dba3c842776e1493eaaba556e9"
-    }, 
-    "res/game/qznn/image/btn_m25.png": {
-      "md5": "e4b2bd48b6ffd8505a67cf90afd02089"
-    }, 
-    "res/game/qznn/image/btn_m3.png": {
-      "md5": "c9dd66416677859dd8d26fb1e0189142"
-    }, 
-    "res/game/qznn/image/btn_m4.png": {
-      "md5": "b1fbeabbc85258014196c1a88a388cd5"
-    }, 
-    "res/game/qznn/image/btn_m5.png": {
-      "md5": "96e2ae762ec5ce9669b1e7dd7aa42b38"
-    }, 
     "res/game/qznn/image/fnt/calfnt.fnt": {
       "md5": "a5d0f2d4ce6c6939a8cbcc4ca3bd7a52"
     }, 
@@ -125,69 +98,6 @@
     }, 
     "res/game/qznn/image/fnt/winfnt.png": {
       "md5": "2836af8baf764ed2493c87f61e005fc7"
-    }, 
-    "res/game/qznn/image/img_add_back.png": {
-      "md5": "89e600406424a03c8f25604cee0cdc05"
-    }, 
-    "res/game/qznn/image/img_banker.png": {
-      "md5": "cf16f4ef0fcc7db88c9df1ba11423f47"
-    }, 
-    "res/game/qznn/image/img_cal_back.png": {
-      "md5": "6f24a6d21b4cc114c1fd5826c8103d0b"
-    }, 
-    "res/game/qznn/image/img_card_type_0.png": {
-      "md5": "45f0bfa73c5c32424e45155d1c9aadd0"
-    }, 
-    "res/game/qznn/image/img_choose_1.png": {
-      "md5": "78dc3bb9959d209c9ab4d4b802957bb5"
-    }, 
-    "res/game/qznn/image/img_choose_15.png": {
-      "md5": "32b6669a512e80b4ea04b53a752ae7bf"
-    }, 
-    "res/game/qznn/image/img_desc_back.png": {
-      "md5": "98ab55206f00967a3e2d2e4931576526"
-    }, 
-    "res/game/qznn/image/img_gold.png": {
-      "md5": "088f888e6f9814488457809dbcdaeecf"
-    }, 
-    "res/game/qznn/image/img_head_back1.png": {
-      "md5": "d745788a5e5829f7416521a1b3a7362e"
-    }, 
-    "res/game/qznn/image/img_head_back2.png": {
-      "md5": "76dbbdc15622008d7e4534885426c469"
-    }, 
-    "res/game/qznn/image/img_hint.png": {
-      "md5": "77c9eadbc01c4d2d0222f8e71ac785b9"
-    }, 
-    "res/game/qznn/image/img_hint_start.png": {
-      "md5": "e2ad5187a8508bd3b96bcf74b68b983e"
-    }, 
-    "res/game/qznn/image/img_jx.png": {
-      "md5": "d47c120033ec74e16084dac31c368e69"
-    }, 
-    "res/game/qznn/image/img_light.png": {
-      "md5": "bc171a7d9365c9f1c881ad98ac3e8fb8"
-    }, 
-    "res/game/qznn/image/img_load.png": {
-      "md5": "20d5c3dc59424877c2dd769629eb04c7"
-    }, 
-    "res/game/qznn/image/img_load_back.png": {
-      "md5": "4cd97d368b5edacfa3b459eba9ecd0b9"
-    }, 
-    "res/game/qznn/image/img_nn_help.png": {
-      "md5": "6bc62ff9f02e63f0927d5043159eee72"
-    }, 
-    "res/game/qznn/image/img_nntou.png": {
-      "md5": "bfe0e3b62c3e9c226b83ac44c350117f"
-    }, 
-    "res/game/qznn/image/img_qqz.png": {
-      "md5": "120d88ee9a8ce501dfe40714e1f7390c"
-    }, 
-    "res/game/qznn/image/img_qxz.png": {
-      "md5": "8be19a232f30158d001f473e5a3e496b"
-    }, 
-    "res/game/qznn/image/img_type_11.png": {
-      "md5": "e2ca35b03768b898dfde0a418d648693"
     }, 
     "res/game/qznn/image/plistscene.plist": {
       "md5": "0a05357e1bad51bcd09102d10e188c9e"
@@ -310,10 +220,10 @@
       "md5": "15dc090f5443298d0620c2d1beac0ba6"
     }, 
     "src/app/game/qznn/GameCardNode.lua": {
-      "md5": "7dd7164c326f831dcbc98e6638aeba03"
+      "md5": "9368edd6caa9729dfa4021af536ab411"
     }, 
     "src/app/game/qznn/GameData.lua": {
-      "md5": "297101668da89bd99cc136ec482ac641"
+      "md5": "96a7f490157993527a753fc45dd3d5c7"
     }, 
     "src/app/game/qznn/GameEnum.lua": {
       "md5": "87e00ca0ffb5400f3a10c0ff8efca75b"
@@ -328,13 +238,13 @@
       "md5": "cea94c59cb63b55488870b1b8afd3e8a"
     }, 
     "src/app/game/qznn/GamePlayerNode.lua": {
-      "md5": "35ca5a59fcc630420756057e8ce9a2e3"
+      "md5": "83123f1dbd36ddc07b9292b00b98230d"
     }, 
     "src/app/game/qznn/GamePresenter.lua": {
-      "md5": "4989aa3af2504dca38631e2a8ff2a60f"
+      "md5": "d75c618072290a0f27762ff45e80fc50"
     }, 
     "src/app/game/qznn/GameScene.lua": {
-      "md5": "31f08b9910f1579fa5627bbd73ef875a"
+      "md5": "9b5c1d1f62064448539a63882474c4ee"
     }
   }, 
   "engineVersion": "cocos2dx-lua-3.10", 

@@ -3,6 +3,7 @@
 @brief  登录界面
 ]]
 
+local TestAccount = require("test.Account")
 local LoginLayer = class("LoginLayer", app.base.BaseLayer)
 
 -- csbPath
@@ -29,9 +30,9 @@ function LoginLayer:onTouch(sender, eventType)
             self:onClickBtnAccount()           
         elseif string.find(name, "btn_test_") then 
             local index = tonumber(string.split(name, "btn_test_")[2]) 
-            dump(app.Account.list[index+1])
+            dump(TestAccount.list[index+1])
                           
-            self._presenter:testLogin(app.Account.list[index+1])   
+            self._presenter:testLogin(TestAccount.list[index+1])   
         end
     end
 end
@@ -53,7 +54,7 @@ function LoginLayer:onClickBtnAccount()
 end
 
 function LoginLayer:initTestLoginBtnUI()
-    local logindata = app.Account.list
+    local logindata = TestAccount.list
     local debug = self:seekChildByName("debug")
     for key, var in ipairs(debug:getChildren()) do
         var:setTitleText(logindata[key][2])

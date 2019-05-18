@@ -35,7 +35,7 @@ CC_SHOW_LOGIN_DEBUG = true
 CC_AUTO_LOGIN = false
 
 -- heart beat
-CC_HEART_BEAT = true
+CC_HEART_BEAT = false
 
 -- ip
 local IP_LIST = {

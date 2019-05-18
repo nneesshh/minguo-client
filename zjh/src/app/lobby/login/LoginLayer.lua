@@ -3,7 +3,9 @@
 @brief  登录界面
 ]]
 
-local TestAccount = require("test.Account")
+local ok, TestAccount = pcall(function() return require("test.Account") end)
+if not ok then TestAccount = require("test.account_template") end
+
 local LoginLayer = class("LoginLayer", app.base.BaseLayer)
 
 -- csbPath

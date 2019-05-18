@@ -216,7 +216,9 @@ function GamePresenter:onPlayerEnter(player)
     if app.game.PlayerData.getPlayerCount() <= 1 then
         if not self._ischangeTable  then
             self._ui:getInstance():showPnlHint(2)
-        end    
+        end 
+    else
+        self._ui:getInstance():showPnlHint()    
     end
 
     local seats = app.game.GameData.getPlayerseat()

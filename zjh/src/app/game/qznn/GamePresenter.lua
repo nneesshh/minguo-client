@@ -369,17 +369,13 @@ function GamePresenter:onTakeFirst()
     end
 
     local function callback()
-        -- 抢庄加倍
-        self:performWithDelayGlobal(
-            function()
-                self:showTableBtn("banker")
-
-                if self._ui:getInstance():isSelected("cbx_banker_test") then
-                    self:performWithDelayGlobal(function()
-                        self:onEventCbxBanker()
-                    end, 1)
-                end
-            end, TIME_MAKE_BANKER)     
+        self:showTableBtn("banker")
+        
+        if self._ui:getInstance():isSelected("cbx_banker_test") then
+            self:performWithDelayGlobal(function()
+                self:onEventCbxBanker()
+            end, 1)
+        end       
     end      
     self:openSchedulerTakeFirst(callback)
 end
@@ -732,27 +728,34 @@ function GamePresenter:onResult(players)
 end
 
 -- 断线重连
-function GamePresenter:onRelinkEnter(data) 
-    print("relink")
+function GamePresenter:onRelinkEnter(data)
+    print("qznn relink")
     -- 展示玩家信息
     for i = 0, self._maxPlayerCnt - 1 do
         if self._gamePlayerNodes[i] then            
             self._gamePlayerNodes[i]:showPlayerInfo()
         end
     end
-    
+        
     if data.cards[1] ~= CV_BACK then
-        app.game.GameData.setHeroCards(data.cards, data.cardtype, 1)
+        if #data.cards == 4 then
+            app.game.GameData.setHandCards(data.cards)
+        elseif #data.cards == 5 then
+            app.game.GameData.setHandCards({data.cards[1], data.cards[2], data.cards[3], data.cards[4]})
+            app.game.GameData.setHeroCards({data.cards[5]}, data.cardtype, 1)
+        end    
     end
 
+    local heroseat = app.game.PlayerData.getHeroSeat()
     -- 庄家
     local banker = app.game.GameData.getBanker()
-    local heroseat = app.game.PlayerData.getHeroSeat()
-    local localBanker = app.game.PlayerData.serverSeatToLocalSeat(banker) 
-    if localBanker >= 0 and localBanker <= 4 and self._gamePlayerNodes[localBanker] then
-        self._gamePlayerNodes[localBanker]:showImgBanker(true)                     
-    end 
-    
+    if banker >= 0 and banker <= 4 then
+        local localBanker = app.game.PlayerData.serverSeatToLocalSeat(banker) 
+        if self._gamePlayerNodes[localBanker] then
+            self._gamePlayerNodes[localBanker]:showImgBanker(true)                     
+        end
+    end
+
     -- 游戏流程    
     for i = 0, self._maxPlayerCnt - 1 do
         local player = app.game.PlayerData.getPlayerByServerSeat(i)
@@ -775,11 +778,20 @@ function GamePresenter:onRelinkEnter(data)
         	end
         	        
             if i == heroseat then
+                -- 加载手牌
+                if data.cards[1] ~= CV_BACK then
+                    local gameHandCardNode = self._gamePlayerNodes[localseat]:getGameHandCardNode()
+                    gameHandCardNode:resetHandCards()
+                    gameHandCardNode:createCards(data.cards)  
+                end
+                
                 -- 抢庄
                 if bankermult < 0 then
                     self:showTableBtn("banker")
                 -- 闲家加倍
                 elseif bankermult >= 0 and mult < 0 then
+                    app.game.GameData.setPbanker(true)
+                    
                     -- 自己是庄家
                     if heroseat == banker then
                         self:showTableBtn()
@@ -789,11 +801,19 @@ function GamePresenter:onRelinkEnter(data)
                     end
                 -- 算牌    
                 elseif bankermult >= 0 and mult >= 0 then 
+                    app.game.GameData.setPbanker(true)
+                    app.game.GameData.setPmult(true) 
+                                       
                     -- 已摊牌   
                     if bet == 1 then
+                        app.game.GameData.setPgroup(true)
+                        
                         self:showTableBtn()
                         
                         if data.cards[1] ~= CV_BACK then
+                            local gameHandCardNode = self._gamePlayerNodes[localseat]:getGameHandCardNode()
+                            gameHandCardNode:resetHandCards()
+                        
                             local gameOutCardNode = self._gamePlayerNodes[HERO_LOCAL_SEAT]:getGameOutCardNode()
                             gameOutCardNode:resetOutCards()
                             gameOutCardNode:createCards(data.cards)
@@ -816,6 +836,10 @@ function GamePresenter:onRelinkEnter(data)
                     local gameHandCardNode = self._gamePlayerNodes[localseat]:getGameHandCardNode()
                     gameHandCardNode:resetHandCards()
                     gameHandCardNode:createCards({CV_BACK, CV_BACK, CV_BACK, CV_BACK, CV_BACK})
+                else
+                    local gameHandCardNode = self._gamePlayerNodes[localseat]:getGameHandCardNode()
+                    gameHandCardNode:resetHandCards()
+                    gameHandCardNode:createCards({CV_BACK, CV_BACK, CV_BACK, CV_BACK})    
                 end                
             end
         end
@@ -871,18 +895,19 @@ function GamePresenter:onEventCbxMult()
 end
 
 function GamePresenter:onEventCbxCal()
+    print("onEventCbxCal1111111111")
     local hero = app.game.PlayerData.getHero()
     if hero and hero:isPlaying() then
         local handcards = app.game.GameData.getHandCards()
         local data = app.game.GameData.getHeroCards()
         local lastCard = data.handcards[1]
         table.insert(handcards, lastCard)
-        if #handcards == 5 then
-            local niuCards, numCards = self:divideCards(handcards, data.cardtype)
-            local strNiu = string.char(unpack(niuCards))
-            local strNum = string.char(unpack(numCards))     
-            self:sendCalCard(strNiu, strNum)
-        end 
+        
+        local niuCards, numCards = self:divideCards(handcards, data.cardtype)
+        local strNiu = string.char(unpack(niuCards))
+        local strNum = string.char(unpack(numCards))
+        print("onEventCbxCa222222222222")     
+        self:sendCalCard(strNiu, strNum)      
     end
 end
 
@@ -1051,10 +1076,7 @@ function GamePresenter:openSchedulerTakeFirst(callback)
     
     local cards = app.game.GameData.getHandCards()
     cardbacks[HERO_LOCAL_SEAT] = cards
-    
-    dump(cardbacks)
-    
-    
+
     local cardNum = 1
     local seats = {}
     if app.game.GameData then
@@ -1283,7 +1305,7 @@ local SELECT_Y = 15
 local HAND_CARD_DISTANCE_OTHER = 30
 function GamePresenter:calHandCardPosition(index, cardSize, localSeat, bUp)
     local gameHandCardNode = self._gamePlayerNodes[localSeat]:getGameHandCardNode()
-    local count = gameHandCardNode:getHandCardCount()
+    local count = 5
 
     local screenSize = cc.Director:getInstance():getWinSize()
     local posX = 0

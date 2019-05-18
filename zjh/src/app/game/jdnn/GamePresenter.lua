@@ -777,6 +777,7 @@ function GamePresenter:onRelinkEnter(data)
                     self:showTableBtn("banker")
                 -- 闲家加倍
                 elseif bankermult >= 0 and mult < 0 then
+                    app.game.GameData.setPbanker(true)
                     -- 自己是庄家
                     if heroseat == banker then
                         self:showTableBtn()
@@ -786,8 +787,12 @@ function GamePresenter:onRelinkEnter(data)
                     end
                 -- 算牌    
                 elseif bankermult >= 0 and mult >= 0 then 
+                    app.game.GameData.setPbanker(true)
+                    app.game.GameData.setPmult(true) 
                     -- 已摊牌   
-                    if bet == 1 then
+                    if bet == 1 then                    
+                        app.game.GameData.setPgroup(true)
+                        
                         self:showTableBtn()
                         
                         if data.cards[1] ~= CV_BACK then

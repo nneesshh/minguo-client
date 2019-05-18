@@ -82,7 +82,6 @@ function _M.onNiuGameStart(conn, sessionid, msgid)
     
     local stringCards = po:read_string()
     local cards = _readCards(stringCards)   
-    dump(cards)
     
     if app.game.GameData then
         app.game.GameData.setTableInfo(tabInfo)

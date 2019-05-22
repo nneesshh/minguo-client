@@ -82,5 +82,7 @@
 		stream.writeInt32(tigerBet);							\
 		stream.writeInt32(drawBet);								\
 		stream.writeInt64(playerBalance);						\
-		WRITE_TABLE_INFO(stream, tableId, tableInfo);			\
+		stream.writeInt64(dragonSum);							\
+		stream.writeInt64(tigerSum);							\
+		stream.writeInt64(drawSum);								\
 	} while(0)

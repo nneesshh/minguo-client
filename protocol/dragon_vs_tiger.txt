@@ -6,8 +6,81 @@
 #define MSGID_DRAGON_VS_TIGER_GAME_START_NOTIFY		0x2632		//龙虎斗通知--游戏开始 9778
 #define MSGID_DRAGON_VS_TIGER_GAME_OVER_NOTIFY		0x2633		//龙虎斗通知--游戏结束 9779
 
-#define MSGID_DRAGON_VS_TIGER_GAME_HISTORY_NOTIFY		0x2644	//龙虎斗通知--游戏历史数据 9796
-#define MSGID_DRAGON_VS_TIGER_GAME_USER_HISTORY_NOTIFY	0x2645	//龙虎斗通知--游戏用户历史数据 9797
+#define MSGID_DRAGON_VS_TIGER_GAME_HISTORY_NOTIFY	0x2644	//龙虎斗通知--游戏历史数据 9796
+#define MSGID_DRAGON_VS_TIGER_TOP_SEAT_NOTIFY		0x2645	//龙虎斗通知--游戏排名玩家数据 9797
 
 #define MSGID_DRAGON_VS_TIGER_READY_NOTIFY	0x2661		//龙虎斗通知--准备 9825
 #define MSGID_DRAGON_VS_TIGER_BET_NOTIFY	0x2662		//龙虎斗通知--押注 9826
+
+
+// 
+#define DRAGON_VS_TIGER_WRITE_GAME_START(stream, baseCoin, tableId, tableInfo)	\
+	do {														\
+		stream.writeInt32(baseCoin);							\
+		WRITE_TABLE_INFO(stream, tableId, tableInfo);			\
+	} while(0)
+
+// 
+#define DRAGON_VS_TIGER_WRITE_LOCAL_SEAT(stream, localSeat)	\
+	do {													\
+		stream.writeByte(localSeat->gameNum20);				\
+		stream.writeInt32(localSeat->betNum20);				\
+		stream.writeInt32(localSeat->entry.ticketId);		\
+		stream.writeInt16(localSeat->entry.seat);			\
+		stream.writeInt32(localSeat->entry.winNum[0]);		\
+		stream.writeInt32(localSeat->entry.winNum[1]);		\
+		stream.writeInt32(localSeat->entry.winNum[2]);		\
+		int bonus = localSeat->entry.profit - localSeat->entry.winNum[0] - localSeat->entry.winNum[0] - localSeat->entry.winNum[2]; \
+		stream.writeInt32(bonus);							\
+	} while(0)
+
+// 
+#define DRAGON_VS_TIGER_WRITE_GAME_HISTORY(stream, selfSeat, history)	\
+	do {														\
+		int itemCount = 0;										\
+		if (history) itemCount = history->list.size();			\
+		stream.writeByte(selfSeat->gameNum20);					\
+		stream.writeInt32(selfSeat->betNum20);					\
+		stream.writeInt32(itemCount);							\
+		for (int i = 0; i < itemCount; ++i) {					\
+			DVST_GAME_ENTRY_T *gameEntry = &history->list[i];	\
+			stream.writeInt64(gameEntry->seqId);				\
+			stream.writeByte(gameEntry->cardType);				\
+			stream.writeString(gameEntry->cards, 2);			\
+		}														\
+	} while(0)
+
+// 
+#define DRAGON_VS_TIGER_WRITE_TOP_SEAT(stream, table, vTopSeat)	\
+	do {														\
+		int playerCount = vTopSeat.size();						\
+		stream.writeInt32(playerCount);							\
+		for (int i = 0; i < playerCount; ++i) {					\
+			dvst_local_seat_t *topSeat = (vTopSeat[i]);			\
+			SEAT_INFO *seatInfo = table->getSeatInfo(topSeat->entry.seat);	\
+			DRAGON_VS_TIGER_WRITE_LOCAL_SEAT(stream, topSeat);	\
+			WRITE_PLAYER_SEAT_INFO(stream, seatInfo);			\
+		}														\
+	} while(0)
+
+// 
+#define DRAGON_VS_TIGER_WRITE_GAME_OVER_TO_ONE_PLAYER(stream, table, gameEntry, selfSeat, selfBalance, vTopSeat)	\
+	do {														\
+		stream.writeInt64(gameEntry->seqId);					\
+		stream.writeByte(gameEntry->cardType);					\
+		stream.writeString(gameEntry->cards, 2);				\
+		DRAGON_VS_TIGER_WRITE_LOCAL_SEAT(stream, selfSeat);		\
+		stream.writeInt64(selfBalance);							\
+		DRAGON_VS_TIGER_WRITE_TOP_SEAT(stream, table, vTopSeat);	\
+	} while(0)
+
+// 
+#define DRAGON_VS_TIGER_WRITE_PLAYER_BET(stream, tableId, tableInfo, playerSeat, dragonBet, tigerBet, drawBet, playerBalance)	\
+	do {														\
+		stream.writeInt16(playerSeat);							\
+		stream.writeInt32(dragonBet);							\
+		stream.writeInt32(tigerBet);							\
+		stream.writeInt32(drawBet);								\
+		stream.writeInt64(playerBalance);						\
+		WRITE_TABLE_INFO(stream, tableId, tableInfo);			\
+	} while(0)

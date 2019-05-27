@@ -19,67 +19,73 @@ local PARSE_BODY = 1
 --
 function _P:decode(data, packet_cb, arg)
     -- cache
-    local framedata_szie = #data
-    local free_size = self.pkt_r_cache_stream:get_free_size()
-    if free_size >= framedata_szie then
-        self.pkt_r_cache_stream:write_raw(data)
-    else
-        error("reader cache stream overflow!!!")
-    end
+    local remain_size = #data
+    local remain_data = data
+    local free_size, consume_size, consume_data
 
-    -- parse loop until no more ready packet
-    while true do
-        if PARSE_HEADER == self.pkt_r_parser_state then
-            -- header
-            local content_size = self.pkt_r_cache_stream:get_used_size()
-            if content_size < SIZE_OF_FRAME_PAGE_LEADING then
-                break
+    while remain_size > 0 and remain_data do
+        free_size = self.pkt_r_cache_stream:get_free_size()
+        consume_size = (remain_size > PER_FRAME_PAGE_SIZE_MAX) and PER_FRAME_PAGE_SIZE_MAX or remain_size
+        consume_size = (consume_size > free_size) and free_size or free_size
+        consume_data = str_sub(remain_data, 1, consume_size)
+        remain_size = remain_size - consume_size
+        remain_data = str_sub(remain_data, consume_size + 1, consume_size + remain_size)
+        self.pkt_r_cache_stream:write_raw(consume_data)
+
+        -- parse loop until no more ready packet
+        while true do
+            if PARSE_HEADER == self.pkt_r_parser_state then
+                -- header
+                local content_size = self.pkt_r_cache_stream:get_used_size()
+                if content_size < SIZE_OF_FRAME_PAGE_LEADING then
+                    break
+                end
+
+                -- read header and rewind
+                local header = self.pkt_r_cache_stream:read_raw(SIZE_OF_FRAME_PAGE_LEADING)
+                self.pkt_r_cache_stream:rewind()
+
+                -- write header to stream
+                self.pkt_r_stream:reset()
+                self.pkt_r_stream:write_raw(header)
+
+                -- parse header
+                local key = self.pkt_r_stream:read_raw(8)
+                local size = self.pkt_r_stream:read_int32()
+                local sessionId = self.pkt_r_stream:read_int32()
+                local msgId = self.pkt_r_stream:read_int16()
+                local version = self.pkt_r_stream:read_byte()
+                local reserve = self.pkt_r_stream:read_byte()
+                --
+                self.pkt_r.sessionid = sessionId
+                self.pkt_r.msgid = msgId
+                self.pkt_r.msgsize = size
+
+                --
+                self.pkt_r_parser_state = PARSE_BODY
+
+            elseif PARSE_BODY == self.pkt_r_parser_state then
+                -- body
+                local content_size = self.pkt_r_cache_stream:get_used_size()
+                if content_size < self.pkt_r.msgsize then
+                    break
+                end
+                
+                -- read body and rewind
+                local body = self.pkt_r_cache_stream:read_raw(self.pkt_r.msgsize)
+                self.pkt_r_cache_stream:rewind()
+
+                -- write body to stream
+                self.pkt_r_stream:reset()
+                self.pkt_r_stream:write_raw(body)
+
+                if packet_cb then
+                    packet_cb(arg, self.pkt_r)
+                end
+
+                -- continue to parse next packet
+                self.pkt_r_parser_state = PARSE_HEADER
             end
-
-            -- read header and rewind
-            local header = self.pkt_r_cache_stream:read_raw(SIZE_OF_FRAME_PAGE_LEADING)
-            self.pkt_r_cache_stream:rewind()
-
-            -- write header to stream
-            self.pkt_r_stream:reset()
-            self.pkt_r_stream:write_raw(header)
-
-            -- parse header
-            local key = self.pkt_r_stream:read_raw(8)
-            local size = self.pkt_r_stream:read_int32()
-            local sessionId = self.pkt_r_stream:read_int32()
-            local msgId = self.pkt_r_stream:read_int16()
-            local version = self.pkt_r_stream:read_byte()
-            local reserve = self.pkt_r_stream:read_byte()
-            --
-            self.pkt_r.sessionid = sessionId
-            self.pkt_r.msgid = msgId
-            self.pkt_r.msgsize = size
-
-            --
-            self.pkt_r_parser_state = PARSE_BODY
-
-        elseif PARSE_BODY == self.pkt_r_parser_state then
-            -- body
-            local content_size = self.pkt_r_cache_stream:get_used_size()
-            if content_size < self.pkt_r.msgsize then
-                break
-            end
-            
-            -- read body and rewind
-            local body = self.pkt_r_cache_stream:read_raw(self.pkt_r.msgsize)
-            self.pkt_r_cache_stream:rewind()
-
-            -- write body to stream
-            self.pkt_r_stream:reset()
-            self.pkt_r_stream:write_raw(body)
-
-            if packet_cb then
-                packet_cb(arg, self.pkt_r)
-            end
-
-            -- continue to parse next packet
-            self.pkt_r_parser_state = PARSE_HEADER
         end
     end
 end

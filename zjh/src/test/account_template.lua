@@ -1,12 +1,12 @@
 local Account = {}
 
 Account.list = {
-    {0, "test0001", "cs123456", "imei00007", "imsi00007", "", ""},
-    {0, "test0002", "cs123456", "imei00002", "imsi00002", "", ""},
-    {0, "test0003", "cs123456", "imei00003", "imsi00003", "", ""},
-    {0, "test0004", "cs123456", "imei00004", "imsi00004", "", ""},
-    {0, "test0005", "cs123456", "imei00005", "imsi00005", "", ""},
-    {0, "test0006", "cs123456", "imei00006", "imsi00006", "", ""}
+    {0, "zjhnew0001", "cs123456", "asdasdf", "imsisz0045", "", ""},
+    {0, "zjhnew0002", "cs123456", "gsdfdsg", "imsisz0046", "", ""},
+    {0, "zjhbewi0003", "cs123456", "wqewqeas", "imsisz0047", "", ""},
+    {0, "zjhasdhi0004", "cs123456", "imeiqweqwsz0048", "imsisz0048", "", ""},
+    {0, "zjhasdffhi0005", "cs123456", "adsasf", "imsisz0049", "", ""},
+    {0, "zjhcasdf0006", "cs123456", "sadgasd", "imsisz0050", "", ""}
 }
 
 return Account

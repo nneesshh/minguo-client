@@ -45,4 +45,4 @@ local IP_LIST = {
     {host = "192.168.2.111",   port = 8861}, -- 4 私人测试2
 }
 
-CC_IP = IP_LIST[3]
+CC_IP = IP_LIST[2]

@@ -26,7 +26,7 @@ function _P:decode(data, packet_cb, arg)
     while remain_size > 0 and remain_data do
         free_size = self.pkt_r_cache_stream:get_free_size()
         consume_size = (remain_size > PER_FRAME_PAGE_SIZE_MAX) and PER_FRAME_PAGE_SIZE_MAX or remain_size
-        consume_size = (consume_size > free_size) and free_size or free_size
+        consume_size = (consume_size > free_size) and free_size or consume_size
         consume_data = str_sub(remain_data, 1, consume_size)
         remain_size = remain_size - consume_size
         remain_data = str_sub(remain_data, consume_size + 1, consume_size + remain_size)

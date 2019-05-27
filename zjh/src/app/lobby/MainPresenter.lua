@@ -119,9 +119,14 @@ end
 -- 显示场列表
 function MainPresenter:showPlazaLists(gameid)
     local plazainfo = app.data.PlazaData.getPlazaList(gameid)
-
-    self._ui:getInstance():showPlazaPnl(true)
-    self._ui:getInstance():loadPlazaList(gameid , plazainfo)    
+    
+    if gameid ~= app.Game.GameID.LHD then
+        self._ui:getInstance():showPlazaPnl(true)
+        self._ui:getInstance():loadPlazaList(gameid , plazainfo)
+    -- 直接进房间
+    else
+        self:reqJoinRoom(gameid, 1)            
+    end       
 end
 
 -- 展示大厅

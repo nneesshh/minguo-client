@@ -10,6 +10,7 @@ requireLobby                                = HotpatchRequire.requireLobby
 requireZJH                                  = HotpatchRequire.requireZJH
 requireJDNN                                 = HotpatchRequire.requireJDNN
 requireQZNN                                 = HotpatchRequire.requireQZNN
+requireLHD                                  = HotpatchRequire.requireLHD
 
 ----------------------------------- network ----------------------------------
 cfg_game_zjh                                = cfg_game_zjh or {}

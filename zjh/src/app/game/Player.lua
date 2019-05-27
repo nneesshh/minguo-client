@@ -13,6 +13,12 @@ function Player:ctor(playerInfo)
     self._playerInfo.status       = playerInfo.status       -- 状态
     self._playerInfo.seat         = playerInfo.seat         -- 座位号(服务端)
     self._playerInfo.bet          = playerInfo.bet          -- 下注(psz)/是否摊牌(nn)
+    
+    self._playerInfo.long         = playerInfo.long         -- 龙
+    self._playerInfo.hu           = playerInfo.hu           -- 虎
+    self._playerInfo.he           = playerInfo.he           -- 和
+    self._playerInfo.area4        = playerInfo.area4        -- 
+    
     self._playerInfo.bankermult   = playerInfo.bankermult   -- 抢庄倍数(nn)
     self._playerInfo.mult         = playerInfo.mult         -- 闲家倍数(nn)
     self._playerInfo.isshow       = playerInfo.isshow       -- 是否已经看牌 (psz)

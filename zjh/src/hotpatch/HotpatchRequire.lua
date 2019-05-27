@@ -8,6 +8,7 @@ HotpatchRequire._lobbyList = {}
 HotpatchRequire._jdnnList  = {} 
 HotpatchRequire._zjhList   = {} 
 HotpatchRequire._qznnList  = {}
+HotpatchRequire._lhdList   = {}
 
 -- 大厅相关
 function HotpatchRequire.requireLobby(modname)
@@ -83,6 +84,25 @@ end
 
 function HotpatchRequire.unloadQZNN()
     HotpatchRequire._qznnList = {}
+end
+
+-- 龙虎斗
+function HotpatchRequire.requireLHD(modname)
+    table.insert(HotpatchRequire._lhdList, modname)   
+    return require(modname)
+end
+
+function HotpatchRequire.reloadLHD()
+    for k, modname in ipairs(HotpatchRequire._lhdList) do
+        if package.loaded[modname] then
+            package.loaded[modname] = nil
+            require(modname)
+        end        
+    end
+end
+
+function HotpatchRequire.unloadLHD()
+    HotpatchRequire._lhdList = {}
 end
 
 return HotpatchRequire

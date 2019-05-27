@@ -43,7 +43,7 @@ function MainScene:onTouch(sender, eventType)
             self._presenter:initDownload()             
         elseif string.find(name, "btn_game_") then
             local gameid = tonumber(string.split(name, "btn_game_")[2])            
-            if gameid == 1 or gameid == 2 or gameid == 3 then
+            if gameid == 1 or gameid == 2 or gameid == 3 or gameid == 4 then
                 self._presenter:reqHotpatch(gameid)         
             end                                                      
         elseif name == "btn_head_info" then
@@ -63,7 +63,8 @@ function MainScene:onTouch(sender, eventType)
         elseif name == "btn_safe" then
             self._presenter:showSafe()                           
         elseif name == "btn_shop" then      
-            self._presenter:showShop()             
+--            self._presenter:showShop()           
+      
         elseif name == "btn_help" then    
             local gameid = sender:getTag()    
             self._presenter:showHelp(gameid)
@@ -81,7 +82,14 @@ function MainScene:initUI(gameID, roomMode)
     
     self:initEffect()   
     
-    print("wo tao ni hou zi")
+    local t = {}
+    
+    t[1] = 100
+    t[3] = 200
+    
+    table.insert(t, 500)
+    
+    dump(t)
 end
 
 function MainScene:onEnter()

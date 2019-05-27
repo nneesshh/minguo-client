@@ -23,13 +23,20 @@ local function _readUserInfo(po)
     return info
 end
 
+--- sada
 local function _readTableInfo(po)
     local info = {}
     info.tableid     = po:read_int32()
     info.status      = po:read_byte()
     info.round       = po:read_byte()
     info.basebet     = po:read_int32()
-    info.jackpot     = po:read_int32()
+    
+    info.jackpot     = po:read_int64()    
+    info.long        = po:read_int64()
+    info.hu          = po:read_int64()
+    info.he          = po:read_int64()
+    info.area4       = po:read_int64()
+    
     info.banker      = po:read_int16()
     info.currseat    = po:read_int16()
     info.playercount = po:read_int32()
@@ -50,6 +57,12 @@ local function _readSeatPlayerInfo(po)
     info.status     = po:read_byte()
     info.seat       = po:read_int16()
     info.bet        = po:read_int32()
+    
+    info.long       = po:read_int32()
+    info.hu         = po:read_int32()
+    info.he         = po:read_int32()
+    info.area4      = po:read_int32()
+
     info.bankermult = po:read_int32()
     info.mult       = po:read_int32()  
     info.isshow     = po:read_byte()
@@ -117,7 +130,6 @@ function _M.onLogin(conn, sessionid, msgid)
         -- user info
         local userInfo = {}
         userInfo = _readUserInfo(po)
-        dump(userInfo)
         
         userInfo.session = sessionid
         -- recover flag
@@ -141,7 +153,7 @@ function _M.onLogin(conn, sessionid, msgid)
             local tabInfo = _readTableInfo(po)
             tabInfo.basecoin = 0                        
             app.game.GameData.setTableInfo(tabInfo)
-
+                      
             local playerCount = po:read_int32()
             local ids = {}
             for i = 1, playerCount do
@@ -149,15 +161,56 @@ function _M.onLogin(conn, sessionid, msgid)
                 local info = _readSeatPlayerInfo(po)
                 table.insert(ids,info.ticketid)
                 app.game.PlayerData.onPlayerInfo(info)
-            end            
-            for k, id in ipairs(ids) do
-                local player = app.game.PlayerData.getPlayerByNumID(id)
-                if not player then                    
-                    return
-                end          
-                app.game.GamePresenter:getInstance():onPlayerEnter(player)       
             end
+
+            -- 百人类游戏
+            local selfid = app.data.UserData.getTicketID()
             
+            if gametype == app.Game.GameID.LHD then
+                local newids = {}
+                -- 大富豪、神算子
+                if #ids >= 2 then
+                    for k, id in ipairs(ids) do
+                        if #newids < 2 then
+                            table.insert(newids,id)
+                        end
+                    end
+                elseif #ids == 1 then
+                    newids[1] = ids[1] 
+                    newids[2] = -1 
+                end
+
+                -- 自己 
+                newids[3] = selfid 
+                
+                -- 其他人
+                for k, id in ipairs(ids) do
+                    if id ~= newids[1] and id ~= newids[2] and id ~= newids[3] and #newids < 7 then
+                        table.insert(newids,id)                    	                   	
+                    end
+                end
+
+                app.game.GameData.setSitplayers(newids)
+               
+                for k, id in ipairs(newids) do
+                    local player = app.game.PlayerData.getPlayerByNumID(id)
+                    if not player then                    
+                        return
+                    end          
+                    app.game.GamePresenter:getInstance():onPlayerEnter(player)       
+                end
+                                
+            -- 固定座位类游戏    
+            else
+                for k, id in ipairs(ids) do
+                    local player = app.game.PlayerData.getPlayerByNumID(id)
+                    if not player then                    
+                        return
+                    end          
+                    app.game.GamePresenter:getInstance():onPlayerEnter(player)       
+                end
+            end
+
             local gaming = po:read_byte()            
             print("onenter is gaming", gaming)   
               
@@ -237,22 +290,22 @@ function _M.onPlayerSitDown(conn, sessionid, msgid)
     local resp = {}
     local po = upconn.upconn:get_packet_obj()
 
-    local info = _readSeatPlayerInfo(po)
-
+    local info = _readSeatPlayerInfo(po)    
     if info.ticketid == app.data.UserData.getTicketID() then
         return
     end
 
-    if app.game.PlayerData then
+    if app.game.PlayerData then      
         app.game.PlayerData.onPlayerInfo(info)
     end
+    
     local player = app.game.PlayerData.getPlayerByNumID(info.ticketid)
     if not player then
         return
     end  
-
+            
     if app.game.GamePresenter then
-        app.game.GamePresenter:getInstance():onPlayerEnter(player)    
+        app.game.GamePresenter:getInstance():onPlayerSitdown(player)    
     end            
 end
 
@@ -262,7 +315,7 @@ function _M.onEnterRoom(conn, sessionid, msgid)
     local po = upconn.upconn:get_packet_obj()
     resp.errorCode = po:read_int32()
     resp.errorMsg  = po:read_string()
-
+    
     if resp.errorCode == zjh_defs.ErrorCode.ERR_SUCCESS then
         app.lobby.MainPresenter:getInstance():loadingHintExit()
         -- enter gamescene
@@ -277,34 +330,91 @@ function _M.onEnterRoom(conn, sessionid, msgid)
         app.game.GameData.setTableInfo(tabInfo)
 
         -- seat in-gaming player info     
+        local heroseat = po:read_int16() 
+        print("heroseat is", heroseat)
+   
         local playerCount = po:read_int32()
         local ids = {}
         for i = 1, playerCount do
             -- seat player info
             local info = _readSeatPlayerInfo(po)
-
             table.insert(ids,info.ticketid)
             app.game.PlayerData.onPlayerInfo(info)
         end
-
-        -- enter room
-        for k, id in ipairs(ids) do
-            local player = app.game.PlayerData.getPlayerByNumID(id)
-            if not player then                
-                return
-            end            
-            app.game.GamePresenter:getInstance():onPlayerEnter(player) 
-            if app.data.UserData.getTicketID() == id then               
-                if tabInfo.status == zjh_defs.TableStatus.TS_IDLE 
-                    or tabInfo.status == zjh_defs.TableStatus.TS_PREPARE 
-                    or tabInfo.status == zjh_defs.TableStatus.TS_ENDING then 
-                    print("enter player send ready")                   
-                    _M.sendPlayerReady(gameid)
+        
+        -- enter room        
+        -- 百人类游戏
+        local selfid = app.data.UserData.getTicketID()
+        if gameid == app.Game.GameID.LHD then
+            
+            app.game.PlayerData.onSelfPlayerInfo(heroseat)           
+            
+            local newids = {}
+            -- 大富豪、神算子
+            if #ids >= 2 then
+                for k, id in ipairs(ids) do
+                    if #newids < 2 then
+                        table.insert(newids,id)
+                    end
                 end
-            end                    
+            elseif #ids == 1 then
+                newids[1] = ids[1] 
+                newids[2] = -1 
+            end
+
+            -- 自己 
+            newids[3] = selfid 
+            
+            -- 其他人
+            for k, id in ipairs(ids) do
+                if id ~= newids[1] and id ~= newids[2] and id ~= newids[3] and #newids < 7 then
+                    table.insert(newids,id)                                         
+                end
+            end
+
+            app.game.GameData.setSitplayers(newids)
+            
+            dump(app.game.PlayerData.getList())
+            dump(newids)
+            
+            for k, id in ipairs(newids) do
+                local player = app.game.PlayerData.getPlayerByNumID(id)
+                if not player then
+                    print("player is nil", id)                    
+                    return
+                end          
+                app.game.GamePresenter:getInstance():onPlayerEnter(player)       
+
+                if app.data.UserData.getTicketID() == id then
+                         
+                    if tabInfo.status == zjh_defs.TableStatus.TS_IDLE 
+                        or tabInfo.status == zjh_defs.TableStatus.TS_PREPARE 
+                        or tabInfo.status == zjh_defs.TableStatus.TS_ENDING then 
+                   
+                        _M.sendPlayerReady(gameid)
+                    end
+                end   
+            end
+            -- 固定座位类游戏    
+        else
+            for k, id in ipairs(ids) do
+                local player = app.game.PlayerData.getPlayerByNumID(id)
+                if not player then                    
+                    return
+                end          
+                app.game.GamePresenter:getInstance():onPlayerEnter(player)  
+                
+                if app.data.UserData.getTicketID() == id then               
+                    if tabInfo.status == zjh_defs.TableStatus.TS_IDLE 
+                        or tabInfo.status == zjh_defs.TableStatus.TS_PREPARE 
+                        or tabInfo.status == zjh_defs.TableStatus.TS_ENDING then                   
+                        _M.sendPlayerReady(gameid)
+                        print("public send ready")
+                    end
+                end         
+            end
         end
-    else
-        print("wq engine exit 3333",resp.errorCode, resp.errorMsg)
+    else        
         app.game.GameEngine:getInstance():exit()
         app.lobby.MainPresenter:getInstance():showErrorMsg(resp.errorCode)
     end
@@ -352,35 +462,79 @@ function _M.onChangeTable(conn, sessionid, msgid)
         for i = 1, playerCount do
             -- seat player info
             local info = _readSeatPlayerInfo(po)
-
             table.insert(ids,info.ticketid)
             app.game.PlayerData.onPlayerInfo(info)
         end
-        -- enter room
-        for k, id in ipairs(ids) do
-            local player = app.game.PlayerData.getPlayerByNumID(id)
-            if not player then
+        
+        -- enter room        
+        -- 百人类游戏
+        local selfid = app.data.UserData.getTicketID()
 
-                return
-            end                  
-            app.game.GamePresenter:getInstance():onPlayerEnter(player)
-            if app.data.UserData.getTicketID() == id then                
-                if tabInfo.status == zjh_defs.TableStatus.TS_IDLE 
-                    or tabInfo.status == zjh_defs.TableStatus.TS_PREPARE 
-                    or tabInfo.status == zjh_defs.TableStatus.TS_ENDING then    
-                    print("change table send ready")                  
-                    _M.sendPlayerReady(gameid)
+        if gameid == app.Game.GameID.LHD then
+            local newids = {}
+            -- 大富豪、神算子
+            if #ids >= 2 then
+                for k, id in ipairs(ids) do
+                    if #newids < 2 then
+                        table.insert(newids,id)
+                    end
                 end
-            end         
+            elseif #ids == 1 then
+                newids[1] = ids[1] 
+                newids[2] = -1 
+            end
+
+            -- 自己 
+            newids[3] = selfid 
+            
+            -- 其他人
+            for k, id in ipairs(ids) do
+                if id ~= newids[1] and id ~= newids[2] and id ~= newids[3] and #newids < 7 then
+                    table.insert(newids,id)                                         
+                end
+            end
+
+            app.game.GameData.setSitplayers(newids)
+
+            for k, id in ipairs(newids) do
+                local player = app.game.PlayerData.getPlayerByNumID(id)
+                if not player then                    
+                    return
+                end          
+                app.game.GamePresenter:getInstance():onPlayerEnter(player)       
+
+                if app.data.UserData.getTicketID() == id then               
+                    if tabInfo.status == zjh_defs.TableStatus.TS_IDLE 
+                        or tabInfo.status == zjh_defs.TableStatus.TS_PREPARE 
+                        or tabInfo.status == zjh_defs.TableStatus.TS_ENDING then                   
+                        _M.sendPlayerReady(gameid)
+                    end
+                end   
+            end
+            -- 固定座位类游戏    
+        else
+            for k, id in ipairs(ids) do
+                local player = app.game.PlayerData.getPlayerByNumID(id)
+                if not player then                    
+                    return
+                end          
+                app.game.GamePresenter:getInstance():onPlayerEnter(player)  
+
+                if app.data.UserData.getTicketID() == id then               
+                    if tabInfo.status == zjh_defs.TableStatus.TS_IDLE 
+                        or tabInfo.status == zjh_defs.TableStatus.TS_PREPARE 
+                        or tabInfo.status == zjh_defs.TableStatus.TS_ENDING then                   
+                        _M.sendPlayerReady(gameid)
+                    end
+                end         
+            end
         end
-    else
-        print("wq engine exit 4444")
+    else      
         app.game.GameEngine:getInstance():exit()  
     end
 end
 
-function _M.sendPlayerReady(gameid)
-    print("sendPlayerReady publicUpconn",gameid)
+function _M.sendPlayerReady(gameid)    
     local sessionid = app.data.UserData.getSession() or 222
     local po = upconn.upconn:get_packet_obj()
     if po == nil then return end   
@@ -392,7 +546,11 @@ function _M.sendPlayerReady(gameid)
     elseif gameid == app.Game.GameID.JDNN then
         upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_READY_REQ)
     elseif gameid == app.Game.GameID.QZNN then
-        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_C41_READY_REQ)        
+        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_C41_READY_REQ) 
+    elseif gameid == app.Game.GameID.LHD then
+        print("send ready")
+        
+        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_DRAGON_VS_TIGER_READY_REQ)          
     end    
 end
 

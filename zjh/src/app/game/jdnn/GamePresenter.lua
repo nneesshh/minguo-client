@@ -237,6 +237,39 @@ function GamePresenter:onPlayerEnter(player)
     end
 end
 
+-- 处理玩家坐下
+function GamePresenter:onPlayerSitdown(player)     
+    local localSeat = app.game.PlayerData.serverSeatToLocalSeat(player:getSeat()) 
+
+    if self._gamePlayerNodes then
+        self._gamePlayerNodes[localSeat]:onPlayerEnter() 
+    end 
+
+    if app.game.PlayerData.getPlayerCount() <= 1 then
+        if not self._ischangeTable  then
+            self._ui:getInstance():showPnlHint(2)
+        end    
+    else
+        self._ui:getInstance():showPnlHint() 
+    end
+
+    local seats = app.game.GameData.getPlayerseat()
+    if #seats ~= 0 then
+        local isIn = false
+        for i, seat in ipairs(seats) do
+            if player:getSeat() == seat then
+                isIn = true
+            end
+        end
+        if not isIn then
+            if localSeat == 1 then
+                self._ui:getInstance():showPnlHint(4)                 
+            end
+            app.game.PlayerData.updatePlayerStatus(player:getSeat(), 4)
+        end         
+    end
+end
+
 -- 游戏准备
 function GamePresenter:onGamePrepare()
     self._ui:getInstance():showPnlHint(1)

@@ -1,0 +1,57 @@
+<PlistInfoProjectFile>
+  <PropertyGroup Name="plistscene" Type="Plist" ID="20623ef9-d8eb-4a16-8f77-f66dd9553f05" Version="3.10.0.0" />
+  <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="2" AllowRotation="True" AllowAnySize="True" AllowTrim="True" ctype="PlistInfoData">
+    <ImageFiles>
+      <FilePathData Path="game/lhd/image/btn_other.png" />
+      <FilePathData Path="game/lhd/image/img_back.png" />
+      <FilePathData Path="game/lhd/image/img_back_he.png" />
+      <FilePathData Path="game/lhd/image/img_back_hu.png" />
+      <FilePathData Path="game/lhd/image/img_back_long.png" />
+      <FilePathData Path="game/lhd/image/img_bet_round.png" />
+      <FilePathData Path="game/lhd/image/img_chip_1_1.png" />
+      <FilePathData Path="game/lhd/image/img_chip_1_2.png" />
+      <FilePathData Path="game/lhd/image/img_chip_2_1.png" />
+      <FilePathData Path="game/lhd/image/img_chip_2_2.png" />
+      <FilePathData Path="game/lhd/image/img_chip_4_1.png" />
+      <FilePathData Path="game/lhd/image/img_chip_4_2.png" />
+      <FilePathData Path="game/lhd/image/img_chip_3_1.png" />
+      <FilePathData Path="game/lhd/image/img_chip_3_2.png" />
+      <FilePathData Path="game/lhd/image/img_chip_5_1.png" />
+      <FilePathData Path="game/lhd/image/img_chip_5_2.png" />
+      <FilePathData Path="game/lhd/image/img_going.png" />
+      <FilePathData Path="game/lhd/image/img_gold.png" />
+      <FilePathData Path="game/lhd/image/img_head_back1.png" />
+      <FilePathData Path="game/lhd/image/img_head_back2.png" />
+      <FilePathData Path="game/lhd/image/img_hint_wait.png" />
+      <FilePathData Path="game/lhd/image/img_hu.png" />
+      <FilePathData Path="game/lhd/image/img_list.png" />
+      <FilePathData Path="game/lhd/image/img_load_blue.png" />
+      <FilePathData Path="game/lhd/image/img_load_red.png" />
+      <FilePathData Path="game/lhd/image/img_long.png" />
+      <FilePathData Path="game/lhd/image/img_near_20.png" />
+      <FilePathData Path="game/lhd/image/img_rank_1.png" />
+      <FilePathData Path="game/lhd/image/img_rank_2.png" />
+      <FilePathData Path="game/lhd/image/img_rank_3.png" />
+      <FilePathData Path="game/lhd/image/img_rank_4.png" />
+      <FilePathData Path="game/lhd/image/img_rank_5.png" />
+      <FilePathData Path="game/lhd/image/img_rank_6.png" />
+      <FilePathData Path="game/lhd/image/img_result_1.png" />
+      <FilePathData Path="game/lhd/image/img_result_2.png" />
+      <FilePathData Path="game/lhd/image/img_result_3.png" />
+      <FilePathData Path="game/lhd/image/img_richer.png" />
+      <FilePathData Path="game/lhd/image/img_road.png" />
+      <FilePathData Path="game/lhd/image/img_trend.png" />
+      <FilePathData Path="game/lhd/image/img_winlose.png" />
+      <FilePathData Path="game/lhd/image/img_winlose_back.png" />
+      <FilePathData Path="game/lhd/image/ing_hint_less.png" />
+      <FilePathData Path="game/lhd/image/img_result_1_1.png" />
+      <FilePathData Path="game/lhd/image/img_result_2_1.png" />
+      <FilePathData Path="game/lhd/image/img_chip_light.png" />
+      <FilePathData Path="game/lhd/image/img_self_back.png" />
+      <FilePathData Path="game/lhd/image/img_stop_bet.png" />
+      <FilePathData Path="game/lhd/image/img_add_back.png" />
+      <FilePathData Path="game/lhd/image/img_desc_back.png" />
+    </ImageFiles>
+    <MaxSize Width="2048" Height="1024" />
+  </Content>
+</PlistInfoProjectFile>

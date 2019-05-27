@@ -28,6 +28,10 @@ function PlayerData.getMaxPlayerCount()
     return _maxPlayerCnt
 end
 
+function PlayerData.getList()
+    return _players
+end
+
 function PlayerData.getPlayerCount()
     local count = 0
     for index, player in pairs(_players) do
@@ -38,6 +42,29 @@ end
 
 function PlayerData.onPlayerInfo(playerInfo)
     PlayerData.addPlayer(playerInfo)
+end
+
+function PlayerData.onSelfPlayerInfo(seat)
+    local info = {}
+    info.ticketid     = app.data.UserData.getTicketID()    -- id    
+    info.nickname     = app.data.UserData.getNickname()    -- 昵称
+    info.avatar       = app.data.UserData.getAvatar()      -- 头像
+    info.gender       = app.data.UserData.getGender()      -- 性别
+    info.balance      = app.data.UserData.getBalance()     -- 财富数量(金币)
+    info.status       = 0                                  -- 状态
+    info.seat         = seat                               -- 座位号(服务端)
+    info.bet          = 0                                  -- 下注(psz)/是否摊牌(nn)
+
+    info.long         = 0                                  -- 龙
+    info.hu           = 0                                  -- 虎
+    info.he           = 0                                  -- 和
+    info.area4        = 0                   
+
+    info.bankermult   = -1                                 -- 抢庄倍数(nn)
+    info.mult         = -1                                 -- 闲家倍数(nn)
+    info.isshow       = 0                                  -- false
+    
+    PlayerData.addPlayer(info)
 end
 
 function PlayerData.onPlayerLeave(numID)
@@ -72,6 +99,7 @@ function PlayerData.updatePlayerRiches(playerSeat, playerBet, playerBalance)
         if playerBalance then
             player:setBalance(playerBalance)  
             if PlayerData.getHeroSeat() == playerSeat then
+                
                 app.data.UserData.setBalance(playerBalance)        
             end  
         end           
@@ -185,6 +213,16 @@ function PlayerData.getHero()
         end
     end
     return nil
+end
+
+function PlayerData.getNumIDBySeat(seat)
+    if not _players then return nil end
+    for index, player in pairs(_players) do
+        if player:getSeat() == seat then
+            return player:getTicketID()
+        end
+    end
+    return -1
 end
 
 function PlayerData.localSeatToServerSeat(localSeat)

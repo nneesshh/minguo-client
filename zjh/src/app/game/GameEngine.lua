@@ -14,8 +14,8 @@ function GameEngine:getInstance()
     return self._instance
 end
 
-function GameEngine:start(gameID, base)
-    app.game.GameConfig.init(gameID, base)
+function GameEngine:start(gameID, base, limit)
+    app.game.GameConfig.init(gameID, base, limit)
     app.game.GameLoader.loader(gameID)
     app.game.PlayerData.init(app.Game.MaxPlayCnt[gameID])
 end

@@ -85,25 +85,38 @@
               <Project Name="card.csd" Type="Node" />
               <Project Name="gamescene.csd" Type="Scene" />
               <Project Name="menu.csd" Type="Node" />
+              <Project Name="playerlist.csd" Type="Layer" />
+              <Project Name="stop.csd" Type="Node" />
               <Project Name="trend.csd" Type="Layer" />
             </Folder>
             <Folder Name="image">
-              <Folder Name="fnt" />
+              <Folder Name="fnt">
+                <Fnt Name="goldfnt.fnt" />
+                <Fnt Name="losefnt.fnt" />
+                <Fnt Name="rankfnt.fnt" />
+                <Fnt Name="roundfnt.fnt" />
+                <Fnt Name="winfnt.fnt" />
+              </Folder>
               <Image Name="btn_other.png" />
+              <Image Name="img_add_back.png" />
               <Image Name="img_back.png" />
               <Image Name="img_back_he.png" />
               <Image Name="img_back_hu.png" />
               <Image Name="img_back_long.png" />
-              <Image Name="img_chip_100_1.png" />
-              <Image Name="img_chip_100_2.png" />
-              <Image Name="img_chip_1000_1.png" />
-              <Image Name="img_chip_1000_2.png" />
-              <Image Name="img_chip_10000_1.png" />
-              <Image Name="img_chip_10000_2.png" />
-              <Image Name="img_chip_5000_1.png" />
-              <Image Name="img_chip_5000_2.png" />
-              <Image Name="img_chip_50000_1.png" />
-              <Image Name="img_chip_50000_2.png" />
+              <Image Name="img_bet_round.png" />
+              <Image Name="img_chip_1_1.png" />
+              <Image Name="img_chip_1_2.png" />
+              <Image Name="img_chip_2_1.png" />
+              <Image Name="img_chip_2_2.png" />
+              <Image Name="img_chip_3_1.png" />
+              <Image Name="img_chip_3_2.png" />
+              <Image Name="img_chip_4_1.png" />
+              <Image Name="img_chip_4_2.png" />
+              <Image Name="img_chip_5_1.png" />
+              <Image Name="img_chip_5_2.png" />
+              <Image Name="img_chip_light.png" />
+              <Image Name="img_desc_back.png" />
+              <Image Name="img_detail_back.png" />
               <Image Name="img_going.png" />
               <Image Name="img_gold.png" />
               <Image Name="img_head_back1.png" />
@@ -112,14 +125,32 @@
               <Image Name="img_hu.png" />
               <Image Name="img_light_he.png" />
               <Image Name="img_light_hu.png" />
+              <Image Name="img_list.png" />
+              <Image Name="img_list_lucky.png" />
+              <Image Name="img_load_blue.png" />
+              <Image Name="img_load_red.png" />
               <Image Name="img_long.png" />
-              <Image Name="img_lucker.png" />
+              <Image Name="img_near_20.png" />
+              <Image Name="img_rank_1.png" />
+              <Image Name="img_rank_2.png" />
+              <Image Name="img_rank_3.png" />
+              <Image Name="img_rank_4.png" />
+              <Image Name="img_rank_5.png" />
+              <Image Name="img_rank_6.png" />
               <Image Name="img_result_1.png" />
+              <Image Name="img_result_1_1.png" />
               <Image Name="img_result_2.png" />
+              <Image Name="img_result_2_1.png" />
               <Image Name="img_result_3.png" />
               <Image Name="img_richer.png" />
+              <Image Name="img_road.png" />
+              <Image Name="img_self_back.png" />
+              <Image Name="img_stop_bet.png" />
               <Image Name="img_trend.png" />
+              <Image Name="img_winlose.png" />
+              <Image Name="img_winlose_back.png" />
               <Image Name="ing_hint_less.png" />
+              <PlistInfo Name="plistscene.csi" Type="Plist" />
             </Folder>
           </Folder>
           <Folder Name="public">
@@ -378,6 +409,7 @@
             </Folder>
             <Folder Name="help">
               <Image Name="img_jdnn_rule.png" />
+              <Image Name="img_lhd.png" />
               <Image Name="img_psz_rule.png" />
               <Image Name="img_qznn.png" />
               <Image Name="img_title.png" />

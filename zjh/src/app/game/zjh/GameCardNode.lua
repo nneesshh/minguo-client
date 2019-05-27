@@ -192,8 +192,12 @@ function GameCardNode:playTakeFirstAction()
     self._rootNode:setPosition(pCenter)
     
     local pos = self:calHandCardPosition(self._index, self._localSeat)    
-    local actMoveTo = cc.MoveTo:create(TAKE_FIRST_DELAY, pos)
-   
+    local actMoveTo = cc.Sequence:create(
+        cc.MoveTo:create(TAKE_FIRST_DELAY, pos),
+        cc.CallFunc:create(function() 
+            self._rootNode:setPosition(cc.p(pos)) 
+        end))
+        
     self._rootNode:runAction(actMoveTo) 
 end
 

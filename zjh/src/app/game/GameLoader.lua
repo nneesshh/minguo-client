@@ -12,6 +12,8 @@ function GameLoader.loader(gameid)
         GameLoader.loadJDNN()
     elseif gameid == app.Game.GameID.QZNN then
         GameLoader.loadQZNN()
+    elseif gameid == app.Game.GameID.LHD then   
+        GameLoader.loadLHD() 
 	end
 end
 
@@ -40,6 +42,13 @@ function GameLoader.loadQZNN()
     app.game.GameData           = requireQZNN("app.game.qznn.GameData")    
     app.game.GameEnum           = requireQZNN("app.game.qznn.GameEnum")    
     app.game.GamePresenter      = requireQZNN("app.game.qznn.GamePresenter")
+end
+
+function GameLoader.loadLHD()
+    print("load LHD")
+    app.game.GameData           = requireLHD("app.game.lhd.GameData")    
+    app.game.GameEnum           = requireLHD("app.game.lhd.GameEnum")    
+    app.game.GamePresenter      = requireLHD("app.game.lhd.GamePresenter")
 end
 
 return GameLoader

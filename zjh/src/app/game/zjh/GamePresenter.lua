@@ -219,6 +219,47 @@ function GamePresenter:onPlayerEnter(player)
     end    
 end
 
+-- 处理玩家坐下
+function GamePresenter:onPlayerSitdown(player)     
+    local localSeat = app.game.PlayerData.serverSeatToLocalSeat(player:getSeat()) 
+    
+    if localSeat == HERO_LOCAL_SEAT then
+        app.game.GameData.setHeroReady(false)
+    end
+
+    if self._gamePlayerNodes then
+        self._gamePlayerNodes[localSeat]:onPlayerEnter() 
+    end 
+    
+    self:playBiPaiPanel(false)
+      
+    if app.game.PlayerData.getPlayerCount() <= 1 then
+        if not self._ischangeTable then
+            self._ui:getInstance():showPnlHint(2)     
+            self._gameBtnNode:showBetNode(false)                   
+        end  
+    else
+        self._ui:getInstance():showPnlHint()   
+    end
+
+    local seats = app.game.GameData.getPlayerseat()
+    if #seats ~= 0 then
+        local isIn = false
+        for i, seat in ipairs(seats) do
+            if player:getSeat() == seat then
+                isIn = true
+            end
+        end
+        if not isIn then
+            if localSeat == 1 then
+                self._ui:getInstance():showPnlHint(4) 
+                self._gameBtnNode:showBetNode(false)                
+            end
+            app.game.PlayerData.updatePlayerStatus(player:getSeat(), 4)            
+        end         
+    end    
+end
+
 -- 玩家准备
 function GamePresenter:onPlayerReady(seat)
     local localseat = app.game.PlayerData.serverSeatToLocalSeat(seat)
@@ -1467,13 +1508,17 @@ function GamePresenter:sendEndShow()
 end
 
 -- 准备
-function GamePresenter:sendPlayerReady()   
-    local ready = app.game.GameData.getHeroReady()
-    if ready then
-        print("have ready")
-        return 
-    end 
-      
+function GamePresenter:sendPlayerReady()
+    if app.game.GameData then
+        local ready = app.game.GameData.getHeroReady()
+        if ready then
+            print("have ready")
+            return 
+        end
+    else
+        print("not app.game.GameData")     
+    end   
+    
     local hero = app.game.PlayerData.getHero()   
     if not hero then  
         print("no hero")     

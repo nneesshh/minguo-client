@@ -270,7 +270,13 @@ function GamePlayerNode:playBankAction()
     local function movebanker()
         imgBanker:setPosition(pCenter)
         imgBanker:setVisible(true)
-        imgBanker:runAction(cc.MoveTo:create(0.5, cc.p(x,y)))
+        imgBanker:runAction(
+            cc.Sequence:create(
+                cc.MoveTo:create(0.5, cc.p(x,y)),
+                cc.CallFunc:create(function() 
+                    imgBanker:setPosition(cc.p(x,y)) 
+                end))
+        )    
     end 
     imgLight:setVisible(true)    
     imgLight:runAction(        

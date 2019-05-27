@@ -18,6 +18,7 @@ local packet_cls = require("network.byte_stream_packet")
 local pubConn    = requireLobby(cwd .. "PublicUpconn")
 local jdnnConn   = requireLobby(cwd .. "JdnnUpconn")
 local qznnConn   = requireLobby(cwd .. "QznnUpconn")
+local lhdConn    = requireLobby(cwd .. "LhdUpconn")
 --
 function _M.createUpconn()
     --
@@ -106,7 +107,13 @@ local function _readTableInfo(po)
     info.status      = po:read_byte()
     info.round       = po:read_byte()
     info.basebet     = po:read_int32()
-    info.jackpot     = po:read_int32()
+    
+    info.jackpot     = po:read_int64()    
+    info.long        = po:read_int64()
+    info.hu          = po:read_int64()
+    info.he          = po:read_int64()
+    info.area4       = po:read_int64()
+    
     info.banker      = po:read_int16()
     info.currseat    = po:read_int16()
     info.playercount = po:read_int32()
@@ -330,7 +337,7 @@ function _M.doRegisterMsgCallbacks()
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_GIVE_UP_NOTIFY, _M.onPlayerGiveUp) 
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_ZJH_GAME_OVER_SHOW_NOTIFY, _M.onGameOverShow) 
     
-    -- 牛牛相关
+    -- 经典牛牛相关
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_GAME_PREPARE_NOTIFY, jdnnConn.onNiuGamePrepare)
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_GAME_START_NOTIFY, jdnnConn.onNiuGameStart)
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_GAME_OVER_NOTIFY, jdnnConn.onNiuGameOver)
@@ -341,7 +348,7 @@ function _M.doRegisterMsgCallbacks()
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_COMPARE_BID_NOTIFY, jdnnConn.onNiuCompareBid) 
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_COMPARE_CARD_NOTIFY, jdnnConn.onNiuCompareCard)   
     
-    -- 牛牛相关
+    -- 抢庄牛牛相关
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_C41_GAME_PREPARE_NOTIFY, qznnConn.onNiuGamePrepare)
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_C41_GAME_START_NOTIFY, qznnConn.onNiuGameStart)
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_C41_GAME_OVER_NOTIFY, qznnConn.onNiuGameOver)
@@ -350,7 +357,16 @@ function _M.doRegisterMsgCallbacks()
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_C41_READY_NOTIFY, qznnConn.onNiuPlayerReady) 
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_C41_BANKER_BID_NOTIFY, qznnConn.onNiuBankerBid) 
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_C41_COMPARE_BID_NOTIFY, qznnConn.onNiuCompareBid) 
-    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_C41_COMPARE_CARD_NOTIFY, qznnConn.onNiuCompareCard) 
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU_C41_COMPARE_CARD_NOTIFY, qznnConn.onNiuCompareCard)
+    
+    -- 龙虎斗相关
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_DRAGON_VS_TIGER_GAME_PREPARE_NOTIFY, lhdConn.onLhdGamePrepare)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_DRAGON_VS_TIGER_GAME_START_NOTIFY, lhdConn.onLhdGameStart)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_DRAGON_VS_TIGER_GAME_OVER_NOTIFY, lhdConn.onLhdGameOver)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_DRAGON_VS_TIGER_GAME_HISTORY_NOTIFY, lhdConn.onLhdHistory)    
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_DRAGON_VS_TIGER_TOP_SEAT_NOTIFY, lhdConn.onLhdTopSeat)     
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_DRAGON_VS_TIGER_READY_NOTIFY, lhdConn.onLhdPlayerReady) 
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_DRAGON_VS_TIGER_BET_NOTIFY, lhdConn.onLhdBet)      
 end
 
 return _M

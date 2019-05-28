@@ -1,4 +1,14 @@
 ﻿// lobby
+#define MSGID_RELOGIN_NOTIFY_NEW		0x888	//其他用户登录通知 2184
+#define MSGID_PLAYER_STATUS_NOTIFY_NEW	0x889	//玩家状态改变通知 2185
+#define MSGID_SIT_DOWN_NOTIFY_NEW		0x88A	//坐下通知 2186
+#define MSGID_PLAYER_BALANCE_NOTIFY		0x88B	//用户账户余额通知 2187
+
+#define MSGID_GAME_ANNOUNCEMENT_NOTIFY	0x911	//公告通知 2321
+#define MSGID_GAME_MAIL_NOTIFY			0x912	//邮件通知 2322
+
+
+// lobby
 #define MSGID_HEART_BEAT_REQ		0x1001		//心跳 4097
 #define MSGID_HEART_BEAT_RESP		0x1002		//心跳 4098
 #define MSGID_LOGIN_REQ				0x1003		//登录请求 4099

@@ -44,6 +44,10 @@ function GameData.setTableInfo(info)
     _selfData.basecoin    = info.basecoin or 0
 end
 
+function GameData.getTableInfo()
+    return _selfData
+end
+
 function GameData.setGameInfo(info)
     _selfData.round       = info.round
     _selfData.jackpot     = info.jackpot

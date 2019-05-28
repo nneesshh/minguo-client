@@ -16,7 +16,7 @@ function GameTrendPresenter:init(list)
 end
 
 function GameTrendPresenter:updateTrendOne(result, list)
-    self._ui:getInstance():updateTrendOne(result, list)
+    self._ui:getInstance():updateTrendOne(result, list) 
 end
 
 function GameTrendPresenter:calRecordForTop(list)

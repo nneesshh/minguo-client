@@ -64,6 +64,8 @@ end
 function GameScene:initUI()
     local types = app.game.GameData.getHistory()
     self:addHistory(types)
+    
+    self:resetBetUI()
 end
 
 -- -------------------------------------------------------
@@ -118,19 +120,25 @@ function GameScene:setHeTxt(num)
     txt:setString(num)
 end
 
-function GameScene:setSelfLongTxt(num)
+function GameScene:setSelfLongTxt(num, visible)
     local txt = self:seekChildByName("txt_long_self")
     txt:setString("下注 " .. num)
+    
+    self:seekChildByName("img_long_self"):setVisible(visible)
 end
 
-function GameScene:setSelfHuTxt(num)
+function GameScene:setSelfHuTxt(num, visible)
     local txt = self:seekChildByName("txt_hu_self")
     txt:setString("下注 " .. num)
+    
+    self:seekChildByName("img_hu_self"):setVisible(visible)
 end
 
-function GameScene:setSelfHeTxt(num)
+function GameScene:setSelfHeTxt(num, visible)
     local txt = self:seekChildByName("txt_he_self")
     txt:setString("下注 " .. num)
+    
+    self:seekChildByName("img_he_self"):setVisible(visible)
 end
 
 function GameScene:resetBetUI()
@@ -138,9 +146,9 @@ function GameScene:resetBetUI()
     self:setHuTxt(0)
     self:setHeTxt(0)
     
-    self:setSelfLongTxt(0)
-    self:setSelfHuTxt(0)
-    self:setSelfHeTxt(0)
+    self:setSelfLongTxt(0, false)
+    self:setSelfHuTxt(0, false)
+    self:setSelfHeTxt(0, false)
 end
 
 function GameScene:showWinLight(result, callback)
@@ -240,7 +248,7 @@ end
 
 -- 创建龙虎牌
 local imgCardPath = "game/public/card/img_"
-function GameScene:createLongHuCard(id, result, action)
+function GameScene:createLongHuCard(id, result, callback)
     local num   = self._presenter:getCardNum(id)
     local color = self._presenter:getCardColor(id)
 
@@ -293,36 +301,29 @@ function GameScene:createLongHuCard(id, result, action)
         end       
     end
     
-    if action then
-        self:turnCard(front, back)
-    else
-        front:setVisible(true)
-        back:setVisible(false)   
-    end    
+    self:turnCard(front, back, callback)
 end
 
 -- 重置手牌
-function GameScene:resetLongHuCards(flag)
+function GameScene:resetLongHuCards()
     local long = self:seekChildByName("panl_card_long")
+    local frontl = long:getChildByName("img_card_front")
+    local backl  = long:getChildByName("img_card_back")
+    long:setVisible(true)
+    frontl:setVisible(false)
+    backl:setVisible(true)
+    
     local hu = self:seekChildByName("panl_card_hu")
-
-    if flag then
-        local frontl = long:getChildByName("img_card_front")
-        local backl  = long:getChildByName("img_card_back")
-        local fronth = hu:getChildByName("img_card_front")
-        local backh  = hu:getChildByName("img_card_back")
-
-        frontl:setVisible(false)
-        backl:setVisible(true)
-        fronth:setVisible(false)
-        backh:setVisible(true)
-    end
-
-    long:setVisible(flag)
-    hu:setVisible(flag)
+    local fronth = hu:getChildByName("img_card_front")
+    local backh  = hu:getChildByName("img_card_back")
+    hu:setVisible(true)
+    fronth:setVisible(false)
+    backh:setVisible(true)
+    long:setRotation(0)
+    hu:setRotation(0)  
 end
 
-function GameScene:turnCard(front, back)
+function GameScene:turnCard(front, back, callback)
     cc.Director:getInstance():setProjection(cc.DIRECTOR_PROJECTION2_D)
     
     front:stopAllActions()
@@ -332,13 +333,19 @@ function GameScene:turnCard(front, back)
     front:setVisible(false)
 
     back:runAction(cc.Sequence:create(
-        cc.OrbitCamera:create(0.3,1,0,0,90,0,0),
+--        cc.OrbitCamera:create(0.3,1,0,0,90,0,0),
         cc.Hide:create(),
         cc.CallFunc:create(function()
             front:runAction(cc.Sequence:create(
                 cc.Show:create(),
-                cc.OrbitCamera:create(0.3,1,0,270,90,0,0)
+                cc.OrbitCamera:create(0.5,1,0,270,90,0,0)
             ))
+        end),
+        cc.DelayTime:create(1),
+        cc.CallFunc:create(function()
+            if callback then
+            	callback()
+            end
         end)
     ))
 end
@@ -386,6 +393,10 @@ end
 
 -- localseat = 8(其他玩家) 
 function GameScene:showChipAction(index, area, localseat)    
+    if index == -1 then
+    	print("index is -1")
+    	return
+    end
     local pnlarea = self:seekChildByName("pnl_chip_area")
     local pnlplayer
     if localseat < 8 then
@@ -409,49 +420,53 @@ function GameScene:showChipAction(index, area, localseat)
 end
 
 -- 结算飞金币
-function GameScene:showChipBackAction(to, bets, callback)     
+function GameScene:showChipBackAction(to, bets)     
     local pnlto = self:seekChildByName("pnl_player_" .. to)
     if not pnlto then
         print("to player not found")
         return
     end    
 
-    local function getAvgRandom(a,b)
-        if b<a then return nil end
-        local powA = math.pow(a, 2)
-        local powB = math.pow(b, 2)
-        local randC = math.random(powA, powB)
-        return math.sqrt(randC)
-    end
-
     local pnl = self:seekChildByName("pnl_chip_area")
     local childrens = pnl:getChildren() 
     
     local tx,ty = pnlto:getPosition()  
-    local tmpToX = tx + getAvgRandom(0, 30) * math.random(-1,1)
-    local tmpToY = ty + getAvgRandom(0, 30) * math.random(-1,1)     
-    
-    local function next()        
-        if callback then
-            callback()
-        end
-    end
-    
+
     for i, index in pairs(bets) do
         for j=1, #childrens do
             if childrens[j]:getName() == string.format("name_bet_chip_%d_%d", to, index) then
                 local action = cc.Sequence:create(
                     cc.DelayTime:create(0.08*j),
                     cc.Show:create(),
-                    cc.EaseSineInOut:create(cc.MoveTo:create(0.5, cc.p(tmpToX, tmpToY))),
+                    cc.EaseSineInOut:create(cc.MoveTo:create(0.5, cc.p(tx,ty))),
                     cc.DelayTime:create(0.1),
-                    cc.RemoveSelf:create(),
-                    cc.CallFunc:create(next)) 
-
+                    cc.RemoveSelf:create()) 
                 childrens[j]:runAction(action)     
             end 
         end   
-    end 
+    end
+end
+
+function GameScene:showChipBackOtherAction()
+    local pnlto = self:seekChildByName("btn_other")
+    if not pnlto then
+        print("to player 1 not found")
+        return
+    end    
+
+    local pnl = self:seekChildByName("pnl_chip_area")
+    local childrens = pnl:getChildren() 
+    local tx,ty = pnlto:getPosition() 
+         
+    for i=1, #childrens do
+        local action = cc.Sequence:create(
+            cc.DelayTime:create(0.02*i),
+            cc.Show:create(),
+            cc.EaseSineInOut:create(cc.MoveTo:create(0.2, cc.p(tx,ty))),
+            cc.DelayTime:create(0.1),
+            cc.RemoveSelf:create()) 
+        childrens[i]:runAction(action)     
+    end   
 end
 
 function GameScene:removeAllChip()
@@ -463,20 +478,20 @@ end
 function GameScene:getAreaSize(area)
     local bx, ex, by, ey = 0, 0, 0, 0 
     if area == CT.LHD_LONG then
-        bx = 290
-        ex = 290 + 300
-        by = 390
-        ey = 390 + 180
+        bx = 300
+        ex = 300 + 300
+        by = 400
+        ey = 400 + 120
     elseif area == CT.LHD_HU then
-        bx = 700
-        ex = 700 + 400
-        by = 390
-        ey = 390 + 180       
+        bx = 750
+        ex = 750 + 300
+        by = 400
+        ey = 400 + 120       
     else
-        bx = 290
-        ex = 290 + 800
-        by = 180
-        ey = 180 + 180          
+        bx = 320
+        ex = 320 + 700
+        by = 200
+        ey = 200 + 120          
     end
         
     return bx, ex, by, ey

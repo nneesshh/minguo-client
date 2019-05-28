@@ -29,7 +29,7 @@ function GameListLayer:showPlayerList(list)
         print("no player")        
         return   
     end
-
+    dump(list)
     local pnlsize = pnl:getContentSize()
     local itmsize = itm:getContentSize()
     local INTERVAL = 20
@@ -67,8 +67,10 @@ function GameListLayer:showPlayerList(list)
             f_rank:setVisible(true)
             f_rank:setString(list[i].seqid)
         end  
-        
-        local resPath = string.format("lobby/image/head/img_head_%d_%d.png", list[i].gender, list[i].avatar)
+        if list[i].avatar == "" then
+        	list[i].avatar = math.random(0, 4)
+        end
+        local resPath = string.format("lobby/image/head/img_head_%d_%d.png", tonumber(list[i].gender) , tonumber(list[i].avatar))
         head:loadTexture(resPath, ccui.TextureResType.plistType)
 
         id:setString("ID:" .. list[i].ticketid)

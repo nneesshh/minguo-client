@@ -373,10 +373,7 @@ function _M.onEnterRoom(conn, sessionid, msgid)
             end
 
             app.game.GameData.setSitplayers(newids)
-            
-            dump(app.game.PlayerData.getList())
-            dump(newids)
-            
+
             for k, id in ipairs(newids) do
                 local player = app.game.PlayerData.getPlayerByNumID(id)
                 if not player then
@@ -385,12 +382,12 @@ function _M.onEnterRoom(conn, sessionid, msgid)
                 end          
                 app.game.GamePresenter:getInstance():onPlayerEnter(player)       
 
-                if app.data.UserData.getTicketID() == id then
-                         
+                if app.data.UserData.getTicketID() == id then                         
                     if tabInfo.status == zjh_defs.TableStatus.TS_IDLE 
                         or tabInfo.status == zjh_defs.TableStatus.TS_PREPARE 
                         or tabInfo.status == zjh_defs.TableStatus.TS_ENDING then 
-                   
+                        
+                        print("publicupconn auto ready")
                         _M.sendPlayerReady(gameid)
                     end
                 end   

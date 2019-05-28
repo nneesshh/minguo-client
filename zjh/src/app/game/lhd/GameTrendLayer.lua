@@ -9,7 +9,11 @@ GameTrendLayer.csbPath = "game/lhd/csb/trend.csb"
 --local GameEnum = app.game.GameEnum 
 local GameEnum = {}
 GameEnum.HISTORY_NUM = 20
-GameEnum.MAX_NUM = 48
+GameEnum.MAX_NUM     = 48
+
+local cell           = 60
+local border         = 1
+local inter          = 2
 
 GameTrendLayer.touchs = {    
     "btn_close",
@@ -35,10 +39,11 @@ function GameTrendLayer:updateTrend(list)
 end
 
 function GameTrendLayer:updateTrendOne(result, list)
-    if not result then return end
-    self:addHistoryOne(result)
-    self:addHistoryLeftOne(result)
-    self:addHistoryRight(list)
+    if not list then return end
+
+    self:addHistory(list) 
+    self:addHistoryLeftOne(result, list)      
+    self:addHistoryRight(list) 
 end
 
 -- 添加一排
@@ -91,23 +96,17 @@ function GameTrendLayer:addHistoryLeft(tlist)
     local item = self:seekChildByName("img_hu_clone")
     local pnlsize = pnl:getContentSize()
     local itmsize = item:getContentSize()
-    pnl:removeAllChildren()
-    
-    dump(tlist)
-     
-    local list = self._presenter:calRecordForLeft(tlist)
-    dump(list)
-            
+    pnl:removeAllChildren()    
+    local list = self._presenter:calRecordForLeft(tlist)          
     local count = #list      
     local row = count % 6
     local col = math.ceil(count / 6)     
-    local cell = pnlsize.height / 6
-    
+
     for i=1,row do
         local index = (col-1)*6+i 
         local clone = self:cloneResult(list[index])   	          
         pnl:addChild(clone) 
-        clone:setPosition(cc.p((col-1)*cell+cell/2, (6-i)*cell+cell/2))
+        clone:setPosition(cc.p((col-1)*(cell+border)+cell/2, (6-i)*(cell+inter)+cell/2))
     end
    
     for i=1,col do
@@ -115,7 +114,7 @@ function GameTrendLayer:addHistoryLeft(tlist)
         	local index = (i-1)*6 + j
             local clone = self:cloneResult(list[index])            
             pnl:addChild(clone) 
-            clone:setPosition(cc.p((i-1)*cell+cell/2, (6-j)*cell+cell/2))        	
+            clone:setPosition(cc.p((i-1)*(cell+border)+cell/2, (6-j)*(cell+inter)+cell/2))        	
         end        
     end
 end
@@ -125,7 +124,6 @@ function GameTrendLayer:addHistoryLeftOne(result)
     local item = self:seekChildByName("img_hu_clone")
     local itmsize = item:getContentSize()
     local pnlsize = pnl:getContentSize()
-    local cell = pnlsize.height / 6
     
     local childs = pnl:getChildren()
     if #childs >= GameEnum.MAX_NUM then
@@ -137,13 +135,13 @@ function GameTrendLayer:addHistoryLeftOne(result)
         for i=1, 7 do
             for j=1,6 do
                 local index = (i-1)*6 + j
-                newchilds[index]:setPosition(cc.p((i-1)*cell+cell/2, (6-j)*cell+cell/2))            
+                newchilds[index]:setPosition(cc.p((i-1)*(cell+border)+cell/2, (6-j)*(cell+inter)+cell/2))            
             end
         end    
         
         local clone = self:cloneResult(result)              
         pnl:addChild(clone) 
-        clone:setPosition(cc.p(7*cell+cell/2, 5*cell+cell/2))                             
+        clone:setPosition(cc.p(7*(cell+border)+cell/2, 5*(cell+inter)+cell/2))                             
     else
         local clone = self:cloneResult(result)              
         pnl:addChild(clone) 
@@ -153,7 +151,7 @@ function GameTrendLayer:addHistoryLeftOne(result)
         	for j=1,6 do
         		local index = (i-1)*6 + j
                 if index <= #childs then
-                    childs[index]:setPosition(cc.p((i-1)*cell+cell/2, (6-j)*cell+cell/2))   
+                    childs[index]:setPosition(cc.p((i-1)*(cell+border)+cell/2, (6-j)*(cell+inter)+cell/2))   
         		end        		
         	end
         end         

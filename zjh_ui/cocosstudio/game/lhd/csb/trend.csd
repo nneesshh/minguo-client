@@ -326,11 +326,11 @@
           </AbstractNodeData>
           <AbstractNodeData Name="img_hu_clone" ActionTag="-1663598880" Tag="126" IconVisible="False" LeftMargin="-1019.0000" RightMargin="2315.0000" TopMargin="1731.0000" BottomMargin="-1019.0000" LeftEage="12" RightEage="12" TopEage="12" BottomEage="12" Scale9OriginX="12" Scale9OriginY="12" Scale9Width="14" Scale9Height="14" ctype="ImageViewObjectData">
             <Size X="38.0000" Y="38.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="-1000.0000" Y="-1000.0000" />
+            <AnchorPoint ScaleY="0.5000" />
+            <Position X="-1019.0000" Y="-1000.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="-0.7496" Y="-1.3333" />
+            <PrePosition X="-0.7639" Y="-1.3333" />
             <PreSize X="0.0285" Y="0.0507" />
             <FileData Type="MarkedSubImage" Path="game/lhd/image/img_result_3.png" Plist="game/lhd/image/plistscene.plist" />
           </AbstractNodeData>

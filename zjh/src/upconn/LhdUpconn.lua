@@ -77,7 +77,7 @@ end
 
 -- 游戏开始
 function _M.onLhdGameStart(conn, sessionid, msgid)
-    print("onNiuGameStart")
+    print("onLhdGameStart")
     local po = upconn.upconn:get_packet_obj()
     if po == nil then return end   
     local basecoin   = po:read_int32()

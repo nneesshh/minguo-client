@@ -18,7 +18,7 @@ local ST   = app.game.GameEnum.soundType
 
 local LOCAL_HERO_SEAT   = 3
 local CV_BACK           = 0
-
+local OTHER_SEAT        = 8
 -- 初始化
 function GamePresenter:init(...)
     self._maxPlayerCnt = app.game.PlayerData.getMaxPlayerCount() or 7
@@ -193,21 +193,21 @@ function GamePresenter:onPlayerEnter(player)
         end 
     end   
 
-    local seats = app.game.GameData.getPlayerseat()
-    if #seats ~= 0 then
-        local isIn = false
-        for i, seat in ipairs(seats) do
-            if player:getSeat() == seat then
-                isIn = true
-            end
-        end
-        if not isIn then
-            if localSeats[1] == 3 then
-                self._ui:getInstance():showPnlHint(true, GE.hintType.LHD_WAIT)                 
-            end
-            app.game.PlayerData.updatePlayerStatus(player:getSeat(), 4)
-        end         
-    end
+--    local seats = app.game.GameData.getPlayerseat()
+--    if #seats ~= 0 then
+--        local isIn = false
+--        for i, seat in ipairs(seats) do
+--            if player:getSeat() == seat then
+--                isIn = true
+--            end
+--        end
+--        if not isIn then
+--            if localSeats[1] == 3 then
+--                self._ui:getInstance():showPnlHint(true, GE.hintType.LHD_WAIT)                 
+--            end
+--            app.game.PlayerData.updatePlayerStatus(player:getSeat(), 4)
+--        end         
+--    end
 end
 
 function GamePresenter:onPlayerSitdown(player) 
@@ -224,65 +224,96 @@ function GamePresenter:onLhdGameStart()
     self._playing = true
     app.game.GameData.restDataEx()
     self._ui:getInstance():resetBetUI()
-    self._ui:getInstance():resetLongHuCards(false)  
+    self._ui:getInstance():resetLongHuCards()
     self._ui:getInstance():removeAllChip()
-    self._ui:getInstance():showStartEffect()    
-    self._ui:getInstance():showClockEffect()
-    
     self:showBetBtnEnable()
+    
+    self._ui:getInstance():showStartEffect()        
+    
+    self:performWithDelayGlobal(
+        function()
+            self._ui:getInstance():showClockEffect()
+        end, 1)
 end
 
 -- 游戏结束
 function GamePresenter:onLhdGameOver(overs, players)
     self._playing = false 
-    self._ui:getInstance():showEndEffect()    
-
-    self._ui:getInstance():createLongHuCard(overs.cards[1], 1, true)
-    self._ui:getInstance():createLongHuCard(overs.cards[2], 2, true)  
-    
-    self._ui:getInstance():showVSEffect()
-      
-    self._ui:getInstance():showWinLight(overs.cardtype) 
-        
     app.game.GameData.setHistory(overs.seqid, overs.cardtype, overs.cards)
     app.game.GameData.setPlayerLists(players)
+    -- 停止下注
+    self._ui:getInstance():showEndEffect()   
+    -- 刷新列表
+    self:updatePlayerList(players)  
+    -- VS
+    self._ui:getInstance():showVSEffect()
     
-    local sitseats = app.game.GameData.getSitplayers()    
-    local scorelist = {}
-    for i, player in ipairs(players) do
-        for j, id in ipairs(sitseats) do
-            if player.seatinfo.ticketid == id then
-                table.insert(scorelist, player.bouns)   
-        	end
+    -- 飘金币
+    local function goldFunc()
+        local scorelist = {}
+        local ids = {}    
+        for i, player in ipairs(players) do
+            if #scorelist < 2 then
+                table.insert(scorelist, player.bouns) 
+                table.insert(ids, player.ticketid)
+            end          
+        end    
+        if #scorelist == 1 then
+            scorelist[2] = -1
+            ids[2] = -1
         end
-    end    
-    for i=1, #scorelist do
-        if scorelist[i] > 0 then
-            self._gamePlayerNodes[i]:playWinEffect()    		
-    	end
+        scorelist[3] = overs.bouns
+        ids[3] = overs.ticketid
+
+        -- 其他人
+        for i, player in ipairs(players) do
+            if player.ticketid ~= ids[1] and player.ticketid ~= ids[2] and player.ticketid ~= ids[3] and #scorelist < 7 then
+                table.insert(scorelist, player.bouns)                                         
+            end
+        end
+
+        self._ui:getInstance():showWinloseScore(scorelist)
+
+        for i=1, #scorelist do
+            if scorelist[i] > 0 then
+                self._gamePlayerNodes[i]:playWinEffect()            
+            end
+        end
     end
-    self._ui:getInstance():showWinloseScore(scorelist)
-    local history = app.game.GameData.getHistory()    
-    self._ui:getInstance():addHistory(history)  
     
-    if app.game.GameTrendPresenter and app.game.GameTrendPresenter:isCurrentUI() then
+    local function lightFunc()
+        self._ui:getInstance():showWinLight(overs.cardtype, goldFunc) 
+        
+        -- 筹码返回
+        local betdetail = app.game.GameData.getBetDetail()
+        for localseat, detail in ipairs(betdetail) do        
+            self._ui:getInstance():showChipBackAction(localseat, detail)            
+        end
+
+        self:performWithDelayGlobal(function()
+            self._ui:getInstance():showChipBackOtherAction()
+        end, 1)
+    end
+    
+    local function huFunc()
+        self._ui:getInstance():createLongHuCard(overs.cards[2], 2, lightFunc)
+    end
+    
+    -- 龙牌
+    self._ui:getInstance():createLongHuCard(overs.cards[1], 1, huFunc)
+    
+    local history = app.game.GameData.getHistory()    
+    self._ui:getInstance():addHistory(history)      
+    if app.game.GameTrendPresenter:isCurrentUI() then
         app.game.GameTrendPresenter:getInstance():updateTrendOne(overs.cardtype, history) 
     end
-  
-    -- 筹码返回
-    local betdetail = app.game.GameData.getBetDetail()
-    for localseat, detail in ipairs(betdetail) do        
-        self._ui:getInstance():showChipBackAction(localseat, detail)         	
-    end
     
-    self:updatePlayerList(players)  
-   
     -- 自动准备
     self:performWithDelayGlobal(function()
-        print("send ready 8")
+        print("send ready 10")
 
         self:sendPlayerReady()
-    end, 8) 
+    end, 10) 
 end
 
 -- 历史数据 
@@ -303,13 +334,16 @@ end
 -- 押注
 function GamePresenter:onLhdBet(bets)
     app.game.PlayerData.updatePlayerRiches(bets.seat, 0, bets.balance)     
+    
+    -- 更新所有下注的总额
+    self._ui:getInstance():setLongTxt(bets.longsum)
+    self._ui:getInstance():setHuTxt(bets.husum)
+    self._ui:getInstance():setHeTxt(bets.hesum)     
         
     local numid = app.game.PlayerData.getNumIDBySeat(bets.seat)
     local localSeats = app.game.GameData.getSeatByTicketid(numid)
-    if localSeats == -1 then
-        print("bet seat is error")
-        return
-    end 
+    
+    print("bet seat is", bets.seat, numid)
     
     -- 按钮触摸性
     self:showBetBtnEnable()
@@ -319,19 +353,29 @@ function GamePresenter:onLhdBet(bets)
     local chip_he = self:getChipIndex(bets.he)
         
     local heroseat = app.game.PlayerData.getHeroSeat()    
-
-    for i, seat in ipairs(localSeats) do
-        if chip_long ~= -1 then
-            app.game.GameData.setBetDetail(seat, chip_long)
-            self._ui:getInstance():showChipAction(chip_long, GECT.LHD_LONG, seat)       
-        elseif chip_hu ~= -1 then
-            app.game.GameData.setBetDetail(seat, chip_hu)
-            self._ui:getInstance():showChipAction(chip_hu, GECT.LHD_HU, seat)
-        elseif chip_he ~= -1 then
-            app.game.GameData.setBetDetail(seat, chip_he)
-            self._ui:getInstance():showChipAction(chip_he, GECT.LHD_HE, seat)
+    if localSeats == -1 then 
+        print("localseat",chip_long, chip_hu, chip_he)   
+        self._ui:getInstance():showChipAction(chip_long, GECT.LHD_LONG, OTHER_SEAT) 
+        self._ui:getInstance():showChipAction(chip_hu, GECT.LHD_HU, OTHER_SEAT) 
+        self._ui:getInstance():showChipAction(chip_he, GECT.LHD_HE, OTHER_SEAT)
+        
+        return 
+    else
+        print("more than 1")
+        dump(localSeats)
+        for i, seat in ipairs(localSeats) do
+            if chip_long ~= -1 then
+                app.game.GameData.setBetDetail(seat, chip_long)
+                self._ui:getInstance():showChipAction(chip_long, GECT.LHD_LONG, seat)       
+            elseif chip_hu ~= -1 then
+                app.game.GameData.setBetDetail(seat, chip_hu)
+                self._ui:getInstance():showChipAction(chip_hu, GECT.LHD_HU, seat)
+            elseif chip_he ~= -1 then
+                app.game.GameData.setBetDetail(seat, chip_he)
+                self._ui:getInstance():showChipAction(chip_he, GECT.LHD_HE, seat)
+            end
         end
-    end
+    end     
     
     -- 自己下注
     if heroseat == bets.seat then
@@ -344,9 +388,9 @@ function GamePresenter:onLhdBet(bets)
         local selfhu = app.game.GameData.getBetHu()
         local selfhe = app.game.GameData.getBetHe()
         
-        self._ui:getInstance():setSelfLongTxt(selflong)
-        self._ui:getInstance():setSelfHuTxt(selfhu)
-        self._ui:getInstance():setSelfHeTxt(selfhe)
+        self._ui:getInstance():setSelfLongTxt(selflong, true)
+        self._ui:getInstance():setSelfHuTxt(selfhu, true)
+        self._ui:getInstance():setSelfHeTxt(selfhe, true)
         
         self._gamePlayerNodes[LOCAL_HERO_SEAT]:showTxtBalance(true, bets.balance)    
     -- 他人下注    
@@ -357,11 +401,6 @@ function GamePresenter:onLhdBet(bets)
             end 
         end                                
     end
-    
-    -- 更新所有下注的总额
-    self._ui:getInstance():setLongTxt(bets.longsum)
-    self._ui:getInstance():setHuTxt(bets.husum)
-    self._ui:getInstance():setHeTxt(bets.hesum)     
 end
 
 -- -----------------------------do----------------------------------
@@ -453,8 +492,8 @@ end
 
 -- ----------------------------onclick-------------------------------
 function GamePresenter:onTouchGoing()
-    local types = app.game.GameData.getHistory()
-    app.game.GameTrendPresenter:getInstance():start(types) 
+    local history = app.game.GameData.getHistory()
+    app.game.GameTrendPresenter:getInstance():start(history) 
 end
 
 function GamePresenter:onTouchOther()
@@ -477,10 +516,6 @@ function GamePresenter:onTouchOther()
 end
 
 function GamePresenter:onTouchBet(bet)
-    if not self._playing then
-    	print("not playing")
-    	return
-    end
 	self._selectBetIndex = bet
     self._gameBtnNode:setBetBtnLight(bet)
 end
@@ -584,19 +619,27 @@ end
 
 -- 准备
 function GamePresenter:sendPlayerReady()
-    local hero = app.game.PlayerData.getHero()   
-    if hero then       
-        print("hero is leave", hero:isLeave())
+    local tabInfo = app.game.GameData.getTableInfo()
+    if tabInfo.status == zjh_defs.TableStatus.TS_IDLE 
+        or tabInfo.status == zjh_defs.TableStatus.TS_PREPARE 
+        or tabInfo.status == zjh_defs.TableStatus.TS_ENDING then                   
+        
+        local hero = app.game.PlayerData.getHero()   
+        if hero then       
+            print("hero is leave", hero:isLeave())
+        end 
+        local po = upconn.upconn:get_packet_obj()
+        local limit = app.game.GameConfig.getLimit()
+        if hero and not hero:isLeave() and hero:getBalance() > limit and po then        
+            print("send ready", hero:getSeat())
+            local sessionid = app.data.UserData.getSession() or 222        
+            po:writer_reset()
+            po:write_int64(sessionid)
+            upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_DRAGON_VS_TIGER_READY_REQ)
+        end             
+    else
+        print("not ready table is busy")    
     end 
-    local po = upconn.upconn:get_packet_obj()
-    local limit = app.game.GameConfig.getLimit()
-    if hero and not hero:isLeave() and hero:getBalance() > limit and po then        
-        print("send ready", hero:getSeat())
-        local sessionid = app.data.UserData.getSession() or 222        
-        po:writer_reset()
-        po:write_int64(sessionid)
-        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_DRAGON_VS_TIGER_READY_REQ)
-    end    
 end
 
 -- 换桌

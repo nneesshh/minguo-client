@@ -20,6 +20,8 @@ LoginLayer.touchs = {
     "btn_test_3",
     "btn_test_4",
     "btn_test_5",
+    "btn_test_6",
+    "btn_test_7",
 }
 
 function LoginLayer:onTouch(sender, eventType)
@@ -31,9 +33,7 @@ function LoginLayer:onTouch(sender, eventType)
         elseif name == "btn_account" then
             self:onClickBtnAccount()           
         elseif string.find(name, "btn_test_") then 
-            local index = tonumber(string.split(name, "btn_test_")[2]) 
-            dump(TestAccount.list[index+1])
-                          
+            local index = tonumber(string.split(name, "btn_test_")[2])                          
             self._presenter:testLogin(TestAccount.list[index+1])   
         end
     end
@@ -59,9 +59,10 @@ function LoginLayer:initTestLoginBtnUI()
     local logindata = TestAccount.list
     local debug = self:seekChildByName("debug")
     for key, var in ipairs(debug:getChildren()) do
-        var:setTitleText(logindata[key][2])
+        if logindata and logindata[key] then
+            var:setTitleText(logindata[key][2])
+        end
     end
 end
-
 
 return LoginLayer

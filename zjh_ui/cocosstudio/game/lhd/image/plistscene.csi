@@ -43,7 +43,6 @@
       <FilePathData Path="game/lhd/image/img_trend.png" />
       <FilePathData Path="game/lhd/image/img_winlose.png" />
       <FilePathData Path="game/lhd/image/img_winlose_back.png" />
-      <FilePathData Path="game/lhd/image/ing_hint_less.png" />
       <FilePathData Path="game/lhd/image/img_result_1_1.png" />
       <FilePathData Path="game/lhd/image/img_result_2_1.png" />
       <FilePathData Path="game/lhd/image/img_chip_light.png" />
@@ -51,6 +50,8 @@
       <FilePathData Path="game/lhd/image/img_stop_bet.png" />
       <FilePathData Path="game/lhd/image/img_add_back.png" />
       <FilePathData Path="game/lhd/image/img_desc_back.png" />
+      <FilePathData Path="game/lhd/image/img_hint_less.png" />
+      <FilePathData Path="game/lhd/image/img_hint_less2.png" />
     </ImageFiles>
     <MaxSize Width="2048" Height="1024" />
   </Content>

@@ -41,7 +41,9 @@ function GameEngine:onStartGame()
     else
         app.game.GamePresenter:getInstance():exit()
     end
-    app.game.GamePresenter:getInstance():start()
+    if app.game.GamePresenter then
+        app.game.GamePresenter:getInstance():start()
+    end    
 end
 
 function GameEngine:onExitGame()

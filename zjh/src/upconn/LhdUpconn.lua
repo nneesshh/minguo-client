@@ -67,7 +67,7 @@ end
 
 -- 游戏准备
 function _M.onLhdGamePrepare(conn, sessionid, msgid) 
-    print("onNiuGamePrepare")
+    print("onLhdGamePrepare")
     local po = upconn.upconn:get_packet_obj()   
     if po == nil then return end   
     if app.game.GamePresenter then
@@ -112,6 +112,10 @@ function _M.onLhdGameOver(conn, sessionid, msgid)
     overs.hunum     = po:read_int32()
     overs.henum     = po:read_int32()
     overs.bouns     = po:read_int32()
+    
+    print("111111111111111111111111111")
+    print(overs.longnum, overs.hunum, overs.henum, overs.bouns)
+    print("222222222222222222222222222")
     
     overs.balance   = po:read_int64()
     
@@ -193,6 +197,9 @@ function _M.onLhdPlayerReady(conn, sessionid, msgid)
     local po = upconn.upconn:get_packet_obj()
     if po == nil then return end   
     local seat = po:read_int16()
+    if app.game.GamePresenter then
+        app.game.GamePresenter:getInstance():onLhdPlayerReady(seat)         
+    end 
 end
 
 -- 押注

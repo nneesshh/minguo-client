@@ -36,7 +36,7 @@
                     <PrePosition X="0.5000" Y="0.3571" />
                     <PreSize X="0.8030" Y="0.1821" />
                     <TextColor A="255" R="65" G="65" B="70" />
-                    <DisabledFileData Type="MarkedSubImage" Path="game/public/menu/btn_change.png" Plist="game/public/menuplist.plist" />
+                    <DisabledFileData Type="Normal" Path="game/public/menu/btn_change_disable.png" Plist="" />
                     <PressedFileData Type="MarkedSubImage" Path="game/public/menu/btn_change.png" Plist="game/public/menuplist.plist" />
                     <NormalFileData Type="MarkedSubImage" Path="game/public/menu/btn_change.png" Plist="game/public/menuplist.plist" />
                     <OutlineColor A="255" R="255" G="0" B="0" />

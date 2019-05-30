@@ -38,4 +38,11 @@ function GameBtnNode:setBetBtnLight(index)
 	end	
 end
 
+function GameBtnNode:setTxtHint(visible)
+    local txt = self:seekChildByName("img_balance_less") 
+    if txt then
+        txt:setVisible(visible)       
+    end
+end
+
 return GameBtnNode

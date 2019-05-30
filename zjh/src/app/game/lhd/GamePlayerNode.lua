@@ -4,7 +4,7 @@
 
 local GamePlayerNode   = class("GamePlayerNode", app.base.BaseNodeEx)
 
-local HERO_LOCAL_SEAT  = 1 
+local HERO_LOCAL_SEAT  = 7 
 local ST = app.game.GameEnum.soundType
 
 function GamePlayerNode:initData(localSeat)

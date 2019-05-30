@@ -144,6 +144,16 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
+              <AbstractNodeData Name="img_balance_less" ActionTag="-374328456" VisibleForFrame="False" Tag="846" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="266.0000" RightMargin="266.0000" TopMargin="136.5000" BottomMargin="136.5000" LeftEage="121" RightEage="121" TopEage="8" BottomEage="8" Scale9OriginX="121" Scale9OriginY="8" Scale9Width="126" Scale9Height="11" ctype="ImageViewObjectData">
+                <Size X="368.0000" Y="27.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="450.0000" Y="150.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.5000" />
+                <PreSize X="0.4089" Y="0.0900" />
+                <FileData Type="MarkedSubImage" Path="game/lhd/image/img_hint_less2.png" Plist="game/lhd/image/plistscene.plist" />
+              </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position />

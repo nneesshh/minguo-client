@@ -121,6 +121,8 @@
               <Image Name="img_gold.png" />
               <Image Name="img_head_back1.png" />
               <Image Name="img_head_back2.png" />
+              <Image Name="img_hint_less.png" />
+              <Image Name="img_hint_less2.png" />
               <Image Name="img_hint_wait.png" />
               <Image Name="img_hu.png" />
               <Image Name="img_light_he.png" />
@@ -149,7 +151,6 @@
               <Image Name="img_trend.png" />
               <Image Name="img_winlose.png" />
               <Image Name="img_winlose_back.png" />
-              <Image Name="ing_hint_less.png" />
               <PlistInfo Name="plistscene.csi" Type="Plist" />
             </Folder>
           </Folder>
@@ -207,6 +208,7 @@
             <Folder Name="menu">
               <Image Name="btn_back.png" />
               <Image Name="btn_change.png" />
+              <Image Name="btn_change_disable.png" />
               <Image Name="btn_help.png" />
               <Image Name="btn_menu1.png" />
               <Image Name="btn_menu2.png" />

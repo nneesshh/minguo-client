@@ -34,8 +34,10 @@ function GameTrendLayer:updateTrend(list)
 
     self:addHistory(list) 
     self:addHistoryLeft(list)      
-    self:addHistoryRight(list) 
-    self:countResult(list) 
+    self:addHistoryRight(list)
+     
+    self:countResult()
+    self:countProgress()
 end
 
 function GameTrendLayer:updateTrendOne(result, list)
@@ -44,6 +46,9 @@ function GameTrendLayer:updateTrendOne(result, list)
     self:addHistory(list) 
     self:addHistoryLeftOne(result, list)      
     self:addHistoryRight(list) 
+    
+    self:countResult()
+    self:countProgress()
 end
 
 -- 添加一排
@@ -62,32 +67,9 @@ function GameTrendLayer:addHistory(tlist)
     for k = count, 1, -1 do
         local clone = self:cloneResult(list[k])        
         clone:setPosition(cc.p(((GameEnum.HISTORY_NUM - 1)-(count-k))*itmsize.width, pnlsize.height/2))
+        clone:setTag(list[k])
         pnl:addChild(clone)            
     end     
-end
-
-function GameTrendLayer:addHistoryOne(result)
-    local pnl = self:seekChildByName("pnl_record")
-    local item = self:seekChildByName("img_hu_clone")
-    local itmsize = item:getContentSize()
-
-    local childs = pnl:getChildren()
-    for i, child in ipairs(childs) do
-        local posX = child:getPositionX()
-        child:setPositionX(posX - itmsize.width)
-    end        
-
-    local add = self:cloneResult(result)
-    local pnlsize = pnl:getContentSize()
-    add:setPosition(cc.p((GameEnum.HISTORY_NUM - 1)*itmsize.width, pnlsize.height/2))
-    pnl:addChild(add)
-    
-    local newchild = pnl:getChildren()
-    if #newchild > GameEnum.HISTORY_NUM then
-        for i=1, #newchild - GameEnum.HISTORY_NUM do
-            newchild[i]:removeFromParent(true)
-        end      
-    end  
 end
 
 -- 左侧记录
@@ -104,7 +86,8 @@ function GameTrendLayer:addHistoryLeft(tlist)
 
     for i=1,row do
         local index = (col-1)*6+i 
-        local clone = self:cloneResult(list[index])   	          
+        local clone = self:cloneResult(list[index])
+        clone:setTag(list[index])   	          
         pnl:addChild(clone) 
         clone:setPosition(cc.p((col-1)*(cell+border)+cell/2, (6-i)*(cell+inter)+cell/2))
     end
@@ -112,7 +95,8 @@ function GameTrendLayer:addHistoryLeft(tlist)
     for i=1,col do
         for j=1,6 do
         	local index = (i-1)*6 + j
-            local clone = self:cloneResult(list[index])            
+            local clone = self:cloneResult(list[index]) 
+            clone:setTag(list[index])            
             pnl:addChild(clone) 
             clone:setPosition(cc.p((i-1)*(cell+border)+cell/2, (6-j)*(cell+inter)+cell/2))        	
         end        
@@ -141,9 +125,11 @@ function GameTrendLayer:addHistoryLeftOne(result)
         
         local clone = self:cloneResult(result)              
         pnl:addChild(clone) 
+        clone:setTag(result) 
         clone:setPosition(cc.p(7*(cell+border)+cell/2, 5*(cell+inter)+cell/2))                             
     else
-        local clone = self:cloneResult(result)              
+        local clone = self:cloneResult(result) 
+        clone:setTag(result)              
         pnl:addChild(clone) 
         
         local childs = pnl:getChildren()  
@@ -224,27 +210,59 @@ function GameTrendLayer:cloneResult(result, circle)
     return i
 end
 
--- 统计近20局结果
-function GameTrendLayer:countResult(list)
-    local long, hu, he, perl, perh = self._presenter:calPercent(list)
-        
+-- 统计近48局结果
+function GameTrendLayer:countResult()
+    local panel = self:seekChildByName("pnl_detail_left")
+    local childs = panel:getChildren()
+    local c_long, c_hu, c_he = 0, 0, 0
+    for k, v in ipairs(childs) do
+        if v:getTag() == 1 then
+            c_long = c_long + 1
+        elseif v:getTag() == 2 then
+            c_hu = c_hu + 1
+        elseif v:getTag() == 3 then
+            c_he = c_he + 1
+        end    	
+    end
+    
     local txtlong = self:seekChildByName("txt_total_long")  
     local txthu = self:seekChildByName("txt_total_hu")  
     local txthe = self:seekChildByName("txt_total_he")  
     local round = self:seekChildByName("txt_total_round")
-    local txtl = self:seekChildByName("txt_long_rate") 
-    local txth = self:seekChildByName("txt_hu_rate") 
-    
-	txtlong:setString(#long)
-	txthu:setString(#hu)
-    txthe:setString(#he)
-    round:setString("局数：" ..  #long + #hu + #he)		
-    txtl:setString(perl .. "%")
-    txth:setString(perh .. "%")
-    self:updateProgress(perl, perh)
+    txtlong:setString(c_long)
+    txthu:setString(c_hu)
+    txthe:setString(c_he)
+    round:setString("局数：" ..  #childs)      
 end
 
-function GameTrendLayer:updateProgress(perl, perh)
+function GameTrendLayer:countProgress()
+    local panel = self:seekChildByName("pnl_record")
+    local childs = panel:getChildren()
+    
+    dump(childs)
+    print("childs",#childs)
+    
+    local c_long, c_hu, c_he = 0, 0, 0
+    for k, v in ipairs(childs) do
+        print("pro is", v:getTag())
+        if v:getTag() == 1 then
+            c_long = c_long + 1
+        elseif v:getTag() == 2 then
+            c_hu = c_hu + 1
+        elseif v:getTag() == 3 then
+            c_he = c_he + 1
+        end     
+    end
+    local perl, perh = 0, 0 
+    if c_long == 0 and c_hu == 0 then
+    else
+        perl = math.ceil(100 * c_long / (c_long + c_hu))
+        perh = 100 - perl
+    end
+    
+    print("perl",perl)
+    print("perh",perh)
+    
     local back = self:seekChildByName("img_back")    
     local long = self:seekChildByName("img_long_blue")
     local hu = self:seekChildByName("img_hu_red")
@@ -269,15 +287,14 @@ function GameTrendLayer:updateProgress(perl, perh)
             perh = 20
         end    
     end
-    print(perl, perh)
-        
+    
     long:setContentSize(cc.size(len *perl/100, 34))
     hu:setContentSize(cc.size(len *perh/100, 34))
-    txtl:setPositionX(len *perl/100-30)  
-      
-    img20:setPositionX(len *perl/100 + 15.5) 
-       
-    txth:setPositionX(size.width-len *perh/100 + 30)    
+    txtl:setPositionX(len *perl/100-30)        
+    img20:setPositionX(len *perl/100 + 15.5)        
+    txth:setPositionX(size.width-len *perh/100 + 30)  
+    txtl:setString(perl .. "%")
+    txth:setString(perh .. "%")
 end
 
 return GameTrendLayer

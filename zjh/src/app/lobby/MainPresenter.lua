@@ -47,7 +47,7 @@ function MainPresenter:initScene(gameid)
     isHotpatch = false
     self:reLoad()
     self:initDownload()
-    if gameid then
+    if gameid and gameid ~= 4 then
         self:showPlazaLists(gameid)
     end    
 end

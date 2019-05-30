@@ -49,6 +49,7 @@ local MsgId = {
     MSGID_RELOGIN_NOTIFY_NEW                    = 0x888,        --//其他用户登录通知 2184 
     MSGID_PLAYER_STATUS_NOTIFY_NEW              = 0x889,        --//玩家状态改变通知 2185 
     MSGID_SIT_DOWN_NOTIFY_NEW                   = 0x88A,        --//坐下通知 2186
+    MSGID_PLAYER_BALANCE_NOTIFY                 = 0x88B,        --//用户账户余额通知 2187
 
     --// room
     MSGID_ENTER_ROOM_REQ		                = 0x1007,		--//进入房间请求 4103

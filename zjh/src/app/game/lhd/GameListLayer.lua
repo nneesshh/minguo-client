@@ -68,7 +68,7 @@ function GameListLayer:showPlayerList(list)
             f_rank:setString(list[i].seqid)
         end  
         if list[i].avatar == "" then
-        	list[i].avatar = math.random(0, 4)
+        	list[i].avatar = 1
         end
         local resPath = string.format("lobby/image/head/img_head_%d_%d.png", tonumber(list[i].gender) , tonumber(list[i].avatar))
         head:loadTexture(resPath, ccui.TextureResType.plistType)

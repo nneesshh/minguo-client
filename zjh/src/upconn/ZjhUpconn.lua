@@ -318,6 +318,7 @@ function _M.doRegisterMsgCallbacks()
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_RELOGIN_NOTIFY_NEW, pubConn.onRelogin)    
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_DEPOSIT_CASH_RESP, pubConn.onDepositCash)
         
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_PLAYER_BALANCE_NOTIFY, pubConn.onPlayerBanance)    
     -- 玩家动作
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_PLAYER_STATUS_NOTIFY_NEW, pubConn.onPlayerStatus)
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_SIT_DOWN_NOTIFY_NEW, pubConn.onPlayerSitDown)

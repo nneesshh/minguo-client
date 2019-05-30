@@ -24,7 +24,8 @@ local _selfData = {
     betlong       = 0,          
     bethu         = 0,          
     bethe         = 0,    
-    betdetail     = {}
+    betdetail     = {},
+    ready         = false      -- 是否准备 
 }
 
 function GameData.setTableInfo(info)
@@ -80,6 +81,7 @@ function GameData.restData()
     _selfData.bethu       = 0          
     _selfData.bethe       = 0 
     _selfData.betdetail   = {} 
+    _selfData.ready       = false
 end
 
 function GameData.restDataEx()
@@ -211,39 +213,21 @@ function GameData.getPlayerLists()
 end
 
 -- 有座位的玩家列表
-function GameData.setSitplayers(data)
-    _selfData.sitplayers = {}
-    _selfData.sitplayers = data
+function GameData.setSitplayers(k, player)    
+    _selfData.sitplayers[k] = player
 end
 
 function GameData.getSitplayers()
     return _selfData.sitplayers
 end
 
-function GameData.getSeatByTicketid(ticketid)
-    local seat = {}
-    for k, id in ipairs(_selfData.sitplayers) do
-        if id == ticketid then
-            table.insert(seat, k)
-    	end
-    end
-    
-    if #seat == 0 then
-    	return -1
-    end    
-    return seat	
-end
-
-function GameData.removeSeatByTicketid(ticketid)
-    local newseat = {}
-    for k, id in ipairs(_selfData.sitplayers) do
-        if id ~= ticketid then
-            table.insert(newseat, k)
+function GameData.getLocalseatByServerseat(seat)
+    for k, player in ipairs(_selfData.sitplayers) do
+        if player:getSeat() == seat then
+            return k
         end
-    end
-
-    _selfData.sitplayers = {}    
-    _selfData.sitplayers = newseat
+    end      
+    return -1
 end
 
 function GameData.setBetLong(bet)
@@ -277,6 +261,15 @@ end
 
 function GameData.getBetDetail()
     return _selfData.betdetail
+end
+
+function GameData.setReady(flag)
+	_selfData.ready = flag
+    app.util.DispatcherUtils.dispatchEvent(app.Event.EVENT_READY, flag) 
+end
+
+function GameData.getReady()
+    return _selfData.ready 
 end
 
 return GameData

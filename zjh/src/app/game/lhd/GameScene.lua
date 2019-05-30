@@ -31,10 +31,11 @@ function GameScene:onTouch(sender, eventType)
     local name = sender:getName()
     if eventType == ccui.TouchEventType.ended then        
         if name == "btn_exit" then 
+            self._presenter:sendLeaveRoom()     
         elseif name == "btn_going" then
             self._presenter:onTouchGoing()            
         elseif name == "btn_other" then                                  
-            self._presenter:onTouchOther()
+            self._presenter:onTouchOther()                       
         end
     end
 end
@@ -81,11 +82,13 @@ end
 
 function GameScene:showClockEffect()
     local node = self:seekChildByName("node_clock_effect")
-    node:removeAllChildren()
-    node:stopAllActions()
+    if node then
+        node:removeAllChildren()
+        node:stopAllActions()
 
-    local effect = app.util.UIUtils.runEffectOne("game/lhd/effect","longhdou_naozhong", 0, 0)
-    node:addChild(effect)
+        local effect = app.util.UIUtils.runEffectOne("game/lhd/effect","longhdou_naozhong", 0, 0)
+        node:addChild(effect)
+    end
 end
 
 function GameScene:showVSEffect()
@@ -122,23 +125,39 @@ end
 
 function GameScene:setSelfLongTxt(num, visible)
     local txt = self:seekChildByName("txt_long_self")
-    txt:setString("下注 " .. num)
+    txt:setString("下注 " .. num) 
     
+    if num == 0 then
+    	visible = false
+    end   
     self:seekChildByName("img_long_self"):setVisible(visible)
 end
 
 function GameScene:setSelfHuTxt(num, visible)
     local txt = self:seekChildByName("txt_hu_self")
     txt:setString("下注 " .. num)
-    
+    if num == 0 then
+        visible = false
+    end
     self:seekChildByName("img_hu_self"):setVisible(visible)
 end
 
 function GameScene:setSelfHeTxt(num, visible)
     local txt = self:seekChildByName("txt_he_self")
     txt:setString("下注 " .. num)
-    
+    if num == 0 then
+        visible = false
+    end
     self:seekChildByName("img_he_self"):setVisible(visible)
+end
+
+function GameScene:setTxtReady(flag)
+    local txt = self:seekChildByName("txt_ready")
+    if flag then
+        txt:setString("准备")
+    else
+        txt:setString("未准备")    
+    end
 end
 
 function GameScene:resetBetUI()
@@ -163,10 +182,14 @@ function GameScene:showWinLight(result, callback)
     end
     
     local sequence = cc.Sequence:create(
-        cc.FadeIn:create(0.2),       
-        cc.FadeOut:create(0.3),        
-        cc.FadeIn:create(0.2),
-        cc.FadeOut:create(0.3),
+        cc.FadeIn:create(0.3),       
+        cc.FadeOut:create(0.2),
+        cc.DelayTime:create(0.25),        
+        cc.FadeIn:create(0.3),
+        cc.FadeOut:create(0.2),
+        cc.DelayTime:create(0.25),
+        cc.FadeIn:create(0.3),
+        cc.FadeOut:create(0.2),
         cc.CallFunc:create(next))
     
     long:stopAllActions()
@@ -184,29 +207,6 @@ function GameScene:showWinLight(result, callback)
     elseif result == CT.LHD_HE then
         he:runAction(sequence)
     end
-end
-
-function GameScene:showPnlHint(visible, type)
-    local pnl_hint  = self:seekChildByName("pnl_hint")
-    local nodeHint1 = self:seekChildByName("img_hint_wait")
-    local nodeHint2 = self:seekChildByName("img_hint_less")
-         
-    if visible then
-        if type == HT.LHD_WAIT then
-            nodeHint1:setVisible(true)  
-            nodeHint2:setVisible(false)   
-            
-        elseif type == HT.LHD_LESS then	
-            nodeHint1:setVisible(false)  
-            nodeHint2:setVisible(true)
-             
-        elseif type == HT.LHD_BOTH then
-            nodeHint1:setVisible(true)  
-            nodeHint2:setVisible(true)          
-        end    
-    end
-    
-    pnl_hint:setVisible(visible)   
 end
 
 -- 添加一排
@@ -251,6 +251,12 @@ local imgCardPath = "game/public/card/img_"
 function GameScene:createLongHuCard(id, result, callback)
     local num   = self._presenter:getCardNum(id)
     local color = self._presenter:getCardColor(id)
+    
+    if num < 10 then
+        self._presenter:playEffectByName("n0" .. num) 
+    else
+        self._presenter:playEffectByName("n" .. num) 
+    end
 
     local parent
     if result == 1 then
@@ -331,7 +337,9 @@ function GameScene:turnCard(front, back, callback)
     
     back:setVisible(true)
     front:setVisible(false)
-
+    
+    self._presenter:playEffectByName("flipcard")  
+    
     back:runAction(cc.Sequence:create(
 --        cc.OrbitCamera:create(0.3,1,0,0,90,0,0),
         cc.Hide:create(),
@@ -351,13 +359,44 @@ function GameScene:turnCard(front, back, callback)
 end
 
 function GameScene:movePlayerPnl(localseat)
-	
+    local pnl = self:seekChildByName("pnl_player_" .. localseat)
+    if not pnl then
+        print("move no panl")
+        return
+    end
+
+    local gox = 10
+    local tox = -10    
+    local Action
+
+    if localseat % 2 == 1 then
+        if localseat == 7 then
+            Action = cc.Sequence:create(
+                cc.EaseSineOut:create(cc.MoveBy:create(0.2,cc.p(0,gox))),
+                cc.EaseSineOut:create(cc.MoveBy:create(0.1,cc.p(0,tox)))
+            )
+        else
+            Action = cc.Sequence:create(
+                cc.EaseSineOut:create(cc.MoveBy:create(0.2,cc.p(gox,0))),
+                cc.EaseSineOut:create(cc.MoveBy:create(0.1,cc.p(tox,0)))
+            )
+        end        
+    else
+        Action = cc.Sequence:create(
+            cc.EaseSineOut:create(cc.MoveBy:create(0.2,cc.p(tox,0))),
+            cc.EaseSineOut:create(cc.MoveBy:create(0.1,cc.p(gox,0)))
+        )
+    end
+
+    if Action then
+        pnl:runAction(Action)
+    end
 end
 
 -- 结算分数
 function GameScene:showWinloseScore(scoreList)
     for localseat, score in pairs(scoreList) do
-        if localseat > 7 then
+        if localseat > 7 or score == -1 then
             print("localseat > 7")
             return
         end
@@ -406,6 +445,9 @@ function GameScene:showChipAction(index, area, localseat)
     end
 
     if not pnlplayer then return end
+    
+    self._presenter:playEffectByName("bet")  
+    
     local fx,fy = pnlplayer:getPosition()  
     local chipParent = self:seekChildByName("img_chip_clone")  
 
@@ -413,38 +455,9 @@ function GameScene:showChipAction(index, area, localseat)
     imgChip:loadTexture(string.format("game/lhd/image/img_chip_%d_1.png", index), ccui.TextureResType.plistType)    
     imgChip:setPosition(cc.p(fx, fy+32))    
     pnlarea:addChild(imgChip)
-    imgChip:setName(string.format("name_bet_chip_%d_%d", localseat, index))
     local bx,ex,by,ey = self:getAreaSize(area)    
     local tx,ty = math.random(bx,ex), math.random(by,ey)            
     imgChip:runAction(cc.MoveTo:create(0.3, cc.p(tx, ty)))                   
-end
-
--- 结算飞金币
-function GameScene:showChipBackAction(to, bets)     
-    local pnlto = self:seekChildByName("pnl_player_" .. to)
-    if not pnlto then
-        print("to player not found")
-        return
-    end    
-
-    local pnl = self:seekChildByName("pnl_chip_area")
-    local childrens = pnl:getChildren() 
-    
-    local tx,ty = pnlto:getPosition()  
-
-    for i, index in pairs(bets) do
-        for j=1, #childrens do
-            if childrens[j]:getName() == string.format("name_bet_chip_%d_%d", to, index) then
-                local action = cc.Sequence:create(
-                    cc.DelayTime:create(0.08*j),
-                    cc.Show:create(),
-                    cc.EaseSineInOut:create(cc.MoveTo:create(0.5, cc.p(tx,ty))),
-                    cc.DelayTime:create(0.1),
-                    cc.RemoveSelf:create()) 
-                childrens[j]:runAction(action)     
-            end 
-        end   
-    end
 end
 
 function GameScene:showChipBackOtherAction()
@@ -460,9 +473,9 @@ function GameScene:showChipBackOtherAction()
          
     for i=1, #childrens do
         local action = cc.Sequence:create(
-            cc.DelayTime:create(0.02*i),
+            cc.DelayTime:create(0.05*i),
             cc.Show:create(),
-            cc.EaseSineInOut:create(cc.MoveTo:create(0.2, cc.p(tx,ty))),
+            cc.EaseSineInOut:create(cc.MoveTo:create(0.4, cc.p(tx,ty))),
             cc.DelayTime:create(0.1),
             cc.RemoveSelf:create()) 
         childrens[i]:runAction(action)     
@@ -480,13 +493,13 @@ function GameScene:getAreaSize(area)
     if area == CT.LHD_LONG then
         bx = 300
         ex = 300 + 300
-        by = 400
-        ey = 400 + 120
+        by = 420
+        ey = 420 + 100
     elseif area == CT.LHD_HU then
         bx = 750
         ex = 750 + 300
-        by = 400
-        ey = 400 + 120       
+        by = 420
+        ey = 420 + 100       
     else
         bx = 320
         ex = 320 + 700
@@ -495,6 +508,29 @@ function GameScene:getAreaSize(area)
     end
         
     return bx, ex, by, ey
+end
+
+function GameScene:showWaitHint(visible)
+    local nodeHint1 = self:seekChildByName("img_hint_wait")
+
+    nodeHint1:setVisible(visible)   
+end
+
+function GameScene:showLessHint()
+    local hint = self:seekChildByName("img_hint_less")
+    local x,y = hint:getPosition()
+    local father = hint:getParent()
+    local node = hint:clone()
+    node:setPosition(x,y)
+    node:setVisible(true)
+    father:addChild(node)
+    node:runAction(cc.Sequence:create(
+        cc.FadeIn:create(0.5),                       
+        cc.FadeOut:create(1),
+        cc.CallFunc:create(function()
+            node:removeFromParent(true)
+        end)
+    ))
 end
 
 return GameScene

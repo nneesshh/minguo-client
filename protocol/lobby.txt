@@ -7,6 +7,8 @@
 #define MSGID_GAME_ANNOUNCEMENT_NOTIFY	0x911	//公告通知 2321
 #define MSGID_GAME_MAIL_NOTIFY			0x912	//邮件通知 2322
 
+#define MSGID_GAME_NEWS_REQ				0x921	//游戏News请求 2337
+#define MSGID_GAME_NEWS_RESP			0x922	//游戏News回应 2338
 
 // lobby
 #define MSGID_HEART_BEAT_REQ		0x1001		//心跳 4097

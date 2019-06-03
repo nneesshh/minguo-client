@@ -360,7 +360,7 @@
                     <EndColor A="255" R="255" G="255" B="255" />
                     <ColorVector ScaleY="1.0000" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="node_effect" ActionTag="-1825956028" Tag="221" IconVisible="False" LeftMargin="40.0000" RightMargin="40.0000" TopMargin="40.0000" BottomMargin="90.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+                  <AbstractNodeData Name="node_effect" ActionTag="-1825956028" Tag="221" IconVisible="False" LeftMargin="40.0000" RightMargin="40.0000" TopMargin="40.0000" BottomMargin="90.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                     <Size X="0.0000" Y="0.0000" />
                     <AnchorPoint />
                     <Position X="40.0000" Y="90.0000" />
@@ -586,7 +586,7 @@
                     <EndColor A="255" R="255" G="255" B="255" />
                     <ColorVector ScaleY="1.0000" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="node_effect" ActionTag="2130290600" Tag="220" IconVisible="False" LeftMargin="40.0000" RightMargin="40.0000" TopMargin="40.0000" BottomMargin="90.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+                  <AbstractNodeData Name="node_effect" ActionTag="2130290600" Tag="220" IconVisible="False" LeftMargin="40.0000" RightMargin="40.0000" TopMargin="40.0000" BottomMargin="90.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                     <Size X="0.0000" Y="0.0000" />
                     <AnchorPoint />
                     <Position X="40.0000" Y="90.0000" />
@@ -827,7 +827,7 @@
                     <EndColor A="255" R="255" G="255" B="255" />
                     <ColorVector ScaleY="1.0000" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="node_effect" ActionTag="1976500574" Tag="222" IconVisible="False" LeftMargin="40.0000" RightMargin="40.0000" TopMargin="40.0000" BottomMargin="90.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+                  <AbstractNodeData Name="node_effect" ActionTag="1976500574" Tag="222" IconVisible="False" LeftMargin="40.0000" RightMargin="40.0000" TopMargin="40.0000" BottomMargin="90.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                     <Size X="0.0000" Y="0.0000" />
                     <AnchorPoint />
                     <Position X="40.0000" Y="90.0000" />
@@ -1053,7 +1053,7 @@
                     <EndColor A="255" R="255" G="255" B="255" />
                     <ColorVector ScaleY="1.0000" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="node_effect" ActionTag="625676703" Tag="223" IconVisible="False" LeftMargin="40.0000" RightMargin="40.0000" TopMargin="40.0000" BottomMargin="90.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+                  <AbstractNodeData Name="node_effect" ActionTag="625676703" Tag="223" IconVisible="False" LeftMargin="40.0000" RightMargin="40.0000" TopMargin="40.0000" BottomMargin="90.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                     <Size X="0.0000" Y="0.0000" />
                     <AnchorPoint />
                     <Position X="40.0000" Y="90.0000" />
@@ -1279,7 +1279,7 @@
                     <EndColor A="255" R="255" G="255" B="255" />
                     <ColorVector ScaleY="1.0000" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="node_effect" ActionTag="324542793" Tag="224" IconVisible="False" LeftMargin="40.0000" RightMargin="40.0000" TopMargin="40.0000" BottomMargin="90.0000" ClipAble="False" BackColorAlpha="102" ComboBoxIndex="1" ColorAngle="90.0000" ctype="PanelObjectData">
+                  <AbstractNodeData Name="node_effect" ActionTag="324542793" Tag="224" IconVisible="False" LeftMargin="40.0000" RightMargin="40.0000" TopMargin="40.0000" BottomMargin="90.0000" ClipAble="False" BackColorAlpha="102" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                     <Size X="0.0000" Y="0.0000" />
                     <AnchorPoint />
                     <Position X="40.0000" Y="90.0000" />

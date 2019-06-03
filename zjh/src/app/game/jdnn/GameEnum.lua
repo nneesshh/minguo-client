@@ -5,9 +5,9 @@
 local GameEnum = {}
 
 GameEnum.HERO_LOCAL_SEAT           = 1
-GameEnum.BANKER_TIME               = 30
-GameEnum.BET_TIME                  = 30
-GameEnum.CAL_TIME                  = 30
+GameEnum.BANKER_TIME               = 5
+GameEnum.BET_TIME                  = 5
+GameEnum.CAL_TIME                  = 5
 GameEnum.CARDBACK                  = 0
 GameEnum.CARDGRAY                  = 888
 

@@ -63,4 +63,32 @@ function NoticeLayer:showTabPanel(btnName)
     end
 end
 
+--[[
+if data.type == notice.NOTICE then
+self._ui:getInstance():updateNotice(data.text)
+elseif data.type == notice.READ then
+self._ui:getInstance():updateRead(data.text)
+elseif data.type == notice.CHEAT then
+self._ui:getInstance():updateCheat(data.text)
+end
+]]
+
+function NoticeLayer:updateNotice(text)
+    text = text or "暂无公告"
+    local node = self:seekChildByName("txt_gftx")
+    node:setString(text)
+end
+
+function NoticeLayer:updateRead(text)
+    text = text or "暂无公告"
+    local node = self:seekChildByName("txt_xwjbd")
+    node:setString(text)
+end
+
+function NoticeLayer:updateCheat(text)
+    text = text or "暂无公告"
+    local node = self:seekChildByName("txt_fzbgg")
+    node:setString(text)
+end
+
 return NoticeLayer

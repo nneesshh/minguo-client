@@ -125,7 +125,7 @@
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="btn_czlhb" ActionTag="430307301" Tag="1538" IconVisible="False" LeftMargin="27.0000" RightMargin="732.0000" TopMargin="291.0000" BottomMargin="163.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="190" Scale9Height="54" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                  <AbstractNodeData Name="btn_czlhb" ActionTag="430307301" VisibleForFrame="False" Tag="1538" IconVisible="False" LeftMargin="27.0000" RightMargin="732.0000" TopMargin="291.0000" BottomMargin="163.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="190" Scale9Height="54" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                     <Size X="220.0000" Y="76.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="137.0000" Y="201.0000" />
@@ -152,7 +152,7 @@
               <AbstractNodeData Name="panel_gftx" ActionTag="331418221" Tag="1576" IconVisible="False" LeftMargin="340.0000" RightMargin="74.0000" TopMargin="106.0000" BottomMargin="75.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="713.0000" Y="530.0000" />
                 <Children>
-                  <AbstractNodeData Name="txt_gftx" ActionTag="-1013609604" Tag="2051" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="40.0000" RightMargin="40.0000" TopMargin="40.0000" BottomMargin="40.0000" IsCustomSize="True" FontSize="30" LabelText="这是官方提醒界面" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                  <AbstractNodeData Name="txt_gftx" ActionTag="-1013609604" Tag="2051" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="40.0000" RightMargin="40.0000" TopMargin="40.0000" BottomMargin="40.0000" IsCustomSize="True" FontSize="30" LabelText="" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                     <Size X="633.0000" Y="450.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="356.5000" Y="265.0000" />
@@ -178,7 +178,7 @@
               <AbstractNodeData Name="panel_xwjbd" ActionTag="-29916760" VisibleForFrame="False" Tag="1577" IconVisible="False" LeftMargin="340.0000" RightMargin="74.0000" TopMargin="106.0000" BottomMargin="75.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="713.0000" Y="530.0000" />
                 <Children>
-                  <AbstractNodeData Name="txt_xwjbd" ActionTag="77204897" Tag="2052" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="40.0000" RightMargin="40.0000" TopMargin="40.0000" BottomMargin="40.0000" IsCustomSize="True" FontSize="30" LabelText="这是新玩家必读界面" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                  <AbstractNodeData Name="txt_xwjbd" ActionTag="77204897" Tag="2052" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="40.0000" RightMargin="40.0000" TopMargin="40.0000" BottomMargin="40.0000" IsCustomSize="True" FontSize="30" LabelText="" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                     <Size X="633.0000" Y="450.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="356.5000" Y="265.0000" />
@@ -204,7 +204,7 @@
               <AbstractNodeData Name="panel_fzbgg" ActionTag="-1090232446" VisibleForFrame="False" Tag="1578" IconVisible="False" LeftMargin="340.0000" RightMargin="74.0000" TopMargin="106.0000" BottomMargin="75.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="713.0000" Y="530.0000" />
                 <Children>
-                  <AbstractNodeData Name="txt_fzbgg" ActionTag="1183998091" Tag="2053" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="40.0000" RightMargin="40.0000" TopMargin="40.0000" BottomMargin="40.0000" IsCustomSize="True" FontSize="30" LabelText="这是反作弊公告界面" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                  <AbstractNodeData Name="txt_fzbgg" ActionTag="1183998091" Tag="2053" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="40.0000" RightMargin="40.0000" TopMargin="40.0000" BottomMargin="40.0000" IsCustomSize="True" FontSize="30" LabelText="" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                     <Size X="633.0000" Y="450.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="356.5000" Y="265.0000" />

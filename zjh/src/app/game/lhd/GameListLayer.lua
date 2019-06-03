@@ -20,6 +20,10 @@ function GameListLayer:onTouch(sender, eventType)
     end
 end
 
+function GameListLayer:initUI()
+    app.util.UIUtils.openWindow(self:seekChildByName("container"))
+end
+
 function GameListLayer:showPlayerList(list)
     local pnl = self:seekChildByName("svw_player_list") 
     local itm = self:seekChildByName("item_list_self") 

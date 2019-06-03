@@ -51,6 +51,11 @@ local MsgId = {
     MSGID_SIT_DOWN_NOTIFY_NEW                   = 0x88A,        --//坐下通知 2186
     MSGID_PLAYER_BALANCE_NOTIFY                 = 0x88B,        --//用户账户余额通知 2187
 
+    MSGID_GAME_ANNOUNCEMENT_NOTIFY              = 0x911,        --//公告通知 2321
+    MSGID_GAME_MAIL_NOTIFY                      = 0x912,        --//邮件通知 2322
+    MSGID_GAME_NEWS_REQ                         = 0x921,        --//游戏News请求 2337
+    MSGID_GAME_NEWS_RESP                        = 0x922,        --//游戏News回应 2338
+    
     --// room
     MSGID_ENTER_ROOM_REQ		                = 0x1007,		--//进入房间请求 4103
     MSGID_ENTER_ROOM_RESP		                = 0x1008,		--//进入房间回应 4104
@@ -128,6 +133,7 @@ local MsgId = {
     MSGID_DRAGON_VS_TIGER_GAME_PREPARE_NOTIFY   = 0x2631,      --龙虎斗通知--游戏准备 9777
     MSGID_DRAGON_VS_TIGER_GAME_START_NOTIFY     = 0x2632,      --龙虎斗通知--游戏开始 9778
     MSGID_DRAGON_VS_TIGER_GAME_OVER_NOTIFY      = 0x2633,      --龙虎斗通知--游戏结束 9779
+    MSGID_DRAGON_VS_TIGER_GAME_BET_FULL_NOTIFY  = 0x2634,      --龙虎斗通知--押注额度已满 9780
     MSGID_DRAGON_VS_TIGER_GAME_HISTORY_NOTIFY   = 0x2644,      --龙虎斗通知--游戏历史数据 9796
     MSGID_DRAGON_VS_TIGER_TOP_SEAT_NOTIFY       = 0x2645,      --龙虎斗通知--游戏排名玩家数据 9797
     MSGID_DRAGON_VS_TIGER_READY_NOTIFY          = 0x2661,      --龙虎斗通知--准备 9825

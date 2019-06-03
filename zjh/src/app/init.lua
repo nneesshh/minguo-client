@@ -52,6 +52,7 @@ app.data.AccountData                        = requireLobby("app.data.AccountData
 
 ------------------------------------ 大厅 -------------------------------------
 app.lobby = app.lobby or {}
+
 app.lobby.MainPresenter                     = requireLobby("app.lobby.MainPresenter")
 
 app.lobby.login = app.lobby.login or {}
@@ -85,6 +86,7 @@ app.lobby.mail.MailDetailPresenter          = requireLobby("app.lobby.mail.MailD
 
 app.lobby.notice = app.lobby.notice or {}
 app.lobby.notice.NoticePresenter            = requireLobby("app.lobby.notice.NoticePresenter")
+app.lobby.notice.BroadCastNode              = requireLobby("app.lobby.notice.BroadCastNode")
 
 app.lobby.rank = app.lobby.rank or {}
 app.lobby.rank.RankPresenter                = requireLobby("app.lobby.rank.RankPresenter")

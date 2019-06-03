@@ -318,7 +318,12 @@ function _M.doRegisterMsgCallbacks()
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_RELOGIN_NOTIFY_NEW, pubConn.onRelogin)    
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_DEPOSIT_CASH_RESP, pubConn.onDepositCash)
         
-    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_PLAYER_BALANCE_NOTIFY, pubConn.onPlayerBanance)    
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_PLAYER_BALANCE_NOTIFY, pubConn.onPlayerBalance)
+    
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_GAME_ANNOUNCEMENT_NOTIFY, pubConn.onAnnouncement)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_GAME_MAIL_NOTIFY, pubConn.onMail)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_GAME_NEWS_RESP, pubConn.onGameNews)
+        
     -- 玩家动作
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_PLAYER_STATUS_NOTIFY_NEW, pubConn.onPlayerStatus)
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_SIT_DOWN_NOTIFY_NEW, pubConn.onPlayerSitDown)
@@ -368,6 +373,7 @@ function _M.doRegisterMsgCallbacks()
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_DRAGON_VS_TIGER_TOP_SEAT_NOTIFY, lhdConn.onLhdTopSeat)     
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_DRAGON_VS_TIGER_READY_NOTIFY, lhdConn.onLhdPlayerReady) 
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_DRAGON_VS_TIGER_BET_NOTIFY, lhdConn.onLhdBet)      
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_DRAGON_VS_TIGER_GAME_BET_FULL_NOTIFY,lhdConn.onLhdBetFull)
 end
 
 return _M

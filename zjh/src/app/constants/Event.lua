@@ -15,7 +15,8 @@ Event = {
     EVENT_BALANCE       = "EVENT_BALANCE",       -- 财富更新   
     EVENT_GENDER        = "EVENT_GENDER",        -- 性别更新    
     EVENT_BANK          = "EVENT_BANK",          -- 保险箱金币更新
-    EVENT_READY         = "EVENT_READY"          -- 保险箱金币更新    
+    EVENT_READY         = "EVENT_READY",         -- 龙虎斗准备更新    
+    EVENT_BROADCAST     = "EVENT_BROADCAST"      -- 广播更新   
 }
 
 return Event

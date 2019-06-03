@@ -35,7 +35,7 @@ function GameScene:onTouch(sender, eventType)
         elseif name == "btn_going" then
             self._presenter:onTouchGoing()            
         elseif name == "btn_other" then                                  
-            self._presenter:onTouchOther()                       
+            self._presenter:onTouchOther()                              
         end
     end
 end
@@ -106,6 +106,15 @@ function GameScene:showEndEffect()
     local rolAction = cc.CSLoader:createTimeline("game/lhd/csb/stop.csb")
     node:runAction(rolAction)
     rolAction:gotoFrameAndPlay(0, false)
+end
+
+function GameScene:showSleepEffect()
+    local node = self:seekChildByName("node_clock_effect")
+    node:removeAllChildren()
+    node:stopAllActions()
+
+    local effect = app.util.UIUtils.runEffectOne("game/lhd/effect","bairennn_321", 0, 0)
+    node:addChild(effect)
 end
 
 function GameScene:setLongTxt(num)
@@ -249,6 +258,9 @@ end
 -- 创建龙虎牌
 local imgCardPath = "game/public/card/img_"
 function GameScene:createLongHuCard(id, result, callback)
+    if not self._presenter then
+    	return
+    end
     local num   = self._presenter:getCardNum(id)
     local color = self._presenter:getCardColor(id)
     
@@ -311,22 +323,27 @@ function GameScene:createLongHuCard(id, result, callback)
 end
 
 -- 重置手牌
-function GameScene:resetLongHuCards()
+function GameScene:resetLongHuCards(flag)
     local long = self:seekChildByName("panl_card_long")
     local frontl = long:getChildByName("img_card_front")
     local backl  = long:getChildByName("img_card_back")
-    long:setVisible(true)
-    frontl:setVisible(false)
-    backl:setVisible(true)
     
     local hu = self:seekChildByName("panl_card_hu")
     local fronth = hu:getChildByName("img_card_front")
     local backh  = hu:getChildByName("img_card_back")
-    hu:setVisible(true)
-    fronth:setVisible(false)
-    backh:setVisible(true)
-    long:setRotation(0)
-    hu:setRotation(0)  
+    
+    if flag then
+        long:setVisible(true)
+        frontl:setVisible(false)
+        backl:setVisible(true)
+
+        hu:setVisible(true)
+        fronth:setVisible(false)
+        backh:setVisible(true)
+    else
+        long:setVisible(false) 
+        hu:setVisible(false)   
+    end
 end
 
 function GameScene:turnCard(front, back, callback)
@@ -338,15 +355,20 @@ function GameScene:turnCard(front, back, callback)
     back:setVisible(true)
     front:setVisible(false)
     
-    self._presenter:playEffectByName("flipcard")  
+    self._presenter:playEffectByName("flipcard")
+      
+    local action = cc.ScaleTo:create(0.5, 1.2)
+    local action2 = cc.OrbitCamera:create(0.5,1,0,270,90,0,0)
     
     back:runAction(cc.Sequence:create(
 --        cc.OrbitCamera:create(0.3,1,0,0,90,0,0),
         cc.Hide:create(),
         cc.CallFunc:create(function()
+            front:runAction(cc.ScaleTo:create(0.5, 1.2))
             front:runAction(cc.Sequence:create(
-                cc.Show:create(),
-                cc.OrbitCamera:create(0.5,1,0,270,90,0,0)
+                cc.Show:create(),                
+                cc.OrbitCamera:create(0.5,1,0,270,90,0,0),
+                cc.ScaleTo:create(0.1, 1)  
             ))
         end),
         cc.DelayTime:create(1),
@@ -358,7 +380,7 @@ function GameScene:turnCard(front, back, callback)
     ))
 end
 
-function GameScene:movePlayerPnl(localseat)
+function GameScene:movePlayerPnl(localseat, allbet)
     local pnl = self:seekChildByName("pnl_player_" .. localseat)
     if not pnl then
         print("move no panl")
@@ -366,7 +388,13 @@ function GameScene:movePlayerPnl(localseat)
     end
 
     local gox = 10
-    local tox = -10    
+    local tox = -10   
+    
+    if allbet >= 10000 then
+        gox = gox * 3
+        tox = tox * 3 
+    end
+     
     local Action
 
     if localseat % 2 == 1 then
@@ -397,36 +425,36 @@ end
 function GameScene:showWinloseScore(scoreList)
     for localseat, score in pairs(scoreList) do
         if localseat > 7 or score == -1 then
-            print("localseat > 7")
-            return
-        end
-        local fntScore = nil
-        local imgBack = nil
-
-        if score <= 0 then
-            imgBack = self:seekChildByName("img_desc_back_" .. localseat)
-            fntScore = imgBack:getChildByName("fnt_lose_score")
+            print("localseat > 7 or score == -1")
         else
-            imgBack = self:seekChildByName("img_add_back_" .. localseat)
-            fntScore = imgBack:getChildByName("fnt_win_score")
-            score = "+" .. score
-        end
-
-        fntScore:setString(score)
-
-        imgBack:setVisible(true)    
-        imgBack:setOpacity(255)
-
-        local action = cc.Sequence:create(
-            cc.MoveBy:create(0.8, cc.p(0, 15)),
-            cc.Spawn:create(
-                cc.MoveBy:create(0.8, cc.p(0, 15)), 
-                cc.FadeOut:create(2)
-            ),
-            cc.MoveTo:create(0.01, cc.p(imgBack:getPosition()))
-        )
-
-        imgBack:runAction(action)       
+            local fntScore = nil
+            local imgBack = nil
+    
+            if score <= 0 then
+                imgBack = self:seekChildByName("img_desc_back_" .. localseat)
+                fntScore = imgBack:getChildByName("fnt_lose_score")
+            else
+                imgBack = self:seekChildByName("img_add_back_" .. localseat)
+                fntScore = imgBack:getChildByName("fnt_win_score")
+                score = "+" .. score
+            end
+    
+            fntScore:setString(score)
+    
+            imgBack:setVisible(true)    
+            imgBack:setOpacity(255)
+    
+            local action = cc.Sequence:create(
+                cc.MoveBy:create(0.8, cc.p(0, 15)),
+                cc.Spawn:create(
+                    cc.MoveBy:create(0.8, cc.p(0, 15)), 
+                    cc.FadeOut:create(2)
+                ),
+                cc.MoveTo:create(0.01, cc.p(imgBack:getPosition()))
+            )
+    
+            imgBack:runAction(action)
+        end          
     end
 end
 
@@ -491,46 +519,49 @@ end
 function GameScene:getAreaSize(area)
     local bx, ex, by, ey = 0, 0, 0, 0 
     if area == CT.LHD_LONG then
-        bx = 300
-        ex = 300 + 300
+        bx = 350
+        ex = 350 + 200
         by = 420
         ey = 420 + 100
     elseif area == CT.LHD_HU then
-        bx = 750
-        ex = 750 + 300
+        bx = 800
+        ex = 800 + 200
         by = 420
         ey = 420 + 100       
     else
-        bx = 320
-        ex = 320 + 700
-        by = 200
-        ey = 200 + 120          
+        bx = 460
+        ex = 460 + 400
+        by = 230
+        ey = 230 + 100          
     end
         
     return bx, ex, by, ey
 end
 
-function GameScene:showWaitHint(visible)
-    local nodeHint1 = self:seekChildByName("img_hint_wait")
-
-    nodeHint1:setVisible(visible)   
-end
-
-function GameScene:showLessHint()
-    local hint = self:seekChildByName("img_hint_less")
-    local x,y = hint:getPosition()
-    local father = hint:getParent()
-    local node = hint:clone()
-    node:setPosition(x,y)
-    node:setVisible(true)
-    father:addChild(node)
-    node:runAction(cc.Sequence:create(
-        cc.FadeIn:create(0.5),                       
-        cc.FadeOut:create(1),
-        cc.CallFunc:create(function()
-            node:removeFromParent(true)
-        end)
-    ))
+function GameScene:showHint(type)
+    local nodeWait = self:seekChildByName("img_hint_wait")
+    local nodeLess = self:seekChildByName("img_hint_less")
+    local nodeMore = self:seekChildByName("img_hint_more")
+    local nodeFull = self:seekChildByName("img_hint_full") 
+    nodeLess:stopAllActions()
+    nodeMore:stopAllActions()
+   
+    nodeWait:setVisible(type == "wait")
+    nodeLess:setVisible(type == "less")
+    nodeMore:setVisible(type == "more")   
+    nodeFull:setVisible(type == "full")
+       
+	if type == "less" then
+        nodeLess:runAction(cc.Sequence:create(
+            cc.FadeIn:create(0.5),                       
+            cc.FadeOut:create(1)
+        ))
+	elseif type == "more" then	
+        nodeMore:runAction(cc.Sequence:create(
+            cc.FadeIn:create(0.5),                       
+            cc.FadeOut:create(1)
+        ))    
+	end	
 end
 
 return GameScene

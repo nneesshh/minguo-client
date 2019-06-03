@@ -29,6 +29,7 @@ local SCHEDULE_WAIT_TIME= 0
 -- 初始化
 function GamePresenter:init(...)
     self._maxPlayerCnt = app.game.PlayerData.getMaxPlayerCount() or 5
+    self:createDispatcher()
     self:playGameMusic()  
     self:initPlayerNode()
     self:initBtnNode()
@@ -36,6 +37,18 @@ function GamePresenter:init(...)
     self:initTouch()
     self:initScheduler()  
     self._playing = false       
+end
+
+function GamePresenter:createDispatcher()
+    app.util.DispatcherUtils.addEventListenerSafe(app.Event.EVENT_BROADCAST, handler(self, self.onBroadCast))     
+end
+
+function GamePresenter:onBroadCast(text)
+    if not self:isCurrentUI() then
+        return
+    end
+
+    app.lobby.notice.BroadCastNode:create(self, text)
 end
 
 function GamePresenter:initPlayerNode()
@@ -104,6 +117,7 @@ function GamePresenter:exit()
     self:closeSchedulerBankerClock()
     self:closeSchedulerBetClock()
     self:closeSchedulerCalClock()
+    self:closeScheduleSendReady()
     
     GamePresenter._instance = nil
 end
@@ -268,6 +282,14 @@ function GamePresenter:onPlayerSitdown(player)
             app.game.PlayerData.updatePlayerStatus(player:getSeat(), 4)
         end         
     end
+end
+
+-- 玩家准备
+function GamePresenter:onNiuPlayerReady(seat)
+    local localseat = app.game.PlayerData.serverSeatToLocalSeat(seat)
+    if localseat == HERO_LOCAL_SEAT then              
+        self:closeScheduleSendReady()
+    end         
 end
 
 -- 游戏准备
@@ -502,6 +524,7 @@ end
 -- 游戏结束
 function GamePresenter:onNiuGameOver(players) 
     self._playing = false
+    app.game.GameData.setTableStatus(zjh_defs.TableStatus.TS_ENDING)
     
     app.game.GameData.setPgroup(true)
     
@@ -765,6 +788,7 @@ end
 
 -- 断线重连
 function GamePresenter:onRelinkEnter(data) 
+    self._playing = true
     print("relink")
     -- 展示玩家信息
     for i = 0, self._maxPlayerCnt - 1 do
@@ -1185,6 +1209,21 @@ function GamePresenter:closeSchedulerCalClock()
     end
 end
 
+function GamePresenter:openScheduleSendReady(id)
+    local function filt(dt)        
+        self:sendAutoReady(id)
+    end
+    self:closeScheduleSendReady()
+    self._schedulerAutoReady = scheduler:scheduleScriptFunc(filt, 1, false)
+end
+
+function GamePresenter:closeScheduleSendReady()
+    if self._schedulerAutoReady then
+        scheduler:unscheduleScriptEntry(self._schedulerAutoReady)
+        self._schedulerAutoReady = nil
+    end
+end
+
 -- ---------------------------rule-----------------------------
 -- 根据牌型对手牌分组
 function GamePresenter:divideCards(cards, cardtype)
@@ -1334,6 +1373,10 @@ end
 
 -- 准备
 function GamePresenter:sendPlayerReady()
+    if not app.game.GamePresenter then
+        print("not in game")
+        return
+    end
     local hero = app.game.PlayerData.getHero()   
     if hero then       
         print("hero is leave", hero:isLeave())

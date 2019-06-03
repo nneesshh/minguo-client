@@ -18,13 +18,13 @@
           </PointFrame>
         </Timeline>
         <Timeline ActionTag="684333317" Property="Scale">
-          <ScaleFrame FrameIndex="0" X="1.5000" Y="1.5000">
+          <ScaleFrame FrameIndex="0" X="1.0000" Y="1.0000">
             <EasingData Type="0" />
           </ScaleFrame>
-          <ScaleFrame FrameIndex="30" X="1.0000" Y="1.0000">
+          <ScaleFrame FrameIndex="30" X="1.3500" Y="1.3500">
             <EasingData Type="0" />
           </ScaleFrame>
-          <ScaleFrame FrameIndex="90" X="1.0000" Y="1.0000">
+          <ScaleFrame FrameIndex="90" X="1.3500" Y="1.3500">
             <EasingData Type="0" />
           </ScaleFrame>
           <ScaleFrame FrameIndex="120" X="1.0000" Y="1.0000">
@@ -70,7 +70,7 @@
           <IntFrame FrameIndex="30" Value="255">
             <EasingData Type="0" />
           </IntFrame>
-          <IntFrame FrameIndex="90" Value="253">
+          <IntFrame FrameIndex="90" Value="255">
             <EasingData Type="0" />
           </IntFrame>
           <IntFrame FrameIndex="120" Value="0">
@@ -81,7 +81,7 @@
       <ObjectData Name="Node" Tag="67" ctype="GameNodeObjectData">
         <Size X="0.0000" Y="0.0000" />
         <Children>
-          <AbstractNodeData Name="img_stop" ActionTag="684333317" Alpha="253" Tag="70" IconVisible="False" LeftMargin="-305.5000" RightMargin="-305.5000" TopMargin="-87.0000" BottomMargin="-87.0000" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="541" Scale9Height="104" ctype="ImageViewObjectData">
+          <AbstractNodeData Name="img_stop" ActionTag="684333317" Alpha="0" Tag="70" IconVisible="False" LeftMargin="-305.5000" RightMargin="-305.5000" TopMargin="-87.0000" BottomMargin="-87.0000" LeftEage="35" RightEage="35" TopEage="35" BottomEage="35" Scale9OriginX="35" Scale9OriginY="35" Scale9Width="541" Scale9Height="104" ctype="ImageViewObjectData">
             <Size X="611.0000" Y="174.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position />

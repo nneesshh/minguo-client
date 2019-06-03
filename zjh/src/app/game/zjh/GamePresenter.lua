@@ -31,6 +31,7 @@ local SCHEDULE_WAIT_TIME= 0
 -- 初始化
 function GamePresenter:init(...)
     self._maxPlayerCnt = app.game.PlayerData.getMaxPlayerCount() or 5
+    self:createDispatcher()
     self:playGameMusic()  
     self:initPlayerNode()
     self:initBtnNode()
@@ -40,6 +41,18 @@ function GamePresenter:init(...)
     self._overDelaytime = 0
     self._gameOver = false
     self._playing = false
+end
+
+function GamePresenter:createDispatcher()   
+    app.util.DispatcherUtils.addEventListenerSafe(app.Event.EVENT_BROADCAST, handler(self, self.onBroadCast))     
+end
+
+function GamePresenter:onBroadCast(text)
+    if not self:isCurrentUI() then
+        return
+    end
+    
+    app.lobby.notice.BroadCastNode:create(self, text)
 end
 
 function GamePresenter:initPlayerNode()
@@ -77,6 +90,7 @@ function GamePresenter:exit()
     self:closeSchedulerClocks()
     self:closeSchedulerPrepareClock()
     self:closeSchedulerRunLoading()
+    self:closeScheduleSendReady()
     GamePresenter._instance = nil
 end
 
@@ -265,6 +279,7 @@ function GamePresenter:onPlayerReady(seat)
     local localseat = app.game.PlayerData.serverSeatToLocalSeat(seat)
     if localseat == HERO_LOCAL_SEAT then      
         app.game.GameData.setHeroReady(true)
+        self:closeScheduleSendReady()
     end         
 end
 
@@ -768,6 +783,7 @@ function GamePresenter:onGameOver(data, players)
     self._gameOver = true 
     self._playing = false
     app.game.GameData.setHeroReady(false)
+    app.game.GameData.setTableStatus(zjh_defs.TableStatus.TS_ENDING)
     
     if self:checkHeroWaiting() then               
         self:performWithDelayGlobal(function()
@@ -946,6 +962,7 @@ function GamePresenter:onResult(data, players)
 end
 
 function GamePresenter:onRelinkEnter(data)   
+    self._playing = true
     -- 展示玩家信息
     for i = 0, self._maxPlayerCnt - 1 do
         if self._gamePlayerNodes[i] then            
@@ -1381,6 +1398,21 @@ function GamePresenter:closeSchedulerRunLoading()
     end
 end
 
+function GamePresenter:openScheduleSendReady(id)
+    local function filt(dt)        
+        self:sendAutoReady(id)
+    end
+    self:closeScheduleSendReady()
+    self._schedulerAutoReady = scheduler:scheduleScriptFunc(filt, 1, false)
+end
+
+function GamePresenter:closeScheduleSendReady()
+    if self._schedulerAutoReady then
+        scheduler:unscheduleScriptEntry(self._schedulerAutoReady)
+        self._schedulerAutoReady = nil
+    end
+end
+
 -------------------------------ontouch-------------------------------
 function GamePresenter:onTouchBtnQipai()
 	self:sendQipai()
@@ -1509,16 +1541,17 @@ end
 
 -- 准备
 function GamePresenter:sendPlayerReady()
-    if app.game.GameData then
-        local ready = app.game.GameData.getHeroReady()
-        if ready then
-            print("have ready")
-            return 
-        end
-    else
-        print("not app.game.GameData")     
-    end   
-    
+    if not app.game.GamePresenter then
+        print("not in game")
+        return
+    end
+
+    local ready = app.game.GameData.getHeroReady()
+    if ready then
+        print("have ready")
+        return 
+    end
+
     local hero = app.game.PlayerData.getHero()   
     if not hero then  
         print("no hero")     

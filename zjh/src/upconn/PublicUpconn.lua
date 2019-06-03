@@ -184,17 +184,24 @@ function _M.onLogin(conn, sessionid, msgid)
                 end
             end
 
-            local gaming = po:read_byte()            
-            print("onenter is gaming", gaming)   
-              
+            local gaming = po:read_byte()                        
             if gaming ~= 0 then
                 local player = {}            
                 local stringCards = po:read_string()            
                 player.cards      = _readCards(stringCards)  
                 player.cardtype   = po:read_byte()
                 
-                app.game.GamePresenter:getInstance():onRelinkEnter(player)
-            end  
+                app.game.GamePresenter:getInstance():onRelinkEnter(player)          
+            end 
+            
+            print("tabInfo.status",tabInfo.status)
+            
+            if tabInfo.status == zjh_defs.TableStatus.TS_IDLE 
+                or tabInfo.status == zjh_defs.TableStatus.TS_PREPARE 
+                or tabInfo.status == zjh_defs.TableStatus.TS_ENDING then                   
+                -- 间隔1秒发送ready 收到回应关闭定时器
+                app.game.GamePresenter:getInstance():openScheduleSendReady(gametype)
+            end   
         end             
     else
         -- error
@@ -242,7 +249,7 @@ function _M.onDepositCash(conn, sessionid, msgid)
 end
 
 -- 金币通知
-function _M.onPlayerBanance(conn, sessionid, msgid)
+function _M.onPlayerBalance(conn, sessionid, msgid)
     local resp = {}
     local po = upconn.upconn:get_packet_obj()
     
@@ -253,6 +260,31 @@ function _M.onPlayerBanance(conn, sessionid, msgid)
     app.data.UserData.setSafeBalance(safebalance)
 end
 
+----------------
+function _M.onAnnouncement(conn, sessionid, msgid)
+    local resp = {}
+    local po = upconn.upconn:get_packet_obj()
+    resp.text = po:read_string()
+    
+    if resp.text and resp.text ~= "" then
+        app.util.DispatcherUtils.dispatchEvent(app.Event.EVENT_READY, resp.text) 
+    end
+end
+
+function _M.onMail(conn, sessionid, msgid)
+
+end
+
+function _M.onGameNews(conn, sessionid, msgid)
+    local resp = {}
+    local po = upconn.upconn:get_packet_obj()
+    resp.type = po:read_byte()
+    resp.text = po:read_string()
+        
+    app.lobby.notice.NoticePresenter:getInstance():onNewsData(resp)   
+end
+
+----------------
 -- 玩家状态
 function _M.onPlayerStatus(conn, sessionid, msgid)
     local resp = {}
@@ -351,12 +383,15 @@ function _M.onEnterRoom(conn, sessionid, msgid)
             end
         end
         -- ready              
+        
+        print("sz-onenter", tabInfo.status, app.data.UserData.getTicketID())
+        
         if tabInfo.status == zjh_defs.TableStatus.TS_IDLE 
             or tabInfo.status == zjh_defs.TableStatus.TS_PREPARE 
             or tabInfo.status == zjh_defs.TableStatus.TS_ENDING then                   
-            _M.sendPlayerReady(gameid)
-            print("public send ready")
-        end        
+            -- 间隔1秒发送ready 收到回应关闭定时器
+            app.game.GamePresenter:getInstance():openScheduleSendReady(gameid)
+        end       
     else        
         app.game.GameEngine:getInstance():exit()
         app.lobby.MainPresenter:getInstance():showErrorMsg(resp.errorCode)
@@ -434,9 +469,10 @@ function _M.onChangeTable(conn, sessionid, msgid)
         if tabInfo.status == zjh_defs.TableStatus.TS_IDLE 
             or tabInfo.status == zjh_defs.TableStatus.TS_PREPARE 
             or tabInfo.status == zjh_defs.TableStatus.TS_ENDING then                   
-            _M.sendPlayerReady(gameid)
-            print("change table send ready")
+            -- 间隔1秒发送ready 收到回应关闭定时器
+            app.game.GamePresenter:getInstance():openScheduleSendReady(gameid)
         end 
+        
     else      
         app.game.GameEngine:getInstance():exit()  
     end

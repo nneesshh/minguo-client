@@ -178,6 +178,9 @@ function _M.onNiuPlayerReady(conn, sessionid, msgid)
     local po = upconn.upconn:get_packet_obj()
     if po == nil then return end   
     local seat = po:read_int16()
+    if app.game.GamePresenter then
+        app.game.GamePresenter:getInstance():onNiuPlayerReady(seat) 
+    end 
 end
 
 -- 抢庄加倍

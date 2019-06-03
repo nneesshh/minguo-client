@@ -1,7 +1,6 @@
 --[[
 @brief  主场景管理类
 ]]
-
 local MainPresenter = class("MainPresenter", app.base.BasePresenter)
 
 local socket        = require("socket")
@@ -41,6 +40,7 @@ function MainPresenter:createDispatcher()
     app.util.DispatcherUtils.addEventListenerSafe(app.Event.EVENT_TICKETID, handler(self, self.onIDUpdate))
     app.util.DispatcherUtils.addEventListenerSafe(app.Event.EVENT_AVATAR, handler(self, self.onAvatarUpdate))
     app.util.DispatcherUtils.addEventListenerSafe(app.Event.EVENT_BALANCE, handler(self, self.onBalanceUpdate))
+    app.util.DispatcherUtils.addEventListenerSafe(app.Event.EVENT_BROADCAST, handler(self, self.onBroadCast))
 end
 
 function MainPresenter:initScene(gameid)
@@ -116,9 +116,37 @@ function MainPresenter:onBalanceUpdate()
     self._ui:getInstance():setBalance(balance)
 end
 
+function MainPresenter:onBroadCast(text)
+    if not self:isCurrentUI() then
+        return
+    end
+
+    app.lobby.notice.BroadCastNode:create(self, text)
+end
+
 -- 显示场列表
 function MainPresenter:showPlazaLists(gameid)
     local plazainfo = app.data.PlazaData.getPlazaList(gameid)
+    if gameid == 5 then
+        plazainfo = {
+            [1] = {
+                ["allin"] = 50000,
+                ["base"]  = 100,
+                ["lower"] = 5000,
+                ["roomid"]    = 1,
+                ["upper"]     = 999990000,
+                ["usercount"] = 0
+            },
+            [2] = {
+                ["allin"] = 50000,
+                ["base"]  = 200,
+                ["lower"] = 5000,
+                ["roomid"]    = 1,
+                ["upper"]     = 999990000,
+                ["usercount"] = 0
+            }
+        }
+    end
     
     if gameid ~= app.Game.GameID.LHD then
         self._ui:getInstance():showPlazaPnl(true)
@@ -164,7 +192,7 @@ function MainPresenter:showNotice()
 end
 
 function MainPresenter:showRank()
-    app.lobby.rank.RankPresenter:getInstance():start()
+    app.lobby.rank.RankPresenter:getInstance():start()   
 end
 
 function MainPresenter:showSafe()

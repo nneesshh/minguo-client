@@ -105,4 +105,19 @@ function UIUtils.runEffectOne(dir, name, posX, posY, flag, callback, time)
     return effect
 end
 
+function UIUtils.openWindow(node)
+    local size = cc.size(1334, 750)
+    node:setAnchorPoint(cc.p(0.5,0.5))
+    node:setPosition(cc.p(size.width/2,size.height/2))
+    local childCount = node:getChildrenCount()
+    if childCount >1 then 
+        node:setScale(0)
+        node:runAction(cc.EaseBackOut:create(cc.ScaleTo:create(0.2,1)))
+    elseif childCount == 1 then 
+        local child = node:getChildren()
+        child[1]:setScale(0)
+        child[1]:runAction(cc.EaseBackOut:create(cc.ScaleTo:create(0.2,1)))
+    end
+end
+
 return UIUtils

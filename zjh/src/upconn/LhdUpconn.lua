@@ -113,10 +113,6 @@ function _M.onLhdGameOver(conn, sessionid, msgid)
     overs.henum     = po:read_int32()
     overs.bouns     = po:read_int32()
     
-    print("111111111111111111111111111")
-    print(overs.longnum, overs.hunum, overs.henum, overs.bouns)
-    print("222222222222222222222222222")
-    
     overs.balance   = po:read_int64()
     
     local players = {}
@@ -221,6 +217,15 @@ function _M.onLhdBet(conn, sessionid, msgid)
     if app.game.GamePresenter then
        app.game.GamePresenter:getInstance():onLhdBet(bets) 
     end
+end
+
+function _M.onLhdBetFull(conn, sessionid, msgid)
+    print("onLhdBetFull")   
+    local po = upconn.upconn:get_packet_obj()
+    if po == nil then return end
+    if app.game.GamePresenter then
+        app.game.GamePresenter:getInstance():onLhdBetFull() 
+    end 
 end
 
 return _M

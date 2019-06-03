@@ -25,7 +25,8 @@ local _selfData = {
     bethu         = 0,          
     bethe         = 0,    
     betdetail     = {},
-    ready         = false      -- 是否准备 
+    ready         = false,     -- 是否准备 
+    full          = false
 }
 
 function GameData.setTableInfo(info)
@@ -82,6 +83,7 @@ function GameData.restData()
     _selfData.bethe       = 0 
     _selfData.betdetail   = {} 
     _selfData.ready       = false
+    _selfData.full        = false
 end
 
 function GameData.restDataEx()
@@ -89,6 +91,7 @@ function GameData.restDataEx()
     _selfData.bethu       = 0          
     _selfData.bethe       = 0
     _selfData.betdetail   = {}
+    _selfData.full        = false
 end
 
 function GameData.setTableStatus(status)
@@ -270,6 +273,14 @@ end
 
 function GameData.getReady()
     return _selfData.ready 
+end
+
+function GameData.setFull(flag)
+	_selfData.full = flag
+end
+
+function GameData.getFull()
+   return _selfData.full 
 end
 
 return GameData

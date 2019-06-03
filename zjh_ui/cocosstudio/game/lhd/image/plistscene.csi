@@ -52,6 +52,9 @@
       <FilePathData Path="game/lhd/image/img_desc_back.png" />
       <FilePathData Path="game/lhd/image/img_hint_less.png" />
       <FilePathData Path="game/lhd/image/img_hint_less2.png" />
+      <FilePathData Path="game/lhd/image/img_hint.png" />
+      <FilePathData Path="game/lhd/image/img_hint_more.png" />
+      <FilePathData Path="game/lhd/image/img_hint_full.png" />
     </ImageFiles>
     <MaxSize Width="2048" Height="1024" />
   </Content>

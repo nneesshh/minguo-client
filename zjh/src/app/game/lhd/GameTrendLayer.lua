@@ -29,6 +29,10 @@ function GameTrendLayer:onTouch(sender, eventType)
     end
 end
 
+function GameTrendLayer:initUI()
+    app.util.UIUtils.openWindow(self:seekChildByName("container"))
+end
+
 function GameTrendLayer:updateTrend(list)
     if not list then return end
 

@@ -121,8 +121,11 @@
               <Image Name="img_gold.png" />
               <Image Name="img_head_back1.png" />
               <Image Name="img_head_back2.png" />
+              <Image Name="img_hint.png" />
+              <Image Name="img_hint_full.png" />
               <Image Name="img_hint_less.png" />
               <Image Name="img_hint_less2.png" />
+              <Image Name="img_hint_more.png" />
               <Image Name="img_hint_wait.png" />
               <Image Name="img_hu.png" />
               <Image Name="img_light_he.png" />
@@ -159,6 +162,7 @@
               <Image Name="img_back_lhd.jpg" />
               <Image Name="img_background.jpg" />
               <Image Name="img_desk.png" />
+              <Image Name="img_desk_brnn.png" />
               <Image Name="img_desk_lhd.png" />
             </Folder>
             <Folder Name="card">
@@ -363,10 +367,63 @@
               <PlistInfo Name="plistscene.csi" Type="Plist" />
             </Folder>
           </Folder>
+          <Folder Name="brnn">
+            <Folder Name="csb">
+              <Project Name="button.csd" Type="Node" />
+              <Project Name="card.csd" Type="Node" />
+              <Project Name="gamescene.csd" Type="Scene" />
+              <Project Name="menu.csd" Type="Node" />
+              <Project Name="playerlist.csd" Type="Layer" />
+              <Project Name="trend.csd" Type="Layer" />
+            </Folder>
+            <Folder Name="image">
+              <Folder Name="fnt">
+                <Fnt Name="losefnt.fnt" />
+                <Fnt Name="rankfnt.fnt" />
+                <Fnt Name="winfnt.fnt" />
+              </Folder>
+              <Image Name="btn_1.png" />
+              <Image Name="btn_2.png" />
+              <Image Name="btn_3.png" />
+              <Image Name="btn_4.png" />
+              <Image Name="btn_5.png" />
+              <Image Name="btn_6.png" />
+              <Image Name="btn_charge.png" />
+              <Image Name="btn_lose_x.png" />
+              <Image Name="btn_sit_banker.png" />
+              <Image Name="btn_sit_banker2.png" />
+              <Image Name="btn_trend.png" />
+              <Image Name="btn_win_x.png" />
+              <Image Name="img_area_2.png" />
+              <Image Name="img_area_1.png" />
+              <Image Name="img_area_3.png" />
+              <Image Name="img_area_4.png" />
+              <Image Name="img_banker.png" />
+              <Image Name="img_chip_light.png" />
+              <Image Name="img_desk.png" />
+              <Image Name="img_gold.png" />
+              <Image Name="img_hint_less.png" />
+              <Image Name="img_hint_less2.png" />
+              <Image Name="img_hint_wait.png" />
+              <Image Name="img_light.png" />
+              <Image Name="img_list.png" />
+              <Image Name="img_lose.png" />
+              <Image Name="img_lz.png" />
+              <Image Name="img_mult_back.png" />
+              <Image Name="img_no_bet.png" />
+              <Image Name="img_selfbet_back.png" />
+              <Image Name="img_sit_banker.png" />
+              <Image Name="img_sitbanker_list.png" />
+              <Image Name="img_trend.png" />
+              <Image Name="img_trend_back.png" />
+              <Image Name="img_win.png" />
+            </Folder>
+          </Folder>
         </Folder>
         <Folder Name="lobby">
           <Folder Name="csb">
             <Project Name="account.csd" Type="Layer" />
+            <Project Name="broadcast.csd" Type="Node" />
             <Project Name="debug.csd" Type="Layer" />
             <Project Name="head.csd" Type="Layer" />
             <Project Name="help.csd" Type="Layer" />
@@ -410,6 +467,7 @@
               <Image Name="imt_title.png" />
             </Folder>
             <Folder Name="help">
+              <Image Name="img_brnn.png" />
               <Image Name="img_jdnn_rule.png" />
               <Image Name="img_lhd.png" />
               <Image Name="img_psz_rule.png" />
@@ -451,6 +509,7 @@
               <Image Name="img_load_2.png" />
               <Image Name="img_notice_back.png" />
               <Image Name="img_point.png" />
+              <Image Name="img_zmd_back.png" />
             </Folder>
             <Folder Name="login">
               <Image Name="btn_account.png" />
@@ -500,6 +559,7 @@
               <Image Name="img_game_1.png" />
               <Image Name="img_game_2.png" />
               <Image Name="img_game_3.png" />
+              <Image Name="img_game_5.png" />
               <Image Name="plaza_1_1.png" />
               <Image Name="plaza_1_2.png" />
               <Image Name="plaza_1_3.png" />
@@ -512,6 +572,8 @@
               <Image Name="plaza_3_2.png" />
               <Image Name="plaza_3_3.png" />
               <Image Name="plaza_3_4.png" />
+              <Image Name="plaza_5_1.png" />
+              <Image Name="plaza_5_2.png" />
             </Folder>
             <Folder Name="public">
               <Image Name="btn_close.png" />

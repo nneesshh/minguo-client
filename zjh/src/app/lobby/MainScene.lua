@@ -32,7 +32,7 @@ MainScene.touchs = {
     "btn_plaza_3",
     "btn_plaza_4"
 }
-
+local ii = 0
 function MainScene:onTouch(sender, eventType)
     MainScene.super.onTouch(self, sender, eventType)
     local name = sender:getName()
@@ -43,7 +43,7 @@ function MainScene:onTouch(sender, eventType)
             self._presenter:initDownload()             
         elseif string.find(name, "btn_game_") then
             local gameid = tonumber(string.split(name, "btn_game_")[2])            
-            if gameid == 1 or gameid == 2 or gameid == 3 or gameid == 4 then
+            if gameid == 1 or gameid == 2 or gameid == 3 or gameid == 4 or gameid == 5 then
                 self._presenter:reqHotpatch(gameid)         
             end                                                      
         elseif name == "btn_head_info" then
@@ -63,8 +63,7 @@ function MainScene:onTouch(sender, eventType)
         elseif name == "btn_safe" then
             self._presenter:showSafe()                           
         elseif name == "btn_shop" then      
---            self._presenter:showShop()           
-      
+            self._presenter:showShop()           
         elseif name == "btn_help" then    
             local gameid = sender:getTag()    
             self._presenter:showHelp(gameid)
@@ -79,17 +78,15 @@ end
 
 function MainScene:initUI(gameID, roomMode)
     self._isRunAction = false   
-    
-    self:initEffect()   
-    
-    local t = {}
-    
-    t[1] = 100
-    t[3] = 200
-    
-    table.insert(t, 500)
-    
-    dump(t)
+    self:initEffect()
+       
+    local t = {1,2,3,4,5,6,7}
+    for key, var in ipairs(t) do
+        if var == 3 then
+        else
+            print("key var",key, var) 
+        end
+    end
 end
 
 function MainScene:onEnter()

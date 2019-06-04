@@ -1,0 +1,119 @@
+// niu hundred -- 0x2800
+#define MSGID_NIU100_READY_REQ				0x2811		//百人牛牛--准备请求 10257
+#define MSGID_NIU100_BANKER_BID_REQ			0x2812		//百人牛牛--申请上庄 10258
+#define MSGID_NIU100_BET_REQ				0x2813		//百人牛牛--押注 10259
+
+#define MSGID_NIU100_GAME_PREPARE_NOTIFY	0x2831		//百人牛牛通知--游戏准备 10289
+#define MSGID_NIU100_GAME_START_NOTIFY		0x2832		//百人牛牛通知--游戏开始 10290
+#define MSGID_NIU100_GAME_OVER_NOTIFY		0x2833		//百人牛牛通知--游戏结束 10291
+#define MSGID_NIU100_BANKER_BID_NOTIFY		0x2834		//百人牛牛通知--上庄申请 10292
+#define MSGID_NIU100_GAME_BET_FULL_NOTIFY	0x2835		//百人牛牛通知--押注额度已满 10293
+
+#define MSGID_NIU100_GAME_HISTORY_NOTIFY	0x2844		//百人牛牛通知--游戏历史数据 10308
+#define MSGID_NIU100_TOP_SEAT_NOTIFY		0x2845		//百人牛牛通知--游戏排名玩家数据 10309
+
+#define MSGID_NIU100_READY_NOTIFY			0x2861		//百人牛牛通知--准备 10337
+#define MSGID_NIU100_BET_NOTIFY				0x2862		//百人牛牛通知--押注 10338
+
+// 
+#define NIU_HUNDRED_WRITE_GAME_START(stream, baseCoin, tableId, tableInfo)	\
+	do {														\
+		stream.writeInt32(baseCoin);							\
+		WRITE_TABLE_INFO(stream, tableId, tableInfo);			\
+	} while(0)
+
+// 
+#define NIU_HUNDRED_WRITE_LOCAL_SEAT(stream, localSeat)	\
+	do {													\
+		stream.writeByte(localSeat->gameNum20);				\
+		stream.writeInt32(localSeat->betNum20);				\
+		stream.writeInt32(localSeat->entry.ticketId);		\
+		stream.writeInt16(localSeat->entry.seat);			\
+		stream.writeInt32(localSeat->entry.betNum[0]);		\
+		stream.writeInt32(localSeat->entry.betNum[1]);		\
+		stream.writeInt32(localSeat->entry.betNum[2]);		\
+		stream.writeInt32(localSeat->entry.betNum[3]);		\
+		int bonus = localSeat->entry.profit - localSeat->entry.betNum[0] - localSeat->entry.betNum[1] - localSeat->entry.betNum[2] - localSeat->entry.betNum[3]; \
+		stream.writeInt32(bonus);							\
+	} while(0)
+
+// 
+#define NIU_HUNDRED_WRITE_GAME_HISTORY(stream, selfSeat, history)	\
+	do {														\
+		int itemCount = 0;										\
+		if (history) itemCount = history->list.size();			\
+		stream.writeByte(selfSeat->gameNum20);					\
+		stream.writeInt32(selfSeat->betNum20);					\
+		stream.writeInt32(itemCount);							\
+		for (int i = 0; i < itemCount; ++i) {					\
+			NIU100_GAME_ENTRY_T *gameEntry = &history->list[i];	\
+			stream.writeInt64(gameEntry->seqId);				\
+			stream.writeByte(gameEntry->bankerCardType);		\
+			stream.writeString(gameEntry->bankerCards, 5);		\
+			stream.writeByte(gameEntry->betAreaCardType[0]);	\
+			stream.writeByte(gameEntry->betAreaCardType[1]);	\
+			stream.writeByte(gameEntry->betAreaCardType[2]);	\
+			stream.writeByte(gameEntry->betAreaCardType[3]);	\
+			stream.writeString(gameEntry->betAreaCards, 5*4);	\
+			stream.writeByte(gameEntry->betAreaWin[0]);			\
+			stream.writeByte(gameEntry->betAreaWin[1]);			\
+			stream.writeByte(gameEntry->betAreaWin[2]);			\
+			stream.writeByte(gameEntry->betAreaWin[3]);			\
+		}														\
+	} while(0)
+
+// 
+#define NIU_HUNDRED_WRITE_TOP_SEAT(stream, table, vTopSeat)		\
+	do {														\
+		int playerCount = vTopSeat.size();						\
+		stream.writeInt32(playerCount);							\
+		for (int i = 0; i < playerCount; ++i) {					\
+			niu100_local_seat_t *topSeat = (vTopSeat[i]);		\
+			SEAT_INFO *seatInfo = topSeat->seatInfo;			\
+			NIU_HUNDRED_WRITE_LOCAL_SEAT(stream, topSeat);		\
+			WRITE_PLAYER_SEAT_INFO(stream, seatInfo);			\
+		}														\
+	} while(0)
+
+// 
+#define NIU_HUNDRED_WRITE_GAME_OVER_TO_ONE_PLAYER(stream, table, gameEntry, selfSeat, selfBalance, vTopSeat)	\
+	do {														\
+		stream.writeInt64(gameEntry->seqId);					\
+		stream.writeByte(gameEntry->cardType);					\
+		stream.writeString(gameEntry->cards, 2);				\
+		NIU_HUNDRED_WRITE_LOCAL_SEAT(stream, selfSeat);			\
+		stream.writeInt64(selfBalance);							\
+		NIU_HUNDRED_WRITE_TOP_SEAT(stream, table, vTopSeat);	\
+	} while(0)
+
+// 
+#define NIU_HUNDRED_WRITE_BANKER_BID(stream, table, dqBankerBid)	\
+	do {														\
+		int bankerBidCount = dqBankerBid.size();				\
+		stream.writeInt32(bankerBidCount);						\
+		for (int i = 0; i < bankerBidCount; ++i) {				\
+			niu100_banker_bid_t *bankerBid = &(dqBankerBid[i]);	\
+			stream.writeByte(bankerBid->isSystem);				\
+			stream.writeByte(bankerBid->bankedNum);				\
+			if (!bankerBid->isSystem) {							\
+				SEAT_INFO *seatInfo = bankerBid->seatInfo;		\
+				WRITE_PLAYER_SEAT_INFO(stream, seatInfo);		\
+            }													\
+		}														\
+	} while(0)
+
+// 
+#define NIU_HUNDRED_WRITE_PLAYER_BET(stream, tableId, tableInfo, playerSeat, betNum1, betNum2, betNum3, betNum4, playerBalance, jackpotSum1, jackpotSum2, jackpotSum3, jackpotSum4)	\
+	do {														\
+		stream.writeInt16(playerSeat);							\
+		stream.writeInt32(betNum1);								\
+		stream.writeInt32(betNum2);								\
+		stream.writeInt32(betNum3);								\
+		stream.writeInt32(betNum4);								\
+		stream.writeInt64(playerBalance);						\
+		stream.writeInt64(jackpotSum1);							\
+		stream.writeInt64(jackpotSum2);							\
+		stream.writeInt64(jackpotSum3);							\
+		stream.writeInt64(jackpotSum4);							\
+		WRITE_TABLE_INFO(stream, tableId, tableInfo);			\
+	} while(0)

@@ -52,6 +52,10 @@
 		stream.writeByte(gameEntry->betAreaWin[1]);			\
 		stream.writeByte(gameEntry->betAreaWin[2]);			\
 		stream.writeByte(gameEntry->betAreaWin[3]);			\
+		stream.writeByte(gameEntry->betAreaMultiple[0]);	\
+		stream.writeByte(gameEntry->betAreaMultiple[1]);	\
+		stream.writeByte(gameEntry->betAreaMultiple[2]);	\
+		stream.writeByte(gameEntry->betAreaMultiple[3]);	\
 	} while(0)
 
 // 

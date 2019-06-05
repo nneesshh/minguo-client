@@ -130,7 +130,11 @@ function GameScene:showPnlHint(type)
             nodeHint3:setVisible(false)
             self._presenter:closeSchedulerPrepareClock()   
             self._presenter:openSchedulerRunLoading("您正在旁观，请等待下一局开始")  
-            nodeHint2:setVisible(true)          
+            nodeHint2:setVisible(true) 
+        elseif type == 5 then       
+            nodeHint2:setVisible(false)
+            self._presenter:closeSchedulerRunLoading()  
+            nodeHint3:setVisible(false)         
         else
             nodeHint1:setVisible(false)
             nodeHint2:setVisible(false)
@@ -195,16 +199,43 @@ function GameScene:playFlyGoldAction(from, to, callback)
         local tmpToX = tx + getAvgRandom(0,30) * math.random(-1,1)
         local tmpToY = ty + getAvgRandom(0,30) * math.random(-1,1) 
         
+        local fromPo = {}
+        fromPo.x, fromPo.y = fx, fy
+        local toPo = {}
+        toPo.x, toPo.y = tmpToX, tmpToY
+
+        local bezier = self:getBezierAction(fromPo, toPo)
+        
         local action = cc.Sequence:create(
-            cc.DelayTime:create(0.08*i),
+            cc.DelayTime:create(0.03*i),
             cc.Show:create(),
-            cc.EaseSineInOut:create(cc.MoveTo:create(0.7, cc.p(tmpToX, tmpToY))),
+            cc.EaseSineInOut:create(bezier),
             cc.DelayTime:create(0.1),
             cc.CallFunc:create(next)) 
                      
         gold:runAction(action)       
     end
     self._presenter:playEffectByName("fly")    
+end
+
+function GameScene:getBezierAction(fromPo, toPo)
+    local ctrX = (fromPo["x"] + toPo["x"]) / 2 + 100
+    local ctrY = 0
+
+    if fromPo["y"] > toPo["y"] then 
+        ctrY = toPo["y"] + math.abs(fromPo["y"] - toPo["y"]) * 3 / 4 + 100
+    else 
+        ctrY = fromPo["y"] + math.abs(fromPo["y"] - toPo["y"]) * 3 / 4 + 100 
+    end
+
+    local ctrlPoint = cc.p(ctrX, ctrY)
+    --二次贝赛尔,设置控制点的x坐标为1/2处，y坐标为3/4处
+    local BezierConfig = {ctrlPoint, ctrlPoint, toPo}     
+
+    --移动的动作
+    local move = cc.BezierTo:create(0.5, BezierConfig)
+
+    return move
 end
 
 -- 游戏开始
@@ -243,10 +274,8 @@ end
 
 function GameScene:showWinloseEffect(flag, heroseat)
 	if flag then       
-	   print("win")
 	    self:showWinEffect()
 	else        
-	   print("lose")
 		self:showLoseEffect()
 	end
 end

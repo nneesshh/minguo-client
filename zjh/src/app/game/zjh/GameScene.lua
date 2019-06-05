@@ -428,12 +428,17 @@ function GameScene:showPnlHint(type)
             nodeHint3:setVisible(true)
             self._presenter:closeSchedulerRunLoading()
             self._presenter:closeSchedulerPrepareClock()
+        -- 旁观    
         elseif type == 4 then
             nodeHint1:setVisible(false)            
             nodeHint3:setVisible(false)
             self._presenter:closeSchedulerPrepareClock()   
             self._presenter:openSchedulerRunLoading("您正在旁观，请等待下一局开始")  
-            nodeHint2:setVisible(true)          
+            nodeHint2:setVisible(true) 
+        elseif type == 5 then       
+            nodeHint2:setVisible(false)
+            self._presenter:closeSchedulerRunLoading()  
+            nodeHint3:setVisible(false)             
         else
             nodeHint1:setVisible(false)
             nodeHint2:setVisible(false)
@@ -441,7 +446,7 @@ function GameScene:showPnlHint(type)
             self._presenter:closeSchedulerRunLoading()
             self._presenter:closeSchedulerPrepareClock()
         end
-        
+        print("nodeHint2 visible",nodeHint2:isVisible(),type)
     end       
 end
 

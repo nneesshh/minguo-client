@@ -4,6 +4,91 @@
     <Group ctype="ResourceGroup">
       <RootFolder Name=".">
         <Folder Name="game">
+          <Folder Name="brnn">
+            <Folder Name="csb">
+              <Project Name="bankerlist.csd" Type="Layer" />
+              <Project Name="button.csd" Type="Node" />
+              <Project Name="card.csd" Type="Node" />
+              <Project Name="gamescene.csd" Type="Scene" />
+              <Project Name="menu.csd" Type="Node" />
+              <Project Name="playerlist.csd" Type="Layer" />
+              <Project Name="stop.csd" Type="Node" />
+              <Project Name="trend.csd" Type="Layer" />
+            </Folder>
+            <Folder Name="image">
+              <Folder Name="fnt">
+                <Fnt Name="goldfnt.fnt" />
+                <Fnt Name="losefnt.fnt" />
+                <Fnt Name="rankfnt.fnt" />
+                <Fnt Name="roundfnt.fnt" />
+                <Fnt Name="winfnt.fnt" />
+              </Folder>
+              <Image Name="btn_1.png" />
+              <Image Name="btn_2.png" />
+              <Image Name="btn_3.png" />
+              <Image Name="btn_4.png" />
+              <Image Name="btn_5.png" />
+              <Image Name="btn_6.png" />
+              <Image Name="btn_charge.png" />
+              <Image Name="btn_lose_x.png" />
+              <Image Name="btn_other.png" />
+              <Image Name="btn_sit_banker.png" />
+              <Image Name="btn_sit_banker2.png" />
+              <Image Name="btn_trend.png" />
+              <Image Name="btn_win_x.png" />
+              <Image Name="img_0.png" />
+              <Image Name="img_1.png" />
+              <Image Name="img_add_back.png" />
+              <Image Name="img_area_1.png" />
+              <Image Name="img_area_2.png" />
+              <Image Name="img_area_3.png" />
+              <Image Name="img_area_4.png" />
+              <Image Name="img_banker.png" />
+              <Image Name="img_bet_round.png" />
+              <Image Name="img_card_type_0.png" />
+              <Image Name="img_card_type_1.png" />
+              <Image Name="img_card_type_10.png" />
+              <Image Name="img_card_type_11.png" />
+              <Image Name="img_card_type_12.png" />
+              <Image Name="img_card_type_13.png" />
+              <Image Name="img_card_type_2.png" />
+              <Image Name="img_card_type_3.png" />
+              <Image Name="img_card_type_4.png" />
+              <Image Name="img_card_type_5.png" />
+              <Image Name="img_card_type_6.png" />
+              <Image Name="img_card_type_7.png" />
+              <Image Name="img_card_type_8.png" />
+              <Image Name="img_card_type_9.png" />
+              <Image Name="img_chip_light.png" />
+              <Image Name="img_desc_back.png" />
+              <Image Name="img_gold.png" />
+              <Image Name="img_head_back1.png" />
+              <Image Name="img_head_back2.png" />
+              <Image Name="img_hint_full.png" />
+              <Image Name="img_hint_less.png" />
+              <Image Name="img_hint_less2.png" />
+              <Image Name="img_hint_more.png" />
+              <Image Name="img_hint_wait.png" />
+              <Image Name="img_light.png" />
+              <Image Name="img_list.png" />
+              <Image Name="img_lz.png" />
+              <Image Name="img_mult_back.png" />
+              <Image Name="img_near_20.png" />
+              <Image Name="img_no_bet.png" />
+              <Image Name="img_rank_1.png" />
+              <Image Name="img_rank_2.png" />
+              <Image Name="img_rank_3.png" />
+              <Image Name="img_rank_4.png" />
+              <Image Name="img_rank_5.png" />
+              <Image Name="img_selfbet_back.png" />
+              <Image Name="img_sit_banker.png" />
+              <Image Name="img_sitbanker_list.png" />
+              <Image Name="img_stop_bet.png" />
+              <Image Name="img_trend.png" />
+              <Image Name="img_trend_back.png" />
+              <PlistInfo Name="plistscene.csi" Type="Plist" />
+            </Folder>
+          </Folder>
           <Folder Name="jdnn">
             <Folder Name="csb">
               <Project Name="button.csd" Type="Node" />
@@ -69,6 +154,7 @@
               <Image Name="img_light.png" />
               <Image Name="img_load.png" />
               <Image Name="img_load_back.png" />
+              <Image Name="img_logo_jdnn.png" />
               <Image Name="img_nn_help.png" />
               <Image Name="img_nntou.png" />
               <Image Name="img_qqz.png" />
@@ -287,6 +373,7 @@
               <Image Name="img_light.png" />
               <Image Name="img_load.png" />
               <Image Name="img_load_back.png" />
+              <Image Name="img_logo_qznn.png" />
               <Image Name="img_nn_help.png" />
               <Image Name="img_nntou.png" />
               <Image Name="img_qqz.png" />
@@ -365,58 +452,6 @@
               <Image Name="img_turn.png" />
               <Image Name="img_zz.png" />
               <PlistInfo Name="plistscene.csi" Type="Plist" />
-            </Folder>
-          </Folder>
-          <Folder Name="brnn">
-            <Folder Name="csb">
-              <Project Name="button.csd" Type="Node" />
-              <Project Name="card.csd" Type="Node" />
-              <Project Name="gamescene.csd" Type="Scene" />
-              <Project Name="menu.csd" Type="Node" />
-              <Project Name="playerlist.csd" Type="Layer" />
-              <Project Name="trend.csd" Type="Layer" />
-            </Folder>
-            <Folder Name="image">
-              <Folder Name="fnt">
-                <Fnt Name="losefnt.fnt" />
-                <Fnt Name="rankfnt.fnt" />
-                <Fnt Name="winfnt.fnt" />
-              </Folder>
-              <Image Name="btn_1.png" />
-              <Image Name="btn_2.png" />
-              <Image Name="btn_3.png" />
-              <Image Name="btn_4.png" />
-              <Image Name="btn_5.png" />
-              <Image Name="btn_6.png" />
-              <Image Name="btn_charge.png" />
-              <Image Name="btn_lose_x.png" />
-              <Image Name="btn_sit_banker.png" />
-              <Image Name="btn_sit_banker2.png" />
-              <Image Name="btn_trend.png" />
-              <Image Name="btn_win_x.png" />
-              <Image Name="img_area_2.png" />
-              <Image Name="img_area_1.png" />
-              <Image Name="img_area_3.png" />
-              <Image Name="img_area_4.png" />
-              <Image Name="img_banker.png" />
-              <Image Name="img_chip_light.png" />
-              <Image Name="img_desk.png" />
-              <Image Name="img_gold.png" />
-              <Image Name="img_hint_less.png" />
-              <Image Name="img_hint_less2.png" />
-              <Image Name="img_hint_wait.png" />
-              <Image Name="img_light.png" />
-              <Image Name="img_list.png" />
-              <Image Name="img_lose.png" />
-              <Image Name="img_lz.png" />
-              <Image Name="img_mult_back.png" />
-              <Image Name="img_no_bet.png" />
-              <Image Name="img_selfbet_back.png" />
-              <Image Name="img_sit_banker.png" />
-              <Image Name="img_sitbanker_list.png" />
-              <Image Name="img_trend.png" />
-              <Image Name="img_trend_back.png" />
-              <Image Name="img_win.png" />
             </Folder>
           </Folder>
         </Folder>

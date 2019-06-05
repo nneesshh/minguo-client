@@ -5,7 +5,7 @@
 
 local GameListPresenter    = class("GameListPresenter", app.base.BasePresenter)
 
-GameListPresenter._ui  = require("app.game.lhd.GameListLayer")
+GameListPresenter._ui  = requireLHD("app.game.lhd.GameListLayer")
 
 -- 初始化
 function GameListPresenter:init(players)    

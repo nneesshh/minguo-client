@@ -226,29 +226,28 @@ function GamePresenter:onPlayerEnter(player)
     if self._gamePlayerNodes then
         self._gamePlayerNodes[localSeat]:onPlayerEnter() 
     end 
-
+    
     if app.game.PlayerData.getPlayerCount() <= 1 then
-        if not self._ischangeTable  then
-            self._ui:getInstance():showPnlHint(2)
-        end 
+        if not self._ischangeTable then
+            self._ui:getInstance():showPnlHint(2)                      
+        end  
     else
-        self._ui:getInstance():showPnlHint()    
-    end
-
-    local seats = app.game.GameData.getPlayerseat()
-    if #seats ~= 0 then
-        local isIn = false
-        for i, seat in ipairs(seats) do
-            if player:getSeat() == seat then
-                isIn = true
-            end
-        end
-        if not isIn then
-            if localSeat == 1 then
-                self._ui:getInstance():showPnlHint(4)                 
-            end
-            app.game.PlayerData.updatePlayerStatus(player:getSeat(), 4)
-        end         
+        local heroseat = app.game.PlayerData.getHeroSeat()      
+        if heroseat == player:getSeat() then
+            local seats = app.game.GameData.getPlayerseat()
+            if #seats ~= 0 then
+                local isIn = false
+                for i, seat in ipairs(seats) do
+                    if player:getSeat() == seat then
+                        isIn = true
+                    end
+                end
+                if not isIn then
+                    self._ui:getInstance():showPnlHint(4) 
+                    app.game.PlayerData.updatePlayerStatus(player:getSeat(), 4)             
+                end         
+            end         
+        end 
     end
 end
 
@@ -261,27 +260,13 @@ function GamePresenter:onPlayerSitdown(player)
     end 
 
     if app.game.PlayerData.getPlayerCount() <= 1 then
-        if not self._ischangeTable  then
-            self._ui:getInstance():showPnlHint(2)
-        end 
+        if not self._ischangeTable then
+            self._ui:getInstance():showPnlHint(2)                      
+        end  
     else
-        self._ui:getInstance():showPnlHint()    
-    end
-
-    local seats = app.game.GameData.getPlayerseat()
-    if #seats ~= 0 then
-        local isIn = false
-        for i, seat in ipairs(seats) do
-            if player:getSeat() == seat then
-                isIn = true
-            end
-        end
-        if not isIn then
-            if localSeat == 1 then
-                self._ui:getInstance():showPnlHint(4)                 
-            end
-            app.game.PlayerData.updatePlayerStatus(player:getSeat(), 4)
-        end         
+        if not app.game.PlayerData.getHero():isWaiting() then
+            self._ui:getInstance():showPnlHint(5)
+        end    
     end
 end
 
@@ -348,11 +333,7 @@ function GamePresenter:onNiuConfirmBanker(banker, players)
     
     -- 设置庄家
     app.game.GameData.setBanker(banker.banker)
-    
-    -- 显示抢庄倍数
-    local localbanker = app.game.PlayerData.serverSeatToLocalSeat(banker.banker)
-    self._gamePlayerNodes[localbanker]:showImgChoose(true, banker.bankerMult)
-           
+   
     local function showchoose(flag)        
         local mult = app.game.GameData.getBankerMult()
         for i, player in ipairs(players) do
@@ -376,10 +357,23 @@ function GamePresenter:onNiuConfirmBanker(banker, players)
             end
         end
     end
+    
+    -- 均不枪
+    if #sameSeats == 0 then
+        for i=1, 2 do
+            for _, player in ipairs(players) do
+               table.insert(sameSeats, player.seat)
+            end
+        end
+    end
           
     -- 隐藏
     local function callback()
         showchoose(false)
+        
+        -- 显示抢庄倍数
+        local localbanker = app.game.PlayerData.serverSeatToLocalSeat(banker.banker)
+        self._gamePlayerNodes[localbanker]:showImgChoose(true, banker.bankerMult)
         
         local heroseat = app.game.PlayerData.getHeroSeat()
         if heroseat ~= banker.banker then
@@ -553,7 +547,7 @@ function GamePresenter:onNiuGameOver(players)
     -- 飞金币   
     self:performWithDelayGlobal(function()
         self:onPlayFlyGoldAction(players) 
-    end, 1)    
+    end, 2)    
 end
 
 -- 与庄家比找出输赢玩家

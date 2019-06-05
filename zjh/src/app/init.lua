@@ -11,6 +11,7 @@ requireZJH                                  = HotpatchRequire.requireZJH
 requireJDNN                                 = HotpatchRequire.requireJDNN
 requireQZNN                                 = HotpatchRequire.requireQZNN
 requireLHD                                  = HotpatchRequire.requireLHD
+requireBRNN                                 = HotpatchRequire.requireBRNN
 
 ----------------------------------- network ----------------------------------
 cfg_game_zjh                                = cfg_game_zjh or {}

@@ -45,7 +45,7 @@ function GamePlayerNode:onPlayerEnter()
     local player = app.game.PlayerData.getPlayerByLocalSeat(self._localSeat)
     
     -- 显示用户节点    
-    self:showPnlPlayer(true)
+    self:showPnlPlayerEx(true)
     
     if self._localSeat == HERO_LOCAL_SEAT then
         -- 设置姓名
@@ -60,7 +60,7 @@ function GamePlayerNode:onPlayerEnter()
         -- 设置金币
         self:showTxtBalance(true, " - -")
         -- 显示头像
-        self:showImgFace(2, 0)    
+        self:showImgFace(2, 0) 
     end
             
     -- 隐藏庄家
@@ -77,8 +77,10 @@ function GamePlayerNode:onPlayerEnter()
     self:showPnlBlack(false)
     -- 隐藏时钟
     self:showPnlClockCircle(false)
-    -- 隐藏手牌
-    self._gameHandCardNode:resetHandCards()    
+    
+    self:showBtnShowCard(false)
+    
+    self:showImgSpeak(false)  
 end
 
 -- 重置桌子
@@ -93,7 +95,7 @@ end
 -- 玩家离开
 function GamePlayerNode:onPlayerLeave()
     if self._localSeat ~= HERO_LOCAL_SEAT then
-        self:showPnlPlayer(false)
+        self:showPnlPlayerEx(false)
     end
     
     self:showPnlClockCircle(false)
@@ -148,6 +150,21 @@ function GamePlayerNode:showPnlPlayer(visible)
     if self._rootNode then
         self._rootNode:setVisible(visible)
     end   
+end
+
+function GamePlayerNode:showPnlPlayerEx(visible)
+    if self._rootNode then
+        self._rootNode:setVisible(true)
+    end
+     
+    local childs = self._rootNode:getChildren()
+    for i, node in ipairs(childs) do
+        if node:getName() == "node_hand_card" or node:getName() == "img_bet_back" then
+        	node:setVisible(true)
+        else
+            node:setVisible(visible)	
+        end
+    end
 end
 
 -- 姓名
@@ -224,6 +241,20 @@ function GamePlayerNode:showImgCardType(visible, index)
     end
 end
 
+function GamePlayerNode:showBtnShowCard(visible)
+    local btnShow = self:seekChildByName("btn_show_card")
+    if btnShow then
+    	btnShow:setVisible(visible)
+    end
+end
+
+function GamePlayerNode:showImgSpeak(visible)       
+    local imgSpeak = self:seekChildByName("img_speak")
+    if imgSpeak then
+        imgSpeak:setVisible(visible)
+    end
+end
+
 -- 时钟
 function GamePlayerNode:showPnlClockCircle(visible, time)
     local pnlClockCircle = self:seekChildByName("pnl_progress")
@@ -237,10 +268,7 @@ function GamePlayerNode:showPnlClockCircle(visible, time)
 end
 
 function GamePlayerNode:showClockProgress(percentage)
-    self._clockProgress:setPercentage(percentage)
-    if percentage <= 20 then
-    	self:playEffectByName("didi")
-    end
+    self._clockProgress:setPercentage(percentage)    
 end
 
 function GamePlayerNode:showPnlBlack(visible, flag)

@@ -149,7 +149,7 @@ function GamePresenter:onLeaveKick(data)
                     self:onLeaveRoom()
                 end, 0)
             end 
-        end, self._overDelaytime + 3)
+        end, 3)
 end
 
 -- 处理玩家离开
@@ -211,26 +211,25 @@ function GamePresenter:onPlayerEnter(player)
             self._ui:getInstance():showPnlHint(2)     
             self._gameBtnNode:showBetNode(false)                   
         end  
-    else
-        self._ui:getInstance():showPnlHint()   
-    end
-
-    local seats = app.game.GameData.getPlayerseat()
-    if #seats ~= 0 then
-        local isIn = false
-        for i, seat in ipairs(seats) do
-            if player:getSeat() == seat then
-                isIn = true
-            end
+    else        
+        local heroseat = app.game.PlayerData.getHeroSeat()      
+        if heroseat == player:getSeat() then
+            local seats = app.game.GameData.getPlayerseat()
+            if #seats ~= 0 then
+                local isIn = false
+                for i, seat in ipairs(seats) do
+                    if player:getSeat() == seat then
+                        isIn = true
+                    end
+                end
+                if not isIn then
+                    self._ui:getInstance():showPnlHint(4) 
+                    self._gameBtnNode:showBetNode(false)  
+                    app.game.PlayerData.updatePlayerStatus(player:getSeat(), 4)             
+                end         
+            end         
         end
-        if not isIn then
-            if localSeat == 1 then
-                self._ui:getInstance():showPnlHint(4) 
-                self._gameBtnNode:showBetNode(false)                
-            end
-            app.game.PlayerData.updatePlayerStatus(player:getSeat(), 4)            
-        end         
-    end    
+    end
 end
 
 -- 处理玩家坐下
@@ -253,25 +252,10 @@ function GamePresenter:onPlayerSitdown(player)
             self._gameBtnNode:showBetNode(false)                   
         end  
     else
-        self._ui:getInstance():showPnlHint()   
+        if not app.game.PlayerData.getHero():isWaiting() then
+            self._ui:getInstance():showPnlHint(5)
+        end                      
     end
-
-    local seats = app.game.GameData.getPlayerseat()
-    if #seats ~= 0 then
-        local isIn = false
-        for i, seat in ipairs(seats) do
-            if player:getSeat() == seat then
-                isIn = true
-            end
-        end
-        if not isIn then
-            if localSeat == 1 then
-                self._ui:getInstance():showPnlHint(4) 
-                self._gameBtnNode:showBetNode(false)                
-            end
-            app.game.PlayerData.updatePlayerStatus(player:getSeat(), 4)            
-        end         
-    end    
 end
 
 -- 玩家准备
@@ -284,8 +268,7 @@ function GamePresenter:onPlayerReady(seat)
 end
 
 -- 游戏准备
-function GamePresenter:onGamePrepare()
-    self._gameBtnNode:showBetNode(false)    
+function GamePresenter:onGamePrepare()  
     self._ui:getInstance():showPnlHint(1)
     self._gameBtnNode:showBetNode(false) 
 end
@@ -493,8 +476,11 @@ function GamePresenter:onPlayerGiveUp(now, next, round)
         self._gameBtnNode:setEnableByName(normal, disable)
             
         self._ui:getInstance():showBtnShowCard(false) 
-                    
-        self._gameBtnNode:showBetNode(true, 2)      
+        
+        self._gameBtnNode:showBetNode(false)  
+        if player:getIsshow() then
+            self._gameBtnNode:showBetNode(true, 2)      
+        end
     elseif heroseat == next then	
         local player = app.game.PlayerData.getPlayerByServerSeat(next)    
         local normal, disable = self:checkButtonEnable(player)
@@ -559,13 +545,18 @@ function GamePresenter:onPlayerCompareCard(data)
     app.game.PlayerData.updatePlayerStatus(data.loserSeat, 6)
     
     if loserSeat == HERO_LOCAL_SEAT then
+        self._gameBtnNode:showBetNode(false)  
         self:performWithDelayGlobal(function()
-            self._gameBtnNode:showBetNode(true, 2)
+            if app.game.PlayerData.getHero():getIsshow() then
+                self._gameBtnNode:showBetNode(true, 2)      
+            end           
         end, 3)        
     end
-
-    self:onPlayerBet(app.game.GameData.getCurrseat(), ib)  
     
+    self:performWithDelayGlobal(function()
+        self:onPlayerBet(app.game.GameData.getCurrseat(), ib) 
+    end, 3) 
+
     local cnt = 0
     for seat = 0, self._maxPlayerCnt - 1 do
         local player = app.game.PlayerData.getPlayerByServerSeat(seat)            
@@ -763,7 +754,7 @@ function GamePresenter:onPlayerLastBet(data)
                     self:playCompareAction(localSeat, otherSeat, otherSeat, true)     
                 end               
             end   
-        end, (i-1)*4)            
+        end, (i-1)*3)            
     end
         
     self._gamePlayerNodes[localSeat]:showPnlClockCircle(false)
@@ -771,8 +762,10 @@ function GamePresenter:onPlayerLastBet(data)
     local basebet = app.game.GameData.getBasebet()
     local base = app.game.GameConfig.getBase()
     local index = basebet / base / 2
-
-    self:onPlayerBet(app.game.GameData.getCurrseat(), index) 
+    
+    self:performWithDelayGlobal(function()
+        self:onPlayerBet(app.game.GameData.getCurrseat(), index) 
+    end, (#data.otherSeat)*3) 
     
     self._overDelaytime = self._overDelaytime + 3*(#data.otherSeat) -- 孤注一掷结束
 end
@@ -876,9 +869,11 @@ end
 
 -- 结算
 function GamePresenter:onResult(data, players)
-    -- 隐藏按钮
-    self._gameBtnNode:showBetNode(true, 2)
-    
+    self._gameBtnNode:showBetNode(false)  
+    if app.game.PlayerData.getHero():getIsshow() then
+        self._gameBtnNode:showBetNode(true, 2)      
+    end  
+
     self:showOtherPlayer()
     
     local tempSeat = data.winnerSeat
@@ -896,11 +891,14 @@ function GamePresenter:onResult(data, players)
     local showseats = app.game.GameData.getShowSeat()
     for _, seat in ipairs(showseats) do
         local localSeat = app.game.PlayerData.serverSeatToLocalSeat(seat)
-        local gameHandCardNode = self._gamePlayerNodes[localSeat]:getGameHandCardNode()       
-        gameHandCardNode:resetHandCards()
-        gameHandCardNode:createCards(players[seat].cards)  
-        
-        self._gamePlayerNodes[localSeat]:showImgCardType(true, players[seat].type)        
+        if localSeat >= 0 and localSeat <= self._maxPlayerCnt-1 then
+            local gameHandCardNode = self._gamePlayerNodes[localSeat]:getGameHandCardNode()       
+            gameHandCardNode:resetHandCards()
+            gameHandCardNode:createCards(players[seat].cards)  
+
+            self._gamePlayerNodes[localSeat]:showImgCardType(true, players[seat].type)
+            self._gamePlayerNodes[localSeat]:showImgCheck(false)              
+        end
     end
 
     local chipBackseats = {}
@@ -918,11 +916,14 @@ function GamePresenter:onResult(data, players)
             end
 
             self._gamePlayerNodes[localSeat]:showImgCheck(false)
-            
-            if players[winseat].type == GECT.zjh_shunjin then
-                self._gamePlayerNodes[localSeat]:playEffectByName("shunjin")
-            elseif players[winseat].type == GECT.zjh_baozi then
-                self._gamePlayerNodes[localSeat]:playEffectByName("baozi")
+                        
+            local playerobj = app.game.PlayerData.getPlayerByServerSeat(winseat)     
+            if playerobj:getIsshow() then
+                if players[winseat].type == GECT.zjh_shunjin then
+                    self._gamePlayerNodes[localSeat]:playEffectByName("shunjin")
+                elseif players[winseat].type == GECT.zjh_baozi then
+                    self._gamePlayerNodes[localSeat]:playEffectByName("baozi")
+                end
             end
             
             self._gamePlayerNodes[localSeat]:playEffectByName("win")
@@ -1055,6 +1056,7 @@ function GamePresenter:onGameOverShow(showseat)
         gameHandCardNode:createCards(data[showseat].cards)  
 
         self._gamePlayerNodes[localseat]:showImgCardType(true, data[showseat].type)
+        self._gamePlayerNodes[localseat]:showImgCheck(false)
     end
 end
 
@@ -1304,13 +1306,21 @@ end
 -- 时钟
 function GamePresenter:openSchedulerClock(localSeat, time)
     local allTime = time
-    
+    local sound = false
     local function flipIt(dt)
         time = time - dt
 
         if time <= 0 then
             self._gamePlayerNodes[localSeat]:showPnlClockCircle(false)
         end
+        
+        if localSeat == HERO_LOCAL_SEAT then
+            if time < 2 and not sound then
+                self._ui:getInstance():playEffectByName("didi")
+                sound = true
+            end
+        end
+        
         self._gamePlayerNodes[localSeat]:showClockProgress(time / allTime * 100)
     end
 

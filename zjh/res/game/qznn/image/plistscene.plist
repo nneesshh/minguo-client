@@ -620,6 +620,17 @@
 				<key>sourceSize</key>
 				<string>{264,111}</string>
 			</dict>
+			<key>game/qznn/image/img_logo_qznn.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{2,997},{107,25}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{107,25}</string>
+			</dict>
 		</dict>
 		<key>metadata</key>
 		<dict>

@@ -262,12 +262,14 @@ end
 
 ----------------
 function _M.onAnnouncement(conn, sessionid, msgid)
+    print("onAnnouncement")
     local resp = {}
     local po = upconn.upconn:get_packet_obj()
     resp.text = po:read_string()
     
     if resp.text and resp.text ~= "" then
-        app.util.DispatcherUtils.dispatchEvent(app.Event.EVENT_READY, resp.text) 
+        print("resp.text",resp.text)
+        app.util.DispatcherUtils.dispatchEvent(app.Event.EVENT_BROADCAST, resp.text) 
     end
 end
 

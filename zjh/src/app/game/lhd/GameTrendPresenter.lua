@@ -4,7 +4,7 @@
 
 local GameTrendPresenter    = class("GameTrendPresenter", app.base.BasePresenter)
 
-GameTrendPresenter._ui  = require("app.game.lhd.GameTrendLayer")
+GameTrendPresenter._ui  = requireLHD("app.game.lhd.GameTrendLayer")
 
 --local GameEnum = app.game.GameEnum 
 local GameEnum = {}

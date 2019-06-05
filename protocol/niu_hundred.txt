@@ -38,6 +38,23 @@
 	} while(0)
 
 // 
+#define NIU_HUNDRED_WRITE_GAME_ENTRY(stream, gameEntry)		\
+	do {													\
+		stream.writeInt64(gameEntry->seqId);				\
+		stream.writeByte(gameEntry->bankerCardType);		\
+		stream.writeString(gameEntry->bankerCards, 5);		\
+		stream.writeByte(gameEntry->betAreaCardType[0]);	\
+		stream.writeByte(gameEntry->betAreaCardType[1]);	\
+		stream.writeByte(gameEntry->betAreaCardType[2]);	\
+		stream.writeByte(gameEntry->betAreaCardType[3]);	\
+		stream.writeString(gameEntry->betAreaCards, 5*4);	\
+		stream.writeByte(gameEntry->betAreaWin[0]);			\
+		stream.writeByte(gameEntry->betAreaWin[1]);			\
+		stream.writeByte(gameEntry->betAreaWin[2]);			\
+		stream.writeByte(gameEntry->betAreaWin[3]);			\
+	} while(0)
+
+// 
 #define NIU_HUNDRED_WRITE_GAME_HISTORY(stream, selfSeat, history)	\
 	do {														\
 		int itemCount = 0;										\
@@ -47,18 +64,7 @@
 		stream.writeInt32(itemCount);							\
 		for (int i = 0; i < itemCount; ++i) {					\
 			NIU100_GAME_ENTRY_T *gameEntry = &history->list[i];	\
-			stream.writeInt64(gameEntry->seqId);				\
-			stream.writeByte(gameEntry->bankerCardType);		\
-			stream.writeString(gameEntry->bankerCards, 5);		\
-			stream.writeByte(gameEntry->betAreaCardType[0]);	\
-			stream.writeByte(gameEntry->betAreaCardType[1]);	\
-			stream.writeByte(gameEntry->betAreaCardType[2]);	\
-			stream.writeByte(gameEntry->betAreaCardType[3]);	\
-			stream.writeString(gameEntry->betAreaCards, 5*4);	\
-			stream.writeByte(gameEntry->betAreaWin[0]);			\
-			stream.writeByte(gameEntry->betAreaWin[1]);			\
-			stream.writeByte(gameEntry->betAreaWin[2]);			\
-			stream.writeByte(gameEntry->betAreaWin[3]);			\
+			NIU_HUNDRED_WRITE_GAME_ENTRY(stream, gameEntry);	\
 		}														\
 	} while(0)
 
@@ -78,9 +84,7 @@
 // 
 #define NIU_HUNDRED_WRITE_GAME_OVER_TO_ONE_PLAYER(stream, table, gameEntry, selfSeat, selfBalance, vTopSeat)	\
 	do {														\
-		stream.writeInt64(gameEntry->seqId);					\
-		stream.writeByte(gameEntry->cardType);					\
-		stream.writeString(gameEntry->cards, 2);				\
+		NIU_HUNDRED_WRITE_GAME_ENTRY(stream, gameEntry);		\
 		NIU_HUNDRED_WRITE_LOCAL_SEAT(stream, selfSeat);			\
 		stream.writeInt64(selfBalance);							\
 		NIU_HUNDRED_WRITE_TOP_SEAT(stream, table, vTopSeat);	\

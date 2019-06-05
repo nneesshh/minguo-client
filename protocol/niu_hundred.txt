@@ -119,5 +119,4 @@
 		stream.writeInt64(jackpotSum2);							\
 		stream.writeInt64(jackpotSum3);							\
 		stream.writeInt64(jackpotSum4);							\
-		WRITE_TABLE_INFO(stream, tableId, tableInfo);			\
 	} while(0)

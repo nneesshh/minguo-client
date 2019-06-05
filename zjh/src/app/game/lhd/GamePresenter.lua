@@ -93,8 +93,8 @@ function GamePresenter:initScheduler()
 end
 
 function GamePresenter:initRequire()
-    app.game.GameTrendPresenter = requireLHD("app.game.lhd.GameTrendPresenter.lua")
-    app.game.GameListPresenter  = requireLHD("app.game.lhd.GameListPresenter.lua")
+    app.game.GameTrendPresenter = requireLHD("app.game.lhd.GameTrendPresenter")
+    app.game.GameListPresenter  = requireLHD("app.game.lhd.GameListPresenter")
 end
 
 -- 退出界面
@@ -202,20 +202,6 @@ function GamePresenter:onPlayerEnter(player, k)
     -- 按钮触摸
     self:showBetBtnEnable()
     
---    -- 判断是否处于等待状态
---    local status = app.game.GameData.getTableStatus()
---    if status == zjh_defs.TableStatus.TS_BANKER 
---        or status == zjh_defs.TableStatus.TS_DEALING 
---        or status == zjh_defs.TableStatus.TS_PLAYING then 
---         
---        local heroseat = app.game.PlayerData.getHeroSeat()  
---        local ready = app.game.GameData.getReady()
---        if player:getSeat() == heroseat and not self._enter and not ready then
---            self._ui:getInstance():showHint("wait")
---            self._enter = true
---            --app.game.PlayerData.updatePlayerStatus(player:getSeat(), 4)
---        end        
---    end 
     local heroseat = app.game.PlayerData.getHeroSeat()      
     if heroseat == player:getSeat() then
         local seats = app.game.GameData.getPlayerseat()
@@ -690,6 +676,12 @@ function GamePresenter:sendPlayerReady()
         print("not in game")
         return
     end
+    
+    if app.game.GameData.getReady() then
+    	print("have ready")
+    	return
+    end
+    
     local tabInfo = app.game.GameData.getTableInfo()
     if tabInfo.status == zjh_defs.TableStatus.TS_IDLE 
         or tabInfo.status == zjh_defs.TableStatus.TS_PREPARE 

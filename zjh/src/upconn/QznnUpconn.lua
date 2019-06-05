@@ -136,9 +136,10 @@ function _M.onNiuConfirmBanker(conn, sessionid, msgid)
         players[i] = players[i] or {}
         players[i].seat    = po:read_int16()
         players[i].mult    = po:read_int32()
-        players[i].balance = po:read_int64()
-        print("player mult", players[i].mult, players[i].seat )
+        players[i].balance = po:read_int64()        
     end
+    
+    dump(players)
     
     if app.game.GamePresenter then
         app.game.GamePresenter:getInstance():onNiuConfirmBanker(banker, players)    

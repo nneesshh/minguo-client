@@ -58,6 +58,7 @@
       <FilePathData Path="game/jdnn/image/img_load_back.png" />
       <FilePathData Path="game/jdnn/image/img_qqz.png" />
       <FilePathData Path="game/jdnn/image/img_qxz.png" />
+      <FilePathData Path="game/jdnn/image/img_logo_jdnn.png" />
     </ImageFiles>
     <MaxSize Width="2048" Height="1024" />
   </Content>

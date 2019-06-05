@@ -50,7 +50,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5000" Y="0.9240" />
                 <PreSize X="0.1154" Y="0.0547" />
-                <FileData Type="Normal" Path="game/brnn/image/img_list.png" Plist="" />
+                <FileData Type="MarkedSubImage" Path="game/brnn/image/img_list.png" Plist="game/brnn/image/plistscene.plist" />
               </AbstractNodeData>
               <AbstractNodeData Name="btn_close" ActionTag="529471273" Tag="902" IconVisible="False" LeftMargin="1152.5000" RightMargin="92.5000" TopMargin="21.5000" BottomMargin="639.5000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="59" Scale9Height="67" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="89.0000" Y="89.0000" />
@@ -114,6 +114,16 @@
                     <PreSize X="1.0000" Y="1.0122" />
                     <FileData Type="Normal" Path="lobby/image/public/img_contain_3.png" Plist="" />
                   </AbstractNodeData>
+                  <AbstractNodeData Name="img_rank_num" ActionTag="747429188" VisibleForFrame="False" Tag="419" IconVisible="False" PositionPercentYEnabled="True" RightMargin="826.0000" TopMargin="10.0000" BottomMargin="10.0000" LeftEage="19" RightEage="19" TopEage="20" BottomEage="20" Scale9OriginX="19" Scale9OriginY="20" Scale9Width="95" Scale9Height="22" ctype="ImageViewObjectData">
+                    <Size X="133.0000" Y="62.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="66.5000" Y="41.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.0693" Y="0.5000" />
+                    <PreSize X="0.1387" Y="0.7561" />
+                    <FileData Type="MarkedSubImage" Path="game/brnn/image/img_rank_1.png" Plist="game/brnn/image/plistscene.plist" />
+                  </AbstractNodeData>
                   <AbstractNodeData Name="fnt_rank_num" ActionTag="1820396649" Tag="420" IconVisible="False" PositionPercentYEnabled="True" LeftMargin="58.5000" RightMargin="884.5000" TopMargin="29.0000" BottomMargin="29.0000" LabelText="0" ctype="TextBMFontObjectData">
                     <Size X="16.0000" Y="24.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -175,6 +185,46 @@
                     <PreSize X="0.0156" Y="0.3659" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="img_near_20" ActionTag="1590918067" Tag="421" IconVisible="False" PositionPercentYEnabled="True" LeftMargin="662.0000" RightMargin="221.0000" TopMargin="28.5000" BottomMargin="28.5000" LeftEage="25" RightEage="25" TopEage="8" BottomEage="8" Scale9OriginX="25" Scale9OriginY="8" Scale9Width="26" Scale9Height="9" ctype="ImageViewObjectData">
+                    <Size X="76.0000" Y="25.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="700.0000" Y="41.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.7299" Y="0.5000" />
+                    <PreSize X="0.0792" Y="0.3049" />
+                    <FileData Type="MarkedSubImage" Path="game/brnn/image/img_near_20.png" Plist="game/brnn/image/plistscene.plist" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="img_bet_round" ActionTag="-944305163" Tag="422" IconVisible="False" PositionPercentYEnabled="True" LeftMargin="766.0000" RightMargin="135.0000" TopMargin="9.5000" BottomMargin="9.5000" LeftEage="19" RightEage="19" TopEage="20" BottomEage="20" Scale9OriginX="19" Scale9OriginY="20" Scale9Width="20" Scale9Height="23" ctype="ImageViewObjectData">
+                    <Size X="58.0000" Y="63.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="795.0000" Y="41.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.8290" Y="0.5000" />
+                    <PreSize X="0.0605" Y="0.7683" />
+                    <FileData Type="MarkedSubImage" Path="game/brnn/image/img_bet_round.png" Plist="game/brnn/image/plistscene.plist" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="fnt_bet_gold" ActionTag="701758391" Tag="423" IconVisible="False" LeftMargin="830.0000" RightMargin="114.0000" TopMargin="13.5000" BottomMargin="47.5000" LabelText="0" ctype="TextBMFontObjectData">
+                    <Size X="15.0000" Y="21.0000" />
+                    <AnchorPoint ScaleY="0.5000" />
+                    <Position X="830.0000" Y="58.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.8655" Y="0.7073" />
+                    <PreSize X="0.0156" Y="0.2561" />
+                    <LabelBMFontFile_CNB Type="Normal" Path="game/brnn/image/fnt/goldfnt.fnt" Plist="" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="fnt_round" ActionTag="1749728320" Tag="424" IconVisible="False" LeftMargin="830.0000" RightMargin="90.0000" TopMargin="48.5000" BottomMargin="12.5000" LabelText="0局" ctype="TextBMFontObjectData">
+                    <Size X="39.0000" Y="21.0000" />
+                    <AnchorPoint ScaleY="0.5000" />
+                    <Position X="830.0000" Y="23.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.8655" Y="0.2805" />
+                    <PreSize X="0.0407" Y="0.2561" />
+                    <LabelBMFontFile_CNB Type="Normal" Path="game/brnn/image/fnt/roundfnt.fnt" Plist="" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" />

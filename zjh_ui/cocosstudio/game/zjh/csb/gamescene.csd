@@ -121,19 +121,6 @@
                 <PreSize X="0.4670" Y="0.8667" />
                 <FileData Type="Normal" Path="game/public/background/img_desk.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="pnl_chip_area" ActionTag="-159345200" Tag="2225" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
-                <Size X="1334.0000" Y="750.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="667.0000" Y="375.0000" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5000" Y="0.5000" />
-                <PreSize X="1.0000" Y="1.0000" />
-                <SingleColor A="255" R="150" G="200" B="255" />
-                <FirstColor A="255" R="150" G="200" B="255" />
-                <EndColor A="255" R="255" G="255" B="255" />
-                <ColorVector ScaleY="1.0000" />
-              </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="667.0000" Y="375.0000" />
@@ -286,16 +273,6 @@
                     <PreSize X="1.2250" Y="0.1923" />
                     <FileData Type="MarkedSubImage" Path="game/zjh/image/img_bet_back.png" Plist="game/zjh/image/plistscene.plist" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="img_banker" ActionTag="-620017585" VisibleForFrame="False" Tag="293" IconVisible="False" LeftMargin="45.5000" RightMargin="-14.5000" TopMargin="-23.5000" BottomMargin="106.5000" LeftEage="16" RightEage="16" TopEage="15" BottomEage="15" Scale9OriginX="16" Scale9OriginY="15" Scale9Width="17" Scale9Height="17" ctype="ImageViewObjectData">
-                    <Size X="49.0000" Y="47.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="70.0000" Y="130.0000" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.8750" Y="1.0000" />
-                    <PreSize X="0.6125" Y="0.3615" />
-                    <FileData Type="MarkedSubImage" Path="game/zjh/image/img_banker.png" Plist="game/zjh/image/plistscene.plist" />
-                  </AbstractNodeData>
                   <AbstractNodeData Name="node_hand_card" ActionTag="-1937819401" Tag="1087" IconVisible="True" LeftMargin="90.0000" RightMargin="-10.0000" TopMargin="130.0000" ctype="SingleNodeObjectData">
                     <Size X="0.0000" Y="0.0000" />
                     <AnchorPoint />
@@ -385,6 +362,16 @@
                     <FirstColor A="255" R="150" G="200" B="255" />
                     <EndColor A="255" R="255" G="255" B="255" />
                     <ColorVector ScaleY="1.0000" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="img_banker" ActionTag="-620017585" VisibleForFrame="False" Tag="293" IconVisible="False" LeftMargin="45.5000" RightMargin="-14.5000" TopMargin="-23.5000" BottomMargin="106.5000" LeftEage="16" RightEage="16" TopEage="15" BottomEage="15" Scale9OriginX="16" Scale9OriginY="15" Scale9Width="17" Scale9Height="17" ctype="ImageViewObjectData">
+                    <Size X="49.0000" Y="47.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="70.0000" Y="130.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.8750" Y="1.0000" />
+                    <PreSize X="0.6125" Y="0.3615" />
+                    <FileData Type="MarkedSubImage" Path="game/zjh/image/img_banker.png" Plist="game/zjh/image/plistscene.plist" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -512,16 +499,6 @@
                     <PreSize X="1.2250" Y="0.1923" />
                     <FileData Type="MarkedSubImage" Path="game/zjh/image/img_bet_back.png" Plist="game/zjh/image/plistscene.plist" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="img_banker" ActionTag="307106146" VisibleForFrame="False" Tag="304" IconVisible="False" LeftMargin="45.5000" RightMargin="-14.5000" TopMargin="-23.5000" BottomMargin="106.5000" LeftEage="16" RightEage="16" TopEage="15" BottomEage="15" Scale9OriginX="16" Scale9OriginY="15" Scale9Width="17" Scale9Height="17" ctype="ImageViewObjectData">
-                    <Size X="49.0000" Y="47.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="70.0000" Y="130.0000" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.8750" Y="1.0000" />
-                    <PreSize X="0.6125" Y="0.3615" />
-                    <FileData Type="MarkedSubImage" Path="game/zjh/image/img_banker.png" Plist="game/zjh/image/plistscene.plist" />
-                  </AbstractNodeData>
                   <AbstractNodeData Name="node_hand_card" ActionTag="1019133995" Tag="1301" IconVisible="True" LeftMargin="90.0000" RightMargin="-10.0000" TopMargin="130.0000" ctype="SingleNodeObjectData">
                     <Size X="0.0000" Y="0.0000" />
                     <AnchorPoint />
@@ -626,6 +603,16 @@
                     <FirstColor A="255" R="150" G="200" B="255" />
                     <EndColor A="255" R="255" G="255" B="255" />
                     <ColorVector ScaleY="1.0000" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="img_banker" ActionTag="307106146" VisibleForFrame="False" Tag="304" IconVisible="False" LeftMargin="45.5000" RightMargin="-14.5000" TopMargin="-23.5000" BottomMargin="106.5000" LeftEage="16" RightEage="16" TopEage="15" BottomEage="15" Scale9OriginX="16" Scale9OriginY="15" Scale9Width="17" Scale9Height="17" ctype="ImageViewObjectData">
+                    <Size X="49.0000" Y="47.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="70.0000" Y="130.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.8750" Y="1.0000" />
+                    <PreSize X="0.6125" Y="0.3615" />
+                    <FileData Type="MarkedSubImage" Path="game/zjh/image/img_banker.png" Plist="game/zjh/image/plistscene.plist" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -753,16 +740,6 @@
                     <PreSize X="1.2250" Y="0.1923" />
                     <FileData Type="MarkedSubImage" Path="game/zjh/image/img_bet_back.png" Plist="game/zjh/image/plistscene.plist" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="img_banker" ActionTag="302029420" VisibleForFrame="False" Tag="305" IconVisible="False" LeftMargin="45.5000" RightMargin="-14.5000" TopMargin="-23.5000" BottomMargin="106.5000" LeftEage="16" RightEage="16" TopEage="15" BottomEage="15" Scale9OriginX="16" Scale9OriginY="15" Scale9Width="17" Scale9Height="17" ctype="ImageViewObjectData">
-                    <Size X="49.0000" Y="47.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="70.0000" Y="130.0000" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.8750" Y="1.0000" />
-                    <PreSize X="0.6125" Y="0.3615" />
-                    <FileData Type="MarkedSubImage" Path="game/zjh/image/img_banker.png" Plist="game/zjh/image/plistscene.plist" />
-                  </AbstractNodeData>
                   <AbstractNodeData Name="node_hand_card" ActionTag="-145746568" Tag="1315" IconVisible="True" LeftMargin="-135.0000" RightMargin="215.0000" TopMargin="130.0000" ctype="SingleNodeObjectData">
                     <Size X="0.0000" Y="0.0000" />
                     <AnchorPoint />
@@ -852,6 +829,16 @@
                     <FirstColor A="255" R="150" G="200" B="255" />
                     <EndColor A="255" R="255" G="255" B="255" />
                     <ColorVector ScaleY="1.0000" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="img_banker" ActionTag="302029420" VisibleForFrame="False" Tag="305" IconVisible="False" LeftMargin="45.5000" RightMargin="-14.5000" TopMargin="-23.5000" BottomMargin="106.5000" LeftEage="16" RightEage="16" TopEage="15" BottomEage="15" Scale9OriginX="16" Scale9OriginY="15" Scale9Width="17" Scale9Height="17" ctype="ImageViewObjectData">
+                    <Size X="49.0000" Y="47.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="70.0000" Y="130.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.8750" Y="1.0000" />
+                    <PreSize X="0.6125" Y="0.3615" />
+                    <FileData Type="MarkedSubImage" Path="game/zjh/image/img_banker.png" Plist="game/zjh/image/plistscene.plist" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -979,16 +966,6 @@
                     <PreSize X="1.2250" Y="0.1923" />
                     <FileData Type="MarkedSubImage" Path="game/zjh/image/img_bet_back.png" Plist="game/zjh/image/plistscene.plist" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="img_banker" ActionTag="903699620" VisibleForFrame="False" Tag="306" IconVisible="False" LeftMargin="45.5000" RightMargin="-14.5000" TopMargin="-23.5000" BottomMargin="106.5000" LeftEage="16" RightEage="16" TopEage="15" BottomEage="15" Scale9OriginX="16" Scale9OriginY="15" Scale9Width="17" Scale9Height="17" ctype="ImageViewObjectData">
-                    <Size X="49.0000" Y="47.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="70.0000" Y="130.0000" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.8750" Y="1.0000" />
-                    <PreSize X="0.6125" Y="0.3615" />
-                    <FileData Type="MarkedSubImage" Path="game/zjh/image/img_banker.png" Plist="game/zjh/image/plistscene.plist" />
-                  </AbstractNodeData>
                   <AbstractNodeData Name="node_hand_card" ActionTag="-459882059" Tag="1317" IconVisible="True" LeftMargin="-135.0000" RightMargin="215.0000" TopMargin="130.0000" ctype="SingleNodeObjectData">
                     <Size X="0.0000" Y="0.0000" />
                     <AnchorPoint />
@@ -1078,6 +1055,16 @@
                     <FirstColor A="255" R="150" G="200" B="255" />
                     <EndColor A="255" R="255" G="255" B="255" />
                     <ColorVector ScaleY="1.0000" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="img_banker" ActionTag="903699620" VisibleForFrame="False" Tag="306" IconVisible="False" LeftMargin="45.5000" RightMargin="-14.5000" TopMargin="-23.5000" BottomMargin="106.5000" LeftEage="16" RightEage="16" TopEage="15" BottomEage="15" Scale9OriginX="16" Scale9OriginY="15" Scale9Width="17" Scale9Height="17" ctype="ImageViewObjectData">
+                    <Size X="49.0000" Y="47.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="70.0000" Y="130.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.8750" Y="1.0000" />
+                    <PreSize X="0.6125" Y="0.3615" />
+                    <FileData Type="MarkedSubImage" Path="game/zjh/image/img_banker.png" Plist="game/zjh/image/plistscene.plist" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -1205,16 +1192,6 @@
                     <PreSize X="1.2250" Y="0.1923" />
                     <FileData Type="MarkedSubImage" Path="game/zjh/image/img_bet_back.png" Plist="game/zjh/image/plistscene.plist" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="img_banker" ActionTag="433426277" VisibleForFrame="False" Tag="307" IconVisible="False" LeftMargin="45.5000" RightMargin="-14.5000" TopMargin="-23.5000" BottomMargin="106.5000" LeftEage="16" RightEage="16" TopEage="15" BottomEage="15" Scale9OriginX="16" Scale9OriginY="15" Scale9Width="17" Scale9Height="17" ctype="ImageViewObjectData">
-                    <Size X="49.0000" Y="47.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="70.0000" Y="130.0000" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.8750" Y="1.0000" />
-                    <PreSize X="0.6125" Y="0.3615" />
-                    <FileData Type="MarkedSubImage" Path="game/zjh/image/img_banker.png" Plist="game/zjh/image/plistscene.plist" />
-                  </AbstractNodeData>
                   <AbstractNodeData Name="node_hand_card" ActionTag="-1533609121" Tag="1089" IconVisible="True" LeftMargin="90.0000" RightMargin="-10.0000" TopMargin="130.0000" ctype="SingleNodeObjectData">
                     <Size X="0.0000" Y="0.0000" />
                     <AnchorPoint />
@@ -1305,6 +1282,16 @@
                     <EndColor A="255" R="255" G="255" B="255" />
                     <ColorVector ScaleY="1.0000" />
                   </AbstractNodeData>
+                  <AbstractNodeData Name="img_banker" ActionTag="433426277" VisibleForFrame="False" Tag="307" IconVisible="False" LeftMargin="45.5000" RightMargin="-14.5000" TopMargin="-23.5000" BottomMargin="106.5000" LeftEage="16" RightEage="16" TopEage="15" BottomEage="15" Scale9OriginX="16" Scale9OriginY="15" Scale9Width="17" Scale9Height="17" ctype="ImageViewObjectData">
+                    <Size X="49.0000" Y="47.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="70.0000" Y="130.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.8750" Y="1.0000" />
+                    <PreSize X="0.6125" Y="0.3615" />
+                    <FileData Type="MarkedSubImage" Path="game/zjh/image/img_banker.png" Plist="game/zjh/image/plistscene.plist" />
+                  </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="328.0000" Y="565.0000" />
@@ -1362,6 +1349,19 @@
                 <PrePosition X="0.5000" Y="0.0667" />
                 <PreSize X="0.0000" Y="0.0000" />
                 <FileData Type="Normal" Path="game/zjh/csb/button.csd" Plist="" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="pnl_chip_area" ActionTag="-159345200" Tag="2225" IconVisible="False" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+                <Size X="1334.0000" Y="750.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="667.0000" Y="375.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.5000" />
+                <PreSize X="1.0000" Y="1.0000" />
+                <SingleColor A="255" R="150" G="200" B="255" />
+                <FirstColor A="255" R="150" G="200" B="255" />
+                <EndColor A="255" R="255" G="255" B="255" />
+                <ColorVector ScaleY="1.0000" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />

@@ -20,19 +20,19 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.5172" />
                     <PreSize X="1.0000" Y="1.0000" />
-                    <FileData Type="Normal" Path="game/brnn/image/img_chip_light.png" Plist="" />
+                    <FileData Type="MarkedSubImage" Path="game/brnn/image/img_chip_light.png" Plist="game/brnn/image/plistscene.plist" />
                   </AbstractNodeData>
                 </Children>
-                <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
-                <Position X="207.0000" Y="150.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="152.5000" Y="150.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.2300" Y="0.5000" />
+                <PrePosition X="0.1694" Y="0.5000" />
                 <PreSize X="0.1211" Y="0.3867" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="game/brnn/image/btn_1.png" Plist="" />
-                <PressedFileData Type="Normal" Path="game/brnn/image/btn_1.png" Plist="" />
-                <NormalFileData Type="Normal" Path="game/brnn/image/btn_1.png" Plist="" />
+                <DisabledFileData Type="MarkedSubImage" Path="game/brnn/image/btn_1.png" Plist="game/brnn/image/plistscene.plist" />
+                <PressedFileData Type="MarkedSubImage" Path="game/brnn/image/btn_1.png" Plist="game/brnn/image/plistscene.plist" />
+                <NormalFileData Type="MarkedSubImage" Path="game/brnn/image/btn_1.png" Plist="game/brnn/image/plistscene.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -47,19 +47,19 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.5172" />
                     <PreSize X="1.0000" Y="1.0000" />
-                    <FileData Type="Normal" Path="game/brnn/image/img_chip_light.png" Plist="" />
+                    <FileData Type="MarkedSubImage" Path="game/brnn/image/img_chip_light.png" Plist="game/brnn/image/plistscene.plist" />
                   </AbstractNodeData>
                 </Children>
-                <AnchorPoint ScaleY="0.5000" />
-                <Position X="217.0000" Y="150.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="271.5000" Y="150.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.2411" Y="0.5000" />
+                <PrePosition X="0.3017" Y="0.5000" />
                 <PreSize X="0.1211" Y="0.3867" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="game/brnn/image/btn_2.png" Plist="" />
-                <PressedFileData Type="Normal" Path="game/brnn/image/btn_2.png" Plist="" />
-                <NormalFileData Type="Normal" Path="game/brnn/image/btn_2.png" Plist="" />
+                <DisabledFileData Type="MarkedSubImage" Path="game/brnn/image/btn_2.png" Plist="game/brnn/image/plistscene.plist" />
+                <PressedFileData Type="MarkedSubImage" Path="game/brnn/image/btn_2.png" Plist="game/brnn/image/plistscene.plist" />
+                <NormalFileData Type="MarkedSubImage" Path="game/brnn/image/btn_2.png" Plist="game/brnn/image/plistscene.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -74,19 +74,19 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.5172" />
                     <PreSize X="1.0000" Y="1.0000" />
-                    <FileData Type="Normal" Path="game/brnn/image/img_chip_light.png" Plist="" />
+                    <FileData Type="MarkedSubImage" Path="game/brnn/image/img_chip_light.png" Plist="game/brnn/image/plistscene.plist" />
                   </AbstractNodeData>
                 </Children>
-                <AnchorPoint ScaleY="0.5000" />
-                <Position X="336.0000" Y="150.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="390.5000" Y="150.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.3733" Y="0.5000" />
+                <PrePosition X="0.4339" Y="0.5000" />
                 <PreSize X="0.1211" Y="0.3867" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="game/brnn/image/btn_3.png" Plist="" />
-                <PressedFileData Type="Normal" Path="game/brnn/image/btn_3.png" Plist="" />
-                <NormalFileData Type="Normal" Path="game/brnn/image/btn_3.png" Plist="" />
+                <DisabledFileData Type="MarkedSubImage" Path="game/brnn/image/btn_3.png" Plist="game/brnn/image/plistscene.plist" />
+                <PressedFileData Type="MarkedSubImage" Path="game/brnn/image/btn_3.png" Plist="game/brnn/image/plistscene.plist" />
+                <NormalFileData Type="MarkedSubImage" Path="game/brnn/image/btn_3.png" Plist="game/brnn/image/plistscene.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -101,19 +101,19 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.5172" />
                     <PreSize X="1.0000" Y="1.0000" />
-                    <FileData Type="Normal" Path="game/brnn/image/img_chip_light.png" Plist="" />
+                    <FileData Type="MarkedSubImage" Path="game/brnn/image/img_chip_light.png" Plist="game/brnn/image/plistscene.plist" />
                   </AbstractNodeData>
                 </Children>
-                <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
-                <Position X="564.0000" Y="150.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="509.5000" Y="150.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.6267" Y="0.5000" />
+                <PrePosition X="0.5661" Y="0.5000" />
                 <PreSize X="0.1211" Y="0.3867" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="game/brnn/image/btn_4.png" Plist="" />
-                <PressedFileData Type="Normal" Path="game/brnn/image/btn_4.png" Plist="" />
-                <NormalFileData Type="Normal" Path="game/brnn/image/btn_4.png" Plist="" />
+                <DisabledFileData Type="MarkedSubImage" Path="game/brnn/image/btn_4.png" Plist="game/brnn/image/plistscene.plist" />
+                <PressedFileData Type="MarkedSubImage" Path="game/brnn/image/btn_4.png" Plist="game/brnn/image/plistscene.plist" />
+                <NormalFileData Type="MarkedSubImage" Path="game/brnn/image/btn_4.png" Plist="game/brnn/image/plistscene.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -128,19 +128,19 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.5172" />
                     <PreSize X="1.0000" Y="1.0000" />
-                    <FileData Type="Normal" Path="game/brnn/image/img_chip_light.png" Plist="" />
+                    <FileData Type="MarkedSubImage" Path="game/brnn/image/img_chip_light.png" Plist="game/brnn/image/plistscene.plist" />
                   </AbstractNodeData>
                 </Children>
-                <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
-                <Position X="683.0000" Y="150.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="628.5000" Y="150.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.7589" Y="0.5000" />
+                <PrePosition X="0.6983" Y="0.5000" />
                 <PreSize X="0.1211" Y="0.3867" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="game/brnn/image/btn_5.png" Plist="" />
-                <PressedFileData Type="Normal" Path="game/brnn/image/btn_5.png" Plist="" />
-                <NormalFileData Type="Normal" Path="game/brnn/image/btn_5.png" Plist="" />
+                <DisabledFileData Type="MarkedSubImage" Path="game/brnn/image/btn_5.png" Plist="game/brnn/image/plistscene.plist" />
+                <PressedFileData Type="MarkedSubImage" Path="game/brnn/image/btn_5.png" Plist="game/brnn/image/plistscene.plist" />
+                <NormalFileData Type="MarkedSubImage" Path="game/brnn/image/btn_5.png" Plist="game/brnn/image/plistscene.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -155,19 +155,19 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.5172" />
                     <PreSize X="1.0000" Y="1.0000" />
-                    <FileData Type="Normal" Path="game/brnn/image/img_chip_light.png" Plist="" />
+                    <FileData Type="MarkedSubImage" Path="game/brnn/image/img_chip_light.png" Plist="game/brnn/image/plistscene.plist" />
                   </AbstractNodeData>
                 </Children>
-                <AnchorPoint ScaleY="0.5000" />
-                <Position X="693.0000" Y="150.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="747.5000" Y="150.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.7700" Y="0.5000" />
+                <PrePosition X="0.8306" Y="0.5000" />
                 <PreSize X="0.1211" Y="0.3867" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="game/brnn/image/btn_6.png" Plist="" />
-                <PressedFileData Type="Normal" Path="game/brnn/image/btn_6.png" Plist="" />
-                <NormalFileData Type="Normal" Path="game/brnn/image/btn_6.png" Plist="" />
+                <DisabledFileData Type="MarkedSubImage" Path="game/brnn/image/btn_6.png" Plist="game/brnn/image/plistscene.plist" />
+                <PressedFileData Type="MarkedSubImage" Path="game/brnn/image/btn_6.png" Plist="game/brnn/image/plistscene.plist" />
+                <NormalFileData Type="MarkedSubImage" Path="game/brnn/image/btn_6.png" Plist="game/brnn/image/plistscene.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -179,7 +179,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5000" Y="0.5000" />
                 <PreSize X="0.4089" Y="0.0900" />
-                <FileData Type="Normal" Path="game/brnn/image/img_hint_less2.png" Plist="" />
+                <FileData Type="MarkedSubImage" Path="game/brnn/image/img_hint_less2.png" Plist="game/brnn/image/plistscene.plist" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />

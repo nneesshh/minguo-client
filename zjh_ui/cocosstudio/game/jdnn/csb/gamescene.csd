@@ -52,6 +52,16 @@
                 <PreSize X="0.4670" Y="0.8667" />
                 <FileData Type="Normal" Path="game/public/background/img_desk.png" Plist="" />
               </AbstractNodeData>
+              <AbstractNodeData Name="img_logo" ActionTag="1652991102" Tag="1706" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="613.5000" RightMargin="613.5000" TopMargin="197.5000" BottomMargin="527.5000" LeftEage="35" RightEage="35" TopEage="8" BottomEage="8" Scale9OriginX="35" Scale9OriginY="8" Scale9Width="37" Scale9Height="9" ctype="ImageViewObjectData">
+                <Size X="107.0000" Y="25.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="667.0000" Y="540.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.7200" />
+                <PreSize X="0.0802" Y="0.0333" />
+                <FileData Type="MarkedSubImage" Path="game/jdnn/image/img_logo_jdnn.png" Plist="game/jdnn/image/plistscene.plist" />
+              </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="667.0000" Y="375.0000" />

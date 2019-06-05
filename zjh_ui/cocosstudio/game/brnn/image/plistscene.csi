@@ -1,0 +1,71 @@
+<PlistInfoProjectFile>
+  <PropertyGroup Name="plistscene" Type="Plist" ID="bce5647c-38f7-45ef-a116-2644e4263a06" Version="3.10.0.0" />
+  <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="2" AllowRotation="True" AllowAnySize="True" AllowTrim="True" ctype="PlistInfoData">
+    <ImageFiles>
+      <FilePathData Path="game/brnn/image/btn_1.png" />
+      <FilePathData Path="game/brnn/image/btn_2.png" />
+      <FilePathData Path="game/brnn/image/btn_3.png" />
+      <FilePathData Path="game/brnn/image/btn_4.png" />
+      <FilePathData Path="game/brnn/image/btn_5.png" />
+      <FilePathData Path="game/brnn/image/btn_6.png" />
+      <FilePathData Path="game/brnn/image/btn_charge.png" />
+      <FilePathData Path="game/brnn/image/btn_lose_x.png" />
+      <FilePathData Path="game/brnn/image/btn_other.png" />
+      <FilePathData Path="game/brnn/image/btn_sit_banker.png" />
+      <FilePathData Path="game/brnn/image/btn_sit_banker2.png" />
+      <FilePathData Path="game/brnn/image/btn_trend.png" />
+      <FilePathData Path="game/brnn/image/btn_win_x.png" />
+      <FilePathData Path="game/brnn/image/img_0.png" />
+      <FilePathData Path="game/brnn/image/img_1.png" />
+      <FilePathData Path="game/brnn/image/img_add_back.png" />
+      <FilePathData Path="game/brnn/image/img_area_1.png" />
+      <FilePathData Path="game/brnn/image/img_area_2.png" />
+      <FilePathData Path="game/brnn/image/img_area_3.png" />
+      <FilePathData Path="game/brnn/image/img_area_4.png" />
+      <FilePathData Path="game/brnn/image/img_banker.png" />
+      <FilePathData Path="game/brnn/image/img_bet_round.png" />
+      <FilePathData Path="game/brnn/image/img_card_type_0.png" />
+      <FilePathData Path="game/brnn/image/img_card_type_1.png" />
+      <FilePathData Path="game/brnn/image/img_card_type_10.png" />
+      <FilePathData Path="game/brnn/image/img_card_type_11.png" />
+      <FilePathData Path="game/brnn/image/img_card_type_12.png" />
+      <FilePathData Path="game/brnn/image/img_card_type_13.png" />
+      <FilePathData Path="game/brnn/image/img_card_type_2.png" />
+      <FilePathData Path="game/brnn/image/img_card_type_3.png" />
+      <FilePathData Path="game/brnn/image/img_card_type_4.png" />
+      <FilePathData Path="game/brnn/image/img_card_type_5.png" />
+      <FilePathData Path="game/brnn/image/img_card_type_6.png" />
+      <FilePathData Path="game/brnn/image/img_card_type_7.png" />
+      <FilePathData Path="game/brnn/image/img_card_type_8.png" />
+      <FilePathData Path="game/brnn/image/img_card_type_9.png" />
+      <FilePathData Path="game/brnn/image/img_chip_light.png" />
+      <FilePathData Path="game/brnn/image/img_desc_back.png" />
+      <FilePathData Path="game/brnn/image/img_gold.png" />
+      <FilePathData Path="game/brnn/image/img_head_back1.png" />
+      <FilePathData Path="game/brnn/image/img_head_back2.png" />
+      <FilePathData Path="game/brnn/image/img_hint_full.png" />
+      <FilePathData Path="game/brnn/image/img_hint_less.png" />
+      <FilePathData Path="game/brnn/image/img_hint_less2.png" />
+      <FilePathData Path="game/brnn/image/img_hint_more.png" />
+      <FilePathData Path="game/brnn/image/img_hint_wait.png" />
+      <FilePathData Path="game/brnn/image/img_light.png" />
+      <FilePathData Path="game/brnn/image/img_list.png" />
+      <FilePathData Path="game/brnn/image/img_lz.png" />
+      <FilePathData Path="game/brnn/image/img_mult_back.png" />
+      <FilePathData Path="game/brnn/image/img_near_20.png" />
+      <FilePathData Path="game/brnn/image/img_no_bet.png" />
+      <FilePathData Path="game/brnn/image/img_rank_1.png" />
+      <FilePathData Path="game/brnn/image/img_rank_2.png" />
+      <FilePathData Path="game/brnn/image/img_rank_3.png" />
+      <FilePathData Path="game/brnn/image/img_rank_4.png" />
+      <FilePathData Path="game/brnn/image/img_rank_5.png" />
+      <FilePathData Path="game/brnn/image/img_selfbet_back.png" />
+      <FilePathData Path="game/brnn/image/img_sit_banker.png" />
+      <FilePathData Path="game/brnn/image/img_sitbanker_list.png" />
+      <FilePathData Path="game/brnn/image/img_stop_bet.png" />
+      <FilePathData Path="game/brnn/image/img_trend.png" />
+      <FilePathData Path="game/brnn/image/img_trend_back.png" />
+    </ImageFiles>
+    <MaxSize Width="2048" Height="1024" />
+  </Content>
+</PlistInfoProjectFile>

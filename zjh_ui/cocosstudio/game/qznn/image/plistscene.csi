@@ -58,6 +58,7 @@
       <FilePathData Path="game/qznn/image/img_type_11.png" />
       <FilePathData Path="game/qznn/image/img_type_12.png" />
       <FilePathData Path="game/qznn/image/img_type_13.png" />
+      <FilePathData Path="game/qznn/image/img_logo_qznn.png" />
     </ImageFiles>
     <MaxSize Width="2048" Height="1024" />
   </Content>

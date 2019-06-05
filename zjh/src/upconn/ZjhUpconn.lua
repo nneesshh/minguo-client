@@ -64,8 +64,10 @@ function _M.start()
 
     local error_cb = function(self, errstr)
         print("error_cb, connid=" .. tostring(self.id) .. ", err:" .. errstr) 
-        app.Connect:getInstance():close()
-        app.lobby.login.LoginPresenter:getInstance():reLogin()      
+        if CC_HEART_BEAT then
+            app.Connect:getInstance():close()
+            app.lobby.login.LoginPresenter:getInstance():reLogin()  
+        end
     end
 
     local got_packet_cb = function(self, pkt)

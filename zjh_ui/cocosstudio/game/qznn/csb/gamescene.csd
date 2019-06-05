@@ -52,6 +52,16 @@
                 <PreSize X="0.4670" Y="0.8667" />
                 <FileData Type="Normal" Path="game/public/background/img_desk.png" Plist="" />
               </AbstractNodeData>
+              <AbstractNodeData Name="img_logo" ActionTag="226392653" Tag="1865" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="613.5000" RightMargin="613.5000" TopMargin="197.5000" BottomMargin="527.5000" LeftEage="35" RightEage="35" TopEage="8" BottomEage="8" Scale9OriginX="35" Scale9OriginY="8" Scale9Width="37" Scale9Height="9" ctype="ImageViewObjectData">
+                <Size X="107.0000" Y="25.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="667.0000" Y="540.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.7200" />
+                <PreSize X="0.0802" Y="0.0333" />
+                <FileData Type="MarkedSubImage" Path="game/qznn/image/img_logo_qznn.png" Plist="game/qznn/image/plistscene.plist" />
+              </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="667.0000" Y="375.0000" />
@@ -1206,17 +1216,6 @@
           <AbstractNodeData Name="debug" ActionTag="1230541293" Tag="744" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="1334.0000" Y="750.0000" />
             <Children>
-              <AbstractNodeData Name="Text_2" ActionTag="1000630881" Alpha="127" Tag="368" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="607.0000" RightMargin="607.0000" TopMargin="195.0000" BottomMargin="525.0000" FontSize="30" LabelText="抢庄牛牛" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                <Size X="120.0000" Y="30.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="667.0000" Y="540.0000" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="14" G="39" B="14" />
-                <PrePosition X="0.5000" Y="0.7200" />
-                <PreSize X="0.0900" Y="0.0400" />
-                <OutlineColor A="255" R="255" G="0" B="0" />
-                <ShadowColor A="255" R="110" G="110" B="110" />
-              </AbstractNodeData>
               <AbstractNodeData Name="cbx_banker_test" ActionTag="493986234" Tag="745" IconVisible="False" HorizontalEdge="LeftEdge" VerticalEdge="TopEdge" LeftMargin="30.0000" RightMargin="1204.0000" TopMargin="100.0000" BottomMargin="610.0000" TouchEnable="True" ctype="CheckBoxObjectData">
                 <Size X="100.0000" Y="40.0000" />
                 <Children>

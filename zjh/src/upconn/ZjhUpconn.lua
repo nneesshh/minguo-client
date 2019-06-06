@@ -19,6 +19,7 @@ local pubConn    = requireLobby(cwd .. "PublicUpconn")
 local jdnnConn   = requireLobby(cwd .. "JdnnUpconn")
 local qznnConn   = requireLobby(cwd .. "QznnUpconn")
 local lhdConn    = requireLobby(cwd .. "LhdUpconn")
+local brnnConn   = requireLobby(cwd .. "BrnnUpconn")
 --
 function _M.createUpconn()
     --
@@ -376,6 +377,18 @@ function _M.doRegisterMsgCallbacks()
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_DRAGON_VS_TIGER_READY_NOTIFY, lhdConn.onLhdPlayerReady) 
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_DRAGON_VS_TIGER_BET_NOTIFY, lhdConn.onLhdBet)      
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_DRAGON_VS_TIGER_GAME_BET_FULL_NOTIFY,lhdConn.onLhdBetFull)
+    
+    -- 百人牛牛相关
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU100_GAME_PREPARE_NOTIFY, brnnConn.onNiuGamePrepare)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU100_GAME_START_NOTIFY, brnnConn.onNiuGameStart)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU100_GAME_OVER_NOTIFY, brnnConn.onNiuGameOver)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU100_BANKER_BID_NOTIFY, brnnConn.onNiuBankerBid)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU100_GAME_BET_FULL_NOTIFY, brnnConn.onNiuBetFull)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU100_GAME_HISTORY_NOTIFY, brnnConn.onNiuHistory)    
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU100_TOP_SEAT_NOTIFY, brnnConn.onNiuTopSeat)     
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU100_READY_NOTIFY, brnnConn.onNiuPlayerReady) 
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU100_BET_NOTIFY, brnnConn.onNiuBet)      
+
 end
 
 return _M

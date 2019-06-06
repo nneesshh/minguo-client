@@ -43,6 +43,22 @@ function GamePlayerNode:onPlayerEnter(player)
 --    end   
 end
 
+-- 系统庄家
+function GamePlayerNode:onSystemBankerEnter()     
+
+    -- 显示用户节点    
+    self:showPnlPlayer(true)
+
+    -- 设置姓名
+    self:showTxtPlayerName(true, "系统大庄家")
+    -- 设置金币
+    self:showTxtBalance(true, app.util.ToolUtils.numConversionByDecimal(tostring(10000000)))
+    -- 显示头像
+    self:showImgFace(0, 1)
+  
+end
+
+
 -- 重置桌子
 function GamePlayerNode:onResetTable()
     if self._localSeat == HERO_LOCAL_SEAT then

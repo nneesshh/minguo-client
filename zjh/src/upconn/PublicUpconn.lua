@@ -174,6 +174,19 @@ function _M.onLogin(conn, sessionid, msgid)
                     end                      
                 end                
                 app.game.GamePresenter:getInstance():onSelfPlayerEnter()
+                
+            elseif gametype == app.Game.GameID.BRNN then
+                local count = 0
+                for k, id in ipairs(ids) do   
+                    local player = app.game.PlayerData.getPlayerByNumID(id)                   
+                    if player:getTicketID() == app.data.UserData.getTicketID() then
+                    else                        
+                        count = count + 1        
+                        app.game.GamePresenter:getInstance():onPlayerEnter(player, count)            
+                    end                      
+                end                
+                app.game.GamePresenter:getInstance():onSelfPlayerEnter()
+                
             else
                 for k, id in ipairs(ids) do
                     local player = app.game.PlayerData.getPlayerByNumID(id)
@@ -375,6 +388,19 @@ function _M.onEnterRoom(conn, sessionid, msgid)
                 end                                  
             end           
             app.game.GamePresenter:getInstance():onSelfPlayerEnter()
+            
+        elseif gameid == app.Game.GameID.BRNN then
+            local count = 0
+            for k, id in ipairs(ids) do   
+                local player = app.game.PlayerData.getPlayerByNumID(id)                   
+                if player:getTicketID() == app.data.UserData.getTicketID() then
+                else                        
+                    count = count + 1        
+                    app.game.GamePresenter:getInstance():onPlayerEnter(player, count)            
+                end                      
+            end                
+            app.game.GamePresenter:getInstance():onSelfPlayerEnter()
+            
         else
             for k, id in ipairs(ids) do
                 local player = app.game.PlayerData.getPlayerByNumID(id)
@@ -458,6 +484,19 @@ function _M.onChangeTable(conn, sessionid, msgid)
                 end                      
             end
             app.game.GamePresenter:getInstance():onSelfPlayerEnter()
+            
+        elseif gameid == app.Game.GameID.BRNN then
+            local count = 0
+            for k, id in ipairs(ids) do   
+                local player = app.game.PlayerData.getPlayerByNumID(id)                   
+                if player:getTicketID() == app.data.UserData.getTicketID() then
+                else                        
+                    count = count + 1        
+                    app.game.GamePresenter:getInstance():onPlayerEnter(player, count)            
+                end                      
+            end                
+            app.game.GamePresenter:getInstance():onSelfPlayerEnter()
+            
         else
             for k, id in ipairs(ids) do
                 local player = app.game.PlayerData.getPlayerByNumID(id)

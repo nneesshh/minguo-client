@@ -9,10 +9,10 @@ local _selfData = {
     round         = 0,         -- 当前回合
     basebet       = 1,         -- 最少押注
     jackpot       = 0,         -- 总注    
-    long          = 0,         -- 龙 
-    hu            = 0,         -- 虎 
-    he            = 0,         -- 和
-    area4         = 0,         --     
+    area1         = 0,         -- 黑 
+    area2         = 0,         -- 红 
+    area3         = 0,         -- 梅
+    area4         = 0,         -- 方    
     banker        = -1,        -- 庄家
     currseat      = -1,        -- 当前押注玩家
     playercount   = 0,         -- 玩家数
@@ -21,12 +21,14 @@ local _selfData = {
     hislists      = {},        -- 记录列表     
     playerlists   = {},        -- 玩家列表
     sitplayers    = {},        -- 有座位的玩家   
-    betlong       = 0,          
-    bethu         = 0,          
-    bethe         = 0,    
-    betdetail     = {},
+    betarea1      = 0,          
+    betarea2      = 0,          
+    betarea3      = 0,   
+    betarea4      = 0,
     ready         = false,     -- 是否准备 
-    full          = false
+    full          = false,
+    bankerlist    = {},        -- 上庄玩家列表 
+    bankerid      = -1         -- 庄家id 
 }
 
 function GameData.setTableInfo(info)
@@ -35,9 +37,9 @@ function GameData.setTableInfo(info)
     _selfData.round       = info.round
     _selfData.basebet     = info.basebet
     _selfData.jackpot     = info.jackpot    
-    _selfData.long        = info.long
-    _selfData.hu          = info.hu
-    _selfData.he          = info.he
+    _selfData.area1       = info.long
+    _selfData.area2       = info.hu
+    _selfData.area3       = info.he
     _selfData.area4       = info.area4        
     _selfData.banker      = info.banker
     _selfData.currseat    = info.currseat
@@ -66,9 +68,9 @@ function GameData.restData()
     _selfData.round       = 0
     _selfData.basebet     = 1
     _selfData.jackpot     = 0
-    _selfData.long        = 0
-    _selfData.hu          = 0
-    _selfData.he          = 0
+    _selfData.area1       = 0
+    _selfData.area2       = 0
+    _selfData.area3       = 0
     _selfData.area4       = 0
     _selfData.banker      = -1
     _selfData.currseat    = -1
@@ -78,19 +80,21 @@ function GameData.restData()
     _selfData.hislists    = {}
     _selfData.playerlists = {}
     _selfData.sitplayers  = {}
-    _selfData.betlong     = 0          
-    _selfData.bethu       = 0          
-    _selfData.bethe       = 0 
-    _selfData.betdetail   = {} 
+    _selfData.betarea1    = 0          
+    _selfData.betarea2    = 0          
+    _selfData.betarea3    = 0 
+    _selfData.betarea4    = 0     
     _selfData.ready       = false
     _selfData.full        = false
+    _selfData.bankerlist  = {}
+    _selfData.bankerid    = -1
 end
 
 function GameData.restDataEx()
-    _selfData.betlong     = 0          
-    _selfData.bethu       = 0          
-    _selfData.bethe       = 0
-    _selfData.betdetail   = {}
+    _selfData.betarea1    = 0          
+    _selfData.betarea2    = 0          
+    _selfData.betarea3    = 0 
+    _selfData.betarea4    = 0
     _selfData.full        = false
 end
 
@@ -186,23 +190,10 @@ function GameData.getHisLists()
     return _selfData.hislists
 end
 
--- 只获取结果
-function GameData.setHistory(seqid, cardtype, cards)
-    local count = #_selfData.hislists
-
-    _selfData.hislists[count+1] = _selfData.hislists[count+1] or {}
-    _selfData.hislists[count+1].seqid    = seqid
-    _selfData.hislists[count+1].cardtype = cardtype
-    _selfData.hislists[count+1].cards    = cards
-end
-
-function GameData.getHistory()
-    local tmp = {}
-    for k, v in ipairs(_selfData.hislists) do
-        table.insert(tmp, v.cardtype)
-    end
-    
-    return tmp
+function GameData.setHistory(area1, area2, area3, area4)    
+    local temp = {area1, area2, area3, area4}    
+    _selfData.hislists = _selfData.hislists or {}    
+    table.insert(_selfData.hislists, temp)
 end
 
 -- 玩家列表
@@ -224,6 +215,10 @@ function GameData.getSitplayers()
     return _selfData.sitplayers
 end
 
+function GameData.resetSitPlayers()
+	_selfData.sitplayers = {}
+end
+
 function GameData.getLocalseatByServerseat(seat)
     for k, player in ipairs(_selfData.sitplayers) do
         if player:getSeat() == seat then
@@ -233,42 +228,40 @@ function GameData.getLocalseatByServerseat(seat)
     return -1
 end
 
-function GameData.setBetLong(bet)
-    _selfData.betlong = _selfData.betlong + bet
+function GameData.setBetArea1(bet)
+    _selfData.betarea1 = _selfData.betarea1 + bet
 end
 
-function GameData.getBetLong()
-    return _selfData.betlong
+function GameData.getBetArea1()
+    return _selfData.betarea1
 end
 
-function GameData.setBetHu(bet)
-    _selfData.bethu = _selfData.bethu + bet
+function GameData.setBetArea2(bet)
+    _selfData.betarea2 = _selfData.betarea2 + bet
 end
 
-function GameData.getBetHu()
-    return _selfData.bethu
+function GameData.getBetArea2()
+    return _selfData.betarea2
 end
 
-function GameData.setBetHe(bet)
-    _selfData.bethe = _selfData.bethe + bet
+function GameData.setBetArea3(bet)
+    _selfData.betarea3 = _selfData.betarea3 + bet
 end
 
-function GameData.getBetHe()
-    return _selfData.bethe
+function GameData.getBetArea3()
+    return _selfData.betarea3
 end
 
-function GameData.setBetDetail(localseat, index)
-    _selfData.betdetail[localseat] = _selfData.betdetail[localseat] or {}
-    table.insert(_selfData.betdetail[localseat], index)
+function GameData.setBetArea4(bet)
+    _selfData.betarea4 = _selfData.betarea4 + bet
 end
 
-function GameData.getBetDetail()
-    return _selfData.betdetail
+function GameData.getBetArea4()
+    return _selfData.betarea4
 end
 
 function GameData.setReady(flag)
 	_selfData.ready = flag
-    app.util.DispatcherUtils.dispatchEvent(app.Event.EVENT_READY, flag) 
 end
 
 function GameData.getReady()
@@ -281,6 +274,25 @@ end
 
 function GameData.getFull()
    return _selfData.full 
+end
+
+-- 庄家列表
+function GameData.setBankerLists(data)
+    _selfData.bankerlist = {}
+    _selfData.bankerlist = data
+end
+
+function GameData.getBankerLists()
+    return _selfData.bankerlist
+end
+
+-- 庄家id
+function GameData.setBankerID(id)
+    _selfData.bankerid    = id
+end
+
+function GameData.getBankerID()
+    return _selfData.bankerid
 end
 
 return GameData

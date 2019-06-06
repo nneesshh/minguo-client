@@ -465,6 +465,8 @@ function GamePresenter:updatePlayerList(players)
         self._gamePlayerNodes[i]:onResetTable()
     end
     
+    app.game.GameData.resetSitPlayers()
+    
     local ids = {} 
     for i, player in ipairs(players) do
         if app.game.PlayerData then            

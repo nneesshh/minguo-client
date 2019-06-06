@@ -7,7 +7,7 @@
 			<key>game/brnn/image/btn_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1477,2},{103,110}}</string>
+				<string>{{931,275},{103,110}}</string>
 				<key>offset</key>
 				<string>{0,-2}</string>
 				<key>rotated</key>
@@ -18,7 +18,7 @@
 			<key>game/brnn/image/btn_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1591,2},{103,110}}</string>
+				<string>{{931,382},{103,110}}</string>
 				<key>offset</key>
 				<string>{0,-1}</string>
 				<key>rotated</key>
@@ -29,7 +29,7 @@
 			<key>game/brnn/image/btn_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1705,2},{103,110}}</string>
+				<string>{{931,489},{103,110}}</string>
 				<key>offset</key>
 				<string>{0,-1}</string>
 				<key>rotated</key>
@@ -40,7 +40,7 @@
 			<key>game/brnn/image/btn_4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1249,2},{104,110}}</string>
+				<string>{{1223,240},{104,110}}</string>
 				<key>offset</key>
 				<string>{1,-2}</string>
 				<key>rotated</key>
@@ -51,7 +51,7 @@
 			<key>game/brnn/image/btn_5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1363,2},{104,110}}</string>
+				<string>{{1197,348},{104,110}}</string>
 				<key>offset</key>
 				<string>{1,-1}</string>
 				<key>rotated</key>
@@ -62,7 +62,7 @@
 			<key>game/brnn/image/btn_6.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1819,2},{103,110}}</string>
+				<string>{{789,275},{103,110}}</string>
 				<key>offset</key>
 				<string>{0,-2}</string>
 				<key>rotated</key>
@@ -84,7 +84,7 @@
 			<key>game/brnn/image/btn_lose_x.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{941,76},{21,26}}</string>
+				<string>{{1469,68},{21,26}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -95,11 +95,11 @@
 			<key>game/brnn/image/btn_other.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1909,152},{86,77}}</string>
+				<string>{{851,605},{86,77}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{86,77}</string>
 			</dict>
@@ -128,7 +128,7 @@
 			<key>game/brnn/image/btn_trend.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1754,174},{66,66}}</string>
+				<string>{{932,596},{66,66}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -139,7 +139,7 @@
 			<key>game/brnn/image/btn_win_x.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{966,76},{21,26}}</string>
+				<string>{{1394,194},{21,26}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -150,7 +150,7 @@
 			<key>game/brnn/image/img_0.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1824,236},{55,55}}</string>
+				<string>{{1002,596},{55,55}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -161,7 +161,7 @@
 			<key>game/brnn/image/img_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1754,244},{55,55}}</string>
+				<string>{{931,809},{55,55}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -172,11 +172,11 @@
 			<key>game/brnn/image/img_add_back.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{855,280},{131,68}}</string>
+				<string>{{789,382},{131,68}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{131,68}</string>
 			</dict>
@@ -227,29 +227,29 @@
 			<key>game/brnn/image/img_banker.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1949,386},{49,53}}</string>
+				<string>{{1050,860},{49,53}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{49,53}</string>
 			</dict>
 			<key>game/brnn/image/img_bet_round.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1824,174},{58,63}}</string>
+				<string>{{987,666},{58,63}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{58,63}</string>
 			</dict>
 			<key>game/brnn/image/img_card_type_0.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{855,415},{143,62}}</string>
+				<string>{{789,454},{143,62}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -260,29 +260,29 @@
 			<key>game/brnn/image/img_card_type_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1933,2},{146,62}}</string>
+				<string>{{1129,2},{146,62}}</string>
 				<key>offset</key>
 				<string>{1,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{147,62}</string>
 			</dict>
 			<key>game/brnn/image/img_card_type_10.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1627,109},{143,58}}</string>
+				<string>{{789,601},{143,58}}</string>
 				<key>offset</key>
 				<string>{0,2}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{147,62}</string>
 			</dict>
 			<key>game/brnn/image/img_card_type_11.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1477,109},{146,62}}</string>
+				<string>{{1279,2},{146,62}}</string>
 				<key>offset</key>
 				<string>{1,0}</string>
 				<key>rotated</key>
@@ -293,7 +293,7 @@
 			<key>game/brnn/image/img_card_type_12.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{789,430},{147,59}}</string>
+				<string>{{855,454},{147,59}}</string>
 				<key>offset</key>
 				<string>{0,-1}</string>
 				<key>rotated</key>
@@ -304,29 +304,29 @@
 			<key>game/brnn/image/img_card_type_13.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1208,194},{144,48}}</string>
+				<string>{{1211,113},{144,48}}</string>
 				<key>offset</key>
 				<string>{1,-3}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{147,62}</string>
 			</dict>
 			<key>game/brnn/image/img_card_type_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1397,110},{146,62}}</string>
+				<string>{{1429,2},{146,62}}</string>
 				<key>offset</key>
 				<string>{1,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{147,62}</string>
 			</dict>
 			<key>game/brnn/image/img_card_type_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1263,159},{146,62}}</string>
+				<string>{{1494,68},{146,62}}</string>
 				<key>offset</key>
 				<string>{1,0}</string>
 				<key>rotated</key>
@@ -337,7 +337,7 @@
 			<key>game/brnn/image/img_card_type_4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1329,159},{146,62}}</string>
+				<string>{{1423,155},{146,62}}</string>
 				<key>offset</key>
 				<string>{1,0}</string>
 				<key>rotated</key>
@@ -348,7 +348,7 @@
 			<key>game/brnn/image/img_card_type_5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1131,241},{146,62}}</string>
+				<string>{{1337,240},{146,62}}</string>
 				<key>offset</key>
 				<string>{1,0}</string>
 				<key>rotated</key>
@@ -359,7 +359,7 @@
 			<key>game/brnn/image/img_card_type_6.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{999,241},{146,62}}</string>
+				<string>{{1131,275},{146,62}}</string>
 				<key>offset</key>
 				<string>{1,0}</string>
 				<key>rotated</key>
@@ -370,7 +370,7 @@
 			<key>game/brnn/image/img_card_type_7.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{931,280},{146,62}}</string>
+				<string>{{1131,425},{146,62}}</string>
 				<key>offset</key>
 				<string>{1,0}</string>
 				<key>rotated</key>
@@ -381,7 +381,7 @@
 			<key>game/brnn/image/img_card_type_8.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1065,241},{146,62}}</string>
+				<string>{{1045,275},{146,62}}</string>
 				<key>offset</key>
 				<string>{1,0}</string>
 				<key>rotated</key>
@@ -392,7 +392,7 @@
 			<key>game/brnn/image/img_card_type_9.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{789,280},{146,62}}</string>
+				<string>{{1045,425},{146,62}}</string>
 				<key>offset</key>
 				<string>{1,0}</string>
 				<key>rotated</key>
@@ -403,7 +403,7 @@
 			<key>game/brnn/image/img_chip_light.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1129,2},{109,116}}</string>
+				<string>{{1579,2},{109,116}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -414,7 +414,7 @@
 			<key>game/brnn/image/img_desc_back.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1774,109},{131,61}}</string>
+				<string>{{789,748},{131,61}}</string>
 				<key>offset</key>
 				<string>{0,1}</string>
 				<key>rotated</key>
@@ -425,7 +425,7 @@
 			<key>game/brnn/image/img_gold.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1951,285},{45,41}}</string>
+				<string>{{1008,733},{45,41}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -436,7 +436,7 @@
 			<key>game/brnn/image/img_head_back1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1627,171},{80,59}}</string>
+				<string>{{924,746},{80,59}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -480,7 +480,7 @@
 			<key>game/brnn/image/img_hint_less2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{627,249},{368,27}}</string>
+				<string>{{870,165},{368,27}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -524,18 +524,18 @@
 			<key>game/brnn/image/img_list.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1999,2},{154,41}}</string>
+				<string>{{1153,68},{154,41}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{154,41}</string>
 			</dict>
 			<key>game/brnn/image/img_lz.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{870,165},{102,25}}</string>
+				<string>{{941,76},{102,25}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -546,7 +546,7 @@
 			<key>game/brnn/image/img_mult_back.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{968,194},{236,43}}</string>
+				<string>{{968,196},{236,43}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -557,7 +557,7 @@
 			<key>game/brnn/image/img_near_20.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1183,165},{76,25}}</string>
+				<string>{{1343,165},{76,25}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -568,7 +568,7 @@
 			<key>game/brnn/image/img_no_bet.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1082,165},{97,25}}</string>
+				<string>{{1242,165},{97,25}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -579,7 +579,7 @@
 			<key>game/brnn/image/img_rank_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1883,285},{64,47}}</string>
+				<string>{{919,695},{64,47}}</string>
 				<key>offset</key>
 				<string>{0,1}</string>
 				<key>rotated</key>
@@ -590,18 +590,18 @@
 			<key>game/brnn/image/img_rank_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1996,318},{64,47}}</string>
+				<string>{{931,868},{64,47}}</string>
 				<key>offset</key>
 				<string>{0,1}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{133,62}</string>
 			</dict>
 			<key>game/brnn/image/img_rank_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1891,233},{64,48}}</string>
+				<string>{{851,695},{64,48}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -612,7 +612,7 @@
 			<key>game/brnn/image/img_rank_4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1813,295},{64,47}}</string>
+				<string>{{990,809},{64,47}}</string>
 				<key>offset</key>
 				<string>{0,1}</string>
 				<key>rotated</key>
@@ -623,18 +623,18 @@
 			<key>game/brnn/image/img_rank_5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1881,336},{64,47}}</string>
+				<string>{{999,860},{64,47}}</string>
 				<key>offset</key>
 				<string>{0,1}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{133,62}</string>
 			</dict>
 			<key>game/brnn/image/img_selfbet_back.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1211,115},{182,40}}</string>
+				<string>{{1208,196},{182,40}}</string>
 				<key>offset</key>
 				<string>{1,6}</string>
 				<key>rotated</key>
@@ -645,7 +645,7 @@
 			<key>game/brnn/image/img_sit_banker.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{976,165},{102,25}}</string>
+				<string>{{1047,76},{102,25}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -656,11 +656,11 @@
 			<key>game/brnn/image/img_sitbanker_list.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1999,160},{154,40}}</string>
+				<string>{{1311,68},{154,40}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{154,40}</string>
 			</dict>
@@ -678,11 +678,11 @@
 			<key>game/brnn/image/img_trend.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1711,171},{114,39}}</string>
+				<string>{{1359,112},{114,39}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{114,39}</string>
 			</dict>
@@ -697,6 +697,17 @@
 				<key>sourceSize</key>
 				<string>{828,411}</string>
 			</dict>
+			<key>game/brnn/image/img_hint.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{627,249},{592,22}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{592,22}</string>
+			</dict>
 		</dict>
 		<key>metadata</key>
 		<dict>
@@ -707,12 +718,12 @@
 			<key>realTextureFileName</key>
 			<string>plistscene.png</string>
 			<key>size</key>
-			<string>{2045,1024}</string>
+			<string>{1697,1024}</string>
 		</dict>
 		<key>texture</key>
 		<dict>
 			<key>width</key>
-			<integer>2045</integer>
+			<integer>1697</integer>
 			<key>height</key>
 			<integer>1024</integer>
 		</dict>

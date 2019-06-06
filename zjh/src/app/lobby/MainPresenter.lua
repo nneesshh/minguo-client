@@ -127,26 +127,6 @@ end
 -- 显示场列表
 function MainPresenter:showPlazaLists(gameid)
     local plazainfo = app.data.PlazaData.getPlazaList(gameid)
-    if gameid == 5 then
-        plazainfo = {
-            [1] = {
-                ["allin"] = 50000,
-                ["base"]  = 100,
-                ["lower"] = 5000,
-                ["roomid"]    = 1,
-                ["upper"]     = 999990000,
-                ["usercount"] = 0
-            },
-            [2] = {
-                ["allin"] = 50000,
-                ["base"]  = 200,
-                ["lower"] = 5000,
-                ["roomid"]    = 1,
-                ["upper"]     = 999990000,
-                ["usercount"] = 0
-            }
-        }
-    end
     
     if gameid ~= app.Game.GameID.LHD then
         self._ui:getInstance():showPlazaPnl(true)

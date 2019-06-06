@@ -106,9 +106,6 @@ function UIUtils.runEffectOne(dir, name, posX, posY, flag, callback, time)
 end
 
 function UIUtils.openWindow(node)
-    local size = cc.size(1334, 750)
-    node:setAnchorPoint(cc.p(0.5,0.5))
-    node:setPosition(cc.p(size.width/2,size.height/2))
     local childCount = node:getChildrenCount()
     if childCount >1 then 
         node:setScale(0)

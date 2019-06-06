@@ -55,7 +55,10 @@ function MainScene:onTouch(sender, eventType)
         elseif name == "btn_notice" then  
             self._presenter:showNotice()      
         elseif name == "btn_mail" then 
-            self._presenter:showMail()                     
+--            self._presenter:showMail()
+            app.game.GameEngine:getInstance():start(5, 1, 1)
+            app.game.GameEngine:getInstance():onStartGame()
+                            
         elseif name == "btn_set" then      
             self._presenter:showSet()                     
         elseif name == "btn_rank" then  

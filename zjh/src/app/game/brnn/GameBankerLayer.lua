@@ -18,7 +18,7 @@ function GameBankerLayer:onTouch(sender, eventType)
         if name == "btn_close" then            
             self:exit()
         elseif name == "btn_go_banker" then
-            print("go banker")   
+            self._presenter:sendGobanker()  
         end
     end
 end
@@ -51,8 +51,8 @@ function GameBankerLayer:showPlayerList(list)
         local id     = item:getChildByName("txt_id")        
         local gold   = item:getChildByName("txt_gold")        
         local cur    = item:getChildByName("txt_cur_times")
-        local day    = item:getChildByName("txt_day_times")
-
+        local count  = item:getChildByName("txt_player_count")
+        
         f_rank:setString(list[i].seqid)
         
         if list[i].avatar == "" then
@@ -60,14 +60,29 @@ function GameBankerLayer:showPlayerList(list)
         end
         local resPath = string.format("lobby/image/head/img_head_%d_%d.png", tonumber(list[i].gender) , tonumber(list[i].avatar))
         head:loadTexture(resPath, ccui.TextureResType.plistType)
-
-        id:setString("ID:" .. list[i].ticketid)
         
+        if tonumber(list[i].ticketid) then
+            id:setString("ID:" .. list[i].ticketid)
+        else
+            id:setString(list[i].ticketid)    
+        end
+
         gold:setString(list[i].balance)
-
-        cur:setString(list[i].cur)
-        day:setString(list[i].day)    
-
+        
+        if list[i].bankernum >= 0 then
+        	cur:setString(list[i].bankernum)
+            cur:setVisible(true)
+        else
+            cur:setVisible(false)
+        end
+        
+        
+        count:setVisible(false)
+        if i == #list then
+            count:setVisible(true)
+            count:setString("排队人数：" .. #list-1)
+        end
+        
         item:setPosition(pnlsize.width/2, pnlHight-(itmsize.height+ INTERVAL)*i)
         pnl:addChild(item)
     end   

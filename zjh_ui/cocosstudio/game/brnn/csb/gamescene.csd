@@ -487,83 +487,7 @@
           <AbstractNodeData Name="player" ActionTag="-454512329" Tag="2494" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="1334.0000" Y="750.0000" />
             <Children>
-              <AbstractNodeData Name="pnl_player_1" ActionTag="-57830559" Tag="1383" IconVisible="False" LeftMargin="200.0000" RightMargin="934.0000" TopMargin="50.0000" BottomMargin="620.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
-                <Size X="200.0000" Y="80.0000" />
-                <Children>
-                  <AbstractNodeData Name="img_back" ActionTag="754102336" Tag="1384" IconVisible="False" Scale9Enable="True" LeftEage="20" RightEage="20" TopEage="20" BottomEage="20" Scale9OriginX="20" Scale9OriginY="20" Scale9Width="199" Scale9Height="40" ctype="ImageViewObjectData">
-                    <Size X="200.0000" Y="80.0000" />
-                    <AnchorPoint />
-                    <Position />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition />
-                    <PreSize X="1.0000" Y="1.0000" />
-                    <FileData Type="MarkedSubImage" Path="game/brnn/image/img_head_back2.png" Plist="game/brnn/image/plistscene.plist" />
-                  </AbstractNodeData>
-                  <AbstractNodeData Name="img_face" ActionTag="-650000519" Tag="1385" IconVisible="False" PositionPercentYEnabled="True" RightMargin="120.0000" LeftEage="26" RightEage="26" TopEage="26" BottomEage="26" Scale9OriginX="26" Scale9OriginY="26" Scale9Width="28" Scale9Height="28" ctype="ImageViewObjectData">
-                    <Size X="80.0000" Y="80.0000" />
-                    <AnchorPoint ScaleY="1.0000" />
-                    <Position Y="80.0000" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition Y="1.0000" />
-                    <PreSize X="0.4000" Y="1.0000" />
-                    <FileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_0.png" Plist="lobby/image/head.plist" />
-                  </AbstractNodeData>
-                  <AbstractNodeData Name="txt_name" ActionTag="1011474362" Tag="1386" IconVisible="False" LeftMargin="90.0000" RightMargin="74.0000" TopMargin="49.0000" BottomMargin="13.0000" FontSize="18" LabelText="萨达" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                    <Size X="36.0000" Y="18.0000" />
-                    <AnchorPoint ScaleY="0.5000" />
-                    <Position X="90.0000" Y="22.0000" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="196" G="243" B="255" />
-                    <PrePosition X="0.4500" Y="0.2750" />
-                    <PreSize X="0.1800" Y="0.2250" />
-                    <OutlineColor A="255" R="255" G="0" B="0" />
-                    <ShadowColor A="255" R="110" G="110" B="110" />
-                  </AbstractNodeData>
-                  <AbstractNodeData Name="img_gold" ActionTag="-517668931" Tag="1387" IconVisible="False" LeftMargin="88.0000" RightMargin="67.0000" TopMargin="5.5000" BottomMargin="33.5000" LeftEage="14" RightEage="14" TopEage="13" BottomEage="13" Scale9OriginX="14" Scale9OriginY="13" Scale9Width="17" Scale9Height="15" ctype="ImageViewObjectData">
-                    <Size X="45.0000" Y="41.0000" />
-                    <AnchorPoint ScaleY="0.5000" />
-                    <Position X="88.0000" Y="54.0000" />
-                    <Scale ScaleX="0.4000" ScaleY="0.4000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.4400" Y="0.6750" />
-                    <PreSize X="0.2250" Y="0.5125" />
-                    <FileData Type="MarkedSubImage" Path="game/brnn/image/img_gold.png" Plist="game/brnn/image/plistscene.plist" />
-                  </AbstractNodeData>
-                  <AbstractNodeData Name="txt_balance" ActionTag="1270250022" Tag="1388" IconVisible="False" LeftMargin="107.0000" RightMargin="57.0000" TopMargin="17.0000" BottomMargin="45.0000" FontSize="18" LabelText="1000" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                    <Size X="36.0000" Y="18.0000" />
-                    <AnchorPoint ScaleY="0.5000" />
-                    <Position X="107.0000" Y="54.0000" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.5350" Y="0.6750" />
-                    <PreSize X="0.1800" Y="0.2250" />
-                    <OutlineColor A="255" R="255" G="0" B="0" />
-                    <ShadowColor A="255" R="110" G="110" B="110" />
-                  </AbstractNodeData>
-                  <AbstractNodeData Name="node_effect" ActionTag="-1056996904" Tag="1400" IconVisible="True" LeftMargin="40.0000" RightMargin="160.0000" TopMargin="40.0000" BottomMargin="40.0000" ctype="SingleNodeObjectData">
-                    <Size X="0.0000" Y="0.0000" />
-                    <AnchorPoint />
-                    <Position X="40.0000" Y="40.0000" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.2000" Y="0.5000" />
-                    <PreSize X="0.0000" Y="0.0000" />
-                  </AbstractNodeData>
-                </Children>
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="300.0000" Y="660.0000" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.2249" Y="0.8800" />
-                <PreSize X="0.1499" Y="0.1067" />
-                <SingleColor A="255" R="150" G="200" B="255" />
-                <FirstColor A="255" R="150" G="200" B="255" />
-                <EndColor A="255" R="255" G="255" B="255" />
-                <ColorVector ScaleY="1.0000" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="pnl_player_2" ActionTag="-719192478" Tag="177" IconVisible="False" LeftMargin="80.0000" RightMargin="1174.0000" TopMargin="160.0000" BottomMargin="460.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+              <AbstractNodeData Name="pnl_player_1" ActionTag="-719192478" VisibleForFrame="False" Tag="177" IconVisible="False" LeftMargin="80.0000" RightMargin="1174.0000" TopMargin="160.0000" BottomMargin="460.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="80.0000" Y="130.0000" />
                 <Children>
                   <AbstractNodeData Name="img_back" ActionTag="-1730906861" Tag="178" IconVisible="False" PositionPercentYEnabled="True" TopMargin="71.0000" LeftEage="26" RightEage="26" TopEage="19" BottomEage="19" Scale9OriginX="26" Scale9OriginY="19" Scale9Width="28" Scale9Height="21" ctype="ImageViewObjectData">
@@ -639,7 +563,7 @@
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
               </AbstractNodeData>
-              <AbstractNodeData Name="pnl_player_3" ActionTag="1049594809" Tag="544" IconVisible="False" LeftMargin="1174.0000" RightMargin="80.0000" TopMargin="160.0000" BottomMargin="460.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+              <AbstractNodeData Name="pnl_player_2" ActionTag="1049594809" VisibleForFrame="False" Tag="544" IconVisible="False" LeftMargin="1174.0000" RightMargin="80.0000" TopMargin="160.0000" BottomMargin="460.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="80.0000" Y="130.0000" />
                 <Children>
                   <AbstractNodeData Name="img_back" ActionTag="-1560560354" Tag="545" IconVisible="False" PositionPercentYEnabled="True" TopMargin="71.0000" LeftEage="26" RightEage="26" TopEage="19" BottomEage="19" Scale9OriginX="26" Scale9OriginY="19" Scale9Width="28" Scale9Height="21" ctype="ImageViewObjectData">
@@ -715,7 +639,7 @@
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
               </AbstractNodeData>
-              <AbstractNodeData Name="pnl_player_4" ActionTag="1894872319" Tag="514" IconVisible="False" LeftMargin="40.0000" RightMargin="1214.0000" TopMargin="310.0000" BottomMargin="310.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+              <AbstractNodeData Name="pnl_player_3" ActionTag="1894872319" VisibleForFrame="False" Tag="514" IconVisible="False" LeftMargin="40.0000" RightMargin="1214.0000" TopMargin="310.0000" BottomMargin="310.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="80.0000" Y="130.0000" />
                 <Children>
                   <AbstractNodeData Name="img_back" ActionTag="486046044" Tag="515" IconVisible="False" PositionPercentYEnabled="True" TopMargin="71.0000" LeftEage="26" RightEage="26" TopEage="19" BottomEage="19" Scale9OriginX="26" Scale9OriginY="19" Scale9Width="28" Scale9Height="21" ctype="ImageViewObjectData">
@@ -791,7 +715,7 @@
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
               </AbstractNodeData>
-              <AbstractNodeData Name="pnl_player_5" ActionTag="-845579574" Tag="538" IconVisible="False" LeftMargin="1214.0000" RightMargin="40.0000" TopMargin="310.0000" BottomMargin="310.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+              <AbstractNodeData Name="pnl_player_4" ActionTag="-845579574" VisibleForFrame="False" Tag="538" IconVisible="False" LeftMargin="1214.0000" RightMargin="40.0000" TopMargin="310.0000" BottomMargin="310.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="80.0000" Y="130.0000" />
                 <Children>
                   <AbstractNodeData Name="img_back" ActionTag="822785341" Tag="539" IconVisible="False" PositionPercentYEnabled="True" TopMargin="71.0000" LeftEage="26" RightEage="26" TopEage="19" BottomEage="19" Scale9OriginX="26" Scale9OriginY="19" Scale9Width="28" Scale9Height="21" ctype="ImageViewObjectData">
@@ -867,7 +791,7 @@
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
               </AbstractNodeData>
-              <AbstractNodeData Name="pnl_player_6" ActionTag="-304227209" Tag="520" IconVisible="False" LeftMargin="80.0000" RightMargin="1174.0000" TopMargin="460.0000" BottomMargin="160.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+              <AbstractNodeData Name="pnl_player_5" ActionTag="-304227209" VisibleForFrame="False" Tag="520" IconVisible="False" LeftMargin="80.0000" RightMargin="1174.0000" TopMargin="460.0000" BottomMargin="160.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="80.0000" Y="130.0000" />
                 <Children>
                   <AbstractNodeData Name="img_back" ActionTag="-174474246" Tag="521" IconVisible="False" PositionPercentYEnabled="True" TopMargin="71.0000" LeftEage="26" RightEage="26" TopEage="19" BottomEage="19" Scale9OriginX="26" Scale9OriginY="19" Scale9Width="28" Scale9Height="21" ctype="ImageViewObjectData">
@@ -943,7 +867,7 @@
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
               </AbstractNodeData>
-              <AbstractNodeData Name="pnl_player_7" ActionTag="1451332267" Tag="532" IconVisible="False" LeftMargin="1174.0000" RightMargin="80.0000" TopMargin="460.0000" BottomMargin="160.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+              <AbstractNodeData Name="pnl_player_6" ActionTag="1451332267" VisibleForFrame="False" Tag="532" IconVisible="False" LeftMargin="1174.0000" RightMargin="80.0000" TopMargin="460.0000" BottomMargin="160.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="80.0000" Y="130.0000" />
                 <Children>
                   <AbstractNodeData Name="img_back" ActionTag="233408348" Tag="533" IconVisible="False" PositionPercentYEnabled="True" TopMargin="71.0000" LeftEage="26" RightEage="26" TopEage="19" BottomEage="19" Scale9OriginX="26" Scale9OriginY="19" Scale9Width="28" Scale9Height="21" ctype="ImageViewObjectData">
@@ -1019,7 +943,83 @@
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
               </AbstractNodeData>
-              <AbstractNodeData Name="pnl_player_8" ActionTag="-627583404" Tag="526" IconVisible="False" LeftMargin="200.0000" RightMargin="1054.0000" TopMargin="600.0000" BottomMargin="20.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+              <AbstractNodeData Name="pnl_player_7" ActionTag="-57830559" VisibleForFrame="False" Tag="1383" IconVisible="False" LeftMargin="200.0000" RightMargin="934.0000" TopMargin="35.0000" BottomMargin="635.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+                <Size X="200.0000" Y="80.0000" />
+                <Children>
+                  <AbstractNodeData Name="img_back" ActionTag="754102336" Tag="1384" IconVisible="False" Scale9Enable="True" LeftEage="20" RightEage="20" TopEage="20" BottomEage="20" Scale9OriginX="20" Scale9OriginY="20" Scale9Width="199" Scale9Height="40" ctype="ImageViewObjectData">
+                    <Size X="200.0000" Y="80.0000" />
+                    <AnchorPoint />
+                    <Position />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition />
+                    <PreSize X="1.0000" Y="1.0000" />
+                    <FileData Type="MarkedSubImage" Path="game/brnn/image/img_head_back2.png" Plist="game/brnn/image/plistscene.plist" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="img_face" ActionTag="-650000519" Tag="1385" IconVisible="False" PositionPercentYEnabled="True" RightMargin="120.0000" LeftEage="26" RightEage="26" TopEage="26" BottomEage="26" Scale9OriginX="26" Scale9OriginY="26" Scale9Width="28" Scale9Height="28" ctype="ImageViewObjectData">
+                    <Size X="80.0000" Y="80.0000" />
+                    <AnchorPoint ScaleY="1.0000" />
+                    <Position Y="80.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition Y="1.0000" />
+                    <PreSize X="0.4000" Y="1.0000" />
+                    <FileData Type="MarkedSubImage" Path="lobby/image/head/img_head_0_0.png" Plist="lobby/image/head.plist" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="txt_name" ActionTag="1011474362" Tag="1386" IconVisible="False" LeftMargin="90.0000" RightMargin="74.0000" TopMargin="49.0000" BottomMargin="13.0000" FontSize="18" LabelText="萨达" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                    <Size X="36.0000" Y="18.0000" />
+                    <AnchorPoint ScaleY="0.5000" />
+                    <Position X="90.0000" Y="22.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="196" G="243" B="255" />
+                    <PrePosition X="0.4500" Y="0.2750" />
+                    <PreSize X="0.1800" Y="0.2250" />
+                    <OutlineColor A="255" R="255" G="0" B="0" />
+                    <ShadowColor A="255" R="110" G="110" B="110" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="img_gold" ActionTag="-517668931" Tag="1387" IconVisible="False" LeftMargin="88.0000" RightMargin="67.0000" TopMargin="5.5000" BottomMargin="33.5000" LeftEage="14" RightEage="14" TopEage="13" BottomEage="13" Scale9OriginX="14" Scale9OriginY="13" Scale9Width="17" Scale9Height="15" ctype="ImageViewObjectData">
+                    <Size X="45.0000" Y="41.0000" />
+                    <AnchorPoint ScaleY="0.5000" />
+                    <Position X="88.0000" Y="54.0000" />
+                    <Scale ScaleX="0.4000" ScaleY="0.4000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.4400" Y="0.6750" />
+                    <PreSize X="0.2250" Y="0.5125" />
+                    <FileData Type="MarkedSubImage" Path="game/brnn/image/img_gold.png" Plist="game/brnn/image/plistscene.plist" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="txt_balance" ActionTag="1270250022" Tag="1388" IconVisible="False" LeftMargin="107.0000" RightMargin="57.0000" TopMargin="17.0000" BottomMargin="45.0000" FontSize="18" LabelText="1000" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                    <Size X="36.0000" Y="18.0000" />
+                    <AnchorPoint ScaleY="0.5000" />
+                    <Position X="107.0000" Y="54.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5350" Y="0.6750" />
+                    <PreSize X="0.1800" Y="0.2250" />
+                    <OutlineColor A="255" R="255" G="0" B="0" />
+                    <ShadowColor A="255" R="110" G="110" B="110" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="node_effect" ActionTag="-1056996904" Tag="1400" IconVisible="True" LeftMargin="40.0000" RightMargin="160.0000" TopMargin="40.0000" BottomMargin="40.0000" ctype="SingleNodeObjectData">
+                    <Size X="0.0000" Y="0.0000" />
+                    <AnchorPoint />
+                    <Position X="40.0000" Y="40.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.2000" Y="0.5000" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="300.0000" Y="675.0000" />
+                <Scale ScaleX="1.1000" ScaleY="1.1000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.2249" Y="0.9000" />
+                <PreSize X="0.1499" Y="0.1067" />
+                <SingleColor A="255" R="150" G="200" B="255" />
+                <FirstColor A="255" R="150" G="200" B="255" />
+                <EndColor A="255" R="255" G="255" B="255" />
+                <ColorVector ScaleY="1.0000" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="pnl_player_8" ActionTag="-627583404" VisibleForFrame="False" Tag="526" IconVisible="False" LeftMargin="200.0000" RightMargin="1054.0000" TopMargin="600.0000" BottomMargin="20.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="80.0000" Y="130.0000" />
                 <Children>
                   <AbstractNodeData Name="img_back" ActionTag="1667044757" Tag="527" IconVisible="False" PositionPercentYEnabled="True" TopMargin="71.0000" LeftEage="26" RightEage="26" TopEage="19" BottomEage="19" Scale9OriginX="26" Scale9OriginY="19" Scale9Width="28" Scale9Height="21" ctype="ImageViewObjectData">
@@ -1159,6 +1159,21 @@
                 <PreSize X="0.0000" Y="0.0000" />
                 <FileData Type="Normal" Path="game/brnn/csb/stop.csd" Plist="" />
               </AbstractNodeData>
+              <AbstractNodeData Name="btn_banker" ActionTag="1276504417" Tag="1515" IconVisible="False" LeftMargin="883.0000" RightMargin="267.0000" TopMargin="45.0000" BottomMargin="635.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="154" Scale9Height="48" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                <Size X="184.0000" Y="70.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="975.0000" Y="670.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.7309" Y="0.8933" />
+                <PreSize X="0.1379" Y="0.0933" />
+                <TextColor A="255" R="65" G="65" B="70" />
+                <DisabledFileData Type="MarkedSubImage" Path="game/brnn/image/btn_sit_banker.png" Plist="game/brnn/image/plistscene.plist" />
+                <PressedFileData Type="MarkedSubImage" Path="game/brnn/image/btn_sit_banker.png" Plist="game/brnn/image/plistscene.plist" />
+                <NormalFileData Type="MarkedSubImage" Path="game/brnn/image/btn_sit_banker.png" Plist="game/brnn/image/plistscene.plist" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="667.0000" Y="375.0000" />
@@ -1256,21 +1271,6 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="btn_banker" ActionTag="1276504417" Tag="1515" IconVisible="False" LeftMargin="883.0000" RightMargin="267.0000" TopMargin="45.0000" BottomMargin="635.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="154" Scale9Height="48" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
-            <Size X="184.0000" Y="70.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="975.0000" Y="670.0000" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.7309" Y="0.8933" />
-            <PreSize X="0.1379" Y="0.0933" />
-            <TextColor A="255" R="65" G="65" B="70" />
-            <DisabledFileData Type="MarkedSubImage" Path="game/brnn/image/btn_sit_banker.png" Plist="game/brnn/image/plistscene.plist" />
-            <PressedFileData Type="MarkedSubImage" Path="game/brnn/image/btn_sit_banker.png" Plist="game/brnn/image/plistscene.plist" />
-            <NormalFileData Type="MarkedSubImage" Path="game/brnn/image/btn_sit_banker.png" Plist="game/brnn/image/plistscene.plist" />
-            <OutlineColor A="255" R="255" G="0" B="0" />
-            <ShadowColor A="255" R="110" G="110" B="110" />
-          </AbstractNodeData>
           <AbstractNodeData Name="node_menu" ActionTag="-872151733" Tag="478" IconVisible="True" HorizontalEdge="RightEdge" VerticalEdge="TopEdge" LeftMargin="1276.0000" RightMargin="58.0000" TopMargin="55.0000" BottomMargin="695.0000" StretchWidthEnable="False" StretchHeightEnable="False" InnerActionSpeed="0.3333" CustomSizeEnabled="False" ctype="ProjectNodeObjectData">
             <Size X="0.0000" Y="0.0000" />
             <AnchorPoint />
@@ -1304,51 +1304,7 @@
           <AbstractNodeData Name="pnl_result" ActionTag="-469483060" Tag="2759" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="1334.0000" Y="750.0000" />
             <Children>
-              <AbstractNodeData Name="img_add_back_1" ActionTag="1460046624" VisibleForFrame="False" Tag="414" IconVisible="False" LeftMargin="174.5000" RightMargin="1028.5000" TopMargin="6.0000" BottomMargin="676.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
-                <Size X="131.0000" Y="68.0000" />
-                <Children>
-                  <AbstractNodeData Name="fnt_win_score" ActionTag="-1512360951" Tag="415" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="21.5000" BottomMargin="13.5000" LabelText="0" ctype="TextBMFontObjectData">
-                    <Size X="20.0000" Y="33.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="65.5000" Y="30.0000" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.5000" Y="0.4412" />
-                    <PreSize X="0.1527" Y="0.4853" />
-                    <LabelBMFontFile_CNB Type="Normal" Path="game/brnn/image/fnt/winfnt.fnt" Plist="" />
-                  </AbstractNodeData>
-                </Children>
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="240.0000" Y="710.0000" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.1799" Y="0.9467" />
-                <PreSize X="0.0982" Y="0.0907" />
-                <FileData Type="MarkedSubImage" Path="game/brnn/image/img_add_back.png" Plist="game/brnn/image/plistscene.plist" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="img_desc_back_1" ActionTag="1828947019" VisibleForFrame="False" Tag="416" IconVisible="False" LeftMargin="174.5000" RightMargin="1028.5000" TopMargin="6.0000" BottomMargin="676.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
-                <Size X="131.0000" Y="68.0000" />
-                <Children>
-                  <AbstractNodeData Name="fnt_lose_score" ActionTag="1847857585" Tag="417" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="21.5000" BottomMargin="13.5000" LabelText="0" ctype="TextBMFontObjectData">
-                    <Size X="20.0000" Y="33.0000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="65.5000" Y="30.0000" />
-                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.5000" Y="0.4412" />
-                    <PreSize X="0.1527" Y="0.4853" />
-                    <LabelBMFontFile_CNB Type="Normal" Path="game/brnn/image/fnt/losefnt.fnt" Plist="" />
-                  </AbstractNodeData>
-                </Children>
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="240.0000" Y="710.0000" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.1799" Y="0.9467" />
-                <PreSize X="0.0982" Y="0.0907" />
-                <FileData Type="MarkedSubImage" Path="game/brnn/image/img_desc_back.png" Plist="game/brnn/image/plistscene.plist" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="img_add_back_2" ActionTag="-339016798" VisibleForFrame="False" Tag="2760" IconVisible="False" LeftMargin="54.5000" RightMargin="1148.5000" TopMargin="116.0000" BottomMargin="566.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="img_add_back_1" ActionTag="-339016798" VisibleForFrame="False" Tag="2760" IconVisible="False" LeftMargin="54.5000" RightMargin="1148.5000" TopMargin="116.0000" BottomMargin="566.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
                 <Size X="131.0000" Y="68.0000" />
                 <Children>
                   <AbstractNodeData Name="fnt_win_score" ActionTag="245399278" Tag="2761" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="21.5000" BottomMargin="13.5000" LabelText="0" ctype="TextBMFontObjectData">
@@ -1370,7 +1326,7 @@
                 <PreSize X="0.0982" Y="0.0907" />
                 <FileData Type="MarkedSubImage" Path="game/brnn/image/img_add_back.png" Plist="game/brnn/image/plistscene.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="img_desc_back_2" ActionTag="1652728545" VisibleForFrame="False" Tag="2762" IconVisible="False" LeftMargin="54.5000" RightMargin="1148.5000" TopMargin="116.0000" BottomMargin="566.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="img_desc_back_1" ActionTag="1652728545" VisibleForFrame="False" Tag="2762" IconVisible="False" LeftMargin="54.5000" RightMargin="1148.5000" TopMargin="116.0000" BottomMargin="566.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
                 <Size X="131.0000" Y="68.0000" />
                 <Children>
                   <AbstractNodeData Name="fnt_lose_score" ActionTag="759449508" Tag="2763" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="21.5000" BottomMargin="13.5000" LabelText="0" ctype="TextBMFontObjectData">
@@ -1392,7 +1348,7 @@
                 <PreSize X="0.0982" Y="0.0907" />
                 <FileData Type="MarkedSubImage" Path="game/brnn/image/img_desc_back.png" Plist="game/brnn/image/plistscene.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="img_add_back_3" ActionTag="-469023720" VisibleForFrame="False" Tag="2768" IconVisible="False" LeftMargin="1148.5000" RightMargin="54.5000" TopMargin="116.0000" BottomMargin="566.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="img_add_back_2" ActionTag="-469023720" VisibleForFrame="False" Tag="2768" IconVisible="False" LeftMargin="1148.5000" RightMargin="54.5000" TopMargin="116.0000" BottomMargin="566.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
                 <Size X="131.0000" Y="68.0000" />
                 <Children>
                   <AbstractNodeData Name="fnt_win_score" ActionTag="-670821591" Tag="2769" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="21.5000" BottomMargin="13.5000" LabelText="0" ctype="TextBMFontObjectData">
@@ -1414,7 +1370,7 @@
                 <PreSize X="0.0982" Y="0.0907" />
                 <FileData Type="MarkedSubImage" Path="game/brnn/image/img_add_back.png" Plist="game/brnn/image/plistscene.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="img_desc_back_3" ActionTag="259765324" VisibleForFrame="False" Tag="2770" IconVisible="False" LeftMargin="1148.5000" RightMargin="54.5000" TopMargin="116.0000" BottomMargin="566.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="img_desc_back_2" ActionTag="259765324" VisibleForFrame="False" Tag="2770" IconVisible="False" LeftMargin="1148.5000" RightMargin="54.5000" TopMargin="116.0000" BottomMargin="566.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
                 <Size X="131.0000" Y="68.0000" />
                 <Children>
                   <AbstractNodeData Name="fnt_lose_score" ActionTag="1442488022" Tag="2771" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="21.5000" BottomMargin="13.5000" LabelText="0" ctype="TextBMFontObjectData">
@@ -1436,7 +1392,7 @@
                 <PreSize X="0.0982" Y="0.0907" />
                 <FileData Type="MarkedSubImage" Path="game/brnn/image/img_desc_back.png" Plist="game/brnn/image/plistscene.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="img_add_back_4" ActionTag="928310106" VisibleForFrame="False" Tag="2776" IconVisible="False" LeftMargin="14.5000" RightMargin="1188.5000" TopMargin="266.0000" BottomMargin="416.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="img_add_back_3" ActionTag="928310106" VisibleForFrame="False" Tag="2776" IconVisible="False" LeftMargin="14.5000" RightMargin="1188.5000" TopMargin="266.0000" BottomMargin="416.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
                 <Size X="131.0000" Y="68.0000" />
                 <Children>
                   <AbstractNodeData Name="fnt_win_score" ActionTag="-590956214" Tag="2777" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="21.5000" BottomMargin="13.5000" LabelText="0" ctype="TextBMFontObjectData">
@@ -1458,7 +1414,7 @@
                 <PreSize X="0.0982" Y="0.0907" />
                 <FileData Type="MarkedSubImage" Path="game/brnn/image/img_add_back.png" Plist="game/brnn/image/plistscene.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="img_desc_back_4" ActionTag="2102800687" VisibleForFrame="False" Tag="2778" IconVisible="False" LeftMargin="14.5000" RightMargin="1188.5000" TopMargin="266.0000" BottomMargin="416.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="img_desc_back_3" ActionTag="2102800687" VisibleForFrame="False" Tag="2778" IconVisible="False" LeftMargin="14.5000" RightMargin="1188.5000" TopMargin="266.0000" BottomMargin="416.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
                 <Size X="131.0000" Y="68.0000" />
                 <Children>
                   <AbstractNodeData Name="fnt_lose_score" ActionTag="1502100745" Tag="2779" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="21.5000" BottomMargin="13.5000" LabelText="0" ctype="TextBMFontObjectData">
@@ -1480,7 +1436,7 @@
                 <PreSize X="0.0982" Y="0.0907" />
                 <FileData Type="MarkedSubImage" Path="game/brnn/image/img_desc_back.png" Plist="game/brnn/image/plistscene.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="img_add_back_5" ActionTag="1938917495" VisibleForFrame="False" Tag="178" IconVisible="False" LeftMargin="1188.5000" RightMargin="14.5000" TopMargin="266.0000" BottomMargin="416.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="img_add_back_4" ActionTag="1938917495" VisibleForFrame="False" Tag="178" IconVisible="False" LeftMargin="1188.5000" RightMargin="14.5000" TopMargin="266.0000" BottomMargin="416.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
                 <Size X="131.0000" Y="68.0000" />
                 <Children>
                   <AbstractNodeData Name="fnt_win_score" ActionTag="1901029996" Tag="179" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="21.5000" BottomMargin="13.5000" LabelText="0" ctype="TextBMFontObjectData">
@@ -1502,7 +1458,7 @@
                 <PreSize X="0.0982" Y="0.0907" />
                 <FileData Type="MarkedSubImage" Path="game/brnn/image/img_add_back.png" Plist="game/brnn/image/plistscene.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="img_desc_back_5" ActionTag="-1213607095" VisibleForFrame="False" Tag="176" IconVisible="False" LeftMargin="1188.5000" RightMargin="14.5000" TopMargin="266.0000" BottomMargin="416.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="img_desc_back_4" ActionTag="-1213607095" VisibleForFrame="False" Tag="176" IconVisible="False" LeftMargin="1188.5000" RightMargin="14.5000" TopMargin="266.0000" BottomMargin="416.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
                 <Size X="131.0000" Y="68.0000" />
                 <Children>
                   <AbstractNodeData Name="fnt_lose_score" ActionTag="462702228" Tag="177" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="21.5000" BottomMargin="13.5000" LabelText="0" ctype="TextBMFontObjectData">
@@ -1524,7 +1480,7 @@
                 <PreSize X="0.0982" Y="0.0907" />
                 <FileData Type="MarkedSubImage" Path="game/brnn/image/img_desc_back.png" Plist="game/brnn/image/plistscene.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="img_add_back_6" ActionTag="-1852190319" VisibleForFrame="False" Tag="2764" IconVisible="False" LeftMargin="54.5000" RightMargin="1148.5000" TopMargin="416.0000" BottomMargin="266.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="img_add_back_5" ActionTag="-1852190319" VisibleForFrame="False" Tag="2764" IconVisible="False" LeftMargin="54.5000" RightMargin="1148.5000" TopMargin="416.0000" BottomMargin="266.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
                 <Size X="131.0000" Y="68.0000" />
                 <Children>
                   <AbstractNodeData Name="fnt_win_score" ActionTag="713100771" Tag="2765" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="21.5000" BottomMargin="13.5000" LabelText="0" ctype="TextBMFontObjectData">
@@ -1546,7 +1502,7 @@
                 <PreSize X="0.0982" Y="0.0907" />
                 <FileData Type="MarkedSubImage" Path="game/brnn/image/img_add_back.png" Plist="game/brnn/image/plistscene.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="img_desc_back_6" ActionTag="-1807481570" VisibleForFrame="False" Tag="2766" IconVisible="False" LeftMargin="54.5000" RightMargin="1148.5000" TopMargin="416.0000" BottomMargin="266.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="img_desc_back_5" ActionTag="-1807481570" VisibleForFrame="False" Tag="2766" IconVisible="False" LeftMargin="54.5000" RightMargin="1148.5000" TopMargin="416.0000" BottomMargin="266.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
                 <Size X="131.0000" Y="68.0000" />
                 <Children>
                   <AbstractNodeData Name="fnt_lose_score" ActionTag="-1599258312" Tag="2767" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="21.5000" BottomMargin="13.5000" LabelText="0" ctype="TextBMFontObjectData">
@@ -1568,7 +1524,7 @@
                 <PreSize X="0.0982" Y="0.0907" />
                 <FileData Type="MarkedSubImage" Path="game/brnn/image/img_desc_back.png" Plist="game/brnn/image/plistscene.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="img_add_back_7" ActionTag="1127647159" VisibleForFrame="False" Tag="174" IconVisible="False" LeftMargin="1148.5000" RightMargin="54.5000" TopMargin="416.0000" BottomMargin="266.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="img_add_back_6" ActionTag="1127647159" VisibleForFrame="False" Tag="174" IconVisible="False" LeftMargin="1148.5000" RightMargin="54.5000" TopMargin="416.0000" BottomMargin="266.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
                 <Size X="131.0000" Y="68.0000" />
                 <Children>
                   <AbstractNodeData Name="fnt_win_score" ActionTag="605441619" Tag="175" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="21.5000" BottomMargin="13.5000" LabelText="0" ctype="TextBMFontObjectData">
@@ -1590,7 +1546,7 @@
                 <PreSize X="0.0982" Y="0.0907" />
                 <FileData Type="MarkedSubImage" Path="game/brnn/image/img_add_back.png" Plist="game/brnn/image/plistscene.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="img_desc_back_7" ActionTag="-2072750611" VisibleForFrame="False" Tag="172" IconVisible="False" LeftMargin="1148.5000" RightMargin="54.5000" TopMargin="416.0000" BottomMargin="266.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="img_desc_back_6" ActionTag="-2072750611" VisibleForFrame="False" Tag="172" IconVisible="False" LeftMargin="1148.5000" RightMargin="54.5000" TopMargin="416.0000" BottomMargin="266.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
                 <Size X="131.0000" Y="68.0000" />
                 <Children>
                   <AbstractNodeData Name="fnt_lose_score" ActionTag="-1182488542" Tag="173" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="21.5000" BottomMargin="13.5000" LabelText="0" ctype="TextBMFontObjectData">
@@ -1609,6 +1565,50 @@
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.9100" Y="0.4000" />
+                <PreSize X="0.0982" Y="0.0907" />
+                <FileData Type="MarkedSubImage" Path="game/brnn/image/img_desc_back.png" Plist="game/brnn/image/plistscene.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="img_add_back_7" ActionTag="1460046624" VisibleForFrame="False" Tag="414" IconVisible="False" LeftMargin="174.5000" RightMargin="1028.5000" TopMargin="6.0000" BottomMargin="676.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
+                <Size X="131.0000" Y="68.0000" />
+                <Children>
+                  <AbstractNodeData Name="fnt_win_score" ActionTag="-1512360951" Tag="415" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="21.5000" BottomMargin="13.5000" LabelText="0" ctype="TextBMFontObjectData">
+                    <Size X="20.0000" Y="33.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="65.5000" Y="30.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5000" Y="0.4412" />
+                    <PreSize X="0.1527" Y="0.4853" />
+                    <LabelBMFontFile_CNB Type="Normal" Path="game/brnn/image/fnt/winfnt.fnt" Plist="" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="240.0000" Y="710.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.1799" Y="0.9467" />
+                <PreSize X="0.0982" Y="0.0907" />
+                <FileData Type="MarkedSubImage" Path="game/brnn/image/img_add_back.png" Plist="game/brnn/image/plistscene.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="img_desc_back_7" ActionTag="1828947019" VisibleForFrame="False" Tag="416" IconVisible="False" LeftMargin="174.5000" RightMargin="1028.5000" TopMargin="6.0000" BottomMargin="676.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
+                <Size X="131.0000" Y="68.0000" />
+                <Children>
+                  <AbstractNodeData Name="fnt_lose_score" ActionTag="1847857585" Tag="417" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="21.5000" BottomMargin="13.5000" LabelText="0" ctype="TextBMFontObjectData">
+                    <Size X="20.0000" Y="33.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="65.5000" Y="30.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5000" Y="0.4412" />
+                    <PreSize X="0.1527" Y="0.4853" />
+                    <LabelBMFontFile_CNB Type="Normal" Path="game/brnn/image/fnt/losefnt.fnt" Plist="" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="240.0000" Y="710.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.1799" Y="0.9467" />
                 <PreSize X="0.0982" Y="0.0907" />
                 <FileData Type="MarkedSubImage" Path="game/brnn/image/img_desc_back.png" Plist="game/brnn/image/plistscene.plist" />
               </AbstractNodeData>

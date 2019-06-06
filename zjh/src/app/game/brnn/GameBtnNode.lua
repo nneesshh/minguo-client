@@ -19,8 +19,7 @@ function GameBtnNode:onTouch(sender, eventType)
     if eventType == ccui.TouchEventType.ended then
         if string.find(name, "btn_bet_") then             
             local bet = string.split(name, "btn_bet_")[2]
-            --self._presenter:onTouchBet(tonumber(bet))  
-            print("bet",bet)        
+            self._presenter:onTouchBet(tonumber(bet))        
         end
     end
 end

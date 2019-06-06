@@ -139,6 +139,20 @@ local MsgId = {
     MSGID_DRAGON_VS_TIGER_READY_NOTIFY          = 0x2661,      --龙虎斗通知--准备 9825
     MSGID_DRAGON_VS_TIGER_BET_NOTIFY            = 0x2662,      --龙虎斗通知--押注 9826
 
+    -- niu hundred -- 0x2800
+    MSGID_NIU100_READY_REQ                      = 0x2811,      --百人牛牛--准备请求 10257
+    MSGID_NIU100_BANKER_BID_REQ                 = 0x2812,      --百人牛牛--申请上庄 10258
+    MSGID_NIU100_BET_REQ                        = 0x2813,      --百人牛牛--押注 10259    
+    MSGID_NIU100_GAME_PREPARE_NOTIFY            = 0x2831,      --百人牛牛通知--游戏准备 10289
+    MSGID_NIU100_GAME_START_NOTIFY              = 0x2832,      --百人牛牛通知--游戏开始 10290
+    MSGID_NIU100_GAME_OVER_NOTIFY               = 0x2833,      --百人牛牛通知--游戏结束 10291
+    MSGID_NIU100_BANKER_BID_NOTIFY              = 0x2834,      --百人牛牛通知--上庄申请 10292
+    MSGID_NIU100_GAME_BET_FULL_NOTIFY           = 0x2835,      --百人牛牛通知--押注额度已满 10293    
+    MSGID_NIU100_GAME_HISTORY_NOTIFY            = 0x2844,      --百人牛牛通知--游戏历史数据 10308
+    MSGID_NIU100_TOP_SEAT_NOTIFY                = 0x2845,      --百人牛牛通知--游戏排名玩家数据 10309    
+    MSGID_NIU100_READY_NOTIFY                   = 0x2861,      --百人牛牛通知--准备 10337
+    MSGID_NIU100_BET_NOTIFY                     = 0x2862,      --百人牛牛通知--押注 10338
+
     MSGID_CLOSE_CONNECTION		                = 0x03,		    --//
     MSGID_CREATE_HANDLER		                = 0x04,		    --//
     MSGID_CLOSE_HANDLER			                = 0x05,		    --//

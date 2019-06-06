@@ -64,6 +64,7 @@
               <Image Name="img_gold.png" />
               <Image Name="img_head_back1.png" />
               <Image Name="img_head_back2.png" />
+              <Image Name="img_hint.png" />
               <Image Name="img_hint_full.png" />
               <Image Name="img_hint_less.png" />
               <Image Name="img_hint_less2.png" />

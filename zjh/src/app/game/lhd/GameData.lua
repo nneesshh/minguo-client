@@ -24,7 +24,6 @@ local _selfData = {
     betlong       = 0,          
     bethu         = 0,          
     bethe         = 0,    
-    betdetail     = {},
     ready         = false,     -- 是否准备 
     full          = false
 }
@@ -81,7 +80,6 @@ function GameData.restData()
     _selfData.betlong     = 0          
     _selfData.bethu       = 0          
     _selfData.bethe       = 0 
-    _selfData.betdetail   = {} 
     _selfData.ready       = false
     _selfData.full        = false
 end
@@ -90,7 +88,6 @@ function GameData.restDataEx()
     _selfData.betlong     = 0          
     _selfData.bethu       = 0          
     _selfData.bethe       = 0
-    _selfData.betdetail   = {}
     _selfData.full        = false
 end
 
@@ -215,6 +212,10 @@ function GameData.getPlayerLists()
     return _selfData.playerlists
 end
 
+function GameData.resetSitPlayers()
+    _selfData.sitplayers = {}
+end
+
 -- 有座位的玩家列表
 function GameData.setSitplayers(k, player)    
     _selfData.sitplayers[k] = player
@@ -255,15 +256,6 @@ end
 
 function GameData.getBetHe()
     return _selfData.bethe
-end
-
-function GameData.setBetDetail(localseat, index)
-    _selfData.betdetail[localseat] = _selfData.betdetail[localseat] or {}
-    table.insert(_selfData.betdetail[localseat], index)
-end
-
-function GameData.getBetDetail()
-    return _selfData.betdetail
 end
 
 function GameData.setReady(flag)

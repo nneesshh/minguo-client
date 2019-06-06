@@ -65,6 +65,7 @@
       <FilePathData Path="game/brnn/image/img_stop_bet.png" />
       <FilePathData Path="game/brnn/image/img_trend.png" />
       <FilePathData Path="game/brnn/image/img_trend_back.png" />
+      <FilePathData Path="game/brnn/image/img_hint.png" />
     </ImageFiles>
     <MaxSize Width="2048" Height="1024" />
   </Content>

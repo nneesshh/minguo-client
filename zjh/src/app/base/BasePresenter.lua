@@ -102,7 +102,9 @@ function BasePresenter:sendAutoReady(gameid)
     elseif gameid == app.Game.GameID.QZNN then
         upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_C41_READY_REQ) 
     elseif gameid == app.Game.GameID.LHD then        
-        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_DRAGON_VS_TIGER_READY_REQ)                  
+        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_DRAGON_VS_TIGER_READY_REQ) 
+    elseif gameid == app.Game.GameID.BRNN then        
+        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU100_READY_REQ)                  
     end        
 end
 

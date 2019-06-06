@@ -80,8 +80,8 @@ function GameListLayer:showPlayerList(list)
         
         gold:setString(list[i].balance)
 
-        bet:setString(list[i].cur)
-        round:setString(list[i].day .. "局")    
+        bet:setString(list[i].betnum20)
+        round:setString(list[i].gamenum20 .. "局")    
 
         item:setPosition(pnlsize.width/2, pnlHight-(itmsize.height+ INTERVAL)*i)
         pnl:addChild(item)
@@ -121,8 +121,8 @@ function GameListLayer:showSelfList(list)
 
     gold:setString(list.balance)
 
-    bet:setString(list.cur)
-    round:setString(list.day) 	
+    bet:setString(list.betnum20)
+    round:setString(list.gamenum20 .. "局") 	
 end
 
 return GameListLayer

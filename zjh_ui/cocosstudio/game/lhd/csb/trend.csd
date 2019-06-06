@@ -19,40 +19,40 @@
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
           </AbstractNodeData>
-          <AbstractNodeData Name="container" ActionTag="-1498034098" Tag="987" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" LeftEage="275" RightEage="275" TopEage="191" BottomEage="191" Scale9OriginX="-275" Scale9OriginY="-191" Scale9Width="550" Scale9Height="382" ctype="PanelObjectData">
-            <Size X="1334.0000" Y="750.0000" />
+          <AbstractNodeData Name="container" ActionTag="-1498034098" Tag="987" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="103.5000" RightMargin="103.5000" TopMargin="19.5000" BottomMargin="19.5000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" LeftEage="275" RightEage="275" TopEage="191" BottomEage="191" Scale9OriginX="-275" Scale9OriginY="-191" Scale9Width="550" Scale9Height="382" ctype="PanelObjectData">
+            <Size X="1127.0000" Y="711.0000" />
             <Children>
-              <AbstractNodeData Name="img_back1" ActionTag="2068773446" Tag="664" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="103.5000" RightMargin="103.5000" TopMargin="19.5000" BottomMargin="19.5000" LeftEage="275" RightEage="275" TopEage="191" BottomEage="191" Scale9OriginX="275" Scale9OriginY="191" Scale9Width="577" Scale9Height="329" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="img_back1" ActionTag="2068773446" Tag="664" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftEage="275" RightEage="275" TopEage="191" BottomEage="191" Scale9OriginX="275" Scale9OriginY="191" Scale9Width="577" Scale9Height="329" ctype="ImageViewObjectData">
                 <Size X="1127.0000" Y="711.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="667.0000" Y="375.0000" />
+                <Position X="563.5000" Y="355.5000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5000" Y="0.5000" />
-                <PreSize X="0.8448" Y="0.9480" />
+                <PreSize X="1.0000" Y="1.0000" />
                 <FileData Type="Normal" Path="lobby/image/public/img_back_1.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="img_title" ActionTag="793580205" Tag="1000" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="494.5000" RightMargin="494.5000" TopMargin="34.0000" BottomMargin="652.0000" LeftEage="113" RightEage="113" TopEage="21" BottomEage="21" Scale9OriginX="113" Scale9OriginY="21" Scale9Width="119" Scale9Height="22" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="img_title" ActionTag="793580205" Tag="1000" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="391.0000" RightMargin="391.0000" TopMargin="15.0000" BottomMargin="632.0000" LeftEage="113" RightEage="113" TopEage="21" BottomEage="21" Scale9OriginX="113" Scale9OriginY="21" Scale9Width="119" Scale9Height="22" ctype="ImageViewObjectData">
                 <Size X="345.0000" Y="64.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="667.0000" Y="684.0000" />
+                <Position X="563.5000" Y="664.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5000" Y="0.9120" />
-                <PreSize X="0.2586" Y="0.0853" />
+                <PrePosition X="0.5000" Y="0.9339" />
+                <PreSize X="0.3061" Y="0.0900" />
                 <FileData Type="Normal" Path="lobby/image/public/img_title.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="img_title_trend" ActionTag="-1064506510" Tag="1001" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="610.0000" RightMargin="610.0000" TopMargin="37.5000" BottomMargin="673.5000" LeftEage="50" RightEage="50" TopEage="13" BottomEage="13" Scale9OriginX="50" Scale9OriginY="13" Scale9Width="14" Scale9Height="13" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="img_title_trend" ActionTag="-1064506510" Tag="1001" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="506.5000" RightMargin="506.5000" TopMargin="18.5000" BottomMargin="653.5000" LeftEage="50" RightEage="50" TopEage="13" BottomEage="13" Scale9OriginX="50" Scale9OriginY="13" Scale9Width="14" Scale9Height="13" ctype="ImageViewObjectData">
                 <Size X="114.0000" Y="39.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="667.0000" Y="693.0000" />
+                <Position X="563.5000" Y="673.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5000" Y="0.9240" />
-                <PreSize X="0.0855" Y="0.0520" />
+                <PrePosition X="0.5000" Y="0.9466" />
+                <PreSize X="0.1012" Y="0.0549" />
                 <FileData Type="MarkedSubImage" Path="game/lhd/image/img_trend.png" Plist="game/lhd/image/plistscene.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="pnl_load" ActionTag="-266908982" Tag="114" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="275.5000" RightMargin="275.5000" TopMargin="118.0000" BottomMargin="598.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+              <AbstractNodeData Name="pnl_load" ActionTag="-266908982" Tag="114" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="172.0000" RightMargin="172.0000" TopMargin="99.0000" BottomMargin="578.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="783.0000" Y="34.0000" />
                 <Children>
                   <AbstractNodeData Name="img_back" ActionTag="640225006" Tag="117" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" TopMargin="-2.0000" BottomMargin="-2.0000" LeftEage="258" RightEage="258" TopEage="12" BottomEage="12" Scale9OriginX="258" Scale9OriginY="12" Scale9Width="267" Scale9Height="14" ctype="ImageViewObjectData">
@@ -119,44 +119,44 @@
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="667.0000" Y="615.0000" />
+                <Position X="563.5000" Y="595.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5000" Y="0.8200" />
-                <PreSize X="0.5870" Y="0.0453" />
+                <PrePosition X="0.5000" Y="0.8368" />
+                <PreSize X="0.6948" Y="0.0478" />
                 <SingleColor A="255" R="150" G="200" B="255" />
                 <FirstColor A="255" R="150" G="200" B="255" />
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
               </AbstractNodeData>
-              <AbstractNodeData Name="img_long" ActionTag="1064576968" Tag="1565" IconVisible="False" PositionPercentYEnabled="True" LeftMargin="156.8000" RightMargin="957.2000" BottomMargin="570.0000" LeftEage="72" RightEage="72" TopEage="59" BottomEage="59" Scale9OriginX="72" Scale9OriginY="59" Scale9Width="76" Scale9Height="62" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="img_long" ActionTag="1064576968" Tag="1565" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="61.7500" RightMargin="845.2500" TopMargin="-21.3300" BottomMargin="552.3300" LeftEage="72" RightEage="72" TopEage="59" BottomEage="59" Scale9OriginX="72" Scale9OriginY="59" Scale9Width="76" Scale9Height="62" ctype="ImageViewObjectData">
                 <Size X="220.0000" Y="180.0000" />
                 <AnchorPoint ScaleX="1.0000" ScaleY="1.0000" />
-                <Position X="376.8000" Y="750.0000" />
+                <Position X="281.7500" Y="732.3300" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.2825" Y="1.0000" />
-                <PreSize X="0.1649" Y="0.2400" />
+                <PrePosition X="0.2500" Y="1.0300" />
+                <PreSize X="0.1952" Y="0.2532" />
                 <FileData Type="MarkedSubImage" Path="game/lhd/image/img_long.png" Plist="game/lhd/image/plistscene.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="img_hu" ActionTag="322234626" Tag="1564" IconVisible="False" PositionPercentYEnabled="True" LeftMargin="957.2000" RightMargin="156.8000" BottomMargin="570.0000" LeftEage="72" RightEage="72" TopEage="59" BottomEage="59" Scale9OriginX="72" Scale9OriginY="59" Scale9Width="76" Scale9Height="62" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="img_hu" ActionTag="322234626" Tag="1564" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="856.5200" RightMargin="50.4800" TopMargin="-21.3300" BottomMargin="552.3300" LeftEage="72" RightEage="72" TopEage="59" BottomEage="59" Scale9OriginX="72" Scale9OriginY="59" Scale9Width="76" Scale9Height="62" ctype="ImageViewObjectData">
                 <Size X="220.0000" Y="180.0000" />
                 <AnchorPoint ScaleY="1.0000" />
-                <Position X="957.2000" Y="750.0000" />
+                <Position X="856.5200" Y="732.3300" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.7175" Y="1.0000" />
-                <PreSize X="0.1649" Y="0.2400" />
+                <PrePosition X="0.7600" Y="1.0300" />
+                <PreSize X="0.1952" Y="0.2532" />
                 <FileData Type="MarkedSubImage" Path="game/lhd/image/img_hu.png" Plist="game/lhd/image/plistscene.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="btn_close" ActionTag="529471273" Tag="902" IconVisible="False" LeftMargin="1152.5000" RightMargin="92.5000" TopMargin="21.5000" BottomMargin="639.5000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="59" Scale9Height="67" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+              <AbstractNodeData Name="btn_close" ActionTag="529471273" Tag="902" IconVisible="False" LeftMargin="1045.5000" RightMargin="-7.5000" TopMargin="16.5000" BottomMargin="605.5000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="59" Scale9Height="67" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="89.0000" Y="89.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="1197.0000" Y="684.0000" />
+                <Position X="1090.0000" Y="650.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.8973" Y="0.9120" />
-                <PreSize X="0.0667" Y="0.1187" />
+                <PrePosition X="0.9672" Y="0.9142" />
+                <PreSize X="0.0790" Y="0.1252" />
                 <TextColor A="255" R="65" G="65" B="70" />
                 <DisabledFileData Type="Normal" Path="lobby/image/public/btn_close.png" Plist="" />
                 <PressedFileData Type="Normal" Path="lobby/image/public/btn_close.png" Plist="" />
@@ -164,66 +164,66 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="img_road" ActionTag="1512509805" Tag="127" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="553.5000" RightMargin="553.5000" TopMargin="218.0000" BottomMargin="498.0000" LeftEage="74" RightEage="74" TopEage="11" BottomEage="11" Scale9OriginX="74" Scale9OriginY="11" Scale9Width="79" Scale9Height="12" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="img_road" ActionTag="1512509805" Tag="127" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="450.0000" RightMargin="450.0000" TopMargin="199.0000" BottomMargin="478.0000" LeftEage="74" RightEage="74" TopEage="11" BottomEage="11" Scale9OriginX="74" Scale9OriginY="11" Scale9Width="79" Scale9Height="12" ctype="ImageViewObjectData">
                 <Size X="227.0000" Y="34.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="667.0000" Y="515.0000" />
+                <Position X="563.5000" Y="495.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5000" Y="0.6867" />
-                <PreSize X="0.1702" Y="0.0453" />
+                <PrePosition X="0.5000" Y="0.6962" />
+                <PreSize X="0.2014" Y="0.0478" />
                 <FileData Type="MarkedSubImage" Path="game/lhd/image/img_road.png" Plist="game/lhd/image/plistscene.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="img_trend_back" ActionTag="-1864552374" Tag="138" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="169.0000" RightMargin="169.0000" TopMargin="260.5000" BottomMargin="114.5000" LeftEage="328" RightEage="328" TopEage="123" BottomEage="123" Scale9OriginX="328" Scale9OriginY="123" Scale9Width="363" Scale9Height="129" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="img_trend_back" ActionTag="-1864552374" Tag="138" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="65.5000" RightMargin="65.5000" TopMargin="241.5000" BottomMargin="94.5000" LeftEage="328" RightEage="328" TopEage="123" BottomEage="123" Scale9OriginX="328" Scale9OriginY="123" Scale9Width="363" Scale9Height="129" ctype="ImageViewObjectData">
                 <Size X="996.0000" Y="375.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="667.0000" Y="302.0000" />
+                <Position X="563.5000" Y="282.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5000" Y="0.4027" />
-                <PreSize X="0.7466" Y="0.5000" />
+                <PrePosition X="0.5000" Y="0.3966" />
+                <PreSize X="0.8838" Y="0.5274" />
                 <FileData Type="Normal" Path="game/lhd/image/img_detail_back.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="pnl_record" ActionTag="-64004383" Tag="125" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="287.0000" RightMargin="287.0000" TopMargin="171.0000" BottomMargin="541.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+              <AbstractNodeData Name="pnl_record" ActionTag="-64004383" Tag="125" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="183.5000" RightMargin="183.5000" TopMargin="152.0000" BottomMargin="521.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="760.0000" Y="38.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="667.0000" Y="560.0000" />
+                <Position X="563.5000" Y="540.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5000" Y="0.7467" />
-                <PreSize X="0.5697" Y="0.0507" />
+                <PrePosition X="0.5000" Y="0.7595" />
+                <PreSize X="0.6744" Y="0.0534" />
                 <SingleColor A="255" R="150" G="200" B="255" />
                 <FirstColor A="255" R="150" G="200" B="255" />
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
               </AbstractNodeData>
-              <AbstractNodeData Name="pnl_detail_left" ActionTag="-223855283" Tag="128" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="169.0178" RightMargin="676.9822" TopMargin="260.5000" BottomMargin="114.5000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" LeftEage="328" RightEage="328" TopEage="123" BottomEage="123" Scale9OriginX="-328" Scale9OriginY="-123" Scale9Width="656" Scale9Height="246" ctype="PanelObjectData">
+              <AbstractNodeData Name="pnl_detail_left" ActionTag="-223855283" Tag="128" IconVisible="False" LeftMargin="70.0000" RightMargin="569.0000" TopMargin="241.5000" BottomMargin="94.5000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" LeftEage="328" RightEage="328" TopEage="123" BottomEage="123" Scale9OriginX="-328" Scale9OriginY="-123" Scale9Width="656" Scale9Height="246" ctype="PanelObjectData">
                 <Size X="488.0000" Y="375.0000" />
                 <AnchorPoint ScaleY="0.5000" />
-                <Position X="169.0178" Y="302.0000" />
+                <Position X="70.0000" Y="282.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.1267" Y="0.4027" />
-                <PreSize X="0.3658" Y="0.5000" />
+                <PrePosition X="0.0621" Y="0.3966" />
+                <PreSize X="0.4330" Y="0.5274" />
                 <SingleColor A="255" R="150" G="200" B="255" />
                 <FirstColor A="255" R="150" G="200" B="255" />
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
               </AbstractNodeData>
-              <AbstractNodeData Name="pnl_detail_right" ActionTag="544376096" Tag="139" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="656.9822" RightMargin="169.0178" TopMargin="260.5000" BottomMargin="114.5000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" LeftEage="328" RightEage="328" TopEage="123" BottomEage="123" Scale9OriginX="-328" Scale9OriginY="-123" Scale9Width="656" Scale9Height="246" ctype="PanelObjectData">
+              <AbstractNodeData Name="pnl_detail_right" ActionTag="544376096" Tag="139" IconVisible="False" LeftMargin="552.0000" RightMargin="67.0000" TopMargin="241.5000" BottomMargin="94.5000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" LeftEage="328" RightEage="328" TopEage="123" BottomEage="123" Scale9OriginX="-328" Scale9OriginY="-123" Scale9Width="656" Scale9Height="246" ctype="PanelObjectData">
                 <Size X="508.0000" Y="375.0000" />
                 <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
-                <Position X="1164.9822" Y="302.0000" />
+                <Position X="1060.0000" Y="282.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.8733" Y="0.4027" />
-                <PreSize X="0.3808" Y="0.5000" />
+                <PrePosition X="0.9406" Y="0.3966" />
+                <PreSize X="0.4508" Y="0.5274" />
                 <SingleColor A="255" R="150" G="200" B="255" />
                 <FirstColor A="255" R="150" G="200" B="255" />
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
               </AbstractNodeData>
-              <AbstractNodeData Name="pnl_game_total" ActionTag="-174697984" Tag="129" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="169.0000" RightMargin="169.0000" TopMargin="640.0000" BottomMargin="60.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+              <AbstractNodeData Name="pnl_game_total" ActionTag="-174697984" Tag="129" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="65.5000" RightMargin="65.5000" TopMargin="621.0000" BottomMargin="40.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="996.0000" Y="50.0000" />
                 <Children>
                   <AbstractNodeData Name="img_total_long" ActionTag="-844367178" Tag="130" IconVisible="False" PositionPercentYEnabled="True" LeftMargin="61.0000" RightMargin="897.0000" TopMargin="6.0000" BottomMargin="6.0000" LeftEage="12" RightEage="12" TopEage="12" BottomEage="12" Scale9OriginX="12" Scale9OriginY="12" Scale9Width="14" Scale9Height="14" ctype="ImageViewObjectData">
@@ -302,11 +302,11 @@
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="667.0000" Y="85.0000" />
+                <Position X="563.5000" Y="65.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5000" Y="0.1133" />
-                <PreSize X="0.7466" Y="0.0667" />
+                <PrePosition X="0.5000" Y="0.0914" />
+                <PreSize X="0.8838" Y="0.0703" />
                 <SingleColor A="255" R="150" G="200" B="255" />
                 <FirstColor A="255" R="150" G="200" B="255" />
                 <EndColor A="255" R="255" G="255" B="255" />
@@ -318,7 +318,7 @@
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5000" Y="0.5000" />
-            <PreSize X="1.0000" Y="1.0000" />
+            <PreSize X="0.8448" Y="0.9480" />
             <SingleColor A="255" R="150" G="200" B="255" />
             <FirstColor A="255" R="150" G="200" B="255" />
             <EndColor A="255" R="255" G="255" B="255" />

@@ -19,47 +19,47 @@
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
           </AbstractNodeData>
-          <AbstractNodeData Name="container" ActionTag="-1498034098" Tag="987" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" LeftEage="275" RightEage="275" TopEage="191" BottomEage="191" Scale9OriginX="-275" Scale9OriginY="-191" Scale9Width="550" Scale9Height="382" ctype="PanelObjectData">
-            <Size X="1334.0000" Y="750.0000" />
+          <AbstractNodeData Name="container" ActionTag="-1498034098" Tag="987" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="103.5000" RightMargin="103.5000" TopMargin="19.5000" BottomMargin="19.5000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" LeftEage="275" RightEage="275" TopEage="191" BottomEage="191" Scale9OriginX="-275" Scale9OriginY="-191" Scale9Width="550" Scale9Height="382" ctype="PanelObjectData">
+            <Size X="1127.0000" Y="711.0000" />
             <Children>
-              <AbstractNodeData Name="img_back1" ActionTag="2068773446" Tag="664" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="103.5000" RightMargin="103.5000" TopMargin="19.5000" BottomMargin="19.5000" LeftEage="275" RightEage="275" TopEage="191" BottomEage="191" Scale9OriginX="275" Scale9OriginY="191" Scale9Width="577" Scale9Height="329" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="img_back1" ActionTag="2068773446" Tag="664" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftEage="275" RightEage="275" TopEage="191" BottomEage="191" Scale9OriginX="275" Scale9OriginY="191" Scale9Width="577" Scale9Height="329" ctype="ImageViewObjectData">
                 <Size X="1127.0000" Y="711.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="667.0000" Y="375.0000" />
+                <Position X="563.5000" Y="355.5000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5000" Y="0.5000" />
-                <PreSize X="0.8448" Y="0.9480" />
+                <PreSize X="1.0000" Y="1.0000" />
                 <FileData Type="Normal" Path="lobby/image/public/img_back_1.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="img_title" ActionTag="793580205" Tag="1000" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="494.5000" RightMargin="494.5000" TopMargin="34.0000" BottomMargin="652.0000" LeftEage="113" RightEage="113" TopEage="21" BottomEage="21" Scale9OriginX="113" Scale9OriginY="21" Scale9Width="119" Scale9Height="22" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="img_title" ActionTag="793580205" Tag="1000" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="391.0000" RightMargin="391.0000" TopMargin="14.0000" BottomMargin="633.0000" LeftEage="113" RightEage="113" TopEage="21" BottomEage="21" Scale9OriginX="113" Scale9OriginY="21" Scale9Width="119" Scale9Height="22" ctype="ImageViewObjectData">
                 <Size X="345.0000" Y="64.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="667.0000" Y="684.0000" />
+                <Position X="563.5000" Y="665.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5000" Y="0.9120" />
-                <PreSize X="0.2586" Y="0.0853" />
+                <PrePosition X="0.5000" Y="0.9353" />
+                <PreSize X="0.3061" Y="0.0900" />
                 <FileData Type="Normal" Path="lobby/image/public/img_title.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="img_title_list" ActionTag="-1064506510" Tag="1001" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="590.0000" RightMargin="590.0000" TopMargin="36.5000" BottomMargin="672.5000" LeftEage="50" RightEage="50" TopEage="13" BottomEage="13" Scale9OriginX="50" Scale9OriginY="13" Scale9Width="54" Scale9Height="15" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="img_title_list" ActionTag="-1064506510" Tag="1001" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="486.5000" RightMargin="486.5000" TopMargin="17.5000" BottomMargin="652.5000" LeftEage="50" RightEage="50" TopEage="13" BottomEage="13" Scale9OriginX="50" Scale9OriginY="13" Scale9Width="54" Scale9Height="15" ctype="ImageViewObjectData">
                 <Size X="154.0000" Y="41.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="667.0000" Y="693.0000" />
+                <Position X="563.5000" Y="673.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5000" Y="0.9240" />
-                <PreSize X="0.1154" Y="0.0547" />
+                <PrePosition X="0.5000" Y="0.9466" />
+                <PreSize X="0.1366" Y="0.0577" />
                 <FileData Type="MarkedSubImage" Path="game/brnn/image/img_list.png" Plist="game/brnn/image/plistscene.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="btn_close" ActionTag="529471273" Tag="902" IconVisible="False" LeftMargin="1152.5000" RightMargin="92.5000" TopMargin="21.5000" BottomMargin="639.5000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="59" Scale9Height="67" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+              <AbstractNodeData Name="btn_close" ActionTag="529471273" Tag="902" IconVisible="False" LeftMargin="1045.5000" RightMargin="-7.5000" TopMargin="16.5000" BottomMargin="605.5000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="59" Scale9Height="67" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="89.0000" Y="89.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="1197.0000" Y="684.0000" />
+                <Position X="1090.0000" Y="650.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.8973" Y="0.9120" />
-                <PreSize X="0.0667" Y="0.1187" />
+                <PrePosition X="0.9672" Y="0.9142" />
+                <PreSize X="0.0790" Y="0.1252" />
                 <TextColor A="255" R="65" G="65" B="70" />
                 <DisabledFileData Type="Normal" Path="lobby/image/public/btn_close.png" Plist="" />
                 <PressedFileData Type="Normal" Path="lobby/image/public/btn_close.png" Plist="" />
@@ -67,31 +67,31 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="img_back2" ActionTag="-1816714174" Tag="278" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="177.5000" RightMargin="177.5000" TopMargin="110.0000" BottomMargin="120.0000" Scale9Enable="True" LeftEage="30" RightEage="30" TopEage="30" BottomEage="30" Scale9OriginX="30" Scale9OriginY="30" Scale9Width="919" Scale9Height="73" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="img_back2" ActionTag="-1816714174" Tag="278" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="74.0000" RightMargin="74.0000" TopMargin="111.0000" BottomMargin="80.0000" Scale9Enable="True" LeftEage="30" RightEage="30" TopEage="30" BottomEage="30" Scale9OriginX="30" Scale9OriginY="30" Scale9Width="919" Scale9Height="73" ctype="ImageViewObjectData">
                 <Size X="979.0000" Y="520.0000" />
                 <AnchorPoint ScaleX="0.5000" />
-                <Position X="667.0000" Y="120.0000" />
+                <Position X="563.5000" Y="80.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5000" Y="0.1600" />
-                <PreSize X="0.7339" Y="0.6933" />
+                <PrePosition X="0.5000" Y="0.1125" />
+                <PreSize X="0.8687" Y="0.7314" />
                 <FileData Type="Normal" Path="lobby/image/public/img_back_2.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="svw_player_list" ActionTag="-2072036913" Tag="323" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="177.5000" RightMargin="177.5000" TopMargin="110.0000" BottomMargin="212.0000" TouchEnable="True" ClipAble="True" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" IsBounceEnabled="True" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
+              <AbstractNodeData Name="svw_player_list" ActionTag="-2072036913" Tag="323" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="74.0000" RightMargin="74.0000" TopMargin="111.0000" BottomMargin="172.0000" TouchEnable="True" ClipAble="True" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" IsBounceEnabled="True" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
                 <Size X="979.0000" Y="428.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="1.0000" />
-                <Position X="667.0000" Y="640.0000" />
+                <Position X="563.5000" Y="600.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5000" Y="0.8533" />
-                <PreSize X="0.7339" Y="0.5707" />
+                <PrePosition X="0.5000" Y="0.8439" />
+                <PreSize X="0.8687" Y="0.6020" />
                 <SingleColor A="255" R="255" G="150" B="100" />
                 <FirstColor A="255" R="255" G="150" B="100" />
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
                 <InnerNodeSize Width="979" Height="428" />
               </AbstractNodeData>
-              <AbstractNodeData Name="item_list_self" ActionTag="-1658971510" Tag="412" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="187.5000" RightMargin="187.5000" TopMargin="538.0000" BottomMargin="130.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+              <AbstractNodeData Name="item_list_self" ActionTag="-1658971510" Tag="412" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="84.0000" RightMargin="84.0000" TopMargin="549.0000" BottomMargin="80.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="959.0000" Y="82.0000" />
                 <Children>
                   <AbstractNodeData Name="img_rank_back" ActionTag="490195818" VisibleForFrame="False" Tag="413" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" Scale9Enable="True" LeftEage="30" RightEage="30" TopEage="30" BottomEage="30" Scale9OriginX="30" Scale9OriginY="30" Scale9Width="652" Scale9Height="22" ctype="ImageViewObjectData">
@@ -228,11 +228,11 @@
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint ScaleX="0.5000" />
-                <Position X="667.0000" Y="130.0000" />
+                <Position X="563.5000" Y="80.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.5000" Y="0.1733" />
-                <PreSize X="0.7189" Y="0.1093" />
+                <PrePosition X="0.5000" Y="0.1125" />
+                <PreSize X="0.8509" Y="0.1153" />
                 <SingleColor A="255" R="150" G="200" B="255" />
                 <FirstColor A="255" R="150" G="200" B="255" />
                 <EndColor A="255" R="255" G="255" B="255" />
@@ -244,7 +244,7 @@
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5000" Y="0.5000" />
-            <PreSize X="1.0000" Y="1.0000" />
+            <PreSize X="0.8448" Y="0.9480" />
             <SingleColor A="255" R="150" G="200" B="255" />
             <FirstColor A="255" R="150" G="200" B="255" />
             <EndColor A="255" R="255" G="255" B="255" />

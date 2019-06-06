@@ -37,7 +37,7 @@ function GameScene:onTouch(sender, eventType)
     local name = sender:getName()
     if eventType == ccui.TouchEventType.ended then        
         if name == "btn_exit" then 
-            --self._presenter:sendLeaveRoom()   
+            self._presenter:sendLeaveRoom()   
         elseif name == "btn_trend" then
             self._presenter:onTouchGoing()            
         elseif name == "btn_other" then                                  
@@ -52,8 +52,8 @@ function GameScene:onClick(sender)
     GameScene.super.onClick(self, sender)
     local name = sender:getName()
     if string.find(name, "pnl_touch_area_") then             
-        local bet = string.split(name, "pnl_touch_area_")[2]        
-        print("touch area",bet)        
+        local area = string.split(name, "pnl_touch_area_")[2]        
+        self._presenter:onClickBetArea(tonumber(area))
     end
 end
 
@@ -73,8 +73,14 @@ function GameScene:initUI()
     for i=1, 5 do
         self:showImgNiuType(i, false)
         self:showImgNobetVisible(i, false)
-        self:showTxtTouchAreaBet(i,100,200)
+        self:showTxtTouchAreaBet(i,0,0)
     end 
+end
+
+function GameScene:resetBetUI()
+    for i=1, 4 do
+        self:showTxtTouchAreaBet(i, 0 , 0)      
+    end
 end
 
 function GameScene:showTxtTableInfo(type)
@@ -101,10 +107,31 @@ function GameScene:showTxtTouchAreaBet(index, herobet, allbet)
     end
 end
 
-function GameScene:showImgTouchAreaLight(index)
+function GameScene:showImgTouchAreaLight(index, callback)
+    local function next()
+        if callback then
+            callback()
+        end
+    end
+    
+    local sequence = cc.Sequence:create(
+        cc.FadeIn:create(0.3),       
+        cc.FadeOut:create(0.2),
+        cc.DelayTime:create(0.25),        
+        cc.FadeIn:create(0.3),
+        cc.FadeOut:create(0.2),
+        cc.DelayTime:create(0.25),
+        cc.FadeIn:create(0.3),
+        cc.FadeOut:create(0.2),
+        cc.CallFunc:create(next))
+    
     for i=1, 4 do
         local light = self:seekChildByName("img_area_light_" .. i) 
         light:setVisible(i == index)
+        light:stopAllActions()
+        if i == index then
+            light:runAction(sequence)
+        end
     end 
 end
 

@@ -1,7 +1,8 @@
 // niu hundred -- 0x2800
 #define MSGID_NIU100_READY_REQ				0x2811		//百人牛牛--准备请求 10257
-#define MSGID_NIU100_BANKER_BID_REQ			0x2812		//百人牛牛--申请上庄 10258
 #define MSGID_NIU100_BET_REQ				0x2813		//百人牛牛--押注 10259
+#define MSGID_NIU100_BANKER_BID_REQ			0x2815		//百人牛牛--申请上庄 10261
+#define MSGID_NIU100_BANKER_BID_RESP		0x2816		//百人牛牛--申请上庄回应 10262
 
 #define MSGID_NIU100_GAME_PREPARE_NOTIFY	0x2831		//百人牛牛通知--游戏准备 10289
 #define MSGID_NIU100_GAME_START_NOTIFY		0x2832		//百人牛牛通知--游戏开始 10290
@@ -33,7 +34,7 @@
 		stream.writeInt32(localSeat->entry.betNum[1]);		\
 		stream.writeInt32(localSeat->entry.betNum[2]);		\
 		stream.writeInt32(localSeat->entry.betNum[3]);		\
-		int bonus = localSeat->entry.profit - localSeat->entry.betNum[0] - localSeat->entry.betNum[1] - localSeat->entry.betNum[2] - localSeat->entry.betNum[3]; \
+		int bonus = localSeat->entry.profit; 				\
 		stream.writeInt32(bonus);							\
 	} while(0)
 

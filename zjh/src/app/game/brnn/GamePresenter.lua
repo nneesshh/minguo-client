@@ -192,6 +192,7 @@ end
 
 -- 处理玩家进入
 function GamePresenter:onPlayerEnter(player, k)
+    print("wq--player--enter")
     if k < 0 or k > 6 or not player then
         print("player enter full")
         return
@@ -203,28 +204,26 @@ function GamePresenter:onPlayerEnter(player, k)
 
     -- 按钮触摸
     self:showBetBtnEnable()
-    
-    local heroseat = app.game.PlayerData.getHeroSeat()      
-    if heroseat == player:getSeat() then
-        local seats = app.game.GameData.getPlayerseat()
-        if #seats ~= 0 then
-            local isIn = false
-            for i, seat in ipairs(seats) do
-                if player:getSeat() == seat then
-                    isIn = true
-                end
-            end
-            if not isIn and not self._enter then
-                self._ui:getInstance():showHint("wait")
-                self._enter = true            
-            end         
-        end           	
-    end
 end
 
 function GamePresenter:onSelfPlayerEnter()
     local hero = app.game.PlayerData.getHero()
     self._gamePlayerNodes[LOCAL_HERO_SEAT]:onPlayerEnter(hero)
+    
+    local heroseat = app.game.PlayerData.getHeroSeat()      
+    local seats = app.game.GameData.getPlayerseat()
+    if #seats ~= 0 then
+        local isIn = false
+        for i, seat in ipairs(seats) do
+            if heroseat == seat then
+                isIn = true
+            end
+        end
+        if not isIn and not self._enter then
+            self._ui:getInstance():showHint("wait")
+            self._enter = true            
+        end         
+    end             
 end
 
 function GamePresenter:onSystemBankerEnter()   
@@ -268,11 +267,10 @@ function GamePresenter:onNiuGameStart()
     
     self._ui:getInstance():showStartEffect()        
     
-    self:playEffectByName("lh_vs")
+    self:playEffectByName("start")
     
     self:performWithDelayGlobal(
-        function()
-            self:playEffectByName("start")
+        function()            
             self._ui:getInstance():showClockEffect()
         end, 1)
                 
@@ -284,7 +282,7 @@ function GamePresenter:onNiuGameStart()
 end
 
 -- 游戏结束
-function GamePresenter:onNiuGameOver(overs, players)    
+function GamePresenter:onNiuGameOver(overs, players)  
     self._playing = false 
     app.game.GameData.setTableStatus(zjh_defs.TableStatus.TS_ENDING)
     app.game.GameData.setReady(false)
@@ -295,6 +293,19 @@ function GamePresenter:onNiuGameOver(overs, players)
     self._ui:getInstance():showEndEffect() 
     self:playEffectByName("stop")          
     
+    self:performWithDelayGlobal(function()
+        local backcards = {CV_BACK, CV_BACK, CV_BACK, CV_BACK, CV_BACK}
+        if self._gameHandCardNode[5] then
+            self._gameHandCardNode[5]:resetHandCards()
+            self._gameHandCardNode[5]:createCards(backcards)
+        end 
+        for i=1, 4 do           
+            self:performWithDelayGlobal(function()
+                self:createNiuCards(i, backcards, -1)                
+            end, i*0.3)            
+        end
+    end, 0.5)   
+        
     -- 提示
     self._ui:getInstance():showHint()
     
@@ -303,10 +314,12 @@ function GamePresenter:onNiuGameOver(overs, players)
         -- 刷新列表
         self:updatePlayerList(players)
         
-        dump(players)
+        local bankerObj = app.game.PlayerData.getPlayerByNumID(app.game.GameData.getBankerID())  
+        self._gamePlayerNodes[LOCAL_BANKER_SEAT]:onPlayerEnter(bankerObj)
         
         local scorelist = {}         
-        local count = 0
+        local b_score = 0
+        local count = 0        
         for k, player in ipairs(players) do                               
             if player.seatinfo.ticketid == app.data.UserData.getTicketID() or player.seatinfo.ticketid == app.game.GameData.getBankerID() then
             else
@@ -317,6 +330,10 @@ function GamePresenter:onNiuGameOver(overs, players)
                     count = count + 1        
                     scorelist[count] = player.bouns   
                 end                        
+            end
+            
+            if player.seatinfo.ticketid == app.game.GameData.getBankerID() then
+                scorelist[LOCAL_BANKER_SEAT] = player.bouns                    
             end                      
         end
         
@@ -324,6 +341,13 @@ function GamePresenter:onNiuGameOver(overs, players)
             scorelist[LOCAL_HERO_SEAT] = -1
         else
             scorelist[LOCAL_HERO_SEAT] = overs.bouns  
+        end
+        if overs.bouns ~= 0 then
+            if overs.bouns > 0 then
+                self:playEffectByName("win")       
+            else
+                self:playEffectByName("lose")       
+            end
         end
                                   
         self._ui:getInstance():showWinloseScore(scorelist)
@@ -335,12 +359,11 @@ function GamePresenter:onNiuGameOver(overs, players)
                 end
             end
         end
-
-        local history = app.game.GameData.getHisLists()    
-   
+        
+        local history = app.game.GameData.getHisLists()       
         if app.game.GameTrendPresenter:isCurrentUI() then            
             app.game.GameTrendPresenter:getInstance():init(history) 
-        end
+        end                
         
         self:performWithDelayGlobal(function()            
             self._ui:getInstance():resetBetUI()
@@ -348,8 +371,12 @@ function GamePresenter:onNiuGameOver(overs, players)
                 if self._gameHandCardNode[i] then
                     self._gameHandCardNode[i]:resetHandCards()
                     self._ui:getInstance():showImgNiuType(i, false) 
-                end         
-            end              
+                end 
+                
+                self._ui:getInstance():showPnlFntMultVisible(i, false)
+                self._ui:getInstance():showImgNobetVisible(i, false)           
+            end
+                      
             self._ui:getInstance():showSleepEffect()       
         end, 2)
     end
@@ -368,7 +395,9 @@ function GamePresenter:onNiuGameOver(overs, players)
         if overs.winlose4 == 1 then
             table.insert(winlist,4)            
         end
-        
+        if #winlist == 0 then
+            self:playEffectByName("winall")          
+        end
         if #winlist > 0 then
             for k, area in ipairs(winlist) do
                 if k == #winlist then
@@ -381,7 +410,7 @@ function GamePresenter:onNiuGameOver(overs, players)
            goldFunc()                    
         end
         
-        self:performWithDelayGlobal(function()
+        self:performWithDelayGlobal(function()            
             self._ui:getInstance():showChipBackOtherAction()
             self._ui:getInstance():resetBetUI()            
         end, 1)
@@ -404,12 +433,35 @@ function GamePresenter:onNiuGameOver(overs, players)
                 table.insert(areacards[4], card)
             end
         end
+        
         local areatype = {
             [1] = overs.area1type,
             [2] = overs.area2type,
             [3] = overs.area3type,
             [4] = overs.area4type
-        }        
+        }  
+        
+        local areamult = {
+            [1] = overs.mult1,
+            [2] = overs.mult2,
+            [3] = overs.mult3,
+            [4] = overs.mult4
+        }
+        
+        local areabet = {
+            [1] = overs.area1,
+            [2] = overs.area2,
+            [3] = overs.area3,
+            [4] = overs.area4
+        }
+        
+        local areawin = {
+            [1] = overs.winlose1,
+            [2] = overs.winlose2,
+            [3] = overs.winlose3,
+            [4] = overs.winlose4
+        }
+    
         for i=1, 4 do           
             self:performWithDelayGlobal(function()
                 if i<4 then
@@ -417,13 +469,14 @@ function GamePresenter:onNiuGameOver(overs, players)
                 else
                     self:createNiuCards(i, areacards[i], areatype[i], lightFunc()) 
                 end
-                 
-            end, i*0.5)            
+                
+                self._ui:getInstance():showFntMultScore(i, areabet[i], areamult[i], areawin[i])            
+            end, i*0.8)            
         end
     end
     
     self:performWithDelayGlobal(function()
-        self:createNiuCards(5, overs.bcards, overs.bcardtype, cardFunc)        
+        self:createNiuCards(5, overs.bcards, overs.bcardtype, cardFunc)              
     end, 1.5)
     
     print("send ready 8") 
@@ -433,9 +486,11 @@ function GamePresenter:onNiuGameOver(overs, players)
     end, 8) 
 end
 
-function GamePresenter:onNiuBankerBid(lists)
-    app.game.GameData.setBankerLists(lists)   
-    
+function GamePresenter:onNiuBankerBid(lists)    
+    if #lists == nil then
+    	return
+    end
+    app.game.GameData.setBankerLists(lists)     
     if lists[1].isSys == 0 then
         app.game.GameData.setBankerID(lists[1].seatinfo.ticketid)
         
@@ -447,14 +502,44 @@ function GamePresenter:onNiuBankerBid(lists)
         self:onSystemBankerEnter()             
     end   
     
+    if app.game.GameBankerPresenter:getInstance():isCurrentUI() then
+        local players = {}    
+        for i, var in ipairs(lists) do
+            players[i] = players[i] or {}
+            if lists[i].isSys == 0 then 
+                players[i].seqid     = i    
+                players[i].avatar    = var.seatinfo.avatar
+                players[i].gender    = var.seatinfo.gender
+                players[i].balance   = var.seatinfo.balance
+                players[i].ticketid  = var.seatinfo.ticketid                        
+                players[i].bankernum = var.bankernum         
+            else
+                players[i].seqid     = 1    
+                players[i].avatar    = 1
+                players[i].gender    = 0
+                players[i].balance   = 10000000
+                players[i].ticketid  = "系统大庄家"               
+                players[i].bankernum = -1   
+            end                       
+        end
+        app.game.GameBankerPresenter:getInstance():init(players)
+    end
+        
     local players = app.game.GameData.getPlayerLists()        
     self:updatePlayerList(players)
+    
+    local isbanker = app.game.GameData.isHeroBanker()
+    if isbanker then
+        self._gameBtnNode:setBankerBtn()
+    else
+        self._gameBtnNode:setTxtHint(false,"banker")    
+    end
 end
 
 function GamePresenter:onNiuBetFull()    
     app.game.GameData.setFull(true)
 
-    for i=1, 5 do
+    for i=1, 6 do
         self._gameBtnNode:setBetBtnEnable(i, false)
     end
     self._selectBetIndex = -1
@@ -486,9 +571,7 @@ end
 -- 押注
 function GamePresenter:onNiuBet(bets)
     app.game.PlayerData.updatePlayerRiches(bets.seat, 0, bets.balance)     
-    -- 按钮触摸性
-    self:showBetBtnEnable()
-
+    
     local chip_1 = self:getChipIndex(bets.betarea1)
     local chip_2 = self:getChipIndex(bets.betarea2)
     local chip_3 = self:getChipIndex(bets.betarea3)
@@ -503,7 +586,7 @@ function GamePresenter:onNiuBet(bets)
         app.game.GameData.setBetArea1(bets.betarea1)
         app.game.GameData.setBetArea2(bets.betarea2)
         app.game.GameData.setBetArea3(bets.betarea3)
-        app.game.GameData.setBetArea3(bets.betarea4)
+        app.game.GameData.setBetArea4(bets.betarea4)
         
         local selfbet1 = app.game.GameData.getBetArea1()
         local selfbet2 = app.game.GameData.getBetArea2()
@@ -549,11 +632,23 @@ function GamePresenter:onNiuBet(bets)
             self._gamePlayerNodes[localSeat]:showTxtBalance(true, bets.balance)     
         end                        
     end
+    
+    -- 按钮触摸性
+    self:showBetBtnEnable()
 end
 
 function GamePresenter:onRelinkEnter(player)
     print("onrelink enter")   
     self._playing = true
+end
+
+function GamePresenter:onNiuBankerResp(resp)
+    local flag = false
+    if resp.errorCode == zjh_defs.ErrorCode.ERR_SUCCESS then
+       app.game.GameBankerPresenter:getInstance():showHint(resp.type)
+    else
+        print(resp.errorMsg)   
+	end	
 end
 -- -----------------------------do----------------------------------
 function GamePresenter:createNiuCards(area, cards, cardtype, callback)
@@ -561,7 +656,8 @@ function GamePresenter:createNiuCards(area, cards, cardtype, callback)
         self._gameHandCardNode[area]:resetHandCards()
         self._gameHandCardNode[area]:createCards(cards)
     end
-    self._ui:getInstance():showImgNiuType(area, true, cardtype)         
+    self._ui:getInstance():showImgNiuType(area, true, cardtype)    
+    self:playEffectByName("w_niu_" .. cardtype)           
     if callback then
     	callback()
     end
@@ -569,7 +665,7 @@ end
 
 function GamePresenter:updatePlayerList(players)
     print("update player list")    
-    for i=1, 7 do
+    for i=1, 6 do
         self._gamePlayerNodes[i]:onResetTable()
     end
     
@@ -595,24 +691,26 @@ function GamePresenter:updatePlayerList(players)
     app.game.GamePresenter:getInstance():onSelfPlayerEnter()			
 end
 
-function GamePresenter:showBetBtnEnable()    
-    local balance = nil
-    if app.game.PlayerData then
-        local hero = app.game.PlayerData.getHero()
-        if hero then
-            balance = hero:getBalance()       
-        end 
+function GamePresenter:showBetBtnEnable()        
+    local isbanker = app.game.GameData.isHeroBanker()
+    if isbanker then
+    	self._gameBtnNode:setBankerBtn()
+    	return
+    else
+        self._gameBtnNode:setTxtHint(false, "banker")
     end
+    
+    local balance = app.data.UserData.getBalance()    
     local enable = {}
-    self._gameBtnNode:setTxtHint(false)
+    self._gameBtnNode:setTxtHint(false, "less")
     local full = app.game.GameData.getFull()
-    if not balance or full then
+    if full then
         enable = {false, false, false, false, false, false}
     else
         if balance < 5000 then
             enable = {false, false, false, false, false, false}
             self._selectBetIndex = -1
-            self._gameBtnNode:setTxtHint(true)                       
+            self._gameBtnNode:setTxtHint(true, "less")                       
         elseif balance < 10000 then
             enable = {true, true, true, true, false, false} 
             if self._selectBetIndex == -1 then
@@ -630,12 +728,64 @@ function GamePresenter:showBetBtnEnable()
             end       
         end
     end	
-
+    
     for i, e in ipairs(enable) do
         self._gameBtnNode:setBetBtnEnable(i, e)
 	end	
 	
-    self._gameBtnNode:setBetBtnLight(self._selectBetIndex)		
+    self._gameBtnNode:setBetBtnLight(self._selectBetIndex)	
+    
+    self:showBtnEnableByBet()	
+end
+
+function GamePresenter:showBtnEnableByBet()
+    local isbanker = app.game.GameData.isHeroBanker()
+    if isbanker then
+        self._gameBtnNode:setBankerBtn()
+        return
+    else
+        self._gameBtnNode:setTxtHint(false,"banker")
+    end
+    
+    local mult = app.game.GameConfig.getRoomID() * 5
+    local balance = app.data.UserData.getBalance()
+    local bet1 = app.game.GameData.getBetArea1()
+    local bet2 = app.game.GameData.getBetArea2()
+    local bet3 = app.game.GameData.getBetArea3()
+    local bet4 = app.game.GameData.getBetArea4()
+    
+    local total = balance + bet1 + bet2 + bet3 + bet4
+    local bet = bet1 + bet2 + bet3 + bet4
+    
+    local maxbet = total / mult
+    local canbet = maxbet - bet
+    local enable = {}
+    
+    if balance >= 5000 then
+        local index = self:getChipIndexByBet(canbet)       
+        if index == -1 then
+            enable = {false, false, false, false, false, false}
+            self._selectBetIndex = -1
+            self._ui:getInstance():showHint("more")
+        else            
+        	for i=1,6 do
+        		if i <= index then
+        			enable[i] = true
+        		else
+                    enable[i] = false
+        		end
+        	end
+            if self._selectBetIndex > index then
+        		self._selectBetIndex = 1
+        	end
+        end
+    else
+        self._selectBetIndex = -1  
+    end
+    for i, e in ipairs(enable) do
+        self._gameBtnNode:setBetBtnEnable(i, e)
+    end
+    self._gameBtnNode:setBetBtnLight(self._selectBetIndex)      
 end
 
 -- ----------------------------onclick-------------------------------
@@ -660,31 +810,31 @@ function GamePresenter:onTouchOther()
         players[i].betnum20  = var.betnum20                         
     end
        
-    app.game.GameListPresenter:getInstance():start(players)         
+    app.game.GameListPresenter:getInstance():start(players)    
 end
 
 function GamePresenter:onTouchGoBanker()
-    local list = app.game.GameData.getBankerLists()    
-    local players = {}
-    if list[1].isSys == 0 then        
-        for i, var in ipairs(list) do
-            players[i] = players[i] or {}  
+    local list = app.game.GameData.getBankerLists()        
+    local players = {}    
+    for i, var in ipairs(list) do
+        players[i] = players[i] or {}
+        if list[i].isSys == 0 then 
             players[i].seqid     = i    
             players[i].avatar    = var.seatinfo.avatar
             players[i].gender    = var.seatinfo.gender
             players[i].balance   = var.seatinfo.balance
             players[i].ticketid  = var.seatinfo.ticketid                        
-            players[i].bankernum = var.bankernum                         
-        end
-    else
-        players[1] = {}
-        players[1].seqid     = 1    
-        players[1].avatar    = 1
-        players[1].gender    = 0
-        players[1].balance   = 10000000
-        players[1].ticketid  = "系统大庄家"               
-        players[1].bankernum = -1                        
+            players[i].bankernum = var.bankernum         
+        else
+            players[i].seqid     = 1    
+            players[i].avatar    = 1
+            players[i].gender    = 0
+            players[i].balance   = 10000000
+            players[i].ticketid  = "系统大庄家"               
+            players[i].bankernum = -1   
+        end                       
     end
+    
     app.game.GameBankerPresenter:getInstance():start(players)
 end
 
@@ -700,25 +850,38 @@ function GamePresenter:onClickBetArea(type)
         return
     end
     
-    if self._selectBetIndex == -1 then   
+    local full = app.game.GameData.getFull()
+    if full then
+        self._ui:getInstance():showHint("full")
+        return
+    end
+    
+    if app.data.UserData.getBalance() < 5000 then   
         self._ui:getInstance():showHint("less")
         return
     end
     
---    -- 压和 判断当前金币是否是押注金额的5倍
---    if type == GE.cardsType.LHD_HE then
---    	local hero = app.game.PlayerData.getHero()  
---    	local balance = hero:getBalance()
---    	
---        local bet = self:getChipNumByIndex(self._selectBetIndex)
---        if balance / bet < 5 then
---            self._ui:getInstance():showHint("more")
---            return
---        end
---    end
+    -- 判断是否还有剩余押注
+    local mult = app.game.GameConfig.getRoomID() * 5
+    local balance = app.data.UserData.getBalance()
+    local bet1 = app.game.GameData.getBetArea1()
+    local bet2 = app.game.GameData.getBetArea2()
+    local bet3 = app.game.GameData.getBetArea3()
+    local bet4 = app.game.GameData.getBetArea4()
+
+    local total = balance + bet1 + bet2 + bet3 + bet4
+    local havebet = bet1 + bet2 + bet3 + bet4
+
+    local maxbet = total / mult
+    local canbet = maxbet - havebet
     
-    local bet = self:getChipNumByIndex(self._selectBetIndex)
-    print("bet",self._selectBetIndex,bet,type)    
+    if canbet < 100 then
+        self._ui:getInstance():showHint("more")
+        return
+    end
+    
+    -- 发送押注
+    local bet = self:getChipNumByIndex(self._selectBetIndex)  
     if type == 1 then
         self:sendPlayerBet(bet, 0, 0, 0)
         
@@ -777,6 +940,26 @@ function GamePresenter:getChipIndex(bet)
     elseif bet == 50000 then
         index = 6
     end	
+    return index
+end
+
+function GamePresenter:getChipIndexByBet(bet)
+    local index = -1
+    if bet < 100 then
+        index = -1
+    elseif bet < 500 then
+        index = 1
+    elseif bet < 1000 then
+        index = 2
+    elseif bet < 5000 then
+        index = 3
+    elseif bet < 10000 then
+        index = 4
+    elseif bet < 50000 then
+        index = 5
+    else
+        index = 6    
+    end 
     return index
 end
 
@@ -858,6 +1041,11 @@ end
 
 -- 下注
 function GamePresenter:sendPlayerBet(area1, area2, area3, area4)  
+    local isbanker = app.game.GameData.isHeroBanker()
+    if isbanker then
+    	print("return hero is banker")
+    	return
+    end
     print("send bet1111111",area1, area2, area3, area4)  
     local sessionid = app.data.UserData.getSession() or 222
     local po = upconn.upconn:get_packet_obj()
@@ -882,15 +1070,11 @@ end
 
 -- 音效相关
 function GamePresenter:playGameMusic()
-    app.util.SoundUtils.playMusic("game/lhd/sound/bgm_lhd.mp3")
+    app.util.SoundUtils.playMusic("game/brnn/sound/bgm_game.mp3")
 end
 
-function GamePresenter:playEffectByName(name)
-    if true then
-    	return
-    end
-    
-    local soundPath = "game/lhd/sound/"
+function GamePresenter:playEffectByName(name)    
+    local soundPath = "game/brnn/sound/"
     local strRes = ""
     for alias, path in pairs(ST) do
         if alias == name then

@@ -29,6 +29,7 @@
               <Image Name="btn_4.png" />
               <Image Name="btn_5.png" />
               <Image Name="btn_6.png" />
+              <Image Name="btn_cancel.png" />
               <Image Name="btn_charge.png" />
               <Image Name="btn_lose_x.png" />
               <Image Name="btn_other.png" />
@@ -65,6 +66,9 @@
               <Image Name="img_head_back1.png" />
               <Image Name="img_head_back2.png" />
               <Image Name="img_hint.png" />
+              <Image Name="img_hint_banker.png" />
+              <Image Name="img_hint_banker2.png" />
+              <Image Name="img_hint_cancel.png" />
               <Image Name="img_hint_full.png" />
               <Image Name="img_hint_less.png" />
               <Image Name="img_hint_less2.png" />
@@ -612,6 +616,7 @@
               <Image Name="plaza_5_2.png" />
             </Folder>
             <Folder Name="public">
+              <Image Name="btn_charge.png" />
               <Image Name="btn_close.png" />
               <Image Name="btn_gray.png" />
               <Image Name="btn_sure.png" />

@@ -27,7 +27,19 @@ end
 function GameBtnNode:setBetBtnEnable(i, enable)
     local btn = self:seekChildByName("btn_bet_" .. i) 
     if btn then
-        btn:setEnabled(enable)       
+        btn:setEnabled(enable)         
+        if enable then
+            btn:setOpacity(255)
+        else
+            btn:setOpacity(127)   
+        end       
+    end
+end
+
+function GameBtnNode:setBankerBtn()
+    self:setTxtHint(true, "banker")
+    for i=1, 6 do
+        self:setBetBtnEnable(i, false)
     end
 end
 
@@ -39,10 +51,19 @@ function GameBtnNode:setBetBtnLight(index)
 	end	
 end
 
-function GameBtnNode:setTxtHint(visible)
-    local txt = self:seekChildByName("img_balance_less") 
-    if txt then
-        txt:setVisible(visible)       
+function GameBtnNode:setTxtHint(visible,type)
+    local txtless = self:seekChildByName("img_balance_less") 
+    local txtbank = self:seekChildByName("img_hint_banker") 
+    
+    if type == "less" then        
+        txtless:setVisible(visible)
+        txtbank:setVisible(false)               
+    elseif type == "banker" then
+        txtless:setVisible(false)
+        txtbank:setVisible(visible)  
+    else	
+        txtless:setVisible(false)
+        txtbank:setVisible(false)  
     end
 end
 

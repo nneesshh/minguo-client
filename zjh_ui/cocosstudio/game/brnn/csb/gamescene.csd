@@ -459,6 +459,146 @@
                 <PreSize X="0.0727" Y="0.0333" />
                 <FileData Type="MarkedSubImage" Path="game/brnn/image/img_no_bet.png" Plist="game/brnn/image/plistscene.plist" />
               </AbstractNodeData>
+              <AbstractNodeData Name="pnl_mult_score_1" ActionTag="1820060208" Tag="4969" IconVisible="False" LeftMargin="268.0000" RightMargin="916.0000" TopMargin="552.5000" BottomMargin="172.5000" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+                <Size X="150.0000" Y="25.0000" />
+                <Children>
+                  <AbstractNodeData Name="fnt_area_mult" ActionTag="-97776933" Tag="4970" IconVisible="False" PositionPercentYEnabled="True" RightMargin="150.0000" TopMargin="12.5000" BottomMargin="12.5000" LabelText="" ctype="TextBMFontObjectData">
+                    <Size X="0.0000" Y="0.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position Y="12.5000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition Y="0.5000" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <LabelBMFontFile_CNB Type="Normal" Path="game/brnn/image/fnt/winfnt.fnt" Plist="" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="fnt_area_score" ActionTag="617238106" Tag="4971" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="160.7143" RightMargin="-10.7143" TopMargin="12.5000" BottomMargin="12.5000" LabelText="" ctype="TextBMFontObjectData">
+                    <Size X="0.0000" Y="0.0000" />
+                    <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
+                    <Position X="160.7143" Y="12.5000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="1.0714" Y="0.5000" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <LabelBMFontFile_CNB Type="Normal" Path="game/brnn/image/fnt/winfnt.fnt" Plist="" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="343.0000" Y="185.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.2571" Y="0.2467" />
+                <PreSize X="0.1124" Y="0.0333" />
+                <SingleColor A="255" R="150" G="200" B="255" />
+                <FirstColor A="255" R="150" G="200" B="255" />
+                <EndColor A="255" R="255" G="255" B="255" />
+                <ColorVector ScaleY="1.0000" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="pnl_mult_score_2" ActionTag="1997941214" Tag="5048" IconVisible="False" LeftMargin="484.0000" RightMargin="700.0000" TopMargin="552.5000" BottomMargin="172.5000" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+                <Size X="150.0000" Y="25.0000" />
+                <Children>
+                  <AbstractNodeData Name="fnt_area_mult" ActionTag="1666993918" Tag="5049" IconVisible="False" PositionPercentYEnabled="True" RightMargin="150.0000" TopMargin="12.5000" BottomMargin="12.5000" LabelText="" ctype="TextBMFontObjectData">
+                    <Size X="0.0000" Y="0.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position Y="12.5000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition Y="0.5000" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <LabelBMFontFile_CNB Type="Normal" Path="game/brnn/image/fnt/winfnt.fnt" Plist="" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="fnt_area_score" ActionTag="1206120713" Tag="5050" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="150.0000" TopMargin="12.5000" BottomMargin="12.5000" LabelText="" ctype="TextBMFontObjectData">
+                    <Size X="0.0000" Y="0.0000" />
+                    <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
+                    <Position X="150.0000" Y="12.5000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="1.0000" Y="0.5000" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <LabelBMFontFile_CNB Type="Normal" Path="game/brnn/image/fnt/winfnt.fnt" Plist="" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="559.0000" Y="185.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.4190" Y="0.2467" />
+                <PreSize X="0.1124" Y="0.0333" />
+                <SingleColor A="255" R="150" G="200" B="255" />
+                <FirstColor A="255" R="150" G="200" B="255" />
+                <EndColor A="255" R="255" G="255" B="255" />
+                <ColorVector ScaleY="1.0000" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="pnl_mult_score_3" ActionTag="1216906656" Tag="5051" IconVisible="False" LeftMargin="700.0000" RightMargin="484.0000" TopMargin="552.5000" BottomMargin="172.5000" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+                <Size X="150.0000" Y="25.0000" />
+                <Children>
+                  <AbstractNodeData Name="fnt_area_mult" ActionTag="2007198532" Tag="5052" IconVisible="False" PositionPercentYEnabled="True" RightMargin="150.0000" TopMargin="12.5000" BottomMargin="12.5000" LabelText="" ctype="TextBMFontObjectData">
+                    <Size X="0.0000" Y="0.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position Y="12.5000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition Y="0.5000" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <LabelBMFontFile_CNB Type="Normal" Path="game/brnn/image/fnt/winfnt.fnt" Plist="" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="fnt_area_score" ActionTag="1420855225" Tag="5053" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="150.0000" TopMargin="12.5000" BottomMargin="12.5000" LabelText="" ctype="TextBMFontObjectData">
+                    <Size X="0.0000" Y="0.0000" />
+                    <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
+                    <Position X="150.0000" Y="12.5000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="1.0000" Y="0.5000" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <LabelBMFontFile_CNB Type="Normal" Path="game/brnn/image/fnt/winfnt.fnt" Plist="" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="775.0000" Y="185.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5810" Y="0.2467" />
+                <PreSize X="0.1124" Y="0.0333" />
+                <SingleColor A="255" R="150" G="200" B="255" />
+                <FirstColor A="255" R="150" G="200" B="255" />
+                <EndColor A="255" R="255" G="255" B="255" />
+                <ColorVector ScaleY="1.0000" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="pnl_mult_score_4" ActionTag="-2058717226" Tag="5054" IconVisible="False" LeftMargin="916.0000" RightMargin="268.0000" TopMargin="552.5000" BottomMargin="172.5000" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+                <Size X="150.0000" Y="25.0000" />
+                <Children>
+                  <AbstractNodeData Name="fnt_area_mult" ActionTag="-1054025350" Tag="5055" IconVisible="False" PositionPercentYEnabled="True" RightMargin="150.0000" TopMargin="12.5000" BottomMargin="12.5000" LabelText="" ctype="TextBMFontObjectData">
+                    <Size X="0.0000" Y="0.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position Y="12.5000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition Y="0.5000" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <LabelBMFontFile_CNB Type="Normal" Path="game/brnn/image/fnt/winfnt.fnt" Plist="" />
+                  </AbstractNodeData>
+                  <AbstractNodeData Name="fnt_area_score" ActionTag="-1362755160" Tag="5056" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="150.0000" TopMargin="12.5000" BottomMargin="12.5000" LabelText="" ctype="TextBMFontObjectData">
+                    <Size X="0.0000" Y="0.0000" />
+                    <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
+                    <Position X="150.0000" Y="12.5000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="1.0000" Y="0.5000" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <LabelBMFontFile_CNB Type="Normal" Path="game/brnn/image/fnt/winfnt.fnt" Plist="" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="991.0000" Y="185.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.7429" Y="0.2467" />
+                <PreSize X="0.1124" Y="0.0333" />
+                <SingleColor A="255" R="150" G="200" B="255" />
+                <FirstColor A="255" R="150" G="200" B="255" />
+                <EndColor A="255" R="255" G="255" B="255" />
+                <ColorVector ScaleY="1.0000" />
+              </AbstractNodeData>
               <AbstractNodeData Name="pnl_chip_area" ActionTag="-1837537441" Tag="909" IconVisible="False" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="1334.0000" Y="750.0000" />
                 <AnchorPoint />
@@ -998,13 +1138,13 @@
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="node_effect" ActionTag="-1056996904" Tag="1400" IconVisible="True" LeftMargin="40.0000" RightMargin="160.0000" TopMargin="40.0000" BottomMargin="40.0000" ctype="SingleNodeObjectData">
+                  <AbstractNodeData Name="node_effect" ActionTag="-1056996904" Tag="1400" IconVisible="True" LeftMargin="40.0000" RightMargin="160.0000" TopMargin="70.0000" BottomMargin="10.0000" ctype="SingleNodeObjectData">
                     <Size X="0.0000" Y="0.0000" />
                     <AnchorPoint />
-                    <Position X="40.0000" Y="40.0000" />
+                    <Position X="40.0000" Y="10.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
-                    <PrePosition X="0.2000" Y="0.5000" />
+                    <PrePosition X="0.2000" Y="0.1250" />
                     <PreSize X="0.0000" Y="0.0000" />
                   </AbstractNodeData>
                 </Children>
@@ -1307,14 +1447,14 @@
               <AbstractNodeData Name="img_add_back_1" ActionTag="-339016798" VisibleForFrame="False" Tag="2760" IconVisible="False" LeftMargin="54.5000" RightMargin="1148.5000" TopMargin="116.0000" BottomMargin="566.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
                 <Size X="131.0000" Y="68.0000" />
                 <Children>
-                  <AbstractNodeData Name="fnt_win_score" ActionTag="245399278" Tag="2761" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="21.5000" BottomMargin="13.5000" LabelText="0" ctype="TextBMFontObjectData">
-                    <Size X="20.0000" Y="33.0000" />
+                  <AbstractNodeData Name="fnt_win_score" ActionTag="245399278" Tag="2761" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="27.5000" BottomMargin="19.5000" LabelText="0" ctype="TextBMFontObjectData">
+                    <Size X="20.0000" Y="21.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="65.5000" Y="30.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.4412" />
-                    <PreSize X="0.1527" Y="0.4853" />
+                    <PreSize X="0.1527" Y="0.3088" />
                     <LabelBMFontFile_CNB Type="Normal" Path="game/brnn/image/fnt/winfnt.fnt" Plist="" />
                   </AbstractNodeData>
                 </Children>
@@ -1329,14 +1469,14 @@
               <AbstractNodeData Name="img_desc_back_1" ActionTag="1652728545" VisibleForFrame="False" Tag="2762" IconVisible="False" LeftMargin="54.5000" RightMargin="1148.5000" TopMargin="116.0000" BottomMargin="566.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
                 <Size X="131.0000" Y="68.0000" />
                 <Children>
-                  <AbstractNodeData Name="fnt_lose_score" ActionTag="759449508" Tag="2763" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="21.5000" BottomMargin="13.5000" LabelText="0" ctype="TextBMFontObjectData">
-                    <Size X="20.0000" Y="33.0000" />
+                  <AbstractNodeData Name="fnt_lose_score" ActionTag="759449508" Tag="2763" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="27.5000" BottomMargin="19.5000" LabelText="0" ctype="TextBMFontObjectData">
+                    <Size X="20.0000" Y="21.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="65.5000" Y="30.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.4412" />
-                    <PreSize X="0.1527" Y="0.4853" />
+                    <PreSize X="0.1527" Y="0.3088" />
                     <LabelBMFontFile_CNB Type="Normal" Path="game/brnn/image/fnt/losefnt.fnt" Plist="" />
                   </AbstractNodeData>
                 </Children>
@@ -1351,14 +1491,14 @@
               <AbstractNodeData Name="img_add_back_2" ActionTag="-469023720" VisibleForFrame="False" Tag="2768" IconVisible="False" LeftMargin="1148.5000" RightMargin="54.5000" TopMargin="116.0000" BottomMargin="566.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
                 <Size X="131.0000" Y="68.0000" />
                 <Children>
-                  <AbstractNodeData Name="fnt_win_score" ActionTag="-670821591" Tag="2769" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="21.5000" BottomMargin="13.5000" LabelText="0" ctype="TextBMFontObjectData">
-                    <Size X="20.0000" Y="33.0000" />
+                  <AbstractNodeData Name="fnt_win_score" ActionTag="-670821591" Tag="2769" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="27.5000" BottomMargin="19.5000" LabelText="0" ctype="TextBMFontObjectData">
+                    <Size X="20.0000" Y="21.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="65.5000" Y="30.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.4412" />
-                    <PreSize X="0.1527" Y="0.4853" />
+                    <PreSize X="0.1527" Y="0.3088" />
                     <LabelBMFontFile_CNB Type="Normal" Path="game/brnn/image/fnt/winfnt.fnt" Plist="" />
                   </AbstractNodeData>
                 </Children>
@@ -1373,14 +1513,14 @@
               <AbstractNodeData Name="img_desc_back_2" ActionTag="259765324" VisibleForFrame="False" Tag="2770" IconVisible="False" LeftMargin="1148.5000" RightMargin="54.5000" TopMargin="116.0000" BottomMargin="566.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
                 <Size X="131.0000" Y="68.0000" />
                 <Children>
-                  <AbstractNodeData Name="fnt_lose_score" ActionTag="1442488022" Tag="2771" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="21.5000" BottomMargin="13.5000" LabelText="0" ctype="TextBMFontObjectData">
-                    <Size X="20.0000" Y="33.0000" />
+                  <AbstractNodeData Name="fnt_lose_score" ActionTag="1442488022" Tag="2771" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="27.5000" BottomMargin="19.5000" LabelText="0" ctype="TextBMFontObjectData">
+                    <Size X="20.0000" Y="21.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="65.5000" Y="30.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.4412" />
-                    <PreSize X="0.1527" Y="0.4853" />
+                    <PreSize X="0.1527" Y="0.3088" />
                     <LabelBMFontFile_CNB Type="Normal" Path="game/brnn/image/fnt/losefnt.fnt" Plist="" />
                   </AbstractNodeData>
                 </Children>
@@ -1395,14 +1535,14 @@
               <AbstractNodeData Name="img_add_back_3" ActionTag="928310106" VisibleForFrame="False" Tag="2776" IconVisible="False" LeftMargin="14.5000" RightMargin="1188.5000" TopMargin="266.0000" BottomMargin="416.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
                 <Size X="131.0000" Y="68.0000" />
                 <Children>
-                  <AbstractNodeData Name="fnt_win_score" ActionTag="-590956214" Tag="2777" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="21.5000" BottomMargin="13.5000" LabelText="0" ctype="TextBMFontObjectData">
-                    <Size X="20.0000" Y="33.0000" />
+                  <AbstractNodeData Name="fnt_win_score" ActionTag="-590956214" Tag="2777" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="27.5000" BottomMargin="19.5000" LabelText="0" ctype="TextBMFontObjectData">
+                    <Size X="20.0000" Y="21.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="65.5000" Y="30.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.4412" />
-                    <PreSize X="0.1527" Y="0.4853" />
+                    <PreSize X="0.1527" Y="0.3088" />
                     <LabelBMFontFile_CNB Type="Normal" Path="game/brnn/image/fnt/winfnt.fnt" Plist="" />
                   </AbstractNodeData>
                 </Children>
@@ -1417,14 +1557,14 @@
               <AbstractNodeData Name="img_desc_back_3" ActionTag="2102800687" VisibleForFrame="False" Tag="2778" IconVisible="False" LeftMargin="14.5000" RightMargin="1188.5000" TopMargin="266.0000" BottomMargin="416.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
                 <Size X="131.0000" Y="68.0000" />
                 <Children>
-                  <AbstractNodeData Name="fnt_lose_score" ActionTag="1502100745" Tag="2779" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="21.5000" BottomMargin="13.5000" LabelText="0" ctype="TextBMFontObjectData">
-                    <Size X="20.0000" Y="33.0000" />
+                  <AbstractNodeData Name="fnt_lose_score" ActionTag="1502100745" Tag="2779" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="27.5000" BottomMargin="19.5000" LabelText="0" ctype="TextBMFontObjectData">
+                    <Size X="20.0000" Y="21.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="65.5000" Y="30.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.4412" />
-                    <PreSize X="0.1527" Y="0.4853" />
+                    <PreSize X="0.1527" Y="0.3088" />
                     <LabelBMFontFile_CNB Type="Normal" Path="game/brnn/image/fnt/losefnt.fnt" Plist="" />
                   </AbstractNodeData>
                 </Children>
@@ -1439,14 +1579,14 @@
               <AbstractNodeData Name="img_add_back_4" ActionTag="1938917495" VisibleForFrame="False" Tag="178" IconVisible="False" LeftMargin="1188.5000" RightMargin="14.5000" TopMargin="266.0000" BottomMargin="416.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
                 <Size X="131.0000" Y="68.0000" />
                 <Children>
-                  <AbstractNodeData Name="fnt_win_score" ActionTag="1901029996" Tag="179" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="21.5000" BottomMargin="13.5000" LabelText="0" ctype="TextBMFontObjectData">
-                    <Size X="20.0000" Y="33.0000" />
+                  <AbstractNodeData Name="fnt_win_score" ActionTag="1901029996" Tag="179" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="27.5000" BottomMargin="19.5000" LabelText="0" ctype="TextBMFontObjectData">
+                    <Size X="20.0000" Y="21.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="65.5000" Y="30.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.4412" />
-                    <PreSize X="0.1527" Y="0.4853" />
+                    <PreSize X="0.1527" Y="0.3088" />
                     <LabelBMFontFile_CNB Type="Normal" Path="game/brnn/image/fnt/winfnt.fnt" Plist="" />
                   </AbstractNodeData>
                 </Children>
@@ -1461,14 +1601,14 @@
               <AbstractNodeData Name="img_desc_back_4" ActionTag="-1213607095" VisibleForFrame="False" Tag="176" IconVisible="False" LeftMargin="1188.5000" RightMargin="14.5000" TopMargin="266.0000" BottomMargin="416.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
                 <Size X="131.0000" Y="68.0000" />
                 <Children>
-                  <AbstractNodeData Name="fnt_lose_score" ActionTag="462702228" Tag="177" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="21.5000" BottomMargin="13.5000" LabelText="0" ctype="TextBMFontObjectData">
-                    <Size X="20.0000" Y="33.0000" />
+                  <AbstractNodeData Name="fnt_lose_score" ActionTag="462702228" Tag="177" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="27.5000" BottomMargin="19.5000" LabelText="0" ctype="TextBMFontObjectData">
+                    <Size X="20.0000" Y="21.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="65.5000" Y="30.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.4412" />
-                    <PreSize X="0.1527" Y="0.4853" />
+                    <PreSize X="0.1527" Y="0.3088" />
                     <LabelBMFontFile_CNB Type="Normal" Path="game/brnn/image/fnt/losefnt.fnt" Plist="" />
                   </AbstractNodeData>
                 </Children>
@@ -1483,14 +1623,14 @@
               <AbstractNodeData Name="img_add_back_5" ActionTag="-1852190319" VisibleForFrame="False" Tag="2764" IconVisible="False" LeftMargin="54.5000" RightMargin="1148.5000" TopMargin="416.0000" BottomMargin="266.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
                 <Size X="131.0000" Y="68.0000" />
                 <Children>
-                  <AbstractNodeData Name="fnt_win_score" ActionTag="713100771" Tag="2765" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="21.5000" BottomMargin="13.5000" LabelText="0" ctype="TextBMFontObjectData">
-                    <Size X="20.0000" Y="33.0000" />
+                  <AbstractNodeData Name="fnt_win_score" ActionTag="713100771" Tag="2765" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="27.5000" BottomMargin="19.5000" LabelText="0" ctype="TextBMFontObjectData">
+                    <Size X="20.0000" Y="21.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="65.5000" Y="30.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.4412" />
-                    <PreSize X="0.1527" Y="0.4853" />
+                    <PreSize X="0.1527" Y="0.3088" />
                     <LabelBMFontFile_CNB Type="Normal" Path="game/brnn/image/fnt/winfnt.fnt" Plist="" />
                   </AbstractNodeData>
                 </Children>
@@ -1505,14 +1645,14 @@
               <AbstractNodeData Name="img_desc_back_5" ActionTag="-1807481570" VisibleForFrame="False" Tag="2766" IconVisible="False" LeftMargin="54.5000" RightMargin="1148.5000" TopMargin="416.0000" BottomMargin="266.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
                 <Size X="131.0000" Y="68.0000" />
                 <Children>
-                  <AbstractNodeData Name="fnt_lose_score" ActionTag="-1599258312" Tag="2767" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="21.5000" BottomMargin="13.5000" LabelText="0" ctype="TextBMFontObjectData">
-                    <Size X="20.0000" Y="33.0000" />
+                  <AbstractNodeData Name="fnt_lose_score" ActionTag="-1599258312" Tag="2767" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="27.5000" BottomMargin="19.5000" LabelText="0" ctype="TextBMFontObjectData">
+                    <Size X="20.0000" Y="21.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="65.5000" Y="30.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.4412" />
-                    <PreSize X="0.1527" Y="0.4853" />
+                    <PreSize X="0.1527" Y="0.3088" />
                     <LabelBMFontFile_CNB Type="Normal" Path="game/brnn/image/fnt/losefnt.fnt" Plist="" />
                   </AbstractNodeData>
                 </Children>
@@ -1527,14 +1667,14 @@
               <AbstractNodeData Name="img_add_back_6" ActionTag="1127647159" VisibleForFrame="False" Tag="174" IconVisible="False" LeftMargin="1148.5000" RightMargin="54.5000" TopMargin="416.0000" BottomMargin="266.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
                 <Size X="131.0000" Y="68.0000" />
                 <Children>
-                  <AbstractNodeData Name="fnt_win_score" ActionTag="605441619" Tag="175" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="21.5000" BottomMargin="13.5000" LabelText="0" ctype="TextBMFontObjectData">
-                    <Size X="20.0000" Y="33.0000" />
+                  <AbstractNodeData Name="fnt_win_score" ActionTag="605441619" Tag="175" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="27.5000" BottomMargin="19.5000" LabelText="0" ctype="TextBMFontObjectData">
+                    <Size X="20.0000" Y="21.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="65.5000" Y="30.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.4412" />
-                    <PreSize X="0.1527" Y="0.4853" />
+                    <PreSize X="0.1527" Y="0.3088" />
                     <LabelBMFontFile_CNB Type="Normal" Path="game/brnn/image/fnt/winfnt.fnt" Plist="" />
                   </AbstractNodeData>
                 </Children>
@@ -1549,14 +1689,14 @@
               <AbstractNodeData Name="img_desc_back_6" ActionTag="-2072750611" VisibleForFrame="False" Tag="172" IconVisible="False" LeftMargin="1148.5000" RightMargin="54.5000" TopMargin="416.0000" BottomMargin="266.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
                 <Size X="131.0000" Y="68.0000" />
                 <Children>
-                  <AbstractNodeData Name="fnt_lose_score" ActionTag="-1182488542" Tag="173" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="21.5000" BottomMargin="13.5000" LabelText="0" ctype="TextBMFontObjectData">
-                    <Size X="20.0000" Y="33.0000" />
+                  <AbstractNodeData Name="fnt_lose_score" ActionTag="-1182488542" Tag="173" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="27.5000" BottomMargin="19.5000" LabelText="0" ctype="TextBMFontObjectData">
+                    <Size X="20.0000" Y="21.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="65.5000" Y="30.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.4412" />
-                    <PreSize X="0.1527" Y="0.4853" />
+                    <PreSize X="0.1527" Y="0.3088" />
                     <LabelBMFontFile_CNB Type="Normal" Path="game/brnn/image/fnt/losefnt.fnt" Plist="" />
                   </AbstractNodeData>
                 </Children>
@@ -1571,14 +1711,14 @@
               <AbstractNodeData Name="img_add_back_7" ActionTag="1460046624" VisibleForFrame="False" Tag="414" IconVisible="False" LeftMargin="174.5000" RightMargin="1028.5000" TopMargin="6.0000" BottomMargin="676.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
                 <Size X="131.0000" Y="68.0000" />
                 <Children>
-                  <AbstractNodeData Name="fnt_win_score" ActionTag="-1512360951" Tag="415" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="21.5000" BottomMargin="13.5000" LabelText="0" ctype="TextBMFontObjectData">
-                    <Size X="20.0000" Y="33.0000" />
+                  <AbstractNodeData Name="fnt_win_score" ActionTag="-1512360951" Tag="415" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="27.5000" BottomMargin="19.5000" LabelText="0" ctype="TextBMFontObjectData">
+                    <Size X="20.0000" Y="21.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="65.5000" Y="30.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.4412" />
-                    <PreSize X="0.1527" Y="0.4853" />
+                    <PreSize X="0.1527" Y="0.3088" />
                     <LabelBMFontFile_CNB Type="Normal" Path="game/brnn/image/fnt/winfnt.fnt" Plist="" />
                   </AbstractNodeData>
                 </Children>
@@ -1593,14 +1733,14 @@
               <AbstractNodeData Name="img_desc_back_7" ActionTag="1828947019" VisibleForFrame="False" Tag="416" IconVisible="False" LeftMargin="174.5000" RightMargin="1028.5000" TopMargin="6.0000" BottomMargin="676.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
                 <Size X="131.0000" Y="68.0000" />
                 <Children>
-                  <AbstractNodeData Name="fnt_lose_score" ActionTag="1847857585" Tag="417" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="21.5000" BottomMargin="13.5000" LabelText="0" ctype="TextBMFontObjectData">
-                    <Size X="20.0000" Y="33.0000" />
+                  <AbstractNodeData Name="fnt_lose_score" ActionTag="1847857585" Tag="417" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="27.5000" BottomMargin="19.5000" LabelText="0" ctype="TextBMFontObjectData">
+                    <Size X="20.0000" Y="21.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="65.5000" Y="30.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.4412" />
-                    <PreSize X="0.1527" Y="0.4853" />
+                    <PreSize X="0.1527" Y="0.3088" />
                     <LabelBMFontFile_CNB Type="Normal" Path="game/brnn/image/fnt/losefnt.fnt" Plist="" />
                   </AbstractNodeData>
                 </Children>
@@ -1615,14 +1755,14 @@
               <AbstractNodeData Name="img_add_back_8" ActionTag="-208589789" VisibleForFrame="False" Tag="2772" IconVisible="False" LeftMargin="174.5000" RightMargin="1028.5000" TopMargin="556.0000" BottomMargin="126.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
                 <Size X="131.0000" Y="68.0000" />
                 <Children>
-                  <AbstractNodeData Name="fnt_win_score" ActionTag="985228012" Tag="2773" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="21.5000" BottomMargin="13.5000" LabelText="0" ctype="TextBMFontObjectData">
-                    <Size X="20.0000" Y="33.0000" />
+                  <AbstractNodeData Name="fnt_win_score" ActionTag="985228012" Tag="2773" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="27.5000" BottomMargin="19.5000" LabelText="0" ctype="TextBMFontObjectData">
+                    <Size X="20.0000" Y="21.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="65.5000" Y="30.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.4412" />
-                    <PreSize X="0.1527" Y="0.4853" />
+                    <PreSize X="0.1527" Y="0.3088" />
                     <LabelBMFontFile_CNB Type="Normal" Path="game/brnn/image/fnt/winfnt.fnt" Plist="" />
                   </AbstractNodeData>
                 </Children>
@@ -1637,14 +1777,14 @@
               <AbstractNodeData Name="img_desc_back_8" ActionTag="-1192297245" VisibleForFrame="False" Tag="2774" IconVisible="False" LeftMargin="174.5000" RightMargin="1028.5000" TopMargin="556.0000" BottomMargin="126.0000" LeftEage="43" RightEage="43" TopEage="22" BottomEage="22" Scale9OriginX="43" Scale9OriginY="22" Scale9Width="45" Scale9Height="24" ctype="ImageViewObjectData">
                 <Size X="131.0000" Y="68.0000" />
                 <Children>
-                  <AbstractNodeData Name="fnt_lose_score" ActionTag="-1122933133" Tag="2775" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="21.5000" BottomMargin="13.5000" LabelText="0" ctype="TextBMFontObjectData">
-                    <Size X="20.0000" Y="33.0000" />
+                  <AbstractNodeData Name="fnt_lose_score" ActionTag="-1122933133" Tag="2775" IconVisible="False" LeftMargin="55.5000" RightMargin="55.5000" TopMargin="27.5000" BottomMargin="19.5000" LabelText="0" ctype="TextBMFontObjectData">
+                    <Size X="20.0000" Y="21.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="65.5000" Y="30.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.4412" />
-                    <PreSize X="0.1527" Y="0.4853" />
+                    <PreSize X="0.1527" Y="0.3088" />
                     <LabelBMFontFile_CNB Type="Normal" Path="game/brnn/image/fnt/losefnt.fnt" Plist="" />
                   </AbstractNodeData>
                 </Children>

@@ -157,6 +157,32 @@
                 <PrePosition X="0.5000" Y="0.1545" />
                 <PreSize X="0.0000" Y="0.0000" />
               </AbstractNodeData>
+              <AbstractNodeData Name="node_btn_2" ActionTag="699203035" VisibleForFrame="False" Tag="4700" IconVisible="True" PositionPercentXEnabled="True" LeftMargin="443.0000" RightMargin="443.0000" TopMargin="465.0000" BottomMargin="85.0000" ctype="SingleNodeObjectData">
+                <Size X="0.0000" Y="0.0000" />
+                <Children>
+                  <AbstractNodeData Name="btn_hint_ok_2" ActionTag="816867929" Tag="4701" IconVisible="False" LeftMargin="-155.0000" RightMargin="-155.0000" TopMargin="-55.5000" BottomMargin="-55.5000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="280" Scale9Height="89" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                    <Size X="310.0000" Y="111.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <TextColor A="255" R="65" G="65" B="70" />
+                    <DisabledFileData Type="Normal" Path="lobby/image/public/btn_charge.png" Plist="" />
+                    <PressedFileData Type="Normal" Path="lobby/image/public/btn_charge.png" Plist="" />
+                    <NormalFileData Type="Normal" Path="lobby/image/public/btn_charge.png" Plist="" />
+                    <OutlineColor A="255" R="255" G="0" B="0" />
+                    <ShadowColor A="255" R="110" G="110" B="110" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint />
+                <Position X="443.0000" Y="85.0000" />
+                <Scale ScaleX="0.9000" ScaleY="0.9000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.1545" />
+                <PreSize X="0.0000" Y="0.0000" />
+              </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="667.0000" Y="375.0000" />

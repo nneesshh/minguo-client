@@ -14,9 +14,7 @@ GameEnum.MAX_NUM                   = 48
 
 -- 牌型信息
 GameEnum.cardsType = {
-    LHD_LONG       = 1,   -- 龙
-    LHD_HU         = 2,   -- 虎
-    LHD_HE         = 3,   -- 和    
+   
 }
 
 GameEnum.hintType = {
@@ -28,27 +26,27 @@ GameEnum.hintType = {
 GameEnum.soundType = {
     bet            = "bet.mp3",
     countdown      = "countdown.mp3",
-    flipcard       = "flipcard.mp3",
-    lh_vs          = "lh_vs.mp3",
-    n01            = "n01.mp3",
-    n02            = "n02.mp3",
-    n03            = "n03.mp3",    
-    n04            = "n04.mp3",
-    n05            = "n05.mp3",
-    n06            = "n06.mp3",
-    n07            = "n07.mp3",
-    n08            = "n08.mp3",
-    n09            = "n09.mp3",
-    n10            = "n10.mp3",
-    n11            = "n11.mp3",
-    n12            = "n12.mp3",
-    n13            = "n13.mp3",
+    winall         = "banker_win_all.mp3",
+    fly            = "se_chips.mp3",    
+    game           = "bgm_game.mp3",    
+    w_niu_0        = "niu_0_w.mp3",
+    w_niu_1        = "niu_1_w.mp3",
+    w_niu_2        = "niu_2_w.mp3",
+    w_niu_3        = "niu_3_w.mp3",
+    w_niu_4        = "niu_4_w.mp3",
+    w_niu_5        = "niu_5_w.mp3",
+    w_niu_6        = "niu_6_w.mp3",
+    w_niu_7        = "niu_7_w.mp3",
+    w_niu_8        = "niu_8_w.mp3",
+    w_niu_9        = "niu_9_w.mp3",
+    w_niu_10       = "niu_10_w.mp3",
+    w_niu_11       = "niu_sizha_w.mp3",
+    w_niu_12       = "niu_wuhua_w.mp3",
+    w_niu_13       = "niu_5_s_w.mp3",
     start          = "start.mp3",
     stop           = "stop.mp3",
-    win_bet        = "win_bet.mp3",
-    win_1          = "win_long.mp3",
-    win_2          = "win_hu.mp3",
-    win_3          = "win_he.mp3",
+    win            = "niu_win.mp3",
+    lose           = "niu_lose.mp3"               
 }
 
 return GameEnum

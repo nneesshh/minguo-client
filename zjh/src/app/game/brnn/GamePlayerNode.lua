@@ -45,7 +45,6 @@ end
 
 -- 系统庄家
 function GamePlayerNode:onSystemBankerEnter()     
-
     -- 显示用户节点    
     self:showPnlPlayer(true)
 
@@ -54,10 +53,8 @@ function GamePlayerNode:onSystemBankerEnter()
     -- 设置金币
     self:showTxtBalance(true, app.util.ToolUtils.numConversionByDecimal(tostring(10000000)))
     -- 显示头像
-    self:showImgFace(0, 1)
-  
+    self:showImgFace(0, 1)  
 end
-
 
 -- 重置桌子
 function GamePlayerNode:onResetTable()
@@ -143,7 +140,7 @@ end
     
 -- 音效相关
 function GamePlayerNode:playEffectByName(name)
-    local soundPath = "game/qznn/sound/"
+    local soundPath = "game/brnn/sound/"
     local strRes = ""
     for alias, path in pairs(ST) do
         if alias == name then

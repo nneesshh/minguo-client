@@ -388,7 +388,7 @@ function _M.doRegisterMsgCallbacks()
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU100_TOP_SEAT_NOTIFY, brnnConn.onNiuTopSeat)     
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU100_READY_NOTIFY, brnnConn.onNiuPlayerReady) 
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU100_BET_NOTIFY, brnnConn.onNiuBet)      
-
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU100_BANKER_BID_RESP, brnnConn.onNiuBankerResp)          
 end
 
 return _M

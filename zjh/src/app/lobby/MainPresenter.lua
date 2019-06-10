@@ -127,7 +127,6 @@ end
 -- 显示场列表
 function MainPresenter:showPlazaLists(gameid)
     local plazainfo = app.data.PlazaData.getPlazaList(gameid)
-    
     if gameid ~= app.Game.GameID.LHD then
         self._ui:getInstance():showPlazaPnl(true)
         self._ui:getInstance():loadPlazaList(gameid , plazainfo)
@@ -295,6 +294,7 @@ function MainPresenter:reqJoinRoom(gameid, index)
     if po ~= nil and roomid then   
         self:dealLoadingHintStart("正在加入房间")                    
         app.game.GameEngine:getInstance():start(gameid, base, limit)
+        app.game.GameConfig.setRoomID(roomid)
         po:writer_reset()
         po:write_int32(sessionid)  
         po:write_int32(gameid) 

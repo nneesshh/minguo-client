@@ -6,11 +6,14 @@ local GameConfig = {}
 
 GameConfig._gameID = nil
 GameConfig._base   = nil
+GameConfig._limit  = nil 
+GameConfig._roomid  = nil 
 
 function GameConfig.reset()    
     GameConfig._gameID = nil
     GameConfig._base   = nil
-    GameConfig._limit  = nil 
+    GameConfig._limit  = nil
+    GameConfig._roomid  = nil 
 end
 
 function GameConfig.init(gameid, base, limit)
@@ -29,6 +32,14 @@ end
 
 function GameConfig.getLimit()
     return GameConfig._limit or 1
+end
+
+function GameConfig.setRoomID(roomid)
+    GameConfig._roomid = roomid
+end
+
+function GameConfig.getRoomID()
+    return GameConfig._roomid
 end
 
 return GameConfig

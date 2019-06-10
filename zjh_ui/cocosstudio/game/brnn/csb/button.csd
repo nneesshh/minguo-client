@@ -181,6 +181,16 @@
                 <PreSize X="0.4089" Y="0.0900" />
                 <FileData Type="MarkedSubImage" Path="game/brnn/image/img_hint_less2.png" Plist="game/brnn/image/plistscene.plist" />
               </AbstractNodeData>
+              <AbstractNodeData Name="img_hint_banker" ActionTag="-799364318" VisibleForFrame="False" Tag="4751" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="257.5000" RightMargin="257.5000" TopMargin="131.5000" BottomMargin="131.5000" LeftEage="127" RightEage="127" TopEage="12" BottomEage="12" Scale9OriginX="127" Scale9OriginY="12" Scale9Width="131" Scale9Height="13" ctype="ImageViewObjectData">
+                <Size X="385.0000" Y="37.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="450.0000" Y="150.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.5000" />
+                <PreSize X="0.4278" Y="0.1233" />
+                <FileData Type="MarkedSubImage" Path="game/brnn/image/img_hint_banker2.png" Plist="game/brnn/image/plistscene.plist" />
+              </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position />

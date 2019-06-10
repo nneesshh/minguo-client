@@ -327,7 +327,7 @@ function GamePresenter:onLhdGameOver(overs, players)
 
         local history = app.game.GameData.getHistory()    
         self._ui:getInstance():addHistory(history)      
-        if app.game.GameTrendPresenter:isCurrentUI() then            
+        if app.game.GameTrendPresenter:getInstance():isCurrentUI() then            
             app.game.GameTrendPresenter:getInstance():updateTrendOne(overs.cardtype, history) 
         end
         
@@ -568,7 +568,7 @@ function GamePresenter:onClickBetArea(type)
         return
     end
     
-    if self._selectBetIndex == -1 then   
+    if app.data.UserData.getBalance() < 5000 then   
         self._ui:getInstance():showHint("less")
         return
     end

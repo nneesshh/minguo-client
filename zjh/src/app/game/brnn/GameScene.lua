@@ -68,8 +68,11 @@ function GameScene:initData()
 end 
 
 function GameScene:initUI()
-    self:showTxtTableInfo(1)
+    local roomid =  app.game.GameConfig.getRoomID()
+    self:showTxtTableInfo(roomid)
+    
     self:showImgTouchAreaLight(-1)
+    
     for i=1, 5 do
         self:showImgNiuType(i, false)
         self:showImgNobetVisible(i, false)
@@ -125,25 +128,38 @@ function GameScene:showImgTouchAreaLight(index, callback)
         cc.FadeOut:create(0.2),
         cc.CallFunc:create(next))
     
-    for i=1, 4 do
-        local light = self:seekChildByName("img_area_light_" .. i) 
-        light:setVisible(i == index)
-        light:stopAllActions()
-        if i == index then
-            light:runAction(sequence)
-        end
-    end 
+    if index == -1 then
+        for i=1, 4 do
+            local light = self:seekChildByName("img_area_light_" .. i) 
+            light:setVisible(i == index)
+            light:stopAllActions()            
+        end 
+    end
+    
+    local light = self:seekChildByName("img_area_light_" .. index) 
+    if light then
+        light:setVisible(true)
+        light:stopAllActions()        
+        light:runAction(sequence)
+    end   
 end
 
 function GameScene:showImgNiuType(index,visible, type)
     local imgtype = self:seekChildByName("img_niu_type_" .. index)
     if imgtype then
         if visible then
-            imgtype:ignoreContentAdaptWithSize(true)   
-            local res = string.format("game/brnn/image/img_card_type_%d.png", type)     
-            imgtype:loadTexture(res, ccui.TextureResType.plistType)    
+            if type ~= -1 then
+                imgtype:ignoreContentAdaptWithSize(true)   
+                local res = string.format("game/brnn/image/img_card_type_%d.png", type)     
+                imgtype:loadTexture(res, ccui.TextureResType.plistType)    
+            end            
         end
-        imgtype:setVisible(visible) 
+        
+        if type == -1 then
+            imgtype:setVisible(false)
+        else
+            imgtype:setVisible(visible)    
+        end 
     end
 end
 
@@ -152,6 +168,40 @@ function GameScene:showImgNobetVisible(index, visible)
     if imgbet then
         imgbet:setVisible(visible)              
     end 
+end
+
+function GameScene:showPnlFntMultVisible(index, visible)
+    local pnl = self:seekChildByName("pnl_mult_score_" .. index)
+    if pnl then
+        pnl:setVisible(visible)              
+    end 
+end
+
+function GameScene:showFntMultScore(index, bet, mult, iswin)
+    local pnl = self:seekChildByName("pnl_mult_score_" .. index)
+    local fntmult = pnl:getChildByName("fnt_area_mult")
+    local fntscore = pnl:getChildByName("fnt_area_score")
+    
+    if pnl then
+        if bet ~= 0 then
+            if iswin == 1 then
+                fntmult:setFntFile("game/brnn/image/fnt/winfnt.fnt")
+                fntscore:setFntFile("game/brnn/image/fnt/winfnt.fnt")
+            else
+                fntmult:setFntFile("game/brnn/image/fnt/losefnt.fnt")
+                fntscore:setFntFile("game/brnn/image/fnt/losefnt.fnt")
+            end
+            
+            fntmult:setString("x" .. mult)            
+            fntscore:setString(bet * mult)
+         
+            pnl:setVisible(true)            
+            self:showImgNobetVisible(index,false)    
+        else
+            pnl:setVisible(false)
+            self:showImgNobetVisible(index,true)    
+        end    
+    end     
 end
 
 function GameScene:showHint(type)
@@ -244,7 +294,9 @@ function GameScene:showChipAction(index, area, localseat)
     local tx,ty = math.random(bx,ex), math.random(by,ey)            
     imgChip:runAction(cc.MoveTo:create(0.3, cc.p(tx, ty)))
     
-    self:movePlayerPnl(localseat, index)                   
+    self:movePlayerPnl(localseat, index) 
+    
+    self._presenter:playEffectByName("bet")                  
 end
 
 function GameScene:showChipBackOtherAction()
@@ -279,7 +331,10 @@ function GameScene:showChipBackOtherAction()
                 end
             end))
         childrens[i]:runAction(action)     
-    end   
+    end 
+    if count > 0 then
+        self._presenter:playEffectByName("fly")  
+    end    
 end
 
 function GameScene:removeAllChip()

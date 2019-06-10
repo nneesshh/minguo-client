@@ -28,7 +28,7 @@ local _selfData = {
     ready         = false,     -- 是否准备 
     full          = false,
     bankerlist    = {},        -- 上庄玩家列表 
-    bankerid      = -1         -- 庄家id 
+    bankerid      = -1,        -- 庄家id    
 }
 
 function GameData.setTableInfo(info)
@@ -293,6 +293,10 @@ end
 
 function GameData.getBankerID()
     return _selfData.bankerid
+end
+
+function GameData.isHeroBanker()
+    return _selfData.bankerid == app.data.UserData.getTicketID()
 end
 
 return GameData

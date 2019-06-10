@@ -147,7 +147,8 @@ function _M.onLogin(conn, sessionid, msgid)
             local roomid =  po:read_int32()
             local base = app.data.PlazaData.getBaseByRoomid(gametype, roomid)
             local limit = app.data.PlazaData.getLimitByBase(gametype, base)
-            app.game.GameEngine:getInstance():start(gametype, base, limit)            
+            app.game.GameEngine:getInstance():start(gametype, base, limit)
+            app.game.GameConfig.setRoomID(roomid)            
             app.game.GameEngine:getInstance():onStartGame()   
 
             local tabInfo = _readTableInfo(po)
@@ -180,13 +181,12 @@ function _M.onLogin(conn, sessionid, msgid)
                 for k, id in ipairs(ids) do   
                     local player = app.game.PlayerData.getPlayerByNumID(id)                   
                     if player:getTicketID() == app.data.UserData.getTicketID() then
+                        app.game.GamePresenter:getInstance():onSelfPlayerEnter()
                     else                        
                         count = count + 1        
                         app.game.GamePresenter:getInstance():onPlayerEnter(player, count)            
                     end                      
                 end                
-                app.game.GamePresenter:getInstance():onSelfPlayerEnter()
-                
             else
                 for k, id in ipairs(ids) do
                     local player = app.game.PlayerData.getPlayerByNumID(id)
@@ -394,12 +394,12 @@ function _M.onEnterRoom(conn, sessionid, msgid)
             for k, id in ipairs(ids) do   
                 local player = app.game.PlayerData.getPlayerByNumID(id)                   
                 if player:getTicketID() == app.data.UserData.getTicketID() then
+                    app.game.GamePresenter:getInstance():onSelfPlayerEnter()
                 else                        
                     count = count + 1        
                     app.game.GamePresenter:getInstance():onPlayerEnter(player, count)            
                 end                      
-            end                
-            app.game.GamePresenter:getInstance():onSelfPlayerEnter()
+            end                            
             
         else
             for k, id in ipairs(ids) do
@@ -452,7 +452,8 @@ function _M.onChangeTable(conn, sessionid, msgid)
         local roomid =  po:read_int32()
         local base = app.data.PlazaData.getBaseByRoomid(gameid, roomid)
         local limit = app.data.PlazaData.getLimitByBase(gameid, base)
-        app.game.GameEngine:getInstance():start(gameid, base, limit)            
+        app.game.GameEngine:getInstance():start(gameid, base, limit)
+        app.game.GameConfig.setRoomID(roomid)            
         app.game.GameEngine:getInstance():onStartGame()
 
         app.game.GamePresenter:getInstance():onChangeTable()        
@@ -490,12 +491,12 @@ function _M.onChangeTable(conn, sessionid, msgid)
             for k, id in ipairs(ids) do   
                 local player = app.game.PlayerData.getPlayerByNumID(id)                   
                 if player:getTicketID() == app.data.UserData.getTicketID() then
+                    app.game.GamePresenter:getInstance():onSelfPlayerEnter()
                 else                        
                     count = count + 1        
                     app.game.GamePresenter:getInstance():onPlayerEnter(player, count)            
                 end                      
-            end                
-            app.game.GamePresenter:getInstance():onSelfPlayerEnter()
+            end                            
             
         else
             for k, id in ipairs(ids) do

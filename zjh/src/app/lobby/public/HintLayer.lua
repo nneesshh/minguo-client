@@ -15,15 +15,16 @@ HintLayer.touchs = {
     "btn_close",
     "btn_hint_ok_0",
     "btn_hint_ok_1",
-    "btn_hint_cancel_1"
+    "btn_hint_cancel_1",
+    "btn_hint_ok_2",
 }
 
 -- 定义节点数量(对应不同场合的弹框)
 -- 0默认情况,只有确定; 1左去充值右去银行
 local minType = 0
-local maxType = 1
+local maxType = 2
 
-function HintLayer:initUI(text, type)
+function HintLayer:initUI(text, type, flag)
     for i = minType,maxType do
         local node = self:seekChildByName("node_btn_"..i)
         if i == type then
@@ -33,7 +34,11 @@ function HintLayer:initUI(text, type)
         end
     end
     local content = self:seekChildByName("txt_hint")
-    content:setString(ToolUtils.getLineBreakText(text, 46))
+    if flag then
+        content:setString(text)
+    else
+        content:setString(ToolUtils.getLineBreakText(text, 46))    
+    end    
 end
 
 function HintLayer:onClick(sender)

@@ -219,7 +219,6 @@ function _M.onNiuHistory(conn, sessionid, msgid)
         lists[i].mult3     = po:read_int32()
         lists[i].mult4     = po:read_int32()
     end
-    dump(lists)
     if app.game.GamePresenter then
         app.game.GamePresenter:getInstance():onNiuHistory(lists)    
     end   
@@ -248,11 +247,8 @@ function _M.onNiuTopSeat(conn, sessionid, msgid)
         players[i].seatinfo  = _readSeatPlayerInfo(po)
     end
     
-    dump(players)       
     if app.game.GamePresenter then
-        app.game.GamePresenter:getInstance():onNiuTopSeat(players) 
-    else
-        print("app.game.GamePresenter is nil")    
+        app.game.GamePresenter:getInstance():onNiuTopSeat(players)        
     end    
 end
 
@@ -291,5 +287,20 @@ function _M.onNiuBet(conn, sessionid, msgid)
         app.game.GamePresenter:getInstance():onNiuBet(bets) 
     end
 end
+
+function _M.onNiuBankerResp(conn, sessionid, msgid)
+    print("onNiuBankerResp")    
+    local po = upconn.upconn:get_packet_obj()
+    if po == nil then return end 
+    local resp = {}
+    resp.errorCode = po:read_int32()
+    resp.errorMsg  = po:read_string()
+    
+    resp.type = po:read_int32()
+    if app.game.GamePresenter then
+        app.game.GamePresenter:getInstance():onNiuBankerResp(resp) 
+    end  
+end
+
 
 return _M

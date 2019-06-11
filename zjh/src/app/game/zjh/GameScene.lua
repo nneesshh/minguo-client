@@ -92,6 +92,8 @@ function GameScene:initUI()
     self:showBase()  
     self:showLunShu(0, GE.ALLROUND)
     self:setSelected(false, "cbx_gdd_test")
+    
+    print("back zorder", self:seekChildByName("background"):getLocalZOrder())
 end
 
 function GameScene:showStartEffect()
@@ -311,6 +313,12 @@ function GameScene:showChipBackAction(localseats)
             ))  
     	end
     end
+end
+
+function GameScene:removeAllChips()
+    local pnlarea = self:seekChildByName("pnl_chip_area")
+    pnlarea:stopAllActions()
+    pnlarea:removeAllChildren()   
 end
 
 function GameScene:showRandomChip(jackpot)

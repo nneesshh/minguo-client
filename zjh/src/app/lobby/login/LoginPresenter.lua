@@ -14,7 +14,10 @@ local _username, _password = "", ""
 
 function LoginPresenter:init(flag)    
     self:createDispatcher()
-        
+    
+    -- 暂停走马灯
+    app.lobby.notice.BroadCastNode:stopActions()
+
     _username, _password = "", ""  
     
     if flag then

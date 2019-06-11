@@ -281,7 +281,6 @@ function _M.onAnnouncement(conn, sessionid, msgid)
     resp.text = po:read_string()
     
     if resp.text and resp.text ~= "" then
-        print("resp.text",resp.text)
         app.util.DispatcherUtils.dispatchEvent(app.Event.EVENT_BROADCAST, resp.text) 
     end
 end

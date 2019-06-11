@@ -13,16 +13,18 @@ BroadCastNode._msgList = {}
 local TIMES = 2
 local SPEED = 70
 
-function BroadCastNode:initUI(tMsg)
+function BroadCastNode:initUI(tMsg,zorder)
+    if #self._msgList == 0 then
+        zorder = zorder or 1
+        local scene = cc.Director:getInstance():getRunningScene()
+        scene:addChild(self._rootNode, zorder)
+        local screenSize = cc.Director:getInstance():getWinSize()
+        self._rootNode:setPosition(screenSize.width*0.5, screenSize.height*0.86)
+    end
+    
     for i = 1,TIMES do
         table.insert(self._msgList, tMsg)
     end
-
-    local scene = cc.Director:getInstance():getRunningScene()
-    scene:addChild(self._rootNode, 999)
-    local screenSize = cc.Director:getInstance():getWinSize()
-    self._rootNode:setPosition(screenSize.width*0.5, screenSize.height*0.86)
-
     self:runActions()
 end
 
@@ -54,6 +56,11 @@ function BroadCastNode:runActions()
     local action = cc.MoveTo:create(time, cc.p(-txtWidth, 18))
     local sequence = cc.Sequence:create(action, cc.CallFunc:create(nextAction))
     txt:runAction(sequence)
+end
+
+function BroadCastNode:stopActions()
+    self._msgList = {}
+    self:exitAndCleanup()
 end
 
 return BroadCastNode

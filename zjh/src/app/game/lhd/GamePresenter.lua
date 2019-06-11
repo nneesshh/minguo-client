@@ -38,16 +38,7 @@ function GamePresenter:init(...)
 end
 
 function GamePresenter:createDispatcher()
-    app.util.DispatcherUtils.addEventListenerSafe(app.Event.EVENT_READY, handler(self, self.onReadyUpdate))
     app.util.DispatcherUtils.addEventListenerSafe(app.Event.EVENT_BROADCAST, handler(self, self.onBroadCast))     
-end
-
-function GamePresenter:onReadyUpdate(flag)
-    if not self:isCurrentUI() then
-        return
-    end
-
-    self._ui:getInstance():setTxtReady(flag)
 end
 
 function GamePresenter:onBroadCast(text)
@@ -105,6 +96,8 @@ function GamePresenter:exit()
     app.game.GameTrendPresenter = nil
     
     self:closeScheduleSendReady()
+    
+    app.lobby.notice.BroadCastNode:stopActions()
     
     GamePresenter._instance = nil
 end

@@ -91,6 +91,9 @@ function GamePresenter:exit()
     self:closeSchedulerPrepareClock()
     self:closeSchedulerRunLoading()
     self:closeScheduleSendReady()
+    
+    app.lobby.notice.BroadCastNode:stopActions()
+    
     GamePresenter._instance = nil
 end
 
@@ -271,6 +274,11 @@ end
 function GamePresenter:onGamePrepare()  
     self._ui:getInstance():showPnlHint(1)
     self._gameBtnNode:showBetNode(false) 
+    
+    local ready = app.game.GameData.getHeroReady()
+    if not ready then
+       self:sendPlayerReady()
+    end
 end
 
 -- 开始
@@ -280,6 +288,7 @@ function GamePresenter:onGameStart()
     self._playing = true    
     
     self._ui:getInstance():showPnlHint()
+    self._ui:getInstance():removeAllChips()
     
     self._gameBtnNode:showBetNode(false)       
     
@@ -310,8 +319,30 @@ function GamePresenter:onGameStart()
         end
     end
     
+    
+    -- 判断玩家状态
+    local heroseat = app.game.PlayerData.getHeroSeat()      
+    local seats = app.game.GameData.getPlayerseat()
+    if #seats ~= 0 then
+        local isIn = false
+        for i, seat in ipairs(seats) do
+            if heroseat == seat then
+                isIn = true
+            end
+        end
+        if not isIn then
+            self._ui:getInstance():showPnlHint(4) 
+            self._gameBtnNode:showBetNode(false)  
+            app.game.PlayerData.updatePlayerStatus(heroseat, 4)             
+        end         
+    end         
+         
     -- 初始化场景
     self:refreshUI()
+    
+    if self:checkHeroWaiting() then
+        return
+    end
     
     -- 开局动画    
     self:performWithDelayGlobal(

@@ -119,6 +119,8 @@ function GamePresenter:exit()
     self:closeSchedulerCalClock()
     self:closeScheduleSendReady()
     
+    app.lobby.notice.BroadCastNode:stopActions()
+    
     GamePresenter._instance = nil
 end
 

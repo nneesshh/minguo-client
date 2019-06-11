@@ -76,7 +76,10 @@ end
 -- 退出界面
 function MainPresenter:exit()
     isHotpatch = false
+    
     self._ui:getInstance():exit()
+    
+    app.lobby.notice.BroadCastNode:stopActions()
 end
 ------------------------ 信息更新 ------------------------
 function MainPresenter:onIDUpdate()
@@ -117,7 +120,7 @@ function MainPresenter:onBalanceUpdate()
 end
 
 function MainPresenter:onBroadCast(text)
-    if not self:isCurrentUI() then
+    if not self:isCurrentUI() or app.lobby.login.LoginPresenter:getInstance():isCurrentUI() then
         return
     end
 
@@ -153,7 +156,7 @@ end
 
 -- 显示设置
 function MainPresenter:showSet()
-    app.lobby.set.SetPresenter:getInstance():start(true)
+    app.lobby.set.SetPresenter:getInstance():start(true, app.Game.GameID.LOBBY)
 end
 
 -- 显示商城

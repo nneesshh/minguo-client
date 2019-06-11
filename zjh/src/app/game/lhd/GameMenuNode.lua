@@ -46,7 +46,7 @@ function GameMenuNode:onTouchBtnGameMenu()
 end
 
 function GameMenuNode:onTouchBtnGameSet()   
-    app.lobby.set.SetPresenter:getInstance():start(false)
+    app.lobby.set.SetPresenter:getInstance():start(false, app.Game.GameID.LHD)
 end
 
 function GameMenuNode:onTouchBtnChange() 

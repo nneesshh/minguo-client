@@ -4,6 +4,7 @@
 local Game = {}
 
 Game.GameID = {   
+    LOBBY = 0,
     ZJH   = 1,
     JDNN  = 2,
     QZNN  = 3,
@@ -25,6 +26,24 @@ Game.patchManifest = {
     [Game.GameID.QZNN]   = "patch_qznn/project.manifest",  
     [Game.GameID.LHD]    = "patch_lhd/project.manifest",
     [Game.GameID.BRNN]   = "patch_brnn/project.manifest",         
+}
+
+Game.localVersion = {
+    [Game.GameID.LOBBY]  = "patch/lobby/version.manifest", 
+    [Game.GameID.ZJH]    = "patch/zjh/version.manifest", 
+    [Game.GameID.JDNN]   = "patch/jdnn/version.manifest",
+    [Game.GameID.QZNN]   = "patch/qznn/version.manifest",  
+    [Game.GameID.LHD]    = "patch/lhd/version.manifest",
+    [Game.GameID.BRNN]   = "patch/brnn/version.manifest",         
+}
+
+Game.patchVersion = {
+    [Game.GameID.LOBBY]  = "patch_lobby/version.manifest",
+    [Game.GameID.ZJH]    = "patch_zjh/version.manifest", 
+    [Game.GameID.JDNN]   = "patch_jdnn/version.manifest",
+    [Game.GameID.QZNN]   = "patch_qznn/version.manifest",  
+    [Game.GameID.LHD]    = "patch_lhd/version.manifest",
+    [Game.GameID.BRNN]   = "patch_brnn/version.manifest",         
 }
 
 Game.MaxPlayCnt = {

@@ -101,6 +101,7 @@ function GamePresenter:exit()
     app.game.GameBankerPresenter = nil
     
     self:closeScheduleSendReady()
+    app.lobby.notice.BroadCastNode:stopActions()
     
     GamePresenter._instance = nil
 end

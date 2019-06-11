@@ -208,7 +208,7 @@ function GameScene:playFlyGoldAction(from, to, callback)
         local bezier = self:getBezierAction(fromPo, toPo)
         
         local action = cc.Sequence:create(
-            cc.DelayTime:create(0.03*i),
+            cc.DelayTime:create(0.04*i),
             cc.Show:create(),
             cc.EaseSineInOut:create(bezier),
             cc.DelayTime:create(0.1),
@@ -234,7 +234,7 @@ function GameScene:getBezierAction(fromPo, toPo)
     local BezierConfig = {ctrlPoint, ctrlPoint, toPo}     
 
     --移动的动作
-    local move = cc.BezierTo:create(0.5, BezierConfig)
+    local move = cc.BezierTo:create(0.6, BezierConfig)
    
     return move
 end

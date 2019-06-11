@@ -66,9 +66,7 @@ function GamePlayerNode:onPlayerEnter()
     -- 隐藏庄家
     self:showImgBanker(false)
     -- 隐藏庄家框
-    self:showImgBankerLight(false)
-    -- 隐藏已押注框
-    self:showImgBet(false,0)
+    self:showImgBankerLight(false)    
     -- 隐藏看牌
     self:showImgCheck(false)
     -- 隐藏牌型
@@ -80,7 +78,11 @@ function GamePlayerNode:onPlayerEnter()
     
     self:showBtnShowCard(false)
     
-    self:showImgSpeak(false)  
+    self:showImgSpeak(false) 
+    
+    -- 隐藏已押注框
+    local count = self:getHandCardCount() 
+    self:showImgBet(count>0, -1)    
 end
 
 -- 重置桌子
@@ -108,7 +110,7 @@ function GamePlayerNode:onGameStart()
     -- 隐藏庄家框
     self:showImgBankerLight(false)
     -- 隐藏已押注框
-    self:showImgBet(false,0)
+    self:showImgBet(false,-1)
     -- 隐藏看牌
     self:showImgCheck(false)
     -- 隐藏牌型
@@ -156,11 +158,15 @@ function GamePlayerNode:showPnlPlayerEx(visible)
     if self._rootNode then
         self._rootNode:setVisible(true)
     end
-     
+    
+    local cardcount = 0  
     local childs = self._rootNode:getChildren()
     for i, node in ipairs(childs) do
-        if node:getName() == "node_hand_card" or node:getName() == "img_bet_back" then
-        	node:setVisible(true)
+        if node:getName() == "node_hand_card" then
+        	node:setVisible(true)            
+        elseif node:getName() == "img_bet_back" then
+            local handcount = self:getHandCardCount()
+            node:setVisible(handcount > 0)  	
         else
             node:setVisible(visible)	
         end
@@ -215,7 +221,7 @@ function GamePlayerNode:showImgBet(visible, num)
     local imgBet = self:seekChildByName("img_bet_back")
     imgBet:setVisible(visible)
     
-    if num then
+    if num ~= -1 then
         local txt = self:seekChildByName("txt_bet")
         txt:setString(num)
     end
@@ -468,6 +474,10 @@ end
 -- 获取手牌
 function GamePlayerNode:getGameHandCardNode()
     return self._gameHandCardNode
+end
+
+function GamePlayerNode:getHandCardCount()
+    return self._gameHandCardNode:getHandCardCount()
 end
 
 function GamePlayerNode:setLocalZOrder(zorder)

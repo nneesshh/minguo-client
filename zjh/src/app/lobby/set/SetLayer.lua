@@ -48,7 +48,7 @@ function SetLayer:onTouch(sender, eventType)
     end
 end
 
-function SetLayer:initUI(bflag)
+function SetLayer:initUI(bflag, gameid)
     local btn =  self:seekChildByName("btn_switch_account")    	
     btn:setVisible(bflag)
 end
@@ -81,6 +81,34 @@ function SetLayer:setEffect(flag)
     self._presenter:setEffect(flag)
     self:seekChildByName("btn_effect_off"):setVisible(not flag)
     self:seekChildByName("btn_effect_on"):setVisible(flag)
+end
+
+-- 大厅版本号
+function SetLayer:setLobbyVersion(ver, visible)
+	local txtlobby = self:seekChildByName("txt_version_lobby")
+    if txtlobby then
+        if ver then
+            txtlobby:setString("版本信息：v" .. ver)            
+        else
+            txtlobby:setString("暂无版本信息")            
+        end
+        
+        txtlobby:setVisible(visible)
+	end
+end
+
+-- 游戏版本号
+function SetLayer:setGameVersion(ver, visible)
+    local txtgame = self:seekChildByName("txt_version_game")
+    if txtgame then
+        if ver then
+            txtgame:setString("版本信息：v" .. ver)           
+        else
+            txtgame:setString("暂无版本信息")            
+        end
+        
+        txtgame:setVisible(visible)
+    end
 end
 
 return SetLayer

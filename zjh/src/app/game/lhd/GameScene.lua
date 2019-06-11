@@ -160,15 +160,6 @@ function GameScene:setSelfHeTxt(num, visible)
     self:seekChildByName("img_he_self"):setVisible(visible)
 end
 
-function GameScene:setTxtReady(flag)
-    local txt = self:seekChildByName("txt_ready")
-    if flag then
-        txt:setString("准备")
-    else
-        txt:setString("未准备")    
-    end
-end
-
 function GameScene:resetBetUI()
     self:setLongTxt(0)
     self:setHuTxt(0)

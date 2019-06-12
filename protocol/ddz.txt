@@ -1,0 +1,131 @@
+﻿    // diamond, club, heart, spade, joker, 3-A-2
+    // black joker, red joker
+static unsigned char s_cards[DDZ_FULL_CARDS_NUM] = 
+{
+	0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x12,
+	0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29, 0x2a, 0x2b, 0x2c, 0x2d, 0x2e, 0x32,
+	0x43, 0x44, 0x45, 0x46, 0x47, 0x48, 0x49, 0x4a, 0x4b, 0x4c, 0x4d, 0x4e, 0x52,
+	0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x6a, 0x6b, 0x6c, 0x6d, 0x6e, 0x72,
+	0x93, 0x94
+};
+
+
+// DDZ -- 0x3000
+#define MSGID_DDZ_READY_REQ				0x3011		//二打一准备请求 12305
+#define MSGID_DDZ_BANKER_BID_REQ		0x3012		//二打一叫庄 12306
+#define MSGID_DDZ_COMPARE_BID_REQ		0x3013		//二打一比牌加倍 12307
+#define MSGID_DDZ_DISPLAY_REQ			0x3014		//二打一明牌 12308
+#define MSGID_DDZ_AUTO_HIT_REQ			0x3015		//二打一托管 12309
+#define MSGID_DDZ_HIT_CARD_REQ			0x3016		//二打一出牌 12310
+#define MSGID_DDZ_PASS_REQ				0x3017		//二打一过牌 12311
+
+#define MSGID_DDZ_GAME_PREPARE_NOTIFY	0x3021		//二打一游戏准备通知 12321
+#define MSGID_DDZ_GAME_START_NOTIFY		0x3022		//二打一游戏开始通知 12322
+#define MSGID_DDZ_GAME_OVER_NOTIFY		0x3023		//二打一游戏结束通知 12323
+
+#define MSGID_DDZ_READY_NOTIFY			0x3031		//二打一准备通知 12337
+#define MSGID_DDZ_BANKER_BID_NOTIFY		0x3032		//二打一叫庄通知 12338
+#define MSGID_DDZ_COMPARE_BID_NOTIFY	0x3033		//二打一比牌加倍通知 12339
+#define MSGID_DDZ_DISPLAY_NOTIFY		0x3034		//二打一明牌通知 12340
+
+#define MSGID_DDZ_AUTO_HIT_NOTIFY		0x3041		//二打一托管通知 12353
+#define MSGID_DDZ_HIT_CARD_NOTIFY		0x3042		//二打一出牌通知 12354
+#define MSGID_DDZ_PASS_NOTIFY			0x3043		//二打一过牌通知 12355
+
+
+enum DDZ_SPRING_FLAG
+{
+	DDZ_SPRING_FLAG_NONE = 0,
+	DDZ_SPRING_FLAG_BANKER,
+	DDZ_SPRING_FLAG_PLAYER,
+};
+
+enum DDZ_BANKER_BID_STATE
+{
+	DDZ_BANKER_BID_STATE_IDLE = 0,
+	DDZ_BANKER_BID_STATE_TURN,
+	DDZ_BANKER_BID_STATE_READY,
+	DDZ_BANKER_BID_STATE_RESTART,
+};
+
+// 
+#define DDZ_WRITE_GAME_START_TO_ONE_PLAYER(stream, baseCoin, tableId, tableInfo, selfInfo)	\
+	do {														\
+		stream.writeInt32(baseCoin);							\
+		WRITE_TABLE_INFO(stream, tableId, tableInfo);			\
+		if (selfInfo->cardDeck[0].cardsNum >= DDZ_DEAL_NUM) stream.writeString((const char *)selfInfo->cardDeck[0].cards, DDZ_DEAL_NUM);	\
+		else stream.writeString((const char *)PLAYER_CARDS_NULL_STR, DDZ_DEAL_NUM);	\
+	} while(0)
+
+// 
+#define DDZ_WRITE_GAME_OVER(stream, vGameResult, spring)		\
+	do {														\
+		int playerCount = vGameResult.size();					\
+		stream.writeInt32(playerCount);							\
+		for (int i = 0; i < playerCount; ++i) {					\
+			DDZ_GAME_RESULT *gameResult = &(vGameResult[i]);	\
+			USER_INFO_T *userInfo = gameResult->seatInfo->user->getUserInfo();	\
+			int seat = gameResult->seat;						\
+			stream.writeInt16(seat);							\
+			int score = gameResult->bonus;						\
+			stream.writeInt32(score);							\
+			stream.writeString((const char *)gameResult->seatInfo->cardDeck[0].cards, gameResult->seatInfo->cardDeck[0].cardsNum);	\
+			stream.writeInt64(userInfo->balance);				\
+			stream.writeByte(spring);				\
+		}														\
+	} while(0)
+
+// 
+#define DDZ_WRITE_GAME_COMPARE_BID_OVER(stream, tableInfo, playerCount, playerList)	\
+	do {														\
+		int bankerSeat = tableInfo->bankerSeat;					\
+		stream.writeInt32(tableInfo->bankerBidMultiple);		\
+		stream.writeInt32(playerCount);							\
+		for (int i = 0; i < playerCount; ++i) {					\
+			SEAT_INFO *seatInfo = playerList[i];				\
+			USER_INFO_T *userInfo = seatInfo->user->getUserInfo();	\
+			int seat = seatInfo->user->getGameInfo()->seat;		\
+			stream.writeInt16(seat);							\
+			if (seat != bankerSeat) stream.writeInt32(seatInfo->compareBidMultiple);	\
+			else stream.writeInt32(0);							\
+			stream.writeInt64(userInfo->balance);				\
+		}														\
+	} while(0)
+
+// 
+#define DDZ_WRITE_PLAYER_BANKER_BID(stream, tableInfo, playerSeat, multiple, bankerBidState, bankerBidCards)	\
+	do {														\
+		stream.writeInt16(playerSeat);							\
+		stream.writeInt32(multiple);							\
+		stream.writeInt16(tableInfo->currentSeat);				\
+		stream.writeInt16(tableInfo->bankerBidMultiple);		\
+		stream.writeByte(bankerBidState);						\
+		if (DDZ_BANKER_BID_STATE_READY == bankerBidState) {		\
+			stream.writeInt16(tableInfo->bankerSeat);			\
+			stream.writeString((const char *)bankerBidCards, DDZ_BANKER_BID_CARDS_NUM);	\
+		}														\
+	} while(0)
+
+// 
+#define DDZ_WRITE_PLAYER_COMPARE_BID(stream, tableInfo, playerSeat, multiple)	\
+	do {														\
+		stream.writeInt16(playerSeat);							\
+		stream.writeInt32(multiple);							\
+		stream.writeInt16(tableInfo->bankerBidMultiple);		\
+	} while(0)
+
+// 
+#define DDZ_WRITE_PLAYER_SHOW_CARDS(stream, tableInfo, playerSeat, cards, cardsNum)	\
+	do {														\
+		stream.writeInt16(playerSeat);							\
+		stream.writeString((const char *)cards, cardsNum);		\
+		stream.writeInt16(tableInfo->bankerBidMultiple);		\
+	} while(0)
+
+// 
+#define DDZ_WRITE_PLAYER_HIT_CARD(stream, tableInfo, playerSeat, cards, cardsNum)	\
+	do {														\
+		stream.writeInt16(playerSeat);							\
+		stream.writeString((const char *)cards, cardsNum);		\
+		stream.writeInt16(tableInfo->currentSeat);				\
+	} while(0)

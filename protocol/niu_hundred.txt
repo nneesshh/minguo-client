@@ -16,6 +16,16 @@
 #define MSGID_NIU100_READY_NOTIFY			0x2861		//百人牛牛通知--准备 10337
 #define MSGID_NIU100_BET_NOTIFY				0x2862		//百人牛牛通知--押注 10338
 
+enum NIU100_BANKER_BID_TIPS
+{
+	NIU100_BANKER_BID_TIPS_NONE = 0,
+	NIU100_BANKER_BID_TIPS_UP,
+	NIU100_BANKER_BID_TIPS_DOWN,
+	NIU100_BANKER_BID_TIPS_QUIT_ACTIVE,
+	NIU100_BANKER_BID_TIPS_BALANCE_NOT_ENOUGH,
+	NIU100_BANKER_BID_TIPS_BANKED_TOO_MANY_TIMES,
+};
+
 // 
 #define NIU_HUNDRED_WRITE_GAME_START(stream, baseCoin, tableId, tableInfo)	\
 	do {														\
@@ -96,7 +106,7 @@
 	} while(0)
 
 // 
-#define NIU_HUNDRED_WRITE_BANKER_BID(stream, table, dqBankerBid)	\
+#define NIU_HUNDRED_WRITE_BANKER_BID(stream, dqBankerBid, tips, tipsTicketId)		\
 	do {														\
 		int bankerBidCount = dqBankerBid.size();				\
 		stream.writeInt32(bankerBidCount);						\
@@ -109,6 +119,8 @@
 				WRITE_PLAYER_SEAT_INFO(stream, seatInfo);		\
             }													\
 		}														\
+		stream.writeByte(tips);									\
+		stream.writeInt32(tipsTicketId);						\
 	} while(0)
 
 // 

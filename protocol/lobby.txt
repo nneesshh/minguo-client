@@ -30,3 +30,72 @@
 
 #define MSGID_DEPOSIT_CASH_REQ		0x1103		//存款请求 4355
 #define MSGID_DEPOSIT_CASH_RESP		0x1104		//存款回应 4356
+
+/// USER_INFO
+#define WRITE_USER_INFO(stream, userInfo)				\
+	do {												\
+		stream.writeInt32(userInfo->userTicketId);		\
+		stream.writeString(userInfo->userName);			\
+		stream.writeString(userInfo->nickName);			\
+		stream.writeString(userInfo->avatar);			\
+		stream.writeByte(userInfo->gender);				\
+		stream.writeInt64(userInfo->balance);			\
+		stream.writeInt64(userInfo->safeBalance);		\
+	} while(0)
+
+// ROOM_INFO *
+#define	WRITE_ROOM_INFO(stream, roomInfo)			\
+	do {											\
+		stream.writeInt32(roomInfo->roomId);		\
+		stream.writeInt32(roomInfo->lowerLimit);	\
+		stream.writeInt32(roomInfo->upperLimit);	\
+		stream.writeInt32(roomInfo->baseCoin);		\
+		stream.writeInt32(roomInfo->allInBetMax);	\
+		stream.writeInt32(roomInfo->userCount);		\
+	} while(0)
+
+//TABLE_INFO *
+#define	WRITE_TABLE_INFO(stream, tableId, tableInfo)	\
+	do {											\
+		stream.writeInt32(tableId);					\
+		stream.writeByte(tableInfo->status);		\
+		stream.writeByte(tableInfo->round);			\
+		stream.writeInt32(tableInfo->baseBet);		\
+		stream.writeInt64(tableInfo->jackpotSum);	\
+		stream.writeInt64(tableInfo->jackpotArea[0]);	\
+		stream.writeInt64(tableInfo->jackpotArea[1]);	\
+		stream.writeInt64(tableInfo->jackpotArea[2]);	\
+		stream.writeInt64(tableInfo->jackpotArea[3]);	\
+		stream.writeInt16(tableInfo->bankerSeat);	\
+		stream.writeInt16(tableInfo->currentSeat);	\
+		stream.writeInt32(tableInfo->gamingCount);	\
+		for (int i = 0; i < tableInfo->gamingCount; ++i) {	\
+			stream.writeInt16(tableInfo->gamingSeats[i]);	\
+		}													\
+	} while(0)
+
+// PLAYER_SEAT_INFO *
+#define WRITE_PLAYER_SEAT_INFO(stream, seatInfo)				\
+	do {														\
+		USER_INFO_T *userInfo = seatInfo->user->getUserInfo();	\
+		stream.writeInt32(userInfo->userTicketId);				\
+		stream.writeString(userInfo->nickName);					\
+		stream.writeString(userInfo->avatar);					\
+		stream.writeByte(userInfo->gender);						\
+		stream.writeInt64(userInfo->balance);					\
+		stream.writeByte(seatInfo->status);						\
+		stream.writeInt16(seatInfo->user->getGameInfo()->seat);	\
+		stream.writeInt32(seatInfo->betSum);					\
+		stream.writeInt32(seatInfo->betArea[0]);				\
+		stream.writeInt32(seatInfo->betArea[1]);				\
+		stream.writeInt32(seatInfo->betArea[2]);				\
+		stream.writeInt32(seatInfo->betArea[3]);				\
+		stream.writeInt32(seatInfo->bankerBidMultiple);			\
+		stream.writeInt32(seatInfo->compareBidMultiple);		\
+		stream.writeByte(seatInfo->showCards);					\
+		stream.writeByte(seatInfo->display);					\
+		unsigned char *cards = seatInfo->cardDeck[0].cards;		\
+		int cardsNum = seatInfo->cardDeck[0].cardsNum;			\
+		if (seatInfo->display) stream.writeString((const char *)cards, cardsNum);	\
+		else stream.writeByte(cardsNum);						\
+	} while(0)

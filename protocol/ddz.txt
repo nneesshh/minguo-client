@@ -9,6 +9,24 @@ static unsigned char s_cards[DDZ_FULL_CARDS_NUM] =
 	0x93, 0x94
 };
 
+//
+enum DDZ_CARD_TYPE {
+	DDZ_CARD_TYPE_NULL = 0,
+	DDZ_CARD_TYPE_SINGLE,			// 1
+	DDZ_CARD_TYPE_PAIR,				// 2
+	DDZ_CARD_TYPE_TRIPLET,			// 3
+	DDZ_CARD_TYPE_SINGLE_STRAIGHT,	// 5~12
+	DDZ_CARD_TYPE_PAIR_STRAIGHT,	// 6~20       (2+2+2...)
+	DDZ_CARD_TYPE_TRIPLET_STRAIGHT,	// 6~18  plane(3+3...)
+	DDZ_CARD_TYPE_31,				// 4          (3&1)
+	DDZ_CARD_TYPE_31_STRAIGHT,		// 8~20  plane(3&1+3&1...)
+	DDZ_CARD_TYPE_32,				// 5          (3&2)
+	DDZ_CARD_TYPE_32_STRAIGHT,		// 10~20 plane(3&2+3&2...)
+	DDZ_CARD_TYPE_411,				// 6          (4&1&1)
+	DDZ_CARD_TYPE_422,				// 8          (4&2&2)
+	DDZ_CARD_TYPE_BOMB,				// 4     bomb
+	DDZ_CARD_TYPE_ROCKET,			// 2     two jokers(red + black)
+};
 
 // DDZ -- 0x3000
 #define MSGID_DDZ_READY_REQ				0x3011		//二打一准备请求 12305
@@ -53,8 +71,7 @@ enum DDZ_BANKER_BID_STATE
 	do {														\
 		stream.writeInt32(baseCoin);							\
 		WRITE_TABLE_INFO(stream, tableId, tableInfo);			\
-		if (selfInfo->cardDeck[0].cardsNum >= DDZ_DEAL_NUM) stream.writeString((const char *)selfInfo->cardDeck[0].cards, DDZ_DEAL_NUM);	\
-		else stream.writeString((const char *)PLAYER_CARDS_NULL_STR, DDZ_DEAL_NUM);	\
+		stream.writeString((const char *)selfInfo->cardDeck[0].cards, DDZ_DEAL_NUM);	\
 	} while(0)
 
 // 
@@ -115,7 +132,7 @@ enum DDZ_BANKER_BID_STATE
 	} while(0)
 
 // 
-#define DDZ_WRITE_PLAYER_SHOW_CARDS(stream, tableInfo, playerSeat, cards, cardsNum)	\
+#define DDZ_WRITE_PLAYER_DISPLAY_CARDS(stream, tableInfo, playerSeat, cards, cardsNum)	\
 	do {														\
 		stream.writeInt16(playerSeat);							\
 		stream.writeString((const char *)cards, cardsNum);		\

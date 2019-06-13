@@ -144,5 +144,7 @@ enum DDZ_BANKER_BID_STATE
 	do {														\
 		stream.writeInt16(playerSeat);							\
 		stream.writeString((const char *)cards, cardsNum);		\
+		stream.writeByte(cardType);								\
+		stream.writeInt32(addMultiple);							\
 		stream.writeInt16(tableInfo->currentSeat);				\
 	} while(0)

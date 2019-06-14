@@ -71,7 +71,7 @@ enum DDZ_BANKER_BID_STATE
 	do {														\
 		stream.writeInt32(baseCoin);							\
 		WRITE_TABLE_INFO(stream, tableId, tableInfo);			\
-		stream.writeString((const char *)selfInfo->cardDeck[0].cards, DDZ_DEAL_NUM);	\
+		stream.writeString((const char *)selfInfo->cardDeck[0].cbuf.data, DDZ_DEAL_NUM);	\
 	} while(0)
 
 // 
@@ -84,12 +84,13 @@ enum DDZ_BANKER_BID_STATE
 			USER_INFO_T *userInfo = gameResult->seatInfo->user->getUserInfo();	\
 			int seat = gameResult->seat;						\
 			stream.writeInt16(seat);							\
+			stream.writeInt32(gameResult->multiple);			\
 			int score = gameResult->bonus;						\
 			stream.writeInt32(score);							\
-			stream.writeString((const char *)gameResult->seatInfo->cardDeck[0].cards, gameResult->seatInfo->cardDeck[0].cardsNum);	\
+			stream.writeString((const char *)gameResult->seatInfo->cardDeck[0].cbuf.data, gameResult->seatInfo->cardDeck[0].cbuf.num);	\
 			stream.writeInt64(userInfo->balance);				\
-			stream.writeByte(spring);				\
 		}														\
+		stream.writeByte(spring);								\
 	} while(0)
 
 // 
@@ -115,7 +116,7 @@ enum DDZ_BANKER_BID_STATE
 		stream.writeInt16(playerSeat);							\
 		stream.writeInt32(multiple);							\
 		stream.writeInt16(tableInfo->currentSeat);				\
-		stream.writeInt16(tableInfo->bankerBidMultiple);		\
+		stream.writeInt32(tableInfo->bankerBidMultiple);		\
 		stream.writeByte(bankerBidState);						\
 		if (DDZ_BANKER_BID_STATE_READY == bankerBidState) {		\
 			stream.writeInt16(tableInfo->bankerSeat);			\
@@ -128,7 +129,7 @@ enum DDZ_BANKER_BID_STATE
 	do {														\
 		stream.writeInt16(playerSeat);							\
 		stream.writeInt32(multiple);							\
-		stream.writeInt16(tableInfo->bankerBidMultiple);		\
+		stream.writeInt32(tableInfo->bankerBidMultiple);		\
 	} while(0)
 
 // 
@@ -136,15 +137,16 @@ enum DDZ_BANKER_BID_STATE
 	do {														\
 		stream.writeInt16(playerSeat);							\
 		stream.writeString((const char *)cards, cardsNum);		\
-		stream.writeInt16(tableInfo->bankerBidMultiple);		\
+		stream.writeInt32(tableInfo->bankerBidMultiple);		\
 	} while(0)
 
 // 
-#define DDZ_WRITE_PLAYER_HIT_CARD(stream, tableInfo, playerSeat, cards, cardsNum)	\
+#define DDZ_WRITE_PLAYER_HIT_CARD(stream, tableInfo, playerSeat, cards, cardsNum, cardType, cardsPoint, addMultiple)	\
 	do {														\
 		stream.writeInt16(playerSeat);							\
 		stream.writeString((const char *)cards, cardsNum);		\
 		stream.writeByte(cardType);								\
 		stream.writeInt32(addMultiple);							\
 		stream.writeInt16(tableInfo->currentSeat);				\
+		stream.writeInt32(tableInfo->bankerBidMultiple);		\
 	} while(0)

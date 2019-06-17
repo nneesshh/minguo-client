@@ -9,8 +9,8 @@ local GameCardNode = class("GameCardNode", app.base.BaseNode)
 GameCardNode.csbPath         = "game/brnn/csb/card.csb"
 GameCardNode.imgCardPath     = "game/public/card/img_"
 
-local TAKE_FIRST_DELAY       = 0.2
-local MOVE_ACTION_DELAY      = 0.15
+local TAKE_FIRST_DELAY       = 0.1
+local MOVE_ACTION_DELAY      = 0.1
 local CV_BACK                = 0
 
 local COLOR = {
@@ -127,11 +127,17 @@ function GameCardNode:setCardIndex(index)
     self:setCardLocalZorder()
 end
 
+function GameCardNode:setCardIndexEx(index)
+    self._index = index
+
+    self:setCardLocalZorder()
+end
+
 function GameCardNode:setCardPosition()
     local posX, posY = 0,0
 
     local posX, posY = 0,0
-    posX = (self._index-1)*156*self._scale*0.5
+    posX = (self._index-1)*156*self._scale*0.35
     self._rootNode:setPosition(cc.p(posX, posY))
 end
 
@@ -178,12 +184,12 @@ end
 function GameCardNode:playTakeFirstAction()
     local parent = self._rootNode:getParent()
     local szScreen = cc.Director:getInstance():getWinSize()
-    local pCenter = parent:convertToNodeSpace(cc.p(szScreen.width*0.5, szScreen.height*0.5))
+    local pCenter = parent:convertToNodeSpace(cc.p(szScreen.width*0.5-self:getCardSize().width/2, szScreen.height*0.5))
     self._rootNode:setPosition(pCenter)
     
     local pos = self:calHandCardPosition(self._index, self._localSeat)    
-    local actMoveTo = cc.Sequence:create(
-        cc.MoveTo:create(TAKE_FIRST_DELAY, pos),
+    local actMoveTo = cc.Sequence:create(       
+        cc.MoveTo:create(TAKE_FIRST_DELAY, pos),               
         cc.CallFunc:create(function() 
             self._rootNode:setPosition(cc.p(pos)) 
         end))
@@ -198,6 +204,31 @@ function GameCardNode:calHandCardPosition(index, localSeat)
     x = x + index*size.width*0.5    
     
     return cc.p(x, y)
+end
+
+function GameCardNode:playMoveAction()
+
+        self._rootNode:stopAllActions()
+
+        local actMoveTo = cc.MoveTo:create(MOVE_ACTION_DELAY, cc.p(0, 0))
+        local actRemove = cc.CallFunc:create(function()
+            self._rootNode:setPosition(cc.p(0, 0))
+        end)        
+
+        local pos = self:calHandCardPosition(self._index, self._localSeat)    
+
+        local actMoveTo2 = cc.MoveTo:create(MOVE_ACTION_DELAY * 2, pos)
+        local actRemove2 = cc.CallFunc:create(function()
+            self._rootNode:setPosition(pos)
+        end)        
+        self._rootNode:runAction(
+            cc.Sequence:create(
+                actMoveTo, 
+                actRemove,
+                actMoveTo2, 
+                actRemove2
+            )
+        )
 end
 
 return GameCardNode

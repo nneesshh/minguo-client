@@ -83,7 +83,9 @@ function GamePresenter:initMenuNode()
 end
 
 function GamePresenter:initScheduler()      
-    self._schedulerAutoReady    = nil     -- 自动准备  
+    self._schedulerAutoReady    = nil     -- 自动准备
+    self._schedulerBankBtnCD    = nil     -- 上庄按钮    
+    self._schedulerTakeFirst    = nil     -- 发牌  
 end
 
 function GamePresenter:initRequire()
@@ -101,6 +103,9 @@ function GamePresenter:exit()
     app.game.GameBankerPresenter = nil
     
     self:closeScheduleSendReady()
+    self:closeSchedulerBankBtnCD()
+    self:closeSchedulerTakeFirst()
+    
     app.lobby.notice.BroadCastNode:stopActions()
     
     GamePresenter._instance = nil
@@ -192,8 +197,7 @@ function GamePresenter:onLeaveRoom()
 end
 
 -- 处理玩家进入
-function GamePresenter:onPlayerEnter(player, k)
-    print("wq--player--enter")
+function GamePresenter:onPlayerEnter(player, k)   
     if k < 0 or k > 6 or not player then
         print("player enter full")
         return
@@ -277,13 +281,29 @@ function GamePresenter:onNiuGameStart()
                 
     for i=1, 3 do        
         self:performWithDelayGlobal(function()
-            self:playEffectByName("countdown")
+            if app.game.GamePresenter then
+                self:playEffectByName("countdown")
+            end            
         end, 9+i)            
-    end    
+    end
+    self:playEffectByName("e_start")      
 end
 
+
+-- 发牌
+function GamePresenter:onTakeFirst(callback)
+    for i = 1, 5 do
+        if self._gameHandCardNode[i] then
+            self._gameHandCardNode[i]:resetHandCards() 
+        end
+    end
+    self:openSchedulerTakeFirst(callback)
+end
+
+
 -- 游戏结束
-function GamePresenter:onNiuGameOver(overs, players)  
+function GamePresenter:onNiuGameOver(overs, players) 
+    dump(players) 
     self._playing = false 
     app.game.GameData.setTableStatus(zjh_defs.TableStatus.TS_ENDING)
     app.game.GameData.setReady(false)
@@ -293,23 +313,52 @@ function GamePresenter:onNiuGameOver(overs, players)
     -- 停止下注
     self._ui:getInstance():showEndEffect() 
     self:playEffectByName("stop")          
-    
-    self:performWithDelayGlobal(function()
-        local backcards = {CV_BACK, CV_BACK, CV_BACK, CV_BACK, CV_BACK}
-        if self._gameHandCardNode[5] then
-            self._gameHandCardNode[5]:resetHandCards()
-            self._gameHandCardNode[5]:createCards(backcards)
-        end 
-        for i=1, 4 do           
-            self:performWithDelayGlobal(function()
-                self:createNiuCards(i, backcards, -1)                
-            end, i*0.3)            
-        end
-    end, 0.5)   
-        
     -- 提示
     self._ui:getInstance():showHint()
+       
+    local function takefirst()
+        self:performWithDelayGlobal(function()
+            local backcards = {}        
+            for k, card in ipairs(overs.areacards) do
+                if k <= 5  then
+                    backcards[1] = backcards[1] or {}
+                    table.insert(backcards[1], card)
+                elseif k <= 10 then
+                    backcards[2] = backcards[2] or {}
+                    table.insert(backcards[2], card)
+                elseif k <= 15 then
+                    backcards[3] = backcards[3] or {}
+                    table.insert(backcards[3], card)
+                else
+                    backcards[4] = backcards[4] or {}
+                    table.insert(backcards[4], card)
+                end
+            end
+
+            for key, cards in ipairs(backcards) do
+                cards[4] = CV_BACK
+            end
+
+            local bcards = {}
+            for key, var in ipairs(overs.bcards) do
+                bcards[key] = var
+            end
+            bcards[4] = CV_BACK
+
+            if self._gameHandCardNode[5] then
+                self._gameHandCardNode[5]:resetHandCards()
+                self._gameHandCardNode[5]:createCards(bcards)                
+            end 
+            for i=1, 4 do                          
+                self:createNiuCards(i, backcards[i], -1)                            
+            end
+        end, 0.25)   
+    end
     
+    self:performWithDelayGlobal(function()
+        self:onTakeFirst(takefirst)  
+    end, 1.1)
+
     -- 飘金币
     local function goldFunc()
         -- 刷新列表
@@ -381,6 +430,7 @@ function GamePresenter:onNiuGameOver(overs, players)
             self._ui:getInstance():showSleepEffect()       
         end, 2)
     end
+    
     -- 赢的区域
     local function lightFunc()
         local winlist = {}
@@ -442,6 +492,10 @@ function GamePresenter:onNiuGameOver(overs, players)
             [4] = overs.area4type
         }  
         
+        for i=1, 4 do
+            areacards[i] = self:divideCards(areacards[i], areatype[i]) 
+        end
+        
         local areamult = {
             [1] = overs.mult1,
             [2] = overs.mult2,
@@ -477,17 +531,18 @@ function GamePresenter:onNiuGameOver(overs, players)
     end
     
     self:performWithDelayGlobal(function()
+        overs.bcards = self:divideCards(overs.bcards, overs.bcardtype) 
         self:createNiuCards(5, overs.bcards, overs.bcardtype, cardFunc)              
-    end, 1.5)
+    end, 4.5)
     
     print("send ready 8") 
     -- 自动准备
     self:performWithDelayGlobal(function()               
         self:sendPlayerReady()
-    end, 8) 
+    end, 11) 
 end
 
-function GamePresenter:onNiuBankerBid(lists)    
+function GamePresenter:onNiuBankerBid(lists, info)    
     if #lists == nil then
     	return
     end
@@ -496,7 +551,12 @@ function GamePresenter:onNiuBankerBid(lists)
         app.game.GameData.setBankerID(lists[1].seatinfo.ticketid)
         
         local player = app.game.PlayerData.getPlayerByNumID(lists[1].seatinfo.ticketid)
-        self._gamePlayerNodes[LOCAL_BANKER_SEAT]:onPlayerEnter(player)                  
+        self._gamePlayerNodes[LOCAL_BANKER_SEAT]:onPlayerEnter(player)    
+                
+        if lists[1].seatinfo.ticketid == app.data.UserData.getTicketID() and lists[1].bankernum == 0 then
+        	self._ui:getInstance():showHint("banker")
+            app.game.GameBankerPresenter:getInstance():showHint("banker")
+        end              
     else
         app.game.GameData.setBankerID(SYSTEMID)
         
@@ -519,21 +579,55 @@ function GamePresenter:onNiuBankerBid(lists)
                 players[i].avatar    = 1
                 players[i].gender    = 0
                 players[i].balance   = 10000000
-                players[i].ticketid  = "系统大庄家"               
+                players[i].ticketid  = "系统庄家"               
                 players[i].bankernum = -1   
             end                       
         end
-        app.game.GameBankerPresenter:getInstance():init(players)
+        app.game.GameBankerPresenter:getInstance():init(players,self._schedulerBankBtnCD)
     end
         
     local players = app.game.GameData.getPlayerLists()        
     self:updatePlayerList(players)
     
     local isbanker = app.game.GameData.isHeroBanker()
+    
     if isbanker then
         self._gameBtnNode:setBankerBtn()
     else
         self._gameBtnNode:setTxtHint(false,"banker")    
+    end
+    
+    print("sz---", info.ticketid, info.tipid)
+     
+    if info.ticketid == app.data.UserData.getTicketID() then
+        if info.tipid == zjh_defs.NiuStatus.NIU100_BANKER_BID_TIPS_UP then
+            app.game.GameBankerPresenter:getInstance():showHint("up")
+            
+        elseif info.tipid == zjh_defs.NiuStatus.NIU100_BANKER_BID_TIPS_DOWN then
+            local bankerlist = app.game.GameData.getBankerLists()
+            local flag = false
+            if bankerlist[1].isSys == 0 then
+                if bankerlist[1].seatinfo.ticketid == app.data.UserData.getTicketID() then
+                    app.game.GameBankerPresenter:getInstance():showHint("dsuccess")
+                    self._ui:getInstance():showHint("dsuccess")
+                    flag = true
+                end              
+            end
+
+            if not flag then
+                app.game.GameBankerPresenter:getInstance():showHint("cancel")
+            end
+            self:openScheduleBankBtnCD(30)              
+        elseif info.tipid == zjh_defs.NiuStatus.NIU100_BANKER_BID_TIPS_QUIT_ACTIVE then
+            self._ui:getInstance():showHint("dsuccess")
+            app.game.GameBankerPresenter:getInstance():showHint("dsuccess")    
+        elseif info.tipid == zjh_defs.NiuStatus.NIU100_BANKER_BID_TIPS_BALANCE_NOT_ENOUGH then
+            self._ui:getInstance():showHint("dless")
+            app.game.GameBankerPresenter:getInstance():showHint("dless")
+        elseif info.tipid == zjh_defs.NiuStatus.NIU100_BANKER_BID_TIPS_BANKED_TOO_MANY_TIMES then
+            self._ui:getInstance():showHint("10")
+            app.game.GameBankerPresenter:getInstance():showHint("10")
+    	end
     end
 end
 
@@ -564,6 +658,7 @@ end
 
 -- 玩家列表
 function GamePresenter:onNiuTopSeat(players) 
+    dump(players)
     app.game.GameData.setPlayerLists(players)    
     
     self:updatePlayerList(players)
@@ -646,7 +741,7 @@ end
 function GamePresenter:onNiuBankerResp(resp)
     local flag = false
     if resp.errorCode == zjh_defs.ErrorCode.ERR_SUCCESS then
-       app.game.GameBankerPresenter:getInstance():showHint(resp.type)
+        
     else
         print(resp.errorMsg)   
 	end	
@@ -831,12 +926,12 @@ function GamePresenter:onTouchGoBanker()
             players[i].avatar    = 1
             players[i].gender    = 0
             players[i].balance   = 10000000
-            players[i].ticketid  = "系统大庄家"               
+            players[i].ticketid  = "系统庄家"               
             players[i].bankernum = -1   
         end                       
     end
     
-    app.game.GameBankerPresenter:getInstance():start(players)
+    app.game.GameBankerPresenter:getInstance():start(players, self._schedulerBankBtnCD)
 end
 
 function GamePresenter:onTouchBet(bet)
@@ -913,6 +1008,111 @@ function GamePresenter:closeScheduleSendReady()
     end
 end
 
+function GamePresenter:openScheduleBankBtnCD(time)
+    local allTime = time
+    
+    local function flipIt(dt)
+        time = time - dt
+        if time <= 0 then
+            -- 上庄按钮         
+            app.game.GameBankerPresenter:getInstance():showBtnBankerEx()
+            self:closeSchedulerBankBtnCD()                
+            return        
+        end
+        
+        local strTime = string.format("%d", math.ceil(time))        
+        app.game.GameBankerPresenter:getInstance():showBtnCdTime(strTime)        
+    end
+
+    self:closeSchedulerBankBtnCD()
+    self._schedulerBankBtnCD = scheduler:scheduleScriptFunc(flipIt, 0.1, false)
+end 
+
+function GamePresenter:closeSchedulerBankBtnCD()
+    if self._schedulerBankBtnCD then
+        scheduler:unscheduleScriptEntry(self._schedulerBankBtnCD)
+        self._schedulerBankBtnCD = nil
+    end
+end
+
+-- 发牌
+local CARD_NUM = 5
+function GamePresenter:openSchedulerTakeFirst(callback)
+    local cards = {}             
+    for i = 1, 5 do
+        cards[i] = cards[i] or {}  
+        for j=1, 37 do
+            cards[i][j] = CV_BACK
+        end
+    end
+    
+    local seat = 5
+    local cardNum = 1
+    local f1,f2,f3,f4,f5 = false,false,false,false,false
+            
+    local function onInterval(dt)       	
+        if cardNum <= 37 then
+            if seat == 5 and not f5 then
+                self:playEffectByName("send")
+                f5 = true
+            end                
+            if self._gameHandCardNode[seat] then
+                if (cardNum >= 6 and cardNum <= 8) or 
+                    (cardNum >= 14 and cardNum <= 16) or 
+                    (cardNum >= 22 and cardNum <= 24) or 
+                    (cardNum >= 30 and cardNum <= 32) then
+                else
+                    self._gameHandCardNode[seat]:onTakeFirst(cards[seat][cardNum])
+                end              
+            end                
+            cardNum = cardNum + 1
+            if cardNum == 9 then
+            	seat = 1
+                if not f1 then
+                    self:playEffectByName("send")
+                    f1 = true
+                end
+            elseif cardNum == 17 then
+                seat = 2                
+                if not f2 then
+                    self:playEffectByName("send")
+                    f2 = true
+                end
+            elseif cardNum == 25 then 
+                seat = 3
+                if not f3 then
+                    self:playEffectByName("send")
+                    f3 = true
+                end
+            elseif cardNum == 33 then  
+                seat = 4	
+                if not f4 then
+                    self:playEffectByName("send")
+                    f4 = true
+                end
+            end
+        else
+            self:closeSchedulerTakeFirst()   
+            for i=1,5 do
+                self._gameHandCardNode[i]:playSortAction()                  
+            end             
+            if callback then                                
+                callback()
+            end       
+        end           	
+    end
+
+    self:closeSchedulerTakeFirst()
+    self._schedulerTakeFirst = scheduler:scheduleScriptFunc(onInterval, 0.05, false)
+end
+
+function GamePresenter:closeSchedulerTakeFirst()
+    if self._schedulerTakeFirst then
+        scheduler:unscheduleScriptEntry(self._schedulerTakeFirst)
+        self._schedulerTakeFirst = nil
+    end
+end
+
 -- ---------------------------rule-----------------------------
 function GamePresenter:getCardColor(id)
     if id ~= nil then
@@ -981,6 +1181,75 @@ function GamePresenter:getChipNumByIndex(index)
     end 
     
     return chip
+end
+
+-- 根据牌型对手牌分组
+function GamePresenter:divideCards(cards, cardtype)
+    local niuTab = {}
+    local numTab = {}
+    -- 炸弹牛
+    if cardtype == GECT.NIU_TYPE_BOMB then
+        local temp_num = 0 
+        for i, a in ipairs(cards) do
+            local a_num = self:getCardNiuNum(a)
+            for j, b in ipairs(cards) do
+                local b_num = self:getCardNiuNum(b)      
+                if i ~= j and a_num == b_num then
+                    temp_num = a_num
+                    break
+                end
+            end
+        end        
+        for i, card in ipairs(cards) do
+            local c_num = self:getCardNiuNum(card)
+            if c_num == temp_num and #niuTab < 3 then
+                table.insert(niuTab, card)
+            else
+                table.insert(numTab, card)   
+            end               
+        end
+        -- 没牛-牛牛
+    elseif cardtype > GECT.NIU_TYPE_NIU_WU and cardtype <= GECT.NIU_TYPE_NIU_NIU then    
+        for i, a in ipairs(cards) do
+            local a_num = self:getCardNiuNum(a)
+            for j, b in ipairs(cards) do
+                local b_num = self:getCardNiuNum(b)                
+                if i ~= j and (a_num + b_num) % 10 == (cardtype % 10) and #numTab == 0 then                
+                    table.insert(numTab, a)
+                    table.insert(numTab, b)
+                    break   
+                end
+            end
+        end
+        for i, card in ipairs(cards) do
+            if card ~= numTab[1] and card ~= numTab[2] then
+                table.insert(niuTab, card)                
+            end
+        end        
+    else 
+        for i, card in ipairs(cards) do
+            if i <= 3 then
+                table.insert(niuTab, card)     
+            else
+                table.insert(numTab, card)  
+            end
+        end
+    end
+    
+    
+    for k, v in ipairs(numTab) do
+        niuTab[#niuTab+k] = v
+    end
+
+    return niuTab
+end
+
+function GamePresenter:getCardNiuNum(id)
+    local num = self:getCardNum(id)
+    if num >= 10 then
+        num = 10
+    end
+    return num   
 end
 
 -- ----------------------------request-------------------------------

@@ -104,3 +104,6 @@ app.game.GameEngine                         = requireLobby("app.game.GameEngine"
 app.game.GameLoader                         = requireLobby("app.game.GameLoader")
 app.game.Player                             = requireLobby("app.game.Player")
 app.game.PlayerData                         = requireLobby("app.game.PlayerData")
+
+app.game.CardRule                           = requireLobby("app.game.base.CardRule")
+app.game.CardRunRule                        = requireLobby("app.game.base.CardRunRule")

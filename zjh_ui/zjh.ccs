@@ -35,6 +35,7 @@
               <Image Name="btn_other.png" />
               <Image Name="btn_sit_banker.png" />
               <Image Name="btn_sit_banker2.png" />
+              <Image Name="btn_sit_banker3.png" />
               <Image Name="btn_trend.png" />
               <Image Name="btn_win_x.png" />
               <Image Name="img_0.png" />
@@ -68,7 +69,11 @@
               <Image Name="img_hint.png" />
               <Image Name="img_hint_banker.png" />
               <Image Name="img_hint_banker2.png" />
+              <Image Name="img_hint_bebanker.png" />
               <Image Name="img_hint_cancel.png" />
+              <Image Name="img_hint_down_10.png" />
+              <Image Name="img_hint_down_less.png" />
+              <Image Name="img_hint_down_success.png" />
               <Image Name="img_hint_full.png" />
               <Image Name="img_hint_less.png" />
               <Image Name="img_hint_less2.png" />
@@ -92,6 +97,70 @@
               <Image Name="img_trend.png" />
               <Image Name="img_trend_back.png" />
               <PlistInfo Name="plistscene.csi" Type="Plist" />
+            </Folder>
+          </Folder>
+          <Folder Name="ddz">
+            <Folder Name="csb">
+              <Project Name="button.csd" Type="Node" />
+              <Project Name="card.csd" Type="Node" />
+              <Project Name="gamescene.csd" Type="Scene" />
+              <Project Name="menu.csd" Type="Node" />
+              <Project Name="record.csd" Type="Node" />
+              <Project Name="trend.csd" Type="Layer" />
+            </Folder>
+            <Folder Name="image">
+              <Folder Name="fnt">
+                <Fnt Name="clockfnt.fnt" />
+                <Fnt Name="losefnt.fnt" />
+                <Fnt Name="startfnt.fnt" />
+                <Fnt Name="winfnt.fnt" />
+              </Folder>
+              <Image Name="btn_1_1.png" />
+              <Image Name="btn_1_2.png" />
+              <Image Name="btn_2_1.png" />
+              <Image Name="btn_2_2.png" />
+              <Image Name="btn_3_1.png" />
+              <Image Name="btn_3_2.png" />
+              <Image Name="btn_cant_out.png" />
+              <Image Name="btn_continue.png" />
+              <Image Name="btn_hint.png" />
+              <Image Name="btn_ming.png" />
+              <Image Name="btn_mult.png" />
+              <Image Name="btn_no_call.png" />
+              <Image Name="btn_no_mult.png" />
+              <Image Name="btn_no_out.png" />
+              <Image Name="btn_out_1.png" />
+              <Image Name="btn_out_2.png" />
+              <Image Name="btn_rember.png" />
+              <Image Name="btn_result_x.png" />
+              <Image Name="btn_trust.png" />
+              <Image Name="img_add_back.png" />
+              <Image Name="img_banker.png" />
+              <Image Name="img_bottom.png" />
+              <Image Name="img_call_0.png" />
+              <Image Name="img_call_1.png" />
+              <Image Name="img_call_2.png" />
+              <Image Name="img_call_3.png" />
+              <Image Name="img_call_4.png" />
+              <Image Name="img_card_banker.png" />
+              <Image Name="img_clock.png" />
+              <Image Name="img_desc_back.png" />
+              <Image Name="img_gold.png" />
+              <Image Name="img_head_back1.png" />
+              <Image Name="img_head_back2.png" />
+              <Image Name="img_hint.png" />
+              <Image Name="img_hint_start.png" />
+              <Image Name="img_mult.png" />
+              <Image Name="img_rember.png" />
+              <Image Name="img_result_1.png" />
+              <Image Name="img_result_2.png" />
+              <Image Name="img_title_lose.png" />
+              <Image Name="img_title_win.png" />
+              <Image Name="img_type_1.png" />
+              <Image Name="img_type_2.png" />
+              <Image Name="img_type_3.png" />
+              <Image Name="img_type_4.png" />
+              <Image Name="img_type_5.png" />
             </Folder>
           </Folder>
           <Folder Name="jdnn">

@@ -43,7 +43,8 @@ function GameScene:onTouch(sender, eventType)
         elseif name == "btn_other" then                                  
             self._presenter:onTouchOther()                    
         elseif name == "btn_banker" then
-            self._presenter:onTouchGoBanker()           
+            self._presenter:onTouchGoBanker()
+--            self._presenter:onTakeFirst()           
         end       
     end
 end
@@ -145,22 +146,34 @@ function GameScene:showImgTouchAreaLight(index, callback)
 end
 
 function GameScene:showImgNiuType(index,visible, type)
-    local imgtype = self:seekChildByName("img_niu_type_" .. index)
-    if imgtype then
-        if visible then
-            if type ~= -1 then
-                imgtype:ignoreContentAdaptWithSize(true)   
-                local res = string.format("game/brnn/image/img_card_type_%d.png", type)     
-                imgtype:loadTexture(res, ccui.TextureResType.plistType)    
-            end            
-        end
-        
-        if type == -1 then
-            imgtype:setVisible(false)
-        else
-            imgtype:setVisible(visible)    
-        end 
+    local node = self:seekChildByName("node_niu_type_" .. index) 
+    if node and not visible then
+        node:setVisible(visible)
+        return
     end
+    if node and type and type >= 0 and type <= 13 then
+        node:removeAllChildren()
+        node:stopAllActions()
+        node:setVisible(visible)
+        
+        local effect = self:createNiuEffect(type)
+        node:addChild(effect)        
+    end    
+end
+
+function GameScene:createNiuEffect(type)
+    ccs.ArmatureDataManager:getInstance():addArmatureFileInfo("game/brnn/effect/nuijidonghua_dh2/nuijidonghua_dh2.ExportJson")
+    local effect = ccs.Armature:create("nuijidonghua_dh2")
+    effect:setPosition(cc.p(0, 0))
+
+    local pb = effect:getBone("nui0")
+    pb:changeDisplayWithIndex(type, true)
+    local pb2 = effect:getBone("nui0_2")
+    pb2:changeDisplayWithIndex(type, true)
+
+    effect:getAnimation():playWithIndex(0)
+
+    return effect
 end
 
 function GameScene:showImgNobetVisible(index, visible)
@@ -208,7 +221,13 @@ function GameScene:showHint(type)
     local nodeWait = self:seekChildByName("img_hint_wait")
     local nodeLess = self:seekChildByName("img_hint_less")
     local nodeMore = self:seekChildByName("img_hint_more")
-    local nodeFull = self:seekChildByName("img_hint_full") 
+    local nodeFull = self:seekChildByName("img_hint_full")
+    
+    local nodeBebanker    = self:seekChildByName("img_hint_bebanker")
+    local nodeDown10      = self:seekChildByName("img_hint_down10")
+    local nodeDownLess    = self:seekChildByName("img_hint_down_less")
+    local nodeDownSuccess = self:seekChildByName("img_hint_down_success")
+         
     nodeLess:stopAllActions()
     nodeMore:stopAllActions()
 
@@ -216,6 +235,11 @@ function GameScene:showHint(type)
     nodeLess:setVisible(type == "less")
     nodeMore:setVisible(type == "more")   
     nodeFull:setVisible(type == "full")
+    
+    nodeBebanker:setVisible(type == "banker")
+    nodeDown10:setVisible(type == "10")
+    nodeDownLess:setVisible(type == "dless")   
+    nodeDownSuccess:setVisible(type == "dsuccess")
 
     if type == "less" then
         nodeLess:runAction(cc.Sequence:create(
@@ -226,7 +250,27 @@ function GameScene:showHint(type)
         nodeMore:runAction(cc.Sequence:create(
             cc.FadeIn:create(0.5),                       
             cc.FadeOut:create(1)
-        ))    
+        ))
+    elseif type == "banker" then  
+        nodeBebanker:runAction(cc.Sequence:create(
+            cc.FadeIn:create(0.5),                       
+            cc.FadeOut:create(1)
+        ))   
+    elseif type == "10" then  
+        nodeDown10:runAction(cc.Sequence:create(
+            cc.FadeIn:create(0.5),                       
+            cc.FadeOut:create(1)
+        ))   
+    elseif type == "dless" then  
+        nodeDownLess:runAction(cc.Sequence:create(
+            cc.FadeIn:create(0.5),                       
+            cc.FadeOut:create(1)
+        ))   
+    elseif type == "dsuccess" then  
+        nodeDownSuccess:runAction(cc.Sequence:create(
+            cc.FadeIn:create(0.5),                       
+            cc.FadeOut:create(1)
+        ))       
     end 
 end
 
@@ -380,22 +424,28 @@ function GameScene:movePlayerPnl(localseat, index)
     end
 
     local Action
-    
-    if localseat % 2 == 0 or localseat == 1 then
+    if localseat >= 1 and localseat <= 6 then
+        if localseat % 2 == 1 then
+            Action = cc.Sequence:create(
+                cc.EaseSineOut:create(cc.MoveBy:create(0.2,cc.p(gox,0))),
+                cc.EaseSineOut:create(cc.MoveBy:create(0.1,cc.p(tox,0)))
+            )
+        else
+            Action = cc.Sequence:create(
+                cc.EaseSineOut:create(cc.MoveBy:create(0.2,cc.p(tox,0))),
+                cc.EaseSineOut:create(cc.MoveBy:create(0.1,cc.p(gox,0)))
+            )
+        end
+    elseif localseat == 8 then
         Action = cc.Sequence:create(
-            cc.EaseSineOut:create(cc.MoveBy:create(0.2,cc.p(gox,0))),
-            cc.EaseSineOut:create(cc.MoveBy:create(0.1,cc.p(tox,0)))
-        )
-    else
-        Action = cc.Sequence:create(
-            cc.EaseSineOut:create(cc.MoveBy:create(0.2,cc.p(tox,0))),
-            cc.EaseSineOut:create(cc.MoveBy:create(0.1,cc.p(gox,0)))
+            cc.EaseSineOut:create(cc.MoveBy:create(0.2,cc.p(0,gox))),
+            cc.EaseSineOut:create(cc.MoveBy:create(0.1,cc.p(0,tox)))
         )
     end
     
     if Action then
         pnl:runAction(Action)
-    end
+    end    
 end
 
 function GameScene:showStartEffect()

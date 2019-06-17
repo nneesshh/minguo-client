@@ -70,6 +70,11 @@
       <FilePathData Path="game/brnn/image/img_hint_cancel.png" />
       <FilePathData Path="game/brnn/image/img_hint_banker.png" />
       <FilePathData Path="game/brnn/image/img_hint_banker2.png" />
+      <FilePathData Path="game/brnn/image/img_hint_down_10.png" />
+      <FilePathData Path="game/brnn/image/img_hint_down_less.png" />
+      <FilePathData Path="game/brnn/image/img_hint_down_success.png" />
+      <FilePathData Path="game/brnn/image/img_hint_bebanker.png" />
+      <FilePathData Path="game/brnn/image/btn_sit_banker3.png" />
     </ImageFiles>
     <MaxSize Width="2048" Height="1024" />
   </Content>

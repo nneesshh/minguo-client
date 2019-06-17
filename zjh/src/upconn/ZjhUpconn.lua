@@ -20,6 +20,7 @@ local jdnnConn   = requireLobby(cwd .. "JdnnUpconn")
 local qznnConn   = requireLobby(cwd .. "QznnUpconn")
 local lhdConn    = requireLobby(cwd .. "LhdUpconn")
 local brnnConn   = requireLobby(cwd .. "BrnnUpconn")
+local ddzConn    = requireLobby(cwd .. "DdzUpconn")
 --
 function _M.createUpconn()
     --
@@ -388,7 +389,19 @@ function _M.doRegisterMsgCallbacks()
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU100_TOP_SEAT_NOTIFY, brnnConn.onNiuTopSeat)     
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU100_READY_NOTIFY, brnnConn.onNiuPlayerReady) 
     msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU100_BET_NOTIFY, brnnConn.onNiuBet)      
-    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU100_BANKER_BID_RESP, brnnConn.onNiuBankerResp)          
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_NIU100_BANKER_BID_RESP, brnnConn.onNiuBankerResp)     
+    
+    -- 斗地主
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_DDZ_GAME_PREPARE_NOTIFY, ddzConn.onDdzGamePrepare)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_DDZ_GAME_START_NOTIFY, ddzConn.onDdzGameStart)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_DDZ_GAME_OVER_NOTIFY, ddzConn.onDdzGameOver)  
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_DDZ_READY_NOTIFY, ddzConn.onDdzPlayerReady)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_DDZ_BANKER_BID_NOTIFY, ddzConn.onDdzBankerBid)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_DDZ_COMPARE_BID_NOTIFY, ddzConn.onDdzCompareBid)
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_DDZ_DISPLAY_NOTIFY, ddzConn.onDdzDisplay)    
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_DDZ_AUTO_HIT_NOTIFY, ddzConn.onDdzAutoHint)          
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_DDZ_HIT_CARD_NOTIFY, ddzConn.onDdzHitCard)      
+    msg_dispatcher.registerCb(zjh_defs.MsgId.MSGID_DDZ_PASS_NOTIFY, ddzConn.onDdzPass)      
 end
 
 return _M

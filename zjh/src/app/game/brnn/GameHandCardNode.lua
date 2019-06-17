@@ -113,4 +113,16 @@ function GameHandCardNode:setCardPosition()
     end    
 end
 
+function GameHandCardNode:playSortAction()    
+    for i = 1, #self._gameCards do
+        self._gameCards[i]:setCardIndexEx(i)
+    end
+
+    for i = 1, #self._gameCards do
+        self._gameCards[i]:playMoveAction()
+    end
+end
+
+
+
 return GameHandCardNode

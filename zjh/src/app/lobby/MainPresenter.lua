@@ -18,7 +18,13 @@ end
 
 function MainPresenter:init(gameid)
     self:initScene(gameid)
-    self:playGameMusic()   
+   
+    self:performWithDelayGlobal(function()
+        if not self:isCurrentUI() then
+            return
+        end
+        self:playGameMusic()       
+    end, 0.5)    
 end
 
 function MainPresenter:onEnter()

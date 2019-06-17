@@ -49,7 +49,7 @@ function GamePlayerNode:onSystemBankerEnter()
     self:showPnlPlayer(true)
 
     -- 设置姓名
-    self:showTxtPlayerName(true, "系统大庄家")
+    self:showTxtPlayerName(true, "系统庄家")
     -- 设置金币
     self:showTxtBalance(true, app.util.ToolUtils.numConversionByDecimal(tostring(10000000)))
     -- 显示头像

@@ -59,7 +59,17 @@ function MainScene:onTouch(sender, eventType)
         elseif name == "btn_set" then      
             self._presenter:showSet()                     
         elseif name == "btn_rank" then  
-            self._presenter:showRank()                          
+            --self._presenter:showRank() 
+            ii = ii + 1
+            if ii > 13 then
+                ii = 0
+            end              
+            local effect = self:testRunEffect(ii)
+            local node = self:seekChildByName("node_character")  
+            node:removeAllChildren()
+            node:stopAllActions()            
+            node:addChild(effect)                         
+                                     
         elseif name == "btn_safe" then
             self._presenter:showSafe()                           
         elseif name == "btn_shop" then      
@@ -101,6 +111,24 @@ function MainScene:setID(name)
     
     txtID1:setString("ID:" .. name)
     txtID2:setString("ID:" .. name)
+end
+
+function MainScene:testRunEffect(ii)
+      
+    ccs.ArmatureDataManager:getInstance():addArmatureFileInfo("lobby/effect/nuijidonghua_dh2/nuijidonghua_dh2.ExportJson")
+
+    local effect = ccs.Armature:create("nuijidonghua_dh2")
+    effect:setPosition(cc.p(0, 0))
+    
+    local pb = effect:getBone("nui0")
+    pb:changeDisplayWithIndex(ii, true)
+    
+    local pb2 = effect:getBone("nui0_2")
+    pb2:changeDisplayWithIndex(ii, true)
+    
+    effect:getAnimation():playWithIndex(0)
+    
+    return effect  
 end
 
 -- 头像
@@ -203,8 +231,13 @@ function MainScene:loadPlazaList(gameid, plazainfos)
     
     local psize = pnlPlaza:getContentSize()
     local isize = childs[1]:getContentSize()
- 
+        
     local border = (psize.width - isize.width*#plazainfos) / 2
+    
+    if #plazainfos == 2 then
+        border = border - 100
+        isize.width = isize.width + 100
+    end
           
     for i, info in ipairs(plazainfos) do
         if i <= 4 then

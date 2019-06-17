@@ -310,6 +310,8 @@ function GamePresenter:onGameStart()
         end
     end
     
+    self:playEffectByName("e_start")
+    
     -- 开局动画    
     self:performWithDelayGlobal(
         function()

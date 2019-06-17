@@ -303,6 +303,8 @@ function GamePresenter:onGameStart()
     -- 重置数据
     app.game.GameData.restDataEx()
     
+    self:playEffectByName("e_start")
+    
     -- 玩家开始
     for i = 0, self._maxPlayerCnt - 1 do
         if self._gamePlayerNodes[i] then

@@ -16,7 +16,7 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="Normal" Path="lobby/image/lobby/img_zmd_back.png" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="pnl_broadcast" ActionTag="632473412" Tag="22" IconVisible="False" LeftMargin="-350.0000" RightMargin="-350.0000" TopMargin="-18.0000" BottomMargin="-18.0000" TouchEnable="True" ClipAble="True" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+          <AbstractNodeData Name="pnl_broadcast" ActionTag="632473412" Tag="22" IconVisible="False" LeftMargin="-350.0000" RightMargin="-350.0000" TopMargin="-18.0000" BottomMargin="-18.0000" ClipAble="True" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="700.0000" Y="36.0000" />
             <Children>
               <AbstractNodeData Name="txt_broadcast" ActionTag="-697213492" Tag="23" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="350.0000" RightMargin="240.0000" TopMargin="7.0000" BottomMargin="7.0000" FontSize="22" LabelText="走马灯测试" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">

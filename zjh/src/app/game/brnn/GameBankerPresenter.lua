@@ -10,7 +10,7 @@ GameBankerPresenter._ui  = requireBRNN("app.game.brnn.GameBankerLayer")
 -- 初始化
 function GameBankerPresenter:init(players,flag)
     self._ui:getInstance():showPlayerList(players)    
-    self._ui:getInstance():showBtnBanker(players)    
+    self._ui:getInstance():showBtnBanker(players, flag)    
 end
 
 function GameBankerPresenter:sendGobanker(type)
@@ -40,6 +40,14 @@ end
 
 function GameBankerPresenter:showHint(type)
     self._ui:getInstance():showHint(type) 	
+end
+
+function GameBankerPresenter:showBtnCdTime(time)
+    self._ui:getInstance():showBtnCdTime(time)  
+end
+
+function GameBankerPresenter:showBtnBankerEx()
+    self._ui:getInstance():showBtnBankerEx()    
 end
 
 function GameBankerPresenter:checkCanGoBanker()

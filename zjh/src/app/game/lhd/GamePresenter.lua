@@ -260,7 +260,9 @@ function GamePresenter:onLhdGameStart()
         
     for i=1, 3 do        
         self:performWithDelayGlobal(function()
-            self:playEffectByName("countdown")
+            if app.game.GamePresenter then
+                self:playEffectByName("countdown")
+            end 
         end, 7+i)            
     end    
 end

@@ -32,6 +32,16 @@ local TableStatus = {
     TS_CLOSED       = 6, -- 游戏停服，桌子已经关闭
 }
 
+-- 百人牛牛
+local NiuStatus = {
+    NIU100_BANKER_BID_TIPS_NONE                  = 0,
+    NIU100_BANKER_BID_TIPS_UP                    = 1,
+    NIU100_BANKER_BID_TIPS_DOWN                  = 2,
+    NIU100_BANKER_BID_TIPS_QUIT_ACTIVE           = 3,
+    NIU100_BANKER_BID_TIPS_BALANCE_NOT_ENOUGH    = 4,
+    NIU100_BANKER_BID_TIPS_BANKED_TOO_MANY_TIMES = 5,
+}
+
 local MsgId = {
     --// lobby
     MSGID_HEART_BEAT_REQ		                = 0x1001,		--//心跳 4097
@@ -154,14 +164,37 @@ local MsgId = {
     MSGID_NIU100_READY_NOTIFY                   = 0x2861,      --百人牛牛通知--准备 10337
     MSGID_NIU100_BET_NOTIFY                     = 0x2862,      --百人牛牛通知--押注 10338
 
-    MSGID_CLOSE_CONNECTION		                = 0x03,		    --//
-    MSGID_CREATE_HANDLER		                = 0x04,		    --//
-    MSGID_CLOSE_HANDLER			                = 0x05,		    --//
+    -- DDZ -- 0x3000
+    MSGID_DDZ_READY_REQ                        = 0x3011,      --二打一准备请求 12305
+    MSGID_DDZ_BANKER_BID_REQ                   = 0x3012,      --二打一叫庄 12306
+    MSGID_DDZ_COMPARE_BID_REQ                  = 0x3013,      --二打一比牌加倍 12307
+    MSGID_DDZ_DISPLAY_REQ                      = 0x3014,      --二打一明牌 12308
+    MSGID_DDZ_AUTO_HIT_REQ                     = 0x3015,      --二打一托管 12309
+    MSGID_DDZ_HIT_CARD_REQ                     = 0x3016,      --二打一出牌 12310
+    MSGID_DDZ_PASS_REQ                         = 0x3017,      --二打一过牌 12311
+    
+    MSGID_DDZ_GAME_PREPARE_NOTIFY              = 0x3021,      --二打一游戏准备通知 12321
+    MSGID_DDZ_GAME_START_NOTIFY                = 0x3022,      --二打一游戏开始通知 12322
+    MSGID_DDZ_GAME_OVER_NOTIFY                 = 0x3023,      --二打一游戏结束通知 12323
+   
+    MSGID_DDZ_READY_NOTIFY                     = 0x3031,      --二打一准备通知 12337
+    MSGID_DDZ_BANKER_BID_NOTIFY                = 0x3032,      --二打一叫庄通知 12338
+    MSGID_DDZ_COMPARE_BID_NOTIFY               = 0x3033,      --二打一比牌加倍通知 12339
+    MSGID_DDZ_DISPLAY_NOTIFY                   = 0x3034,      --二打一明牌通知 12340
+    
+    MSGID_DDZ_AUTO_HIT_NOTIFY                  = 0x3041,      --二打一托管通知 12353
+    MSGID_DDZ_HIT_CARD_NOTIFY                  = 0x3042,      --二打一出牌通知 12354
+    MSGID_DDZ_PASS_NOTIFY                      = 0x3043,      --二打一过牌通知 12355
+
+    MSGID_CLOSE_CONNECTION		               = 0x03,		   --//
+    MSGID_CREATE_HANDLER		               = 0x04,		   --//
+    MSGID_CLOSE_HANDLER			               = 0x05,		   --//
 }
 
 return {
     ErrorCode    = ErrorCode,
     ErrorMessage = ErrorMessage,
     MsgId        = MsgId,
-    TableStatus  = TableStatus
+    TableStatus  = TableStatus,
+    NiuStatus    = NiuStatus
 }

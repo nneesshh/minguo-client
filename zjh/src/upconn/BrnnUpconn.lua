@@ -34,6 +34,15 @@ local function _readTableInfo(po)
     return info
 end
 
+local function _readCards(stringCards)
+    local cards = {}
+    for i=1, string.len(stringCards) do
+        local card = string.byte(stringCards, i, i)
+        table.insert(cards, card)
+    end
+    return cards
+end
+
 local function _readSeatPlayerInfo(po)
     local info = {}
     info.ticketid   = po:read_int32()
@@ -53,16 +62,15 @@ local function _readSeatPlayerInfo(po)
     info.bankermult = po:read_int32()
     info.mult       = po:read_int32()  
     info.isshow     = po:read_byte()
-    return info
-end
-
-local function _readCards(stringCards)
-    local cards = {}
-    for i=1, string.len(stringCards) do
-        local card = string.byte(stringCards, i, i)
-        table.insert(cards, card)
+    
+    info.display    = po:read_byte() -- 明牌(斗地主)
+    if info.display == 1 then
+        info.cards  = _readCards(po:read_string())
+    else
+        info.cardsnum = po:read_byte()
     end
-    return cards
+    
+    return info
 end
 
 -- 游戏准备
@@ -171,8 +179,13 @@ function _M.onNiuBankerBid(conn, sessionid, msgid)
             lists[i].seatinfo = _readSeatPlayerInfo(po)  
         end
     end
+    
+    local info = {}
+    info.tipid    = po:read_byte()
+    info.ticketid = po:read_int32()
+    
     if app.game.GamePresenter then
-        app.game.GamePresenter:getInstance():onNiuBankerBid(lists) 
+        app.game.GamePresenter:getInstance():onNiuBankerBid(lists, info) 
     end
 end
 

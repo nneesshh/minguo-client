@@ -28,23 +28,57 @@ end
 
 function GameBankerLayer:initUI()
     app.util.UIUtils.openWindow(self:seekChildByName("container"))
-    self:showHint()
 end
 
-function GameBankerLayer:showBtnBanker(list)
+function GameBankerLayer:showBtnBanker(list, cd)
     local btnGo   = self:seekChildByName("btn_go_banker") 
     local btnDown = self:seekChildByName("btn_cancel")
-    local flag = false 
-    if list then
-        for i = 1,#list do 
-            if list[i].ticketid == app.data.UserData.getTicketID() then
-                flag = true
-            end   
+    local txtTime = btnGo:getChildByName("txt_btn_cd")
+    
+    if cd then
+        btnGo:setVisible(true)
+        btnGo:setEnabled(false)
+        txtTime:setVisible(true)
+        btnDown:setVisible(false)       
+    else
+        local flag = false 
+        if list then
+            for i = 1,#list do 
+                if list[i].ticketid == app.data.UserData.getTicketID() then
+                    flag = true
+                end   
+            end
         end
-    end
-	
-    btnGo:setVisible(not flag)
-    btnDown:setVisible(flag)
+
+        btnGo:setVisible(not flag)
+        btnGo:setEnabled(not flag)
+
+        txtTime:setVisible(flag)
+        btnDown:setVisible(flag)    	
+    end    
+end
+
+function GameBankerLayer:showBtnBankerEx()
+    local btnGo   = self:seekChildByName("btn_go_banker") 
+    local btnDown = self:seekChildByName("btn_cancel")
+    local txtTime = btnGo:getChildByName("txt_btn_cd")
+    
+    btnGo:setVisible(true)
+    btnGo:setEnabled(true)
+    txtTime:setVisible(false)
+    btnDown:setVisible(false)    
+end
+
+function GameBankerLayer:showBtnCdTime(time)
+    local fntClock = self:seekChildByName("txt_btn_cd")
+    local btnGo   = self:seekChildByName("btn_go_banker") 
+    local btnDown = self:seekChildByName("btn_cancel")
+    
+    btnGo:setVisible(true)
+    btnGo:setEnabled(false)
+    btnDown:setVisible(false)
+    fntClock:setVisible(true)        
+    fntClock:setString(time)        
 end
 
 function GameBankerLayer:showPlayerList(list)
@@ -113,29 +147,59 @@ function GameBankerLayer:showPlayerList(list)
 end
 
 function GameBankerLayer:showHint(type)
-    local nodeCancel = self:seekChildByName("img_hint_cancel")
-    local nodeBanker = self:seekChildByName("img_hint_banker")
-    local btnGo   = self:seekChildByName("btn_go_banker") 
-    local btnDown = self:seekChildByName("btn_cancel")
+    local nodeCancel      = self:seekChildByName("img_hint_cancel")
+    local nodeBanker      = self:seekChildByName("img_hint_banker")
+    local nodeBebanker    = self:seekChildByName("img_hint_bebanker")
+    local nodeDown10      = self:seekChildByName("img_hint_down10")
+    local nodeDownLess    = self:seekChildByName("img_hint_down_less")
+    local nodeDownSuccess = self:seekChildByName("img_hint_down_success")
+
     nodeCancel:stopAllActions()
     nodeBanker:stopAllActions()
+    nodeBebanker:stopAllActions()
+    nodeDown10:stopAllActions()
+    nodeDownLess:stopAllActions()
+    nodeDownSuccess:stopAllActions()
+    
+    nodeCancel:setVisible(type == "cancel")
+    nodeBanker:setVisible(type == "up")
+    
+    nodeBebanker:setVisible(type == "banker")
+    nodeDown10:setVisible(type == "10")
+    nodeDownLess:setVisible(type == "dless")   
+    nodeDownSuccess:setVisible(type == "dsuccess")
 
-    nodeBanker:setVisible(type == 1)
-    nodeCancel:setVisible(type == 2)
-
-    if type == 1 then
-        nodeBanker:runAction(cc.Sequence:create(
+    if type == "banker" then  
+        nodeBebanker:runAction(cc.Sequence:create(
             cc.FadeIn:create(0.5),                       
             cc.FadeOut:create(1)
-        ))               
-    elseif type == 2 then  
+        ))   
+    elseif type == "10" then  
+        nodeDown10:runAction(cc.Sequence:create(
+            cc.FadeIn:create(0.5),                       
+            cc.FadeOut:create(1)
+        ))   
+    elseif type == "dless" then  
+        nodeDownLess:runAction(cc.Sequence:create(
+            cc.FadeIn:create(0.5),                       
+            cc.FadeOut:create(1)
+        ))   
+    elseif type == "dsuccess" then  
+        nodeDownSuccess:runAction(cc.Sequence:create(
+            cc.FadeIn:create(0.5),                       
+            cc.FadeOut:create(1)
+        ))
+    elseif type == "cancel" then  
         nodeCancel:runAction(cc.Sequence:create(
             cc.FadeIn:create(0.5),                       
             cc.FadeOut:create(1)
-        ))            
-    end
-    btnGo:setVisible(not(type == 1))
-    btnDown:setVisible(not(type == 2))
+        ))   
+    elseif type == "up" then  
+        nodeBanker:runAction(cc.Sequence:create(
+            cc.FadeIn:create(0.5),                       
+            cc.FadeOut:create(1)
+        ))          
+    end 
 end
 
 return GameBankerLayer

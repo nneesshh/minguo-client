@@ -234,6 +234,19 @@
               </AbstractNodeData>
               <AbstractNodeData Name="btn_go_banker" ActionTag="-178775842" Tag="542" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="408.5000" RightMargin="408.5000" TopMargin="555.9600" BottomMargin="44.0400" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="280" Scale9Height="89" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="310.0000" Y="111.0000" />
+                <Children>
+                  <AbstractNodeData Name="txt_btn_cd" ActionTag="1531202864" Tag="1387" IconVisible="False" LeftMargin="230.0000" RightMargin="46.0000" TopMargin="35.0000" BottomMargin="42.0000" FontSize="34" LabelText="30" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                    <Size X="34.0000" Y="34.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <Position X="247.0000" Y="59.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="61" G="54" B="54" />
+                    <PrePosition X="0.7968" Y="0.5315" />
+                    <PreSize X="0.1097" Y="0.3063" />
+                    <OutlineColor A="255" R="255" G="0" B="0" />
+                    <ShadowColor A="255" R="110" G="110" B="110" />
+                  </AbstractNodeData>
+                </Children>
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="563.5000" Y="99.5400" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
@@ -241,13 +254,13 @@
                 <PrePosition X="0.5000" Y="0.1400" />
                 <PreSize X="0.2751" Y="0.1561" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="MarkedSubImage" Path="game/brnn/image/btn_sit_banker2.png" Plist="game/brnn/image/plistscene.plist" />
+                <DisabledFileData Type="MarkedSubImage" Path="game/brnn/image/btn_sit_banker3.png" Plist="game/brnn/image/plistscene.plist" />
                 <PressedFileData Type="MarkedSubImage" Path="game/brnn/image/btn_sit_banker2.png" Plist="game/brnn/image/plistscene.plist" />
                 <NormalFileData Type="MarkedSubImage" Path="game/brnn/image/btn_sit_banker2.png" Plist="game/brnn/image/plistscene.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="btn_cancel" ActionTag="-1688776115" Tag="4490" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="408.5000" RightMargin="408.5000" TopMargin="555.9600" BottomMargin="44.0400" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="280" Scale9Height="89" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+              <AbstractNodeData Name="btn_cancel" ActionTag="-1688776115" VisibleForFrame="False" Tag="4490" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="408.5000" RightMargin="408.5000" TopMargin="555.9600" BottomMargin="44.0400" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="280" Scale9Height="89" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="310.0000" Y="111.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="563.5000" Y="99.5400" />
@@ -262,25 +275,65 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="img_hint_cancel" ActionTag="1561671305" VisibleForFrame="False" Tag="4685" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="308.0000" RightMargin="308.0000" TopMargin="311.5000" BottomMargin="311.5000" LeftEage="168" RightEage="168" TopEage="29" BottomEage="29" Scale9OriginX="168" Scale9OriginY="29" Scale9Width="175" Scale9Height="30" ctype="ImageViewObjectData">
-                <Size X="511.0000" Y="88.0000" />
+              <AbstractNodeData Name="img_hint_cancel" ActionTag="1561671305" VisibleForFrame="False" Tag="4685" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="391.5000" RightMargin="391.5000" TopMargin="326.0000" BottomMargin="326.0000" LeftEage="168" RightEage="168" TopEage="29" BottomEage="29" Scale9OriginX="168" Scale9OriginY="29" Scale9Width="175" Scale9Height="30" ctype="ImageViewObjectData">
+                <Size X="344.0000" Y="59.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="563.5000" Y="355.5000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5000" Y="0.5000" />
-                <PreSize X="0.4534" Y="0.1238" />
+                <PreSize X="0.3052" Y="0.0830" />
                 <FileData Type="MarkedSubImage" Path="game/brnn/image/img_hint_cancel.png" Plist="game/brnn/image/plistscene.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="img_hint_banker" ActionTag="1042274888" VisibleForFrame="False" Tag="4684" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="308.0000" RightMargin="308.0000" TopMargin="311.5000" BottomMargin="311.5000" LeftEage="168" RightEage="168" TopEage="29" BottomEage="29" Scale9OriginX="168" Scale9OriginY="29" Scale9Width="175" Scale9Height="30" ctype="ImageViewObjectData">
-                <Size X="511.0000" Y="88.0000" />
+              <AbstractNodeData Name="img_hint_banker" ActionTag="1042274888" VisibleForFrame="False" Tag="4684" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="391.5000" RightMargin="391.5000" TopMargin="326.0000" BottomMargin="326.0000" LeftEage="168" RightEage="168" TopEage="29" BottomEage="29" Scale9OriginX="168" Scale9OriginY="29" Scale9Width="8" Scale9Height="1" ctype="ImageViewObjectData">
+                <Size X="344.0000" Y="59.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="563.5000" Y="355.5000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5000" Y="0.5000" />
-                <PreSize X="0.4534" Y="0.1238" />
+                <PreSize X="0.3052" Y="0.0830" />
                 <FileData Type="MarkedSubImage" Path="game/brnn/image/img_hint_banker.png" Plist="game/brnn/image/plistscene.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="img_hint_bebanker" ActionTag="1998988500" VisibleForFrame="False" Tag="504" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="391.5000" RightMargin="391.5000" TopMargin="326.0000" BottomMargin="326.0000" LeftEage="111" RightEage="111" TopEage="14" BottomEage="14" Scale9OriginX="111" Scale9OriginY="14" Scale9Width="122" Scale9Height="31" ctype="ImageViewObjectData">
+                <Size X="344.0000" Y="59.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="563.5000" Y="355.5000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.5000" />
+                <PreSize X="0.3052" Y="0.0830" />
+                <FileData Type="MarkedSubImage" Path="game/brnn/image/img_hint_bebanker.png" Plist="game/brnn/image/plistscene.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="img_hint_down10" ActionTag="175851466" VisibleForFrame="False" Tag="503" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="224.0000" RightMargin="224.0000" TopMargin="326.0000" BottomMargin="326.0000" LeftEage="111" RightEage="111" TopEage="14" BottomEage="14" Scale9OriginX="111" Scale9OriginY="14" Scale9Width="457" Scale9Height="31" ctype="ImageViewObjectData">
+                <Size X="679.0000" Y="59.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="563.5000" Y="355.5000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.5000" />
+                <PreSize X="0.6025" Y="0.0830" />
+                <FileData Type="MarkedSubImage" Path="game/brnn/image/img_hint_down_10.png" Plist="game/brnn/image/plistscene.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="img_hint_down_less" ActionTag="-1661265395" VisibleForFrame="False" Tag="502" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="198.5000" RightMargin="198.5000" TopMargin="326.0000" BottomMargin="326.0000" LeftEage="111" RightEage="111" TopEage="14" BottomEage="14" Scale9OriginX="111" Scale9OriginY="14" Scale9Width="508" Scale9Height="31" ctype="ImageViewObjectData">
+                <Size X="730.0000" Y="59.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="563.5000" Y="355.5000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.5000" />
+                <PreSize X="0.6477" Y="0.0830" />
+                <FileData Type="MarkedSubImage" Path="game/brnn/image/img_hint_down_less.png" Plist="game/brnn/image/plistscene.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="img_hint_down_success" ActionTag="-732124068" VisibleForFrame="False" Tag="501" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="391.5000" RightMargin="391.5000" TopMargin="326.0000" BottomMargin="326.0000" LeftEage="111" RightEage="111" TopEage="14" BottomEage="14" Scale9OriginX="111" Scale9OriginY="14" Scale9Width="122" Scale9Height="31" ctype="ImageViewObjectData">
+                <Size X="344.0000" Y="59.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="563.5000" Y="355.5000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.5000" />
+                <PreSize X="0.3052" Y="0.0830" />
+                <FileData Type="MarkedSubImage" Path="game/brnn/image/img_hint_down_success.png" Plist="game/brnn/image/plistscene.plist" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />

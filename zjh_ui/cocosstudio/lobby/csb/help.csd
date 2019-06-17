@@ -181,17 +181,17 @@
                 <ColorVector ScaleY="1.0000" />
                 <InnerNodeSize Width="680" Height="498" />
               </AbstractNodeData>
-              <AbstractNodeData Name="svw_5" ActionTag="-436783654" Tag="265" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="103.0000" RightMargin="103.0000" TopMargin="90.0000" BottomMargin="40.0000" TouchEnable="True" ClipAble="True" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" IsBounceEnabled="True" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
-                <Size X="680.0000" Y="420.0000" />
+              <AbstractNodeData Name="svw_5" ActionTag="-436783654" Tag="265" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="106.0000" RightMargin="106.0000" TopMargin="90.0000" BottomMargin="40.0000" TouchEnable="True" ClipAble="True" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" IsBounceEnabled="True" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
+                <Size X="674.0000" Y="420.0000" />
                 <Children>
-                  <AbstractNodeData Name="brnn" ActionTag="475234984" Tag="266" IconVisible="False" RightMargin="6.0000" TopMargin="-566.0000" LeftEage="219" RightEage="219" TopEage="164" BottomEage="164" Scale9OriginX="219" Scale9OriginY="164" Scale9Width="236" Scale9Height="736" ctype="ImageViewObjectData">
+                  <AbstractNodeData Name="brnn" ActionTag="475234984" Tag="266" IconVisible="False" RightMargin="6.0000" LeftEage="219" RightEage="219" TopEage="164" BottomEage="164" Scale9OriginX="219" Scale9OriginY="164" Scale9Width="236" Scale9Height="736" ctype="ImageViewObjectData">
                     <Size X="674.0000" Y="1064.0000" />
                     <AnchorPoint />
                     <Position />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition />
-                    <PreSize X="0.9912" Y="2.1365" />
+                    <PreSize X="0.9912" Y="1.0000" />
                     <FileData Type="Normal" Path="lobby/image/help/img_brnn.png" Plist="" />
                   </AbstractNodeData>
                 </Children>
@@ -200,12 +200,12 @@
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5000" Y="0.4545" />
-                <PreSize X="0.7675" Y="0.7636" />
+                <PreSize X="0.7607" Y="0.7636" />
                 <SingleColor A="255" R="255" G="150" B="100" />
                 <FirstColor A="255" R="255" G="150" B="100" />
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
-                <InnerNodeSize Width="680" Height="1064" />
+                <InnerNodeSize Width="674" Height="1064" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />

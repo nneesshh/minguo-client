@@ -79,6 +79,7 @@ GameEnum.soundType = {
     w_niu_11       = "niu_sizha_w.mp3",
     w_niu_12       = "niu_wuhua_w.mp3",
     w_niu_13       = "niu_5_s_w.mp3",
+    e_start        = "ef_start.mp3"
 }
 
 return GameEnum

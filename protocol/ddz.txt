@@ -151,3 +151,54 @@ enum DDZ_BANKER_BID_STATE
 		stream.writeInt16(tableInfo->currentSeat);				\
 		stream.writeInt32(tableInfo->bankerBidMultiple);		\
 	} while(0)
+
+
+
+bool
+DdzProtocolParser::parseBankerBidReq(NetMessage *msg, MSG_DDZ_BANKER_BID_REQ *req)
+{
+	// at least has int32
+	if (msg->getDataSize() < 4)
+		return false;
+
+	MemoryStream stream(msg->getData(), msg->getDataSize());
+	req->multiple = stream.readInt32();
+	return true;
+}
+
+bool
+DdzProtocolParser::parseCompareBidReq(NetMessage *msg, MSG_DDZ_COMPARE_BID_REQ *req)
+{
+	// at least has int32
+	if (msg->getDataSize() < 4)
+		return false;
+
+	MemoryStream stream(msg->getData(), msg->getDataSize());
+	req->multiple = stream.readInt32();
+	return true;
+}
+
+bool
+DdzProtocolParser::parseAutoHitReq(NetMessage *msg, MSG_DDZ_AUTO_HIT_REQ *req)
+{
+	// at least has byte
+	if (msg->getDataSize() < 1)
+		return false;
+
+	MemoryStream stream(msg->getData(), msg->getDataSize());
+	req->enable = stream.readByte();
+	return true;
+}
+
+bool
+DdzProtocolParser::parseHitCardReq(NetMessage *msg, MSG_DDZ_HIT_CARD_REQ *req)
+{
+	// at least has string(3 bytes), and limit cards size
+#define STRING_BYTES_MIN  3
+	if (msg->getDataSize() < STRING_BYTES_MIN || msg->getDataSize() > DDZ_HIT_CARDS_NUM_MAX + STRING_BYTES_MIN)
+		return false;
+
+	MemoryStream stream(msg->getData(), msg->getDataSize());
+	stream.readString((char *)req->cards, &req->cardsNum);
+	return true;
+}

@@ -9,16 +9,6 @@
           <AbstractNodeData Name="panl_card" ActionTag="-1786575581" Tag="193" IconVisible="False" RightMargin="-156.0000" TopMargin="-218.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="156.0000" Y="218.0000" />
             <Children>
-              <AbstractNodeData Name="img_card_gary" ActionTag="611220650" Tag="1052" IconVisible="False" LeftEage="51" RightEage="51" TopEage="71" BottomEage="71" Scale9OriginX="51" Scale9OriginY="71" Scale9Width="54" Scale9Height="76" ctype="ImageViewObjectData">
-                <Size X="156.0000" Y="218.0000" />
-                <AnchorPoint />
-                <Position />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition />
-                <PreSize X="1.0000" Y="1.0000" />
-                <FileData Type="MarkedSubImage" Path="game/public/card/img_card_gary.png" Plist="game/public/plistcard.plist" />
-              </AbstractNodeData>
               <AbstractNodeData Name="img_card_back" ActionTag="1724046586" VisibleForFrame="False" Tag="194" IconVisible="False" LeftEage="46" RightEage="46" TopEage="61" BottomEage="61" Scale9OriginX="46" Scale9OriginY="61" Scale9Width="64" Scale9Height="96" ctype="ImageViewObjectData">
                 <Size X="156.0000" Y="218.0000" />
                 <AnchorPoint />

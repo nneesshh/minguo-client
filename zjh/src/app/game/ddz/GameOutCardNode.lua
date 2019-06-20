@@ -1,20 +1,18 @@
-
 --[[
     @brief  游戏出牌UI基类
-    @by     斯雪峰
 ]]--
-local GameCardNode = require("app.game.card.shuangkou.base.node.GameCardNode")
 
-local GameOutCardNode    = class("GameOutCardNode", app.base.BaseNodeEx)
+local GameCardNode         = requireDDZ("app.game.ddz.GameCardNode")
+local GameOutCardNode      = class("GameOutCardNode", app.base.BaseNodeEx)
 
--- local HAND_CARD_TYPE         = 0
--- local HAND_CARD_TYPE_NO_SELF = 1
-local OUT_CARD_TYPE     = 2
-local BANKER_CARD_TYPE  = 3
+local OUT_CARD_TYPE        = 2
+local BANKER_CARD_TYPE     = 3
 
-local OUT_CARD_SCALE        = 0.7
-local OUT_CARD_SCALE_SMALL  = 0.6
-local BANKER_CARD_SCALE     = 0.8
+local OUT_CARD_SCALE       = 0.5
+local OUT_CARD_SCALE_SMALL = 0.4
+local BANKER_CARD_SCALE    = 0.8
+
+local CV_BACK              = app.game.CardRule.cards.CV_BACK 
 
 function GameOutCardNode:initData(localSeat)
     self._localSeat         = localSeat
@@ -25,13 +23,13 @@ end
 
 function GameOutCardNode:createCards(cards)
     for i = 1, #cards do
-        if cards[i] ~= app.game.CardRule.cards.CV_BACK then
+        if cards[i] ~= CV_BACK then
             self._outCardCount = self._outCardCount + 1
         end
     end
 
     for i = 1, #cards do
-        if cards[i] ~= app.game.CardRule.cards.CV_BACK then
+        if cards[i] ~= CV_BACK then
             if #cards <= 10 then
                 self:createCard(cards[i], OUT_CARD_SCALE, OUT_CARD_TYPE)
             else
@@ -88,7 +86,7 @@ function GameOutCardNode:createCard(id, scale, type)
         return
     end
 
-    if id == app.game.CardRule.cards.CV_BACK then
+    if id == CV_BACK then
         return
     end
 
@@ -119,10 +117,6 @@ end
 
 function GameOutCardNode:getOutCardCount()
     return self._outCardCount
-end
-
-function GameOutCardNode:movePartner()
-    self._rootNode:setPositionX(self._rootNode:getPositionX() + 200)
 end
 
 return GameOutCardNode

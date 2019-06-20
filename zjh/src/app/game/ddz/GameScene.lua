@@ -1,23 +1,21 @@
 --[[
 @brief  游戏主场景UI基类
-]]
+]]--
+
 local GameScene   = class("GameScene", app.base.BaseScene)
 
 -- csb路径
-GameScene.csbPath = "game/qznn/csb/gamescene.csb"
+GameScene.csbPath = "game/ddz/csb/gamescene.csb"
 
 local GE   = app.game.GameEnum
 
 GameScene.touchs = {
     "btn_exit", 
+    "btn_trust"
 }
 
 GameScene.clicks = {
     "btn_menu",   
-}
-
-GameScene.events = {
-    
 }
 
 function GameScene:onTouch(sender, eventType)
@@ -25,7 +23,10 @@ function GameScene:onTouch(sender, eventType)
     local name = sender:getName()
     if eventType == ccui.TouchEventType.ended then        
         if name == "btn_exit" then
-            self._presenter:sendLeaveRoom()                             
+            self._presenter:sendLeaveRoom()
+        elseif name == "btn_trust" then
+            print("trust")  
+            self:showStartEffect()                                          
         end
     end
 end
@@ -118,7 +119,7 @@ function GameScene:showStartEffect()
     node:removeAllChildren()
     node:stopAllActions()
     
-    local effect = app.util.UIUtils.runEffectOne("game/qznn/effect","jiubei_dh", 0, 85)
+    local effect = app.util.UIUtils.runEffectOne("game/ddz/effect","doudizhu_kaishiyouxi_dh", 0, 0)
     node:addChild(effect)
 end
 

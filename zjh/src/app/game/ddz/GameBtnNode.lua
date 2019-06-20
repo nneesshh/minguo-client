@@ -27,82 +27,35 @@ function GameBtnNode:onTouch(sender, eventType)
     local name = sender:getName()
     if eventType == ccui.TouchEventType.ended then
         if name == "btn_banker_play_ming" then
-            self:onTouchBtnBankerMing()
+            self._presenter:onTouchBtnBankerMing()
         elseif name == "btn_banker_play_hint" then
-            self:onTouchBtnBankerHint()
+            self._presenter:onTouchBtnBankerHint()
         elseif name == "btn_banker_play_out" then
-            self:onTouchBtnBankerOut()
+            self._presenter:onTouchBtnBankerOut()
             
         elseif name == "btn_first_play_hint" then
-            self:onTouchBtnFirstHint()
+            self._presenter:onTouchBtnFirstHint()
         elseif name == "btn_first_play_out" then
-            self:onTouchBtnFirstOut()
+            self._presenter:onTouchBtnFirstOut()
             
         elseif name == "btn_play_hint" then
-            self:onTouchBtnPlayHint()
+            self._presenter:onTouchBtnPlayHint()
         elseif name == "btn_play_out" then
-            self:onTouchBtnPlayOut()
+            self._presenter:onTouchBtnPlayOut()
         elseif name == "btn_play_cancel" then
-            self:onTouchBtPlayCancel()
+            self._presenter:onTouchBtPlayCancel()
             
         elseif string.find(name, "btn_call_") then             
             local index = string.split(name, "btn_call_")[2]
-            self:onTouchBtnCall(index)
+            self._presenter:onTouchBtnCall(index)
             
         elseif string.find(name, "btn_mult_") then             
             local index = string.split(name, "btn_mult_")[2]
-            self:onTouchBtnMult(index)
+            self._presenter:onTouchBtnMult(index)
         end
     end
 end
 
-----------------------------------------onTouchEvent----------------------------------------
-function GameBtnNode:onTouchBtnBankerMing()
-    print("onTouchBtnBankerMing")
-   
-end
-
-function GameBtnNode:onTouchBtnBankerHint()
-    print("onTouchBtnBankerHint")
-    
-end
-
-function GameBtnNode:onTouchBtnBankerOut()
-    print("onTouchBtnBankerOut")
-   
-end
-
-function GameBtnNode:onTouchBtnFirstHint()
-    print("onTouchBtnFirstHint")
-    
-end
-
-function GameBtnNode:onTouchBtnFirstOut()
-    print("onTouchBtnFirstOut")    
-end
-
-function GameBtnNode:onTouchBtnPlayHint()
-    print("onTouchBtnPlayHint")
-end
-
-function GameBtnNode:onTouchBtnPlayOut()
-    print("onTouchBtnPlayOut")
-end
-
-function GameBtnNode:onTouchBtPlayCancel()
-    print("onTouchBtPlayCancel")
-end
-
-function GameBtnNode:onTouchBtnCall(index)
-    print("onTouchBtnOutHint",index)
-
-end
-
-function GameBtnNode:onTouchBtnMult(index)
-    print("onTouchBtnMult",index)    
-end
-
---------------------------------TableBtn---------------------------------------------
 function GameBtnNode:showCallPanl(visible)
     local nodeTableBtn = self:seekChildByName("pnl_btn_call")
     

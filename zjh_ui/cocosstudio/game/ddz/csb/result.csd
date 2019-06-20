@@ -1,5 +1,5 @@
 <GameFile>
-  <PropertyGroup Name="trend" Type="Layer" ID="e80bfcc5-0d4e-48a2-a9c4-8efff2326f18" Version="3.10.0.0" />
+  <PropertyGroup Name="result" Type="Layer" ID="e80bfcc5-0d4e-48a2-a9c4-8efff2326f18" Version="3.10.0.0" />
   <Content ctype="GameProjectContent">
     <Content>
       <Animation Duration="0" Speed="1.0000" />
@@ -52,7 +52,7 @@
                 <PreSize X="0.3688" Y="0.3707" />
                 <FileData Type="Normal" Path="game/ddz/image/img_title_lose.png" Plist="" />
               </AbstractNodeData>
-              <AbstractNodeData Name="result_player_0" ActionTag="-1478957145" Tag="857" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="265.5000" RightMargin="265.5000" TopMargin="338.0000" BottomMargin="355.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+              <AbstractNodeData Name="result_player_0" ActionTag="-1478957145" Tag="857" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="265.5000" RightMargin="265.5000" TopMargin="338.0000" BottomMargin="355.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="803.0000" Y="57.0000" />
                 <Children>
                   <AbstractNodeData Name="img_back" ActionTag="1283281305" VisibleForFrame="False" Tag="860" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftEage="264" RightEage="264" TopEage="18" BottomEage="18" Scale9OriginX="264" Scale9OriginY="18" Scale9Width="275" Scale9Height="21" ctype="ImageViewObjectData">
@@ -63,12 +63,12 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.5000" />
                     <PreSize X="1.0000" Y="1.0000" />
-                    <FileData Type="Normal" Path="game/ddz/image/img_result_2.png" Plist="" />
+                    <FileData Type="MarkedSubImage" Path="game/ddz/image/img_result_2.png" Plist="game/ddz/image/plistscene.plist" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="txt_banker" ActionTag="-886092146" VisibleForFrame="False" Tag="877" RotationSkewX="10.0000" IconVisible="False" LeftMargin="68.0052" RightMargin="686.9948" TopMargin="15.0000" BottomMargin="18.0000" FontSize="24" LabelText="地主" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                  <AbstractNodeData Name="txt_banker" ActionTag="-886092146" VisibleForFrame="False" Tag="877" RotationSkewX="10.0000" IconVisible="False" LeftMargin="68.0100" RightMargin="686.9900" TopMargin="15.0000" BottomMargin="18.0000" FontSize="24" LabelText="地主" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                     <Size X="48.0000" Y="24.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="92.0052" Y="30.0000" />
+                    <Position X="92.0100" Y="30.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="249" G="221" B="118" />
                     <PrePosition X="0.1146" Y="0.5263" />
@@ -143,7 +143,7 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.5000" />
                     <PreSize X="1.0000" Y="1.0000" />
-                    <FileData Type="Normal" Path="game/ddz/image/img_result_2.png" Plist="" />
+                    <FileData Type="MarkedSubImage" Path="game/ddz/image/img_result_2.png" Plist="game/ddz/image/plistscene.plist" />
                   </AbstractNodeData>
                   <AbstractNodeData Name="txt_banker" ActionTag="-1498514954" VisibleForFrame="False" Tag="880" RotationSkewX="10.0000" IconVisible="False" LeftMargin="68.0052" RightMargin="686.9948" TopMargin="15.0000" BottomMargin="18.0000" FontSize="24" LabelText="地主" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                     <Size X="48.0000" Y="24.0000" />
@@ -223,14 +223,14 @@
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5000" Y="0.5000" />
                     <PreSize X="1.0000" Y="1.0000" />
-                    <FileData Type="Normal" Path="game/ddz/image/img_result_2.png" Plist="" />
+                    <FileData Type="MarkedSubImage" Path="game/ddz/image/img_result_2.png" Plist="game/ddz/image/plistscene.plist" />
                   </AbstractNodeData>
                   <AbstractNodeData Name="txt_banker" ActionTag="66404039" Tag="887" RotationSkewX="10.0000" IconVisible="False" LeftMargin="68.0052" RightMargin="686.9948" TopMargin="15.0000" BottomMargin="18.0000" FontSize="24" LabelText="地主" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                     <Size X="48.0000" Y="24.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="92.0052" Y="30.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="249" G="221" B="118" />
+                    <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.1146" Y="0.5263" />
                     <PreSize X="0.0598" Y="0.4211" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
@@ -241,7 +241,7 @@
                     <AnchorPoint ScaleY="0.5000" />
                     <Position X="130.0000" Y="30.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="249" G="221" B="118" />
+                    <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.1619" Y="0.5263" />
                     <PreSize X="0.1793" Y="0.4211" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
@@ -252,7 +252,7 @@
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="318.0000" Y="30.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="249" G="221" B="118" />
+                    <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.3960" Y="0.5263" />
                     <PreSize X="0.0448" Y="0.4211" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
@@ -263,7 +263,7 @@
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="468.0012" Y="30.0001" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="249" G="221" B="118" />
+                    <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.5828" Y="0.5263" />
                     <PreSize X="0.0448" Y="0.4211" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
@@ -274,7 +274,7 @@
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="620.0000" Y="30.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="249" G="221" B="118" />
+                    <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition X="0.7721" Y="0.5263" />
                     <PreSize X="0.1046" Y="0.4211" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
@@ -301,24 +301,24 @@
                 <PrePosition X="0.7121" Y="0.7267" />
                 <PreSize X="0.0232" Y="0.0413" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="game/ddz/image/btn_result_x.png" Plist="" />
-                <PressedFileData Type="Normal" Path="game/ddz/image/btn_result_x.png" Plist="" />
-                <NormalFileData Type="Normal" Path="game/ddz/image/btn_result_x.png" Plist="" />
+                <DisabledFileData Type="MarkedSubImage" Path="game/ddz/image/btn_result_x.png" Plist="game/ddz/image/plistscene.plist" />
+                <PressedFileData Type="MarkedSubImage" Path="game/ddz/image/btn_result_x.png" Plist="game/ddz/image/plistscene.plist" />
+                <NormalFileData Type="MarkedSubImage" Path="game/ddz/image/btn_result_x.png" Plist="game/ddz/image/plistscene.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="btn_continue" ActionTag="-1465431358" Tag="892" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="564.0002" RightMargin="563.9998" TopMargin="512.0000" BottomMargin="162.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="176" Scale9Height="54" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+              <AbstractNodeData Name="btn_continue" ActionTag="-1465431358" Tag="892" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="564.0000" RightMargin="564.0000" TopMargin="512.0000" BottomMargin="162.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="176" Scale9Height="54" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="206.0000" Y="76.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="667.0002" Y="200.0000" />
+                <Position X="667.0000" Y="200.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5000" Y="0.2667" />
                 <PreSize X="0.1544" Y="0.1013" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Normal" Path="game/ddz/image/btn_continue.png" Plist="" />
-                <PressedFileData Type="Normal" Path="game/ddz/image/btn_continue.png" Plist="" />
-                <NormalFileData Type="Normal" Path="game/ddz/image/btn_continue.png" Plist="" />
+                <DisabledFileData Type="MarkedSubImage" Path="game/ddz/image/btn_continue.png" Plist="game/ddz/image/plistscene.plist" />
+                <PressedFileData Type="MarkedSubImage" Path="game/ddz/image/btn_continue.png" Plist="game/ddz/image/plistscene.plist" />
+                <NormalFileData Type="MarkedSubImage" Path="game/ddz/image/btn_continue.png" Plist="game/ddz/image/plistscene.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>

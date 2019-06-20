@@ -17,7 +17,8 @@ HelpLayer.svws = {
     "svw_2",
     "svw_3",
     "svw_4",
-    "svw_5"
+    "svw_5",
+    "svw_6"
 }
 
 function HelpLayer:onCreate()

@@ -106,10 +106,11 @@
               <Project Name="gamescene.csd" Type="Scene" />
               <Project Name="menu.csd" Type="Node" />
               <Project Name="record.csd" Type="Node" />
-              <Project Name="trend.csd" Type="Layer" />
+              <Project Name="result.csd" Type="Layer" />
             </Folder>
             <Folder Name="image">
               <Folder Name="fnt">
+                <Fnt Name="backfnt.fnt" />
                 <Fnt Name="clockfnt.fnt" />
                 <Fnt Name="losefnt.fnt" />
                 <Fnt Name="startfnt.fnt" />
@@ -161,6 +162,7 @@
               <Image Name="img_type_3.png" />
               <Image Name="img_type_4.png" />
               <Image Name="img_type_5.png" />
+              <PlistInfo Name="plistscene.csi" Type="Plist" />
             </Folder>
           </Folder>
           <Folder Name="jdnn">
@@ -577,6 +579,7 @@
             </Folder>
             <Folder Name="help">
               <Image Name="img_brnn.png" />
+              <Image Name="img_ddz.png" />
               <Image Name="img_jdnn_rule.png" />
               <Image Name="img_lhd.png" />
               <Image Name="img_psz_rule.png" />
@@ -669,6 +672,7 @@
               <Image Name="img_game_2.png" />
               <Image Name="img_game_3.png" />
               <Image Name="img_game_5.png" />
+              <Image Name="img_game_6.png" />
               <Image Name="plaza_1_1.png" />
               <Image Name="plaza_1_2.png" />
               <Image Name="plaza_1_3.png" />
@@ -683,6 +687,9 @@
               <Image Name="plaza_3_4.png" />
               <Image Name="plaza_5_1.png" />
               <Image Name="plaza_5_2.png" />
+              <Image Name="plaza_6_1.png" />
+              <Image Name="plaza_6_2.png" />
+              <Image Name="plaza_6_3.png" />
             </Folder>
             <Folder Name="public">
               <Image Name="btn_charge.png" />

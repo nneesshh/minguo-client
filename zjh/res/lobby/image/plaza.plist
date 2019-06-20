@@ -7,7 +7,7 @@
 			<key>lobby/image/plaza/img_game_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{949,642},{161,60}}</string>
+				<string>{{1002,931},{161,60}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -18,7 +18,7 @@
 			<key>lobby/image/plaza/img_game_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{308,648},{211,60}}</string>
+				<string>{{576,937},{211,60}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -29,7 +29,7 @@
 			<key>lobby/image/plaza/plaza_1_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1091,706},{285,349}}</string>
+				<string>{{1091,642},{285,349}}</string>
 				<key>offset</key>
 				<string>{2,-9}</string>
 				<key>rotated</key>
@@ -40,18 +40,18 @@
 			<key>lobby/image/plaza/plaza_1_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1114,361},{285,349}}</string>
+				<string>{{1470,2},{285,349}}</string>
 				<key>offset</key>
 				<string>{2,-9}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{307,367}</string>
 			</dict>
 			<key>lobby/image/plaza/plaza_1_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1444,650},{285,349}}</string>
+				<string>{{1759,2},{285,349}}</string>
 				<key>offset</key>
 				<string>{2,-9}</string>
 				<key>rotated</key>
@@ -62,7 +62,7 @@
 			<key>lobby/image/plaza/plaza_1_4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{679,361},{277,354}}</string>
+				<string>{{1410,355},{277,354}}</string>
 				<key>offset</key>
 				<string>{0,-7}</string>
 				<key>rotated</key>
@@ -73,22 +73,22 @@
 			<key>lobby/image/plaza/plaza_2_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{2,712},{285,361}}</string>
+				<string>{{308,2},{285,361}}</string>
 				<key>offset</key>
 				<string>{2,-3}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{307,367}</string>
 			</dict>
 			<key>lobby/image/plaza/plaza_2_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{597,2},{285,355}}</string>
+				<string>{{732,642},{285,355}}</string>
 				<key>offset</key>
 				<string>{2,-6}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{307,367}</string>
 			</dict>
@@ -106,7 +106,7 @@
 			<key>lobby/image/plaza/plaza_2_4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{308,367},{277,367}}</string>
+				<string>{{361,656},{277,367}}</string>
 				<key>offset</key>
 				<string>{1,0}</string>
 				<key>rotated</key>
@@ -117,7 +117,7 @@
 			<key>lobby/image/plaza/img_game_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{734,642},{211,61}}</string>
+				<string>{{361,937},{211,61}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -128,18 +128,18 @@
 			<key>lobby/image/plaza/plaza_3_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{308,2},{285,361}}</string>
+				<string>{{308,367},{285,361}}</string>
 				<key>offset</key>
 				<string>{2,-3}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{307,367}</string>
 			</dict>
 			<key>lobby/image/plaza/plaza_3_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{886,2},{285,355}}</string>
+				<string>{{889,2},{285,355}}</string>
 				<key>offset</key>
 				<string>{2,-6}</string>
 				<key>rotated</key>
@@ -161,7 +161,7 @@
 			<key>lobby/image/plaza/plaza_3_4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{367,712},{277,367}}</string>
+				<string>{{673,361},{277,367}}</string>
 				<key>offset</key>
 				<string>{1,0}</string>
 				<key>rotated</key>
@@ -172,18 +172,18 @@
 			<key>lobby/image/plaza/plaza_5_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{738,707},{288,349}}</string>
+				<string>{{1178,2},{288,349}}</string>
 				<key>offset</key>
 				<string>{6,-9}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{307,367}</string>
 			</dict>
 			<key>lobby/image/plaza/plaza_5_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1175,2},{285,338}}</string>
+				<string>{{1444,636},{285,338}}</string>
 				<key>offset</key>
 				<string>{2,-15}</string>
 				<key>rotated</key>
@@ -194,13 +194,57 @@
 			<key>lobby/image/plaza/img_game_5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{523,648},{207,60}}</string>
+				<string>{{791,931},{207,60}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
 				<string>{207,60}</string>
+			</dict>
+			<key>lobby/image/plaza/plaza_6_1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1044,361},{277,362}}</string>
+				<key>offset</key>
+				<string>{-2,-3}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{307,367}</string>
+			</dict>
+			<key>lobby/image/plaza/plaza_6_2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{2,712},{292,355}}</string>
+				<key>offset</key>
+				<string>{-1,-6}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{307,367}</string>
+			</dict>
+			<key>lobby/image/plaza/plaza_6_3.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{597,2},{288,355}}</string>
+				<key>offset</key>
+				<string>{3,-6}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{307,367}</string>
+			</dict>
+			<key>lobby/image/plaza/img_game_6.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1167,931},{160,60}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{160,60}</string>
 			</dict>
 		</dict>
 		<key>metadata</key>
@@ -212,14 +256,14 @@
 			<key>realTextureFileName</key>
 			<string>plaza.png</string>
 			<key>size</key>
-			<string>{1731,1001}</string>
+			<string>{2046,1006}</string>
 		</dict>
 		<key>texture</key>
 		<dict>
 			<key>width</key>
-			<integer>1731</integer>
+			<integer>2046</integer>
 			<key>height</key>
-			<integer>1001</integer>
+			<integer>1006</integer>
 		</dict>
 	</dict>
 </plist>

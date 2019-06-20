@@ -20,8 +20,8 @@ function CardRunRule:getInstance()
     return self._instance
 end
 
-function CardRunRule:init()    
-    
+function CardRunRule:init()   
+    self:initData()
 end
 
 function CardRunRule:exit()
@@ -251,6 +251,10 @@ function CardRunRule:getNumWeight(num)
     end
 end
 
+function CardRunRule:getCardWeight(card)
+	return self:getNumWeight(self:getCardNum(card))
+end
+
 function CardRunRule:getCardColor(card)
     if card == cards.CV_BACK then
         return cardColours.CC_BACK
@@ -350,6 +354,9 @@ function CardRunRule:getCard(color, num)
     return cards.CV_NONE
 end
 
+
+
+
 function CardRunRule:isSameNumSubCards(cards1, cards2)
     if #cards2 == 0 then
 		return true
@@ -376,6 +383,28 @@ function CardRunRule:delSameNumCard(cards, delCard)
     return false	
 end
 
---sortByWeight
+function CardRunRule:addCards(cards, addCards)
+	for i=1, #addCards do
+        table.insert(cards, addCards[i])  
+	end
+    return cards
+end
+
+function CardRunRule:sortByWeight(cards)
+	if #cards < 2 then
+        return cards
+	end
+	
+    for i=1, #cards do
+        for j = i+1, #cards do
+            if self:getCardWeight(cards[i]) < self:getCardWeight(cards[j]) or             
+                (self:getCardWeight(cards[i]) == self:getCardWeight(cards[j]) and self:getCardColor(cards[i]) < self:getCardColor(cards[j])) then
+                cards[i], cards[j] = cards[j], cards[i]
+            end
+        end
+    end
+	
+    return cards
+end
 
 return CardRunRule

@@ -97,7 +97,7 @@ CardRule.cards = {
 }
 
 -- 牌转换(斗地主)
-CardRule.repCards = {
+CardRule.localCards = {
     [0]      = CardRule.cards.CV_BACK,
     [0x03]   = CardRule.cards.CV_FANG_3,
     [0x04]   = CardRule.cards.CV_FANG_4,
@@ -159,6 +159,64 @@ CardRule.repCards = {
     [0x94]   = CardRule.cards.CV_WANG_Z
 }
 
+CardRule.serverCards = {
+    [CardRule.cards.CV_BACK]    = 0,
+    [CardRule.cards.CV_FANG_3]  = 0x03,
+    [CardRule.cards.CV_FANG_4]  = 0x04,
+    [CardRule.cards.CV_FANG_5]  = 0x05,
+    [CardRule.cards.CV_FANG_6]  = 0x06,
+    [CardRule.cards.CV_FANG_7]  = 0x07,
+    [CardRule.cards.CV_FANG_8]  = 0x08,
+    [CardRule.cards.CV_FANG_9]  = 0x09,
+    [CardRule.cards.CV_FANG_10] = 0x0a,
+    [CardRule.cards.CV_FANG_J]  = 0x0b,
+    [CardRule.cards.CV_FANG_Q]  = 0x0c,
+    [CardRule.cards.CV_FANG_K]  = 0x0d,
+    [CardRule.cards.CV_FANG_A]  = 0x0e,
+    [CardRule.cards.CV_FANG_2]  = 0x12,
+    [CardRule.cards.CV_MEI_3]   = 0x23,
+    [CardRule.cards.CV_MEI_4]   = 0x24,
+    [CardRule.cards.CV_MEI_5]   = 0x25,
+    [CardRule.cards.CV_MEI_6]   = 0x26,
+    [CardRule.cards.CV_MEI_7]   = 0x27,
+    [CardRule.cards.CV_MEI_8]   = 0x28,
+    [CardRule.cards.CV_MEI_9]   = 0x29,
+    [CardRule.cards.CV_MEI_10]  = 0x2a,
+    [CardRule.cards.CV_MEI_J]   = 0x2b,
+    [CardRule.cards.CV_MEI_Q]   = 0x2c,
+    [CardRule.cards.CV_MEI_K]   = 0x2d,
+    [CardRule.cards.CV_MEI_A]   = 0x2e,
+    [CardRule.cards.CV_MEI_2]   = 0x32,
+    [CardRule.cards.CV_HONG_3]  = 0x43,
+    [CardRule.cards.CV_HONG_4]  = 0x44,
+    [CardRule.cards.CV_HONG_5]  = 0x45,
+    [CardRule.cards.CV_HONG_6]  = 0x46,
+    [CardRule.cards.CV_HONG_7]  = 0x47,
+    [CardRule.cards.CV_HONG_8]  = 0x48,
+    [CardRule.cards.CV_HONG_9]  = 0x49,
+    [CardRule.cards.CV_HONG_10] = 0x4a,
+    [CardRule.cards.CV_HONG_J]  = 0x4b,
+    [CardRule.cards.CV_HONG_Q]  = 0x4c,
+    [CardRule.cards.CV_HONG_K]  = 0x4d,
+    [CardRule.cards.CV_HONG_A]  = 0x4e,
+    [CardRule.cards.CV_HONG_2]  = 0x52,
+    [CardRule.cards.CV_HEI_3]   = 0x63,
+    [CardRule.cards.CV_HEI_4]   = 0x64,
+    [CardRule.cards.CV_HEI_5]   = 0x65,
+    [CardRule.cards.CV_HEI_6]   = 0x66,
+    [CardRule.cards.CV_HEI_7]   = 0x67,
+    [CardRule.cards.CV_HEI_8]   = 0x68,
+    [CardRule.cards.CV_HEI_9]   = 0x69,
+    [CardRule.cards.CV_HEI_10]  = 0x6a,
+    [CardRule.cards.CV_HEI_J]   = 0x6b,
+    [CardRule.cards.CV_HEI_Q]   = 0x6c,
+    [CardRule.cards.CV_HEI_K]   = 0x6d,
+    [CardRule.cards.CV_HEI_A]   = 0x6e,
+    [CardRule.cards.CV_HEI_2]   = 0x72,
+    [CardRule.cards.CV_WANG_F]  = 0x93,
+    [CardRule.cards.CV_WANG_Z]  = 0x94    
+}
+
 CardRule.cardType = {
     CTID_NONE        = 0,    --无
     CTID_YI_ZHANG    = 1,    --单张
@@ -181,6 +239,7 @@ CardRule.cardType = {
     CTID_FEI_JI     = 18,    --飞机带翅膀
     CTID_SAN_DAI_YI = 19,    --三带一
     CTID_SI_DAI_ER  = 20,    --四带二
+    CTID_SAN_DAI_ER = 21,    --三带二   
 }
 
 CardRule.cardAtomScore = {

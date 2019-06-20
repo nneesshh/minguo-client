@@ -20,6 +20,10 @@
       <FilePathData Path="lobby/image/plaza/plaza_5_1.png" />
       <FilePathData Path="lobby/image/plaza/plaza_5_2.png" />
       <FilePathData Path="lobby/image/plaza/img_game_5.png" />
+      <FilePathData Path="lobby/image/plaza/plaza_6_1.png" />
+      <FilePathData Path="lobby/image/plaza/plaza_6_2.png" />
+      <FilePathData Path="lobby/image/plaza/plaza_6_3.png" />
+      <FilePathData Path="lobby/image/plaza/img_game_6.png" />
     </ImageFiles>
     <MaxSize Width="2048" Height="1024" />
   </Content>

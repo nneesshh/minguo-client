@@ -20,8 +20,8 @@ function GameHandCardNode:initData(localSeat)
 
     self._gameCards         = {}
     
-    self._selectBeginIndex        = nil
-    self._selectEndIndex          = nil
+    self._selectBeginIndex  = nil
+    self._selectEndIndex    = nil
     
     self._handCardCount     = 0
 end

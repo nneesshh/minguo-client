@@ -181,17 +181,17 @@
                 <ColorVector ScaleY="1.0000" />
                 <InnerNodeSize Width="680" Height="498" />
               </AbstractNodeData>
-              <AbstractNodeData Name="svw_5" ActionTag="-436783654" Tag="265" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="106.0000" RightMargin="106.0000" TopMargin="90.0000" BottomMargin="40.0000" TouchEnable="True" ClipAble="True" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" IsBounceEnabled="True" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
+              <AbstractNodeData Name="svw_5" ActionTag="-436783654" VisibleForFrame="False" Tag="265" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="106.0000" RightMargin="106.0000" TopMargin="90.0000" BottomMargin="40.0000" TouchEnable="True" ClipAble="True" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" IsBounceEnabled="True" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
                 <Size X="674.0000" Y="420.0000" />
                 <Children>
-                  <AbstractNodeData Name="brnn" ActionTag="475234984" Tag="266" IconVisible="False" RightMargin="6.0000" LeftEage="219" RightEage="219" TopEage="164" BottomEage="164" Scale9OriginX="219" Scale9OriginY="164" Scale9Width="236" Scale9Height="736" ctype="ImageViewObjectData">
+                  <AbstractNodeData Name="brnn" ActionTag="475234984" Tag="266" IconVisible="False" LeftEage="219" RightEage="219" TopEage="164" BottomEage="164" Scale9OriginX="219" Scale9OriginY="164" Scale9Width="236" Scale9Height="736" ctype="ImageViewObjectData">
                     <Size X="674.0000" Y="1064.0000" />
                     <AnchorPoint />
                     <Position />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <PrePosition />
-                    <PreSize X="0.9912" Y="1.0000" />
+                    <PreSize X="1.0000" Y="1.0000" />
                     <FileData Type="Normal" Path="lobby/image/help/img_brnn.png" Plist="" />
                   </AbstractNodeData>
                 </Children>
@@ -206,6 +206,32 @@
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
                 <InnerNodeSize Width="674" Height="1064" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="svw_6" ActionTag="-1562664662" Tag="548" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="101.0000" RightMargin="101.0000" TopMargin="90.0000" BottomMargin="40.0000" TouchEnable="True" ClipAble="True" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" IsBounceEnabled="True" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
+                <Size X="684.0000" Y="420.0000" />
+                <Children>
+                  <AbstractNodeData Name="brnn" ActionTag="583293126" Tag="549" IconVisible="False" TopMargin="-751.0000" LeftEage="219" RightEage="219" TopEage="164" BottomEage="164" Scale9OriginX="219" Scale9OriginY="164" Scale9Width="246" Scale9Height="1487" ctype="ImageViewObjectData">
+                    <Size X="684.0000" Y="1815.0000" />
+                    <AnchorPoint />
+                    <Position />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition />
+                    <PreSize X="1.0000" Y="1.7058" />
+                    <FileData Type="Normal" Path="lobby/image/help/img_ddz.png" Plist="" />
+                  </AbstractNodeData>
+                </Children>
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="443.0000" Y="250.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.5000" Y="0.4545" />
+                <PreSize X="0.7720" Y="0.7636" />
+                <SingleColor A="255" R="255" G="150" B="100" />
+                <FirstColor A="255" R="255" G="150" B="100" />
+                <EndColor A="255" R="255" G="255" B="255" />
+                <ColorVector ScaleY="1.0000" />
+                <InnerNodeSize Width="684" Height="1815" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />

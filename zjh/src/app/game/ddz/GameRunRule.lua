@@ -24,6 +24,8 @@ function GameRunRule:resetData()
 end
 
 function GameRunRule:init()
+    GameRunRule.super.init(self)
+    
     --添加牌型
     self:addCardType(cardType.CTID_YI_ZHANG, "单张", 1, 1) 
     self:addCardType(cardType.CTID_ER_ZHANG, "对子", 2, 1) 
@@ -325,7 +327,7 @@ function GameRunRule:getCardsBySelectCard(upCards)
 end
 
 local SELECT_Y = 15
-local HAND_CARD_DISTANCE_NO_SELF = 30
+local HAND_CARD_DISTANCE_NO_SELF = 20
 local HERO_LOCAL_SEAT = 1
 
 function GameRunRule:calHandCardPosition(index, cardSize, count, localSeat, bUp)
@@ -341,7 +343,7 @@ function GameRunRule:calHandCardPosition(index, cardSize, count, localSeat, bUp)
         else
             local width = (screenSize.width - 200 - cardSize.width) / (count - 1) 
             if width > (cardSize.width - cardSize.width/5) then
-                width = cardSize.width - cardSize.width/5
+                width = cardSize.width / 2
             end
 
             local handCardsLength = (count - 1) * width + cardSize.width
@@ -384,10 +386,24 @@ function GameRunRule:calOutCardPosition(index, cardSize, count, localSeat)
    
     local index = index - 1
     posX = beginPosX + index * WIDTH
-    posY = posY - cardSize.height / 2
-   
+    
     return cc.p(posX, posY)
 end
+
+function GameRunRule:calBankCardPosition(index, cardSize, count)
+	local posX = 0
+    local posY = 0
+
+    local WIDTH = cardSize.width 
+    local outCardsLength = (count - 1) * WIDTH + cardSize.width
+    local beginPosX = 0    
+    beginPosX = beginPosX - outCardsLength / 2
+
+    local index = index - 1
+    posX = beginPosX + index * WIDTH
+    
+    return cc.p(posX, posY)
+end 
 
 -- 牌node大小排序
 function GameRunRule:sortNodeCardByWeight(nodeCards)
@@ -492,5 +508,275 @@ function GameRunRule:checkBoom(needUpCards, handCards, isFirstOut)
     return needUpCards
 end
 
+function GameRunRule:calSelectAutoUp(upCards, hintComb, handCards, isFirstOut)
+    local tempHintComb = {}
+
+    -- 把包含弹起牌提示牌记录到tempHintComb
+    self:calHintCombWithUpCards(upCards, hintComb, tempHintComb)
+
+    -- 计算所有需要弹起的牌
+    local needUpCards = self:calNeedUpCards(tempHintComb, handCards, isFirstOut)
+
+    -- 出去已弹起的牌
+    self:calNeedUpCardsWithoutUp(upCards, needUpCards)
+
+    return needUpCards
+end
+
+function GameRunRule:calHintCombWithUpCards(upCards, hintComb, tempHintComb)
+    local layUp = {}
+    self:initLayNum(layUp)
+
+    for i = 1, #upCards do
+        local num = self:getCardNum(upCards[i])
+        layUp[num] = layUp[num] + 1
+    end
+
+    -- 手牌有王不联想
+    if layUp[cardNums.CN_F] > 0 or layUp[cardNums.CN_Z] > 0 then
+        return
+    end
+
+    local layHint = {}
+    for i = 1, #hintComb do
+        self:initLayNum(layHint)
+
+        local hintCards = hintComb[i].cards
+
+        for i = 1, #hintCards do
+            local num = self:getCardNum(hintCards[i])
+            layHint[num] = layHint[num] + 1
+        end
+
+        -- 提示牌有王不联想
+        if layHint[cardNums.CN_F] > 0 or layHint[cardNums.CN_Z] > 0 then
+        else
+            local bInComb = true
+            for i = cardNums.CN_1, cardNums.CN_B do
+                if layUp[i] > layHint[i] then
+                    bInComb = false
+                    break
+                end
+            end
+
+            if bInComb then
+                table.insert(tempHintComb, hintComb[i])
+            end
+        end
+    end
+end
+
+function GameRunRule:calNeedUpCards(hintComb, handCards, isFirstOut)
+    local needUpCards = {}
+
+    if #hintComb == 0 then
+        return needUpCards
+    end
+
+    -- 单顺
+    needUpCards = self:calNeedUpCards_Shun(hintComb, handCards, isFirstOut, 1)
+    if #needUpCards > 0 then
+        return needUpCards
+    end
+
+    -- 双顺
+    needUpCards = self:calNeedUpCards_Shun(hintComb, handCards, isFirstOut, 2)
+    if #needUpCards > 0 then
+        return needUpCards
+    end
+
+    -- 三顺
+    needUpCards = self:calNeedUpCards_Shun(hintComb, handCards, isFirstOut, 3)
+    if #needUpCards > 0 then
+        return needUpCards
+    end
+
+    -- 其他
+    needUpCards = self:calNeedUpCards_Other(hintComb)
+    if #needUpCards > 0 then
+        return needUpCards
+    end
+
+    return needUpCards
+end
+
+function GameRunRule:calNeedUpCards_Shun(hintComb, handCards, isFirstOut, index)
+    local needUpCards = {}
+
+    local layHand = {}
+    self:initLayNum(layHand)
+
+    for i = 1, #handCards do
+        local num = self:getCardNum(handCards[i])
+        layHand[num] = layHand[num] + 1
+    end
+
+    local TYPE_ID = cardType.CTID_NONE
+    if index == 1 then
+        TYPE_ID = cardType.CTID_YI_SHUN
+    elseif index == 2 then
+        TYPE_ID = cardType.CTID_ER_SHUN
+    elseif index == 3 then
+        TYPE_ID = cardType.CTID_SAN_SHUN
+    else
+        return needUpCards
+    end
+
+    local tempTypeID    = 0
+    local tempTypeLen   = 0
+    local tempTypePower = 0
+    for i = 1, #hintComb do
+        local typeID    = hintComb[i].type.id
+        local typeLen   = hintComb[i].type.len
+        local typePower = hintComb[i].type.power
+
+        local hintCards = hintComb[i].cards
+
+        if typeID == TYPE_ID then
+            -- 首家出牌联想牌不拆牌
+            if self:isCanAutoUp(layHand, hintCards, isFirstOut) then
+                if tempTypeID == 0 then
+                    tempTypeID    = typeID
+                    tempTypeLen   = typeLen
+                    tempTypePower = typePower
+
+                    needUpCards = hintCards
+                else
+                    if tempTypeLen < typeLen or
+                        ( tempTypeLen == typeLen and tempTypePower < typePower ) then
+                        tempTypeID    = typeID
+                        tempTypeLen   = typeLen
+                        tempTypePower = typePower
+
+                        needUpCards = hintCards
+                    end
+                end
+            end
+        end
+    end
+
+    return needUpCards
+end
+
+function GameRunRule:isCanAutoUp(layHand, hintCards, isFirstOut)
+    local layHint = {}
+    self:initLayNum(layHint)
+
+    for i = 1, #hintCards do
+        local num = self:getCardNum(hintCards[i])
+        layHint[num] = layHint[num] + 1
+    end
+
+    local bAll = true
+    for i = cardNums.CN_1, cardNums.CN_B do
+        if layHint[i] > 0 then
+            if layHand[i] > layHint[i] then
+                bAll = false
+                break
+            end
+        end
+    end
+
+    if not isFirstOut or
+        (isFirstOut and bAll) then
+        return true
+    end
+
+    return false
+end
+
+function GameRunRule:calNeedUpCards_Other(hintComb)
+    local needUpCards = {}
+
+    local tempTypeID    = 0
+    local tempTypeCount = 0
+    local tempTypePower = 0
+
+    for i = 1, #hintComb do
+        local typeID    = hintComb[i].type.id
+        local typeCount = hintComb[i].type.count
+        local typePower = hintComb[i].type.power
+
+        local hintCards = hintComb[i].cards
+
+        if typeID == cardType.CTID_ER_ZHANG or
+            typeID == cardType.CTID_SAN_ZHANG or
+            typeID == cardType.CTID_SI_ZHANG or
+            typeID == cardType.CTID_WU_ZHANG or
+            typeID == cardType.CTID_LIU_ZHANG or
+            typeID == cardType.CTID_QI_ZHANG or
+            typeID == cardType.CTID_BA_ZHANG then
+            if tempTypeID == 0 then
+                tempTypeID    = typeID
+                tempTypeCount = typeCount
+                tempTypePower = typePower
+
+                needUpCards = hintCards
+            else
+                if tempTypeCount < typeCount then
+                    tempTypeID    = typeID
+                    tempTypeCount = typeCount
+                    tempTypePower = typePower
+
+                    needUpCards = hintCards
+                end
+            end
+        end
+    end
+
+    return needUpCards
+end
+
+function GameRunRule:calNeedUpCardsWithoutUp(upCards, needUpCards)
+    local tempUpCards     = clone(upCards)
+
+    if #tempUpCards > #needUpCards then
+        for i = #needUpCards, 1, -1 do
+            table.remove(needUpCards, i)
+        end
+
+        return 
+    end
+
+    -- 先比较ID, 将已提起的手牌去掉
+    for i = #tempUpCards, 1, -1 do
+        for j = #needUpCards, 1, -1 do
+            if tempUpCards[i] == needUpCards[j] then 
+                table.remove(tempUpCards, i)
+                table.remove(needUpCards, j)
+
+                break
+            end
+        end
+    end
+
+    -- 已提起的手牌不在联想牌中， 则按点数num去掉
+    if #tempUpCards > 0 then
+        for i = #tempUpCards, 1, -1 do
+            for j = #needUpCards, 1, -1 do
+                local numUp     = self:getCardNum(tempUpCards[i])
+                local numNeedUp = self:getCardNum(needUpCards[j])
+                if numUp == numNeedUp then 
+                    table.remove(tempUpCards, i)
+                    table.remove(needUpCards, j)
+
+                    break
+                end
+            end
+        end
+    end
+end
+
+function GameRunRule:initLayNum(lay)
+    for i = cardNums.CN_1, cardNums.CN_B do
+        lay[i] = 0
+    end
+end
+
+function GameRunRule:initLayID(lay)
+    for i = cardsValue.CV_FANG_A, cardsValue.CV_WANG_Z do
+        lay[i] = 0
+    end
+end
 
 return GameRunRule

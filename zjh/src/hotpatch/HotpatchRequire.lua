@@ -10,6 +10,7 @@ HotpatchRequire._zjhList   = {}
 HotpatchRequire._qznnList  = {}
 HotpatchRequire._lhdList   = {}
 HotpatchRequire._brnnList  = {}
+HotpatchRequire._ddzList   = {}
 
 -- 大厅相关
 function HotpatchRequire.requireLobby(modname)
@@ -123,6 +124,25 @@ end
 
 function HotpatchRequire.unloadBRNN()
     HotpatchRequire._brnnList = {}
+end
+
+-- 斗地主
+function HotpatchRequire.requireDDZ(modname)
+    table.insert(HotpatchRequire._ddzList, modname)   
+    return require(modname)
+end
+
+function HotpatchRequire.reloadDDZ()
+    for k, modname in ipairs(HotpatchRequire._ddzList) do
+        if package.loaded[modname] then
+            package.loaded[modname] = nil
+            require(modname)
+        end        
+    end
+end
+
+function HotpatchRequire.unloadDDZ()
+    HotpatchRequire._ddzList = {}
 end
 
 return HotpatchRequire

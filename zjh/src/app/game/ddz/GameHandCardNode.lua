@@ -1,16 +1,19 @@
-
 --[[
     @brief  游戏手牌UI类
 ]]--
 
-local GameCardNode        = requireDDZ("app.game.qznn.GameCardNode")
+local GameCardNode        = requireDDZ("app.game.ddz.GameCardNode")
 local GameHandCardNode    = class("GameHandCardNode", app.base.BaseNodeEx)
 
-local HAND_CARD_TYPE         = 0
-local HAND_CARD_TYPE_NO_SELF = 1
+local HAND_CARD_TYPE          = 0
+local HAND_CARD_TYPE_NO_SELF  = 1
 
-local HAND_CARD_SCALE = 0.8
-local HAND_CARD_SCALE_NO_SELF = 0.6
+local HAND_CARD_SCALE         = 0.8
+local HAND_CARD_SCALE_NO_SELF = 0.4
+
+local CARD_NUM                = 17
+local HERO_LOCAL_SEAT         = 1
+local CV_BACK                 = app.game.CardRule.cards.CV_BACK 
 
 function GameHandCardNode:initData(localSeat)
     self._localSeat               = localSeat
@@ -91,8 +94,6 @@ function GameHandCardNode:onTouchEnd(touch, event)
     self._selectEndIndex   = nil
 
     self:checkOutBtnEnable()
-
-    app.util.SoundUtils.playSelectCardEffect()
 end
 
 function GameHandCardNode:createCard(id, scale, type)
@@ -138,21 +139,14 @@ function GameHandCardNode:resetHandCards()
 end
 
 -- 发牌
-function GameHandCardNode:onTakeFirst(id)    
-    self._handCardCount = app.game.GameEnum.CARD_NUM
-    if id ~= app.game.CardRule.cards.CV_BACK then
-        if self._localSeat == app.game.GameEnum.HERO_LOCAL_SEAT then
-            local card = self:createCard(id, HAND_CARD_SCALE, HAND_CARD_TYPE)
-            if card then
-                card:playTakeFirstAction()
-            end
-            self:setBombColor()
-        end
-    else
-        local card = self:createCard(id, HAND_CARD_SCALE_NO_SELF, HAND_CARD_TYPE_NO_SELF)
+function GameHandCardNode:onTakeFirst(id)        
+    self._handCardCount = CARD_NUM
+    
+    if self._localSeat == HERO_LOCAL_SEAT then
+        local card = self:createCard(id, HAND_CARD_SCALE, HAND_CARD_TYPE)
         if card then
             card:playTakeFirstAction()
-        end
+        end          
     end
 end
 
@@ -160,22 +154,20 @@ end
 function GameHandCardNode:createCards(cards)    
     ----- 这里需要先算好手牌数再createCard， 计算手牌位置会用到
     for i = 1, #cards do
-        if cards[i] ~= app.game.CardRule.cards.CV_BACK then
+        if cards[i] ~= CV_BACK then
             self._handCardCount = self._handCardCount + 1
         end
     end
 
     for i = 1, #cards do
-        if cards[i] ~= app.game.CardRule.cards.CV_BACK then
-            if self._localSeat == app.game.GameEnum.HERO_LOCAL_SEAT then
+        if cards[i] ~= CV_BACK then
+            if self._localSeat == HERO_LOCAL_SEAT then
                 self:createCard(cards[i], HAND_CARD_SCALE, HAND_CARD_TYPE)
             else
                 self:createCard(cards[i], HAND_CARD_SCALE_NO_SELF, HAND_CARD_TYPE_NO_SELF)
             end
         end
     end
-
-    self:setBombColor()
 
     if #cards == #self._gameCards then
         for i = 1, #self._gameCards do
@@ -197,30 +189,6 @@ function GameHandCardNode:sortNodeCardByWeight(index)
 
     if count > 0 then
         self._presenter:sortNodeCardByWeight(self._gameCards)
-
-        self:setBombColor()
-        if not index then
-            for i = 1, #self._gameCards do
-                self._gameCards[i]:setCardIndex(i)
-            end
-        else
-            self:playSortAction(index)
-        end
-    end
-end
-
-function GameHandCardNode:sortNodeCardByCount(index)
-    local count = 0
-    for i = 1, #self._gameCards do
-        if self._gameCards[i]:isVisible() then
-            count = count + 1
-        end
-    end
-
-    if count > 0 then
-        self._presenter:sortNodeCardByCount(self._gameCards)
-
-        self:setBombColor()
 
         if not index then
             for i = 1, #self._gameCards do
@@ -255,44 +223,20 @@ function GameHandCardNode:playSortAction(index)
     end
 end
 
-function GameHandCardNode:isCanTouchCard()
-    local stepID = self._presenter:getStepID()
-    
+function GameHandCardNode:isCanTouchCard()    
     return true
 end
 
 function GameHandCardNode:isTouchOnTheCard(pos, indexTable)
-    if #self._gameCards > app.game.GameEnum.LINE_CARD_NUM then
-        for i = app.game.GameEnum.LINE_CARD_NUM, 1, -1 do
-            if self._gameCards[i]:isVisible() then
-                local localPos = self._gameCards[i]:convertToNodeSpace(pos)
-                if cc.rectContainsPoint(self._gameCards[i]:getPnlCard():getBoundingBox(), localPos) then
-                    indexTable[1] = i
-                    return true
-                end
-            end
-        end
-        for i = #self._gameCards, app.game.GameEnum.LINE_CARD_NUM, -1 do
-            if self._gameCards[i]:isVisible() then
-                local localPos = self._gameCards[i]:convertToNodeSpace(pos)
-                if cc.rectContainsPoint(self._gameCards[i]:getPnlCard():getBoundingBox(), localPos) then
-                    indexTable[1] = i
-                    return true
-                end
-            end
-        end
-    else
-        for i = #self._gameCards, 1, -1 do
-            if self._gameCards[i]:isVisible() then
-                local localPos = self._gameCards[i]:convertToNodeSpace(pos)
-                if cc.rectContainsPoint(self._gameCards[i]:getPnlCard():getBoundingBox(), localPos) then
-                    indexTable[1] = i
-                    return true
-                end
+    for i = #self._gameCards, 1, -1 do
+        if self._gameCards[i]:isVisible() then
+            local localPos = self._gameCards[i]:convertToNodeSpace(pos)
+            if cc.rectContainsPoint(self._gameCards[i]:getPnlCard():getBoundingBox(), localPos) then
+                indexTable[1] = i
+                return true
             end
         end
     end
-
     return false
 end
 
@@ -382,10 +326,6 @@ function GameHandCardNode:setNeedUpCardsAutoUp(cards)
     self:checkOutBtnEnable()
 end
 
-function GameHandCardNode:setBombColor()
-    
-end
-
 function GameHandCardNode:getDownNodeCardByID(id)
     for i = 1, #self._gameCards do
         if self._gameCards[i]:isVisible() and
@@ -398,13 +338,13 @@ end
 
 function GameHandCardNode:deleteHandCards(cards)
     for i = 1, #cards do
-        if cards[i] ~= app.game.CardRule.cards.CV_BACK then
+        if cards[i] ~= CV_BACK then
             self._handCardCount = self._handCardCount - 1
         end
     end
 
     for i = 1, #cards do
-        if cards[i] ~= app.game.CardRule.cards.CV_BACK then
+        if cards[i] ~= CV_BACK then
             local card = self:getDeleteNodeCardByID(cards[i])
             if card then
                 card:resetCard()
@@ -412,7 +352,7 @@ function GameHandCardNode:deleteHandCards(cards)
         end
     end
 
-    if self._localSeat == app.game.GameEnum.HERO_LOCAL_SEAT then
+    if self._localSeat == HERO_LOCAL_SEAT then
         self._presenter:sortHandCard(self._localSeat, DELETE_ACTION)
     else
         self._presenter:sortHandCard(self._localSeat)
@@ -442,10 +382,7 @@ function GameHandCardNode:checkOutBtnEnable()
 
     self._lastUpCards = upCards
     
-    local stepID = self._presenter:getStepID()
-    if stepID == app.game.GameEnum.GameStep.GAME_STEP_PLAY_CARD then
-        self._presenter:checkOutBtnEnable(upCards)
-    end
+    self._presenter:checkOutBtnEnable(upCards)    
 end
 
 function GameHandCardNode:getUpHandCards()

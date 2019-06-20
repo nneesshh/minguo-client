@@ -1,4 +1,3 @@
-
 --[[
     @brief  游戏牌UI基类
 ]]--
@@ -6,29 +5,23 @@
 local GameCardNode = class("GameCardNode", app.base.BaseNode)
 
 -- csb路径
-GameCardNode.csbPath         = "game/qznn/csb/card.csb"
+GameCardNode.csbPath         = "game/ddz/csb/card.csb"
 GameCardNode.imgCardPath     = "game/public/card/img_"
 
 local HAND_CARD_TYPE         = 0
 local HAND_CARD_TYPE_NO_SELF = 1
 local OUT_CARD_TYPE          = 2
-local BANKER_CARD_TYPE       = 3
+local BANK_CARD_TYPE         = 3
 
 local TAKE_FIRST_DELAY       = 0.1
 local MOVE_ACTION_DELAY      = 0.15
 
-local CV_BACK                = 0
-local CV_GRAY                = 888
-local HERO_LOCAL_SEAT        = 1
+local CR                     = app.game.CardRule
+local _CV                    = CR.cards
+local _CC                    = CR.cardColours
+local _CN                    = CR.cardNums
 
-local COLOR = {
-    C_FANG      = 0,
-    C_MEI       = 1,
-    C_HONG      = 2,
-    C_HEI       = 3,
-    C_BIGKING   = 4,
-    C_SMALLKING = 5
-}
+local HERO_LOCAL_SEAT        = 1
 
 function GameCardNode:initData(localSeat, type)
     self._localSeat    = localSeat
@@ -51,39 +44,33 @@ function GameCardNode:setCardID(id)
     self._id = id
 
     self._num          = self._presenter:getCardNum(id)
-    self._color        = self._presenter:getCardColor(id)    
+    self._color        = self._presenter:getCardColor(id)  
+      
     self._weight       = self._presenter:getCardWeight(id)
 
     local front = self:seekChildByName("img_card_front")
-    local back = self:seekChildByName("img_card_back")
-    local gary = self:seekChildByName("img_card_gary")
+    local back = self:seekChildByName("img_card_back")    
 
-    if id == CV_BACK then
+    if self._id == _CV.CV_BACK then
         front:setVisible(false)
         back:setVisible(true)
-        gary:setVisible(false)
-    elseif id == CV_GRAY then
-        front:setVisible(false)
-        back:setVisible(false)
-        gary:setVisible(true)
     else
         front:setVisible(true)
-        back:setVisible(false)
-        gary:setVisible(false)
+        back:setVisible(false)        
     end
 
-    if id ~= CV_BACK and id ~= CV_GRAY then    
+    if self._id ~= _CV.CV_BACK then    
         local bking = self:seekChildByName("img_card_big_king")
         local sking = self:seekChildByName("img_card_small_king")        
         local normal = self:seekChildByName("panl_card_normal")
 
-        if self._color == COLOR.C_BIGKING then
-            bking:setVisible(true)
-            sking:setVisible(false)
-            normal:setVisible(false)
-        elseif self._color == COLOR.C_SMALLKING then
+        if self._id == _CV.CV_WANG_F then
             bking:setVisible(false)
             sking:setVisible(true)
+            normal:setVisible(false)
+        elseif self._id == _CV.CV_WANG_Z then
+            bking:setVisible(true)
+            sking:setVisible(false)
             normal:setVisible(false)
         else
             bking:setVisible(false)
@@ -95,29 +82,35 @@ function GameCardNode:setCardID(id)
             local ibig = normal:getChildByName("img_color_big") 
             local iface = normal:getChildByName("img_card_face") 
 
-            if self._num and self._color then          
-                local tempNum   
-                if self._num == 1 then
-                    tempNum = 14
-                else
-                    tempNum = self._num
+            if self._num and self._color then  
+                if self._color == _CC.CC_FANG or self._color == _CC.CC_HONG then
+                    local npath = self.imgCardPath .. 0 .. "_" .. self._num .. ".png"
+                    inum:loadTexture(npath, ccui.TextureResType.plistType)
+                elseif self._color == _CC.CC_MEI or self._color == _CC.CC_HEI then    
+                    local npath = self.imgCardPath .. 1 .. "_" .. self._num .. ".png"
+                    inum:loadTexture(npath, ccui.TextureResType.plistType)
                 end
-                local npath = self.imgCardPath .. self._color % 2 .. "_" .. tempNum .. ".png"
-                local spath = self.imgCardPath .. "color_" .. self._color .. ".png"
-                inum:loadTexture(npath, ccui.TextureResType.plistType)
+                
+                local spath = self.imgCardPath .. "color_" .. (self._color-1) .. ".png"
                 ismall:loadTexture(spath, ccui.TextureResType.plistType)
-
-                if tempNum <= 10 or tempNum == 14 then
+                
+                if self._num < _CN.CN_J or self._num == _CN.CN_A then
                     iface:setVisible(false)
                     ibig:setVisible(true)
-                    local bpath = self.imgCardPath .. "color_" .. self._color .. ".png"         
+                    local bpath = self.imgCardPath .. "color_" .. (self._color-1) .. ".png"         
                     ibig:loadTexture(bpath, ccui.TextureResType.plistType)
-                else
+                else    
                     ibig:setVisible(false)
                     iface:setVisible(true)
-                    local fpath = self.imgCardPath .. "face_" .. self._color % 2 .. "_" .. tempNum .. ".png"
-                    iface:loadTexture(fpath, ccui.TextureResType.plistType)
-                end 
+                    
+                    if self._color == _CC.CC_FANG or self._color == _CC.CC_HONG then
+                        local fpath = self.imgCardPath .. "face_" .. 0 .. "_" .. self._num .. ".png"
+                        iface:loadTexture(fpath, ccui.TextureResType.plistType)
+                    elseif self._color == _CC.CC_MEI or self._color == _CC.CC_HEI then 	
+                        local fpath = self.imgCardPath .. "face_" .. 1 .. "_" .. self._num .. ".png"
+                        iface:loadTexture(fpath, ccui.TextureResType.plistType)
+                    end
+                end                
             end
         end
     end
@@ -162,8 +155,10 @@ function GameCardNode:setCardPosition()
     local pos = cc.p(0, 0)
     if self._type == HAND_CARD_TYPE or self._type == HAND_CARD_TYPE_NO_SELF then
         pos = self._presenter:calHandCardPosition(self._index, self:getCardSize(), self._localSeat, self._bUp)
-    elseif self._type == OUT_CARD_TYPE or self._type == BANKER_CARD_TYPE then 
+    elseif self._type == OUT_CARD_TYPE then 
         pos = self._presenter:calOutCardPosition(self._index, self:getCardSize(), self._localSeat)
+    elseif self._type == BANK_CARD_TYPE then
+        pos = self._presenter:calBankCardPosition(self._index, self:getCardSize(), self._localSeat)
     end
 
     self._rootNode:setPosition(pos)
@@ -278,6 +273,11 @@ function GameCardNode:playTakeFirstAction()
     local actRemove = cc.CallFunc:create(function()
         self._rootNode:setVisible(false)
     end)
+    
+    local actEnd = cc.CallFunc:create(function()
+        self._rootNode:setOpacity(255)
+        self._rootNode:setPosition(pos)
+    end)
 
     if self._type == HAND_CARD_TYPE then
         self._rootNode:runAction(actSpawn)
@@ -287,7 +287,8 @@ function GameCardNode:playTakeFirstAction()
         self._rootNode:runAction(
             cc.Sequence:create(
                 actSpawn, 
-                actRemove
+                actRemove,
+                actEnd
             )
         )        
     end

@@ -176,6 +176,7 @@ local MsgId = {
     MSGID_DDZ_GAME_PREPARE_NOTIFY              = 0x3021,      --二打一游戏准备通知 12321
     MSGID_DDZ_GAME_START_NOTIFY                = 0x3022,      --二打一游戏开始通知 12322
     MSGID_DDZ_GAME_OVER_NOTIFY                 = 0x3023,      --二打一游戏结束通知 12323
+    MSGID_DDZ_GAME_COMPARE_BID_OVER_NOTIFY     = 0x3024,      --二打一通知--比牌加倍结束 12324
    
     MSGID_DDZ_READY_NOTIFY                     = 0x3031,      --二打一准备通知 12337
     MSGID_DDZ_BANKER_BID_NOTIFY                = 0x3032,      --二打一叫庄通知 12338

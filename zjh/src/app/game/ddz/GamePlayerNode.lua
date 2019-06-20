@@ -1,138 +1,78 @@
 --[[
-    @brief  游戏玩家UI基类
-    @by     斯雪峰
+@brief  游戏玩家类
 ]]--
-local GameHandCardNode = require("app.game.card.shuangkou.base.node.GameHandCardNode")
-local GameOutCardNode  = require("app.game.card.shuangkou.base.node.GameOutCardNode")
+local GameHandCardNode = requireDDZ("app.game.ddz.GameHandCardNode")
+local GameOutCardNode  = requireDDZ("app.game.ddz.GameOutCardNode")
 
-local GamePlayerNode    = class("GamePlayerNode", app.base.BaseNodeEx)
+local GamePlayerNode   = class("GamePlayerNode", app.base.BaseNodeEx)
 
-GamePlayerNode.clicks = {
-    "KW_IMG_FACE",
-}
-
-GamePlayerNode.touchs = {
-    "KW_BTN_GAMEMENU_STORE_ENTRANCE",
-}
-
-function GamePlayerNode:onClick(sender)
-    GamePlayerNode.super.onClick(self, sender)
-    local name = sender:getName()
-    if name == "KW_IMG_FACE" then
-        self:onClickImgFace()
-    end
-end
-
-function GamePlayerNode:onTouch(sender, eventType)
-    GamePlayerNode.super.onTouch(self, sender, eventType)
-    local name = sender:getName()
-    if eventType == ccui.TouchEventType.ended then
-        if name == "KW_BTN_GAMEMENU_STORE_ENTRANCE" then
-            self:onTouchBtnGameMenuStoreEntance()
-        end
-    end
-end
+local HERO_LOCAL_SEAT  = 1 
+local ST = app.game.GameEnum.soundType
 
 function GamePlayerNode:initData(localSeat)
     self._localSeat         = localSeat
-
     self._clockProgress     = nil
+
+    math.randomseed(tostring(os.time()):reverse():sub(1, 7))
 end
 
 function GamePlayerNode:initUI(localSeat)
     self:initNodeHandCard(localSeat)
     self:initNodeOutCard(localSeat)
-    self:initPnlClockCircle()
 end
 
 function GamePlayerNode:initNodeHandCard(localSeat)
-    local nodeHandCard = self:seekChildByName("KW_NODE_HAND_CARD")
-    self._gameHandCardNode = GameHandCardNode:create(self._presenter, nodeHandCard, localSeat)
+    local nodeHandCard = self:seekChildByName("node_hand_card")
+    self._gameHandCardNode = GameHandCardNode:create(self._presenter, nodeHandCard, localSeat)    
 end
 
 function GamePlayerNode:initNodeOutCard(localSeat)
-    local nodeOutCard = self:seekChildByName("KW_NODE_OUT_CARD")
+    local nodeOutCard = self:seekChildByName("node_out_card")
     self._gameOutCardNode = GameOutCardNode:create(self._presenter, nodeOutCard, localSeat)
 end
 
-function GamePlayerNode:initPnlClockCircle()
-    local spCircleGreen = self:seekChildByName("KW_SP_CIRCLE_GREEN")
-    self._clockProgress = display.newProgressTimer(spCircleGreen, display.PROGRESS_TIMER_RADIAL)
-    self._clockProgress:setPosition(cc.p(spCircleGreen:getPosition()))
-    self._clockProgress:setReverseDirection(true)
-    spCircleGreen:setVisible(false)
-
-    local pnlClockCircle = self:seekChildByName("KW_PNL_CLOCK_CIRCLE")
-    pnlClockCircle:addChild(self._clockProgress)
-end
-----------------------------------------onClick----------------------------------------
-function GamePlayerNode:onClickImgFace()
-    print("onClickImgFace", self._localSeat)
-    self._presenter:onClickImgFace(self._localSeat)
-end
-----------------------------------------------------------------------------------------------
-----------------------------------------onTouch----------------------------------------
-function GamePlayerNode:onTouchBtnGameMenuStoreEntance()
-    print("onTouchBtnGameMenuStoreEntance")
-    self._presenter:onTouchBtnGameMenuStoreEntance()
-end
-----------------------------------------------------------------------------------------------
-
 -- 玩家进入
-function GamePlayerNode:onPlayerEnter()    
+function GamePlayerNode:onPlayerEnter()  
     local player = app.game.PlayerData.getPlayerByLocalSeat(self._localSeat)
-
+    if not player then
+    	return
+    end
     -- 显示用户节点    
-    self:showPnlPlayer(true)
+    self:showPnlPlayerEx(true)
 
-    -- 设置姓名
-    self:showTxtPlayerName(true, player:getNickname())
-    -- 设置ID
-    self:showTxtPlayerID(true, player:getNumID())
-    -- 设置金币
-    self:showTxtSR(true, player:getSR())
-    -- 显示头像
-    self:showImgFace(player:getSex(), player:getHead(), player:getHeadURL())
-
-    -- 设置准备标志
-    self:showImgReadyFlag(player:isReady())                                    
-    -- 玩家已准备
-
+--    if self._localSeat == HERO_LOCAL_SEAT then
+        -- 设置姓名
+        self:showTxtPlayerName(true, player:getTicketID())
+        -- 设置金币
+        self:showTxtBalance(true, player:getBalance())
+        -- 显示头像
+        self:showImgFace(player:getGender(), player:getAvatar())
+        -- 倍数
+        self:showMult(1)
+--    else
+--        -- 设置姓名
+--        self:showTxtPlayerName(true, "   - -")
+--        -- 设置金币
+--        self:showTxtBalance(true, " - -")
+--        -- 显示头像
+--        self:showImgFace(2, 0) 
+--    end
+    self:showImgCancelFlag(false) 
+    -- 隐藏庄家
+    self:showImgBanker(false)
+    -- 隐藏加倍
+    self:showImgMult(false)
+    -- 叫地主
+    self:showImgCallType(false)    
+    -- 隐藏牌型
+    self:showImgCardType(false)
     -- 隐藏时钟
-    self:showPnlClockCircle(false)
-
-    -- 显示断线标志
-    self:showImgOfflineFlag(player:isOffLine())
-
-    -- 如果不在游戏中，隐藏一些UI
-    if not player:isPlaying() then
-        -- 隐藏不出标志
-        self:showImgCancelFlag(false)                                    
-        -- 隐藏托管标志
-        self:showImgTrustFlag(false)                                     
-        -- 隐藏排名
-        self:showPnlRank(false)                                     
-        
-        if self._localSeat ~= app.game.GameEnum.HERO_LOCAL_SEAT then
-            --播放玩家进入动画
-            self:playAnimationPlayerEnter()
-        end
-    end
-
-    if not player:isPlaying() then
-        self._gameHandCardNode:resetHandCards()
-    end
-
-    if player:isReady() or not player:isPlaying() then
-        self._gameOutCardNode:resetOutCards()
-    end
-
-    self:showImgFaceIce(false)
+    self:showPnlClockCircle(false) 
 end
 
 -- 重置桌子
 function GamePlayerNode:onResetTable()
-    if self._localSeat == app.game.GameEnum.HERO_LOCAL_SEAT then
+    if self._localSeat == HERO_LOCAL_SEAT then
         self:onPlayerEnter()
     else
         self:onPlayerLeave()
@@ -141,57 +81,68 @@ end
 
 -- 玩家离开
 function GamePlayerNode:onPlayerLeave()
-    if self._localSeat ~= app.game.GameEnum.HERO_LOCAL_SEAT then
-        self:showPnlPlayer(false)
+    if self._localSeat ~= HERO_LOCAL_SEAT then
+        self:showPnlPlayerEx(false)
     end
 
     self:showPnlClockCircle(false)
 end
 
--- 玩家点击开始
-function GamePlayerNode:onPlayerStart()
-    -- 显示准备标志
-    self:showImgReadyFlag(true)                                    
+-- 游戏开始
+function GamePlayerNode:onGameStart()
+    -- 隐藏庄家
+    self:showImgBanker(false)
+    -- 隐藏加倍
+    self:showImgMult(false)
+    -- 叫地主
+    self:showImgCallType(false)    
+    -- 隐藏牌型
+    self:showImgCardType(false)
     -- 隐藏时钟
-    self:showPnlClockCircle(false)
-    -- 隐藏排名
-    self:showPnlRank(false)
+    self:showPnlClockCircle(false) 
+    -- 隐藏手牌
+    self._gameHandCardNode:resetHandCards()
+    self:showImgCancelFlag(false) 
     -- 隐藏出牌
     self._gameOutCardNode:resetOutCards()
+    
 end
 
--- 玩家点击开始前 时钟计时
-function GamePlayerNode:onPlayerTimer(time)
-    -- 显示时钟
-    self:showPnlClockCircle(true, time)
-end
+-- 显示信息
+function GamePlayerNode:showPlayerInfo()
+    local player = app.game.PlayerData.getPlayerByLocalSeat(self._localSeat)
+    if not player then return end
+    -- 显示用户节点    
+    self:showPnlPlayer(true)
 
--- 开始游戏
-function GamePlayerNode:onGameStart(time)
-    -- 隐藏准备标志
-    self:showImgReadyFlag(false)
-    -- 隐藏时钟
-    self:showPnlClockCircle(false)
-    -- 隐藏排名
-    self:showPnlRank(false)
+    self:showTxtPlayerName(true, player:getTicketID())
+    -- 设置金币
+    self:showTxtBalance(true, player:getBalance())
+    -- 显示头像
+    self:showImgFace(player:getGender(), player:getAvatar())
 end
 
 -- 发牌
 function GamePlayerNode:onTakeFirst(cardID, cardNum)
     self._gameHandCardNode:onTakeFirst(cardID)
-
+    
     self:showPnlHandCard(true, cardNum)
 end
 
+-- 重置手牌
+function GamePlayerNode:onRestCards(cards)
+    self._gameHandCardNode:resetHandCards()
+    self._gameHandCardNode:createCards(cards)
+end
+
+-- 时钟
 function GamePlayerNode:onClock(time, isFirst)
     if not isFirst then
-        -- 隐藏该作为玩家出掉的牌
         self._gameOutCardNode:resetOutCards()
 
         -- 隐藏该座位玩家的不出标志
-        self:showImgCancelFlag(false)
+        self:showImgCallType(false)
     end
-
     self:showPnlClockCircle(true, time)
 end
 
@@ -203,121 +154,105 @@ function GamePlayerNode:onClockEx()
     self:showImgCancelFlag(false)
 end
 
-function GamePlayerNode:showPartnerCards(visible, cards, isMingPai)
-    if visible then
-        if not isMingPai and self._localSeat == app.game.GameEnum.HERO_LOCAL_SEAT then
-            self._presenter:showSortCardBtn(false)
-        end
-
-        self._gameHandCardNode:createCards(cards)
-    else
-        self._gameHandCardNode:resetHandCards()
-    end
-end
-
 -- 显示用户节点    
 function GamePlayerNode:showPnlPlayer(visible)
-    self._rootNode:setVisible(visible)
+    if self._rootNode then
+        self._rootNode:setVisible(visible)
+    end   
 end
 
-function GamePlayerNode:showPnlPlayerDetail(visible)
-    local pnlPlayerDetail = self:seekChildByName("KW_PNL_PLAYER_DETAIL")
-    pnlPlayerDetail:setVisible(visible)
+function GamePlayerNode:showPnlPlayerEx(visible)
+    if self._rootNode then
+        self._rootNode:setVisible(true)
+    end
+
+    local cardcount = 0  
+    local childs = self._rootNode:getChildren()
+    for i, node in ipairs(childs) do
+        if node:getName() == "node_hand_card" then
+            node:setVisible(true)                    
+        end
+    end
 end
 
 -- 姓名
 function GamePlayerNode:showTxtPlayerName(visible, nickName)
-    local txtPlayerName = self:seekChildByName("KW_TXT_PLAYER_NAME")
+    local txtPlayerName = self:seekChildByName("txt_name")
 
     if visible then
-        if self._localSeat ~= app.game.GameEnum.HERO_LOCAL_SEAT then
-            nickName = app.util.ToolUtils.nameToShort(nickName, 8)
-        else
-            nickName = app.util.ToolUtils.nameToShort(nickName, 10)
-        end
-
+        --nickName = app.util.ToolUtils.nameToShort(nickName, 10)
         txtPlayerName:setString(nickName)
-
-        local txtSize = txtPlayerName:getContentSize()
-        if self._localSeat ~= app.game.GameEnum.HERO_LOCAL_SEAT then 
-            if txtSize.width > 80 then 
-                if self._localSeat == app.game.GameEnum.HERO_LOCAL_SEAT + 1 then
-                    txtPlayerName:setAnchorPoint(cc.p(1, 0.5))
-                    txtPlayerName:setPosition(cc.p(0, 29.5))    
-                else
-                    txtPlayerName:setAnchorPoint(cc.p(0, 0.5))
-                    txtPlayerName:setPosition(cc.p(0, 29.5))    
-                end
-            else
-                txtPlayerName:setAnchorPoint(cc.p(0.5, 0.5))
-                txtPlayerName:setPosition(cc.p(40, 29.5))
-            end
-        end
     end
 
     txtPlayerName:setVisible(visible)
 end
 
--- ID
-function GamePlayerNode:showTxtPlayerID(visible, id)
-    local txtPlayerID = self:seekChildByName("KW_TXT_PLAYER_ID")
-    if visible then
-        txtPlayerID:setString("id:"..id)
+-- 金币
+function GamePlayerNode:showTxtBalance(visible, balance)
+    local txtBalance = self:seekChildByName("txt_balance")
 
-        if self._localSeat ~= app.game.GameEnum.HERO_LOCAL_SEAT then
-            if self._localSeat == app.game.GameEnum.HERO_LOCAL_SEAT + 1 then
-                txtPlayerID:setAnchorPoint(cc.p(1, 0.5))
-                txtPlayerID:setPosition(cc.p(0, 12.5)) 
-            else
-                txtPlayerID:setAnchorPoint(cc.p(0, 0.5))
-                txtPlayerID:setPosition(cc.p(0, 12.5)) 
-            end
+    if txtBalance then
+        if balance ~= nil then
+            txtBalance:setString(balance)--app.util.ToolUtils.numConversionByDecimal(tostring(balance)))
         end
+        txtBalance:setVisible(visible)
     end
-
-    txtPlayerID:setVisible(visible)
 end
 
--- 排名
-function GamePlayerNode:showPnlRank(visible, rank)
-    local pnlRank = self:seekChildByName("KW_PNL_RANK")
-    local imgRank = self:seekChildByName("KW_IMG_RANK")
+-- 头像
+function GamePlayerNode:showImgFace(gender, avatar)
+    local imgHead = self:seekChildByName("img_face")
+    local resPath = string.format("lobby/image/head/img_head_%d_%d.png", gender, avatar)
+    imgHead:loadTexture(resPath, ccui.TextureResType.plistType)
+end
 
-    if rank == 0 or rank == 4 then
-        pnlRank:setVisible(false)
-        return
+-- 庄家
+function GamePlayerNode:showImgBanker(visible)
+    local imgBanker = self:seekChildByName("img_banker")
+    imgBanker:setVisible(visible)
+end
+
+-- 加倍
+function GamePlayerNode:showImgMult(visible)
+    local imgMult = self:seekChildByName("img_mult")
+    if imgMult then
+        imgMult:setVisible(visible)
+    end    
+end
+
+-- 0不叫1分2分3分4不要
+function GamePlayerNode:showImgCallType(visible, index)
+    local imgCall = self:seekChildByName("img_call")
+    imgCall:setVisible(visible)
+    
+    if index and index >= 0 and index <= 4 then
+        local resPath = "game/ddz/image/img_call_" .. index .. ".png"
+        imgCall:ignoreContentAdaptWithSize(true)
+        imgCall:loadTexture(resPath, ccui.TextureResType.plistType)        
     end
+end
 
-    if visible then
-        local resPath = string.format("Game/ShuangKou/Images/Img/Common/img_rank_%d.png", rank)
-        imgRank:loadTexture(resPath, ccui.TextureResType.plistType)
+function GamePlayerNode:showImgCancelFlag(visible)
+	self:showImgCallType(visible, 4)
+end
 
-        if rank == 1 then
-            local nodeRankEffect = self:seekChildByName("KW_NODE_RANK_EFFECT")
-
-            local action = cc.CSLoader:createTimeline("Game/Public/CSB/RankEffectNode.csb")
-            action:gotoFrameAndPlay(0, false)
-            nodeRankEffect:runAction(action)
-
-            local next = function()
-                imgRank:setVisible(visible)
-            end
-
-            action:setLastFrameCallFunc(next)
-
-        else
-            imgRank:setVisible(visible)
-        end
-    else
-        imgRank:setVisible(visible)
-    end
-
-    pnlRank:setVisible(visible)
+-- 牌型
+function GamePlayerNode:showImgCardType(visible, index)
+--    local imgType = self:seekChildByName("img_cardtype")
+--    imgType:setVisible(visible)
+--
+--    if index and index >= 1 and index <= 6 then
+--        local resPath = "game/ddz/image/img_type_" .. index .. ".png"
+--
+--        imgType:loadTexture(resPath, ccui.TextureResType.plistType)
+--    else
+--        imgType:setVisible(false)   
+--    end
 end
 
 -- 时钟
 function GamePlayerNode:showPnlClockCircle(visible, time)
-    local pnlClockCircle = self:seekChildByName("KW_PNL_CLOCK_CIRCLE")
+    local pnlClockCircle = self:seekChildByName("img_clock")
     if visible then
         self._presenter:openSchedulerClock(self._localSeat, time)
     else
@@ -326,68 +261,16 @@ function GamePlayerNode:showPnlClockCircle(visible, time)
 
     pnlClockCircle:setVisible(visible)
 end
-function GamePlayerNode:showParTimer(time, allTime, width, height)
-    local parTimer = self:seekChildByName("KW_PAR_TIMER")
-    app.util.UIUtils.setParticleTimerPos(parTimer, time / allTime * 100, width, height)
-end
-function GamePlayerNode:showClockProgress(percentage)
-    self._clockProgress:setPercentage(percentage)
-end
-function GamePlayerNode:showFntClock(time)
-    local fntClock = self:seekChildByName("KW_FNT_CLOCK")
-    local strTime = string.format("%d", math.ceil(time))
 
-    fntClock:setString(strTime)
-end
-function GamePlayerNode:getPnlClockCircle()           return self:seekChildByName("KW_PNL_CLOCK_CIRCLE") end
-
--- 金币
-function GamePlayerNode:showTxtSR(visible, sr)
-    local txtSR = self:seekChildByName("KW_TXT_SR")
-
-    if txtSR then
-        if sr ~= nil then
-            txtSR:setString(app.util.ToolUtils.numConversionByDecimal(tostring(sr)))
-        end
-        txtSR:setVisible(visible)
-    end
+function GamePlayerNode:showClockProgress(time)
+    local txtClock = self:seekChildByName("fnt_clock")   
+    if txtClock then
+        txtClock:setString(time)
+    end 
 end
 
--- 头像
-function GamePlayerNode:showImgFace(sex, head, strHeadUrl)
-    local imgFace = self:seekChildByName("KW_IMG_FACE")
-    local resPath = string.format("Lobby/Images/Public/Img/Head/img_head_%d_%d.png", sex, head)
-    imgFace:loadTexture(resPath, ccui.TextureResType.plistType)
-
-    if strHeadUrl ~= "" then
-        app.logic.download.NetworkResLogic:getInstance():getWXHead(strHeadUrl, 96, function(strHeadImgPath)
-            imgFace:loadTexture(strHeadImgPath, ccui.TextureResType.localType)
-
-            local size = imgFace:getContentSize()
-            local scaleRate = 77 / size.width;
-            imgFace:setScale(scaleRate, scaleRate)
-
-            -- local father = imgFace:getParent()
-            -- local zorder = imgFace:getLocalZOrder()
-
-            -- imgFace:removeFromParent()
-
-            -- local x, y = imgFace:getPosition()
-            -- local clipper = app.util.UIUtils.runHeadClipper(imgFace, x, y, 0.44)
-
-            -- father:addChild(clipper)
-            -- clipper:setLocalZOrder(zorder)
-        end)
-    else
-        local size = imgFace:getContentSize()
-        local scaleRate = 77 / size.width;
-        imgFace:setScale(scaleRate, scaleRate)
-    end
-end
-
--- 手牌
 function GamePlayerNode:showPnlHandCard(visible, cardNum)
-    local pnlHandCard = self:seekChildByName("KW_PNL_HAND_CARD")
+    local pnlHandCard = self:seekChildByName("pnl_hand_card")
     if pnlHandCard then
         if visible then
             if cardNum > 0 then
@@ -402,8 +285,9 @@ function GamePlayerNode:showPnlHandCard(visible, cardNum)
         end
     end
 end
+
 function GamePlayerNode:showFntHandCardCount(visible, cardNum)
-    local fntHandCardCount = self:seekChildByName("KW_FNT_HAND_CARD_COUNT")
+    local fntHandCardCount = self:seekChildByName("txt_hand_count")
     if visible then
         fntHandCardCount:setString(cardNum)
     end
@@ -411,318 +295,62 @@ function GamePlayerNode:showFntHandCardCount(visible, cardNum)
     fntHandCardCount:setVisible(visible)
 end
 
--- 断线状态 
-function GamePlayerNode:showImgOfflineFlag(visible)
-    local imgOfflineFlag = self:seekChildByName("KW_IMG_OFFLINE_FLAG")
-    imgOfflineFlag:setVisible(visible)
-end
-
--- 玩家托管
-function GamePlayerNode:showImgTrustFlag(visible)
-    local imgTrustFlag = self:seekChildByName("KW_IMG_TRUST_FLAG")
-    imgTrustFlag:setVisible(visible)
-end
-
--- 准备标志
-function GamePlayerNode:showImgReadyFlag(visible)
-    local imgReadyFlag = self:seekChildByName("KW_IMG_READY_FLAG")
-    if visible then
-        app.util.SoundUtils.playReadyEffect()
-    end
-
-    imgReadyFlag:setVisible(visible)
-end
-
--- 过牌标志
-function GamePlayerNode:showImgCancelFlag(visible)
-    local imgCancelFlag = self:seekChildByName("KW_IMG_CANCEL_FLAG")
-    if visible then
-        app.util.SoundUtils.playCancelEffect()
-    end
-
-    imgCancelFlag:setVisible(visible)
-end
-
--- 对话
-function GamePlayerNode:showPnlChat(visible, str)
-    local pnlChat = self:seekChildByName("KW_PNL_CHAT")
-    if visible then
-        self:showTxtChat(str)
-    end
-    pnlChat:setVisible(visible)
-end
-function GamePlayerNode:showTxtChat(visible, str)
-    local txtChat = self:seekChildByName("KW_TXT_CHAT")
-    if visible then
-        txtChat:setString(str)
-    end
-
-    txtChat:setVisible(visible)
-end
-
--- 冰块效果
-function GamePlayerNode:showImgFaceIce(visible)
-    local imgFaceIce = self:seekChildByName("KW_IMG_FACE_ICE")
-
-    if visible then
-        imgFaceIce:setLocalZOrder(2)
+function GamePlayerNode:showMult(mult)
+    if not self._localSeat == HERO_LOCAL_SEAT then
+    	return
     end
     
-    imgFaceIce:setVisible(false)
-end
-
-function GamePlayerNode:dealPlayerTalk(chatKind, color, index, sex)
-    if chatKind == app.game.CardProtocol.msgTalkMsg.CHATKIND.COMMON then
-        self:dealTalk(color, index, sex)
-    elseif chatKind == app.game.CardProtocol.msgTalkMsg.CHATKIND.EMOTION then
-        self:dealExpress(color, index, sex)
+    local txtMult = self:seekChildByName("txt_mult_num")    
+    if txtMult then
+        txtMult:setString("x" .. mult)
     end
 end
 
-function GamePlayerNode:dealTalk(color, index, sex)
-    local pnlTalk = self:seekChildByName("KW_PNL_TALK")
-    local txtTalk = self:seekChildByName("KW_TXT_TALK")
+function GamePlayerNode:getPosition()
+    return self._rootNode:getPosition()
+end      
 
-    local nodeExpress = self:seekChildByName("KW_NODE_EXPRESS")
-
-    local talkList = app.game.GameEnum.ChatTalk
-
-    local isFind = false
-    for i = 1, #talkList do
-        if index == talkList[i].index then 
-            index = i
-            isFind = true
-            break
-        end
-    end
-
-    if not talkList[index] or not isFind then
-        return
-    end
-
-    nodeExpress:removeAllChildren()
-    pnlTalk:setVisible(true)
-    nodeExpress:setVisible(false)
-
-    local text = talkList[index].text
-    if string.len(text) > 27 then
-        txtTalk:setFontSize(18)
-    else
-        txtTalk:setFontSize(20)
-    end 
-    txtTalk:setString(text)
-
-    pnlTalk:stopAllActions()      
-    pnlTalk:setOpacity(255)
-    pnlTalk:setScale(0)
-
-    pnlTalk:runAction(cc.Sequence:create(
-        cc.ScaleTo:create(0.2, 1.0), 
-        cc.DelayTime:create(1.5),
-        cc.FadeOut:create(1))
-    )
-
-    --未开启配音的话不播放配音
-    if not app.data.SetData.isOpenDub() then 
-        return 
-    end
-    
-    local soundPath = "Game/ShuangKou/Sound/PTH/"     --默认普通话
-
-    local style = app.data.SetData.getDubType()
-    if style == app.GameConstants.SoundStyle.WEN_ZHOU_HUA then
-        soundPath = "WZH/"
-    elseif style == app.GameConstants.SoundStyle.QU_ZHOU_HUA then
-        soundPath = "QZH/"
-    end
-
-    local strRes = talkList[index].path
-    if sex == bf.GameMXY.PlayerInfo.SEX.FEMALE then
-        strRes = "Speak_Women/"..strRes
-    else
-        strRes = "Speak_Man/"..strRes
-    end
-
-    local path = cc.FileUtils:getInstance():fullPathForFilename(soundPath..strRes)
-    if not io.exists(path) then 
-        soundPath = "Game/ShuangKou/Sound/PTH/" 
-    end
-
-    app.util.SoundUtils.playEffect(soundPath..strRes)
-end
-
-function GamePlayerNode:dealExpress(color, index, sex)
-    local pnlTalk = self:seekChildByName("KW_PNL_TALK")
-
-    local nodeExpress = self:seekChildByName("KW_NODE_EXPRESS")
-
-    expressList = app.game.GameEnum.ChatExpress
-
-    local isFind = false
-    for i = 1, #expressList do
-        if index == expressList[i].index then 
-            index = i
-            isFind = true
-            break
-        end
-    end
-
-    if not expressList[index] or not isFind then
-        return
-    end
-
-    nodeExpress:removeAllChildren()
-    pnlTalk:setVisible(false)  
-    nodeExpress:setVisible(true)
-
-    local imgEffect  = string.split(expressList[index].image, "img")
-    local imgEffects = string.split(tostring(imgEffect[2]), ".png")
-    local imgs       = "effect"..tostring(imgEffects[1])
-
-    local talkEffect = app.util.UIUtils.runEffectOne("BiaoQing", imgs, 0, 0, nil, nil, 2)
-    nodeExpress:addChild(talkEffect)
-end
-
-function GamePlayerNode:showCharmScore(score, num)
-    local nodeCharmScoreAdd = self:seekChildByName("KW_NODE_CHARM_SCORE_ADD") 
-    local nodeCharmScoreDesc = self:seekChildByName("KW_NODE_CHARM_SCORE_DESC") 
-
-    local totalScore = tonumber(score * num)
-    if totalScore > 0 then
-        local txtScore = nodeCharmScoreAdd:getChildByName("KW_TXT_CHARM_ADD_SCORE")
-        txtScore:setString("+"..tostring(totalScore))
-
-        nodeCharmScoreAdd:setVisible(true)
-        nodeCharmScoreDesc:setVisible(false)
-
-        local rolAction = cc.CSLoader:createTimeline("Game/Public/CSB/CharmAddNode.csb")
-        nodeCharmScoreAdd:runAction(rolAction)
-        rolAction:gotoFrameAndPlay(0, 55, 0, false)
-    else
-        local txtScore = nodeCharmScoreDesc:getChildByName("KW_TXT_CHARM_DESC_SCORE")
-        txtScore:setString(tostring(totalScore))
-
-        nodeCharmScoreAdd:setVisible(false)
-        nodeCharmScoreDesc:setVisible(true)
-
-        local rolAction = cc.CSLoader:createTimeline("Game/Public/CSB/CharmDescNode.csb")
-        nodeCharmScoreDesc:runAction(rolAction)
-        rolAction:gotoFrameAndPlay(0, 55, 0, false)
-    end
-end
-
-function GamePlayerNode:playAnimationPlayerEnter()
-    self:showPnlPlayerDetail(false)
-
-    local nodePlayerSmoke = self:seekChildByName("KW_NODE_PLAYER_SMOKE")
-    local action = cc.CSLoader:createTimeline("Game/Public/CSB/PlayerEnterExitNode.csb")
-    action:gotoFrameAndPlay(0, false)
-    nodePlayerSmoke:runAction(action)
-    
-    local function onFrameEvent(frame)
-        local event = frame:getEvent()
-        if event == "enter" then 
-            self:showPnlPlayerDetail(true)
-        end
-    end
-
-    action:setFrameEventCallFunc(onFrameEvent)
-end
-
+-- 获取手牌
 function GamePlayerNode:getGameHandCardNode()
     return self._gameHandCardNode
+end
+
+function GamePlayerNode:getHandCardCount()
+    return self._gameHandCardNode:getHandCardCount()
 end
 
 function GamePlayerNode:getGameOutCardNode()
     return self._gameOutCardNode
 end
 
-function GamePlayerNode:playOutCardVoice(typeID, power, sex, style)
-    local weight = power
-    local sex = sex or 0
-
-    local strRes=""
-    local soundPath = ""
-
-    --TODO:下面三句是遗留代码
-    if (weight == 19)then weight = 2 end
-    if (weight == 21)then weight = 15 end
-    if (weight == 22)then weight = 16 end
-
-    local CardType = app.game.CardRule.cardType
-    local SKCardType = app.game.GameEnum.CardType
-
-    if typeID == CardType.CTID_YI_ZHANG then
-        strRes = string.format("1_%d.mp3", weight)
-    elseif typeID == CardType.CTID_ER_ZHANG then
-        strRes = string.format("2_%d.mp3", weight)
-    elseif typeID == CardType.CTID_SAN_ZHANG then
-        strRes = string.format("3_%d.mp3", weight)
-    elseif typeID == CardType.CTID_SI_ZHANG then
-        strRes = string.format("4_%d.mp3", weight)
-    elseif typeID == CardType.CTID_WU_ZHANG then
-        strRes = string.format("5_%d.mp3", weight)
-    elseif typeID == CardType.CTID_LIU_ZHANG then
-        strRes = string.format("6_%d.mp3",weight)
-    elseif typeID == CardType.CTID_QI_ZHANG then
-        strRes = string.format("7_%d.mp3",weight)
-    elseif typeID == CardType.CTID_BA_ZHANG then
-        strRes = string.format("8_%d.mp3",weight)
-    elseif typeID == CardType.CTID_YI_SHUN then
-        strRes = "px_1_shunzi.mp3"
-    elseif typeID == CardType.CTID_ER_SHUN then
-        strRes = "px_2_jiemeidui.mp3"
-    elseif typeID == CardType.CTID_SAN_SHUN then
-        strRes = "px_3_santuobei.mp3"
-    elseif typeID == SKCardType.CTID_TIAN_WANG then
-        strRes = "wangzha_4.mp3"
-    end
-
-    print("soundPath:"..strRes)
-
-    soundPath = "Game/ShuangKou/Sound/PTH/"               --默认普通话
-    if style == app.GameConstants.SoundStyle.WEN_ZHOU_HUA then
-        soundPath = "WZH/"
-    elseif style == app.GameConstants.SoundStyle.QU_ZHOU_HUA then
-        soundPath = "QZH/"
-    end
-
-    if (strRes == "") then 
-        return 
-    end
-
-    local sex = tonumber(sex)
-    if sex == bf.GameMXY.PlayerInfo.SEX.FEMALE then
-        strRes = "Women/"..strRes
-    else
-        strRes = "Man/"..strRes
-    end
-
-    local path =  cc.FileUtils:getInstance():fullPathForFilename(soundPath..strRes)
-    if not io.exists(path) then 
-        soundPath = "Game/ShuangKou/Sound/PTH/" 
-    end
-
-    app.util.SoundUtils.playEffect(soundPath..strRes)
+function GamePlayerNode:setLocalZOrder(zorder)
+    self._rootNode:setLocalZOrder(zorder)
 end
 
-function GamePlayerNode:movePartner()
-    self._rootNode:setPositionX(self._rootNode:getPositionX() - 200)
-    self._gameOutCardNode:movePartner()
-    self:moveImgCancelFlag()
+function GamePlayerNode:visible()
+    return self._rootNode:isVisible(), self._rootNode:getLocalZOrder()
 end
 
-function GamePlayerNode:moveImgCancelFlag()
-    local imgCancelFlag = self:seekChildByName("KW_IMG_CANCEL_FLAG")
-    imgCancelFlag:setPositionX(imgCancelFlag:getPositionX() + 200)
+function GamePlayerNode:getRootNode()
+    return self._rootNode
 end
 
-function GamePlayerNode:adaptIphoneX()
-    if self._localSeat == app.game.GameEnum.HERO_LOCAL_SEAT - 1 then
-        self._rootNode:setPositionX(self._rootNode:getPositionX() + 200)
-    elseif self._localSeat == app.game.GameEnum.HERO_LOCAL_SEAT + 1 then
-        self._rootNode:setPositionX(self._rootNode:getPositionX() - 200)
+-- 音效相关
+function GamePlayerNode:playEffectByName(name)
+    local soundPath = "game/ddz/sound/"
+    local strRes = ""
+    for alias, path in pairs(ST) do
+        if alias == name then
+            if type(path) == "table" then
+                local index = math.random(1, #path)
+                strRes = path[index]
+            else
+                strRes = path
+            end
+        end
     end
+
+    app.util.SoundUtils.playEffect(soundPath..strRes)   
 end
 
 return GamePlayerNode

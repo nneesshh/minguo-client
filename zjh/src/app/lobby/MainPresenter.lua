@@ -136,6 +136,7 @@ end
 -- 显示场列表
 function MainPresenter:showPlazaLists(gameid)
     local plazainfo = app.data.PlazaData.getPlazaList(gameid)
+    
     if gameid ~= app.Game.GameID.LHD then
         self._ui:getInstance():showPlazaPnl(true)
         self._ui:getInstance():loadPlazaList(gameid , plazainfo)

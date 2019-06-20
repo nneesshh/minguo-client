@@ -1,21 +1,15 @@
 --[[
-    @brief  游戏右上角菜单UI
+    @brief  记牌器
 ]]--
 
-local GameMenuNode  = class("GameMenuNode", app.base.BaseNodeEx)
+local GameRecordNode  = class("GameRecordNode", app.base.BaseNodeEx)
 
-GameMenuNode.touchs = {
-    "btn_set",
-    "btn_change",
-    "btn_help"    
+GameRecordNode.touchs = {
+    "btn_record",  
 }
 
-GameMenuNode.clicks = {
-    "btn_menu",
-}
-
-function GameMenuNode:onTouch(sender, eventType)
-    GameMenuNode.super.onTouch(self, sender, eventType)
+function GameRecordNode:onTouch(sender, eventType)
+    GameRecordNode.super.onTouch(self, sender, eventType)
     local name = sender:getName()
     if eventType == ccui.TouchEventType.ended then  
         if name == "btn_set" then
@@ -28,37 +22,37 @@ function GameMenuNode:onTouch(sender, eventType)
     end
 end
 
-function GameMenuNode:onClick(sender)
-    GameMenuNode.super.onClick(self, sender)
+function GameRecordNode:onClick(sender)
+    GameRecordNode.super.onClick(self, sender)
     local name = sender:getName()
     if name == "btn_menu" then              
         self:onTouchBtnGameMenu() 
     end  
 end
 
-function GameMenuNode:init()
+function GameRecordNode:init()
 
 end
 
-function GameMenuNode:onTouchBtnGameMenu()
+function GameRecordNode:onTouchBtnGameMenu()
     self:rotateMneu()    
     self:showMenu()
 end
 
-function GameMenuNode:onTouchBtnGameSet()   
+function GameRecordNode:onTouchBtnGameSet()   
     app.lobby.set.SetPresenter:getInstance():start(false, app.Game.GameID.DDZ)
 end
 
-function GameMenuNode:onTouchBtnChange() 
+function GameRecordNode:onTouchBtnChange() 
     self._presenter:sendChangeTable()
 end
 
-function GameMenuNode:onTouchBtnHelp()
+function GameRecordNode:onTouchBtnHelp()
     app.lobby.help.HelpPresenter:getInstance():start(app.Game.GameID.DDZ)
 end
 
 -- 旋转菜单
-function GameMenuNode:rotateMneu()
+function GameRecordNode:rotateMneu()
     local btnMenu = self:seekChildByName("btn_menu")  
     local angle = btnMenu:getRotation()
     local rotate = 0
@@ -78,7 +72,7 @@ function GameMenuNode:rotateMneu()
 end
 
 -- 显示菜单
-function GameMenuNode:showMenu()   
+function GameRecordNode:showMenu()   
     local imgExpand = self:seekChildByName("img_menu_expand") 
     local btnMenu = self:seekChildByName("btn_menu") 
     local angle = btnMenu:getRotation()
@@ -91,4 +85,4 @@ function GameMenuNode:showMenu()
     end
 end
 
-return GameMenuNode
+return GameRecordNode

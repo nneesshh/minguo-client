@@ -43,9 +43,7 @@ function MainScene:onTouch(sender, eventType)
             self._presenter:initDownload()             
         elseif string.find(name, "btn_game_") then
             local gameid = tonumber(string.split(name, "btn_game_")[2])            
-            if gameid == 1 or gameid == 2 or gameid == 3 or gameid == 4 or gameid == 5 then
-                self._presenter:reqHotpatch(gameid)         
-            end                                                      
+            self._presenter:reqHotpatch(gameid)                                                                          
         elseif name == "btn_head_info" then
             self._presenter:showUserCenter()             
         elseif name == "btn_gold_add_lobby" then

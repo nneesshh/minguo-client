@@ -112,13 +112,14 @@ function _M.onDdzGameOver(conn, sessionid, msgid)
     players.playercnt = po:read_int32()
     for i=1, players.playercnt do
         players[i] = players[i] or {}
-        players[i].seat      = po:read_int16()        
-        players[i].bouns     = po:read_int32()
+        players[i].seat      = po:read_int16()    
+        players[i].mult      = po:read_int32()    
+        players[i].bouns     = po:read_int32()        
         players[i].cards     = _readCards(po:read_string())
-        players[i].balance   = po:read_int64()
-        players[i].spring    = po:read_byte()
+        players[i].balance   = po:read_int64()        
     end
-
+    players.spring           = po:read_byte()
+    
     if app.game.GamePresenter then
         app.game.GamePresenter:getInstance():onDdzGameOver(players) 
     end    
@@ -136,6 +137,29 @@ function _M.onDdzPlayerReady(conn, sessionid, msgid)
     end 
 end
 
+function _M.onDdzCompareBidOver(conn, sessionid, msgid)
+    print("onDdzCompareBid")   
+    local po = upconn.upconn:get_packet_obj()
+    if po == nil then return end
+
+    local info = {}    
+    info.bankmult = po:read_int32()
+    info.count    = po:read_int32()
+    local players = {}
+    for i=1, info.count do
+        players[i] = players[i] or {}
+        players[i].seat    = po:read_int16()
+        players[i].mult    = po:read_int32()
+        players[i].balance = po:read_int64()  
+    end
+    
+    dump(players)
+    
+    if app.game.GamePresenter then
+        app.game.GamePresenter:getInstance():onDdzCompareBidOver(info, players) 
+    end 
+end
+
 -- 叫地主
 function _M.onDdzBankerBid(conn, sessionid, msgid)
     print("onDdzBankerBid")
@@ -146,14 +170,13 @@ function _M.onDdzBankerBid(conn, sessionid, msgid)
     info.seat     = po:read_int16()
     info.mult     = po:read_int32()
     info.curseat  = po:read_int16()
-    info.bankmult = po:read_int16()
-    info.bidstate = po:read_byte()
-    
-    if info.bidstate == 1 then
+    info.bankmult = po:read_int32()    
+    info.bidstate = po:read_byte()    
+    if info.bidstate == 2 then
         info.bankseat = po:read_int16()
         info.cards    = _readCards(po:read_string())
     end
-    
+   
     if app.game.GamePresenter then
         app.game.GamePresenter:getInstance():onDdzBankerBid(info) 
     end
@@ -163,11 +186,13 @@ function _M.onDdzCompareBid(conn, sessionid, msgid)
     print("onDdzCompareBid")   
     local po = upconn.upconn:get_packet_obj()
     if po == nil then return end
-    
+
     local info = {}    
     info.seat     = po:read_int16()
     info.mult     = po:read_int32()
-    info.bankmult = po:read_int16() 
+    info.bankmult = po:read_int32()
+    
+    dump(info)
     
     if app.game.GamePresenter then
         app.game.GamePresenter:getInstance():onDdzCompareBid(info) 
@@ -183,7 +208,7 @@ function _M.onDdzDisplay(conn, sessionid, msgid)
     local info = {}  
     info.seat      = po:read_int16()
     info.cards     = _readCards(po:read_string())
-    info.bankemult = po:read_int16()
+    info.bankmult  = po:read_int32()
     
     if app.game.GamePresenter then
         app.game.GamePresenter:getInstance():onDdzDisplay(info)    
@@ -196,7 +221,7 @@ function _M.onDdzAutoHint(conn, sessionid, msgid)
     local po = upconn.upconn:get_packet_obj()
     if po == nil then return end   
     
-    local seat = po:read_int32()    
+    local seat = po:read_int16()    
     if app.game.GamePresenter then
         app.game.GamePresenter:getInstance():onDdzAutoHint(seat) 
     end
@@ -208,12 +233,13 @@ function _M.onDdzHitCard(conn, sessionid, msgid)
     if po == nil then return end 
     
     local info = {}
-    info.seat  = po:read_int32()
-    info.cards  = po:read_string()
-    info.cardtype  = po:read_string()
-    info.mult = po:read_int32()
-    info.current = po:read_int16()
-        
+    info.seat       = po:read_int16()
+    info.cards      = _readCards(po:read_string())
+    info.cardtype   = po:read_byte()
+    info.mult       = po:read_int32()
+    info.curseat    = po:read_int16()
+    info.bankmult   = po:read_int32()   
+    
     if app.game.GamePresenter then
         app.game.GamePresenter:getInstance():onDdzHitCard(info) 
     end  
@@ -224,10 +250,12 @@ function _M.onDdzPass(conn, sessionid, msgid)
     local po = upconn.upconn:get_packet_obj()
     if po == nil then return end 
     
-    local seat = po:read_int32()
-            
+    local info = {}
+    info.seat    = po:read_int16()
+    info.curseat = po:read_int16() 
+           
     if app.game.GamePresenter then
-        app.game.GamePresenter:getInstance():onDdzPass(seat) 
+        app.game.GamePresenter:getInstance():onDdzPass(info) 
     end  
 end
 

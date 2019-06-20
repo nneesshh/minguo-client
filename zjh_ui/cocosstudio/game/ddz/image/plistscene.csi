@@ -1,0 +1,50 @@
+<PlistInfoProjectFile>
+  <PropertyGroup Name="plistscene" Type="Plist" ID="9edc1742-6ec1-4e1f-8880-67cbeaabc49a" Version="3.10.0.0" />
+  <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="2" AllowRotation="True" AllowAnySize="True" AllowTrim="True" ctype="PlistInfoData">
+    <ImageFiles>
+      <FilePathData Path="game/ddz/image/btn_1_1.png" />
+      <FilePathData Path="game/ddz/image/btn_1_2.png" />
+      <FilePathData Path="game/ddz/image/btn_2_1.png" />
+      <FilePathData Path="game/ddz/image/btn_2_2.png" />
+      <FilePathData Path="game/ddz/image/btn_3_1.png" />
+      <FilePathData Path="game/ddz/image/btn_3_2.png" />
+      <FilePathData Path="game/ddz/image/btn_cant_out.png" />
+      <FilePathData Path="game/ddz/image/btn_continue.png" />
+      <FilePathData Path="game/ddz/image/btn_hint.png" />
+      <FilePathData Path="game/ddz/image/btn_ming.png" />
+      <FilePathData Path="game/ddz/image/btn_mult.png" />
+      <FilePathData Path="game/ddz/image/btn_no_call.png" />
+      <FilePathData Path="game/ddz/image/btn_no_mult.png" />
+      <FilePathData Path="game/ddz/image/btn_no_out.png" />
+      <FilePathData Path="game/ddz/image/btn_out_1.png" />
+      <FilePathData Path="game/ddz/image/btn_out_2.png" />
+      <FilePathData Path="game/ddz/image/btn_rember.png" />
+      <FilePathData Path="game/ddz/image/btn_result_x.png" />
+      <FilePathData Path="game/ddz/image/btn_trust.png" />
+      <FilePathData Path="game/ddz/image/img_add_back.png" />
+      <FilePathData Path="game/ddz/image/img_banker.png" />
+      <FilePathData Path="game/ddz/image/img_call_0.png" />
+      <FilePathData Path="game/ddz/image/img_call_1.png" />
+      <FilePathData Path="game/ddz/image/img_call_2.png" />
+      <FilePathData Path="game/ddz/image/img_call_3.png" />
+      <FilePathData Path="game/ddz/image/img_call_4.png" />
+      <FilePathData Path="game/ddz/image/img_card_banker.png" />
+      <FilePathData Path="game/ddz/image/img_clock.png" />
+      <FilePathData Path="game/ddz/image/img_desc_back.png" />
+      <FilePathData Path="game/ddz/image/img_gold.png" />
+      <FilePathData Path="game/ddz/image/img_head_back1.png" />
+      <FilePathData Path="game/ddz/image/img_head_back2.png" />
+      <FilePathData Path="game/ddz/image/img_hint.png" />
+      <FilePathData Path="game/ddz/image/img_hint_start.png" />
+      <FilePathData Path="game/ddz/image/img_mult.png" />
+      <FilePathData Path="game/ddz/image/img_rember.png" />
+      <FilePathData Path="game/ddz/image/img_result_2.png" />
+      <FilePathData Path="game/ddz/image/img_type_1.png" />
+      <FilePathData Path="game/ddz/image/img_type_2.png" />
+      <FilePathData Path="game/ddz/image/img_type_3.png" />
+      <FilePathData Path="game/ddz/image/img_type_4.png" />
+      <FilePathData Path="game/ddz/image/img_type_5.png" />
+    </ImageFiles>
+    <MaxSize Width="1024" Height="2048" />
+  </Content>
+</PlistInfoProjectFile>

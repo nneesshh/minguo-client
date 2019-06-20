@@ -38,10 +38,11 @@ GameEnum.soundType = {
 }
 
 GameEnum.bankBidState = {
-    DDZ_BANKER_BID_STATE_IDLE    = 0,
-    DDZ_BANKER_BID_STATE_TURN    = 1,
-    DDZ_BANKER_BID_STATE_READY   = 2,
-    DDZ_BANKER_BID_STATE_RESTART = 3,
+    DDZ_BANKER_BID_STATE_IDLE         = 0,
+    DDZ_BANKER_BID_STATE_TURN         = 1,
+    DDZ_BANKER_BID_STATE_READY        = 2,
+    DDZ_BANKER_BID_STATE_RANDOM_READY = 3,
+    DDZ_BANKER_BID_STATE_RESTART      = 4,
 }
 
 return GameEnum

@@ -292,21 +292,25 @@ end
 -- 游戏准备
 function GamePresenter:onDdzGamePrepare()
     self._ui:getInstance():showPnlHint(1)
+    app.game.GameData.setTableStatus(zjh_defs.TableStatus.TS_PREPARE)
+
+    if not app.game.GameData.getReady() then
+        self:sendPlayerReady()
+    end
 end
 
 -- 玩家准备
 function GamePresenter:onDdzPlayerReady(seat)
     local localseat = app.game.PlayerData.serverSeatToLocalSeat(seat)
-    if localseat == HERO_LOCAL_SEAT then      
+    if localseat == HERO_LOCAL_SEAT then  
+        app.game.GameData.setReady(true)    
         self:closeScheduleSendReady()
-    end         
+    end           
 end
 
 -- 开始
 function GamePresenter:onDdzGameStart(cards)   
     self._playing = true  
-       
-    self._ui:getInstance():showPnlHint()
     
     for i = 0, self._maxPlayerCnt - 1 do        
         app.game.PlayerData.updatePlayerStatus(i, 0)
@@ -331,6 +335,11 @@ function GamePresenter:onDdzGameStart(cards)
             self._gamePlayerNodes[i]:showPlayerInfo()
         end
     end
+    
+    self._gameBtnNode:showTableBtn()
+    self._gameBankCardNode:resetBankCards()   
+    self._ui:getInstance():showPnlHint()
+    
     -- 开局动画    
     self._ui:getInstance():showStartEffect()
     
@@ -385,7 +394,10 @@ end
 
 -- 叫地主
 function GamePresenter:onDdzBankerBid(info) 
-    if info.bidstate == GE.bankBidState.DDZ_BANKER_BID_STATE_IDLE or info.bidstate == GE.bankBidState.DDZ_BANKER_BID_STATE_TURN then
+
+    print("info.bidstate22222222222222222222222222",info.bidstate) 
+    
+    if info.bidstate == GE.bankBidState.DDZ_BANKER_BID_STATE_IDLE or info.bidstate == GE.bankBidState.DDZ_BANKER_BID_STATE_TURN then       
         local localSeat = app.game.PlayerData.serverSeatToLocalSeat(info.seat) 
         local localCurrseat = app.game.PlayerData.serverSeatToLocalSeat(info.curseat)
         
@@ -404,7 +416,8 @@ function GamePresenter:onDdzBankerBid(info)
         else
             self._gameBtnNode:showTableBtn()
     	end
-    elseif info.bidstate == GE.bankBidState.DDZ_BANKER_BID_STATE_READY then
+    elseif info.bidstate == GE.bankBidState.DDZ_BANKER_BID_STATE_READY or info.bidstate == GE.bankBidState.DDZ_BANKER_BID_STATE_RANDOM_READY then
+        print("info.bidstate11111111111111111111111111",info.bidstate)    
         local tcards = self:serverTolocalCards(info.cards)      
         self._gameBankCardNode:resetBankCards()        
         self._gameBankCardNode:createCards(tcards)
@@ -450,8 +463,11 @@ function GamePresenter:onDdzBankerBid(info)
             app.game.GameData.setHandCards(info.bankseat, retCards)
             self._gamePlayerNodes[localbank]:showFntHandCardCount(true, #retCards)            
         end
-    elseif info.bidstate == GE.bankBidState.DDZ_BANKER_BID_STATE_READY then
+
+    elseif info.bidstate == GE.bankBidState.DDZ_BANKER_BID_STATE_RESTART then
+        print("info.bidstate22222222222222222222222222",info.bidstate)    
         -- 重新发牌
+        self._gameBtnNode:showTableBtn()
         for i = 0, self._maxPlayerCnt - 1 do
         	self._gamePlayerNodes[i]:onGameStart()
         end
@@ -507,6 +523,9 @@ function GamePresenter:onDdzCompareBidOver(info, players)
     end
     
     if localbank == HERO_LOCAL_SEAT then
+        local cards = self:getUpHandCards()
+        self:checkOutBtnEnable(cards)
+        
         self._gameBtnNode:showTableBtn("bankerplay")
         self:onClock(banker)
     else
@@ -553,6 +572,9 @@ function GamePresenter:onDdzHitCard(info)
                         
     if info.curseat ~= -1 then
         if heroServerSeat == info.curseat then
+            local cards = self:getUpHandCards()
+            self:checkOutBtnEnable(cards)
+            
             if self:isFirstOutByServerSeat(info.curseat) then
                 self._gameBtnNode:showTableBtn("firstplay")
             else
@@ -600,6 +622,60 @@ function GamePresenter:onDdzPass(info)
     local heroServerSeat = app.game.PlayerData.getHeroSeat()                  
     if info.curseat ~= -1 then
         if heroServerSeat == info.curseat then
+            local cards = self:getUpHandCards()
+            self:checkOutBtnEnable(cards)
+            
+            if self:isFirstOutByServerSeat(info.curseat) then
+                self._gameBtnNode:showTableBtn("firstplay")
+            else
+                self._gameBtnNode:showTableBtn("play")
+            end
+            
+        else
+            self._gameBtnNode:showTableBtn()
+
+        end  
+        
+        self:onClock(info.curseat)      
+    end    
+end
+
+-- 玩家出牌
+function GamePresenter:dealOutCard(serverSeat, cards, cardtype)
+    local localSeat = app.game.PlayerData.serverSeatToLocalSeat(serverSeat)
+    
+    if localSeat == HERO_LOCAL_SEAT then
+        self._gameBtnNode:showTableBtn()
+    end
+     
+    if self._gamePlayerNodes[localSeat] then
+        self._gamePlayerNodes[localSeat]:showImgCancelFlag(false)
+        self._gamePlayerNodes[localSeat]:showPnlClockCircle(false)
+    end    
+--    local outComb = self._runRule:getInstance():testCardComb(cards, typeID, power)
+    self:deleteHandCards(serverSeat, cards)
+
+    local gameOutCardNode = self._gamePlayerNodes[localSeat]:getGameOutCardNode()
+    local tcards = self:serverTolocalCards(cards)
+    gameOutCardNode:resetOutCards()
+    gameOutCardNode:createCards(tcards)
+end
+
+-- 过
+function GamePresenter:onDdzPass(info)
+    local localSeat = app.game.PlayerData.serverSeatToLocalSeat(info.seat)
+
+    self._gameBtnNode:showTableBtn()
+
+    self._gamePlayerNodes[localSeat]:showPnlClockCircle(false)
+    self._gamePlayerNodes[localSeat]:showImgCancelFlag(true)
+    
+    local heroServerSeat = app.game.PlayerData.getHeroSeat()                  
+    if info.curseat ~= -1 then
+        if heroServerSeat == info.curseat then
+            local cards = self:getUpHandCards()
+            self:checkOutBtnEnable(cards)
+            
             if self:isFirstOutByServerSeat(info.curseat) then
                 self._gameBtnNode:showTableBtn("firstplay")
             else
@@ -615,13 +691,19 @@ end
 
 -- 游戏结束
 function GamePresenter:onDdzGameOver(players) 
+    self._playing = false
+    app.game.GameData.setTableStatus(zjh_defs.TableStatus.TS_ENDING)
+    app.game.GameData.setReady(false)
+    
      for i, player in ipairs(players) do
-        local localSeat = app.game.PlayerData.serverSeatToLocalSeat(player.seat)               
-        local gameOutCardNode = self._gamePlayerNodes[localSeat]:getGameOutCardNode()          
-        local tcards = self:serverTolocalCards(player.cards)
-        local scards = self._runRule:getInstance():sortByWeight(tcards)
-        gameOutCardNode:resetOutCards()
-        gameOutCardNode:createCards(scards)
+        local localSeat = app.game.PlayerData.serverSeatToLocalSeat(player.seat)
+        if localSeat ~= HERO_LOCAL_SEAT then
+            local gameOutCardNode = self._gamePlayerNodes[localSeat]:getGameOutCardNode()          
+            local tcards = self:serverTolocalCards(player.cards)
+            local scards = self._runRule:getInstance():sortByWeight(tcards)
+            gameOutCardNode:resetOutCards()
+            gameOutCardNode:createCards(scards)
+        end               
     end
     
     local base = app.game.GameConfig.getBase()
@@ -629,7 +711,28 @@ function GamePresenter:onDdzGameOver(players)
     players.base = base
     players.banker = banker
 
-    app.game.GameResultPresenter:getInstance():start(players)    
+    app.game.GameResultPresenter:getInstance():start(players)   
+    
+    
+    -- 将正在游戏的玩家状态设为默认
+    for i = 0, self._maxPlayerCnt - 1 do 
+        local player = app.game.PlayerData.getPlayerByServerSeat(i)
+        if player and player:isPlaying() then
+            app.game.PlayerData.updatePlayerStatus(i, 0) 
+        end              
+    end  
+    
+    self._gameBankCardNode:resetBankCards()         
+
+    -- 延时准备
+    self:performWithDelayGlobal(function()
+        print("delay 5")
+        if app.game.GameResultPresenter then
+            app.game.GameResultPresenter:getInstance():exit()
+        end
+              
+        self:sendPlayerReady()        
+    end, 5) 
 end
 
 -- 断线重连
@@ -899,6 +1002,13 @@ function GamePresenter:closeSchedulerClock(localSeat)
     end
 end
 
+function GamePresenter:closeSchedulerClock(localSeat)
+    if self._schedulerClocks[localSeat] then
+        scheduler:unscheduleScriptEntry(self._schedulerClocks[localSeat])
+        self._schedulerClocks[localSeat] = nil
+    end
+end
+
 function GamePresenter:closeSchedulerClocks()    
     for i = 0, 4 do
         if self._schedulerClocks[i] then
@@ -1005,8 +1115,8 @@ function GamePresenter:checkOutBtnEnable(upCards)
 --    end
 --
 --    local flag = self._runRule:getInstance():checkComb(comb)
---
---    self._gameBtnNode:setOutBtnEnable(flag)   
+
+    self._gameBtnNode:setOutBtnEnable(#upCards > 0)   
 end
 
 function GamePresenter:dealSelectAutoUp()
@@ -1123,12 +1233,14 @@ function GamePresenter:sendPlayerReady()
         print("not in game")
         return
     end
+
+    if app.game.GameData.getReady() then
+        print("have ready")
+        return
+    end
     
     local hero = app.game.PlayerData.getHero()   
-    if hero then       
-        print("hero is leave", hero:isLeave())
-    end 
-    
+
     local po = upconn.upconn:get_packet_obj()
     local limit = app.game.GameConfig.getLimit()
     if hero and not hero:isLeave() and hero:getBalance() > limit and po then        

@@ -153,8 +153,6 @@ function _M.onDdzCompareBidOver(conn, sessionid, msgid)
         players[i].balance = po:read_int64()  
     end
     
-    dump(players)
-    
     if app.game.GamePresenter then
         app.game.GamePresenter:getInstance():onDdzCompareBidOver(info, players) 
     end 
@@ -172,7 +170,7 @@ function _M.onDdzBankerBid(conn, sessionid, msgid)
     info.curseat  = po:read_int16()
     info.bankmult = po:read_int32()    
     info.bidstate = po:read_byte()    
-    if info.bidstate == 2 then
+    if info.bidstate == 2 or info.bidstate == 3 then
         info.bankseat = po:read_int16()
         info.cards    = _readCards(po:read_string())
     end

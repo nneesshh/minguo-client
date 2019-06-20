@@ -234,7 +234,9 @@ end
 
 function GamePresenter:onLhdGamePrepare() 
     app.game.GameData.setTableStatus(zjh_defs.TableStatus.TS_PREPARE)
-    self:sendPlayerReady()
+    if not app.game.GameData.getReady() then
+        self:sendPlayerReady()
+    end
 end
 
 -- 游戏开始

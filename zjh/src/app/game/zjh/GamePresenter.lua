@@ -198,10 +198,6 @@ end
 -- 处理玩家进入
 function GamePresenter:onPlayerEnter(player)     
     local localSeat = app.game.PlayerData.serverSeatToLocalSeat(player:getSeat()) 
-    
-    if localSeat == HERO_LOCAL_SEAT then
-        app.game.GameData.setHeroReady(false)
-    end
 
     if self._gamePlayerNodes then
         self._gamePlayerNodes[localSeat]:onPlayerEnter() 
@@ -238,10 +234,6 @@ end
 -- 处理玩家坐下
 function GamePresenter:onPlayerSitdown(player)     
     local localSeat = app.game.PlayerData.serverSeatToLocalSeat(player:getSeat()) 
-    
-    if localSeat == HERO_LOCAL_SEAT then
-        app.game.GameData.setHeroReady(false)
-    end
 
     if self._gamePlayerNodes then
         self._gamePlayerNodes[localSeat]:onPlayerEnter() 
@@ -265,7 +257,7 @@ end
 function GamePresenter:onPlayerReady(seat)
     local localseat = app.game.PlayerData.serverSeatToLocalSeat(seat)
     if localseat == HERO_LOCAL_SEAT then      
-        app.game.GameData.setHeroReady(true)
+        app.game.GameData.setReady(true)
         self:closeScheduleSendReady()
     end         
 end
@@ -275,9 +267,9 @@ function GamePresenter:onGamePrepare()
     self._ui:getInstance():showPnlHint(1)
     self._gameBtnNode:showBetNode(false) 
     
-    local ready = app.game.GameData.getHeroReady()
-    if not ready then
-       self:sendPlayerReady()
+    app.game.GameData.setTableStatus(zjh_defs.TableStatus.TS_PREPARE)
+    if not app.game.GameData.getReady() then
+        self:sendPlayerReady()
     end
 end
 
@@ -806,7 +798,7 @@ function GamePresenter:onGameOver(data, players)
     print("on game over")  
     self._gameOver = true 
     self._playing = false
-    app.game.GameData.setHeroReady(false)
+    app.game.GameData.setReady(false)
     app.game.GameData.setTableStatus(zjh_defs.TableStatus.TS_ENDING)
     
     if self:checkHeroWaiting() then               
@@ -1587,10 +1579,9 @@ function GamePresenter:sendPlayerReady()
         return
     end
 
-    local ready = app.game.GameData.getHeroReady()
-    if ready then
+    if app.game.GameData.getReady() then
         print("have ready")
-        return 
+        return
     end
 
     local hero = app.game.PlayerData.getHero()   

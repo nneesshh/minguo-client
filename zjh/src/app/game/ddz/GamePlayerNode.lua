@@ -104,8 +104,7 @@ function GamePlayerNode:onGameStart()
     self._gameHandCardNode:resetHandCards()
     self:showImgCancelFlag(false) 
     -- 隐藏出牌
-    self._gameOutCardNode:resetOutCards()
-    
+    self._gameOutCardNode:resetOutCards()    
 end
 
 -- 显示信息

@@ -96,6 +96,7 @@ function GameData.restDataEx()
     _selfData.betarea3    = 0 
     _selfData.betarea4    = 0
     _selfData.full        = false
+    _selfData.ready       = false
 end
 
 function GameData.setTableStatus(status)

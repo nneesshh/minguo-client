@@ -21,8 +21,9 @@ local _selfData = {
     lastComb      = {serverSeat = -1 ,comb = app.game.CardRule.CardComb:new()},
     hintComb      = {},
     startHintIndex= 1,
-    handCards     = {[0] = {}, [1] = {}, [2] = {}}
---    mult          = {[0] = 1,}
+
+    handCards     = {[0] = {}, [1] = {}, [2] = {}},
+    ready         = false
 }
 
 function GameData.setTableInfo(info)
@@ -71,6 +72,8 @@ function GameData.restData()
     _selfData.hintComb    = {}
     _selfData.startHintIndex = 1
     _selfData.handCards   = {[0] = {}, [1] = {}, [2] = {}}
+    _selfData.ready       = false
+
 end
 
 function GameData.restDataEx()
@@ -78,6 +81,8 @@ function GameData.restDataEx()
     _selfData.hintComb    = {}
     _selfData.startHintIndex = 1
     _selfData.handCards   = {[0] = {}, [1] = {}, [2] = {}}
+
+    _selfData.ready       = false
 end
 
 function GameData.setTableStatus(status)
@@ -210,6 +215,14 @@ end
 
 function GameData.getAllHandCard()
     return _selfData.handCards
+end
+
+function GameData.setReady(flag)
+    _selfData.ready = flag
+end
+
+function GameData.getReady()
+    return _selfData.ready 
 end
 
 return GameData

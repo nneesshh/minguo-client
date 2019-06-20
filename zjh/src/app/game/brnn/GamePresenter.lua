@@ -251,7 +251,10 @@ end
 
 function GamePresenter:onNiuGamePrepare() 
     app.game.GameData.setTableStatus(zjh_defs.TableStatus.TS_PREPARE)
-    self:sendPlayerReady()
+    
+    if not app.game.GameData.getReady() then
+        self:sendPlayerReady()
+    end
 end
 
 -- 游戏开始
@@ -303,7 +306,6 @@ end
 
 -- 游戏结束
 function GamePresenter:onNiuGameOver(overs, players) 
-    dump(players) 
     self._playing = false 
     app.game.GameData.setTableStatus(zjh_defs.TableStatus.TS_ENDING)
     app.game.GameData.setReady(false)
@@ -597,8 +599,6 @@ function GamePresenter:onNiuBankerBid(lists, info)
         self._gameBtnNode:setTxtHint(false,"banker")    
     end
     
-    print("sz---", info.ticketid, info.tipid)
-     
     if info.ticketid == app.data.UserData.getTicketID() then
         if info.tipid == zjh_defs.NiuStatus.NIU100_BANKER_BID_TIPS_UP then
             app.game.GameBankerPresenter:getInstance():showHint("up")
@@ -1271,6 +1271,12 @@ function GamePresenter:sendPlayerReady()
         print("not in game")
         return
     end
+    
+    if app.game.GameData.getReady() then
+        print("have ready")
+        return
+    end
+    
     local tabInfo = app.game.GameData.getTableInfo()
     if tabInfo.status == zjh_defs.TableStatus.TS_IDLE 
         or tabInfo.status == zjh_defs.TableStatus.TS_PREPARE 

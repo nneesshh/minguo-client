@@ -365,28 +365,78 @@ function GameRunRule:calHandCardPosition(index, cardSize, count, localSeat, bUp)
     return cc.p(posX, posY)
 end
 
-local OUT_CARD_DISTANCE = 30         -- 出牌牌间距
-local perCount = 10 -- 每行的张数
+-- 底牌
+function GameRunRule:calBankCardPosition(index, cardSize, count)
+	local posX = 0
+    local posY = 0
+
+    local WIDTH = cardSize.width 
+    local outCardsLength = (count - 1) * WIDTH + cardSize.width
+    local beginPosX = 0    
+    beginPosX = beginPosX - outCardsLength / 2
+
+    local index = index - 1
+    posX = beginPosX + index * WIDTH
+    
+    return cc.p(posX, posY)
+end 
+
+-- 出牌
+local OUT_CARD_DISTANCE       = 30         -- 出牌牌间距
+local LINE_CARD_NUM_DUI_JIA   = 10
 function GameRunRule:calOutCardPosition(index, cardSize, count, localSeat)   
     local posX = 0
     local posY = 0
 
     local WIDTH = OUT_CARD_DISTANCE 
-
-    local outCardsLength = (count - 1) * WIDTH + cardSize.width
+    
 
     local beginPosX = 0
+    index = index - 1
+
     if localSeat == HERO_LOCAL_SEAT then
+        local outCardsLength = (count - 1) * WIDTH + cardSize.width
+
         beginPosX = beginPosX - outCardsLength / 2
-    elseif localSeat == HERO_LOCAL_SEAT - 1 then
-        beginPosX = 0
-    else       
-        beginPosX = beginPosX - outCardsLength
+
+        posX = beginPosX + index * WIDTH
+       
+    else
+        if localSeat == HERO_LOCAL_SEAT - 1 then
+            beginPosX = 0
+            if count <= LINE_CARD_NUM_DUI_JIA then
+                posX = beginPosX + index * WIDTH
+                
+            else
+                if index <= LINE_CARD_NUM_DUI_JIA - 1 then
+                    posX = beginPosX + index * WIDTH
+                    
+                else
+                    posX = beginPosX + (index - LINE_CARD_NUM_DUI_JIA) * WIDTH
+                    posY = posY - cardSize.height / 5 * 2
+                end
+            end
+        else
+            if count <= LINE_CARD_NUM_DUI_JIA then
+                local outCardsLength = (count - 1) * WIDTH + cardSize.width
+                beginPosX = beginPosX - outCardsLength
+
+                posX = beginPosX + index * WIDTH
+              
+            else
+                local outCardsLength = (LINE_CARD_NUM_DUI_JIA - 1) * WIDTH + cardSize.width
+                beginPosX = beginPosX - outCardsLength
+
+                if index <= LINE_CARD_NUM_DUI_JIA - 1 then
+                    posX = beginPosX + index * WIDTH
+                    
+                else
+                    posX = beginPosX + (index - LINE_CARD_NUM_DUI_JIA) * WIDTH
+                    posY = posY - cardSize.height / 5 * 2
+                end
+            end
+        end
     end
-   
-    local index = index - 1
-    posX = beginPosX + index * WIDTH
-    
     return cc.p(posX, posY)
 end
 

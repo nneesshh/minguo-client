@@ -89,6 +89,7 @@ function GameData.restDataEx()
     _selfData.bethu       = 0          
     _selfData.bethe       = 0
     _selfData.full        = false
+    _selfData.ready       = false
 end
 
 function GameData.setTableStatus(status)
@@ -260,7 +261,6 @@ end
 
 function GameData.setReady(flag)
 	_selfData.ready = flag
-    app.util.DispatcherUtils.dispatchEvent(app.Event.EVENT_READY, flag) 
 end
 
 function GameData.getReady()

@@ -274,14 +274,21 @@ end
 -- 玩家准备
 function GamePresenter:onNiuPlayerReady(seat)
     local localseat = app.game.PlayerData.serverSeatToLocalSeat(seat)
-    if localseat == HERO_LOCAL_SEAT then              
+    if localseat == HERO_LOCAL_SEAT then
+        app.game.GameData.setReady(true)                  
         self:closeScheduleSendReady()
     end         
 end
 
 -- 游戏准备
-function GamePresenter:onGamePrepare()
+function GamePresenter:onGamePrepare()    
+    app.game.GameData.setTableStatus(zjh_defs.TableStatus.TS_PREPARE)
+    
     self._ui:getInstance():showPnlHint(1)
+
+    if not app.game.GameData.getReady() then
+        self:sendPlayerReady()
+    end
 end
 
 -- 开始
@@ -522,7 +529,7 @@ end
 function GamePresenter:onNiuGameOver(players) 
     self._playing = false
     app.game.GameData.setTableStatus(zjh_defs.TableStatus.TS_ENDING)
-    
+    app.game.GameData.setReady(false)
     app.game.GameData.setPgroup(true)
     
     -- 隐藏ui
@@ -1369,12 +1376,13 @@ function GamePresenter:sendPlayerReady()
         print("not in game")
         return
     end
+    
+    if app.game.GameData.getReady() then
+        print("have ready")
+        return
+    end
+    
     local hero = app.game.PlayerData.getHero()   
-    if hero then       
-        print("hero is leave", hero:isLeave())
-    else
-        print("not hero")    
-    end 
     local po = upconn.upconn:get_packet_obj()
     local limit = app.game.GameConfig.getLimit()
     if hero and not hero:isLeave() and hero:getBalance() > limit and po then        

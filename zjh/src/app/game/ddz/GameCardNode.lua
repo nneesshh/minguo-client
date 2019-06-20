@@ -181,6 +181,19 @@ function GameCardNode:setCardLocalZorder()
     end
 
     self._rootNode:setLocalZOrder(self._index)
+    
+    
+    if self._type == HAND_CARD_TYPE then
+        if self._index - 1 < 10 then
+            self._rootNode:setLocalZOrder(self._index + 100)
+        else
+            self._rootNode:setLocalZOrder(self._index)
+        end
+
+        return
+    end
+
+    self._rootNode:setLocalZOrder(self._index)
 end
 
 function GameCardNode:convertToNodeSpace(pos)
@@ -259,8 +272,8 @@ function GameCardNode:playTakeFirstAction()
     local parent = self._rootNode:getParent()
     local szScreen = cc.Director:getInstance():getWinSize()
     local pCenter = parent:convertToNodeSpace(cc.p(szScreen.width*0.5, szScreen.height*0.5))
-    self._rootNode:setPosition(pCenter)
-    self._rootNode:setOpacity(0)
+    self._rootNode:setPosition(pos)
+    -- self._rootNode:setOpacity(0)
 
     if self._type == HAND_CARD_TYPE_NO_SELF then
         self._rootNode:setScale(0.4)
@@ -279,18 +292,20 @@ function GameCardNode:playTakeFirstAction()
         self._rootNode:setPosition(pos)
     end)
 
-    if self._type == HAND_CARD_TYPE then
-        self._rootNode:runAction(actSpawn)
-    elseif self._type == HAND_CARD_TYPE_NO_SELF then
-        self._rootNode:runAction(actSpawn)
-    else
-        self._rootNode:runAction(
-            cc.Sequence:create(
-                actSpawn, 
-                actRemove,
-                actEnd
-            )
-        )        
+    if not true then
+        if self._type == HAND_CARD_TYPE then
+            self._rootNode:runAction(actSpawn)
+        elseif self._type == HAND_CARD_TYPE_NO_SELF then
+            self._rootNode:runAction(actSpawn)
+        else
+            self._rootNode:runAction(
+                cc.Sequence:create(
+                    actSpawn, 
+                    actRemove,
+                    actEnd
+                )
+            )        
+        end
     end
 end
 

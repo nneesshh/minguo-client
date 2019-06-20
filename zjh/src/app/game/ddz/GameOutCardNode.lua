@@ -9,7 +9,7 @@ local OUT_CARD_TYPE        = 2
 local BANKER_CARD_TYPE     = 3
 
 local OUT_CARD_SCALE       = 0.5
-local OUT_CARD_SCALE_SMALL = 0.4
+
 local BANKER_CARD_SCALE    = 0.8
 
 local CV_BACK              = app.game.CardRule.cards.CV_BACK 
@@ -30,11 +30,7 @@ function GameOutCardNode:createCards(cards)
 
     for i = 1, #cards do
         if cards[i] ~= CV_BACK then
-            if #cards <= 10 then
-                self:createCard(cards[i], OUT_CARD_SCALE, OUT_CARD_TYPE)
-            else
-                self:createCard(cards[i], OUT_CARD_SCALE_SMALL, OUT_CARD_TYPE)
-            end
+            self:createCard(cards[i], OUT_CARD_SCALE, OUT_CARD_TYPE)
         end
     end
 end

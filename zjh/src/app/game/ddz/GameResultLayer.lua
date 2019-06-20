@@ -17,6 +17,7 @@ function GameResultLayer:onTouch(sender, eventType)
         if name == "btn_close" then
             self:exit()
         elseif name == "btn_continue" then
+            self._presenter:sendPlayerReady()
             self:exit()
         end
     end

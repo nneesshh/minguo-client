@@ -21,7 +21,7 @@ local _selfData = {
     isallIn       = false,     -- 是否全压
     leaveseats    = {},        -- 游戏过程中收到要退出玩家的本地座位
     handcards     = {},        -- 手牌 
-    isready       = false,     -- 自己是否准备  
+    ready         = false,     -- 自己是否准备  
     cardsdata     = {},        -- 所有人手牌数据
     compareseats  = {},        -- 与自己进行比牌的座位号 
     showseats     = {},        -- 选择亮牌的座位号 
@@ -72,8 +72,8 @@ function GameData.restData()
     _selfData.isallIn     = false
     _selfData.leaveseats  = {}
     _selfData.handcards   = {}
-    _selfData.isready     = false    
-    _selfData.cardsdata     = {}
+    _selfData.ready       = false    
+    _selfData.cardsdata   = {}
     _selfData.compareseats= {}
     _selfData.showseats   = {}
 end
@@ -81,7 +81,7 @@ end
 function GameData.resetDataEx()
     _selfData.handcards   = {}
     _selfData.isallIn     = false
-    _selfData.isready     = false
+    _selfData.ready       = false
     _selfData.cardsdata   = {}
     _selfData.compareseats= {}
     _selfData.showseats   = {}
@@ -205,12 +205,12 @@ function GameData.getHandcards()
     return _selfData.handcards
 end
 
-function GameData.setHeroReady(flag)
-	_selfData.isready = flag
+function GameData.setReady(flag)
+	_selfData.ready = flag
 end
 
-function GameData.getHeroReady()
-	return _selfData.isready
+function GameData.getReady()
+	return _selfData.ready
 end
 
 function GameData.setCompareSeat(seat)

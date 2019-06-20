@@ -64,6 +64,7 @@ enum DDZ_BANKER_BID_STATE
 	DDZ_BANKER_BID_STATE_IDLE = 0,
 	DDZ_BANKER_BID_STATE_TURN,
 	DDZ_BANKER_BID_STATE_READY,
+	DDZ_BANKER_BID_STATE_RANDOM_READY,
 	DDZ_BANKER_BID_STATE_RESTART,
 };
 
@@ -119,7 +120,7 @@ enum DDZ_BANKER_BID_STATE
 		stream.writeInt16(tableInfo->currentSeat);				\
 		stream.writeInt32(tableInfo->bankerBidMultiple);		\
 		stream.writeByte(bankerBidState);						\
-		if (DDZ_BANKER_BID_STATE_READY == bankerBidState) {		\
+		if (DDZ_BANKER_BID_STATE_READY == bankerBidState || DDZ_BANKER_BID_STATE_RANDOM_READY == bankerBidState) {	\
 			stream.writeInt16(tableInfo->bankerSeat);			\
 			stream.writeString((const char *)bankerBidCards, DDZ_BANKER_BID_CARDS_NUM);	\
 		}														\

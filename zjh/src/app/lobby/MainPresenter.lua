@@ -17,8 +17,8 @@ function MainPresenter:ctor()
 end
 
 function MainPresenter:init(gameid)
-    self:initScene(gameid)
-   
+    self:initScene(gameid) 
+        
     self:performWithDelayGlobal(function()
         if not self:isCurrentUI() then
             return

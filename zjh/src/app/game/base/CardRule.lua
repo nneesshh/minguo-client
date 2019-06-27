@@ -354,7 +354,7 @@ CardRule.CardComb = {
     type = CardRule.CardType:new(),
 
     new = function (self, o)
-        local o = o or {}
+        local o = o or {}       
         setmetatable(o, {__index = CardRule.CardComb})
         return o
     end

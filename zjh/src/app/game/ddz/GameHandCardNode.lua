@@ -127,7 +127,6 @@ function GameHandCardNode:createCard(id, scale, type)
     return self._gameCards[index]
 end
 
-
 function GameHandCardNode:resetHandCards()
     self._handCardCount = 0
 
@@ -151,7 +150,7 @@ function GameHandCardNode:onTakeFirst(id)
 end
 
 -- 创建手牌
-function GameHandCardNode:createCards(cards)    
+function GameHandCardNode:createCards(cards, banker, ming)    
     ----- 这里需要先算好手牌数再createCard， 计算手牌位置会用到
     for i = 1, #cards do
         if cards[i] ~= CV_BACK then
@@ -169,11 +168,13 @@ function GameHandCardNode:createCards(cards)
         end
     end
 
-    if #cards == #self._gameCards then
-        for i = 1, #self._gameCards do
-            self._gameCards[i]:playTakeFirstAction()
-        end
+    if banker then
+    	self._gameCards[#self._gameCards]:showImgCardBanker(true)
     end
+    
+    if ming then
+        self._gameCards[#self._gameCards]:showImgCardMing(true)
+    end    
 end
 
 -- 排序
@@ -196,8 +197,10 @@ function GameHandCardNode:sortNodeCardByWeight(index)
             end
         else
             self:playSortAction(index)
-        end
+        end       
     end
+    
+    
 end
 
 function GameHandCardNode:playSortAction(index)
@@ -398,6 +401,18 @@ end
 
 function GameHandCardNode:getHandCardCount()
     return self._handCardCount
+end
+
+function GameHandCardNode:showImgCardMing()
+    if self._handCardCount > 0 then
+        self._gameCards[self._handCardCount]:showImgCardMing(true)
+    end    
+end
+
+function GameHandCardNode:showImgCardBanker()
+    if self._handCardCount > 0 then
+        self._gameCards[self._handCardCount]:showImgCardBanker(true)
+    end   
 end
 
 return GameHandCardNode

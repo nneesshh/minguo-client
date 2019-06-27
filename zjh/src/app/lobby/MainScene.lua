@@ -87,14 +87,52 @@ end
 function MainScene:initUI(gameID, roomMode)
     self._isRunAction = false   
     self:initEffect()
-       
-    local t = {1,2,3,4,5,6,7}
-    for key, var in ipairs(t) do
-        if var == 3 then
-        else
-            print("key var",key, var) 
+    
+    local banker = 1
+    local talkseat = {}   
+    local multseat = {}
+
+    for i = 0, 2 do
+        if i ~= banker then
+            local flag = false
+            for j = 1, #multseat do
+                if i == multseat[j] then
+                    flag = true
+                    break   
+                end
+            end
+               
+    		if not flag then
+                table.insert(talkseat, i)
+    		end
+    	end
+    end
+    
+    dump(talkseat)
+end
+
+function MainScene:test(cards)
+    local temp = cards
+    table.insert(temp,200)    
+end
+
+function MainScene:delCards(cards, delCards)
+    for i=1, #delCards do
+        if self:delCard(cards, delCards[i]) == false then
+            return false
         end
     end
+    return true
+end
+
+function MainScene:delCard(cards, delCard)
+    for i, card in ipairs(cards) do
+        if card == delCard then
+            table.remove(cards, i)
+            return true
+        end
+    end
+    return false
 end
 
 function MainScene:onEnter()

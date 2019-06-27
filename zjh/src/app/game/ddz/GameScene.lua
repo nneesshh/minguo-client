@@ -8,6 +8,7 @@ local GameScene   = class("GameScene", app.base.BaseScene)
 GameScene.csbPath = "game/ddz/csb/gamescene.csb"
 
 local GE   = app.game.GameEnum
+local CR   = app.game.CardRule
 
 GameScene.touchs = {
     "btn_exit", 
@@ -25,8 +26,7 @@ function GameScene:onTouch(sender, eventType)
         if name == "btn_exit" then
             self._presenter:sendLeaveRoom()
         elseif name == "btn_trust" then
-            print("trust")  
-            self:showStartEffect()                                          
+            self._presenter:onTouchBtnTrust()                               
         end
     end
 end
@@ -43,6 +43,7 @@ end
 
 function GameScene:initUI()
     self:showBase()  
+    self:showTrustRecordNode(false)
 end
 
 function GameScene:showBase()
@@ -123,28 +124,46 @@ function GameScene:showStartEffect()
     node:addChild(effect)
 end
 
--- 胜利
-function GameScene:showWinEffect()
-    local node = self:seekChildByName("node_win")
+-- 春天
+function GameScene:showSpringEffect()
+    local node = self:seekChildByName("node_start_effect")
     node:removeAllChildren()
     node:stopAllActions()
 
-    local effect = app.util.UIUtils.runEffectOne("game/qznn/effect","nnshengli_dh", 0, 0)
+    local effect = app.util.UIUtils.runEffectOne("game/ddz/effect","chuentian_dh", 0, 0)
     node:addChild(effect)
 
     self._presenter:playEffectByName("win")
 end
 
--- 失败
-function GameScene:showLoseEffect()
-    local node = self:seekChildByName("node_lose")
+function GameScene:playCardEffect(cardid)
+    local node = self:seekChildByName("node_start_effect")
     node:removeAllChildren()
     node:stopAllActions()
 
-    local effect = app.util.UIUtils.runEffectOne("game/qznn/effect","nnsbai_dh", 0, 0)
-    node:addChild(effect)
+    local effect
+    if cardid == CR.cardType.CTID_HUO_JIAN then
+        effect = app.util.UIUtils.runEffectOne("game/ddz/effect", "huojian_dh", 0, 70)         
+        self._presenter:playEffectByName("bwang") 
+    elseif cardid == CR.cardType.CTID_SI_ZHANG then 
+        effect = app.util.UIUtils.runEffectOne("game/ddz/effect", "zhadan_dh", 0, 70)        
+        self._presenter:playEffectByName("boom") 
+    elseif cardid == CR.cardType.CTID_FEI_JI then
+        self._presenter:playEffectByName("plan") 
+    -- effect = app.util.UIUtils.runEffectOne("game/ddz/effect", "vs_dh3", 0, 0)
+    end
 
-    self._presenter:playEffectByName("lose")
+    if effect then
+        node:addChild(effect)
+    end
+end
+
+function GameScene:showTrustRecordNode(visible)
+    local record = self:seekChildByName("node_record")
+    local trust = self:seekChildByName("btn_trust") 
+	
+    record:setVisible(visible)
+    trust:setVisible(visible)
 end
 
 return GameScene

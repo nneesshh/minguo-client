@@ -19,17 +19,11 @@ end
 
 function GameBankCardNode:createCards(cards)
     for i = 1, #cards do
-        if cards[i] ~= CV_BACK then
-            self._bankCardCount = self._bankCardCount + 1
-        end
+        self._bankCardCount = self._bankCardCount + 1        
     end
 
     for i = 1, #cards do
-        if cards[i] ~= CV_BACK then
-            if #cards <= 10 then
-                self:createCard(cards[i], BANK_CARD_SCALE, BANK_CARD_TYPE)            
-            end
-        end
+       self:createCard(cards[i], BANK_CARD_SCALE, BANK_CARD_TYPE)            
     end
 end
 
@@ -45,10 +39,6 @@ end
 
 function GameBankCardNode:createCard(id, scale, type)
     if id == nil then
-        return
-    end
-
-    if id == CV_BACK then
         return
     end
 

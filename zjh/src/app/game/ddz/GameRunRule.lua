@@ -162,6 +162,10 @@ function GameRunRule:checkComb(comb)
         return false
     end
 
+    if not comb.cards then
+        return false
+    end
+
     if (type(comb) ~= "table") then
         return false
     end
@@ -175,7 +179,7 @@ end
 
 -- 是否需要自动过牌(上家出的牌比你的手牌还要多,并且你的手牌小于等于两张 不可能为炸弹)
 function GameRunRule:isNeedAutoPass(preOutCards,HandCards)
-    if #HandCards<=2 and #preOutCards > #HandCards then
+    if #HandCards <= 2 and #preOutCards > #HandCards then
         return true
     else
         return false
@@ -209,8 +213,8 @@ end
 -- 提示相关代码
 function GameRunRule:initCanOutCombs(handCards,preComb)
     self._canOutCombs = {}
-    self._perComb = preComb or app.game.CardRule.CardComb:new()
     
+    self._perComb = preComb or app.game.CardRule.CardComb:new()
     local combs,testCombFlag = self:hintCards(handCards, self._perComb)
     self._hintComb = combs
     self._startHintIndex = 1
@@ -221,7 +225,7 @@ function GameRunRule:initCanOutCombs(handCards,preComb)
     for _,comb in pairs(combs) do
         local len = #comb.cards 
         self._canOutCombs[len] = self._canOutCombs[len] or {}
-        table.insert(self._canOutCombs[len],comb)
+        table.insert(self._canOutCombs[len], comb)
     end 
     return self._hintComb
 end
@@ -341,11 +345,7 @@ function GameRunRule:calHandCardPosition(index, cardSize, count, localSeat, bUp)
         if count == 1 then
             posX = posX - cardSize.width / 2
         else
-            local width = (screenSize.width - 200 - cardSize.width) / (count - 1) 
-            if width > (cardSize.width - cardSize.width/5) then
-                width = cardSize.width / 2
-            end
-
+            local  width = cardSize.width / 2
             local handCardsLength = (count - 1) * width + cardSize.width
             posX = posX + index * width - handCardsLength / 2       
         end
@@ -567,7 +567,7 @@ function GameRunRule:calSelectAutoUp(upCards, hintComb, handCards, isFirstOut)
     -- 计算所有需要弹起的牌
     local needUpCards = self:calNeedUpCards(tempHintComb, handCards, isFirstOut)
 
-    -- 出去已弹起的牌
+    -- 除去已弹起的牌
     self:calNeedUpCardsWithoutUp(upCards, needUpCards)
 
     return needUpCards
@@ -778,7 +778,7 @@ function GameRunRule:calNeedUpCards_Other(hintComb)
 end
 
 function GameRunRule:calNeedUpCardsWithoutUp(upCards, needUpCards)
-    local tempUpCards     = clone(upCards)
+    local tempUpCards = clone(upCards)
 
     if #tempUpCards > #needUpCards then
         for i = #needUpCards, 1, -1 do

@@ -19,7 +19,7 @@ GameBtnNode.touchs = {
     "btn_play_cancel",
     "btn_play_hint",
     "btn_play_out",
-    "btn_play_cancel"    
+    "btn_play_cant"    
 }
 
 function GameBtnNode:onTouch(sender, eventType)
@@ -29,12 +29,12 @@ function GameBtnNode:onTouch(sender, eventType)
         if name == "btn_banker_play_ming" then
             self._presenter:onTouchBtnBankerMing()
         elseif name == "btn_banker_play_hint" then
-            self._presenter:onTouchBtnBankerHint()
+            self._presenter:onTouchBtnPlayHint()
         elseif name == "btn_banker_play_out" then
             self._presenter:onTouchBtnBankerOut()
             
         elseif name == "btn_first_play_hint" then
-            self._presenter:onTouchBtnFirstHint()
+            self._presenter:onTouchBtnPlayHint()
         elseif name == "btn_first_play_out" then
             self._presenter:onTouchBtnFirstOut()
             
@@ -42,7 +42,7 @@ function GameBtnNode:onTouch(sender, eventType)
             self._presenter:onTouchBtnPlayHint()
         elseif name == "btn_play_out" then
             self._presenter:onTouchBtnPlayOut()
-        elseif name == "btn_play_cancel" then
+        elseif name == "btn_play_cancel" or name == "btn_play_cant" then
             self._presenter:onTouchBtPlayCancel()
             
         elseif string.find(name, "btn_call_") then             
@@ -82,9 +82,17 @@ end
 
 function GameBtnNode:showBankerPlayPanl(visible)
     local nodeTableBtn = self:seekChildByName("pnl_btn_banker_play")
-
+    local btnming = self:seekChildByName("btn_banker_play_ming") 
     if nodeTableBtn then
         nodeTableBtn:setVisible(visible)
+        btnming:setEnabled(true)
+    end
+end
+
+function GameBtnNode:setBankerPlayerMingEnable(enable)
+    local btnming = self:seekChildByName("btn_banker_play_ming") 
+    if btnming then
+        btnming:setEnabled(enable)
     end
 end
 

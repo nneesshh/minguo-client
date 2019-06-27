@@ -19,7 +19,7 @@
                 <PreSize X="1.0000" Y="1.0000" />
                 <FileData Type="MarkedSubImage" Path="game/public/card/img_card_back.png" Plist="game/public/plistcard.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="img_card_front" ActionTag="-1853174050" VisibleForFrame="False" Tag="225" IconVisible="False" LeftEage="46" RightEage="46" TopEage="61" BottomEage="61" Scale9OriginX="46" Scale9OriginY="61" Scale9Width="64" Scale9Height="96" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="img_card_front" ActionTag="-1853174050" Tag="225" IconVisible="False" LeftEage="46" RightEage="46" TopEage="61" BottomEage="61" Scale9OriginX="46" Scale9OriginY="61" Scale9Width="64" Scale9Height="96" ctype="ImageViewObjectData">
                 <Size X="156.0000" Y="218.0000" />
                 <Children>
                   <AbstractNodeData Name="img_card_big_king" ActionTag="1732983674" VisibleForFrame="False" Tag="230" IconVisible="False" LeftMargin="11.0000" RightMargin="11.0000" TopMargin="9.0000" BottomMargin="9.0000" LeftEage="44" RightEage="44" TopEage="66" BottomEage="66" Scale9OriginX="44" Scale9OriginY="66" Scale9Width="46" Scale9Height="68" ctype="ImageViewObjectData">
@@ -115,6 +115,26 @@
                 <PrePosition />
                 <PreSize X="1.0000" Y="1.0000" />
                 <FileData Type="MarkedSubImage" Path="game/public/card/img_card_select.png" Plist="game/public/plistcard.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="img_card_bank" ActionTag="647374966" VisibleForFrame="False" Tag="2532" IconVisible="False" LeftMargin="81.0000" RightMargin="1.0000" TopMargin="2.0000" BottomMargin="141.0000" LeftEage="24" RightEage="24" TopEage="24" BottomEage="24" Scale9OriginX="24" Scale9OriginY="24" Scale9Width="26" Scale9Height="27" ctype="ImageViewObjectData">
+                <Size X="74.0000" Y="75.0000" />
+                <AnchorPoint ScaleX="1.0000" ScaleY="1.0000" />
+                <Position X="155.0000" Y="216.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.9936" Y="0.9908" />
+                <PreSize X="0.4744" Y="0.3440" />
+                <FileData Type="MarkedSubImage" Path="game/ddz/image/img_card_banker.png" Plist="game/ddz/image/plistscene.plist" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="img_card_ming" ActionTag="730913510" VisibleForFrame="False" Tag="2533" IconVisible="False" LeftMargin="8.5000" RightMargin="120.5000" TopMargin="149.5000" BottomMargin="11.5000" LeftEage="8" RightEage="8" TopEage="18" BottomEage="18" Scale9OriginX="8" Scale9OriginY="18" Scale9Width="21" Scale9Height="42" ctype="ImageViewObjectData">
+                <Size X="27.0000" Y="57.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="22.0000" Y="40.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.1410" Y="0.1835" />
+                <PreSize X="0.1731" Y="0.2615" />
+                <FileData Type="MarkedSubImage" Path="game/ddz/image/img_card_mp.png" Plist="game/ddz/image/plistscene.plist" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint />

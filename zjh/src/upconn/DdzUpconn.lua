@@ -190,8 +190,6 @@ function _M.onDdzCompareBid(conn, sessionid, msgid)
     info.mult     = po:read_int32()
     info.bankmult = po:read_int32()
     
-    dump(info)
-    
     if app.game.GamePresenter then
         app.game.GamePresenter:getInstance():onDdzCompareBid(info) 
     end 
@@ -219,9 +217,12 @@ function _M.onDdzAutoHint(conn, sessionid, msgid)
     local po = upconn.upconn:get_packet_obj()
     if po == nil then return end   
     
-    local seat = po:read_int16()    
+    local info = {}
+    info.seat = po:read_int16()    
+    info.type = po:read_byte()
+        
     if app.game.GamePresenter then
-        app.game.GamePresenter:getInstance():onDdzAutoHint(seat) 
+        app.game.GamePresenter:getInstance():onDdzAutoHint(info) 
     end
 end
 

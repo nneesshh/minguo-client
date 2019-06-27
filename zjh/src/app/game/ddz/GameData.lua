@@ -21,9 +21,13 @@ local _selfData = {
     lastComb      = {serverSeat = -1 ,comb = app.game.CardRule.CardComb:new()},
     hintComb      = {},
     startHintIndex= 1,
-
     handCards     = {[0] = {}, [1] = {}, [2] = {}},
-    ready         = false
+    ready         = false,
+    ming          = {[0] = false, [1] = false, [2] = false},
+    mult          = {[0] = 1, [1] = 1, [2] = 1},
+    multseat      = {},
+    backmusic     = "",
+    trust         = 0  
 }
 
 function GameData.setTableInfo(info)
@@ -73,7 +77,10 @@ function GameData.restData()
     _selfData.startHintIndex = 1
     _selfData.handCards   = {[0] = {}, [1] = {}, [2] = {}}
     _selfData.ready       = false
-
+    _selfData.ming        = {[0] = false, [1] = false, [2] = false}
+    _selfData.mult        = {[0] = 1, [1] = 1, [2] = 1}
+    _selfData.multseat    = {}
+    _selfData.trust       = 0
 end
 
 function GameData.restDataEx()
@@ -83,6 +90,10 @@ function GameData.restDataEx()
     _selfData.handCards   = {[0] = {}, [1] = {}, [2] = {}}
 
     _selfData.ready       = false
+    _selfData.ming        = {[0] = false, [1] = false, [2] = false}
+    _selfData.mult        = {[0] = 1, [1] = 1, [2] = 1}
+    _selfData.multseat    = {}
+    _selfData.trust       = 0
 end
 
 function GameData.setTableStatus(status)
@@ -223,6 +234,57 @@ end
 
 function GameData.getReady()
     return _selfData.ready 
+end
+
+-- 庄家是否明牌
+function GameData.setMing(seat, flag)
+	_selfData.ming[seat] = flag
+end
+
+function GameData.getMing(seat)
+    return _selfData.ming[seat]
+end
+
+-- 倍数
+function GameData.setMult(mult)
+    for i = 0, 3 do
+        _selfData.mult[i] = mult
+    end
+end
+
+function GameData.addMult(seat)
+    _selfData.mult[seat] = _selfData.mult[seat] * 2
+end
+
+function GameData.getMult(seat)
+    return _selfData.mult[seat]
+end
+
+-- 选择加倍的座位
+function GameData.setMultSeat(seat)
+    table.insert(_selfData.multseat, seat)    
+end
+
+function GameData.getMultSeat()
+    return _selfData.multseat
+end
+
+-- 当前背景音乐
+function GameData.setBackMusicName(name)
+    _selfData.backmusic = name
+end
+
+function GameData.getBackMusicName()
+    return _selfData.backmusic
+end
+
+-- 托管0,1
+function GameData.setTrust(num)
+    _selfData.trust = num
+end
+
+function GameData.getTrust()
+    return _selfData.trust 
 end
 
 return GameData

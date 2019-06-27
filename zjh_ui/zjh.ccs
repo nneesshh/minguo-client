@@ -126,6 +126,7 @@
               <Image Name="btn_continue.png" />
               <Image Name="btn_hint.png" />
               <Image Name="btn_ming.png" />
+              <Image Name="btn_ming2.png" />
               <Image Name="btn_mult.png" />
               <Image Name="btn_no_call.png" />
               <Image Name="btn_no_mult.png" />
@@ -143,14 +144,19 @@
               <Image Name="img_call_2.png" />
               <Image Name="img_call_3.png" />
               <Image Name="img_call_4.png" />
+              <Image Name="img_call_5.png" />
+              <Image Name="img_call_6.png" />
               <Image Name="img_card_banker.png" />
+              <Image Name="img_card_mp.png" />
               <Image Name="img_clock.png" />
               <Image Name="img_desc_back.png" />
               <Image Name="img_gold.png" />
               <Image Name="img_head_back1.png" />
               <Image Name="img_head_back2.png" />
               <Image Name="img_hint.png" />
+              <Image Name="img_hint_cant.png" />
               <Image Name="img_hint_start.png" />
+              <Image Name="img_hint_trust.png" />
               <Image Name="img_mult.png" />
               <Image Name="img_rember.png" />
               <Image Name="img_result_1.png" />
@@ -323,6 +329,7 @@
             <Folder Name="background">
               <Image Name="img_back_lhd.jpg" />
               <Image Name="img_background.jpg" />
+              <Image Name="img_ddz.jpg" />
               <Image Name="img_desk.png" />
               <Image Name="img_desk_brnn.png" />
               <Image Name="img_desk_lhd.png" />

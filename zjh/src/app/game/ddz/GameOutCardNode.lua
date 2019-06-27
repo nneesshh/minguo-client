@@ -21,7 +21,7 @@ function GameOutCardNode:initData(localSeat)
     self._outCardCount      = 0
 end
 
-function GameOutCardNode:createCards(cards)
+function GameOutCardNode:createCards(cards, banker, ming)
     for i = 1, #cards do
         if cards[i] ~= CV_BACK then
             self._outCardCount = self._outCardCount + 1
@@ -33,6 +33,14 @@ function GameOutCardNode:createCards(cards)
             self:createCard(cards[i], OUT_CARD_SCALE, OUT_CARD_TYPE)
         end
     end
+    
+    if banker then
+        self._gameCards[self._outCardCount]:showImgCardBanker(true)
+    end
+
+    if ming then
+        self._gameCards[self._outCardCount]:showImgCardMing(true)
+    end    
 end
 
 function GameOutCardNode:createBankerCard(card, count, callBack)

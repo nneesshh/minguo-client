@@ -35,4 +35,21 @@ function GameResultPresenter:sendPlayerReady()
     end    
 end
 
+function GameResultPresenter:playEffectByName(name)
+    local soundPath = "game/ddz/sound/"
+    local strRes = ""
+    for alias, path in pairs(app.game.GameEnum.soundType) do
+        if alias == name then
+            if type(path) == "table" then
+                local index = math.random(1, #path)
+                strRes = path[index]
+            else
+                strRes = path
+            end
+        end
+    end
+
+    app.util.SoundUtils.playEffect(soundPath .. strRes)   
+end
+
 return GameResultPresenter

@@ -8,6 +8,20 @@ local GamePlayerNode   = class("GamePlayerNode", app.base.BaseNodeEx)
 
 local HERO_LOCAL_SEAT  = 1 
 local ST = app.game.GameEnum.soundType
+local CR = app.game.CardRule
+
+GamePlayerNode.clicks = {
+    "pnl_hint_back_trust",
+}
+
+
+function GamePlayerNode:onClick(sender)
+    GamePlayerNode.super.onClick(self, sender)
+    local name = sender:getName()
+    if name == "pnl_hint_back_trust" then
+        self._presenter:sendAutoHit(0)
+    end
+end
 
 function GamePlayerNode:initData(localSeat)
     self._localSeat         = localSeat
@@ -47,8 +61,6 @@ function GamePlayerNode:onPlayerEnter()
         self:showTxtBalance(true, player:getBalance())
         -- 显示头像
         self:showImgFace(player:getGender(), player:getAvatar())
-        -- 倍数
-        self:showMult(1)
 --    else
 --        -- 设置姓名
 --        self:showTxtPlayerName(true, "   - -")
@@ -62,12 +74,16 @@ function GamePlayerNode:onPlayerEnter()
     self:showImgBanker(false)
     -- 隐藏加倍
     self:showImgMult(false)
+    -- 倍数x1
+    self:showMult(1)
     -- 叫地主
     self:showImgCallType(false)    
     -- 隐藏牌型
     self:showImgCardType(false)
     -- 隐藏时钟
     self:showPnlClockCircle(false) 
+    -- 隐藏提示
+    self:showPlayHint()
 end
 
 -- 重置桌子
@@ -82,7 +98,7 @@ end
 -- 玩家离开
 function GamePlayerNode:onPlayerLeave()
     if self._localSeat ~= HERO_LOCAL_SEAT then
-        self:showPnlPlayerEx(false)
+        self:showPnlPlayer(false)
     end
 
     self:showPnlClockCircle(false)
@@ -94,6 +110,8 @@ function GamePlayerNode:onGameStart()
     self:showImgBanker(false)
     -- 隐藏加倍
     self:showImgMult(false)
+    -- 倍数x1
+    self:showMult(1)
     -- 叫地主
     self:showImgCallType(false)    
     -- 隐藏牌型
@@ -104,7 +122,9 @@ function GamePlayerNode:onGameStart()
     self._gameHandCardNode:resetHandCards()
     self:showImgCancelFlag(false) 
     -- 隐藏出牌
-    self._gameOutCardNode:resetOutCards()    
+    self._gameOutCardNode:resetOutCards()   
+    -- 隐藏提示
+    self:showPlayHint() 
 end
 
 -- 显示信息
@@ -150,7 +170,7 @@ function GamePlayerNode:onClockEx()
     self._gameOutCardNode:resetOutCards()
 
     -- 隐藏该座位玩家的不出标志
-    self:showImgCancelFlag(false)
+--    self:showImgCancelFlag(false)
 end
 
 -- 显示用户节点    
@@ -219,16 +239,24 @@ function GamePlayerNode:showImgMult(visible)
     end    
 end
 
--- 0不叫1分2分3分4不要
+-- 0不叫1分2分3分4不要5不加倍6加倍
 function GamePlayerNode:showImgCallType(visible, index)
     local imgCall = self:seekChildByName("img_call")
     imgCall:setVisible(visible)
     
-    if index and index >= 0 and index <= 4 then
+    if index and index >= 0 and index <= 6 then
         local resPath = "game/ddz/image/img_call_" .. index .. ".png"
         imgCall:ignoreContentAdaptWithSize(true)
         imgCall:loadTexture(resPath, ccui.TextureResType.plistType)        
     end
+end
+
+function GamePlayerNode:showTalkMult(mult)
+	if mult == 0 then
+        self:showImgCallType(true, 5)
+	else
+        self:showImgCallType(true, 6)
+	end
 end
 
 function GamePlayerNode:showImgCancelFlag(visible)
@@ -247,6 +275,19 @@ function GamePlayerNode:showImgCardType(visible, index)
 --    else
 --        imgType:setVisible(false)   
 --    end
+end
+
+function GamePlayerNode:showPlayHint(type)
+    local pcant = self:seekChildByName("pnl_hint_back_cant")
+    local ptrust = self:seekChildByName("pnl_hint_back_trust")
+    
+    if pcant then
+        pcant:setVisible(type == "cant")        
+    end	
+    
+    if ptrust then
+        ptrust:setVisible(type == "trust")
+    end 
 end
 
 -- 时钟
@@ -334,6 +375,50 @@ function GamePlayerNode:getRootNode()
     return self._rootNode
 end
 
+function GamePlayerNode:playCardEffect(cardid, count)
+    local node = self:seekChildByName("node_card_effect")
+    node:removeAllChildren()
+    node:stopAllActions()
+    
+    local cardWidth = 78
+    local outCardsLength = (count - 1) * 30 + cardWidth
+    local point = outCardsLength / 2
+    
+    local bx, by = self:seekChildByName("node_out_card"):getPosition() 
+    local x,y = 0,0
+    if cardid == CR.cardType.CTID_YI_SHUN then
+        if self._localSeat == HERO_LOCAL_SEAT then
+            x = -55
+        elseif self._localSeat == HERO_LOCAL_SEAT-1 then
+            x = -55 + point
+        else
+            x = -55 - point
+        end
+    elseif cardid == CR.cardType.CTID_ER_SHUN then
+        if self._localSeat == HERO_LOCAL_SEAT then
+            x = -5
+            y = -15    
+        elseif self._localSeat == HERO_LOCAL_SEAT-1 then
+            x = -5 + point
+            y = -15  
+        else
+            x = -5 - point
+            y = -15
+        end
+    end
+
+    local effect    
+    if cardid == CR.cardType.CTID_YI_SHUN then
+        effect = app.util.UIUtils.runEffectOne("game/ddz/effect", "shunzi_dh", x, y)
+    elseif cardid == CR.cardType.CTID_ER_SHUN then
+        effect = app.util.UIUtils.runEffectOne("game/ddz/effect", "liandui_dh", x, y)    
+    end
+
+    if effect then
+        node:addChild(effect)
+    end
+end
+
 -- 音效相关
 function GamePlayerNode:playEffectByName(name)
     local soundPath = "game/ddz/sound/"
@@ -349,7 +434,85 @@ function GamePlayerNode:playEffectByName(name)
         end
     end
 
-    app.util.SoundUtils.playEffect(soundPath..strRes)   
+    app.util.SoundUtils.playEffect(soundPath .. strRes)   
+end
+
+function GamePlayerNode:playOutCardVoice(typeID, power, sex, bigger)
+    local weight = power
+    local sex = sex or 0
+    local bigger = bigger or false
+    
+    local strRes = ""
+    local soundPath = ""
+
+    if (weight == 19)then weight = 2 end
+    if (weight == 21)then weight = 15 end
+    if (weight == 22)then weight = 16 end
+
+    local CardType = app.game.CardRule.cardType
+    
+    local genderStr = ""
+    if sex == 0 then
+        genderStr = "Woman"
+    else
+        genderStr = "Man"
+    end
+        
+    if typeID == CardType.CTID_YI_ZHANG then
+        strRes = string.format("%s_%d.mp3", genderStr, weight)
+    elseif typeID == CardType.CTID_ER_ZHANG then
+        strRes = string.format("%s_dui%d.mp3", genderStr, weight)
+    elseif typeID == CardType.CTID_SAN_ZHANG then
+        strRes = string.format("%s_tuple%d.mp3", genderStr, weight)
+    elseif typeID == CardType.CTID_SI_ZHANG then
+        strRes = string.format("%s_zhadan.mp3", genderStr)            
+    elseif typeID == CardType.CTID_YI_SHUN then
+        strRes = string.format("%s_shunzi.mp3", genderStr)   
+    elseif typeID == CardType.CTID_ER_SHUN then
+        strRes = string.format("%s_liandui.mp3", genderStr)           
+    elseif typeID == CardType.CTID_SAN_SHUN then
+        strRes = string.format("%s_feiji.mp3", genderStr)    
+    elseif typeID == CardType.CTID_SAN_DAI_YI then
+        strRes = string.format("%s_sandaiyi.mp3", genderStr) 
+    elseif typeID == CardType.CTID_SAN_DAI_ER then
+        strRes = string.format("%s_sandaiyidui.mp3", genderStr) 
+    elseif typeID == CardType.CTID_FEI_JI then
+        strRes = string.format("%s_feiji.mp3", genderStr)
+    elseif typeID == CardType.CTID_HUO_JIAN then
+        strRes = string.format("%s_wangzha.mp3", genderStr)
+    elseif typeID == CardType.CTID_SI_DAI_ER then
+        strRes = string.format("%s_sidaier.mp3", genderStr)  
+    end
+    
+    -- 大你 排除--单张对子三张及王炸
+    if bigger and (typeID ~= CardType.CTID_YI_ZHANG and 
+                   typeID ~= CardType.CTID_ER_ZHANG and 
+                   typeID ~= CardType.CTID_SAN_ZHANG and 
+                   typeID ~= CardType.CTID_HUO_JIAN) then               
+        strRes = string.format("%s_dani%d.mp3", genderStr, math.random(1,3))
+    end
+    
+    print("--------------")
+    print("id----",typeID)
+    print("weight",weight)
+    print("strRes",strRes)
+    print("bigger",bigger)
+    print("--------------")
+
+    soundPath = "game/ddz/sound/"             
+    if (strRes == "") then
+        print("strRes is nil nil") 
+        return 
+    end
+
+    local sex = tonumber(sex)
+    if sex == 0 then
+        strRes = soundPath .. "women/" .. strRes
+    else        
+        strRes = soundPath .. "man/" .. strRes
+    end
+
+    app.util.SoundUtils.playEffect(strRes)
 end
 
 return GamePlayerNode

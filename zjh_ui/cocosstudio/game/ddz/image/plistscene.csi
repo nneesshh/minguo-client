@@ -44,6 +44,12 @@
       <FilePathData Path="game/ddz/image/img_type_3.png" />
       <FilePathData Path="game/ddz/image/img_type_4.png" />
       <FilePathData Path="game/ddz/image/img_type_5.png" />
+      <FilePathData Path="game/ddz/image/img_card_mp.png" />
+      <FilePathData Path="game/ddz/image/img_call_5.png" />
+      <FilePathData Path="game/ddz/image/img_call_6.png" />
+      <FilePathData Path="game/ddz/image/img_hint_cant.png" />
+      <FilePathData Path="game/ddz/image/img_hint_trust.png" />
+      <FilePathData Path="game/ddz/image/btn_ming2.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="2048" />
   </Content>

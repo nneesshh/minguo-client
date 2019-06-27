@@ -210,6 +210,9 @@ function GameCardNode:resetCard()
        self._type == HAND_CARD_TYPE_NO_SELF then
         self:setIsBomb(false)
     end
+    
+    self:showImgCardBanker(false)
+    self:showImgCardMing(false)
 
     self._rootNode:stopAllActions()
 
@@ -235,6 +238,16 @@ end
 function GameCardNode:showImgSelectBG(visible)
     local imgSelectBG = self:seekChildByName("img_card_select")
     imgSelectBG:setVisible(visible)
+end
+
+function GameCardNode:showImgCardBanker(visible)
+    local imgbank = self:seekChildByName("img_card_bank")
+    imgbank:setVisible(visible)
+end
+
+function GameCardNode:showImgCardMing(visible)
+    local imgming = self:seekChildByName("img_card_ming")
+    imgming:setVisible(visible)
 end
 
 function GameCardNode:setIsSelect(bSelect)
@@ -272,7 +285,7 @@ function GameCardNode:playTakeFirstAction()
     local parent = self._rootNode:getParent()
     local szScreen = cc.Director:getInstance():getWinSize()
     local pCenter = parent:convertToNodeSpace(cc.p(szScreen.width*0.5, szScreen.height*0.5))
-    self._rootNode:setPosition(pos)
+    self._rootNode:setPosition(pCenter)
     -- self._rootNode:setOpacity(0)
 
     if self._type == HAND_CARD_TYPE_NO_SELF then
@@ -288,24 +301,22 @@ function GameCardNode:playTakeFirstAction()
     end)
     
     local actEnd = cc.CallFunc:create(function()
-        self._rootNode:setOpacity(255)
+        --self._rootNode:setOpacity(255)
         self._rootNode:setPosition(pos)
     end)
 
-    if not true then
-        if self._type == HAND_CARD_TYPE then
-            self._rootNode:runAction(actSpawn)
-        elseif self._type == HAND_CARD_TYPE_NO_SELF then
-            self._rootNode:runAction(actSpawn)
-        else
-            self._rootNode:runAction(
-                cc.Sequence:create(
-                    actSpawn, 
-                    actRemove,
-                    actEnd
-                )
-            )        
-        end
+    if self._type == HAND_CARD_TYPE then
+        self._rootNode:runAction(actSpawn)
+    elseif self._type == HAND_CARD_TYPE_NO_SELF then
+        self._rootNode:runAction(actSpawn)
+    else
+        self._rootNode:runAction(
+            cc.Sequence:create(
+                actSpawn, 
+                actRemove,
+                actEnd
+            )
+        )        
     end
 end
 

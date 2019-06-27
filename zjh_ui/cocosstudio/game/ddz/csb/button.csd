@@ -138,7 +138,7 @@
                 <PrePosition X="0.2800" Y="0.5000" />
                 <PreSize X="0.1778" Y="0.2633" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="MarkedSubImage" Path="game/ddz/image/btn_ming.png" Plist="game/ddz/image/plistscene.plist" />
+                <DisabledFileData Type="MarkedSubImage" Path="game/ddz/image/btn_ming2.png" Plist="game/ddz/image/plistscene.plist" />
                 <PressedFileData Type="MarkedSubImage" Path="game/ddz/image/btn_ming.png" Plist="game/ddz/image/plistscene.plist" />
                 <NormalFileData Type="MarkedSubImage" Path="game/ddz/image/btn_ming.png" Plist="game/ddz/image/plistscene.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
@@ -198,8 +198,8 @@
                 <PrePosition X="0.3911" Y="0.5000" />
                 <PreSize X="0.1733" Y="0.2500" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="MarkedSubImage" Path="game/ddz/image/btn_mult.png" Plist="game/ddz/image/plistscene.plist" />
-                <PressedFileData Type="MarkedSubImage" Path="game/ddz/image/btn_mult.png" Plist="game/ddz/image/plistscene.plist" />
+                <DisabledFileData Type="MarkedSubImage" Path="game/ddz/image/btn_hint.png" Plist="game/ddz/image/plistscene.plist" />
+                <PressedFileData Type="MarkedSubImage" Path="game/ddz/image/btn_hint.png" Plist="game/ddz/image/plistscene.plist" />
                 <NormalFileData Type="MarkedSubImage" Path="game/ddz/image/btn_hint.png" Plist="game/ddz/image/plistscene.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
@@ -258,8 +258,8 @@
                 <PrePosition X="0.5000" Y="0.5000" />
                 <PreSize X="0.1733" Y="0.2500" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="MarkedSubImage" Path="game/ddz/image/btn_mult.png" Plist="game/ddz/image/plistscene.plist" />
-                <PressedFileData Type="MarkedSubImage" Path="game/ddz/image/btn_mult.png" Plist="game/ddz/image/plistscene.plist" />
+                <DisabledFileData Type="MarkedSubImage" Path="game/ddz/image/btn_hint.png" Plist="game/ddz/image/plistscene.plist" />
+                <PressedFileData Type="MarkedSubImage" Path="game/ddz/image/btn_hint.png" Plist="game/ddz/image/plistscene.plist" />
                 <NormalFileData Type="MarkedSubImage" Path="game/ddz/image/btn_hint.png" Plist="game/ddz/image/plistscene.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
@@ -294,7 +294,7 @@
           <AbstractNodeData Name="pnl_btn_cant" ActionTag="-1354975389" VisibleForFrame="False" Tag="628" IconVisible="False" LeftMargin="-450.0000" RightMargin="-450.0000" TopMargin="-150.0000" BottomMargin="-150.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="900.0000" Y="300.0000" />
             <Children>
-              <AbstractNodeData Name="btn_play_cancel" ActionTag="-1197266644" Tag="629" IconVisible="False" LeftMargin="372.0000" RightMargin="372.0000" TopMargin="112.5000" BottomMargin="112.5000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="126" Scale9Height="53" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+              <AbstractNodeData Name="btn_play_cant" ActionTag="-1197266644" Tag="629" IconVisible="False" LeftMargin="372.0000" RightMargin="372.0000" TopMargin="112.5000" BottomMargin="112.5000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="126" Scale9Height="53" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="156.0000" Y="75.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <Position X="450.0000" Y="150.0000" />

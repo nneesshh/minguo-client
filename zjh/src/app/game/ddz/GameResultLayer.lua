@@ -42,8 +42,14 @@ function GameResultLayer:showResult(players)
         if players[i].seat == heroseat then
             win:setVisible(players[i].bouns >= 0)
             lose:setVisible(players[i].bouns < 0)
+            
+            if players[i].bouns >= 0 then
+                self._presenter:playEffectByName("win")
+            else
+                self._presenter:playEffectByName("lose")    
+            end
         end
-                       
+                  
         back:setVisible(players[i].bouns > 0)
         bank:setVisible(players[i].seat == players.banker)
         

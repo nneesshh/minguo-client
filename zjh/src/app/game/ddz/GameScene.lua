@@ -25,8 +25,10 @@ function GameScene:onTouch(sender, eventType)
     if eventType == ccui.TouchEventType.ended then        
         if name == "btn_exit" then
             self._presenter:sendLeaveRoom()
+--            self._presenter:testhint()
+--            self:playPlaneEffect()
         elseif name == "btn_trust" then
-            self._presenter:onTouchBtnTrust()                               
+            self._presenter:onTouchBtnTrust()                                           
         end
     end
 end
@@ -49,7 +51,7 @@ end
 function GameScene:showBase()
     local base = app.game.GameConfig.getBase()
     local fntbase = self:seekChildByName("txt_base_score")
-    fntbase:setString("底分 " .. base)
+    fntbase:setString(base)
 end
 
 function GameScene:showPnlHint(type)
@@ -149,8 +151,8 @@ function GameScene:playCardEffect(cardid)
         effect = app.util.UIUtils.runEffectOne("game/ddz/effect", "zhadan_dh", 0, 70)        
         self._presenter:playEffectByName("boom") 
     elseif cardid == CR.cardType.CTID_FEI_JI then
-        self._presenter:playEffectByName("plan") 
-    -- effect = app.util.UIUtils.runEffectOne("game/ddz/effect", "vs_dh3", 0, 0)
+        self:playPlaneEffect()
+        self._presenter:playEffectByName("plan")     
     end
 
     if effect then
@@ -164,6 +166,42 @@ function GameScene:showTrustRecordNode(visible)
 	
     record:setVisible(visible)
     trust:setVisible(visible)
+end
+
+function GameScene:playPlaneEffect()
+    local fp, tp = {}, {}
+    local szScreen = cc.Director:getInstance():getWinSize()
+    fp.x, fp.y = szScreen.width-100, szScreen.height+100
+    tp.x, tp.y = -100, 200
+
+    local bezier = self:getBezierAction(fp, tp)    
+    local plane = self:seekChildByName("img_plane")
+    local father = plane:getParent()
+    local node = plane:clone()  
+    node:setPosition(fp.x, fp.y)  
+    node:setVisible(true)
+    node:setScale(0.5)
+    father:addChild(node)
+
+    node:runAction(cc.Sequence:create(
+        cc.Spawn:create(cc.ScaleTo:create(1.2,1.3), bezier),
+        cc.CallFunc:create(function()
+            node:removeFromParent(true)
+        end)
+    ))     
+end
+
+function GameScene:getBezierAction(fromPo, toPo)
+    local ctrX = (fromPo["x"] + toPo["x"]) / 1.3
+    local ctrY = toPo["y"] + math.abs(fromPo["y"] - toPo["y"]) * 1 / 5   
+
+    local ctrlPoint = cc.p(ctrX, ctrY)
+    local BezierConfig = {ctrlPoint, ctrlPoint, toPo}     
+
+    --移动的动作
+    local move = cc.BezierTo:create(1.2, BezierConfig)
+   
+    return move
 end
 
 return GameScene

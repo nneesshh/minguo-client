@@ -155,14 +155,14 @@ function GamePlayerNode:onRestCards(cards)
 end
 
 -- 时钟
-function GamePlayerNode:onClock(time, isFirst)
+function GamePlayerNode:onClock(time, isFirst, todo)
     if not isFirst then
         self._gameOutCardNode:resetOutCards()
 
         -- 隐藏该座位玩家的不出标志
         self:showImgCallType(false)
     end
-    self:showPnlClockCircle(true, time)
+    self:showPnlClockCircle(true, time, todo)
 end
 
 function GamePlayerNode:onClockEx()
@@ -291,10 +291,10 @@ function GamePlayerNode:showPlayHint(type)
 end
 
 -- 时钟
-function GamePlayerNode:showPnlClockCircle(visible, time)
+function GamePlayerNode:showPnlClockCircle(visible, time, todo)
     local pnlClockCircle = self:seekChildByName("img_clock")
     if visible then
-        self._presenter:openSchedulerClock(self._localSeat, time)
+        self._presenter:openSchedulerClock(self._localSeat, time, todo)
     else
         self._presenter:closeSchedulerClock(self._localSeat)
     end
@@ -491,13 +491,6 @@ function GamePlayerNode:playOutCardVoice(typeID, power, sex, bigger)
                    typeID ~= CardType.CTID_HUO_JIAN) then               
         strRes = string.format("%s_dani%d.mp3", genderStr, math.random(1,3))
     end
-    
-    print("--------------")
-    print("id----",typeID)
-    print("weight",weight)
-    print("strRes",strRes)
-    print("bigger",bigger)
-    print("--------------")
 
     soundPath = "game/ddz/sound/"             
     if (strRes == "") then

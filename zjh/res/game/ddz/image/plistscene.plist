@@ -7,7 +7,7 @@
 			<key>game/ddz/image/btn_1_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{248,490},{156,75}}</string>
+				<string>{{818,809},{156,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -18,7 +18,7 @@
 			<key>game/ddz/image/btn_1_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{2,63},{156,75}}</string>
+				<string>{{818,969},{156,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -29,18 +29,18 @@
 			<key>game/ddz/image/btn_2_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{2,223},{156,75}}</string>
+				<string>{{330,1129},{156,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{156,75}</string>
 			</dict>
 			<key>game/ddz/image/btn_2_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{2,383},{156,75}}</string>
+				<string>{{490,1129},{156,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -51,29 +51,29 @@
 			<key>game/ddz/image/btn_3_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{81,63},{156,75}}</string>
+				<string>{{650,1072},{156,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{156,75}</string>
 			</dict>
 			<key>game/ddz/image/btn_3_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{81,223},{156,75}}</string>
+				<string>{{681,1151},{156,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{156,75}</string>
 			</dict>
 			<key>game/ddz/image/btn_cant_out.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{160,63},{156,75}}</string>
+				<string>{{841,1129},{156,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -84,18 +84,18 @@
 			<key>game/ddz/image/btn_continue.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{2,490},{206,76}}</string>
+				<string>{{566,1283},{206,76}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{206,76}</string>
 			</dict>
 			<key>game/ddz/image/btn_hint.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{160,223},{156,75}}</string>
+				<string>{{920,1283},{156,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -106,29 +106,29 @@
 			<key>game/ddz/image/btn_ming.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{82,490},{160,79}}</string>
+				<string>{{2,1129},{160,79}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{160,79}</string>
 			</dict>
 			<key>game/ddz/image/btn_mult.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{162,383},{156,75}}</string>
+				<string>{{841,1289},{156,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{156,75}</string>
 			</dict>
 			<key>game/ddz/image/btn_no_call.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{239,63},{156,75}}</string>
+				<string>{{920,1443},{156,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -139,7 +139,7 @@
 			<key>game/ddz/image/btn_no_mult.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{239,223},{156,75}}</string>
+				<string>{{566,1603},{156,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -150,18 +150,18 @@
 			<key>game/ddz/image/btn_no_out.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{318,63},{156,75}}</string>
+				<string>{{566,1363},{156,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{156,75}</string>
 			</dict>
 			<key>game/ddz/image/btn_out_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{318,223},{156,75}}</string>
+				<string>{{566,1442},{156,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -172,18 +172,18 @@
 			<key>game/ddz/image/btn_out_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{322,383},{156,75}}</string>
+				<string>{{726,1365},{156,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{156,75}</string>
 			</dict>
 			<key>game/ddz/image/btn_rember.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{740,132},{65,68}}</string>
+				<string>{{645,1578},{65,68}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -194,7 +194,7 @@
 			<key>game/ddz/image/btn_result_x.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{991,411},{31,31}}</string>
+				<string>{{776,1006},{31,31}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -205,7 +205,7 @@
 			<key>game/ddz/image/btn_trust.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{741,63},{58,58}}</string>
+				<string>{{776,430},{58,58}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -216,18 +216,18 @@
 			<key>game/ddz/image/img_add_back.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{397,63},{131,68}}</string>
+				<string>{{410,1208},{131,68}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{131,68}</string>
 			</dict>
 			<key>game/ddz/image/img_banker.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{688,260},{35,48}}</string>
+				<string>{{897,934},{35,48}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -238,18 +238,18 @@
 			<key>game/ddz/image/img_call_0.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{201,654},{74,38}}</string>
+				<string>{{776,736},{74,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{74,38}</string>
 			</dict>
 			<key>game/ddz/image/img_call_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{688,201},{55,38}}</string>
+				<string>{{776,947},{55,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -260,40 +260,40 @@
 			<key>game/ddz/image/img_call_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{464,334},{62,38}}</string>
+				<string>{{776,881},{62,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{62,38}</string>
 			</dict>
 			<key>game/ddz/image/img_call_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{397,334},{63,38}}</string>
+				<string>{{776,814},{63,38}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{63,38}</string>
 			</dict>
 			<key>game/ddz/image/img_call_4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{165,697},{77,37}}</string>
+				<string>{{776,655},{77,37}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{77,37}</string>
 			</dict>
 			<key>game/ddz/image/img_card_banker.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{730,204},{74,75}}</string>
+				<string>{{714,1525},{74,75}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -304,7 +304,7 @@
 			<key>game/ddz/image/img_clock.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{598,201},{74,86}}</string>
+				<string>{{805,1449},{74,86}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -315,29 +315,29 @@
 			<key>game/ddz/image/img_desc_back.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{469,132},{131,61}}</string>
+				<string>{{776,1230},{131,61}}</string>
 				<key>offset</key>
 				<string>{0,1}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{131,68}</string>
 			</dict>
 			<key>game/ddz/image/img_gold.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{727,282},{45,41}}</string>
+				<string>{{897,885},{45,41}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{45,41}</string>
 			</dict>
 			<key>game/ddz/image/img_head_back1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{535,197},{80,59}}</string>
+				<string>{{776,346},{80,59}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -348,18 +348,18 @@
 			<key>game/ddz/image/img_head_back2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{2,741},{239,80}}</string>
+				<string>{{536,1779},{239,80}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{239,80}</string>
 			</dict>
 			<key>game/ddz/image/img_hint.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{871,2},{459,61}}</string>
+				<string>{{943,820},{459,61}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -370,7 +370,7 @@
 			<key>game/ddz/image/img_hint_start.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{871,465},{272,52}}</string>
+				<string>{{900,490},{272,52}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -381,7 +381,7 @@
 			<key>game/ddz/image/img_mult.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{992,2},{27,27}}</string>
+				<string>{{776,1041},{27,27}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -392,7 +392,7 @@
 			<key>game/ddz/image/img_rember.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{809,2},{484,58}}</string>
+				<string>{{900,2},{484,58}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -403,40 +403,40 @@
 			<key>game/ddz/image/img_result_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{2,2},{803,57}}</string>
+				<string>{{839,2},{803,57}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{803,57}</string>
 			</dict>
 			<key>game/ddz/image/img_type_1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{397,198},{132,65}}</string>
+				<string>{{2,1212},{132,65}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{132,65}</string>
 			</dict>
 			<key>game/ddz/image/img_type_2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{466,198},{132,65}}</string>
+				<string>{{138,1212},{132,65}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{132,65}</string>
 			</dict>
 			<key>game/ddz/image/img_type_3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{469,63},{132,65}}</string>
+				<string>{{274,1212},{132,65}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -447,7 +447,7 @@
 			<key>game/ddz/image/img_type_4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{604,132},{132,65}}</string>
+				<string>{{545,1208},{132,65}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -458,51 +458,51 @@
 			<key>game/ddz/image/img_type_5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{605,63},{132,65}}</string>
+				<string>{{645,1442},{132,65}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{132,65}</string>
 			</dict>
 			<key>game/ddz/image/img_card_mp.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{2,700},{37,78}}</string>
+				<string>{{776,573},{37,78}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{37,78}</string>
 			</dict>
 			<key>game/ddz/image/img_call_5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{82,654},{115,39}}</string>
+				<string>{{900,766},{115,39}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{115,39}</string>
 			</dict>
 			<key>game/ddz/image/img_call_6.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{84,697},{77,39}}</string>
+				<string>{{776,492},{77,39}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{77,39}</string>
 			</dict>
 			<key>game/ddz/image/img_hint_cant.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{936,2},{405,52}}</string>
+				<string>{{962,2},{405,52}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -513,7 +513,7 @@
 			<key>game/ddz/image/img_hint_trust.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{936,411},{405,51}}</string>
+				<string>{{962,411},{405,51}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -524,13 +524,68 @@
 			<key>game/ddz/image/btn_ming2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{165,490},{160,79}}</string>
+				<string>{{166,1129},{160,79}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{160,79}</string>
+			</dict>
+			<key>game/ddz/image/img_plane.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{2,1779},{445,255}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{445,255}</string>
+			</dict>
+			<key>game/ddz/image/img_result_1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{2,2},{833,340}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{833,340}</string>
+			</dict>
+			<key>game/ddz/image/img_title_lose.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{2,1283},{492,278}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<true />
 				<key>sourceSize</key>
-				<string>{160,79}</string>
+				<string>{492,278}</string>
+			</dict>
+			<key>game/ddz/image/img_title_win.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{284,1283},{492,278}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{492,278}</string>
+			</dict>
+			<key>game/ddz/image/img_logo_ddz.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{451,1779},{249,81}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{249,81}</string>
 			</dict>
 		</dict>
 		<key>metadata</key>
@@ -542,14 +597,14 @@
 			<key>realTextureFileName</key>
 			<string>plistscene.png</string>
 			<key>size</key>
-			<string>{1024,823}</string>
+			<string>{1016,2036}</string>
 		</dict>
 		<key>texture</key>
 		<dict>
 			<key>width</key>
-			<integer>1024</integer>
+			<integer>1016</integer>
 			<key>height</key>
-			<integer>823</integer>
+			<integer>2036</integer>
 		</dict>
 	</dict>
 </plist>

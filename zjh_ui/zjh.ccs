@@ -157,7 +157,9 @@
               <Image Name="img_hint_cant.png" />
               <Image Name="img_hint_start.png" />
               <Image Name="img_hint_trust.png" />
+              <Image Name="img_logo_ddz.png" />
               <Image Name="img_mult.png" />
+              <Image Name="img_plane.png" />
               <Image Name="img_rember.png" />
               <Image Name="img_result_1.png" />
               <Image Name="img_result_2.png" />

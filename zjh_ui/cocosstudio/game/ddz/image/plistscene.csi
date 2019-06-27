@@ -50,6 +50,11 @@
       <FilePathData Path="game/ddz/image/img_hint_cant.png" />
       <FilePathData Path="game/ddz/image/img_hint_trust.png" />
       <FilePathData Path="game/ddz/image/btn_ming2.png" />
+      <FilePathData Path="game/ddz/image/img_plane.png" />
+      <FilePathData Path="game/ddz/image/img_result_1.png" />
+      <FilePathData Path="game/ddz/image/img_title_lose.png" />
+      <FilePathData Path="game/ddz/image/img_title_win.png" />
+      <FilePathData Path="game/ddz/image/img_logo_ddz.png" />
     </ImageFiles>
     <MaxSize Width="1024" Height="2048" />
   </Content>

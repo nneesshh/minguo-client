@@ -30,7 +30,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5000" Y="0.5000" />
                 <PreSize X="0.6244" Y="0.4533" />
-                <FileData Type="Normal" Path="game/ddz/image/img_result_1.png" Plist="" />
+                <FileData Type="MarkedSubImage" Path="game/ddz/image/img_result_1.png" Plist="game/ddz/image/plistscene.plist" />
               </AbstractNodeData>
               <AbstractNodeData Name="img_title_win" ActionTag="793580205" Tag="1000" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="421.0000" RightMargin="421.0000" BottomMargin="472.0000" LeftEage="113" RightEage="113" TopEage="21" BottomEage="21" Scale9OriginX="113" Scale9OriginY="21" Scale9Width="266" Scale9Height="236" ctype="ImageViewObjectData">
                 <Size X="492.0000" Y="278.0000" />
@@ -40,7 +40,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5000" Y="1.0000" />
                 <PreSize X="0.3688" Y="0.3707" />
-                <FileData Type="Normal" Path="game/ddz/image/img_title_win.png" Plist="" />
+                <FileData Type="MarkedSubImage" Path="game/ddz/image/img_title_win.png" Plist="game/ddz/image/plistscene.plist" />
               </AbstractNodeData>
               <AbstractNodeData Name="img_title_lose" ActionTag="1604950276" Tag="856" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="421.0000" RightMargin="421.0000" BottomMargin="472.0000" LeftEage="113" RightEage="113" TopEage="21" BottomEage="21" Scale9OriginX="113" Scale9OriginY="21" Scale9Width="266" Scale9Height="236" ctype="ImageViewObjectData">
                 <Size X="492.0000" Y="278.0000" />
@@ -50,7 +50,7 @@
                 <CColor A="255" R="255" G="255" B="255" />
                 <PrePosition X="0.5000" Y="1.0000" />
                 <PreSize X="0.3688" Y="0.3707" />
-                <FileData Type="Normal" Path="game/ddz/image/img_title_lose.png" Plist="" />
+                <FileData Type="MarkedSubImage" Path="game/ddz/image/img_title_lose.png" Plist="game/ddz/image/plistscene.plist" />
               </AbstractNodeData>
               <AbstractNodeData Name="result_player_0" ActionTag="-1478957145" Tag="857" IconVisible="False" PositionPercentXEnabled="True" LeftMargin="265.5000" RightMargin="265.5000" TopMargin="338.0000" BottomMargin="355.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
                 <Size X="803.0000" Y="57.0000" />

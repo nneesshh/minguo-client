@@ -107,8 +107,7 @@ function MainScene:initUI(gameID, roomMode)
     		end
     	end
     end
-    
-    dump(talkseat)
+
 end
 
 function MainScene:test(cards)

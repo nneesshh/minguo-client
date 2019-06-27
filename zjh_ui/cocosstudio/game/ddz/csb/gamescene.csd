@@ -16,6 +16,16 @@
             <PreSize X="1.0000" Y="1.0000" />
             <FileData Type="Normal" Path="game/public/background/img_ddz.jpg" Plist="" />
           </AbstractNodeData>
+          <AbstractNodeData Name="img_logo" ActionTag="2130468925" Tag="526" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="TopEdge" LeftMargin="542.5000" RightMargin="542.5000" TopMargin="259.5000" BottomMargin="409.5000" LeftEage="82" RightEage="82" TopEage="26" BottomEage="26" Scale9OriginX="82" Scale9OriginY="26" Scale9Width="85" Scale9Height="29" ctype="ImageViewObjectData">
+            <Size X="249.0000" Y="81.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="667.0000" Y="450.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" Y="0.6000" />
+            <PreSize X="0.1867" Y="0.1080" />
+            <FileData Type="MarkedSubImage" Path="game/ddz/image/img_logo_ddz.png" Plist="game/ddz/image/plistscene.plist" />
+          </AbstractNodeData>
           <AbstractNodeData Name="player" ActionTag="-454512329" Tag="2494" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="1334.0000" Y="750.0000" />
             <Children>
@@ -524,24 +534,24 @@
                 <PreSize X="0.0202" Y="0.3375" />
                 <FileData Type="MarkedSubImage" Path="game/ddz/image/img_mult.png" Plist="game/ddz/image/plistscene.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="txt_mult" ActionTag="-210120861" Tag="527" IconVisible="False" LeftMargin="605.0000" RightMargin="699.0000" TopMargin="35.0000" BottomMargin="15.0000" FontSize="30" LabelText="倍" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+              <AbstractNodeData Name="txt_mult" ActionTag="-210120861" Tag="527" IconVisible="False" LeftMargin="615.0000" RightMargin="689.0000" TopMargin="35.0000" BottomMargin="15.0000" FontSize="30" LabelText="倍" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                 <Size X="30.0000" Y="30.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="620.0000" Y="30.0000" />
+                <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
+                <Position X="645.0000" Y="30.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="196" G="243" B="255" />
-                <PrePosition X="0.4648" Y="0.3750" />
+                <PrePosition X="0.4835" Y="0.3750" />
                 <PreSize X="0.0225" Y="0.3750" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="txt_mult_num" ActionTag="-1445021033" Tag="526" IconVisible="False" LeftMargin="650.0000" RightMargin="654.0000" TopMargin="35.0000" BottomMargin="15.0000" FontSize="30" LabelText="x1" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+              <AbstractNodeData Name="txt_mult_num" ActionTag="-1445021033" Tag="526" IconVisible="False" LeftMargin="660.0000" RightMargin="644.0000" TopMargin="35.0000" BottomMargin="15.0000" FontSize="30" LabelText="x1" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                 <Size X="30.0000" Y="30.0000" />
                 <AnchorPoint ScaleY="0.5000" />
-                <Position X="650.0000" Y="30.0000" />
+                <Position X="660.0000" Y="30.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.4873" Y="0.3750" />
+                <PrePosition X="0.4948" Y="0.3750" />
                 <PreSize X="0.0225" Y="0.3750" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
@@ -588,14 +598,25 @@
                 <PreSize X="0.0555" Y="1.0750" />
                 <FileData Type="MarkedSubImage" Path="game/ddz/image/img_clock.png" Plist="game/ddz/image/plistscene.plist" />
               </AbstractNodeData>
-              <AbstractNodeData Name="txt_base_score" ActionTag="-310469382" Tag="1242" IconVisible="False" LeftMargin="792.5000" RightMargin="406.5000" TopMargin="35.0000" BottomMargin="15.0000" FontSize="30" LabelText="底分 1000" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                <Size X="135.0000" Y="30.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="860.0000" Y="30.0000" />
+              <AbstractNodeData Name="txt_base" ActionTag="408023442" Tag="575" IconVisible="False" LeftMargin="1070.0000" RightMargin="204.0000" TopMargin="35.0000" BottomMargin="15.0000" FontSize="30" LabelText="底分" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="60.0000" Y="30.0000" />
+                <AnchorPoint ScaleX="1.0000" ScaleY="0.5000" />
+                <Position X="1130.0000" Y="30.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="196" G="243" B="255" />
+                <PrePosition X="0.8471" Y="0.3750" />
+                <PreSize X="0.0450" Y="0.3750" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="txt_base_score" ActionTag="-310469382" Tag="1242" IconVisible="False" LeftMargin="1145.0000" RightMargin="129.0000" TopMargin="35.0000" BottomMargin="15.0000" FontSize="30" LabelText="1000" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                <Size X="60.0000" Y="30.0000" />
+                <AnchorPoint ScaleY="0.5000" />
+                <Position X="1145.0000" Y="30.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.6447" Y="0.3750" />
-                <PreSize X="0.1012" Y="0.3750" />
+                <PrePosition X="0.8583" Y="0.3750" />
+                <PreSize X="0.0450" Y="0.3750" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
@@ -851,6 +872,16 @@
             <PrePosition X="0.9565" Y="0.9267" />
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="Normal" Path="game/ddz/csb/menu.csd" Plist="" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="img_plane" ActionTag="2092797148" Tag="127" IconVisible="False" LeftMargin="1777.5000" RightMargin="-888.5000" TopMargin="-377.5000" BottomMargin="872.5000" LeftEage="146" RightEage="146" TopEage="84" BottomEage="84" Scale9OriginX="146" Scale9OriginY="84" Scale9Width="153" Scale9Height="87" ctype="ImageViewObjectData">
+            <Size X="445.0000" Y="255.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="2000.0000" Y="1000.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="1.4993" Y="1.3333" />
+            <PreSize X="0.3336" Y="0.3400" />
+            <FileData Type="MarkedSubImage" Path="game/ddz/image/img_plane.png" Plist="game/ddz/image/plistscene.plist" />
           </AbstractNodeData>
         </Children>
       </ObjectData>

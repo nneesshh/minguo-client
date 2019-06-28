@@ -24,9 +24,8 @@ function GameScene:onTouch(sender, eventType)
     local name = sender:getName()
     if eventType == ccui.TouchEventType.ended then        
         if name == "btn_exit" then
-            self._presenter:sendLeaveRoom()
---            self._presenter:testhint()
---            self:playPlaneEffect()
+--            self._presenter:sendLeaveRoom()
+            self._presenter:testeffect()
         elseif name == "btn_trust" then
             self._presenter:onTouchBtnTrust()                                           
         end
@@ -45,7 +44,7 @@ end
 
 function GameScene:initUI()
     self:showBase()  
-    self:showTrustRecordNode(false)
+    self:showTrustRecordNode(false)    
 end
 
 function GameScene:showBase()

@@ -357,9 +357,6 @@ function CardRunRule:getCard(color, num)
     return cards.CV_NONE
 end
 
-
-
-
 function CardRunRule:isSameNumSubCards(cards1, cards2)
     if #cards2 == 0 then
 		return true
@@ -456,8 +453,7 @@ function CardRunRule:hintCards1(cards, id, preComb, retCombs)
 	end
 	
 	if self:isCardForm(id) then  	   
-		for i=1, #self._cardForms[id] do
-		  
+		for i=1, #self._cardForms[id] do		     
             local form = self._cardForms[id][i]    
             if self:canOutFilter(form.type, preComb.type) then                
                 local sfs = CR.CardSepForest:new()                                               
@@ -540,7 +536,7 @@ function CardRunRule:findCardsByNums(cards, nums, subCards, retCards)
 		return false
 	end
     local tmpCards = clone(cards)
-    local tmpSubCards = clone(subCards) -- {}
+    local tmpSubCards = clone(subCards)
     if not self:delCards(tmpCards, tmpSubCards) then        
 		return false
 	end
@@ -749,6 +745,7 @@ function CardRunRule:sepCards(rules, cards, forest, first, id, index)
         local bfalg
         local tmpCombs = {}
         bfalg, tmpCombs = self:sepCards1(tmpType, tmpCards, tmpCombs, first, id, index)
+        
         if bfalg then                     
             for i=1, #tmpCombs do                                
                 local tmpSubRules = clone(tmpRules)
@@ -801,10 +798,10 @@ function CardRunRule:sepCards1(type, cards, retCombs, first, id, index)
 		return false      
 	end
     
-    for i=1, #self._cardAtoms[type.id] do        
+    for i=1, #self._cardAtoms[type.id] do                
         local tmpComb = CR.CardComb:new()
         local atom = self._cardAtoms[type.id][i]       
-        
+
         type.power = tonumber(type.power)
         atom.type.power = tonumber(atom.type.power)
         
@@ -829,7 +826,9 @@ function CardRunRule:sepCards1(type, cards, retCombs, first, id, index)
             local tmpSubCards = {} 
             local _tmpcards = {} 
             local flag = false 
-            flag, _tmpcards = self:findCardsByNums(cards, atom.nums, tmpSubCards, _tmpcards) 
+            dump(cards)     
+            flag, _tmpcards = self:findCardsByNums(cards, atom.nums, tmpSubCards, _tmpcards)
+
             if flag then     
                 tmpComb.cards = _tmpcards
                 tmpComb.nums = atom.nums
@@ -842,32 +841,32 @@ function CardRunRule:sepCards1(type, cards, retCombs, first, id, index)
     return #retCombs > 0, retCombs
 end
 
-function CardRunRule:sepCards2(rules, cards, tree, first, id, index)
+function CardRunRule:sepCards2(rules, cards, tree, first, id, index)    
     if #rules == 0 then
         return true, tree
     end
-    
+
     local tmpRules = clone(rules)
     local tmpCards = clone(cards)
     local tmpType = CR.CardType:new()
     local flag
     
     flag, tmpType = self:sepFirstType(tmpRules, tmpType)  
-
     if flag then
         local tmpCombs = {}
         local bflag 
-        bflag, tmpCombs = self:sepCards1(tmpType, tmpCards, tmpCombs, first, id)            
+
+        bflag, tmpCombs = self:sepCards1(tmpType, tmpCards, tmpCombs, first, id) 
+ 
         if bflag then          
         	for i=1, #tmpCombs do
                 local tmpSubRules = clone(tmpRules)                
-                local tmpSubCards = clone(tmpCards)                
-                self:delCards(tmpSubCards, tmpCombs[i].cards)        
+                local tmpSubCards = clone(tmpCards)             
+                self:delCards(tmpSubCards, tmpCombs[i].cards)                 
                 local subTree = CR.CardSepTree:new()
-                subTree.comb = tmpCombs[i] 
-                        
+                subTree.comb = tmpCombs[i]                         
                 local cflag
-                cflag, subTree = self:sepCards2(tmpSubRules, tmpSubCards, subTree, first)                
+                cflag, subTree = self:sepCards2(tmpSubRules, tmpSubCards, subTree, first)            
                 if cflag then                                                           
                     table.insert(tree._children, subTree) 
                 end                   		
@@ -907,18 +906,31 @@ function CardRunRule:sepTreeToSepHands(tree, rules, combs, hands, id, index)
 
     local tmpCombs = {} 
     table.insert(tmpCombs, tree.comb)
-    
+        
     if rules[2] then
         local otherNum = tonumber(rules[2].count) or 0
         if otherNum == 1 then
             for k, it in ipairs(tree._children) do
-                local _tmp = clone(tmpCombs)
-                table.insert(_tmp, it.comb)
+                -- 去掉炸弹当作三带一的情况333 3
+                if id == CR.cardType.CTID_SAN_DAI_YI then 
+                    if tree.comb.nums[1] ~= it.comb.nums[1] then
+                        local _tmp = clone(tmpCombs)
+                        table.insert(_tmp, it.comb)
 
-                local tmpHand = CR.CardSepHand:new()
-                tmpHand.rules = rules
-                tmpHand.combs = _tmp
-                table.insert(hands, tmpHand)
+                        local tmpHand = CR.CardSepHand:new()
+                        tmpHand.rules = rules
+                        tmpHand.combs = _tmp
+                        table.insert(hands, tmpHand)          
+                	end
+                else
+                    local _tmp = clone(tmpCombs)
+                    table.insert(_tmp, it.comb)
+
+                    local tmpHand = CR.CardSepHand:new()
+                    tmpHand.rules = rules
+                    tmpHand.combs = _tmp
+                    table.insert(hands, tmpHand)                	
+                end
             end
         elseif otherNum > 1 then
             if #tree._children >=  otherNum then

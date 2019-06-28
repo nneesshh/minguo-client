@@ -22,7 +22,7 @@ local HERO_LOCAL_SEAT   = 1
 local CARD_NUM          = 17
 local CV_BACK           = app.game.CardRule.cards.CV_BACK 
 local LAST_CARD         = 1
-local TIME_START_EFFECT = 1
+local TIME_START_EFFECT = 0.5
 local TIME_MAKE_BANKER  = 1
 
 local SCHEDULE_WAIT_TIME= 0
@@ -36,7 +36,8 @@ function GamePresenter:init(...)
     self:initPlayerNode()
     self:initNodeBankCard()
     self:initBtnNode()
-    self:initMenuNode()    
+    self:initMenuNode()
+    self:initRecord()    
     self:initTouch()
     self:initScheduler()  
     self._playing = false
@@ -56,7 +57,10 @@ function GamePresenter:testhint()
 end
 
 function GamePresenter:testeffect()
-    self._ui:getInstance():playCardEffect(17)
+    local cards = {3, 16, 29, 42, 8, 22}
+    local comb = self:initCanOutCombs(cards)
+    --333388
+--    dump(comb)
 end
 
 function GamePresenter:createDispatcher()    
@@ -365,6 +369,7 @@ function GamePresenter:onDdzGameStart(cards)
     self._gameBankCardNode:resetBankCards()   
     self._ui:getInstance():showPnlHint()
     self._ui:getInstance():showTrustRecordNode(false)
+    self._gameRecord:setRecordVisible(false)
     
     -- 开局动画    
     self._ui:getInstance():showStartEffect()
@@ -569,7 +574,9 @@ end
 function GamePresenter:onDdzCompareBidOver(info, players) 
     local banker = app.game.GameData.getBanker()
     local localbank = app.game.PlayerData.serverSeatToLocalSeat(banker) 
-    self._ui:getInstance():showTrustRecordNode(true)
+    self._ui:getInstance():showTrustRecordNode(true)    
+    self._gameRecord:setRecordVisible(true)
+    
     -- 加倍音效
     local multseat = app.game.GameData.getMultSeat()    
     local talkseat = {}   
@@ -674,8 +681,7 @@ function GamePresenter:onDdzDisplay(info)
         self._gamePlayerNodes[localseat]:showMult(mult)        
     end
     
-    self._gameBtnNode:setBankerPlayerMingEnable(false)     
-    
+    self._gameBtnNode:setBankerPlayerMingEnable(false)         
 end
 
 -- 托管
@@ -888,6 +894,7 @@ function GamePresenter:onDdzGameOver(players)
     end  
     
     self._ui:getInstance():showTrustRecordNode(false)
+    self._gameRecord:setRecordVisible(false)
     
     self._gamePlayerNodes[HERO_LOCAL_SEAT]:showPlayHint()  
     
@@ -923,6 +930,16 @@ function GamePresenter:onDdzGameOver(players)
     players.banker = banker
 
     if players.spring == 1 then
+        for i = 0, self._maxPlayerCnt - 1 do 
+            app.game.GameData.addMult(i)
+        end
+        
+        for i = 0, self._maxPlayerCnt - 1 do 
+            local localseat = app.game.PlayerData.serverSeatToLocalSeat(i) 
+            local mult = app.game.GameData.getMult(i)
+            self._gamePlayerNodes[localseat]:showMult(mult)        
+        end
+        
         self._ui:getInstance():showSpringEffect()
         self:playEffectByName("chuntian")
         
@@ -1182,7 +1199,6 @@ end
 
 -- 发牌
 function GamePresenter:openSchedulerTakeFirst(callback)
-    print("on take first")
     local cardbacks = {}             
     for i = 0, self._maxPlayerCnt - 1 do
         cardbacks[i] = cardbacks[i] or {}  
@@ -1366,7 +1382,7 @@ function GamePresenter:deleteHandCards(serverSeat, cards)
             gameHandCardNode:showImgCardBanker()
         end
         
-        if  app.game.GameData.getMing(serverSeat) then
+        if app.game.GameData.getMing(serverSeat) then
             gameHandCardNode:showImgCardMing()
         end
         

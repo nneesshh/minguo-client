@@ -6,13 +6,13 @@
       <ObjectData Name="Node" Tag="159" ctype="GameNodeObjectData">
         <Size X="0.0000" Y="0.0000" />
         <Children>
-          <AbstractNodeData Name="pnl_record" ActionTag="-1657828657" Tag="758" IconVisible="False" RightMargin="-550.0000" TopMargin="-100.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+          <AbstractNodeData Name="pnl_record" ActionTag="-1657828657" Tag="758" IconVisible="False" RightMargin="-550.0000" TopMargin="-100.0000" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="550.0000" Y="100.0000" />
             <Children>
-              <AbstractNodeData Name="img_record" ActionTag="1653737159" VisibleForFrame="False" Tag="760" IconVisible="False" LeftMargin="56.0000" RightMargin="10.0000" TopMargin="39.0000" BottomMargin="3.0000" LeftEage="159" RightEage="159" TopEage="19" BottomEage="19" Scale9OriginX="159" Scale9OriginY="19" Scale9Width="166" Scale9Height="20" ctype="ImageViewObjectData">
+              <AbstractNodeData Name="img_record" ActionTag="1653737159" Tag="760" IconVisible="False" LeftMargin="56.0000" RightMargin="10.0000" TopMargin="39.0000" BottomMargin="3.0000" LeftEage="159" RightEage="159" TopEage="19" BottomEage="19" Scale9OriginX="159" Scale9OriginY="19" Scale9Width="166" Scale9Height="20" ctype="ImageViewObjectData">
                 <Size X="484.0000" Y="58.0000" />
                 <Children>
-                  <AbstractNodeData Name="txt_15" ActionTag="-735944525" Tag="761" IconVisible="False" LeftMargin="20.5000" RightMargin="454.5000" TopMargin="35.0000" BottomMargin="5.0000" FontSize="18" LabelText="1" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                  <AbstractNodeData Name="txt_16" ActionTag="-735944525" Tag="761" IconVisible="False" LeftMargin="20.5000" RightMargin="454.5000" TopMargin="35.0000" BottomMargin="5.0000" FontSize="18" LabelText="1" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                     <Size X="9.0000" Y="18.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="25.0000" Y="14.0000" />
@@ -23,7 +23,7 @@
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="txt_14" ActionTag="-1253190951" Tag="762" IconVisible="False" LeftMargin="67.5000" RightMargin="407.5000" TopMargin="35.0000" BottomMargin="5.0000" FontSize="18" LabelText="1" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                  <AbstractNodeData Name="txt_15" ActionTag="-1253190951" Tag="762" IconVisible="False" LeftMargin="67.5000" RightMargin="407.5000" TopMargin="35.0000" BottomMargin="5.0000" FontSize="18" LabelText="1" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                     <Size X="9.0000" Y="18.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="72.0000" Y="14.0000" />
@@ -45,7 +45,7 @@
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="txt_1" ActionTag="1315754807" Tag="764" IconVisible="False" LeftMargin="135.5000" RightMargin="339.5000" TopMargin="35.0000" BottomMargin="5.0000" FontSize="18" LabelText="4" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                  <AbstractNodeData Name="txt_14" ActionTag="1315754807" Tag="764" IconVisible="False" LeftMargin="135.5000" RightMargin="339.5000" TopMargin="35.0000" BottomMargin="5.0000" FontSize="18" LabelText="4" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
                     <Size X="9.0000" Y="18.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <Position X="140.0000" Y="14.0000" />

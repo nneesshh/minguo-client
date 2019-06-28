@@ -829,6 +829,15 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
+          <AbstractNodeData Name="node_bank_card" ActionTag="-1821409883" Tag="1153" IconVisible="True" HorizontalEdge="BothEdge" VerticalEdge="TopEdge" LeftMargin="667.0000" RightMargin="667.0000" TopMargin="110.0000" BottomMargin="640.0000" ctype="SingleNodeObjectData">
+            <Size X="0.0000" Y="0.0000" />
+            <AnchorPoint />
+            <Position X="667.0000" Y="640.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5000" Y="0.8533" />
+            <PreSize X="0.0000" Y="0.0000" />
+          </AbstractNodeData>
           <AbstractNodeData Name="node_record" ActionTag="2037485688" VisibleForFrame="False" Tag="783" IconVisible="True" HorizontalEdge="LeftEdge" VerticalEdge="TopEdge" LeftMargin="344.0000" RightMargin="990.0000" TopMargin="85.0000" BottomMargin="665.0000" StretchWidthEnable="False" StretchHeightEnable="False" InnerActionSpeed="1.0000" CustomSizeEnabled="False" ctype="ProjectNodeObjectData">
             <Size X="0.0000" Y="0.0000" />
             <AnchorPoint />
@@ -838,15 +847,6 @@
             <PrePosition X="0.2579" Y="0.8867" />
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="Normal" Path="game/ddz/csb/record.csd" Plist="" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="node_bank_card" ActionTag="-1821409883" Tag="1153" IconVisible="True" HorizontalEdge="BothEdge" VerticalEdge="TopEdge" LeftMargin="667.0000" RightMargin="667.0000" TopMargin="110.0000" BottomMargin="640.0000" ctype="SingleNodeObjectData">
-            <Size X="0.0000" Y="0.0000" />
-            <AnchorPoint />
-            <Position X="667.0000" Y="640.0000" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.8533" />
-            <PreSize X="0.0000" Y="0.0000" />
           </AbstractNodeData>
           <AbstractNodeData Name="btn_trust" ActionTag="18941637" VisibleForFrame="False" Tag="803" IconVisible="False" HorizontalEdge="RightEdge" VerticalEdge="TopEdge" LeftMargin="961.0000" RightMargin="315.0000" TopMargin="27.0000" BottomMargin="665.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="28" Scale9Height="36" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="58.0000" Y="58.0000" />

@@ -3,6 +3,8 @@
 @brief  注册管理类
 ]]
 
+local app = app
+
 local RegisterPresenter   = class("RegisterPresenter", app.base.BasePresenter)
 
 -- UI
@@ -38,6 +40,7 @@ function RegisterPresenter:getVerify()
 end
 
 function RegisterPresenter:dealAccountRegister(username, verify, password) 
+    local gameStream = app.connMgr.getGameStream()
     print("password is",password,checkPwd(password))
      
     self:performWithDelayGlobal(
@@ -59,7 +62,7 @@ function RegisterPresenter:dealAccountRegister(username, verify, password)
                 self:dealTxtHintStart(hint)
                 return
             else             
-                local po = upconn.upconn:get_packet_obj()
+                local po = gameUpconn:get_packet_obj()
                 if po ~= nil then
                     po:writer_reset()
                     po:write_string(username)           -- userName
@@ -82,12 +85,12 @@ function RegisterPresenter:dealAccountRegister(username, verify, password)
                     _username, _password = username, password
 
                     local sessionId = self.sessionId or 222
-                    upconn.upconn:send_packet(sessionId, zjh_defs.MsgId.MSGID_REGISTER_REQ)
+                    gameUpconn:send_packet(sessionId, zjh_defs.MsgId.MSGID_REGISTER_REQ)
                 else
                     print("po is nil")                
                 end              
             end 
-        end, 0.2)
+        end, 0.01)
 end
 
 function RegisterPresenter:RegisterSuccess()  
@@ -105,9 +108,7 @@ end
 function RegisterPresenter:RegisterFail(errcode) 
     self:dealLoadingHintExit()   
       
-    if app.Connect then            
-        app.Connect:getInstance():close()             
-    end    
+    app.connMgr.close()
     self:dealTxtHintStart(zjh_defs.ErrorMessage[errcode]) 
     _username, _password = "", ""     
 end

@@ -1,3 +1,5 @@
+local app = app
+
 local _M = {}
 
 local function _readRoomInfo(po)
@@ -76,8 +78,7 @@ end
 -- 游戏准备
 function _M.onNiuGamePrepare(conn, sessionid, msgid) 
     print("onNiuGamePrepare")
-    local po = upconn.upconn:get_packet_obj()   
-    if po == nil then return end   
+
     if app.game.GamePresenter then
         app.game.GamePresenter:getInstance():onNiuGamePrepare() 
     end    
@@ -86,8 +87,7 @@ end
 -- 游戏开始
 function _M.onNiuGameStart(conn, sessionid, msgid)
     print("onNiuGameStart")
-    local po = upconn.upconn:get_packet_obj()
-    if po == nil then return end   
+
     local basecoin   = po:read_int32()
     local tabInfo    = _readTableInfo(po)
     tabInfo.basecoin = basecoin
@@ -103,8 +103,10 @@ end
 
 -- 游戏结束
 function _M.onNiuGameOver(conn, sessionid, msgid) 
+    local gameStream = app.connMgr.getGameStream()
+
     print("onNiuGameOver")
-    local po = upconn.upconn:get_packet_obj()   
+    local po = gameStream:get_packet_obj()   
     if po == nil then return end   
     
     local overs = {}
@@ -165,8 +167,10 @@ function _M.onNiuGameOver(conn, sessionid, msgid)
 end
 
 function _M.onNiuBankerBid(conn, sessionid, msgid)
+    local gameStream = app.connMgr.getGameStream()
+
     print("onNiuBankerBid")
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     if po == nil then return end
     
     local count = po:read_int32()
@@ -191,8 +195,7 @@ end
 
 function _M.onNiuBetFull(conn, sessionid, msgid)
     print("onNiuBetFull")   
-    local po = upconn.upconn:get_packet_obj()
-    if po == nil then return end
+
     if app.game.GamePresenter then
         app.game.GamePresenter:getInstance():onNiuBetFull() 
     end 
@@ -200,8 +203,10 @@ end
 
 -- 历史数据 
 function _M.onNiuHistory(conn, sessionid, msgid) 
+    local gameStream = app.connMgr.getGameStream()
+
     print("onNiuHistory")
-    local po = upconn.upconn:get_packet_obj() 
+    local po = gameStream:get_packet_obj() 
     if po == nil then return end   
     local gamenum20 = po:read_byte()
     local betnum20  = po:read_int32()
@@ -239,8 +244,10 @@ end
 
 -- 玩家列表
 function _M.onNiuTopSeat(conn, sessionid, msgid) 
+    local gameStream = app.connMgr.getGameStream()
+
     print("onNiuTopSeat", app.data.UserData.getTicketID())
-    local po = upconn.upconn:get_packet_obj() 
+    local po = gameStream:get_packet_obj() 
     if po == nil then return end   
     
     local players = {}
@@ -267,8 +274,10 @@ end
 
 -- 准备
 function _M.onNiuPlayerReady(conn, sessionid, msgid) 
+    local gameStream = app.connMgr.getGameStream()
+
     print("onNiuPlayerReady")
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     if po == nil then return end   
     local seat = po:read_int16()
     if app.game.GamePresenter then
@@ -278,8 +287,10 @@ end
 
 -- 押注
 function _M.onNiuBet(conn, sessionid, msgid) 
+    local gameStream = app.connMgr.getGameStream()
+
     print("onNiuBet")    
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     if po == nil then return end   
     
     local bets = {}
@@ -302,8 +313,10 @@ function _M.onNiuBet(conn, sessionid, msgid)
 end
 
 function _M.onNiuBankerResp(conn, sessionid, msgid)
+    local gameStream = app.connMgr.getGameStream()
+
     print("onNiuBankerResp")    
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     if po == nil then return end 
     local resp = {}
     resp.errorCode = po:read_int32()

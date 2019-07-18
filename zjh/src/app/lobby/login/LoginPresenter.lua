@@ -3,6 +3,9 @@
 @brief  登录管理类
 ]]
 
+local app = app
+
+
 local LoginPresenter   = class("LoginPresenter", app.base.BasePresenter)
 
 -- UI
@@ -23,7 +26,7 @@ function LoginPresenter:init(flag)
     if flag then
         self:performWithDelayGlobal(
             function()
-                app.Connect:getInstance():reConnect()
+                app.connMgr.reConnect()
             end, 0.2)
     end
 end
@@ -50,24 +53,24 @@ end
 
 function LoginPresenter:onLoginFail(errcode)       
     self:dealLoadingHintExit()        
-    if app.Connect then            
-        app.Connect:getInstance():close()    
-        if CC_SHOW_LOGIN_DEBUG and errcode == 3 and not app.lobby.login.AccountLoginPresenter:isCurrentUI() then
-            self:dealHintStart("账号未注册,是否自动注册并登录",
-                function(bFlag)
-                    if bFlag then
-                        print("_username",_username)
-                        print("_password",_password)
-                        
-                        app.lobby.login.RegisterPresenter:getInstance():dealAccountRegister(_username, " ", _password)                                                
-                    end
+
+    --
+    app.connMgr.close()    
+    if CC_SHOW_LOGIN_DEBUG and errcode == 3 and not app.lobby.login.AccountLoginPresenter:isCurrentUI() then
+        self:dealHintStart("账号未注册,是否自动注册并登录",
+            function(bFlag)
+                if bFlag then
+                    print("_username",_username)
+                    print("_password",_password)
+                    
+                    app.lobby.login.RegisterPresenter:getInstance():dealAccountRegister(_username, " ", _password)                                                
                 end
-                , 0)
-        else
-            _username, _password = "", ""      
-            self:dealTxtHintStart(zjh_defs.ErrorMessage[errcode]) 
-        end              
-    end    
+            end
+            , 0)
+    else
+        _username, _password = "", ""      
+        self:dealTxtHintStart(zjh_defs.ErrorMessage[errcode]) 
+    end              
 end
 
 function LoginPresenter:testLogin(data)
@@ -77,7 +80,7 @@ function LoginPresenter:testLogin(data)
     
     self:performWithDelayGlobal(
         function()
-            local po = upconn.upconn:get_packet_obj()
+            local po = gameUpconn:get_packet_obj()
             if po ~= nil then
                 po:writer_reset()
 
@@ -90,7 +93,7 @@ function LoginPresenter:testLogin(data)
                 po:write_string(data[7])       -- subChannel
 
                 local sessionId = self.sessionId or 222
-                upconn.upconn:send_packet(sessionId, zjh_defs.MsgId.MSGID_LOGIN_REQ)
+                gameUpconn:send_packet(sessionId, zjh_defs.MsgId.MSGID_LOGIN_REQ)
 
                 _username, _password = data[2], data[3]
             else
@@ -103,7 +106,7 @@ end
 function LoginPresenter:dealAutoLogin()
     self:performWithDelayGlobal(
         function()
-            local po = upconn.upconn:get_packet_obj()    
+            local po = gameUpconn:get_packet_obj()    
             local have, username, password, imei = AccountData.haveAccount()
             print("wq-login", have, username, password, imei)
             local loginstate = app.data.UserData.getLoginState()
@@ -134,7 +137,7 @@ function LoginPresenter:dealAccountLogin()
 end
 
 function LoginPresenter:sendLogin(username, password)        
-    local po = upconn.upconn:get_packet_obj()    
+    local po = gameUpconn:get_packet_obj()    
     if po ~= nil then
         self:dealLoadingHintStart("正在登录中") 
         
@@ -150,7 +153,7 @@ function LoginPresenter:sendLogin(username, password)
 
         local sessionId = self.sessionId or 222
         print("send login",username, password)
-        upconn.upconn:send_packet(sessionId, zjh_defs.MsgId.MSGID_LOGIN_REQ)   
+        gameUpconn:send_packet(sessionId, zjh_defs.MsgId.MSGID_LOGIN_REQ)   
     else
         print("wq - login po is nil")             
     end     

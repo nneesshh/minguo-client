@@ -2,6 +2,8 @@
 @brief  修改头像
 ]]
 
+local app = app
+
 local ChangeHeadPresenter = class("ChangeHeadPresenter", app.base.BasePresenter)
 
 -- UI
@@ -20,8 +22,10 @@ function ChangeHeadPresenter:initSelectedHead()
     self._ui:getInstance():selected(gender, avatar)
 end
 
-function ChangeHeadPresenter:reqChangeHead(gender, avatar)         
-    local po = upconn.upconn:get_packet_obj()
+function ChangeHeadPresenter:reqChangeHead(gender, avatar)
+    local gameStream = app.connMgr.getGameStream()
+
+    local po = gameStream:get_packet_obj()
     local sessionid = app.data.UserData.getSession() or 222
     if po ~= nil then
         self:dealLoadingHintStart("头像修改中")     
@@ -29,7 +33,7 @@ function ChangeHeadPresenter:reqChangeHead(gender, avatar)
         po:writer_reset()
         po:write_byte(gender)                   
         po:write_string(tostring(avatar))                   
-        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_CHANGE_USER_INFO_REQ)            
+        gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_CHANGE_USER_INFO_REQ)            
     end
 end
 

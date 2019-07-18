@@ -2,6 +2,8 @@
     @brief  游戏结算控制类基类
 ]]--
 
+local app = app
+
 local GameResultPresenter    = class("GameResultPresenter", app.base.BasePresenter)
 
 GameResultPresenter._ui  = require("app.game.ddz.GameResultLayer")
@@ -13,6 +15,8 @@ end
 
 -- 准备
 function GameResultPresenter:sendPlayerReady()
+    local gameStream = app.connMgr.getGameStream()
+
     if not app.game.GamePresenter then
         print("not in game")
         return
@@ -24,14 +28,14 @@ function GameResultPresenter:sendPlayerReady()
     end
 
     local hero = app.game.PlayerData.getHero()   
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     local limit = app.game.GameConfig.getLimit()
     if hero and not hero:isLeave() and hero:getBalance() > limit and po then        
         print("send ready", hero:getSeat())
         local sessionid = app.data.UserData.getSession() or 222        
         po:writer_reset()
         po:write_int64(sessionid)
-        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_DDZ_READY_REQ)
+        gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_DDZ_READY_REQ)
     end    
 end
 

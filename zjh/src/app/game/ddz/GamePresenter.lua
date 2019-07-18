@@ -2,6 +2,8 @@
 @brief  游戏主场景控制基类
 ]]--
 
+local app = app
+
 local GamePlayerNode   = requireDDZ("app.game.ddz.GamePlayerNode")
 local GameBtnNode      = requireDDZ("app.game.ddz.GameBtnNode")
 local GameMenuNode     = requireDDZ("app.game.ddz.GameMenuNode")
@@ -1537,38 +1539,44 @@ end
 -- ----------------------------request-------------------------------
 -- 退出房间
 function GamePresenter:sendLeaveRoom()
+    local gameStream = app.connMgr.getGameStream()
+
     local heroseat = app.game.PlayerData.getHeroSeat()
     local player = app.game.PlayerData.getPlayerByServerSeat(heroseat)    
     if player:isPlaying() then
         self:dealTxtHintStart("游戏中,暂无法离开！")            
     else
-        local po = upconn.upconn:get_packet_obj()
+        local po = gameStream:get_packet_obj()
         if po ~= nil then
             local sessionid = app.data.UserData.getSession() or 222
             po:writer_reset()
             po:write_int32(sessionid)  
-            upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_LEAVE_ROOM_REQ)
+            gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_LEAVE_ROOM_REQ)
         end     
     end
 end
 
 -- 换桌
 function GamePresenter:sendChangeTable()
+    local gameStream = app.connMgr.getGameStream()
+
     local heroseat = app.game.PlayerData.getHeroSeat()
     local player = app.game.PlayerData.getPlayerByServerSeat(heroseat)    
     if player:isPlaying() then
         self:dealTxtHintStart("游戏中,暂无法换桌！")            
     else
         local sessionid = app.data.UserData.getSession() or 222
-        local po = upconn.upconn:get_packet_obj()
+        local po = gameStream:get_packet_obj()
         po:writer_reset()
         po:write_int64(sessionid)
-        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_CHANGE_TABLE_REQ)
+        gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_CHANGE_TABLE_REQ)
     end    
 end
 
 -- 准备
 function GamePresenter:sendPlayerReady()
+    local gameStream = app.connMgr.getGameStream()
+
     if not app.game.GamePresenter then
         print("not in game")
         return
@@ -1581,80 +1589,92 @@ function GamePresenter:sendPlayerReady()
     
     local hero = app.game.PlayerData.getHero()   
 
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     local limit = app.game.GameConfig.getLimit()
     if hero and not hero:isLeave() and hero:getBalance() > limit and po then        
         print("send ready", hero:getSeat())
         local sessionid = app.data.UserData.getSession() or 222        
         po:writer_reset()
         po:write_int64(sessionid)
-        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_DDZ_READY_REQ)
+        gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_DDZ_READY_REQ)
     end    
 end
 
 -- 叫地主
 function GamePresenter:sendBankerBid(mult)
+    local gameStream = app.connMgr.getGameStream()
+
     local sessionid = app.data.UserData.getSession() or 222
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     po:writer_reset()
     po:write_int32(mult)
-    upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_DDZ_BANKER_BID_REQ)
+    gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_DDZ_BANKER_BID_REQ)
 end
 
 -- 加倍
 function GamePresenter:sendCompareBid(mult)
+    local gameStream = app.connMgr.getGameStream()
+
     local sessionid = app.data.UserData.getSession() or 222
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     po:writer_reset()
     po:write_int32(mult)
-    upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_DDZ_COMPARE_BID_REQ)
+    gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_DDZ_COMPARE_BID_REQ)
 end
 
 -- 明牌
 function GamePresenter:sendDisplay()
+    local gameStream = app.connMgr.getGameStream()
+
     local sessionid = app.data.UserData.getSession() or 222
     local heroseat = app.game.PlayerData.getHeroSeat()
      
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     po:writer_reset()
     po:write_int16(heroseat)
-    upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_DDZ_DISPLAY_REQ)
+    gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_DDZ_DISPLAY_REQ)
 end
 
 -- 托管
 function GamePresenter:sendAutoHit(flag)
+    local gameStream = app.connMgr.getGameStream()
+
     local sessionid = app.data.UserData.getSession() or 222
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     po:writer_reset()
     po:write_byte(flag)
-    upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_DDZ_AUTO_HIT_REQ)
+    gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_DDZ_AUTO_HIT_REQ)
 end
 
 -- 出牌 readString
 function GamePresenter:sendHitCard(cards)
+    local gameStream = app.connMgr.getGameStream()
+
     if #cards == 0 then
     	print("card is 0")
     	return
     end
     local sessionid = app.data.UserData.getSession() or 222
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     po:writer_reset()
     
     local tmp = self:localToserverCards(cards)
     local tcards = string.char(unpack(tmp))
     po:write_string(tcards)
-    upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_DDZ_HIT_CARD_REQ)
+    gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_DDZ_HIT_CARD_REQ)
 end
 
 -- 过
 function GamePresenter:sendPass()
+    local gameStream = app.connMgr.getGameStream()
+
     local sessionid = app.data.UserData.getSession() or 222
     local heroseat = app.game.PlayerData.getHeroSeat()
     
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     po:writer_reset()
     po:write_int16(heroseat)
-    upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_DDZ_PASS_REQ)
+    gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_DDZ_PASS_REQ)
 end
 
 function GamePresenter:playCountDownEffect()

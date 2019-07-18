@@ -1,3 +1,5 @@
+local app = app
+
 local _M = {}
 
 local function _readRoomInfo(po)
@@ -70,8 +72,7 @@ end
 -- 游戏准备
 function _M.onNiuGamePrepare(conn, sessionid, msgid) 
     print("onNiuGamePrepare")
-    local po = upconn.upconn:get_packet_obj()   
-    if po == nil then return end   
+
     if app.game.GamePresenter then
         app.game.GamePresenter:getInstance():onGamePrepare() 
     end    
@@ -79,8 +80,10 @@ end
 
 -- 游戏开始
 function _M.onNiuGameStart(conn, sessionid, msgid)
+    local gameStream = app.connMgr.getGameStream()
+
     print("onNiuGameStart")
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     if po == nil then return end   
     local basecoin   = po:read_int32()
     local tabInfo    = _readTableInfo(po)
@@ -97,8 +100,10 @@ end
 
 -- 游戏结束
 function _M.onNiuGameOver(conn, sessionid, msgid) 
+    local gameStream = app.connMgr.getGameStream()
+
     print("onNiuGameOver")
-    local po = upconn.upconn:get_packet_obj()   
+    local po = gameStream:get_packet_obj()   
     if po == nil then return end   
     local playercont = po:read_int32()
     
@@ -119,8 +124,10 @@ end
 
 -- 定庄 
 function _M.onNiuConfirmBanker(conn, sessionid, msgid) 
+    local gameStream = app.connMgr.getGameStream()
+
     print("onNiuConfirmBanker")
-    local po = upconn.upconn:get_packet_obj() 
+    local po = gameStream:get_packet_obj() 
     if po == nil then return end   
     local banker = {}
     banker.banker     = po:read_int16()
@@ -143,8 +150,10 @@ end
 
 -- 比牌加倍结束
 function _M.onNiuConfirmMult(conn, sessionid, msgid) 
+    local gameStream = app.connMgr.getGameStream()
+
     print("onNiuConfirmMult")
-    local po = upconn.upconn:get_packet_obj() 
+    local po = gameStream:get_packet_obj() 
     if po == nil then return end   
     
     local hero = {}
@@ -170,8 +179,10 @@ end
 
 -- 准备
 function _M.onNiuPlayerReady(conn, sessionid, msgid) 
+    local gameStream = app.connMgr.getGameStream()
+
     print("onNiuPlayerReady")
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     if po == nil then return end   
     local seat = po:read_int16()
     
@@ -182,8 +193,10 @@ end
 
 -- 抢庄加倍
 function _M.onNiuBankerBid(conn, sessionid, msgid) 
+    local gameStream = app.connMgr.getGameStream()
+
     print("onNiuBankerBid")    
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     if po == nil then return end   
     
     local seat = po:read_int16()
@@ -196,8 +209,10 @@ end
 
 -- 比牌加倍
 function _M.onNiuCompareBid(conn, sessionid, msgid) 
+    local gameStream = app.connMgr.getGameStream()
+
     print("onNiuCompareBid")    
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     if po == nil then return end   
     
     local seat = po:read_int16()
@@ -210,8 +225,10 @@ end
 
 -- 比牌
 function _M.onNiuCompareCard(conn, sessionid, msgid)
+    local gameStream = app.connMgr.getGameStream()
+    
     print("onNiuCompareCard")
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameUpconn:get_packet_obj()
     if po == nil then return end   
     
     local player = {}

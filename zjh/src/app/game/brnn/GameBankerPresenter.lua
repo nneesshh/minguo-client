@@ -3,6 +3,8 @@
     @brief  庄家列表
 ]]--
 
+local app = app
+
 local GameBankerPresenter    = class("GameBankerPresenter", app.base.BasePresenter)
 
 GameBankerPresenter._ui  = requireBRNN("app.game.brnn.GameBankerLayer")
@@ -14,26 +16,28 @@ function GameBankerPresenter:init(players,flag)
 end
 
 function GameBankerPresenter:sendGobanker(type)
+    local gameStream = app.connMgr.getGameStream()
+
     if type == 1 then
         local flag = self:checkCanGoBanker()
         if flag then
             print("send go banker")
-            local po = upconn.upconn:get_packet_obj()
+            local po = gameStream:get_packet_obj()
             if po ~= nil then
                 local sessionid = app.data.UserData.getSession() or 222
                 po:writer_reset()
                 po:write_int32(type)  
-                upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU100_BANKER_BID_REQ)  
+                gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU100_BANKER_BID_REQ)  
             end
         end
     else
         print("send down banker")
-        local po = upconn.upconn:get_packet_obj()
+        local po = gameStream:get_packet_obj()
         if po ~= nil then
             local sessionid = app.data.UserData.getSession() or 222
             po:writer_reset()
             po:write_int32(type)  
-            upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU100_BANKER_BID_REQ)  
+            gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU100_BANKER_BID_REQ)  
         end
     end    
 end

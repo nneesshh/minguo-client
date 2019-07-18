@@ -24,19 +24,25 @@ LoginLayer.touchs = {
     "btn_test_7",
 }
 
+local function _onLogin(self, sender)
+    -- connect
+    app.connMgr.reConnect(
+        function()
+            local name = sender:getName()
+            if name == "btn_tourist" then            
+                self:onClickBtnGuest()            
+            elseif name == "btn_account" then
+                self:onClickBtnAccount()           
+            elseif string.find(name, "btn_test_") then 
+                local index = tonumber(string.split(name, "btn_test_")[2])                          
+                self._presenter:testLogin(TestAccount.list[index+1])   
+            end
+    end)
+end
+
 function LoginLayer:onTouch(sender, eventType)
+    LoginLayer.super._callback = _onLogin
     LoginLayer.super.onTouch(self, sender, eventType)
-    local name = sender:getName()
-    if eventType == ccui.TouchEventType.ended then
-        if name == "btn_tourist" then            
-            self:onClickBtnGuest()            
-        elseif name == "btn_account" then
-            self:onClickBtnAccount()           
-        elseif string.find(name, "btn_test_") then 
-            local index = tonumber(string.split(name, "btn_test_")[2])                          
-            self._presenter:testLogin(TestAccount.list[index+1])   
-        end
-    end
 end
 
 function LoginLayer:initUI()

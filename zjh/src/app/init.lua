@@ -18,9 +18,7 @@ requireDDZ                                  = HotpatchRequire.requireDDZ
 cfg_game_zjh                                = cfg_game_zjh or {}
 zjh_defs                                    = zjh_defs or {}
 msg_dispatcher                              = msg_dispatcher or {}
-
-upconn                                      = requireLobby "upconn.ZjhUpconn"
-app.Connect                                 = requireLobby("app.connect.Connect")
+app.connMgr                                 = requireLobby("app.conn.ConnectionManager")
 
 ------------------------------------ 常量 -------------------------------------
 app.Event                                   = requireLobby("app.constants.Event")

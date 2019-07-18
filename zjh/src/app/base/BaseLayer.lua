@@ -17,24 +17,6 @@ BaseLayer.events    = nil
 -- 单例
 BaseLayer._instance = nil
 
--- 根节点
-BaseLayer._rootNode = nil
-
--- zOrder值
-BaseLayer._zOrder = 0
-
--- 安卓设备默认可响应返回键，设置成false时返回按钮操作无效
-BaseLayer._canBack = true
-
--- 父节点数据
-BaseLayer._parent = nil
-
--- 子节点数据
-BaseLayer._children = {}
-
--- 控制文件的实例
-BaseLayer._presenter = nil
-
 --------------------------------
 -- 声明静态单例 
 -- @param self
@@ -48,10 +30,23 @@ end
 
 -- 构造函数
 function BaseLayer:ctor()
+    -- 根节点
     self._rootNode = nil
+
+    -- zOrder值
+    self._zOrder = 0
+
+    -- 安卓设备默认可响应返回键，设置成false时返回按钮操作无效
+    self._canBack = true
+
     self._parent = nil
     self._children = {}
+
+    -- 控制器对象实例
     self._presenter = nil
+
+    -- callback(sender)
+    self._callback = nil
 end
 
 -- 打开界面
@@ -181,19 +176,26 @@ function BaseLayer:onTouch(sender, eventType)
         sender:setScale(originalScale*scaleMult)
     elseif eventType == ccui.TouchEventType.moved then
     elseif eventType == ccui.TouchEventType.ended then
-        sender:setScale(originalScale/scaleMult)        
-        if app.Connect then
-            
-            app.Connect:getInstance():reConnect()
-        end         
+        sender:setScale(originalScale/scaleMult) 
+
+        -- callback(sender)
+        if self._callback then
+            self._callback(self, sender)
+        else
+            print("base layer callback is nil")
+        end
+        
     elseif eventType == ccui.TouchEventType.canceled then
         sender:setScale(originalScale/scaleMult)
     end
 end
 
 function BaseLayer:onClick(sender)
-    if app.Connect then
-        app.Connect:getInstance():reConnect()
+    -- callback
+    if self._callback then
+        self._callback(self, sender)
+    else
+        print("touch callback is nil")
     end
 end
 

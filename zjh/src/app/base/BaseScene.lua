@@ -187,18 +187,14 @@ function BaseScene:onTouch(sender, eventType)
     elseif eventType == ccui.TouchEventType.moved then
     elseif eventType == ccui.TouchEventType.ended then
         sender:setScale(originalScale/scaleMult)
-        if app.Connect then
-            app.Connect:getInstance():reConnect()
-        end
+        app.connMgr.reConnect()
     elseif eventType == ccui.TouchEventType.canceled then
         sender:setScale(originalScale/scaleMult)
     end
 end
 
 function BaseScene:onClick(sender)
-    if app.Connect then
-        app.Connect:getInstance():reConnect()
-    end    
+    app.connMgr.reConnect()
 end
 
 function BaseScene:onEvent(sender, eventType)

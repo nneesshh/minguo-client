@@ -32,6 +32,7 @@
 #include "platform/win32/PlayerMenuServiceWin.h"
 
 #include "resource.h"
+#include "CCLuaEngine.h"
 
 USING_NS_CC;
 
@@ -235,6 +236,9 @@ int SimulatorWin::getPositionY()
 
 int SimulatorWin::run()
 {
+	auto engine = LuaEngine::getInstance();
+	engine->executeScriptFile("src/debug.lua");
+
     INITCOMMONCONTROLSEX InitCtrls;
     InitCtrls.dwSize = sizeof(InitCtrls);
     InitCtrls.dwICC = ICC_WIN95_CLASSES;

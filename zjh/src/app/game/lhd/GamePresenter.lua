@@ -2,6 +2,8 @@
 @brief  游戏主场景控制基类
 ]]
 
+local app = app
+
 local GamePlayerNode = requireLHD("app.game.lhd.GamePlayerNode")
 local GameBtnNode    = requireLHD("app.game.lhd.GameBtnNode")
 local GameMenuNode   = requireLHD("app.game.lhd.GameMenuNode")
@@ -659,18 +661,22 @@ end
 -- ----------------------------request-------------------------------
 -- 退出房间
 function GamePresenter:sendLeaveRoom()
+    local gameStream = app.connMgr.getGameStream()
+
     print("send leave room")
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     if po ~= nil then
         local sessionid = app.data.UserData.getSession() or 222
         po:writer_reset()
         po:write_int32(sessionid)  
-        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_LEAVE_ROOM_REQ)  
+        gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_LEAVE_ROOM_REQ)  
     end
 end
 
 -- 准备
 function GamePresenter:sendPlayerReady()
+    local gameStream = app.connMgr.getGameStream()
+
     if not app.game.GamePresenter then
         print("not in game")
         return
@@ -690,14 +696,14 @@ function GamePresenter:sendPlayerReady()
         if hero then       
             print("hero is leave", hero:isLeave())
         end 
-        local po = upconn.upconn:get_packet_obj()
+        local po = gameStream:get_packet_obj()
         local limit = app.game.GameConfig.getLimit()
         if hero and not hero:isLeave() and hero:getBalance() > limit and po then        
             print("send ready", hero:getSeat())
             local sessionid = app.data.UserData.getSession() or 222        
             po:writer_reset()
             po:write_int64(sessionid)
-            upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_DRAGON_VS_TIGER_READY_REQ)
+            gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_DRAGON_VS_TIGER_READY_REQ)
         end         
     else
         print("not ready table is busy")    
@@ -706,29 +712,33 @@ end
 
 -- 换桌
 function GamePresenter:sendChangeTable()
+    local gameStream = app.connMgr.getGameStream()
+
     local heroseat = app.game.PlayerData.getHeroSeat()
     local player = app.game.PlayerData.getPlayerByServerSeat(heroseat)    
     if player:isPlaying() then
         self:dealTxtHintStart("游戏中,暂无法换桌！")            
     else
         local sessionid = app.data.UserData.getSession() or 222
-        local po = upconn.upconn:get_packet_obj()
+        local po = gameStream:get_packet_obj()
         po:writer_reset()
         po:write_int64(sessionid)
-        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_CHANGE_TABLE_REQ)
+        gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_CHANGE_TABLE_REQ)
     end    
 end
 
 -- 下注
-function GamePresenter:sendPlayerBet(long, hu, he)    
+function GamePresenter:sendPlayerBet(long, hu, he)
+    local gameStream = app.connMgr.getGameStream()
+
     local sessionid = app.data.UserData.getSession() or 222
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     po:writer_reset()
     po:write_int32(long)
     po:write_int32(hu)
     po:write_int32(he)
     print("send bet",long, hu, he)
-    upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_DRAGON_VS_TIGER_BET_REQ)    
+    gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_DRAGON_VS_TIGER_BET_REQ)    
 end
 
 -- 音效相关

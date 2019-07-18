@@ -57,21 +57,19 @@ end
 function AccountLoginPresenter:onLoginFail(errcode)       
     self:dealLoadingHintExit() 
     
-    if app.Connect then            
-        app.Connect:getInstance():close()    
-        if CC_SHOW_LOGIN_DEBUG and errcode == 3 and not self:isCurrentUI() then
-            self:dealHintStart("账号未注册,是否自动注册并登录",
-                function(bFlag)
-                    if bFlag then
-                        app.lobby.login.RegisterPresenter:getInstance():dealAccountRegister(_username, "", _password)                                                
-                    end
+    app.connMgr.close()    
+    if CC_SHOW_LOGIN_DEBUG and errcode == 3 and not self:isCurrentUI() then
+        self:dealHintStart("账号未注册,是否自动注册并登录",
+            function(bFlag)
+                if bFlag then
+                    app.lobby.login.RegisterPresenter:getInstance():dealAccountRegister(_username, "", _password)                                                
                 end
-                , 0)
-        else
-            self:dealTxtHintStart(zjh_defs.ErrorMessage[errcode])    
-            _username, _password = "", ""                 
-        end              
-    end    
+            end
+            , 0)
+    else
+        self:dealTxtHintStart(zjh_defs.ErrorMessage[errcode])    
+        _username, _password = "", ""                 
+    end              
 end
 
 function AccountLoginPresenter:dealAccountLogin(account, password)  

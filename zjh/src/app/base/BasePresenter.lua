@@ -1,7 +1,8 @@
 --[[
 @brief  管理基类
 ]]
-local app           = app
+
+local app = app
 
 local BasePresenter = class("BasePresenter")
 local scheduler = cc.Director:getInstance():getScheduler()
@@ -89,24 +90,25 @@ end
 
 function BasePresenter:sendAutoReady(gameid)        
     local sessionid = app.data.UserData.getSession() or 222
-    local po = upconn.upconn:get_packet_obj()
+    local gameStream = app.connMgr.getGameStream()
+    local po = gameStream:get_packet_obj()
     if po == nil then return end   
 
     po:writer_reset()
     po:write_int64(sessionid) -- test token
 
     if gameid == app.Game.GameID.ZJH then
-        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_READY_REQ)
+        gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_READY_REQ)
     elseif gameid == app.Game.GameID.JDNN then
-        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_READY_REQ)
+        gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_READY_REQ)
     elseif gameid == app.Game.GameID.QZNN then
-        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_C41_READY_REQ) 
+        gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_C41_READY_REQ) 
     elseif gameid == app.Game.GameID.LHD then        
-        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_DRAGON_VS_TIGER_READY_REQ) 
+        gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_DRAGON_VS_TIGER_READY_REQ) 
     elseif gameid == app.Game.GameID.BRNN then        
-        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU100_READY_REQ) 
+        gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU100_READY_REQ) 
     elseif gameid == app.Game.GameID.DDZ then
-        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_DDZ_READY_REQ)                             
+        gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_DDZ_READY_REQ)                             
     end        
 end
 

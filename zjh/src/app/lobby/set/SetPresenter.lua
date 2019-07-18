@@ -51,7 +51,7 @@ function SetPresenter:dealChangeAccount()
             self:exit()
             if bFlag then                
                 app.data.UserData.setLoginState(-1)
-                app.Connect:getInstance():close()              
+                app.connMgr.close()
                 app.lobby.login.LoginPresenter:getInstance():start(true) 
                 app.lobby.login.LoginPresenter:getInstance():dealAccountLogin()     
             end

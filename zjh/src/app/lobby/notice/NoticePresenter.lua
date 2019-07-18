@@ -2,6 +2,8 @@
 @brief  公告管理类
 ]]
 
+local app = app
+
 local NoticePresenter = class("NoticePresenter",app.base.BasePresenter)
 NoticePresenter._ui = requireLobby("app.lobby.notice.NoticeLayer")
 
@@ -18,13 +20,15 @@ function NoticePresenter:init()
 end
 
 function NoticePresenter:sendGameNews(type)
+    local gameStream = app.connMgr.getGameStream()
+    
     local sessionid = app.data.UserData.getSession() or 222
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameUpconn:get_packet_obj()
     if po == nil then return end   
 
     po:writer_reset()
     po:write_byte(type) 
-    upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_GAME_NEWS_REQ)          
+    gameUpconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_GAME_NEWS_REQ)          
 end
 
 function NoticePresenter:onNewsData(data)

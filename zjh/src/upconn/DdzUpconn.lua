@@ -1,3 +1,5 @@
+local app = app
+
 local _M = {}
 
 local function _readRoomInfo(po)
@@ -76,8 +78,7 @@ end
 -- 游戏准备
 function _M.onDdzGamePrepare(conn, sessionid, msgid) 
     print("onDdzGamePrepare")
-    local po = upconn.upconn:get_packet_obj()   
-    if po == nil then return end   
+
     if app.game.GamePresenter then
         app.game.GamePresenter:getInstance():onDdzGamePrepare() 
     end    
@@ -85,8 +86,10 @@ end
 
 -- 游戏开始
 function _M.onDdzGameStart(conn, sessionid, msgid)
+    local gameStream = app.connMgr.getGameStream()
+
     print("onDdzGameStart")
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     if po == nil then return end   
     local basecoin   = po:read_int32()
     local tabInfo    = _readTableInfo(po)
@@ -104,8 +107,10 @@ end
 
 -- 游戏结束
 function _M.onDdzGameOver(conn, sessionid, msgid) 
+    local gameStream = app.connMgr.getGameStream()
+
     print("onDdzGameOver")
-    local po = upconn.upconn:get_packet_obj()   
+    local po = gameStream:get_packet_obj()   
     if po == nil then return end   
 
     local players = {}
@@ -127,8 +132,10 @@ end
 
 -- 准备
 function _M.onDdzPlayerReady(conn, sessionid, msgid) 
+    local gameStream = app.connMgr.getGameStream()
+
     print("onDdzPlayerReady")
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     if po == nil then return end   
     
     local seat = po:read_int16()
@@ -138,8 +145,10 @@ function _M.onDdzPlayerReady(conn, sessionid, msgid)
 end
 
 function _M.onDdzCompareBidOver(conn, sessionid, msgid)
+    local gameStream = app.connMgr.getGameStream()
+
     print("onDdzCompareBid")   
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     if po == nil then return end
 
     local info = {}    
@@ -160,8 +169,10 @@ end
 
 -- 叫地主
 function _M.onDdzBankerBid(conn, sessionid, msgid)
+    local gameStream = app.connMgr.getGameStream()
+
     print("onDdzBankerBid")
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     if po == nil then return end
     
     local info = {}
@@ -181,8 +192,10 @@ function _M.onDdzBankerBid(conn, sessionid, msgid)
 end
 
 function _M.onDdzCompareBid(conn, sessionid, msgid)
+    local gameStream = app.connMgr.getGameStream()
+
     print("onDdzCompareBid")   
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     if po == nil then return end
 
     local info = {}    
@@ -197,8 +210,10 @@ end
 
 -- 明牌 
 function _M.onDdzDisplay(conn, sessionid, msgid) 
+    local gameStream = app.connMgr.getGameStream()
+
     print("onDdzDisplay")
-    local po = upconn.upconn:get_packet_obj() 
+    local po = gameStream:get_packet_obj() 
     if po == nil then return end
        
     local info = {}  
@@ -213,8 +228,10 @@ end
 
 -- 托管
 function _M.onDdzAutoHint(conn, sessionid, msgid) 
+    local gameStream = app.connMgr.getGameStream()
+
     print("onDdzAutoHint")    
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     if po == nil then return end   
     
     local info = {}
@@ -227,8 +244,10 @@ function _M.onDdzAutoHint(conn, sessionid, msgid)
 end
 
 function _M.onDdzHitCard(conn, sessionid, msgid)
+    local gameStream = app.connMgr.getGameStream()
+
     print("onDdzHitCard")    
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     if po == nil then return end 
     
     local info = {}
@@ -245,8 +264,10 @@ function _M.onDdzHitCard(conn, sessionid, msgid)
 end
 
 function _M.onDdzPass(conn, sessionid, msgid)
+    local gameStream = app.connMgr.getGameStream()
+
     print("onDdzPass")    
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     if po == nil then return end 
     
     local info = {}

@@ -1,3 +1,5 @@
+local app = app
+
 local tostring, pairs, ipairs = tostring, pairs, ipairs
 
 local _M = {
@@ -21,6 +23,7 @@ local qznnConn   = requireLobby(cwd .. "QznnUpconn")
 local lhdConn    = requireLobby(cwd .. "LhdUpconn")
 local brnnConn   = requireLobby(cwd .. "BrnnUpconn")
 local ddzConn    = requireLobby(cwd .. "DdzUpconn")
+
 --
 function _M.createUpconn()
     --
@@ -52,12 +55,16 @@ local STATE_CLEANUP      = 4
 local STATE_CLOSED       = 5
 
 --
-function _M.start()
+function _M.start(onConnected)
     --
     _M.doRegisterMsgCallbacks()
 
+    --
     local connected_cb = function(self)
-        print("connected_cb, connid=" .. tostring(self.id))         
+        print("connected_cb, connid=" .. tostring(self.id))
+        if onConnected then
+            onConnected(self)
+        end
     end
 
     local disconnected_cb = function(self)
@@ -66,10 +73,9 @@ function _M.start()
 
     local error_cb = function(self, errstr)
         print("error_cb, connid=" .. tostring(self.id) .. ", err:" .. errstr) 
-        if CC_HEART_BEAT then
-            app.Connect:getInstance():close()
-            app.lobby.login.LoginPresenter:getInstance():reLogin()  
-        end
+
+        app.connMgr.close()
+        app.lobby.login.LoginPresenter:getInstance():reLogin()  
     end
 
     local got_packet_cb = function(self, pkt)
@@ -196,8 +202,10 @@ local function _readGameOver(po)
 end
 
 function _M.onPlayerReady(conn, sessionid, msgid)
+    local gameStream = app.connMgr.getGameStream()
+
     local resp = {}
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     local seat = po:read_int16()
     
     if app.game.GamePresenter then
@@ -207,8 +215,6 @@ end
 
 function _M.onGamePrepare(conn, sessionid, msgid)
     print("onGamePrepare")
-    local resp = {}
-    local po = upconn.upconn:get_packet_obj()   
    
     if app.game.GamePresenter then
     	app.game.GamePresenter:getInstance():onGamePrepare() 
@@ -216,9 +222,11 @@ function _M.onGamePrepare(conn, sessionid, msgid)
 end
 
 function _M.onGameStart(conn, sessionid, msgid)
+    local gameStream = app.connMgr.getGameStream()
     print("onGameStart")
+
     local resp = {}
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     
     local basecoin   = po:read_int32()
     local tabInfo    = _readTableInfo(po)
@@ -229,9 +237,11 @@ function _M.onGameStart(conn, sessionid, msgid)
 end
 
 function _M.onPlayerGiveUp(conn, sessionid, msgid)
+    local gameStream = app.connMgr.getGameStream()
     print("onPlayerGiveUp")
+
     local resp = {}
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     local now   = po:read_int16()
     local next  = po:read_int16()
     local round = po:read_byte()
@@ -242,9 +252,11 @@ function _M.onPlayerGiveUp(conn, sessionid, msgid)
 end
 
 function _M.onGameOverShow(conn, sessionid, msgid)
+    local gameStream = app.connMgr.getGameStream()
     print("onGameOverShow")
+
     local resp = {}
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     local seat = po:read_int16()
     
     if app.game.GamePresenter then
@@ -253,9 +265,11 @@ function _M.onGameOverShow(conn, sessionid, msgid)
 end
 
 function _M.onPlayerCompareCard(conn, sessionid, msgid)
+    local gameStream = app.connMgr.getGameStream()
     print("onPlayerCompareCard")
+
     local resp = {}
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     local info ,gameinfo = _readPlayerCompareCard(po)
     app.game.GameData.setGameInfo(gameinfo)
 
@@ -263,9 +277,11 @@ function _M.onPlayerCompareCard(conn, sessionid, msgid)
 end
 
 function _M.onPlayerShowCard(conn, sessionid, msgid)
+    local gameStream = app.connMgr.getGameStream()
     print("onPlayerShowCard") 
+
     local resp = {}
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     resp.seat = po:read_int16()
     resp.cards = po:read_string()
     resp.cardtype = po:read_byte()
@@ -279,9 +295,11 @@ function _M.onPlayerShowCard(conn, sessionid, msgid)
 end
 
 function _M.onPlayerAnteUp(conn, sessionid, msgid)
+    local gameStream = app.connMgr.getGameStream()
     print("onPlayerAnteUp")
+
     local resp = {}
-    local po = upconn.upconn:get_packet_obj()    
+    local po = gameStream:get_packet_obj()    
     local anteupinfo ,gameinfo = _readPlayerAnteUp(po)
     
     app.game.GameData.setGameInfo(gameinfo)    
@@ -289,9 +307,11 @@ function _M.onPlayerAnteUp(conn, sessionid, msgid)
 end
 
 function _M.onPlayerLastBet(conn, sessionid, msgid)
+    local gameStream = app.connMgr.getGameStream()
     print("onPlayerLastBet")
+
     local resp = {}
-    local po = upconn.upconn:get_packet_obj()    
+    local po = gameStream:get_packet_obj()    
     resp.playerSeat = po:read_int16()
     resp.count = po:read_int32()
     resp.otherSeat = {} 
@@ -305,9 +325,11 @@ function _M.onPlayerLastBet(conn, sessionid, msgid)
 end
 -- notify
 function _M.onGameOver(conn, sessionid, msgid)
+    local gameStream = app.connMgr.getGameStream()
     print("onGameOver")
+    
     local resp = {}
-    local po = upconn.upconn:get_packet_obj()   
+    local po = gameUpconn:get_packet_obj()   
     local info, players = _readGameOver(po)
     
     app.game.GamePresenter:getInstance():onGameOver(info, players) 

@@ -19,7 +19,7 @@ function DebugPresenter:onState()
         return
     end
 
-    local state = app.Connect:getInstance():getState()
+    local state = app.connMgr.getState()
     self._ui:getInstance():updateState(state)
 end
 

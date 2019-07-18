@@ -1,3 +1,5 @@
+local app = app
+
 local _M = {}
 
 local function _readRoomInfo(po)
@@ -76,8 +78,7 @@ end
 -- 游戏准备
 function _M.onLhdGamePrepare(conn, sessionid, msgid) 
     print("onLhdGamePrepare")
-    local po = upconn.upconn:get_packet_obj()   
-    if po == nil then return end   
+
     if app.game.GamePresenter then
         app.game.GamePresenter:getInstance():onLhdGamePrepare() 
     end    
@@ -85,8 +86,10 @@ end
 
 -- 游戏开始
 function _M.onLhdGameStart(conn, sessionid, msgid)
+    local gameStream = app.connMgr.getGameStream()
+
     print("onLhdGameStart")
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     if po == nil then return end   
     local basecoin   = po:read_int32()
     local tabInfo    = _readTableInfo(po)
@@ -103,8 +106,10 @@ end
 
 -- 游戏结束
 function _M.onLhdGameOver(conn, sessionid, msgid) 
+    local gameStream = app.connMgr.getGameStream()
+
     print("onLhdGameOver")
-    local po = upconn.upconn:get_packet_obj()   
+    local po = gameStream:get_packet_obj()   
     if po == nil then return end   
     
     local overs = {}
@@ -146,8 +151,10 @@ end
 
 -- 历史数据 
 function _M.onLhdHistory(conn, sessionid, msgid) 
+    local gameStream = app.connMgr.getGameStream()
+
     print("onLhdHistory")
-    local po = upconn.upconn:get_packet_obj() 
+    local po = gameStream:get_packet_obj() 
     if po == nil then return end   
     local gamenum20 = po:read_byte()
     local betnum20  = po:read_int32()
@@ -168,8 +175,10 @@ end
 
 -- 玩家列表
 function _M.onLhdTopSeat(conn, sessionid, msgid) 
+    local gameStream = app.connMgr.getGameStream()
+
     print("onLhdTopSeat", app.data.UserData.getTicketID())
-    local po = upconn.upconn:get_packet_obj() 
+    local po = gameStream:get_packet_obj() 
     if po == nil then return end   
     
     local players = {}
@@ -197,8 +206,10 @@ end
 
 -- 准备
 function _M.onLhdPlayerReady(conn, sessionid, msgid) 
+    local gameStream = app.connMgr.getGameStream()
+
     print("onLhdPlayerReady")
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     if po == nil then return end   
     local seat = po:read_int16()
     if app.game.GamePresenter then
@@ -208,8 +219,10 @@ end
 
 -- 押注
 function _M.onLhdBet(conn, sessionid, msgid) 
+    local gameStream = app.connMgr.getGameStream()
+
     print("onLhdBet")    
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     if po == nil then return end   
     
     local bets = {}
@@ -229,8 +242,7 @@ end
 
 function _M.onLhdBetFull(conn, sessionid, msgid)
     print("onLhdBetFull")   
-    local po = upconn.upconn:get_packet_obj()
-    if po == nil then return end
+
     if app.game.GamePresenter then
         app.game.GamePresenter:getInstance():onLhdBetFull() 
     end 

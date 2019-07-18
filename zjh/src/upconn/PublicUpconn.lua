@@ -1,3 +1,5 @@
+local app = app
+
 local _M = {}
 
 local function _readRoomInfo(po)
@@ -88,18 +90,15 @@ end
 
 -- 心跳
 function _M.onHeartBeat(conn, sessionid, msgid)
-    local resp = {}   
-    local po = upconn.upconn:get_packet_obj()
-
-    if app.Connect then
-        app.Connect:getInstance():respHeartbeat()
-    end    
+    app.connMgr.respHeartbeat()
 end
 
 -- 注册
 function _M.onRegister(conn, sessionid, msgid)       
+    local gameStream = app.connMgr.getGameStream()
+
     local resp = {}   
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     resp.errorCode = po:read_int32()
     resp.errorMsg  = po:read_string()
 
@@ -113,10 +112,11 @@ end
 
 -- 登录
 function _M.onLogin(conn, sessionid, msgid)    
+    local gameStream = app.connMgr.getGameStream()
     print("sz-onlogin")
     
     local resp = {}   
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     resp.errorCode = po:read_int32()
     resp.errorMsg  = po:read_string()
     resp.version   = po:read_string()
@@ -233,23 +233,25 @@ function _M.onLogin(conn, sessionid, msgid)
 end
 
 function _M.onRelogin(conn, sessionid, msgid)
+    local gameStream = app.connMgr.getGameStream()
+
     local resp = {}
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     resp.errorCode = po:read_int32()
     resp.errorMsg  = po:read_string()
     
     if resp.errorCode == zjh_defs.ErrorCode.ERR_RELOGIN then
-        if app.Connect then            
-            app.Connect:getInstance():close()
-            app.lobby.login.LoginPresenter:getInstance():reLogin("您的账号在其他地方登录")            
-        end 
+        app.connMgr.close()
+        app.lobby.login.LoginPresenter:getInstance():reLogin("您的账号在其他地方登录")            
     end    
 end
 
 -- 修改用户信息(avatar, gender)
 function _M.onUserInfo(conn, sessionid, msgid)
+    local gameStream = app.connMgr.getGameStream()
+
     local resp = {}
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     resp.errorCode = po:read_int32()
     resp.errorMsg  = po:read_string()
 
@@ -258,8 +260,10 @@ end
 
 -- 保险箱
 function _M.onDepositCash(conn, sessionid, msgid)
+    local gameStream = app.connMgr.getGameStream()
+
     local resp = {}
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     resp.errorCode = po:read_int32()
     resp.errorMsg  = po:read_string()
     
@@ -271,8 +275,10 @@ end
 
 -- 金币通知
 function _M.onPlayerBalance(conn, sessionid, msgid)
+    local gameStream = app.connMgr.getGameStream()
+
     local resp = {}
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     
     local balance     = po:read_int64()
     local safebalance = po:read_int64()
@@ -283,9 +289,11 @@ end
 
 ----------------
 function _M.onAnnouncement(conn, sessionid, msgid)
+    local gameStream = app.connMgr.getGameStream()
+
     print("onAnnouncement")
     local resp = {}
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     resp.text = po:read_string()
     
     if resp.text and resp.text ~= "" then
@@ -298,8 +306,10 @@ function _M.onMail(conn, sessionid, msgid)
 end
 
 function _M.onGameNews(conn, sessionid, msgid)
+    local gameStream = app.connMgr.getGameStream()
+
     local resp = {}
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     resp.type = po:read_byte()
     resp.text = po:read_string()
         
@@ -309,8 +319,10 @@ end
 ----------------
 -- 玩家状态
 function _M.onPlayerStatus(conn, sessionid, msgid)
+    local gameStream = app.connMgr.getGameStream()
+
     local resp = {}
-    local po = upconn.upconn:get_packet_obj()     
+    local po = gameStream:get_packet_obj()     
     resp.ticketid = po:read_int32()
     resp.status = po:read_byte()
 
@@ -324,10 +336,12 @@ function _M.onPlayerStatus(conn, sessionid, msgid)
 end
 
 -- 玩家坐下
-function _M.onPlayerSitDown(conn, sessionid, msgid)    
+function _M.onPlayerSitDown(conn, sessionid, msgid)
+    local gameStream = app.connMgr.getGameStream()
+
     print("onPlayerSitDown")
     local resp = {}
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
 
     local info = _readSeatPlayerInfo(po)    
     if info.ticketid == app.data.UserData.getTicketID() then
@@ -349,9 +363,11 @@ function _M.onPlayerSitDown(conn, sessionid, msgid)
 end
 
 function _M.onEnterRoom(conn, sessionid, msgid)
+    local gameStream = app.connMgr.getGameStream()
     print("onEnterRoom")
+
     local resp = {}
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     resp.errorCode = po:read_int32()
     resp.errorMsg  = po:read_string()
     
@@ -435,8 +451,10 @@ end
 
 -- 离开房间
 function _M.onLeaveRoom(conn, sessionid, msgid)
+    local gameStream = app.connMgr.getGameStream()
+
     local resp = {}
-    local po   = upconn.upconn:get_packet_obj()
+    local po   = gameStream:get_packet_obj()
     resp.errorCode = po:read_int32()
     resp.errorMsg  = po:read_string()
     if resp.errorCode == zjh_defs.ErrorCode.ERR_SUCCESS then
@@ -448,8 +466,10 @@ end
 
 -- 换桌
 function _M.onChangeTable(conn, sessionid, msgid)
+    local gameStream = app.connMgr.getGameStream()
+
     local resp = {}
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     resp.errorCode = po:read_int32()
     resp.errorMsg  = po:read_string()
 
@@ -528,22 +548,24 @@ function _M.onChangeTable(conn, sessionid, msgid)
 end
 
 function _M.sendPlayerReady(gameid)    
+    local gameStream = app.connMgr.getGameStream()
+
     local sessionid = app.data.UserData.getSession() or 222
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     if po == nil then return end   
 
     po:writer_reset()
     po:write_int64(sessionid) -- test token
     if gameid == app.Game.GameID.ZJH then
-        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_READY_REQ)
+        gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_READY_REQ)
     elseif gameid == app.Game.GameID.JDNN then
-        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_READY_REQ)
+        gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_READY_REQ)
     elseif gameid == app.Game.GameID.QZNN then
-        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_C41_READY_REQ) 
+        gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_C41_READY_REQ) 
     elseif gameid == app.Game.GameID.LHD then
         print("send lhd ready")
         
-        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_DRAGON_VS_TIGER_READY_REQ)          
+        gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_DRAGON_VS_TIGER_READY_REQ)          
     end    
 end
 

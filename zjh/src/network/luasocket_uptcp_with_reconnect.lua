@@ -219,7 +219,7 @@ local last_reconnect_countdown = {}
 
 --
 function _M.update(self)
-    app.Connect:getInstance():updateState(self.state)
+    app.connMgr.updateState(self.state)
     
     if self.state == STATE_CONNECTING then
         --

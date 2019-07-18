@@ -2,6 +2,8 @@
 @brief  游戏主场景控制基类
 ]]
 
+local app = app
+
 local GamePlayerNode = requireJDNN("app.game.jdnn.GamePlayerNode")
 local GameBtnNode    = requireJDNN("app.game.jdnn.GameBtnNode")
 local GameMenuNode   = requireJDNN("app.game.jdnn.GameMenuNode")
@@ -1355,23 +1357,27 @@ end
 -- ----------------------------request-------------------------------
 -- 退出房间
 function GamePresenter:sendLeaveRoom()
+    local gameStream = app.connMgr.getGameStream()
+
     local heroseat = app.game.PlayerData.getHeroSeat()
     local player = app.game.PlayerData.getPlayerByServerSeat(heroseat)    
     if player:isPlaying() then
         self:dealTxtHintStart("游戏中,暂无法离开！")            
     else
-        local po = upconn.upconn:get_packet_obj()
+        local po = gameStream:get_packet_obj()
         if po ~= nil then
             local sessionid = app.data.UserData.getSession() or 222
             po:writer_reset()
             po:write_int32(sessionid)  
-            upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_LEAVE_ROOM_REQ)
+            gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_LEAVE_ROOM_REQ)
         end     
     end
 end
 
 -- 准备
 function GamePresenter:sendPlayerReady()
+    local gameStream = app.connMgr.getGameStream()
+
     if not app.game.GamePresenter then
         print("not in game")
         return
@@ -1383,72 +1389,80 @@ function GamePresenter:sendPlayerReady()
     end
     
     local hero = app.game.PlayerData.getHero()   
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     local limit = app.game.GameConfig.getLimit()
     if hero and not hero:isLeave() and hero:getBalance() > limit and po then        
         print("send ready", hero:getSeat())
         local sessionid = app.data.UserData.getSession() or 222        
         po:writer_reset()
         po:write_int64(sessionid)
-        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_READY_REQ)
+        gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_READY_REQ)
     end    
 end
 
 -- 换桌
 function GamePresenter:sendChangeTable()
+    local gameStream = app.connMgr.getGameStream()
+
     local heroseat = app.game.PlayerData.getHeroSeat()
     local player = app.game.PlayerData.getPlayerByServerSeat(heroseat)    
     if player:isPlaying() then
         self:dealTxtHintStart("游戏中,暂无法换桌！")            
     else
         local sessionid = app.data.UserData.getSession() or 222
-        local po = upconn.upconn:get_packet_obj()
+        local po = gameStream:get_packet_obj()
         po:writer_reset()
         po:write_int64(sessionid)
-        upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_CHANGE_TABLE_REQ)
+        gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_CHANGE_TABLE_REQ)
     end    
 end
 
 -- 抢庄倍数
 function GamePresenter:sendBankerMult(index)
+    local gameStream = app.connMgr.getGameStream()
+
     if app.game.GameData.getPbanker() then
     	print("send banker too much return")
     	return
     end
     print("banker mult index",index)
     local sessionid = app.data.UserData.getSession() or 222
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     po:writer_reset()
     po:write_int32(index)
-    upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_BANKER_BID_REQ)
+    gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_BANKER_BID_REQ)
 end
 
 -- 押注倍数
 function GamePresenter:sendMult(index)
+    local gameStream = app.connMgr.getGameStream()
+
     if not app.game.GameData.getPbanker() or app.game.GameData.getPmult() then
         print("send mult too much or no banker")
         return
     end
     local sessionid = app.data.UserData.getSession() or 222
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     po:writer_reset()
     po:write_int32(index)
-    upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_COMPARE_BID_REQ)  
+    gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_COMPARE_BID_REQ)  
 end
 
 -- 组牌
 function GamePresenter:sendCalCard(niuCards, numCards)
+    local gameStream = app.connMgr.getGameStream()
+
     if not app.game.GameData.getPbanker() or not app.game.GameData.getPmult() or app.game.GameData.getPgroup() then
         print("send cal too much return or no banker or no mult")
         return
     end
       
     local sessionid = app.data.UserData.getSession() or 222
-    local po = upconn.upconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     po:writer_reset()
     po:write_string(niuCards)
     po:write_string(numCards)
-    upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_COMPARE_CARD_REQ)   
+    gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_NIU_COMPARE_CARD_REQ)   
 end
 
 -- 音效相关

@@ -2,6 +2,8 @@
 @brief  商城管理类
 ]]
 
+local app = app
+
 local SafePresenter = class("SafePresenter",app.base.BasePresenter)
 SafePresenter._ui = requireLobby("app.lobby.safe.SafeLayer")
 
@@ -49,14 +51,16 @@ end
 
 -- send
 function SafePresenter:reqPut(num)
+    local gameStream = app.connMgr.getGameStream()
+
     self:performWithDelayGlobal(
         function()
-            local po = upconn.upconn:get_packet_obj()
+            local po = gameStream:get_packet_obj()
             if po ~= nil then
                 po:writer_reset()
                 po:write_int64(num)                  
                 local sessionid = app.data.UserData.getSession() or 222
-                upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_DEPOSIT_CASH_REQ)                       
+                gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_DEPOSIT_CASH_REQ)                       
                 
                 print("存入%d元",num)               
             end              
@@ -65,14 +69,16 @@ function SafePresenter:reqPut(num)
 end
 
 function SafePresenter:reqOut(num)
+    local gameStream = app.connMgr.getGameStream()
+    
     self:performWithDelayGlobal(
         function()
-            local po = upconn.upconn:get_packet_obj()
+            local po = gameUpconn:get_packet_obj()
             if po ~= nil then
                 po:writer_reset()
                 po:write_int64(-num)                  
                 local sessionid = app.data.UserData.getSession() or 222
-                upconn.upconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_DEPOSIT_CASH_REQ)
+                gameUpconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_DEPOSIT_CASH_REQ)
                 print("取出%d元",num)                        
             end              
         end, 0.2)

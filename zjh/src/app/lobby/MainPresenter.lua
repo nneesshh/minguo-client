@@ -299,13 +299,13 @@ end
 -- 请求加入房间
 function MainPresenter:reqJoinRoom(gameid, index)
     local gameStream = app.connMgr.getGameStream()
-    
+
     local sessionid = app.data.UserData.getSession() or 222
     local plazainfo = app.data.PlazaData.getPlazaList(gameid)
     local roomid = plazainfo[index].roomid
     local base = plazainfo[index].base
     local limit = plazainfo[index].lower
-    local po = gameUpconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     if po ~= nil and roomid then   
         self:dealLoadingHintStart("正在加入房间")                    
         app.game.GameEngine:getInstance():start(gameid, base, limit)
@@ -315,7 +315,7 @@ function MainPresenter:reqJoinRoom(gameid, index)
         po:write_int32(gameid) 
         po:write_int32(roomid)     
 
-        gameUpconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_ENTER_ROOM_REQ)     
+        gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_ENTER_ROOM_REQ)     
     end 
 end
 

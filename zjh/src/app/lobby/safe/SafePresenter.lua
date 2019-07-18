@@ -70,15 +70,15 @@ end
 
 function SafePresenter:reqOut(num)
     local gameStream = app.connMgr.getGameStream()
-    
+
     self:performWithDelayGlobal(
         function()
-            local po = gameUpconn:get_packet_obj()
+            local po = gameStream:get_packet_obj()
             if po ~= nil then
                 po:writer_reset()
                 po:write_int64(-num)                  
                 local sessionid = app.data.UserData.getSession() or 222
-                gameUpconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_DEPOSIT_CASH_REQ)
+                gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_DEPOSIT_CASH_REQ)
                 print("取出%d元",num)                        
             end              
         end, 0.2)

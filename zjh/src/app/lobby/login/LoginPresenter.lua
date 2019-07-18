@@ -4,7 +4,7 @@
 ]]
 
 local app = app
-
+local TestAccount = require("test.TestAccount")
 
 local LoginPresenter   = class("LoginPresenter", app.base.BasePresenter)
 
@@ -60,10 +60,8 @@ function LoginPresenter:onLoginFail(errcode)
         self:dealHintStart("账号未注册,是否自动注册并登录",
             function(bFlag)
                 if bFlag then
-                    print("_username",_username)
-                    print("_password",_password)
-                    
-                    app.lobby.login.RegisterPresenter:getInstance():dealAccountRegister(_username, " ", _password)                                                
+                    print("auto register: username=" .. _username .. ", password=" .. _password)
+                    app.lobby.login.RegisterPresenter:getInstance():onRegisterAccount(_username, " ", _password) 
                 end
             end
             , 0)
@@ -73,40 +71,56 @@ function LoginPresenter:onLoginFail(errcode)
     end              
 end
 
-function LoginPresenter:testLogin(data)
+function LoginPresenter:onLogin(sender)
+    local p = self
+    local cb = function()
+        local name = sender:getName()
+        if name == "btn_tourist" then
+            p:dealGuestLogin()
+        elseif name == "btn_account" then
+            p:dealAccountLogin()
+        elseif string.find(name, "btn_test_") then 
+            local index = tonumber(string.split(name, "btn_test_")[2])                          
+            p:dealTestLogin(TestAccount.list[index+1])   
+        end
+    end
+
+    -- connect
+    app.connMgr.reConnect(cb)
+end
+
+function LoginPresenter:dealTestLogin(data)
+    local gameStream = app.connMgr.getGameStream()
+
     if not data then
         return
     end
     
-    self:performWithDelayGlobal(
-        function()
-            local po = gameUpconn:get_packet_obj()
-            if po ~= nil then
-                po:writer_reset()
+    local po = gameStream:get_packet_obj()
+    if po ~= nil then
+        po:writer_reset()
 
-                po:write_int32(data[1])        -- userTicketId
-                po:write_string(data[2])       -- phoneNumber as userName
-                po:write_string(data[3])       -- pwd
-                po:write_string(data[4])       -- imei
-                po:write_string(data[5])       -- imsi
-                po:write_string(data[6])       -- channel
-                po:write_string(data[7])       -- subChannel
+        po:write_int32(data[1])        -- userTicketId
+        po:write_string(data[2])       -- phoneNumber as userName
+        po:write_string(data[3])       -- pwd
+        po:write_string(data[4])       -- imei
+        po:write_string(data[5])       -- imsi
+        po:write_string(data[6])       -- channel
+        po:write_string(data[7])       -- subChannel
 
-                local sessionId = self.sessionId or 222
-                gameUpconn:send_packet(sessionId, zjh_defs.MsgId.MSGID_LOGIN_REQ)
+        local sessionId = self.sessionId or 222
+        gameStream:send_packet(sessionId, zjh_defs.MsgId.MSGID_LOGIN_REQ)
 
-                _username, _password = data[2], data[3]
-            else
-                print("test po is nil")              
-            end                          
-        end, 0.2)
+        _username, _password = data[2], data[3]
+    else
+        print("test po is nil")              
+    end                          
 end
 
 -- 自动登录
 function LoginPresenter:dealAutoLogin()
     self:performWithDelayGlobal(
         function()
-            local po = gameUpconn:get_packet_obj()    
             local have, username, password, imei = AccountData.haveAccount()
             print("wq-login", have, username, password, imei)
             local loginstate = app.data.UserData.getLoginState()
@@ -137,7 +151,9 @@ function LoginPresenter:dealAccountLogin()
 end
 
 function LoginPresenter:sendLogin(username, password)        
-    local po = gameUpconn:get_packet_obj()    
+    local gameStream = app.connMgr.getGameStream()
+
+    local po = gameStream:get_packet_obj()    
     if po ~= nil then
         self:dealLoadingHintStart("正在登录中") 
         
@@ -153,7 +169,7 @@ function LoginPresenter:sendLogin(username, password)
 
         local sessionId = self.sessionId or 222
         print("send login",username, password)
-        gameUpconn:send_packet(sessionId, zjh_defs.MsgId.MSGID_LOGIN_REQ)   
+        gameStream:send_packet(sessionId, zjh_defs.MsgId.MSGID_LOGIN_REQ)   
     else
         print("wq - login po is nil")             
     end     
@@ -161,20 +177,26 @@ end
 
 -- 
 function LoginPresenter:reLogin(hint)
-    if not self:isCurrentUI() then
-        hint = hint or "连接异常,请重新登录！"
-        self:dealHintStart(hint,
-            function(bFlag)               
-                app.game.GameEngine:getInstance():exit()
+    local p = self
 
-                self:performWithDelayGlobal(
-                    function()
-                        app.lobby.login.LoginPresenter:getInstance():start(true) 
-                        self:dealAccountLogin()
-                    end, 0.05)                 
+    hint = hint or "连接异常,请重新登录！"
+    p:dealHintStart(
+        hint,
+        function(bFlag)
+            local bVisible = p:isCurrentUI()
+            if not bVisible then
+                app.game.GameEngine:getInstance():exit()
+                
+                p:performWithDelayGlobal(function()
+                    app.lobby.login.LoginPresenter:getInstance():start(true)
+                    p:dealAccountLogin()
+                end, 0.05)
+            else
+                p:dealAccountLogin()
             end
-            ,0)        
-    end
+        end,
+        0
+    )
 end
 
 return LoginPresenter

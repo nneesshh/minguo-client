@@ -226,9 +226,9 @@ end
 -- 比牌
 function _M.onNiuCompareCard(conn, sessionid, msgid)
     local gameStream = app.connMgr.getGameStream()
-    
+
     print("onNiuCompareCard")
-    local po = gameUpconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     if po == nil then return end   
     
     local player = {}

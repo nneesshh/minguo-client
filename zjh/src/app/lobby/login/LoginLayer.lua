@@ -3,9 +3,7 @@
 @brief  登录界面
 ]]
 
-local ok, TestAccount = pcall(function() return require("test.Account") end)
-if not ok then TestAccount = require("test.account_template") end
-
+local TestAccount = require("test.TestAccount")
 local LoginLayer = class("LoginLayer", app.base.BaseLayer)
 
 -- csbPath
@@ -24,25 +22,13 @@ LoginLayer.touchs = {
     "btn_test_7",
 }
 
-local function _onLogin(self, sender)
-    -- connect
-    app.connMgr.reConnect(
-        function()
-            local name = sender:getName()
-            if name == "btn_tourist" then            
-                self:onClickBtnGuest()            
-            elseif name == "btn_account" then
-                self:onClickBtnAccount()           
-            elseif string.find(name, "btn_test_") then 
-                local index = tonumber(string.split(name, "btn_test_")[2])                          
-                self._presenter:testLogin(TestAccount.list[index+1])   
-            end
-    end)
-end
-
 function LoginLayer:onTouch(sender, eventType)
-    LoginLayer.super._callback = _onLogin
     LoginLayer.super.onTouch(self, sender, eventType)
+
+    --
+    if eventType == ccui.TouchEventType.ended then
+        self._presenter:onLogin(sender)
+    end
 end
 
 function LoginLayer:initUI()
@@ -51,14 +37,6 @@ function LoginLayer:initUI()
         debug:setVisible(CC_SHOW_LOGIN_DEBUG)
     end  
     self:initTestLoginBtnUI()
-end
-
-function LoginLayer:onClickBtnGuest()
-    self._presenter:dealGuestLogin()
-end
-
-function LoginLayer:onClickBtnAccount()
-    self._presenter:dealAccountLogin()
 end
 
 function LoginLayer:initTestLoginBtnUI()

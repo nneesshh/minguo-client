@@ -52,8 +52,10 @@ end
 
 function RegisterLayer:onTouch(sender, eventType)
     RegisterLayer.super.onTouch(self, sender, eventType)
-    local name = sender:getName()
+    
+    --
     if eventType == ccui.TouchEventType.ended then
+        local name = sender:getName()
         if name == "btn_close" then
             self:exit()
             app.lobby.login.AccountLoginPresenter:getInstance():start()
@@ -70,11 +72,11 @@ function RegisterLayer:onTouchGetVerify()
 end
 
 function RegisterLayer:onTouchRegister()
-    local userid = self:seekChildByName("tf_account")
+    local username = self:seekChildByName("tf_account")
     local verify = self:seekChildByName("tf_verify")
-    local pwd = self:seekChildByName("tf_new_password")
+    local password = self:seekChildByName("tf_new_password")
 
-    self._presenter:dealAccountRegister(userid:getString(), verify:getString(), pwd:getString())
+    self._presenter:onRegisterAccount(username:getString(), verify:getString(), password:getString())
 end
 
 return RegisterLayer

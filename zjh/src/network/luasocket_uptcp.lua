@@ -78,6 +78,11 @@ function _M.close(self)
 end
 
 --
+function _M.isClosed(self)
+    return (self.state == STATE_CLOSED)
+end
+
+--
 function _M.init(self, opts)
     -- opts
     self.opts = opts

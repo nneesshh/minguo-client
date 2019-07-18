@@ -43,6 +43,7 @@ local IP_LIST = {
     {host = "192.168.200.101", port = 8860}, -- 2 内网服务器
     {host = "192.168.50.194", port = 8861}, -- 3 私人测试1
     {host = "192.168.111.111",   port = 8861}, -- 4 私人测试2
+    {host = "127.0.0.1",   port = 8861}, -- 5 localhost
 }
 
-CC_IP = IP_LIST[3]
+CC_IP = IP_LIST[5]

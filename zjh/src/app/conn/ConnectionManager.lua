@@ -145,8 +145,8 @@ function _M.getGameStream()
 end
 
 function _M.reConnect(cb)
-    _M._gameConn.close(cb)
-    _M.start(cb)
+    _M._gameConn.close()
+     _M.start(cb)
 end
 
 return _M

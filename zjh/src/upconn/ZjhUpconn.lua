@@ -43,8 +43,10 @@ function _M.update()
     _M.upconn:update()
 end
 
-function _M.close()    
-    _M.upconn:close()
+function _M.close()
+    if _M.upconn and not _M.upconn:isClosed() then
+        _M.upconn:close()
+    end
 end
 
 local STATE_IDLE         = 0
@@ -327,9 +329,9 @@ end
 function _M.onGameOver(conn, sessionid, msgid)
     local gameStream = app.connMgr.getGameStream()
     print("onGameOver")
-    
+
     local resp = {}
-    local po = gameUpconn:get_packet_obj()   
+    local po = gameStream:get_packet_obj()   
     local info, players = _readGameOver(po)
     
     app.game.GamePresenter:getInstance():onGameOver(info, players) 

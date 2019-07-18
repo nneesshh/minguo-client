@@ -21,14 +21,14 @@ end
 
 function NoticePresenter:sendGameNews(type)
     local gameStream = app.connMgr.getGameStream()
-    
+
     local sessionid = app.data.UserData.getSession() or 222
-    local po = gameUpconn:get_packet_obj()
+    local po = gameStream:get_packet_obj()
     if po == nil then return end   
 
     po:writer_reset()
     po:write_byte(type) 
-    gameUpconn:send_packet(sessionid, zjh_defs.MsgId.MSGID_GAME_NEWS_REQ)          
+    gameStream:send_packet(sessionid, zjh_defs.MsgId.MSGID_GAME_NEWS_REQ)          
 end
 
 function NoticePresenter:onNewsData(data)

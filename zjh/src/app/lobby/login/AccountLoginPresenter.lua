@@ -62,7 +62,7 @@ function AccountLoginPresenter:onLoginFail(errcode)
         self:dealHintStart("账号未注册,是否自动注册并登录",
             function(bFlag)
                 if bFlag then
-                    app.lobby.login.RegisterPresenter:getInstance():dealAccountRegister(_username, "", _password)                                                
+                    app.lobby.login.RegisterPresenter:getInstance():on(_username, "", _password)                                                
                 end
             end
             , 0)

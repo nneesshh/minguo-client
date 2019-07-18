@@ -44,9 +44,6 @@ function BaseLayer:ctor()
 
     -- 控制器对象实例
     self._presenter = nil
-
-    -- callback(sender)
-    self._callback = nil
 end
 
 -- 打开界面
@@ -177,26 +174,13 @@ function BaseLayer:onTouch(sender, eventType)
     elseif eventType == ccui.TouchEventType.moved then
     elseif eventType == ccui.TouchEventType.ended then
         sender:setScale(originalScale/scaleMult) 
-
-        -- callback(sender)
-        if self._callback then
-            self._callback(self, sender)
-        else
-            print("base layer callback is nil")
-        end
-        
     elseif eventType == ccui.TouchEventType.canceled then
         sender:setScale(originalScale/scaleMult)
     end
 end
 
 function BaseLayer:onClick(sender)
-    -- callback
-    if self._callback then
-        self._callback(self, sender)
-    else
-        print("touch callback is nil")
-    end
+
 end
 
 function BaseLayer:onEvent(sender, eventType)

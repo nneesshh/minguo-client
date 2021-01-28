@@ -1,6 +1,8 @@
 --[[
 @brief  排行榜管理类
 ]]
+local app = cc.exports.gEnv.app
+local requireLobby = cc.exports.gEnv.HotpatchRequire.requireLobby
 
 local RankPresenter = class("RankPresenter",app.base.BasePresenter)
 RankPresenter._ui = requireLobby("app.lobby.rank.RankLayer")

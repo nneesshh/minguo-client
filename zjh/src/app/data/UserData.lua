@@ -1,6 +1,7 @@
 --[[
 @brief 玩家自己的数据
 ]]  
+local app = cc.exports.gEnv.app
 
 local UserData = {}
 

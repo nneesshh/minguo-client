@@ -1,6 +1,7 @@
 --[[
 @brief 账号信息
 ]]
+local app = cc.exports.gEnv.app
 
 local AccountData = {}
 

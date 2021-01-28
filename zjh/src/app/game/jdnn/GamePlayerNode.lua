@@ -1,6 +1,9 @@
 --[[
     @brief  游戏玩家类
 ]]--
+local app = cc.exports.gEnv.app
+local requireJDNN = cc.exports.gEnv.HotpatchRequire.requireJDNN
+
 local GameHandCardNode = requireJDNN("app.game.jdnn.GameHandCardNode")
 local GameOutCardNode  = requireJDNN("app.game.jdnn.GameOutCardNode")
 

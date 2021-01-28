@@ -1,7 +1,7 @@
 --[[
 @brief  公告类
 ]]
-
+local app = cc.exports.gEnv.app
 local NoticeLayer = class("NoticeLayer",app.base.BaseLayer)
 
 NoticeLayer.csbPath = "lobby/csb/notice.csb"

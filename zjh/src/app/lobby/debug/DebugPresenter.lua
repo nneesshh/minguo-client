@@ -2,6 +2,8 @@
 --[[
 @brief  帮助管理类
 ]]
+local app = cc.exports.gEnv.app
+local requireLobby = cc.exports.gEnv.HotpatchRequire.requireLobby
 
 local DebugPresenter = class("DebugPresenter", app.base.BasePresenter)
 

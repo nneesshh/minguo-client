@@ -1,7 +1,7 @@
 --[[
     @brief  游戏牌UI基类
 ]]--
-
+local app = cc.exports.gEnv.app
 local GameCardNode = class("GameCardNode", app.base.BaseNode)
 
 -- csb路径

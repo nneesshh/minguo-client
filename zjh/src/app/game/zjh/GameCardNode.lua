@@ -2,7 +2,7 @@
 --[[
     @brief  单张牌
 ]]--
-
+local app = cc.exports.gEnv.app
 local GameCardNode = class("GameCardNode", app.base.BaseNode)
 
 -- csb路径

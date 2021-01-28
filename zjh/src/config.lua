@@ -1,15 +1,15 @@
 
 -- 0 - disable debug info, 1 - less debug info, 2 - verbose debug info
-DEBUG = 0
+DEBUG = 2
 
 -- use framework, will disable all deprecated API, false - use legacy API
 CC_USE_FRAMEWORK = true
 
 -- show FPS on screen
-CC_SHOW_FPS = false
+CC_SHOW_FPS = true
 
 -- disable create unexpected global variable
-CC_DISABLE_GLOBAL = false
+CC_DISABLE_GLOBAL = true
 
 -- for module display
 CC_DESIGN_RESOLUTION = {
@@ -37,13 +37,13 @@ CC_AUTO_LOGIN = false
 -- heart beat
 CC_HEART_BEAT = false
 
--- ip
-local IP_LIST = {
-    {host = "3.113.138.76",  port = 8860}, -- 1 外网
-    {host = "192.168.200.101", port = 8860}, -- 2 内网服务器
-    {host = "192.168.50.194", port = 8861}, -- 3 私人测试1
-    {host = "192.168.111.111",   port = 8861}, -- 4 私人测试2
+-- server addr list
+local SERVER_ADDR_LIST = {
+    {host = "3.113.138.76",  port = 8860}, -- 1 
+    {host = "192.168.200.101", port = 8860}, -- 2 
+    {host = "192.168.50.194", port = 8861}, -- 3 
+    {host = "192.168.111.111",   port = 8861}, -- 4 
     {host = "127.0.0.1",   port = 8861}, -- 5 localhost
 }
 
-CC_IP = IP_LIST[5]
+CC_SERVER_ADDR = SERVER_ADDR_LIST[5]

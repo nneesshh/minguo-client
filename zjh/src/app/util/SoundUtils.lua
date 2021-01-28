@@ -1,3 +1,6 @@
+
+local app = cc.exports.gEnv.app
+
 local SoundUtils = {}
 
 local isOpenMusic = nil

@@ -2,6 +2,7 @@
 @brief  节点基类(界面中已经存在的节点)
 @by     斯雪峰
 ]]
+local app = cc.exports.gEnv.app
 local BaseNodeEx = class("BaseNodeEx", app.base.BaseNode)
 
 ---------------- 子类需配置项目 ---------------

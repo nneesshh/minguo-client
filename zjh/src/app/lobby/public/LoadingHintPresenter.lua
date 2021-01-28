@@ -1,11 +1,12 @@
 --[[
 @brief  加载提示界面管理
 ]]
-local app                    = app
+local app = cc.exports.gEnv.app
+local requireLobby = cc.exports.gEnv.HotpatchRequire.requireLobby
 
-local LoadingHintPresenter   = class("LoadingHintPresenter", app.base.BasePresenter)
+local LoadingHintPresenter = class("LoadingHintPresenter", app.base.BasePresenter)
 
-LoadingHintPresenter._ui  = requireLobby("app.lobby.public.LoadingHintLayer")
+LoadingHintPresenter._ui = requireLobby("app.lobby.public.LoadingHintLayer")
 
 local DEFAULT_TIME_OUT = 10
 

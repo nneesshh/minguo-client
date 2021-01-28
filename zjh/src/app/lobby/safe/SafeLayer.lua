@@ -1,5 +1,5 @@
 
-
+local app = cc.exports.gEnv.app
 local SafeLayer = class("SafeLayer",app.base.BaseLayer)
 
 SafeLayer.csbPath = "lobby/csb/safe.csb"

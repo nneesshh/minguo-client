@@ -1,7 +1,7 @@
 --[[
 @brief  中间件 处理大厅与游戏区切换
 ]]
-
+local app = cc.exports.gEnv.app
 local GameEngine = class("GameEngine")
 
 GameEngine._instance = nil

@@ -1,8 +1,9 @@
 --[[
 @brief  公告管理类
 ]]
-
-local app = app
+local app = cc.exports.gEnv.app
+local zjh_defs = cc.exports.gEnv.misc_defs.zjh_defs
+local requireLobby = cc.exports.gEnv.HotpatchRequire.requireLobby
 
 local NoticePresenter = class("NoticePresenter",app.base.BasePresenter)
 NoticePresenter._ui = requireLobby("app.lobby.notice.NoticeLayer")

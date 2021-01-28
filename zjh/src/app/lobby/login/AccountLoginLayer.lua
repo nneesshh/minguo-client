@@ -2,7 +2,7 @@
 --[[
 @brief  账号登录layer
 ]]
-
+local app = cc.exports.gEnv.app
 local AccountLoginLayer = class("AccountLoginLayer", app.base.BaseLayer)
 
 -- csb路径

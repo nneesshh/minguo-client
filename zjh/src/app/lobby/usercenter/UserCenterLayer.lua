@@ -1,7 +1,7 @@
 --[[
 @brief 个人中心界面
 ]]
-
+local app = cc.exports.gEnv.app
 local UserCenterLayer               = class("UserCenterLayer", app.base.BaseLayer)
 
 UserCenterLayer.csbPath = "lobby/csb/usercenter.csb"

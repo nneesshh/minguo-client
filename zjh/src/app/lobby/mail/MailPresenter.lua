@@ -1,6 +1,8 @@
 --[[
 @brief  邮件
 ]]
+local app = cc.exports.gEnv.app
+local requireLobby = cc.exports.gEnv.HotpatchRequire.requireLobby
 
 local MailPresenter = class("MailPresenter",app.base.BasePresenter)
 MailPresenter._ui = requireLobby("app.lobby.mail.MailLayer")

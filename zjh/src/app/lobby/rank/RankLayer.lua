@@ -1,6 +1,6 @@
 
-
-local RankLayer = class("RankLayer",app.base.BaseLayer)
+local app = cc.exports.gEnv.app
+local RankLayer = class("RankLayer", app.base.BaseLayer)
 
 RankLayer.csbPath = "lobby/csb/rank.csb"
 

@@ -2,6 +2,8 @@
 --[[
     @brief  游戏出牌UI基类
 ]]--
+local app = cc.exports.gEnv.app
+local requireQZNN = cc.exports.gEnv.HotpatchRequire.requireQZNN
 
 local GameCardNode       = requireQZNN("app.game.qznn.GameCardNode")
 local GameOutCardNode    = class("GameOutCardNode", app.base.BaseNodeEx)

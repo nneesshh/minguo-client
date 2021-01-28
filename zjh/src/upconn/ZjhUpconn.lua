@@ -1,4 +1,7 @@
-local app = app
+
+local app = cc.exports.gEnv.app
+local zjh_defs = cc.exports.gEnv.misc_defs.zjh_defs
+local requireLobby = cc.exports.gEnv.HotpatchRequire.requireLobby
 
 local tostring, pairs, ipairs = tostring, pairs, ipairs
 
@@ -11,9 +14,7 @@ local _M = {
 
 -- Localize
 local cwd = (...):gsub("%.[^%.]+$", "") .. "."
-cfg_game_zjh     = require(cwd .. "config.game_zjh")
-zjh_defs         = require(cwd .. "ZjhDefs")
-msg_dispatcher   = require(cwd .."ZjhMsgDispatcher")
+local msg_dispatcher   = require(cwd .. "ZjhMsgDispatcher")
 
 local uptcpd     = require("network.luasocket_uptcp")
 local packet_cls = require("network.byte_stream_packet")
@@ -40,7 +41,8 @@ end
 
 --
 function _M.update()
-    _M.upconn:update()
+    local updateStateCb = app.connMgr.updateState
+    _M.upconn:update_upstream(updateStateCb)
 end
 
 function _M.close()
@@ -84,6 +86,7 @@ function _M.start(onConnected)
         msg_dispatcher.dispatch(self, pkt.sessionid, pkt.msgid)
     end
 
+    local cfg_game_zjh = cc.exports.gEnv.misc_defs.cfg_game_zjh
     local server = cfg_game_zjh.servers[1]
 
     --

@@ -2,8 +2,9 @@
 --[[
     @brief  庄家列表
 ]]--
-
-local app = app
+local app = cc.exports.gEnv.app
+local zjh_defs = cc.exports.gEnv.misc_defs.zjh_defs
+local requireBRNN = cc.exports.gEnv.HotpatchRequire.requireBRNN
 
 local GameBankerPresenter    = class("GameBankerPresenter", app.base.BasePresenter)
 

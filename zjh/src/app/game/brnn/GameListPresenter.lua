@@ -2,6 +2,8 @@
 --[[
     @brief  游戏玩家列表
 ]]--
+local app = cc.exports.gEnv.app
+local requireBRNN = cc.exports.gEnv.HotpatchRequire.requireBRNN
 
 local GameListPresenter    = class("GameListPresenter", app.base.BasePresenter)
 

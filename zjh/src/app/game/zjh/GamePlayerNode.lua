@@ -1,6 +1,9 @@
 --[[
     @brief  游戏玩家类
 ]]--
+local app = cc.exports.gEnv.app
+local requireZJH = cc.exports.gEnv.HotpatchRequire.requireZJH
+
 local GameHandCardNode = requireZJH("app.game.zjh.GameHandCardNode")
 
 local GamePlayerNode   = class("GamePlayerNode", app.base.BaseNodeEx)

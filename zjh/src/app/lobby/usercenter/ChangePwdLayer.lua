@@ -2,6 +2,7 @@
 @brief 修改密码界面
 
 ]]
+local app = cc.exports.gEnv.app
 local ChangePwdLayer   = class("ChangePwdLayer", app.base.BaseLayer)
 
 ChangePwdLayer.csbPath = "lobby/csb/password.csb"

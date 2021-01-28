@@ -1,8 +1,7 @@
 --[[
 @brief  层基类
 ]]
-local app       = app
-
+local app = cc.exports.gEnv.app
 local BaseLayer = class("BaseLayer")
 
 ---------------- 子类需配置项目 ---------------

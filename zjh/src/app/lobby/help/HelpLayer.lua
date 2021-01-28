@@ -1,7 +1,7 @@
 --[[
 @brief  帮助Layer
 ]]
-
+local app = cc.exports.gEnv.app
 local HelpLayer = class("HelpLayer", app.base.BaseLayer)
 
 HelpLayer.csbPath = "lobby/csb/help.csb"

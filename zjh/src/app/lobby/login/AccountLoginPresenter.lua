@@ -2,6 +2,9 @@
 --[[
 @brief  账号管理类
 ]]
+local app = cc.exports.gEnv.app
+local zjh_defs = cc.exports.gEnv.misc_defs.zjh_defs
+local requireLobby = cc.exports.gEnv.HotpatchRequire.requireLobby
 
 local AccountLoginPresenter   = class("AccountLoginPresenter", app.base.BasePresenter)
 

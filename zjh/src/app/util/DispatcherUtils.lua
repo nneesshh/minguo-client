@@ -17,6 +17,7 @@ ex.在主场景中添加了一个长监听函数:
     用于实现消息订阅模式。为消息源和订阅者解耦合。例如UI只需要订阅自己的更新事件。
     而service层只需要告诉分发器我发布的消息。
 ]]--
+local app = cc.exports.gEnv.app
 local Dispatcher = class("Dispatcher")
 
 function Dispatcher:ctor()

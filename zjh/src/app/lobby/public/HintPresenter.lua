@@ -1,6 +1,9 @@
 --[[
 @brief  提示框管理
 ]]
+local app = cc.exports.gEnv.app
+local requireLobby = cc.exports.gEnv.HotpatchRequire.requireLobby
+
 local HintPresenter = class("HintPresenter", app.base.BasePresenter)
 
 HintPresenter._ui   = requireLobby("app.lobby.public.HintLayer")

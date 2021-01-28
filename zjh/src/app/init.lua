@@ -2,22 +2,34 @@
 @brief  工程初始化
 ]]--
 
-app = app or {}
+cc.exports = cc.exports or {}
+cc.exports.gEnv = cc.exports.gEnv or {}
+local gEnv = cc.exports.gEnv
 
------------------------------------ require ----------------------------------
-HotpatchRequire                             = require("hotpatch.HotpatchRequire")
-requireLobby                                = HotpatchRequire.requireLobby
-requireZJH                                  = HotpatchRequire.requireZJH
-requireJDNN                                 = HotpatchRequire.requireJDNN
-requireQZNN                                 = HotpatchRequire.requireQZNN
-requireLHD                                  = HotpatchRequire.requireLHD
-requireBRNN                                 = HotpatchRequire.requireBRNN
-requireDDZ                                  = HotpatchRequire.requireDDZ
+----------------------------------- app --------------------------------------
+gEnv.app = gEnv.app or {}
+local app = gEnv.app
 
------------------------------------ network ----------------------------------
-cfg_game_zjh                                = cfg_game_zjh or {}
-zjh_defs                                    = zjh_defs or {}
-msg_dispatcher                              = msg_dispatcher or {}
+----------------------------------- defs ----------------------------------
+gEnv.misc_defs = gEnv.misc_defs or {}
+local misc_defs = gEnv.misc_defs
+
+gEnv.misc_defs.cfg_game_zjh = require("upconn.config.game_zjh")
+gEnv.misc_defs.zjh_defs = require("upconn.ZjhDefs")
+
+----------------------------------- hotpatch require ----------------------------------
+gEnv.HotpatchRequire = require("hotpatch.HotpatchRequire")
+
+--
+local requireLobby                           = gEnv.HotpatchRequire.requireLobby
+local requireZJH                             = gEnv.HotpatchRequire.requireZJH
+local requireJDNN                            = gEnv.HotpatchRequire.requireJDNN
+local requireQZNN                            = gEnv.HotpatchRequire.requireQZNN
+local requireLHD                             = gEnv.HotpatchRequire.requireLHD
+local requireBRNN                            = gEnv.HotpatchRequire.requireBRNN
+local requireDDZ                             = gEnv.HotpatchRequire.requireDDZ
+
+--
 app.connMgr                                 = requireLobby("app.conn.ConnectionManager")
 
 ------------------------------------ 常量 -------------------------------------

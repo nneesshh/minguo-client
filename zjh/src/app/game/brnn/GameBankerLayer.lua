@@ -2,6 +2,7 @@
 --[[
     @brief  庄家列表UI
 ]]--
+local app = cc.exports.gEnv.app
 local GameBankerLayer    = class("GameBankerLayer", app.base.BaseLayer)
 
 GameBankerLayer.csbPath = "game/brnn/csb/bankerlist.csb"

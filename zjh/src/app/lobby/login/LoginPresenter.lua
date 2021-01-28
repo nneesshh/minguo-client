@@ -2,8 +2,10 @@
 --[[
 @brief  登录管理类
 ]]
+local app = cc.exports.gEnv.app
+local zjh_defs = cc.exports.gEnv.misc_defs.zjh_defs
+local requireLobby = cc.exports.gEnv.HotpatchRequire.requireLobby
 
-local app = app
 local TestAccount = require("test.TestAccount")
 
 local LoginPresenter   = class("LoginPresenter", app.base.BasePresenter)

@@ -1,5 +1,6 @@
 /****************************************************************************
  Copyright (c) 2010 cocos2d-x.org
+ Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  
  http://www.cocos2d-x.org
  
@@ -39,7 +40,6 @@
     AppDelegate *_app;
     ProjectConfig _project;
     int _debugLogFile;
-    std::string _entryPath;
     
     //log file
     ConsoleWindowController *_consoleController;
@@ -52,8 +52,6 @@
 
 @property (nonatomic, assign) IBOutlet NSMenu* menu;
 
--(BOOL)application:(NSApplication*)app openFile:(NSString*)path;
 -(IBAction)onFileClose:(id)sender;
 -(IBAction)onWindowAlwaysOnTop:(id)sender;
-
 @end

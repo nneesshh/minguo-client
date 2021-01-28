@@ -2,6 +2,14 @@
 @brief 加载游戏区	
 @by
 ]]
+local app = cc.exports.gEnv.app
+local requireZJH = cc.exports.gEnv.HotpatchRequire.requireZJH
+local requireJDNN = cc.exports.gEnv.HotpatchRequire.requireJDNN
+local requireQZNN = cc.exports.gEnv.HotpatchRequire.requireQZNN
+local requireLHD = cc.exports.gEnv.HotpatchRequire.requireLHD
+local requireBRNN = cc.exports.gEnv.HotpatchRequire.requireBRNN
+local requireDDZ = cc.exports.gEnv.HotpatchRequire.requireDDZ
+
 local GameLoader = {}
 
 function GameLoader.loader(gameid)

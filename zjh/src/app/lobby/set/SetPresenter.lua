@@ -1,6 +1,8 @@
 --[[
 @brief  设置管理类
 ]]
+local app = cc.exports.gEnv.app
+local requireLobby = cc.exports.gEnv.HotpatchRequire.requireLobby
 
 local SetPresenter = class("SetPresenter", app.base.BasePresenter)
 

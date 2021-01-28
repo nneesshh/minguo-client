@@ -1,7 +1,7 @@
 --[[
     @brief 斗地主游戏规则
 ]]--
-
+local app = cc.exports.gEnv.app
 local GameRunRule = class("GameRunRule", app.game.CardRunRule)
 
 local CR = app.game.CardRule

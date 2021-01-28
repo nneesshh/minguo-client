@@ -1,6 +1,8 @@
 --[[
     @brief  游戏结果趋势
 ]]--
+local app = cc.exports.gEnv.app
+local requireBRNN = cc.exports.gEnv.HotpatchRequire.requireBRNN
 
 local GameTrendPresenter    = class("GameTrendPresenter", app.base.BasePresenter)
 

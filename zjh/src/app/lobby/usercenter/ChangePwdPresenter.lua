@@ -1,6 +1,8 @@
 --[[
 @brief  修改密码
 ]]
+local app = cc.exports.gEnv.app
+local requireLobby = cc.exports.gEnv.HotpatchRequire.requireLobby
 
 local ChangePwdPresenter = class("ChangePwdPresenter", app.base.BasePresenter)
 

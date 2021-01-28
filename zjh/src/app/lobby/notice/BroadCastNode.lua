@@ -2,7 +2,7 @@
 @brief  走马灯节点
                      走马灯直接加到当前场景最上层
 ]]
-
+local app = cc.exports.gEnv.app
 local BroadCastNode = class("BroadCastNode", app.base.BaseNode)
 
 -- csb路径

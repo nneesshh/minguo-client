@@ -1,7 +1,7 @@
 --[[
     @brief  游戏玩家类
 ]]--
-
+local app = cc.exports.gEnv.app
 local GamePlayerNode   = class("GamePlayerNode", app.base.BaseNodeEx)
 
 local HERO_LOCAL_SEAT  = 8 

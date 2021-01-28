@@ -1,8 +1,9 @@
 --[[
 @brief  修改头像
 ]]
-
-local app = app
+local app = cc.exports.gEnv.app
+local zjh_defs = cc.exports.gEnv.misc_defs.zjh_defs
+local requireLobby = cc.exports.gEnv.HotpatchRequire.requireLobby
 
 local ChangeHeadPresenter = class("ChangeHeadPresenter", app.base.BasePresenter)
 

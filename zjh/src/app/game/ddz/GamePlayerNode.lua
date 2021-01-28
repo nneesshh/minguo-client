@@ -1,6 +1,9 @@
 --[[
 @brief  游戏玩家类
 ]]--
+local app = cc.exports.gEnv.app
+local requireDDZ = cc.exports.gEnv.HotpatchRequire.requireDDZ
+
 local GameHandCardNode = requireDDZ("app.game.ddz.GameHandCardNode")
 local GameOutCardNode  = requireDDZ("app.game.ddz.GameOutCardNode")
 

@@ -1,7 +1,7 @@
 --[[
 @brief  邮件
 ]]
-
+local app = cc.exports.gEnv.app
 local MailDetailLayer = class("MailDetailLayer",app.base.BaseLayer)
 
 MailDetailLayer.csbPath = "lobby/csb/maildetail.csb"

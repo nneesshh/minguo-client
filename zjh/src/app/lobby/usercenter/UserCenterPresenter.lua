@@ -2,6 +2,8 @@
 --[[
 @brief  用户中心管理类
 ]]--
+local app = cc.exports.gEnv.app
+local requireLobby = cc.exports.gEnv.HotpatchRequire.requireLobby
 
 local UserCenterPresenter = class("UserCenterPresenter", app.base.BasePresenter)
 -- UI

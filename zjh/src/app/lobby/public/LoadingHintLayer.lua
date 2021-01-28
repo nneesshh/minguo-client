@@ -1,7 +1,7 @@
 --[[
 @brief  加载提示界面
 ]]
-
+local app = cc.exports.gEnv.app
 local LoadingHintLayer = class("LoadingHintLayer", app.base.BaseLayer)
 
 LoadingHintLayer.csbPath = "lobby/csb/hintload.csb"

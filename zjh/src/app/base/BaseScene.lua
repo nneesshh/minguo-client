@@ -1,8 +1,7 @@
 --[[
 @brief  场景基类
 ]]
-local app       = app
-
+local app = cc.exports.gEnv.app
 local BaseScene = class("BaseScene")
 
 ---------------- 子类需配置项目 ---------------

@@ -1,9 +1,8 @@
 --[[
     @brief  游戏结算控制类基类
 ]]--
-
-local app = app
-
+local app = cc.exports.gEnv.app
+local zjh_defs = cc.exports.gEnv.misc_defs.zjh_defs
 local GameResultPresenter    = class("GameResultPresenter", app.base.BasePresenter)
 
 GameResultPresenter._ui  = require("app.game.ddz.GameResultLayer")

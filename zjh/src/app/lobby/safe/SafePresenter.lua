@@ -1,8 +1,9 @@
 --[[
 @brief  商城管理类
 ]]
-
-local app = app
+local app = cc.exports.gEnv.app
+local zjh_defs = cc.exports.gEnv.misc_defs.zjh_defs
+local requireLobby = cc.exports.gEnv.HotpatchRequire.requireLobby
 
 local SafePresenter = class("SafePresenter",app.base.BasePresenter)
 SafePresenter._ui = requireLobby("app.lobby.safe.SafeLayer")

@@ -1,3 +1,7 @@
+
+local app = cc.exports.gEnv.app
+local custom_conn_manager = app.connMgr
+
 local _M = {
     _VERSION = "1.0.0.1",
     _DESCRIPTION = "wrapper of lua socket tcp upstream"
@@ -187,9 +191,11 @@ function _M.read_packet(self)
 end
 
 --
-function _M.update(self)
-    app.connMgr.updateState(self.state)
+function _M.update_upstream(self, custom_state_cb)
+    --
+    custom_state_cb(self.state)
 
+    --
     if self.state == STATE_CONNECTING then
         --
         local ok, err = self.upstream:check_connecting()

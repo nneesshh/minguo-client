@@ -1,6 +1,7 @@
 --[[
 @brief  UI操作工具类
 ]]
+local app = cc.exports.gEnv.app
 local UIUtils = {}
 
 -----------------------------------------

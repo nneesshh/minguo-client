@@ -218,8 +218,8 @@ end
 local last_reconnect_countdown = {}
 
 --
-function _M.update(self)
-    app.connMgr.updateState(self.state)
+function _M.update_upstream(self, custom_state_cb)
+    custom_state_cb(self.state)
     
     if self.state == STATE_CONNECTING then
         --

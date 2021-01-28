@@ -2,6 +2,9 @@
 --[[
     @brief  手牌
 ]]--
+local app = cc.exports.gEnv.app
+local requireQZNN = cc.exports.gEnv.HotpatchRequire.requireQZNN
+
 local GameCardNode            = requireQZNN("app.game.qznn.GameCardNode")
 local GameHandCardNode        = class("GameHandCardNode", app.base.BaseNodeEx)
 

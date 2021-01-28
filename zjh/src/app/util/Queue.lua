@@ -1,7 +1,7 @@
 --[[
 @brief  双向队列
 ]]
-
+local app = cc.exports.gEnv.app
 local Queue = class("Queue")
 
 Queue._first = 0

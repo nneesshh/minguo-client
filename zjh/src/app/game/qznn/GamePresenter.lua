@@ -1,8 +1,9 @@
 --[[
 @brief  游戏主场景控制基类
 ]]
-
-local app = app
+local app = cc.exports.gEnv.app
+local zjh_defs = cc.exports.gEnv.misc_defs.zjh_defs
+local requireQZNN = cc.exports.gEnv.HotpatchRequire.requireQZNN
 
 local GamePlayerNode = requireQZNN("app.game.qznn.GamePlayerNode")
 local GameBtnNode    = requireQZNN("app.game.qznn.GameBtnNode")

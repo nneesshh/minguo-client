@@ -1,6 +1,7 @@
 --[[
     @brief  游戏结算UI基类
 ]]--
+local app = cc.exports.gEnv.app
 local GameResultLayer    = class("GameResultLayer", app.base.BaseLayer)
 
 GameResultLayer.csbPath = "game/ddz/csb/result.csb"

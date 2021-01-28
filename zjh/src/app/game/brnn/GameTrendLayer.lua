@@ -1,7 +1,7 @@
 --[[
     @brief  游戏结果趋势ui
 ]]--
-
+local app = cc.exports.gEnv.app
 local GameTrendLayer    = class("GameTrendLayer", app.base.BaseLayer)
 
 GameTrendLayer.csbPath = "game/brnn/csb/trend.csb"

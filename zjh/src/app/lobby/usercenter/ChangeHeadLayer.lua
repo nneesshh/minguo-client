@@ -2,6 +2,7 @@
 @brief 修改头像界面
 
 ]]
+local app = cc.exports.gEnv.app
 local ChangeHeadLayer   = class("ChangeHeadLayer", app.base.BaseLayer)
 
 ChangeHeadLayer.csbPath = "lobby/csb/head.csb"

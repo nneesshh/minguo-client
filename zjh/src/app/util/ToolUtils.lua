@@ -2,6 +2,7 @@
 --[[
 @brief:工具类
 ]]
+local app = cc.exports.gEnv.app
 
 local ToolUtils = {}
 

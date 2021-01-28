@@ -1,6 +1,9 @@
 --[[
     @brief  游戏玩家类
 ]]--
+local app = cc.exports.gEnv.app
+local requireQZNN = cc.exports.gEnv.HotpatchRequire.requireQZNN
+
 local GameHandCardNode = requireQZNN("app.game.qznn.GameHandCardNode")
 local GameOutCardNode  = requireQZNN("app.game.qznn.GameOutCardNode")
 

@@ -1,7 +1,7 @@
 --[[
 @brief 规则算法基类
 ]]--
-
+local app = cc.exports.gEnv.app
 local CardRunRule = class("CardRunRule")
 
 local CR          = app.game.CardRule

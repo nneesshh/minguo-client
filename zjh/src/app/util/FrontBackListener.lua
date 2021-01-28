@@ -1,7 +1,7 @@
 --[[
 @brief  FrontBackListener 前后台切换监听
 ]]
-
+local app = cc.exports.gEnv.app
 local FrontBackListener = class("FrontBackListener")
 
 FrontBackListener._instance  = nil

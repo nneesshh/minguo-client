@@ -1,8 +1,9 @@
 --[[
 @brief  主场景管理类
 ]]
-
-local app = app
+local app = cc.exports.gEnv.app
+local zjh_defs = cc.exports.gEnv.misc_defs.zjh_defs
+local requireLobby = cc.exports.gEnv.HotpatchRequire.requireLobby
 
 local MainPresenter = class("MainPresenter", app.base.BasePresenter)
 

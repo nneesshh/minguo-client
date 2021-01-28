@@ -1,10 +1,8 @@
 --[[
 @brief 启动页
 ]]
+local HotpatchController = require("hotpatch.HotpatchController")
 local startup   = class("startup")
-
-
-HotpatchController = require("hotpatch.HotpatchController")
 
 startup.csbPath = "lobby/csb/loading.csb"
 startup._schedulerProgress = nil

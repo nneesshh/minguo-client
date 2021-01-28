@@ -2,6 +2,9 @@
 --[[
     @brief  手牌
 ]]--
+local app = cc.exports.gEnv.app
+local requireBRNN = cc.exports.gEnv.HotpatchRequire.requireBRNN
+
 local GameCardNode            = requireBRNN("app.game.brnn.GameCardNode")
 local GameHandCardNode        = class("GameHandCardNode", app.base.BaseNodeEx)
 

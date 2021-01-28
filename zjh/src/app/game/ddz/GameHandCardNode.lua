@@ -1,6 +1,8 @@
 --[[
     @brief  游戏手牌UI类
 ]]--
+local app = cc.exports.gEnv.app
+local requireDDZ = cc.exports.gEnv.HotpatchRequire.requireDDZ
 
 local GameCardNode        = requireDDZ("app.game.ddz.GameCardNode")
 local GameHandCardNode    = class("GameHandCardNode", app.base.BaseNodeEx)

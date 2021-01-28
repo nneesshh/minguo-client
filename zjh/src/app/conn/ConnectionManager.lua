@@ -1,4 +1,8 @@
 
+local app = cc.exports.gEnv.app
+local zjh_defs = cc.exports.gEnv.misc_defs.zjh_defs
+local requireLobby = cc.exports.gEnv.HotpatchRequire.requireLobby
+
 local scheduler = cc.Director:getInstance():getScheduler()
 local gameConn = requireLobby("upconn.ZjhUpconn")
 
@@ -146,7 +150,7 @@ end
 
 function _M.reConnect(cb)
     _M._gameConn.close()
-     _M.start(cb)
+    _M.start(cb)
 end
 
 return _M

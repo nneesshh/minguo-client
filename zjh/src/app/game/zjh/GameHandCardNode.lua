@@ -2,6 +2,9 @@
 --[[
     @brief  手牌
 ]]--
+local app = cc.exports.gEnv.app
+local requireZJH = cc.exports.gEnv.HotpatchRequire.requireZJH
+
 local GameCardNode            = requireZJH("app.game.zjh.GameCardNode")
 local GameHandCardNode        = class("GameHandCardNode", app.base.BaseNodeEx)
 

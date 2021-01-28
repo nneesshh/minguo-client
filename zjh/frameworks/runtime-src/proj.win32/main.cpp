@@ -1,31 +1,51 @@
+/****************************************************************************
+ Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
+ 
+ http://www.cocos2d-x.org
+ 
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ 
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+ 
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
+ ****************************************************************************/
+
 #include "main.h"
 #include "SimulatorWin.h"
 #include <shellapi.h>
 
-#if _MSC_VER > 1800
-#pragma comment(lib,"libcocos2d.lib")
-#pragma comment(lib,"libluacocos2d.lib")
-#pragma comment(lib,"libsimulator.lib")
-#pragma comment(lib,"libSpine.lib")
-#pragma comment(lib,"libbox2d.lib")
-#pragma comment(lib,"librecast.lib")
-#pragma comment(lib,"libbullet.lib")
-#else
-#pragma comment(lib,"libcocos2d_2013.lib")
-#pragma comment(lib,"libluacocos2d_2013")
-#pragma comment(lib,"libsimulator_2013")
-#pragma comment(lib,"libSpine_2013.lib")
-#pragma comment(lib,"libbox2d_2013.lib")
-#pragma comment(lib,"librecast_2013.lib")
-#pragma comment(lib,"libbullet_2013.lib")
-#endif
-
-int APIENTRY _tWinMain(HINSTANCE hInstance,
+int WINAPI _tWinMain(HINSTANCE hInstance,
 	HINSTANCE hPrevInstance,
 	LPTSTR    lpCmdLine,
 	int       nCmdShow)
 {
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
-    return SimulatorWin::getInstance()->run();
+    auto simulator = SimulatorWin::getInstance();
+
+#define USE_WIN32_CONSOLE 1
+#if defined(USE_WIN32_CONSOLE) && (USE_WIN32_CONSOLE > 0)
+	AllocConsole();
+	freopen("CONIN$", "r", stdin);
+	freopen("CONOUT$", "w", stdout);
+	freopen("CONOUT$", "w", stderr);
+
+	int ret = SimulatorWin::getInstance()->run();
+	FreeConsole();
+	return ret;
+#else
+	return simulator->run();
+#endif
 }

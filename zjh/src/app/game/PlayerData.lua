@@ -1,7 +1,7 @@
 --[[
 @brief  游戏玩家数据
 ]]
-
+local app = cc.exports.gEnv.app
 local PlayerData = {}
 
 local HERO_LOCAL_SEAT   = 1

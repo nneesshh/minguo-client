@@ -1,6 +1,6 @@
 
-
-local ShopLayer = class("ShopLayer",app.base.BaseLayer)
+local app = cc.exports.gEnv.app
+local ShopLayer = class("ShopLayer", app.base.BaseLayer)
 
 ShopLayer.csbPath = "lobby/csb/shop.csb"
 

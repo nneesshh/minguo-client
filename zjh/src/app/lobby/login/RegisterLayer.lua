@@ -2,7 +2,7 @@
 --[[
 @brief  注册layer
 ]]
-
+local app = cc.exports.gEnv.app
 local RegisterLayer = class("RegisterLayer", app.base.BaseLayer)
 
 -- csb路径

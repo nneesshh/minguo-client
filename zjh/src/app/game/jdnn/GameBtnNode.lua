@@ -2,7 +2,7 @@
 --[[
     @brief  游戏按钮UI基类
 ]]--
-
+local app = cc.exports.gEnv.app
 local GameBtnNode  = class("GameBtnNode", app.base.BaseNodeEx)
 local GameEnum  = app.game.GameEnum
 

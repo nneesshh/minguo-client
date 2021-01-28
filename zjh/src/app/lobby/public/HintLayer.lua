@@ -1,6 +1,7 @@
 --[[
 @brief  公共提示框
 ]]
+local app = cc.exports.gEnv.app
 local ToolUtils = app.util.ToolUtils
 
 local HintLayer = class("HintLayer", app.base.BaseLayer)

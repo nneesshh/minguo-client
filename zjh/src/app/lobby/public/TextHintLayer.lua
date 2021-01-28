@@ -1,7 +1,7 @@
 --[[
 @brief  公共提示框
 ]]
-
+local app = cc.exports.gEnv.app
 local TextHintLayer = class("TextHintLayer", app.base.BaseLayer)
 
 TextHintLayer.csbPath = "lobby/csb/hint2.csb"

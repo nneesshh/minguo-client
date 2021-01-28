@@ -1,4 +1,5 @@
-local app = app
+
+local app = cc.exports.gEnv.app
 
 local _M = {}
 

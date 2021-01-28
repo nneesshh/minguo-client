@@ -2,6 +2,7 @@
 --[[
     @brief  游戏右上角菜单UI
 ]]--
+local app = cc.exports.gEnv.app
 local GameMenuNode  = class("GameMenuNode", app.base.BaseNodeEx)
 
 GameMenuNode.touchs = {

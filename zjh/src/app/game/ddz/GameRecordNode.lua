@@ -1,7 +1,7 @@
 --[[
     @brief  记牌器
 ]]--
-
+local app = cc.exports.gEnv.app
 local GameRecordNode  = class("GameRecordNode", app.base.BaseNodeEx)
 
 GameRecordNode.touchs = {

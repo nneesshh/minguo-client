@@ -1,7 +1,7 @@
 --[[
 @brief  VaildUtils 校验函数
 ]]
-
+local app = cc.exports.gEnv.app
 local VaildUtils = {}
 
 --[[

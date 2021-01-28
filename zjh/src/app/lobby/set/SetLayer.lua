@@ -2,7 +2,7 @@
 @brief  SetLayer 设置界面
 @by     鲁诗瀚
 ]]
-
+local app = cc.exports.gEnv.app
 local SetLayer = class("SetLayer", app.base.BaseLayer)
 
 SetLayer.csbPath = "lobby/csb/set.csb"

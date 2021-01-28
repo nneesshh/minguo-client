@@ -1,9 +1,8 @@
 --[[
 @brief  主场景
 ]]
-
+local app = cc.exports.gEnv.app
 local scheduler = cc.Director:getInstance():getScheduler()
-
 local MainScene = class("MainScene", app.base.BaseScene)
 
 -- csb路径

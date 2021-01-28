@@ -1,11 +1,12 @@
 --[[
 @brief  管理基类
 ]]
-
-local app = app
+local app = cc.exports.gEnv.app
+local zjh_defs = cc.exports.gEnv.misc_defs.zjh_defs
+local scheduler = cc.Director:getInstance():getScheduler()
 
 local BasePresenter = class("BasePresenter")
-local scheduler = cc.Director:getInstance():getScheduler()
+
 ---------------- 子类需配置项目 ---------------
 -- UI单例
 BasePresenter._ui   = nil

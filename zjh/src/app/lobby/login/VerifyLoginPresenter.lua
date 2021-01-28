@@ -2,7 +2,8 @@
 --[[
 @brief  验证登录管理类
 ]]
-
+local app = cc.exports.gEnv.app
+local requireLobby = cc.exports.gEnv.HotpatchRequire.requireLobby
 
 local VerifyLoginPresenter   = class("VerifyLoginPresenter", app.base.BasePresenter)
 

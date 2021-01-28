@@ -1,7 +1,7 @@
 --[[
 @brief  游戏主场景UI基类
 ]]--
-
+local app = cc.exports.gEnv.app
 local GameScene   = class("GameScene", app.base.BaseScene)
 
 -- csb路径

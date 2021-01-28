@@ -2,6 +2,7 @@
 --[[
     @brief  玩家列表UI
 ]]--
+local app = cc.exports.gEnv.app
 local GameListLayer    = class("GameListLayer", app.base.BaseLayer)
 
 GameListLayer.csbPath = "game/brnn/csb/playerlist.csb"

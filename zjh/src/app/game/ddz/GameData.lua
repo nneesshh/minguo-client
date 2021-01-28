@@ -1,6 +1,7 @@
 --[[
     @brief  游戏数据
 ]]--
+local app = cc.exports.gEnv.app
 local GameData = {}
 
 local _selfData = {

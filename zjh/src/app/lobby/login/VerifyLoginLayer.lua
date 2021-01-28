@@ -2,7 +2,7 @@
 --[[
 @brief  验证码登录layer
 ]]
-
+local app = cc.exports.gEnv.app
 local VerifyLoginLayer = class("VerifyLoginLayer", app.base.BaseLayer)
 
 -- csb路径

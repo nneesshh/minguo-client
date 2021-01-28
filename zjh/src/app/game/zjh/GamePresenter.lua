@@ -1,8 +1,9 @@
 --[[
 @brief  游戏主场景控制基类
 ]]
-
-local app = app
+local app = cc.exports.gEnv.app
+local zjh_defs = cc.exports.gEnv.misc_defs.zjh_defs
+local requireZJH = cc.exports.gEnv.HotpatchRequire.requireZJH
 
 local GamePlayerNode = requireZJH("app.game.zjh.GamePlayerNode")
 local GameBtnNode    = requireZJH("app.game.zjh.GameBtnNode")

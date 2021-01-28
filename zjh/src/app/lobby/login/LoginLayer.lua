@@ -2,9 +2,9 @@
 --[[
 @brief  登录界面
 ]]
-
-local TestAccount = require("test.TestAccount")
+local app = cc.exports.gEnv.app
 local LoginLayer = class("LoginLayer", app.base.BaseLayer)
+local TestAccount = require("test.TestAccount")
 
 -- csbPath
 LoginLayer.csbPath = "lobby/csb/login.csb"

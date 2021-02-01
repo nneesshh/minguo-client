@@ -62,6 +62,7 @@ proguard-project\.txt
 #proj\.android/
 \.metadata/
 #\.settings/
+\.idea/
 zjh/frameworks/cocos2d-x/
 zjh/frameworks/runtime-src/proj\.android/assets/
 zjh/frameworks/runtime-src/proj\.android/bin/

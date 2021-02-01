@@ -1,48 +1,15 @@
+
 -- global before config and cocos.init
 print = release_print
+
+--
 require "socket" -- must before require "cocos.init", otherwise will raise error: USE " cc.exports.socket = value " INSTEAD OF SET GLOBAL VARIABLE
 
 --
-cc.FileUtils:getInstance():setPopupNotify(false)
-
-require "config"
-require "cocos.init"
-
--- cclog
-local cclog = function(...)
-    print(string.format(...))
-end
-
--- traceback
-function __G__TRACKBACK__(msg)
-    cclog("----------------------------------------")
-    cclog("LUA ERROR: " .. tostring(msg) .. "\n")
-    cclog(debug.traceback())
-   
-    return msg
-end
+package.cpath = package.cpath .. ';C:/Users/admin/AppData/Roaming/JetBrains/IdeaIC2020.3/plugins/intellij-emmylua/classes/debugger/emmy/windows/x86/?.dll'
+local dbg = require('emmy_core')
+dbg.tcpConnect('localhost', 9966)
+dbg.breakHere()
 
 --
-local function main()
-	-- require("app.MyApp"):create():run()
-    collectgarbage("collect")
-    collectgarbage("setpause", 100)
-    collectgarbage("setstepmul", 5000)
-
-    if CC_HOTPATCH then
-        -- 大厅热更搜索路径
-        cc.FileUtils:getInstance():addSearchPath(cc.FileUtils:getInstance():getWritablePath() .. "patch_lobby/src/", true)
-        cc.FileUtils:getInstance():addSearchPath(cc.FileUtils:getInstance():getWritablePath() .. "patch_lobby/res/", true)
-        
-        require("startup"):start()    
-    else
-        local starter = require "app.starter"
-        starter.init()
-        starter.start()
-    end    
-end
-
-local status, msg = xpcall(main, __G__TRACKBACK__)
-if not status then
-    print(msg)
-end
+require("ccmain")
